@@ -12,10 +12,17 @@ build/
 xcuserdata
 *.xccheckout
 *.moved-aside
+*.xcuserstate
+*.xcscmblueprint
 DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+
 
 # CocoaPods
 #
@@ -25,9 +32,20 @@ DerivedData
 #
 # Pods/
 
+Podfile
+Podfile.lock
+
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
 Carthage/Build
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
+# screenshots whenever they are needed.
+
+fastlane/report.xml
+fastlane/screenshots
