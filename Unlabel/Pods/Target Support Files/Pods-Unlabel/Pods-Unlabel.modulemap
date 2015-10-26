@@ -1,0 +1,6 @@
+framework module Pods_Unlabel {
+  umbrella header "Pods-Unlabel-umbrella.h"
+
+  export *
+  module * { export * }
+}
