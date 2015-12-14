@@ -15,6 +15,8 @@
 		400BDE191C1B890800487C6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 400BDE171C1B890800487C6E /* LaunchScreen.storyboard */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
+		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
+		90138A7068AD7E7FDF511AEA /* libPods-Unlabel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0E691FFCEB49F3D8A76698 /* libPods-Unlabel.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		400BDE0D1C1B890800487C6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,10 @@
 		400BDE2A1C1B890800487C6E /* UnlabelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnlabelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlabelUITests.swift; sourceTree = "<group>"; };
 		400BDE301C1B890800487C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40714ED51C1DE5FE0063FF43 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
+		A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
+		FF0E691FFCEB49F3D8A76698 /* libPods-Unlabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unlabel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90138A7068AD7E7FDF511AEA /* libPods-Unlabel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +87,14 @@
 		400BDDFF1C1B890800487C6E = {
 			isa = PBXGroup;
 			children = (
+				40714ED51C1DE5FE0063FF43 /* Podfile */,
 				400BDE0A1C1B890800487C6E /* Unlabel */,
 				400BDE221C1B890800487C6E /* UnlabelTests */,
 				400BDE2D1C1B890800487C6E /* UnlabelUITests */,
 				400BDE091C1B890800487C6E /* Products */,
+				EC0E8037E44618A7C1AD72C6 /* Pods */,
+				5F23897C3AF1B82FBA932788 /* Frameworks */,
+				40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +140,23 @@
 			path = UnlabelUITests;
 			sourceTree = "<group>";
 		};
+		5F23897C3AF1B82FBA932788 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF0E691FFCEB49F3D8A76698 /* libPods-Unlabel.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC0E8037E44618A7C1AD72C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */,
+				302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 400BDE331C1B890800487C6E /* Build configuration list for PBXNativeTarget "Unlabel" */;
 			buildPhases = (
+				A083B417603B1C6CEAC16287 /* Check Pods Manifest.lock */,
 				400BDE041C1B890800487C6E /* Sources */,
 				400BDE051C1B890800487C6E /* Frameworks */,
 				400BDE061C1B890800487C6E /* Resources */,
+				44E2C765F1294BEDA82C38C5 /* Embed Pods Frameworks */,
+				A342024F2A60AFE1A6D04ED6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,6 +266,7 @@
 			files = (
 				400BDE191C1B890800487C6E /* LaunchScreen.storyboard in Resources */,
 				400BDE161C1B890800487C6E /* Assets.xcassets in Resources */,
+				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
 				400BDE111C1B890800487C6E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +286,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44E2C765F1294BEDA82C38C5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A083B417603B1C6CEAC16287 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A342024F2A60AFE1A6D04ED6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		400BDE041C1B890800487C6E /* Sources */ = {
@@ -399,23 +480,30 @@
 		};
 		400BDE341C1B890800487C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Unlabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unlabel-app.Unlabel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		400BDE351C1B890800487C6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Unlabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unlabel-app.Unlabel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -486,6 +574,7 @@
 				400BDE351C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		400BDE361C1B890800487C6E /* Build configuration list for PBXNativeTarget "UnlabelTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +583,7 @@
 				400BDE381C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		400BDE391C1B890800487C6E /* Build configuration list for PBXNativeTarget "UnlabelUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +592,7 @@
 				400BDE3B1C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
