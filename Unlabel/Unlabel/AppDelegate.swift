@@ -108,12 +108,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+   }
 
-    
-    //
-    //MARK:- Custom Methods
-    //
-    
+
+//
+//MARK:- Custom Methods
+//
+extension AppDelegate{
     /**
      Init everything needed on app launch.
      */

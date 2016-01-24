@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		159245231C5539C500755814 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245221C5539C500755814 /* Brand.swift */; };
+		159245271C553B6800755814 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
+		159245281C553B6800755814 /* FeedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159245261C553B6800755814 /* FeedVCCell.xib */; };
+		1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592452A1C5557D900755814 /* LeftMenuVC.swift */; };
 		15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
 		15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7A11C54A2D100244AC9 /* Assets.xcassets */; };
@@ -23,6 +27,11 @@
 		15B7E7BF1C54AA0B00244AC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7BE1C54AA0B00244AC9 /* SystemConfiguration.framework */; };
 		15B7E7C11C54AA1A00244AC9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7C01C54AA1A00244AC9 /* libz.tbd */; };
 		15B7E7C31C54AA2600244AC9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */; };
+		15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C41C55201200244AC9 /* Neutraface2Text-Bold.otf */; };
+		15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C51C55201200244AC9 /* Neutraface2Text-Book.otf */; };
+		15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */; };
+		15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */; };
+		15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
@@ -48,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		159245221C5539C500755814 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		159245251C553B6800755814 /* FeedVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCCell.swift; sourceTree = "<group>"; };
+		159245261C553B6800755814 /* FeedVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedVCCell.xib; sourceTree = "<group>"; };
+		1592452A1C5557D900755814 /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
 		15B7E7991C54A2D100244AC9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		15B7E79E1C54A2D100244AC9 /* Unlabel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unlabel.xcdatamodel; sourceTree = "<group>"; };
 		15B7E7A11C54A2D100244AC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +77,11 @@
 		15B7E7BE1C54AA0B00244AC9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15B7E7C01C54AA1A00244AC9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		15B7E7C41C55201200244AC9 /* Neutraface2Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Bold.otf"; sourceTree = "<group>"; };
+		15B7E7C51C55201200244AC9 /* Neutraface2Text-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Book.otf"; sourceTree = "<group>"; };
+		15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Demi.otf"; sourceTree = "<group>"; };
+		15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Light.otf"; sourceTree = "<group>"; };
+		15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutra2Display-Bold.otf"; sourceTree = "<group>"; };
 		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,9 +134,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		159245241C553B4C00755814 /* FeedVC */ = {
+			isa = PBXGroup;
+			children = (
+				159245251C553B6800755814 /* FeedVCCell.swift */,
+				159245261C553B6800755814 /* FeedVCCell.xib */,
+			);
+			path = FeedVC;
+			sourceTree = "<group>";
+		};
+		159245291C5557B700755814 /* LeftMenuVC */ = {
+			isa = PBXGroup;
+			children = (
+				1592452A1C5557D900755814 /* LeftMenuVC.swift */,
+			);
+			path = LeftMenuVC;
+			sourceTree = "<group>";
+		};
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				159245291C5557B700755814 /* LeftMenuVC */,
 				15B7E7981C54A2D100244AC9 /* FeedVC */,
 			);
 			path = Controller;
@@ -135,6 +171,7 @@
 		15B7E79A1C54A2D100244AC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				159245221C5539C500755814 /* Brand.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +197,11 @@
 		15B7E79F1C54A2D100244AC9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				15B7E7C41C55201200244AC9 /* Neutraface2Text-Bold.otf */,
+				15B7E7C51C55201200244AC9 /* Neutraface2Text-Book.otf */,
+				15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */,
+				15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */,
+				15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -175,6 +217,7 @@
 		15B7E7A21C54A2D100244AC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				159245241C553B4C00755814 /* FeedVC */,
 				15B7E7A31C54A2D100244AC9 /* Storyboards */,
 			);
 			path = View;
@@ -387,10 +430,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
+				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
 				15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */,
+				159245281C553B6800755814 /* FeedVCCell.xib in Resources */,
 				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
+				15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */,
 				15B7E7AC1C54A2D100244AC9 /* Main.storyboard in Resources */,
+				15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */,
+				15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +514,10 @@
 			files = (
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
+				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
+				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
+				159245231C5539C500755814 /* Brand.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
