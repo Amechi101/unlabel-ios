@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import Bolts
 import CoreData
 
 @UIApplicationMain
@@ -16,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        setupOnLaunch()
         return true
     }
 
@@ -107,5 +109,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    
+    //
+    //MARK:- Custom Methods
+    //
+    
+    /**
+     Init everything needed on app launch.
+     */
+    func setupOnLaunch(){
+        setupParse()
+        setupUI()
+    }
+    
+    /**
+     Init Parse on app launch.
+     */
+    func setupParse(){
+        // Initialize Parse.
+        Parse.setApplicationId("2ITzXWzCVa9YRbisoFeCzmPJvoBjBURfibsbVnEU",
+            clientKey: "ENFJOyHvcxhrjKQongGfjyVtnvYycVXKov9MFf20")
+    }
+    
+    /**
+     Init UI on app launch.
+     */
+    func setupUI(){
+        UINavigationBar.appearance().setBackgroundImage(
+            UIImage(),
+            forBarPosition: .Any,
+            barMetrics: .Default)
+        
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
+    }
 }
 

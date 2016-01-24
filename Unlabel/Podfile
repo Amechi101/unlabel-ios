@@ -2,6 +2,8 @@ platform :ios, '8.1'
 
 xcodeproj 'Unlabel'
 
+use_frameworks!
+
 target :Unlabel, :exclusive => true do
     pod 'Parse'
     pod 'ParseUI'

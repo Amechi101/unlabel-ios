@@ -82,3 +82,22 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Unlabel/Bolts.framework"
+  install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
+  install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
+  install_framework "Pods-Unlabel/Parse.framework"
+  install_framework "Pods-Unlabel/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-Unlabel/ParseTwitterUtils.framework"
+  install_framework "Pods-Unlabel/ParseUI.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Unlabel/Bolts.framework"
+  install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
+  install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
+  install_framework "Pods-Unlabel/Parse.framework"
+  install_framework "Pods-Unlabel/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-Unlabel/ParseTwitterUtils.framework"
+  install_framework "Pods-Unlabel/ParseUI.framework"
+fi

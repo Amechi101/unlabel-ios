@@ -153,7 +153,7 @@
     return source.task;
 }
 
-/*!
+/**
  Get the request token for the authentication. This is the first step in auth.
  if isReverseAuth is YES then get the request token for reverse auth mode. Otherwise, get the request token for web auth mode.
  */
@@ -227,7 +227,7 @@
     return taskCompletionSource.task;
 }
 
-/*!
+/**
  Get the access token for reverse authentication.
  If the Task is successful then, Task result is dictionary containing logged in user's Auth token, Screenname and other attributes.
  */
@@ -371,8 +371,8 @@
     return source.task;
 }
 
-- (BFTask PF_GENERIC(ACAccount *)*)_getLocalTwitterAccountAsync {
-    BFTaskCompletionSource PF_GENERIC(ACAccount *)*source = [BFTaskCompletionSource taskCompletionSource];
+- (BFTask<ACAccount *> *)_getLocalTwitterAccountAsync {
+    BFTaskCompletionSource<ACAccount *> *source = [BFTaskCompletionSource taskCompletionSource];
 
     // If no twitter accounts present in the system, then no need to ask for permission to the user
     if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
