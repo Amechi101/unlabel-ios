@@ -10,10 +10,19 @@ import Foundation
 
 
 //
+//MARK:- Storyboard Names
+//
+let S_NAME_UNLABEL = "Unlabel"
+let S_NAME_ADMIN   = "Admin"
+
+
+//
 //MARK:- Storyboard IDs
 //
-let S_ID_FEEDVC = "FeedVC"
-let S_ID_LEFT_MENU_VC = "LeftMenuVC"
+let S_ID_FEEDVC                     = "FeedVC"
+let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
+let S_ID_NAV_CONTROLLER             = "NavController"
+let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 
 
 //

@@ -118,15 +118,15 @@ extension AppDelegate{
     /**
      Init everything needed on app launch.
      */
-    func setupOnLaunch(){
+    private func setupOnLaunch(){
         setupParse()
-        setupUI()
+        setupRootVC()
     }
     
     /**
      Init Parse on app launch.
      */
-    func setupParse(){
+    private  func setupParse(){
         // Initialize Parse.
         Parse.setApplicationId("2ITzXWzCVa9YRbisoFeCzmPJvoBjBURfibsbVnEU",
             clientKey: "ENFJOyHvcxhrjKQongGfjyVtnvYycVXKov9MFf20")
@@ -135,13 +135,41 @@ extension AppDelegate{
     /**
      Init UI on app launch.
      */
-    func setupUI(){
+    private func setupRootVC(){
+        let storyboard:UIStoryboard?
+        let rootVC:UINavigationController?
+        
+        #if ADMIN
+            storyboard = UIStoryboard(name: S_NAME_ADMIN, bundle: nil)
+            rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_ADMIN_NAV_CONTROLLER) as? UINavigationController
+        #else
+            storyboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
+            rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+            setupUnlabelApp()
+        #endif
+        
+        
+        if let window = self.window {
+            window.rootViewController = rootVC
+        }
+    }
+    
+    /**
+     Setup Unlable App.
+     */
+    private func setupUnlabelApp(){
         UINavigationBar.appearance().setBackgroundImage(
             UIImage(),
             forBarPosition: .Any,
             barMetrics: .Default)
         
         UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
+    /**
+     Setup Unlable Admin App.
+     */
+    private func setupUnlabelAdmin(){
         
     }
 }
