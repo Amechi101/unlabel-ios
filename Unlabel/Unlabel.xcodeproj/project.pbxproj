@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
+		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
+		158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CC2CB1C578CB800536B73 /* AddBrandVC.swift */; };
 		159245231C5539C500755814 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245221C5539C500755814 /* Brand.swift */; };
 		159245271C553B6800755814 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
 		159245281C553B6800755814 /* FeedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159245261C553B6800755814 /* FeedVCCell.xib */; };
@@ -92,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
+		158CC2CB1C578CB800536B73 /* AddBrandVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBrandVC.swift; sourceTree = "<group>"; };
 		159245221C5539C500755814 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		159245251C553B6800755814 /* FeedVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCCell.swift; sourceTree = "<group>"; };
 		159245261C553B6800755814 /* FeedVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedVCCell.xib; sourceTree = "<group>"; };
@@ -198,6 +203,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		158CC2CA1C578C9C00536B73 /* AddBrandVC */ = {
+			isa = PBXGroup;
+			children = (
+				158CC2CB1C578CB800536B73 /* AddBrandVC.swift */,
+			);
+			path = AddBrandVC;
+			sourceTree = "<group>";
+		};
 		159245241C553B4C00755814 /* FeedVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,8 +304,8 @@
 		15B7E7A31C54A2D100244AC9 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				15B7E7A41C54A2D100244AC9 /* LaunchScreen.storyboard */,
 				15B7E7A61C54A2D100244AC9 /* Unlabel.storyboard */,
+				15B7E7A41C54A2D100244AC9 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -302,6 +315,7 @@
 			children = (
 				15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */,
 				15C993AD1C56BA65000C28E0 /* ParseConstants.swift */,
+				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -328,8 +342,9 @@
 		15C9938D1C56A870000C28E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				15C9938E1C56A870000C28E0 /* AdminNavController */,
 				15C9938F1C56A870000C28E0 /* AdminVC */,
+				158CC2CA1C578C9C00536B73 /* AddBrandVC */,
+				15C9938E1C56A870000C28E0 /* AdminNavController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -739,11 +754,13 @@
 				15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */,
 				15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */,
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
+				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
 				15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */,
 				15C993681C56A156000C28E0 /* LeftMenuVC.swift in Sources */,
 				15C993691C56A156000C28E0 /* FeedVC.swift in Sources */,
+				154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */,
 				15C9936A1C56A156000C28E0 /* Brand.swift in Sources */,
 				15C9936B1C56A156000C28E0 /* AppDelegate.swift in Sources */,
 			);
@@ -754,6 +771,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
+				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,

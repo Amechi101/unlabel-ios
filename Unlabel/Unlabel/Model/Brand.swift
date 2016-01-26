@@ -9,6 +9,7 @@
 import UIKit
 
 class Brand: NSObject {
+    var sObjectID:String = String()
     var imgBrandImage:UIImage = UIImage()
     var sBrandName:String = String()
     var sDescription:String = String()

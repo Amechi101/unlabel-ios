@@ -8,6 +8,9 @@
         <mutableArray key="Neutraface2Text-Bold.otf">
             <string>Neutraface2Text-Bold</string>
         </mutableArray>
+        <mutableArray key="Neutraface2Text-Book.otf">
+            <string>Neutraface2Text-Book</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Left MenuVC-->
@@ -39,11 +42,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-xf-ZoG">
-                                        <rect key="frame" x="20" y="554" width="107" height="30"/>
-                                        <state key="normal" title="Login / Register"/>
+                                        <rect key="frame" x="20" y="550" width="141" height="34"/>
+                                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="21"/>
+                                        <state key="normal" title="Login / Register">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-hn-wcy">
-                                        <rect key="frame" x="20" y="71" width="500" height="483"/>
+                                        <rect key="frame" x="20" y="71" width="500" height="459"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="PAN-GT-FN7" id="vd2-qE-MWe"/>
@@ -60,7 +66,7 @@
                                     <constraint firstItem="Vqk-Tx-PkA" firstAttribute="top" secondItem="pkd-o7-Ake" secondAttribute="top" constant="11" id="hXt-FE-bV6"/>
                                     <constraint firstAttribute="bottom" secondItem="XEt-xf-ZoG" secondAttribute="bottom" constant="16" id="p1r-wK-ntn"/>
                                     <constraint firstAttribute="trailing" secondItem="gLg-hn-wcy" secondAttribute="trailing" constant="30" id="qyZ-c8-XTR"/>
-                                    <constraint firstItem="XEt-xf-ZoG" firstAttribute="top" secondItem="gLg-hn-wcy" secondAttribute="bottom" id="rfz-0y-O8c"/>
+                                    <constraint firstItem="XEt-xf-ZoG" firstAttribute="top" secondItem="gLg-hn-wcy" secondAttribute="bottom" constant="20" id="rfz-0y-O8c"/>
                                 </constraints>
                             </view>
                         </subviews>

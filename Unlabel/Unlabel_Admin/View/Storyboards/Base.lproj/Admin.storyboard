@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GIf-fM-CHk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Admin Nav Controller-->
@@ -60,7 +62,15 @@
                             <constraint firstAttribute="trailing" secondItem="me1-Xj-dC8" secondAttribute="trailing" id="zas-va-hPO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4As-iW-YKy"/>
+                    <navigationItem key="navigationItem" id="4As-iW-YKy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OXg-Ly-CFP">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="IBActionAddBrand:" destination="eyb-Qt-0Qk" id="dd0-rM-ya1"/>
+                                <segue destination="vOZ-Pa-fHb" kind="show" identifier="AddBrand" id="8pp-rc-CJC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="IBactivityIndicator" destination="me1-Xj-dC8" id="Y6b-Lb-KWM"/>
                         <outlet property="IBtblBrand" destination="aAz-nz-gyv" id="SPO-Lf-nRI"/>
@@ -69,6 +79,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vp-87-leF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="914" y="324"/>
+        </scene>
+        <!--Add New Brand-->
+        <scene sceneID="soB-tC-TDa">
+            <objects>
+                <viewController storyboardIdentifier="AddBrandVC" id="vOZ-Pa-fHb" customClass="AddBrandVC" customModule="Unlabel_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DAY-9r-Lr5"/>
+                        <viewControllerLayoutGuide type="bottom" id="m8d-pM-tWW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B73-88-0y2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Brand Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-bw-4cO">
+                                <rect key="frame" x="20" y="84" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vOZ-Pa-fHb" id="hKc-64-RQq"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNZ-V3-dKw">
+                                <rect key="frame" x="20" y="453" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vOZ-Pa-fHb" id="1lM-5O-OnJ"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="edN-w5-Gk0">
+                                <rect key="frame" x="20" y="134" width="560" height="299"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="edN-w5-Gk0" secondAttribute="height" multiplier="15:8" id="obF-tJ-B8F"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vOZ-Pa-fHb" id="QvT-4w-XFT"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA5-a9-Gxn">
+                                <rect key="frame" x="20" y="369" width="560" height="211"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="211" id="w0G-dF-UBK"/>
+                                </constraints>
+                                <state key="normal" title="Choose Main Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionChooseImage:" destination="vOZ-Pa-fHb" eventType="touchUpInside" id="Ii6-hQ-Nrk"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="eUD-6f-r3U">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m8d-pM-tWW" firstAttribute="top" secondItem="HA5-a9-Gxn" secondAttribute="bottom" constant="20" id="3ye-ui-UBS"/>
+                            <constraint firstItem="eUD-6f-r3U" firstAttribute="top" secondItem="DAY-9r-Lr5" secondAttribute="bottom" id="6AR-qG-4Y5"/>
+                            <constraint firstItem="CNZ-V3-dKw" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leading" constant="20" id="APB-4m-MKL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eUD-6f-r3U" secondAttribute="trailing" constant="-20" id="BPa-32-6RC"/>
+                            <constraint firstItem="CNZ-V3-dKw" firstAttribute="top" secondItem="edN-w5-Gk0" secondAttribute="bottom" constant="20" id="Bj2-Uh-etX"/>
+                            <constraint firstItem="edN-w5-Gk0" firstAttribute="top" secondItem="NdA-bw-4cO" secondAttribute="bottom" constant="20" id="Dou-Ze-wPK"/>
+                            <constraint firstItem="eUD-6f-r3U" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leadingMargin" constant="-20" id="FqC-FM-VFy"/>
+                            <constraint firstItem="NdA-bw-4cO" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leading" constant="20" id="Ia6-GF-lTR"/>
+                            <constraint firstItem="NdA-bw-4cO" firstAttribute="top" secondItem="DAY-9r-Lr5" secondAttribute="bottom" constant="20" id="JUd-gR-wgR"/>
+                            <constraint firstAttribute="trailing" secondItem="edN-w5-Gk0" secondAttribute="trailing" constant="20" id="KsT-Pz-vb1"/>
+                            <constraint firstAttribute="trailing" secondItem="HA5-a9-Gxn" secondAttribute="trailing" constant="20" id="Qkx-Da-PH2"/>
+                            <constraint firstAttribute="trailing" secondItem="CNZ-V3-dKw" secondAttribute="trailing" constant="20" id="aWl-81-j8M"/>
+                            <constraint firstItem="m8d-pM-tWW" firstAttribute="top" secondItem="eUD-6f-r3U" secondAttribute="bottom" id="i80-bc-qVO"/>
+                            <constraint firstItem="edN-w5-Gk0" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leading" constant="20" id="qtC-aa-59u"/>
+                            <constraint firstAttribute="trailing" secondItem="NdA-bw-4cO" secondAttribute="trailing" constant="20" id="tcG-QU-DlZ"/>
+                            <constraint firstItem="HA5-a9-Gxn" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leading" constant="20" id="yQr-m6-1cs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add New Brand" id="pK8-dp-IQA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="U9h-L9-4rR">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="IBActionSave:" destination="vOZ-Pa-fHb" id="msW-7y-XBj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="IBactivityIndicator" destination="eUD-6f-r3U" id="gVL-bN-TIf"/>
+                        <outlet property="IBbtnChooseImage" destination="HA5-a9-Gxn" id="cng-Cq-pi1"/>
+                        <outlet property="IBtxtFieldBrandName" destination="NdA-bw-4cO" id="url-U7-VfR"/>
+                        <outlet property="IBtxtFieldLocation" destination="CNZ-V3-dKw" id="QSy-fa-WQK"/>
+                        <outlet property="IBtxtViewDescription" destination="edN-w5-Gk0" id="YSG-4U-xSD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCT-HD-Zeb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="324"/>
         </scene>
     </scenes>
 </document>

@@ -18,6 +18,7 @@ let PARSE_PRODUCT   = "Product"
 //
 //MARK:- Brand Params
 //
+let PRM_OBJ_ID          = "objectId"
 let PRM_BRAND_NAME      = "BrandName"
 let PRM_MAIN_IMAGE      = "MainImage"
 let PRM_DESCRIPTION     = "Description"
