@@ -58,7 +58,7 @@ extension FeedVC:UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName
+        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName.uppercaseString
         feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].sLocation
         if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             feedVCCell.IBimgBrandImage.image = brandMainImage
