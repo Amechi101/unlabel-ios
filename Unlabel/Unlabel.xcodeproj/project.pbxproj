@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
+		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
+		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CC2CB1C578CB800536B73 /* AddBrandVC.swift */; };
 		159245231C5539C500755814 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245221C5539C500755814 /* Brand.swift */; };
 		159245271C553B6800755814 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
@@ -96,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
+		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		158CC2CB1C578CB800536B73 /* AddBrandVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBrandVC.swift; sourceTree = "<group>"; };
 		159245221C5539C500755814 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		159245251C553B6800755814 /* FeedVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCCell.swift; sourceTree = "<group>"; };
@@ -231,9 +234,9 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				15C9938A1C56A74A000C28E0 /* NavController */,
-				159245291C5557B700755814 /* LeftMenuVC */,
 				15B7E7981C54A2D100244AC9 /* FeedVC */,
+				159245291C5557B700755814 /* LeftMenuVC */,
+				15C9938A1C56A74A000C28E0 /* NavController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,9 +260,9 @@
 		15B7E79B1C54A2D100244AC9 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
+				15B7E7A01C54A2D100244AC9 /* Images */,
 				15B7E79C1C54A2D100244AC9 /* DataModel */,
 				15B7E79F1C54A2D100244AC9 /* Fonts */,
-				15B7E7A01C54A2D100244AC9 /* Images */,
 			);
 			path = Resouces;
 			sourceTree = "<group>";
@@ -295,8 +298,8 @@
 		15B7E7A21C54A2D100244AC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				159245241C553B4C00755814 /* FeedVC */,
 				15B7E7A31C54A2D100244AC9 /* Storyboards */,
+				159245241C553B4C00755814 /* FeedVC */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */,
 				15C993AD1C56BA65000C28E0 /* ParseConstants.swift */,
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
+				154687781C5814D60060565B /* UnlabelExtensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -420,9 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				400BDE0B1C1B890800487C6E /* AppDelegate.swift */,
+				15B7E7971C54A2D100244AC9 /* Controller */,
 				15B7E79A1C54A2D100244AC9 /* Model */,
 				15B7E7A21C54A2D100244AC9 /* View */,
-				15B7E7971C54A2D100244AC9 /* Controller */,
 				15B7E79B1C54A2D100244AC9 /* Resouces */,
 				15B7E7AD1C54A57700244AC9 /* Helper */,
 				400BDE1A1C1B890800487C6E /* Info.plist */,
@@ -755,6 +759,7 @@
 				15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */,
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
+				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
 				15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */,
@@ -780,6 +785,7 @@
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
+				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

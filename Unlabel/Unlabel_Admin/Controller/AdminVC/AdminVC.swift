@@ -18,7 +18,7 @@ class AdminVC: UIViewController {
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var IBtblBrand: UITableView!
     
-    var arrBrands = [Brand]()
+    var arrBrandList = [Brand]()
     var shouldReloadData = false
     
 //
@@ -54,13 +54,13 @@ class AdminVC: UIViewController {
 //
 extension AdminVC:UITableViewDataSource,UITableViewDelegate{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrBrands.count
+        return arrBrandList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let brandsCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        brandsCell.textLabel?.text = arrBrands[indexPath.row].sBrandName
-        brandsCell.imageView?.image = arrBrands[indexPath.row].imgBrandImage
+        brandsCell.textLabel?.text = arrBrandList[indexPath.row].sBrandName
+        brandsCell.imageView?.image = arrBrandList[indexPath.row].imgBrandImage
         brandsCell.imageView?.contentMode = UIViewContentMode.ScaleToFill
         return brandsCell
     }
@@ -116,7 +116,7 @@ extension AdminVC{
     }
     
     func authenticateUser() {
-        // Get the local authentication context.
+
         let context = LAContext()
         
         // Declare a NSError variable.
@@ -242,7 +242,7 @@ extension AdminVC{
                     }else{
                         self.hideLoading()
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.arrBrands = [Brand]()
+                            self.arrBrandList = [Brand]()
                             self.reloadTable()
                         })
                         UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
@@ -254,7 +254,7 @@ extension AdminVC{
     }
     
     func handleBrandObjs(brandObjects:[PFObject]){
-        arrBrands = [Brand]()
+        arrBrandList = [Brand]()
         for brandObj in brandObjects{
             let currentBrand = Brand()
             currentBrand.sObjectID      = brandObj.objectId!
@@ -273,7 +273,7 @@ extension AdminVC{
                 }
             })
             
-            arrBrands.append(currentBrand)
+            arrBrandList.append(currentBrand)
         }
         
         defer{
@@ -283,7 +283,7 @@ extension AdminVC{
     
     func parseCallDeleteBrand(indexPath:NSIndexPath){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let object:PFObject = PFObject(withoutDataWithClassName: PARSE_BRAND, objectId: self.arrBrands[indexPath.row].sObjectID)
+            let object:PFObject = PFObject(withoutDataWithClassName: PARSE_BRAND, objectId: self.arrBrandList[indexPath.row].sObjectID)
             object.deleteInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
             self.parseCallFetchBrands()
             }

@@ -65,7 +65,7 @@ extension AddBrandVC{
                                 brandObj[PRM_DESCRIPTION] = brandDescription
                                 brandObj[PRM_LOCATION] = brandLocation
                         
-                                let imageFile = PFFile(name: "\(brandName)_mainImage.png", data: imageData)
+                                let imageFile = PFFile(name: "\(NSUUID().UUIDString).png", data: imageData)
                                 brandObj[PRM_MAIN_IMAGE] = imageFile
                                 brandObj.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                                     self.hideLoading()

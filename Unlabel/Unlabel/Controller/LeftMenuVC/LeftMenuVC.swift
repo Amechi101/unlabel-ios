@@ -47,6 +47,8 @@ class LeftMenuVC: UIViewController {
 extension LeftMenuVC:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectRowAtIndexPath(indexPath)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        close()
     }
 }
 
@@ -61,6 +63,9 @@ extension LeftMenuVC:UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let leftMenuCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         leftMenuCell.textLabel?.text = arrTitles[indexPath.row]
+        leftMenuCell.textLabel?.textColor = UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
+        leftMenuCell.textLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 14)
+        
         return leftMenuCell
     }
 }

@@ -110,7 +110,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="edN-w5-Gk0">
                                 <rect key="frame" x="20" y="134" width="560" height="299"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="edN-w5-Gk0" secondAttribute="height" multiplier="15:8" id="obF-tJ-B8F"/>
                                 </constraints>
@@ -122,7 +122,7 @@
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA5-a9-Gxn">
-                                <rect key="frame" x="20" y="369" width="560" height="211"/>
+                                <rect key="frame" x="20" y="359" width="560" height="211"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="211" id="w0G-dF-UBK"/>
@@ -141,7 +141,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="m8d-pM-tWW" firstAttribute="top" secondItem="HA5-a9-Gxn" secondAttribute="bottom" constant="20" id="3ye-ui-UBS"/>
+                            <constraint firstItem="m8d-pM-tWW" firstAttribute="top" secondItem="HA5-a9-Gxn" secondAttribute="bottom" constant="30" id="3ye-ui-UBS"/>
                             <constraint firstItem="eUD-6f-r3U" firstAttribute="top" secondItem="DAY-9r-Lr5" secondAttribute="bottom" id="6AR-qG-4Y5"/>
                             <constraint firstItem="CNZ-V3-dKw" firstAttribute="leading" secondItem="B73-88-0y2" secondAttribute="leading" constant="20" id="APB-4m-MKL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eUD-6f-r3U" secondAttribute="trailing" constant="-20" id="BPa-32-6RC"/>

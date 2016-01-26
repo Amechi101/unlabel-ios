@@ -8,8 +8,8 @@
         <mutableArray key="Neutraface2Text-Bold.otf">
             <string>Neutraface2Text-Bold</string>
         </mutableArray>
-        <mutableArray key="Neutraface2Text-Book.otf">
-            <string>Neutraface2Text-Book</string>
+        <mutableArray key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="550" height="600"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqk-Tx-PkA">
-                                        <rect key="frame" x="14" y="11" width="60" height="60"/>
+                                        <rect key="frame" x="14" y="15" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="6u9-2e-Ao8"/>
                                             <constraint firstAttribute="height" constant="60" id="lAM-C3-Xc0"/>
@@ -42,14 +42,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-xf-ZoG">
-                                        <rect key="frame" x="20" y="550" width="141" height="34"/>
-                                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="21"/>
-                                        <state key="normal" title="Login / Register">
+                                        <rect key="frame" x="23" y="543" width="143" height="29"/>
+                                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="17"/>
+                                        <state key="normal" title="LOGIN / REGISTER">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-hn-wcy">
-                                        <rect key="frame" x="20" y="71" width="500" height="459"/>
+                                        <rect key="frame" x="22" y="75" width="498" height="448"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="PAN-GT-FN7" id="vd2-qE-MWe"/>
@@ -59,12 +59,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gLg-hn-wcy" firstAttribute="leading" secondItem="pkd-o7-Ake" secondAttribute="leading" constant="20" id="2IY-4f-gkD"/>
-                                    <constraint firstItem="XEt-xf-ZoG" firstAttribute="leading" secondItem="pkd-o7-Ake" secondAttribute="leading" constant="20" id="Lpo-8V-0aO"/>
+                                    <constraint firstItem="gLg-hn-wcy" firstAttribute="leading" secondItem="pkd-o7-Ake" secondAttribute="leading" constant="22" id="2IY-4f-gkD"/>
+                                    <constraint firstItem="XEt-xf-ZoG" firstAttribute="leading" secondItem="pkd-o7-Ake" secondAttribute="leading" constant="23" id="Lpo-8V-0aO"/>
                                     <constraint firstItem="Vqk-Tx-PkA" firstAttribute="leading" secondItem="pkd-o7-Ake" secondAttribute="leading" constant="14" id="Z8U-z6-qW8"/>
                                     <constraint firstItem="gLg-hn-wcy" firstAttribute="top" secondItem="Vqk-Tx-PkA" secondAttribute="bottom" id="b0s-or-qWb"/>
-                                    <constraint firstItem="Vqk-Tx-PkA" firstAttribute="top" secondItem="pkd-o7-Ake" secondAttribute="top" constant="11" id="hXt-FE-bV6"/>
-                                    <constraint firstAttribute="bottom" secondItem="XEt-xf-ZoG" secondAttribute="bottom" constant="16" id="p1r-wK-ntn"/>
+                                    <constraint firstItem="Vqk-Tx-PkA" firstAttribute="top" secondItem="pkd-o7-Ake" secondAttribute="top" constant="15" id="hXt-FE-bV6"/>
+                                    <constraint firstAttribute="bottom" secondItem="XEt-xf-ZoG" secondAttribute="bottom" constant="28" id="p1r-wK-ntn"/>
                                     <constraint firstAttribute="trailing" secondItem="gLg-hn-wcy" secondAttribute="trailing" constant="30" id="qyZ-c8-XTR"/>
                                     <constraint firstItem="XEt-xf-ZoG" firstAttribute="top" secondItem="gLg-hn-wcy" secondAttribute="bottom" constant="20" id="rfz-0y-O8c"/>
                                 </constraints>

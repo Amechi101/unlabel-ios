@@ -27,7 +27,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTestData()
+        parseCallFetchBrands()
         setupUIOnLoad()
     }
     
@@ -58,7 +58,11 @@ extension FeedVC:UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-        
+        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName
+        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].sLocation
+        if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
+            feedVCCell.IBimgBrandImage.image = brandMainImage
+        }
         return feedVCCell
     }
 }
@@ -79,7 +83,7 @@ extension FeedVC:UICollectionViewDelegateFlowLayout{
 //
 extension FeedVC:LeftMenuVCDelegate{
     func didSelectRowAtIndexPath(indexPath: NSIndexPath) {
-        print(indexPath.row)
+        handleLeftMenuSelection(forIndexPath:indexPath)
     }
 }
 
@@ -97,11 +101,71 @@ extension FeedVC{
     }
 }
 
+
+//
+//MARK:- Parse Call Methods
+//
+extension FeedVC{
+    func parseCallFetchBrands(){
+        
+        let query = PFQuery(className:PARSE_BRAND)
+        query.findObjectsInBackgroundWithBlock {
+            (brandObjects: [PFObject]?, error: NSError?) -> Void in
+            if let error = error {
+                UnlabelHelper.showAlert(onVC: self, title: "Something Went Wrong!", message: error.debugDescription, onOk: { () -> () in
+                })
+            } else {
+                print(brandObjects)
+                if let brandData = brandObjects?.count where brandData > 0{
+                    self.handleBrandObjs(brandObjects!)
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.arrBrandList = [Brand]()
+                        self.IBcollectionViewFeed.reloadData()
+                    })
+                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+                    })
+                    print("no data found")
+                }
+            }
+        }
+    }
     
+    func handleBrandObjs(brandObjects:[PFObject]){
+        arrBrandList = [Brand]()
+        for brandObj in brandObjects{
+            let currentBrand = Brand()
+            currentBrand.sObjectID      = brandObj.objectId!
+            currentBrand.sBrandName     = brandObj[PRM_BRAND_NAME] as! String
+            currentBrand.sDescription   = brandObj[PRM_DESCRIPTION] as! String
+            currentBrand.sLocation      = brandObj[PRM_LOCATION] as! String
+            
+            let imageFile:PFFile = brandObj[PRM_MAIN_IMAGE] as! PFFile
+            imageFile.getDataInBackgroundWithBlock({ (imageData:NSData?, error:NSError?) -> Void in
+                if let error = error{
+                    print("Try again")
+                }else{
+                    let image = UIImage(data: imageData!)
+                    currentBrand.imgBrandImage = image!
+                    self.IBcollectionViewFeed.reloadData()
+                }
+            })
+            
+            arrBrandList.append(currentBrand)
+        }
+        
+        defer{
+            self.IBcollectionViewFeed.reloadData()
+        }
+    }
+}
+
+
 //
 //MARK:- Custom Methods
 //
 extension FeedVC{
+    
     /**
      Setup UI on VC Load.
      */
@@ -166,32 +230,14 @@ extension FeedVC{
         }
     }
 
+    func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
+        print(indexPath.row)
+    }
+    
     func addTestData(){
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
-        arrBrandList.append(Brand())
+        for (var i = 0 ; i < 40 ; i++){
+            arrBrandList.append(Brand())
+        }
     }
 }
 
