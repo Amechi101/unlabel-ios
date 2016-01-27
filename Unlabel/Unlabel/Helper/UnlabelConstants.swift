@@ -19,7 +19,8 @@ let S_NAME_ADMIN   = "Admin"
 //
 //MARK:- Storyboard IDs
 //
-let S_ID_FEEDVC                     = "FeedVC"
+let S_ID_FEED_VC                    = "FeedVC"
+let S_ID_FILTER_VC                  = "FilterVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
@@ -28,7 +29,17 @@ let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 //
 //MARK:- Cell Reusable IDs
 //
-let REUSABLE_ID_FeedVCCell = "FeedVCCell"
+let REUSABLE_ID_FeedVCCell          = "FeedVCCell"
+let REUSABLE_ID_LocationCell        = "LocationCell"
+let REUSABLE_ID_GenderCell          = "GenderCell"
+let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
+
+
+//
+//MARK:- Font Style
+//
+let FONT_STYLE_DEMI = "Demi"
+let FONT_STYLE_BOLD = "Bold"
 
 
 //

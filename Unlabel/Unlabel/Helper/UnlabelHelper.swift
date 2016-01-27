@@ -17,4 +17,20 @@ class UnlabelHelper: NSObject {
         }))
         OnVC.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    
+    //
+    //MARK:- UIColor Methods
+    //
+    class func getGrayTextColor()->UIColor{
+        return UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
+    }
+    
+    //
+    //MARK:- UIFont Methods
+    //
+    class func getNeutraface2Text(style style:String, size:CGFloat)->UIFont{
+        return UIFont(name: "Neutraface2Text-\(style)", size: size)!
+    }
+    
 }

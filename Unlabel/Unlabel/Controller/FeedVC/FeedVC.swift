@@ -97,7 +97,7 @@ extension FeedVC{
     }
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
-     
+        openFilterScreen()
     }
 }
 
@@ -185,6 +185,13 @@ extension FeedVC{
     }
     
     /**
+     Open Filter Screen as child view controller
+     */
+    func openFilterScreen(){
+        addChildVC(forViewController: S_ID_FILTER_VC)
+    }
+    
+    /**
      Open ChildViewController for given ViewController's Storyboard ID
      - parameter VCName: ViewController's Storyboard ID
      */
@@ -192,25 +199,56 @@ extension FeedVC{
         self.removeChildVCIfExists(VCName)
         
         if VCName == S_ID_LEFT_MENU_VC{
-                let leftMenuVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LeftMenuVC
-                leftMenuVC.delegate = self
-                leftMenuVC.view.frame.size = self.view.frame.size
-            
-                //Animate leftViewController entry
-                leftMenuVC.view.frame.origin.x = -self.view.frame.size.width
-                leftMenuVC.view.alpha = 0
-                UIView.animateWithDuration(0.3) { () -> Void in
-                    leftMenuVC.view.alpha = 1
-                    leftMenuVC.view.frame.origin.x = 0
-                }
-                
-                self.navigationController!.addChildViewController(leftMenuVC)
-                leftMenuVC.didMoveToParentViewController(self)
-                
-                self.navigationController!.view.addSubview(leftMenuVC.view)
-            }
+            addLeftMenuAsChildVC(viewControllerName: VCName)
+        }else if VCName == S_ID_FILTER_VC{
+            addFilterVCAsChildVC(viewControllerName: VCName)
+        }
     }
     
+    /**
+     Adding Left Menu As Child VC
+     */
+    func addLeftMenuAsChildVC(viewControllerName VCName:String){
+        let leftMenuVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LeftMenuVC
+        leftMenuVC.delegate = self
+        leftMenuVC.view.frame.size = self.view.frame.size
+        
+        //Animate leftViewController entry
+        leftMenuVC.view.frame.origin.x = -self.view.frame.size.width
+        leftMenuVC.view.alpha = 0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            leftMenuVC.view.alpha = 1
+            leftMenuVC.view.frame.origin.x = 0
+        }
+        
+        self.navigationController!.addChildViewController(leftMenuVC)
+        leftMenuVC.didMoveToParentViewController(self)
+        
+        self.navigationController!.view.addSubview(leftMenuVC.view)
+    }
+    
+    /**
+     Adding Filter VC As Child VC
+     */
+    func addFilterVCAsChildVC(viewControllerName VCName:String){
+        let filterVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! FilterVC
+//        filterVC.delegate = self
+        filterVC.view.frame.size = self.view.frame.size
+        
+        //Animate filterVC entry
+        filterVC.view.frame.origin.x = self.view.frame.size.width
+        filterVC.view.alpha = 0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            filterVC.view.alpha = 1
+            filterVC.view.frame.origin.x = 0
+        }
+        
+        self.navigationController!.addChildViewController(filterVC)
+        filterVC.didMoveToParentViewController(self)
+        
+        self.navigationController!.view.addSubview(filterVC.view)
+    }
+
     /**
      Removes ChildViewController for given ViewController's Storyboard ID
      if already it exists, this happens when user click action to open
