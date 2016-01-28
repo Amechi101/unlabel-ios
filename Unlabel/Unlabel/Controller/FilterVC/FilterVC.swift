@@ -69,7 +69,7 @@ extension FilterVC:UITableViewDataSource{
         cellWithTitle.textLabel?.text = title
         cellWithTitle.layoutMargins = UIEdgeInsetsZero
         cellWithTitle.separatorInset = UIEdgeInsetsMake(0, 0, 0, 2)
-        cellWithTitle.textLabel?.textColor = UnlabelHelper.getGrayTextColor()
+        cellWithTitle.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
         cellWithTitle.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_BOLD, size: 16)
         
         return cellWithTitle

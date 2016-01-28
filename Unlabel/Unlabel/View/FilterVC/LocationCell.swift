@@ -14,8 +14,10 @@ class LocationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        IBtblLocation.registerNib(UINib(nibName: REUSA, bundle: nil), forCellReuseIdentifier: REUSABLE_ID_LocationCell)
-        // Initialization code
+        let bottomWhiteGradient = CAGradientLayer()
+        bottomWhiteGradient.colors = [UIColor.clearColor().CGColor,UIColor.whiteColor().colorWithAlphaComponent(0.6).CGColor]
+        bottomWhiteGradient.zPosition = -1
+        self.layer.addSublayer(bottomWhiteGradient)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -45,11 +47,19 @@ class LocationCell: UITableViewCell {
         }
         
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-            let leftMenuCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-                    leftMenuCell.textLabel?.text = "ok"//arrTitles[indexPath.row]
-            leftMenuCell.textLabel?.textColor = UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
-            leftMenuCell.textLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 14)
+            let locationNameCell:LocationNameCell = LocationNameCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+                    locationNameCell.textLabel?.text = "Atlanta"//arrTitles[indexPath.row]
+            locationNameCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            locationNameCell.textLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
             
-            return leftMenuCell
+            if indexPath.row % 2 == 0{
+                locationNameCell.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
+                locationNameCell.imageView?.image = UIImage(named: "locationTicked")
+            }else{
+                locationNameCell.textLabel?.textColor = UnlabelHelper.getLightGrayTextColor()
+                locationNameCell.imageView?.image = UIImage(named: "locationUnticked")
+            }
+            
+            return locationNameCell
         }
     }

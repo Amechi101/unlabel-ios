@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15452D9E1C5AA950006D17DF /* LocationNameCell.swift */; };
 		154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
@@ -104,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				15897E921C59488800FD0700 /* GenderCell.xib */,
 				15897E951C5948B200FD0700 /* CategoryStyleCell.swift */,
 				15897E961C5948B200FD0700 /* CategoryStyleCell.xib */,
+				15452D9E1C5AA950006D17DF /* LocationNameCell.swift */,
 			);
 			path = FilterVC;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
+				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,

@@ -9,20 +9,16 @@
 import UIKit
 
 class UnlabelHelper: NSObject {
-
-    class func showAlert(onVC OnVC:UIViewController,title:String,message:String,onOk:()->()){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            onOk()
-        }))
-        OnVC.presentViewController(alert, animated: true, completion: nil)
-    }
     
     
     //
     //MARK:- UIColor Methods
     //
-    class func getGrayTextColor()->UIColor{
+    class func getLightGrayTextColor()->UIColor{
+        return UIColor(red: 177/255, green: 179/255, blue: 184/255, alpha: 1)
+    }
+    
+    class func getMediumGrayTextColor()->UIColor{
         return UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
     }
     
@@ -33,4 +29,15 @@ class UnlabelHelper: NSObject {
         return UIFont(name: "Neutraface2Text-\(style)", size: size)!
     }
     
+    //
+    //MARK:- Anonymous Methods
+    //
+    class func showAlert(onVC OnVC:UIViewController,title:String,message:String,onOk:()->()){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            onOk()
+        }))
+        OnVC.presentViewController(alert, animated: true, completion: nil)
+    }
+
 }

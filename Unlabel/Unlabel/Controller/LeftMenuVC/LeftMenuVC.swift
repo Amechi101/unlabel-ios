@@ -64,7 +64,7 @@ extension LeftMenuVC:UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let leftMenuCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         leftMenuCell.textLabel?.text = arrTitles[indexPath.row]
-        leftMenuCell.textLabel?.textColor = UnlabelHelper.getGrayTextColor()
+        leftMenuCell.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
         leftMenuCell.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_DEMI, size: 14)
         
         return leftMenuCell
