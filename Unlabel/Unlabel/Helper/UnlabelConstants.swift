@@ -10,6 +10,26 @@ import Foundation
 
 
 //
+//MARK:- Unlabel Enums Names
+//
+enum ChildVCName {
+    case LeftMenuVC
+    case FilterVC
+}
+
+
+
+//
+//MARK:- UIColor Constants
+//
+let LIGHT_GRAY_TEXT_COLOR = UIColor(red: 177/255, green: 179/255, blue: 184/255, alpha: 1)
+
+//#charcoalGrey
+let MEDIUM_GRAY_TEXT_COLOR = UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
+
+let LIGHT_GRAY_BORDER_COLOR = UIColor(red: 153/255, green: 156/255, blue: 165/255, alpha: 1)
+
+//
 //MARK:- Storyboard Names
 //
 let S_NAME_UNLABEL = "Unlabel"

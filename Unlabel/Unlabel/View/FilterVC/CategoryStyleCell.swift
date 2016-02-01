@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryStyleCell: UITableViewCell {
 
+    @IBOutlet weak var IBbtnCategoryStyle: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

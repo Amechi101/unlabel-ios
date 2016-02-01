@@ -10,18 +10,6 @@ import UIKit
 
 class UnlabelHelper: NSObject {
     
-    
-    //
-    //MARK:- UIColor Methods
-    //
-    class func getLightGrayTextColor()->UIColor{
-        return UIColor(red: 177/255, green: 179/255, blue: 184/255, alpha: 1)
-    }
-    
-    class func getMediumGrayTextColor()->UIColor{
-        return UIColor(red: 69/255, green: 73/255, blue: 78/255, alpha: 1)
-    }
-    
     //
     //MARK:- UIFont Methods
     //

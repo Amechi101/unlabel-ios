@@ -87,6 +87,22 @@ extension FeedVC:LeftMenuVCDelegate{
     }
 }
 
+//
+//MARK:- FilterVCDelegate Methods
+//
+extension FeedVC:FilterVCDelegate{
+
+}
+
+//
+//MARK:- LeftMenuVCDelegate,FilterVCDelegate Common Delegate Methods
+//
+extension FeedVC{
+    func willCloseChildVC(childVCName: String) {
+        headerButtonEnabled(setEnabled: true)
+    }
+}
+
 
 //
 //MARK:- IBAction Methods
@@ -192,10 +208,20 @@ extension FeedVC{
     }
     
     /**
+     Enable/Disable header buttons, basically this prevents user to open menu if
+     another is opened.
+     */
+    func headerButtonEnabled(setEnabled setEnabled:Bool){
+        self.navigationItem.leftBarButtonItem?.enabled = setEnabled
+        self.navigationItem.rightBarButtonItem?.enabled = setEnabled
+    }
+    
+    /**
      Open ChildViewController for given ViewController's Storyboard ID
      - parameter VCName: ViewController's Storyboard ID
      */
     func addChildVC(forViewController VCName:String){
+        headerButtonEnabled(setEnabled: false)
         self.removeChildVCIfExists(VCName)
         
         if VCName == S_ID_LEFT_MENU_VC{
@@ -232,7 +258,7 @@ extension FeedVC{
      */
     func addFilterVCAsChildVC(viewControllerName VCName:String){
         let filterVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! FilterVC
-//        filterVC.delegate = self
+        filterVC.delegate = self
         filterVC.view.frame.size = self.view.frame.size
         
         //Animate filterVC entry
@@ -256,7 +282,7 @@ extension FeedVC{
      - parameter VCName: ViewController's Storyboard ID
      */
     func removeChildVCIfExists(VCName:String){
-        for vc in self.childViewControllers{
+        for vc in self.navigationController!.childViewControllers{
             let childVC:UIViewController = vc
             let childVCFromStoryboard:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(VCName)
             
@@ -278,4 +304,3 @@ extension FeedVC{
         }
     }
 }
-

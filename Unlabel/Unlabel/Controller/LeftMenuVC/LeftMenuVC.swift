@@ -13,6 +13,7 @@ import UIKit
 //
 protocol LeftMenuVCDelegate{
     func didSelectRowAtIndexPath(indexPath: NSIndexPath)
+    func willCloseChildVC(childVCName:String)
 }
 
 
@@ -64,7 +65,7 @@ extension LeftMenuVC:UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let leftMenuCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         leftMenuCell.textLabel?.text = arrTitles[indexPath.row]
-        leftMenuCell.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
+        leftMenuCell.textLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
         leftMenuCell.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_DEMI, size: 14)
         
         return leftMenuCell
@@ -104,6 +105,7 @@ extension LeftMenuVC{
                 self.willMoveToParentViewController(nil)
                 self.view.removeFromSuperview()
                 self.removeFromParentViewController()
+                self.delegate?.willCloseChildVC(S_ID_LEFT_MENU_VC)
         }
     }
 

@@ -12,9 +12,18 @@ import UIKit
 //MARK:- FilterVC Protocols
 //
 protocol FilterVCDelegate{
-
+   func willCloseChildVC(childVCName:String)
 }
 
+
+//
+//MARK:- FilterVC Enums
+//
+enum PickerType : Int {
+    case Unknown = 0
+    case Categories = 1
+    case Styles = 2
+}
 
 class FilterVC: UIViewController {
 
@@ -22,12 +31,25 @@ class FilterVC: UIViewController {
 //MARK:- IBOutlets, constants, vars
 //
     @IBOutlet weak var IBtblFilter: UITableView!
+    @IBOutlet weak var IBpickerView: UIPickerView!
     
-    private let sAllCategories = "All categories"
-    private let sAllStyles     = "All styles"
+    @IBOutlet weak var IBviewPickerMainContainer: UIView!
+    @IBOutlet weak var IBviewPickerContainer: UIView!
+    
+    @IBOutlet weak var IBconstraintPickerMainTop: NSLayoutConstraint!
+    @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
+    
+    private var sAllCategories = "All categories"
+    private var sAllStyles     = "All styles"
 
-    let arrFilterTitles:[String] = ["SEX","CATEGORY","STYLE","LOCATION"]
-
+    private let arrFilterTitles:[String] = ["SEX","CATEGORY","STYLE","LOCATION"]
+    private let arrCategories:[String] = ["Category1","Category2","Category3","Category4","Category5","Category6","Category7","Category8","Category9","Category10"]
+    private let arrStyle:[String] = ["Style1","Style2","Style3","Style4","Style5","Style6","Style7","Style8","Style9","Style10"]
+    
+    private var arrPickerTitle = [String]()
+    
+    var delegate:FilterVCDelegate?
+    var selectedPickerType:PickerType = .Unknown
     
 //
 //MARK:- VC Lifecycle
@@ -69,19 +91,24 @@ extension FilterVC:UITableViewDataSource{
         cellWithTitle.textLabel?.text = title
         cellWithTitle.layoutMargins = UIEdgeInsetsZero
         cellWithTitle.separatorInset = UIEdgeInsetsMake(0, 0, 0, 2)
-        cellWithTitle.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
+        cellWithTitle.textLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
         cellWithTitle.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_BOLD, size: 16)
         
         return cellWithTitle
     }
+
     
     func genderCell()->GenderCell{
         let genderCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_GenderCell) as! GenderCell
         return genderCell
     }
 
-    func categoryStyleCell(title title:String)->CategoryStyleCell{
+    
+    func categoryStyleCell(title title:String,tag:Int)->CategoryStyleCell{
         let categoryStyleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryStyleCell) as! CategoryStyleCell
+        categoryStyleCell.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
+        categoryStyleCell.IBbtnCategoryStyle.tag = tag
+        categoryStyleCell.IBbtnCategoryStyle.setTitle(title, forState: UIControlState.Normal)
         return categoryStyleCell
     }
 
@@ -99,9 +126,9 @@ extension FilterVC:UITableViewDataSource{
         }else if indexPath.row == 1{
             return genderCell()
         }else if indexPath.row == 3{
-            return categoryStyleCell(title: sAllCategories)
+            return categoryStyleCell(title: sAllCategories, tag:PickerType.Categories.rawValue)
         }else if indexPath.row == 5{
-            return categoryStyleCell(title: sAllStyles)
+            return categoryStyleCell(title: sAllStyles, tag:PickerType.Styles.rawValue)
         }else if indexPath.row == 7{
             return locationCell()
         }else{
@@ -113,11 +140,75 @@ extension FilterVC:UITableViewDataSource{
 }
 
 //
-//MARK:- IBAction Methods
+//MARK:- UIPickerViewDataSource,UIPickerViewDelegate Methods
 //
+extension FilterVC:UIPickerViewDataSource,UIPickerViewDelegate{
+    
+    //UIPickerViewDataSource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+       return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+       return arrPickerTitle.count
+    }
+    
+    //UIPickerViewDelegate
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        return "\(arrPickerTitle[row])"
+    }
+
+}
+
 extension FilterVC{
+    
+//
+//MARK:- FilterVC IBAction Methods
+//
     @IBAction func IBActionClose(sender: AnyObject) {
         close()
+    }
+    
+    @IBAction func IBActionPickerCancel(sender: UIButton) {
+        hidePicker()
+    }
+    
+    @IBAction func IBActionPickerSelect(sender: UIButton) {
+        if selectedPickerType == .Categories{
+            sAllCategories = arrCategories[IBpickerView.selectedRowInComponent(0)]
+            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 3, inSection: 0)], withRowAnimation: .Fade)
+        }else if selectedPickerType == .Styles{
+            sAllStyles = arrStyle[IBpickerView.selectedRowInComponent(0)]
+            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 5, inSection: 0)], withRowAnimation: .Fade)
+        }else{
+        
+        }
+        self.IBtblFilter.reloadData()
+        hidePicker()
+    }
+    
+    @IBAction func IBActionSwipeClosePicker(sender: UISwipeGestureRecognizer) {
+        hidePicker()
+    }
+    
+//
+//MARK:- CategoryStyleCell IBAction Methods
+//
+    @IBAction func IBActionCategoryStyleClicked(sender: UIButton) {
+        openPickerForTag(sender.tag)
+    }
+    
+    func openPickerForTag(tag:Int){
+        //All categories clicked
+        if tag == PickerType.Categories.rawValue{
+            selectedPickerType = .Categories
+            arrPickerTitle = arrCategories
+        //All styles clicked
+        }else if tag == PickerType.Styles.rawValue{
+            selectedPickerType = .Styles
+            arrPickerTitle = arrStyle
+        }
+        showPicker()
     }
 }
 
@@ -131,6 +222,7 @@ extension FilterVC{
      Setup UI on VC Load.
      */
     func setupUIOnLoad(){
+        hidePicker()
         registerCell(withID: REUSABLE_ID_GenderCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
         registerCell(withID: REUSABLE_ID_LocationCell)
@@ -158,10 +250,34 @@ extension FilterVC{
                 self.willMoveToParentViewController(nil)
                 self.view.removeFromSuperview()
                 self.removeFromParentViewController()
+                self.delegate?.willCloseChildVC(S_ID_FILTER_VC)
         }
     }
     
-    
+    /**
+     Shows picker view with animation
+     */
+    func showPicker(){
+        IBpickerView.reloadAllComponents()
+        IBconstraintPickerMainTop.constant = 0
+        IBconstraintPickerMainBottom.constant = 0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.layoutSubviews()
+        }
+    }
+
+    /**
+     Hides picker view with animation
+     */
+    func hidePicker(){
+        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
+        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.layoutSubviews()
+        }
+        
+    }
+
 }
 
 

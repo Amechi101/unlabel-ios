@@ -53,10 +53,10 @@ class LocationCell: UITableViewCell {
             locationNameCell.textLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
             
             if indexPath.row % 2 == 0{
-                locationNameCell.textLabel?.textColor = UnlabelHelper.getMediumGrayTextColor()
+                locationNameCell.textLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
                 locationNameCell.imageView?.image = UIImage(named: "locationTicked")
             }else{
-                locationNameCell.textLabel?.textColor = UnlabelHelper.getLightGrayTextColor()
+                locationNameCell.textLabel?.textColor = LIGHT_GRAY_TEXT_COLOR
                 locationNameCell.imageView?.image = UIImage(named: "locationUnticked")
             }
             
