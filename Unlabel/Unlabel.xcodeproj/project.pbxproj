@@ -12,6 +12,11 @@
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
+		158545B31C6121EF00BBDCF2 /* LabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B21C6121EF00BBDCF2 /* LabelVC.swift */; };
+		158545B71C61250E00BBDCF2 /* LabelHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */; };
+		158545B81C61250E00BBDCF2 /* LabelHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */; };
+		158545BB1C61499200BBDCF2 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B91C61499100BBDCF2 /* LabelCell.swift */; };
+		158545BC1C61499200BBDCF2 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158545BA1C61499200BBDCF2 /* LabelCell.xib */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* LocationCell.swift */; };
 		15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* LocationCell.xib */; };
@@ -108,6 +113,11 @@
 		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
+		158545B21C6121EF00BBDCF2 /* LabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelVC.swift; sourceTree = "<group>"; };
+		158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelHeaderCell.swift; sourceTree = "<group>"; };
+		158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelHeaderCell.xib; sourceTree = "<group>"; };
+		158545B91C61499100BBDCF2 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		158545BA1C61499200BBDCF2 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		15897E8E1C593E0F00FD0700 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
@@ -222,6 +232,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		158545B11C6121B700BBDCF2 /* LabelVC */ = {
+			isa = PBXGroup;
+			children = (
+				158545B21C6121EF00BBDCF2 /* LabelVC.swift */,
+			);
+			path = LabelVC;
+			sourceTree = "<group>";
+		};
+		158545B41C6124ED00BBDCF2 /* LabelVC */ = {
+			isa = PBXGroup;
+			children = (
+				158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */,
+				158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */,
+				158545B91C61499100BBDCF2 /* LabelCell.swift */,
+				158545BA1C61499200BBDCF2 /* LabelCell.xib */,
+			);
+			path = LabelVC;
+			sourceTree = "<group>";
+		};
 		15897E891C5935A500FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +301,7 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				158545B11C6121B700BBDCF2 /* LabelVC */,
 				15897E891C5935A500FD0700 /* FilterVC */,
 				15B7E7981C54A2D100244AC9 /* FeedVC */,
 				159245291C5557B700755814 /* LeftMenuVC */,
@@ -337,6 +367,7 @@
 		15B7E7A21C54A2D100244AC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				158545B41C6124ED00BBDCF2 /* LabelVC */,
 				15897E8C1C593DC700FD0700 /* FilterVC */,
 				15B7E7A31C54A2D100244AC9 /* Storyboards */,
 				159245241C553B4C00755814 /* FeedVC */,
@@ -671,10 +702,12 @@
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
 				15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
+				158545BC1C61499200BBDCF2 /* LabelCell.xib in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
 				15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */,
 				159245281C553B6800755814 /* FeedVCCell.xib in Resources */,
 				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
+				158545B81C61250E00BBDCF2 /* LabelHeaderCell.xib in Resources */,
 				15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */,
 				15897E941C59488800FD0700 /* GenderCell.xib in Resources */,
 				15B7E7AC1C54A2D100244AC9 /* Unlabel.storyboard in Resources */,
@@ -821,6 +854,7 @@
 				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
+				158545BB1C61499200BBDCF2 /* LabelCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */,
@@ -834,6 +868,8 @@
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
+				158545B31C6121EF00BBDCF2 /* LabelVC.swift in Sources */,
+				158545B71C61250E00BBDCF2 /* LabelHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

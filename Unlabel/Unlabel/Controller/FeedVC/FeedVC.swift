@@ -44,7 +44,7 @@ class FeedVC: UIViewController {
 //
 extension FeedVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        performSegueWithIdentifier(S_ID_LABEL_VC, sender: self)
     }
 }
 
