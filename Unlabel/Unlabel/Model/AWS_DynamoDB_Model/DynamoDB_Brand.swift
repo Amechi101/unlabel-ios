@@ -11,17 +11,17 @@ import Foundation
 import AWSDynamoDB
 
 class DynamoDB_Brand: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
-    var ISBN:String = String()
-//    var imgBrandImage:UIImage = UIImage()
-    var sBrandName:String = String()
-    var sDescription:String = String()
-    var sLocation:String = String()
+    
+    var BrandName:String = String()
+    var Description:String = String()
+    var Location:String = String()
+    var ImageURL:String = String()
     
     static func dynamoDBTableName() -> String! {
-        return "Unlabel_Brand"
+        return "DynamoDB_Brand"
     }
     
     static func hashKeyAttribute() -> String! {
-        return "ISBN"
+        return "BrandName"
     }
 }

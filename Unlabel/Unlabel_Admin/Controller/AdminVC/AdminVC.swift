@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AWSS3
 import LocalAuthentication
 
 class AdminVC: UIViewController {
@@ -28,9 +29,23 @@ class AdminVC: UIViewController {
         super.viewDidLoad()
         setupUIOnLoad()
         authenticateUser()
+//        testDynamoDBAddRow()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+//    func testDynamoDBAddRow(){
+//        let dynamoDB_Brand = DynamoDB_Brand()
+//        dynamoDB_Brand.BrandName = "Cute + Broke"
+//        dynamoDB_Brand.Description = "Awesome clothing"
+//        dynamoDB_Brand.Location = "CA"
+//        dynamoDB_Brand.ImageURL = "http://"
+//        
+//        
+//        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+//        dynamoDBObjectMapper.save(dynamoDB_Brand)
+//        
+//    }
+
     override func viewWillAppear(animated: Bool) {
         if shouldReloadData{
             self.parseCallFetchBrands()

@@ -28,7 +28,6 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        testDynamoDBAddRow()
         parseCallFetchBrands()
         setupUIOnLoad()
     }
@@ -36,19 +35,6 @@ class FeedVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func testDynamoDBAddRow(){
-        let dynamoDB_Brand = DynamoDB_Brand()
-        dynamoDB_Brand.ISBN = "345269"
-        dynamoDB_Brand.sBrandName = "Cute + Broke"
-        dynamoDB_Brand.sDescription = "Awesome clothing"
-        dynamoDB_Brand.sLocation = "CA"
-        
-        
-        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-        dynamoDBObjectMapper.save(dynamoDB_Brand)
-        
     }
 }
 

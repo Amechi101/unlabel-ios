@@ -92,7 +92,6 @@
 		15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */; };
 		15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
 		15C993681C56A156000C28E0 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592452A1C5557D900755814 /* LeftMenuVC.swift */; };
-		15C993691C56A156000C28E0 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
 		15C9936A1C56A156000C28E0 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245221C5539C500755814 /* Brand.swift */; };
 		15C9936B1C56A156000C28E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		15C9936D1C56A156000C28E0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */; };
@@ -995,7 +994,6 @@
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
 				15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */,
 				15C993681C56A156000C28E0 /* LeftMenuVC.swift in Sources */,
-				15C993691C56A156000C28E0 /* FeedVC.swift in Sources */,
 				154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */,
 				15C9936A1C56A156000C28E0 /* Brand.swift in Sources */,
 				15C9936B1C56A156000C28E0 /* AppDelegate.swift in Sources */,

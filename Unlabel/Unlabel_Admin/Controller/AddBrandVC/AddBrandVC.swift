@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AWSS3
 
 class AddBrandVC: UIViewController {
 
@@ -21,6 +22,7 @@ class AddBrandVC: UIViewController {
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
     var imagePicker = UIImagePickerController()
+    var imageURL = NSURL()
     
     //
     //MARK:- VC Lifecycle
@@ -51,51 +53,54 @@ extension AddBrandVC{
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-    
+
     @IBAction func IBActionSave(sender: AnyObject) {
-        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
-            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
-                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
-                    if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
-                        if let imageData = UIImagePNGRepresentation(brandMainImage) where imageData.length <= 10485760{
-                                showLoading()
-                        
-                                let brandObj = PFObject(className: PARSE_BRAND)
-                                brandObj[PRM_BRAND_NAME] = brandName
-                                brandObj[PRM_DESCRIPTION] = brandDescription
-                                brandObj[PRM_LOCATION] = brandLocation
-                        
-                                let imageFile = PFFile(name: "\(NSUUID().UUIDString).png", data: imageData)
-                                brandObj[PRM_MAIN_IMAGE] = imageFile
-                                brandObj.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-                                    self.hideLoading()
-                                    if let _ = error{
-                                        self.showSomethingWentWrong()
-                                    }else{
-                                        UnlabelHelper.showAlert(onVC: self, title: "Brand added", message: "Success!", onOk: { () -> () in
-                                            self.navigationController?.popViewControllerAnimated(true)
-                                        })
-                                    }
-                                    print("Object has been saved.")
-                                }
-                        }else{
-                            UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
-                                
-                            })
-                        }
-                    }else{
-                        showSomethingWentWrong()
-                    }
-                }else{
-                    showSomethingWentWrong()
-                }
-            }else{
-                showSomethingWentWrong()
-            }
-        }else{
-            showSomethingWentWrong()
-        }
+        testS3UploadImage()
     }
+//    @IBAction func IBActionSave(sender: AnyObject) {
+//        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
+//            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
+//                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
+//                    if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
+//                        if let imageData = UIImagePNGRepresentation(brandMainImage) where imageData.length <= 10485760{
+//                                showLoading()
+//                        
+//                                let brandObj = PFObject(className: PARSE_BRAND)
+//                                brandObj[PRM_BRAND_NAME] = brandName
+//                                brandObj[PRM_DESCRIPTION] = brandDescription
+//                                brandObj[PRM_LOCATION] = brandLocation
+//                        
+//                                let imageFile = PFFile(name: "\(NSUUID().UUIDString).png", data: imageData)
+//                                brandObj[PRM_MAIN_IMAGE] = imageFile
+//                                brandObj.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//                                    self.hideLoading()
+//                                    if let _ = error{
+//                                        self.showSomethingWentWrong()
+//                                    }else{
+//                                        UnlabelHelper.showAlert(onVC: self, title: "Brand added", message: "Success!", onOk: { () -> () in
+//                                            self.navigationController?.popViewControllerAnimated(true)
+//                                        })
+//                                    }
+//                                    print("Object has been saved.")
+//                                }
+//                        }else{
+//                            UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
+//                                
+//                            })
+//                        }
+//                    }else{
+//                        showSomethingWentWrong()
+//                    }
+//                }else{
+//                    showSomethingWentWrong()
+//                }
+//            }else{
+//                showSomethingWentWrong()
+//            }
+//        }else{
+//            showSomethingWentWrong()
+//        }
+//    }
     
     func showSomethingWentWrong(){
         UnlabelHelper.showAlert(onVC: self, title: "Something Went Wrong!", message: "Please try again") { () -> () in
@@ -113,12 +118,62 @@ extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
         let chosenImage:UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         self.IBbtnChooseImage.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
         self.IBbtnChooseImage.setTitle("", forState: UIControlState.Normal)
+        
+        imageURL = (info[UIImagePickerControllerReferenceURL] as? NSURL)!
+        
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+            imageURL = NSURL(fileURLWithPath: (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("temp"))
+        let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+        
+        let data = UIImageJPEGRepresentation(chosenImage, 1.0)
+        
+        let dataString: NSMutableString = "Image.png"
+        data!.writeToURL(imageURL, atomically: true)
+        
+        
+        
+        
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    func saveImage(image: UIImage, withName name: String) {
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let data: NSData = UIImageJPEGRepresentation(image, 1.0)!
+        let fileManager: NSFileManager = NSFileManager.defaultManager()
+        
+        let fullPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name)
+        fileManager.createFileAtPath(fullPath.absoluteString, contents: data, attributes: nil)
+        imageURL = NSURL(fileURLWithPath: fullPath.absoluteString)
+    }
+    
+    func loadImage(name: String) -> String {
+        let fullPath: String = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name).absoluteString
+        return fullPath
+    }
+    
+    
+    func testS3UploadImage(){
+        let transferManager:AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        let uploadRequest:AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+        uploadRequest.bucket = "unlabel-userfiles-mobilehub-626392447"
+        uploadRequest.key = "Image.png"
+        uploadRequest.body = imageURL
+        
+        transferManager.upload(uploadRequest).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+            print(task.error)
+            print(task.result)
+            return nil
+        }
+    }
+
 }
 
 //
