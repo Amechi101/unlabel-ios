@@ -9,9 +9,6 @@
 import UIKit
 
 class Brand: NSObject {
-    var sObjectID:String = String()
+    var dynamoDB_Brand:DynamoDB_Brand = DynamoDB_Brand()
     var imgBrandImage:UIImage = UIImage()
-    var sBrandName:String = String()
-    var sDescription:String = String()
-    var sLocation:String = String()
 }

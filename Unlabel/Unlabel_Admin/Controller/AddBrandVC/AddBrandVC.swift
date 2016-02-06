@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import AWSS3
+import AWSDynamoDB
 
 class AddBrandVC: UIViewController {
 
@@ -23,6 +24,10 @@ class AddBrandVC: UIViewController {
     
     var imagePicker = UIImagePickerController()
     var imageURL = NSURL()
+    var selectedImage = UIImage()
+    var uploadCompletionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+    
+    var uploadFileURL: NSURL?
     
     //
     //MARK:- VC Lifecycle
@@ -54,17 +59,60 @@ extension AddBrandVC{
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
-    @IBAction func IBActionSave(sender: AnyObject) {
-        testS3UploadImage()
+    func testDynamoDBAddRow(imageName imageName:String){
+        
     }
-//    @IBAction func IBActionSave(sender: AnyObject) {
-//        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
-//            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
-//                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
-//                    if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
-//                        if let imageData = UIImagePNGRepresentation(brandMainImage) where imageData.length <= 10485760{
-//                                showLoading()
-//                        
+
+    
+    @IBAction func IBActionSave(sender: AnyObject) {
+        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
+            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
+                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
+                    if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
+                        if let imageData = UIImagePNGRepresentation(brandMainImage) where imageData.length <= 10485760{
+                                showLoading()
+                            let imageName = "\(NSUUID().UUIDString).jpg"
+                            
+                            uploadImageWithCompletion(imageName: imageName, completionHandler: { (task, error) -> () in                                if ((error) != nil){
+                                    self.hideLoading()
+                                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
+                                        
+                                    })
+                                }
+                                else{
+                                
+                                let dynamoDB_Brand = DynamoDB_Brand()
+                                dynamoDB_Brand.BrandName = brandName
+                                dynamoDB_Brand.Description = brandDescription
+                                dynamoDB_Brand.Location = brandLocation
+                                dynamoDB_Brand.ImageName = imageName
+                                
+                                
+                                let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+//                                dynamoDBObjectMapper.save(dynamoDB_Brand)
+                                
+                                dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
+                                    self.hideLoading()
+                                    if (task.error != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
+                                            
+                                        })
+                                    }
+                                    if (task.exception != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.exception.debugDescription, onOk: { () -> () in
+                                            
+                                        })
+                                    }
+                                    if (task.result != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: "Success", message: "Brand Added Successfully", onOk: { () -> () in
+                                            self.navigationController?.popViewControllerAnimated(true)
+                                        })
+                                    }
+                                        return nil
+                                    })
+                                }
+
+                            })
 //                                let brandObj = PFObject(className: PARSE_BRAND)
 //                                brandObj[PRM_BRAND_NAME] = brandName
 //                                brandObj[PRM_DESCRIPTION] = brandDescription
@@ -83,27 +131,27 @@ extension AddBrandVC{
 //                                    }
 //                                    print("Object has been saved.")
 //                                }
-//                        }else{
-//                            UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
-//                                
-//                            })
-//                        }
-//                    }else{
-//                        showSomethingWentWrong()
-//                    }
-//                }else{
-//                    showSomethingWentWrong()
-//                }
-//            }else{
-//                showSomethingWentWrong()
-//            }
-//        }else{
-//            showSomethingWentWrong()
-//        }
-//    }
+                        }else{
+                            UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
+                                
+                            })
+                        }
+                    }else{
+                        showSomethingWentWrong()
+                    }
+                }else{
+                    showSomethingWentWrong()
+                }
+            }else{
+                showSomethingWentWrong()
+            }
+        }else{
+            showSomethingWentWrong()
+        }
+    }
     
     func showSomethingWentWrong(){
-        UnlabelHelper.showAlert(onVC: self, title: "Something Went Wrong!", message: "Please try again") { () -> () in
+        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: "Please try again") { () -> () in
             
         }
     }
@@ -114,25 +162,33 @@ extension AddBrandVC{
 //MARK:- UIImagePickerControllerDelegate Methods
 //
 extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+//    imagePickerController(_:didFinishPickingMediaWithInfo:){
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let chosenImage:UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         self.IBbtnChooseImage.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
         self.IBbtnChooseImage.setTitle("", forState: UIControlState.Normal)
         
-        imageURL = (info[UIImagePickerControllerReferenceURL] as? NSURL)!
+        
+            //getting details of image
+            let uploadFileURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+            
+            let imageName = uploadFileURL.lastPathComponent
+            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
+            
+            // getting local path
+            let localPath = (documentDirectory as NSString).stringByAppendingPathComponent(imageName!)
+            
+            
+            //getting actual image
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let data = UIImagePNGRepresentation(image)
+            data!.writeToFile(localPath, atomically: true)
+            
+            let imageData = NSData(contentsOfFile: localPath)!
+            imageURL = NSURL(fileURLWithPath: localPath)
         
         
-        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-            imageURL = NSURL(fileURLWithPath: (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("temp"))
-        let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
-        
-        let data = UIImageJPEGRepresentation(chosenImage, 1.0)
-        
-        let dataString: NSMutableString = "Image.png"
-        data!.writeToURL(imageURL, atomically: true)
-        
-        
-        
+        selectedImage = chosenImage
         
         
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -159,18 +215,41 @@ extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
     }
     
     
-    func testS3UploadImage(){
-        let transferManager:AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
+    func uploadImageWithCompletion(imageName imageName:String,completionHandler: (task:AWSS3TransferUtilityUploadTask, error:NSError?)->()){
         
-        let uploadRequest:AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
-        uploadRequest.bucket = "unlabel-userfiles-mobilehub-626392447"
-        uploadRequest.key = "Image.png"
-        uploadRequest.body = imageURL
+        //defining bucket and upload file name
+        let S3BucketName: String = "unlabel-userfiles-mobilehub-626392447"
+        let S3UploadKeyName: String = "public/\(imageName)"
         
-        transferManager.upload(uploadRequest).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
-            print(task.error)
-            print(task.result)
-            return nil
+    
+        let expression = AWSS3TransferUtilityUploadExpression()
+        expression.uploadProgress = {(task: AWSS3TransferUtilityTask, bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
+            dispatch_async(dispatch_get_main_queue(), {
+                let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+                NSLog("Progress is: %f",progress)
+            })
+        }
+        
+        self.uploadCompletionHandler = { (task, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                completionHandler(task: task,error:error)
+            })
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        
+        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/jpeg", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                NSLog("Error: %@",error.localizedDescription);
+            }
+            if let exception = task.exception {
+                NSLog("Exception: %@",exception.description);
+            }
+            if let _ = task.result {
+                NSLog("Upload Starting!")
+            }
+            
+            return nil;
         }
     }
 

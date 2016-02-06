@@ -12,6 +12,8 @@
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
+		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
+		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		158545B31C6121EF00BBDCF2 /* LabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B21C6121EF00BBDCF2 /* LabelVC.swift */; };
 		158545B71C61250E00BBDCF2 /* LabelHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */; };
 		158545B81C61250E00BBDCF2 /* LabelHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */; };
@@ -150,6 +152,7 @@
 		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
+		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		158545B21C6121EF00BBDCF2 /* LabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelVC.swift; sourceTree = "<group>"; };
 		158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelHeaderCell.swift; sourceTree = "<group>"; };
 		158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelHeaderCell.xib; sourceTree = "<group>"; };
@@ -228,7 +231,6 @@
 		15C993541C569596000C28E0 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		15C993601C56A0F6000C28E0 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Unlabel.framework; path = "Pods/../build/Debug-iphoneos/Pods_Unlabel.framework"; sourceTree = "<group>"; };
 		15C993881C56A156000C28E0 /* Unlabel_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		15C993891C56A156000C28E0 /* Unlabel copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Unlabel copy-Info.plist"; path = "/Projects/MainProjects/Unlabel_GIT/Unlabel/Unlabel copy-Info.plist"; sourceTree = "<absolute>"; };
 		15C9938B1C56A76D000C28E0 /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		15C993901C56A870000C28E0 /* AdminVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
 		15C9939F1C56A870000C28E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Admin.storyboard; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				15C993AD1C56BA65000C28E0 /* ParseConstants.swift */,
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
 				154687781C5814D60060565B /* UnlabelExtensions.swift */,
+				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -594,7 +597,6 @@
 				EC0E8037E44618A7C1AD72C6 /* Pods */,
 				5F23897C3AF1B82FBA932788 /* Frameworks */,
 				40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */,
-				15C993891C56A156000C28E0 /* Unlabel copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -989,6 +991,7 @@
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
 				15AD18341C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
+				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
@@ -1016,6 +1019,7 @@
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
+				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
@@ -1100,19 +1104,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zaid Pathan (PUDB9J3LNK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				INFOPLIST_FILE = "Unlabel copy-Info.plist";
+				INFOPLIST_FILE = Unlabel_Admin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DADMIN";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unlabel-app.Unlabel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a65f30e9-8e75-491d-bedb-3ec6b5b5211e";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1124,19 +1128,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zaid Pathan (PUDB9J3LNK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				INFOPLIST_FILE = "Unlabel copy-Info.plist";
+				INFOPLIST_FILE = Unlabel_Admin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DADMIN";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unlabel-app.Unlabel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a65f30e9-8e75-491d-bedb-3ec6b5b5211e";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

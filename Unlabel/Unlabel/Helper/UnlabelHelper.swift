@@ -21,11 +21,14 @@ class UnlabelHelper: NSObject {
     //MARK:- Anonymous Methods
     //
     class func showAlert(onVC OnVC:UIViewController,title:String,message:String,onOk:()->()){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            onOk()
-        }))
-        OnVC.presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                onOk()
+            }))
+            OnVC.presentViewController(alert, animated: true, completion: nil)
+            
+        }
     }
 
 }

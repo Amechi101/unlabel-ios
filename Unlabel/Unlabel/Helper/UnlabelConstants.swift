@@ -71,6 +71,11 @@ let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let FONT_STYLE_DEMI = "Demi"
 let FONT_STYLE_BOLD = "Bold"
 
+//
+//MARK:- Strings
+//
+let sSOMETHING_WENT_WRONG = "Something Went Wrong!"
+
 
 //
 //MARK:- Anonymous Constants

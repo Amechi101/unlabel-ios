@@ -15,7 +15,7 @@ class DynamoDB_Brand: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
     var BrandName:String = String()
     var Description:String = String()
     var Location:String = String()
-    var ImageURL:String = String()
+    var ImageName:String = String()
     
     static func dynamoDBTableName() -> String! {
         return "DynamoDB_Brand"

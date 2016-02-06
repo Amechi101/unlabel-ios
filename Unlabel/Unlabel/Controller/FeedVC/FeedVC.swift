@@ -58,8 +58,8 @@ extension FeedVC:UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName.uppercaseString
-        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].sLocation
+//        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName.uppercaseString
+//        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].sLocation
         if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             feedVCCell.IBimgBrandImage.image = brandMainImage
         }
@@ -128,7 +128,7 @@ extension FeedVC{
         query.findObjectsInBackgroundWithBlock {
             (brandObjects: [PFObject]?, error: NSError?) -> Void in
             if let error = error {
-                UnlabelHelper.showAlert(onVC: self, title: "Something Went Wrong!", message: error.debugDescription, onOk: { () -> () in
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
                 })
             } else {
                 print(brandObjects)
@@ -151,10 +151,10 @@ extension FeedVC{
         arrBrandList = [Brand]()
         for brandObj in brandObjects{
             let currentBrand = Brand()
-            currentBrand.sObjectID      = brandObj.objectId!
-            currentBrand.sBrandName     = brandObj[PRM_BRAND_NAME] as! String
-            currentBrand.sDescription   = brandObj[PRM_DESCRIPTION] as! String
-            currentBrand.sLocation      = brandObj[PRM_LOCATION] as! String
+//            currentBrand.sObjectID      = brandObj.objectId!
+//            currentBrand.sBrandName     = brandObj[PRM_BRAND_NAME] as! String
+//            currentBrand.sDescription   = brandObj[PRM_DESCRIPTION] as! String
+//            currentBrand.sLocation      = brandObj[PRM_LOCATION] as! String
             
             let imageFile:PFFile = brandObj[PRM_MAIN_IMAGE] as! PFFile
             imageFile.getDataInBackgroundWithBlock({ (imageData:NSData?, error:NSError?) -> Void in
