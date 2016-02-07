@@ -34,7 +34,7 @@ class AdminVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
-//      authenticateUser()
+//        authenticateUser()
         awsCallFetchBrands()
     }
     
@@ -148,7 +148,7 @@ extension AdminVC{
             [context .evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
                 
                 if success {
-                    self.parseCallFetchBrands()
+                    self.awsCallFetchBrands()
                 }
                 else{
                     // If authentication failed then show a message to the console with a short description.
@@ -204,7 +204,7 @@ extension AdminVC{
         
         passwordPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if passwordPrompt.textFields?.first?.text == "qwerty"{
-                self.parseCallFetchBrands()
+                self.awsCallFetchBrands()
             }else{
                 self.showPasswordAlert()
             }
@@ -404,94 +404,6 @@ extension AdminVC{
 
             return nil
         }
-        
-//        AWSS3 *s3 = [AWSS3 defaultS3];
-//        AWSS3DeleteObjectRequest *deleteRequest = [AWSS3DeleteObjectRequest new];
-//        deleteRequest.bucket = S3BucketName;
-//        deleteRequest.key = climb.imageKey;
-//        [[[s3 deleteObject:deleteRequest] continueWithBlock:^id(BFTask *task) {
-//            if(task.error != nil){
-//            if(task.error.code != AWSS3TransferManagerErrorCancelled && task.error.code != AWSS3TransferManagerErrorPaused){
-//            NSLog(@"%s Error: [%@]",__PRETTY_FUNCTION__, task.error);
-//            }
-//            }else{
-//            // Completed logic here
-//            }
-//            return nil;
-//            }] waitUntilFinished];
-    
     }
 
-}
-
-
-//
-//MARK:- Parse Call Methods
-//
-extension AdminVC{
-    
-    func parseCallFetchBrands(){
-        showLoading()
-                
-        let query = PFQuery(className:PARSE_BRAND)
-        query.findObjectsInBackgroundWithBlock {
-                (brandObjects: [PFObject]?, error: NSError?) -> Void in
-                if let error = error {
-                    UnlabelHelper.showAlert(onVC: self, title: error.debugDescription, message: "Please try again", onOk: { () -> () in
-                        self.hideLoading()
-                    })
-                } else {
-                    print(brandObjects)
-                    if let brandData = brandObjects?.count where brandData > 0{
-                        self.handleBrandObjs(brandObjects!)
-                    }else{
-                        self.hideLoading()
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.arrBrandList = [Brand]()
-                            self.reloadTable()
-                        })
-                        UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                        })
-                        print("no data found")
-                    }
-                }
-        }
-    }
-    
-    func handleBrandObjs(brandObjects:[PFObject]){
-        arrBrandList = [Brand]()
-        for brandObj in brandObjects{
-            let currentBrand = Brand()
-//            currentBrand.sObjectID      = brandObj.objectId!
-//            currentBrand.sBrandName     = brandObj[PRM_BRAND_NAME] as! String
-//            currentBrand.sDescription   = brandObj[PRM_DESCRIPTION] as! String
-//            currentBrand.sLocation      = brandObj[PRM_LOCATION] as! String
-
-            let imageFile:PFFile = brandObj[PRM_MAIN_IMAGE] as! PFFile
-            imageFile.getDataInBackgroundWithBlock({ (imageData:NSData?, error:NSError?) -> Void in
-                if let error = error{
-                    print("Try again")
-                }else{
-                    let image = UIImage(data: imageData!)
-                    currentBrand.imgBrandImage = image!
-                    self.reloadTable()
-                }
-            })
-            
-            arrBrandList.append(currentBrand)
-        }
-        
-        defer{
-            self.reloadTable()
-        }
-    }
-    
-    func parseCallDeleteBrand(indexPath:NSIndexPath){
-//        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//            let object:PFObject = PFObject(withoutDataWithClassName: PARSE_BRAND, objectId: self.arrBrandList[indexPath.row].sObjectID)
-//            object.deleteInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
-//            self.parseCallFetchBrands()
-//            }
-//        }
-    }
 }
