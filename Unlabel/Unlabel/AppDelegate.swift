@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setupOnLaunch()
-        configureAWS()
+        setupAWS()
         return true
     }
     
@@ -119,7 +119,7 @@ extension AppDelegate{
     /**
      Configure AWS
      */
-    func configureAWS(){
+    func setupAWS(){
         let credentialsProvider = AWSCognitoCredentialsProvider(
             regionType: CognitoRegionType,
             identityPoolId: CognitoIdentityPoolId)

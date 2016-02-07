@@ -24,7 +24,7 @@ enum ChildVCName {
 let CognitoRegionType = AWSRegionType.USEast1  // e.g. AWSRegionType.USEast1
 let DefaultServiceRegionType = AWSRegionType.USEast1 // e.g. AWSRegionType.USEast1
 let CognitoIdentityPoolId = "us-east-1:b660d049-9d0d-4e48-820e-4e32fd614ed7"
-let S3BucketName = "unlabel-userfiles-mobilehub-626392447"
+let S3_BUCKET_NAME = "unlabel-userfiles-mobilehub-626392447"
 
 
 //

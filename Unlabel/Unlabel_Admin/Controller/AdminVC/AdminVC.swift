@@ -95,7 +95,8 @@ extension AdminVC:UITableViewDataSource,UITableViewDelegate{
     }
     
     func deleteBrandAtIndexPath(indexPath:NSIndexPath){
-        parseCallDeleteBrand(indexPath)
+        awsCallDeleteBrand(atIndexPath: indexPath)
+//        parseCallDeleteBrand(indexPath)
     }
     
 }
@@ -296,6 +297,7 @@ extension AdminVC{
                         }
                     })
                 }else{
+                    self.hideLoading()
                     UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
                     })
                 }
@@ -345,6 +347,81 @@ extension AdminVC{
         
     }
     
+    func awsCallDeleteBrand(atIndexPath indexPath:NSIndexPath){
+        self.showLoading()
+        
+        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+        dynamoDBObjectMapper.remove(arrBrandList[indexPath.row].dynamoDB_Brand).continueWithBlock { (task:AWSTask) -> AnyObject? in
+            self.hideLoading()
+            if (task.error != nil) {
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
+                    
+                })
+            }
+            if (task.exception != nil) {
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.exception.debugDescription, onOk: { () -> () in
+                    
+                })
+            }
+            if (task.result != nil) {
+                self.awsCallDeleteBrandImage(atIndexPath: indexPath)
+                self.arrBrandList.removeAtIndex(indexPath.row)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.IBtblBrand.reloadData()
+                })
+            }
+            return nil
+        }
+    }
+    
+    func awsCallDeleteBrandImage(atIndexPath indexPath:NSIndexPath){
+        
+        //defining bucket and upload file name
+        let S3DeleteKeyName: String = "public/\(arrBrandList[indexPath.row].dynamoDB_Brand.ImageName)"
+        
+        let awsDeleteRequest = AWSS3DeleteObjectRequest()
+        awsDeleteRequest.bucket = S3_BUCKET_NAME
+        awsDeleteRequest.key = S3DeleteKeyName
+        
+        let s3 = AWSS3.defaultS3()
+        s3.deleteObject(awsDeleteRequest).continueWithBlock { (task:AWSTask) -> AnyObject? in
+            
+            if (task.error != nil) {
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
+                    
+                })
+            }
+            if (task.exception != nil) {
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.exception.debugDescription, onOk: { () -> () in
+                    
+                })
+            }
+            if (task.result != nil) {
+                UnlabelHelper.showAlert(onVC: self, title: "Success", message: "Brand Deleted Successfully", onOk: { () -> () in
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+            }
+
+            return nil
+        }
+        
+//        AWSS3 *s3 = [AWSS3 defaultS3];
+//        AWSS3DeleteObjectRequest *deleteRequest = [AWSS3DeleteObjectRequest new];
+//        deleteRequest.bucket = S3BucketName;
+//        deleteRequest.key = climb.imageKey;
+//        [[[s3 deleteObject:deleteRequest] continueWithBlock:^id(BFTask *task) {
+//            if(task.error != nil){
+//            if(task.error.code != AWSS3TransferManagerErrorCancelled && task.error.code != AWSS3TransferManagerErrorPaused){
+//            NSLog(@"%s Error: [%@]",__PRETTY_FUNCTION__, task.error);
+//            }
+//            }else{
+//            // Completed logic here
+//            }
+//            return nil;
+//            }] waitUntilFinished];
+    
+    }
+
 }
 
 

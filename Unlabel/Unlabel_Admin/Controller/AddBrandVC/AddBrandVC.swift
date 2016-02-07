@@ -16,6 +16,7 @@ class AddBrandVC: UIViewController {
     //
     //MARK:- IBOutlets, constants, vars
     //
+    
     @IBOutlet weak var IBtxtFieldBrandName: UITextField!
     @IBOutlet weak var IBtxtViewDescription: UITextView!
     @IBOutlet weak var IBtxtFieldLocation: UITextField!
@@ -26,8 +27,10 @@ class AddBrandVC: UIViewController {
     var imageURL = NSURL()
     var selectedImage = UIImage()
     var uploadCompletionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-    
     var uploadFileURL: NSURL?
+    
+    let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+    
     
     //
     //MARK:- VC Lifecycle
@@ -58,11 +61,6 @@ extension AddBrandVC{
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-
-    func testDynamoDBAddRow(imageName imageName:String){
-        
-    }
-
     
     @IBAction func IBActionSave(sender: AnyObject) {
         if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
@@ -87,11 +85,8 @@ extension AddBrandVC{
                                 dynamoDB_Brand.Location = brandLocation
                                 dynamoDB_Brand.ImageName = imageName
                                 
-                                
-                                let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-//                                dynamoDBObjectMapper.save(dynamoDB_Brand)
-                                
-                                dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
+
+                                self.dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
                                     self.hideLoading()
                                     if (task.error != nil) {
                                         UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
@@ -113,24 +108,6 @@ extension AddBrandVC{
                                 }
 
                             })
-//                                let brandObj = PFObject(className: PARSE_BRAND)
-//                                brandObj[PRM_BRAND_NAME] = brandName
-//                                brandObj[PRM_DESCRIPTION] = brandDescription
-//                                brandObj[PRM_LOCATION] = brandLocation
-//                        
-//                                let imageFile = PFFile(name: "\(NSUUID().UUIDString).png", data: imageData)
-//                                brandObj[PRM_MAIN_IMAGE] = imageFile
-//                                brandObj.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//                                    self.hideLoading()
-//                                    if let _ = error{
-//                                        self.showSomethingWentWrong()
-//                                    }else{
-//                                        UnlabelHelper.showAlert(onVC: self, title: "Brand added", message: "Success!", onOk: { () -> () in
-//                                            self.navigationController?.popViewControllerAnimated(true)
-//                                        })
-//                                    }
-//                                    print("Object has been saved.")
-//                                }
                         }else{
                             UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
                                 
@@ -147,12 +124,6 @@ extension AddBrandVC{
             }
         }else{
             showSomethingWentWrong()
-        }
-    }
-    
-    func showSomethingWentWrong(){
-        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: "Please try again") { () -> () in
-            
         }
     }
 }
@@ -197,31 +168,43 @@ extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    func saveImage(image: UIImage, withName name: String) {
-        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let data: NSData = UIImageJPEGRepresentation(image, 1.0)!
-        let fileManager: NSFileManager = NSFileManager.defaultManager()
-        
-        let fullPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name)
-        fileManager.createFileAtPath(fullPath.absoluteString, contents: data, attributes: nil)
-        imageURL = NSURL(fileURLWithPath: fullPath.absoluteString)
+}
+
+//
+//MARK:- UITextFieldDelegate,UITextViewDelegate Methods
+//
+extension AddBrandVC:UITextFieldDelegate,UITextViewDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if textField.tag == 0{
+            self.IBtxtViewDescription.becomeFirstResponder()
+        }else if textField.tag == 2{
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
-    func loadImage(name: String) -> String {
-        let fullPath: String = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name).absoluteString
-        return fullPath
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            self.IBtxtFieldLocation.becomeFirstResponder()
+            return false
+        }
+        return true
     }
-    
+}
+
+
+//
+//MARK:- AWS Call Methods
+//
+extension AddBrandVC{
     
     func uploadImageWithCompletion(imageName imageName:String,completionHandler: (task:AWSS3TransferUtilityUploadTask, error:NSError?)->()){
         
         //defining bucket and upload file name
-        let S3BucketName: String = "unlabel-userfiles-mobilehub-626392447"
+        let S3BucketName: String = S3_BUCKET_NAME
         let S3UploadKeyName: String = "public/\(imageName)"
         
-    
+        
         let expression = AWSS3TransferUtilityUploadExpression()
         expression.uploadProgress = {(task: AWSS3TransferUtilityTask, bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
             dispatch_async(dispatch_get_main_queue(), {
@@ -255,28 +238,6 @@ extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
 
 }
 
-//
-//MARK:- UITextFieldDelegate,UITextViewDelegate Methods
-//
-extension AddBrandVC:UITextFieldDelegate,UITextViewDelegate{
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
-        if textField.tag == 0{
-            self.IBtxtViewDescription.becomeFirstResponder()
-        }else if textField.tag == 2{
-            textField.resignFirstResponder()
-        }
-        return true
-    }
-    
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            self.IBtxtFieldLocation.becomeFirstResponder()
-            return false
-        }
-        return true
-    }
-}
-
 
 //
 //MARK:- Custom Methods
@@ -295,5 +256,27 @@ extension AddBrandVC{
             self.IBactivityIndicator.stopAnimating()
         }
     }
+    
+    func showSomethingWentWrong(){
+        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: "Please try again") { () -> () in
+            
+        }
+    }
+    
+    func saveImage(image: UIImage, withName name: String) {
+        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let data: NSData = UIImageJPEGRepresentation(image, 1.0)!
+        let fileManager: NSFileManager = NSFileManager.defaultManager()
+        
+        let fullPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name)
+        fileManager.createFileAtPath(fullPath.absoluteString, contents: data, attributes: nil)
+        imageURL = NSURL(fileURLWithPath: fullPath.absoluteString)
+    }
+    
+    func loadImage(name: String) -> String {
+        let fullPath: String = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(name).absoluteString
+        return fullPath
+    }
+
 }
 
