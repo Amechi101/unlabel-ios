@@ -67,7 +67,6 @@ extension AddBrandVC{
             if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
                 if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
                     if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
-                        if let imageData = UIImagePNGRepresentation(brandMainImage) where imageData.length <= 10485760{
                                 showLoading()
                             let imageName = "\(NSUUID().UUIDString).jpg"
                             
@@ -84,6 +83,7 @@ extension AddBrandVC{
                                 dynamoDB_Brand.Description = brandDescription
                                 dynamoDB_Brand.Location = brandLocation
                                 dynamoDB_Brand.ImageName = imageName
+                                dynamoDB_Brand.isActive = true
                                 
 
                                 self.dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
@@ -108,11 +108,6 @@ extension AddBrandVC{
                                 }
 
                             })
-                        }else{
-                            UnlabelHelper.showAlert(onVC: self, title: "File Size too Large", message: "Use <10 MB file", onOk: { () -> () in
-                                
-                            })
-                        }
                     }else{
                         showSomethingWentWrong()
                     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSS3
 import AWSDynamoDB
 
 class FeedVC: UIViewController {
@@ -28,7 +29,8 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        parseCallFetchBrands()
+        awsCallFetchBrands()
+//        parseCallFetchBrands()
         setupUIOnLoad()
     }
     
@@ -58,8 +60,8 @@ extension FeedVC:UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-//        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].sBrandName.uppercaseString
-//        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].sLocation
+        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].dynamoDB_Brand.BrandName.uppercaseString
+        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].dynamoDB_Brand.Location
         if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             feedVCCell.IBimgBrandImage.image = brandMainImage
         }
@@ -114,6 +116,107 @@ extension FeedVC{
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
         openFilterScreen()
+    }
+}
+
+
+//
+//MARK:- AWS Call Methods
+//
+extension FeedVC{
+    
+    func awsCallFetchBrands(){
+        
+        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: nil).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+            
+            //If error
+            if let error = task.error{
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
+                    
+                })
+                return nil
+            }
+            
+            //If exception
+            if let exception = task.exception{
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.debugDescription, onOk: { () -> () in
+                    
+                })
+                return nil
+            }
+            
+            //If got result
+            if let result = task.result{
+                //If result items count > 0
+                if let arrItems:[DynamoDB_Brand] = result.items as? [DynamoDB_Brand] where arrItems.count>0{
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.arrBrandList = [Brand]()
+                        for brand in arrItems{
+                            let brandObj = Brand()
+                            brandObj.dynamoDB_Brand = brand
+                            
+                            self.awsCallDownloadImage(forImageFileName: brand.ImageName) { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                                if let downloadedData = data{
+                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                        brandObj.imgBrandImage = UIImage(data: downloadedData)!
+                                        self.IBcollectionViewFeed.reloadData()
+                                    })
+                                }
+                            }
+                            self.arrBrandList.append(brandObj)
+                        }
+                        defer{
+                            self.IBcollectionViewFeed.reloadData()
+                        }
+                    })
+                }else{
+                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+                    })
+                }
+            }else{
+                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+                })
+            }
+            
+            
+            return nil
+        }
+    }
+    
+    func awsCallDownloadImage(forImageFileName fileName:String,withCompletionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
+        
+        var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
+        
+        let S3BucketName: String = "unlabel-userfiles-mobilehub-626392447"
+        let S3DownloadKeyName: String = "public/\(fileName)"
+        
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        expression.downloadProgress = {(task: AWSS3TransferUtilityTask, bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
+            dispatch_async(dispatch_get_main_queue(), {
+                let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+                print("Progress is: \(progress)")
+            })
+        }
+        
+        completionHandler = { (task, location, data, error) -> Void in
+            withCompletionHandler(task, location, data, error)
+        }
+        
+        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+        transferUtility.downloadToURL(nil, bucket: S3BucketName, key: S3DownloadKeyName, expression: expression, completionHander: completionHandler).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Error: \(error.localizedDescription)")
+            }
+            if let exception = task.exception {
+                print("Exception: \(exception.description)")
+            }
+            if let _ = task.result {
+                print("Download Starting!")
+            }
+            return nil;
+        }
+        
     }
 }
 

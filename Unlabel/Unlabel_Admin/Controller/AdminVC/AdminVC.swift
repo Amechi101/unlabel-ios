@@ -281,7 +281,7 @@ extension AdminVC{
                             let brandObj = Brand()
                             brandObj.dynamoDB_Brand = brand
 
-                            self.downloadImage(forImageFileName: brand.ImageName) { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                            self.awsCallDownloadImage(forImageFileName: brand.ImageName) { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
                                 if let downloadedData = data{
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                         brandObj.imgBrandImage = UIImage(data: downloadedData)!
@@ -312,7 +312,7 @@ extension AdminVC{
         }
     }
     
-    func downloadImage(forImageFileName fileName:String,withCompletionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
+    func awsCallDownloadImage(forImageFileName fileName:String,withCompletionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
         
         var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
         
