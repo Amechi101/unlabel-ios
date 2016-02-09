@@ -46,7 +46,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
+    
+    /**
+     APNS specific delegates
+    */
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("device_token:\(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+    }
 
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+    }
+    
+    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -127,15 +143,24 @@ extension AppDelegate{
             region: DefaultServiceRegionType,
             credentialsProvider: credentialsProvider)
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
-        AWSLogger.defaultLogger().logLevel = .Verbose
+        AWSLogger.defaultLogger().logLevel = .None
     }
     
     /**
      Init everything needed on app launch.
      */
     private func setupOnLaunch(){
-        setupParse()
+        registerForPushNotifications()
         setupRootVC()
+    }
+
+    /**
+     Register current device to recieve push notifications
+     */
+    func registerForPushNotifications(){
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
     /**
