@@ -29,8 +29,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        awsCallFetchBrands()
-//        parseCallFetchBrands()
+        awsCallFetchActiveBrands()
         setupUIOnLoad()
     }
     
@@ -123,12 +122,21 @@ extension FeedVC{
 //
 //MARK:- AWS Call Methods
 //
+
 extension FeedVC{
-    
-    func awsCallFetchBrands(){
+    /**
+     AWS call to fetch all active brands
+     */
+    func awsCallFetchActiveBrands(){
         
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: nil).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+        
+        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
+        
+        scanExpression.filterExpression = "isActive = :val"
+        scanExpression.expressionAttributeValues = [":val": true]
+        
+        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
             
             //If error
             if let error = task.error{
@@ -183,7 +191,10 @@ extension FeedVC{
             return nil
         }
     }
-    
+
+    /**
+     AWS call to download images
+     */
     func awsCallDownloadImage(forImageFileName fileName:String,withCompletionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
         
         var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
@@ -218,65 +229,7 @@ extension FeedVC{
         }
         
     }
-}
-
-
-//
-//MARK:- Parse Call Methods
-//
-extension FeedVC{
-    func parseCallFetchBrands(){
-        
-        let query = PFQuery(className:PARSE_BRAND)
-        query.findObjectsInBackgroundWithBlock {
-            (brandObjects: [PFObject]?, error: NSError?) -> Void in
-            if let error = error {
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
-                })
-            } else {
-                print(brandObjects)
-                if let brandData = brandObjects?.count where brandData > 0{
-                    self.handleBrandObjs(brandObjects!)
-                }else{
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrBrandList = [Brand]()
-                        self.IBcollectionViewFeed.reloadData()
-                    })
-                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                    })
-                    print("no data found")
-                }
-            }
-        }
-    }
     
-    func handleBrandObjs(brandObjects:[PFObject]){
-        arrBrandList = [Brand]()
-        for brandObj in brandObjects{
-            let currentBrand = Brand()
-//            currentBrand.sObjectID      = brandObj.objectId!
-//            currentBrand.sBrandName     = brandObj[PRM_BRAND_NAME] as! String
-//            currentBrand.sDescription   = brandObj[PRM_DESCRIPTION] as! String
-//            currentBrand.sLocation      = brandObj[PRM_LOCATION] as! String
-            
-            let imageFile:PFFile = brandObj[PRM_MAIN_IMAGE] as! PFFile
-            imageFile.getDataInBackgroundWithBlock({ (imageData:NSData?, error:NSError?) -> Void in
-                if let error = error{
-                    print("Try again")
-                }else{
-                    let image = UIImage(data: imageData!)
-                    currentBrand.imgBrandImage = image!
-                    self.IBcollectionViewFeed.reloadData()
-                }
-            })
-            
-            arrBrandList.append(currentBrand)
-        }
-        
-        defer{
-            self.IBcollectionViewFeed.reloadData()
-        }
-    }
 }
 
 
