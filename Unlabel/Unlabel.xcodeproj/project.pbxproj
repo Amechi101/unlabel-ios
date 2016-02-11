@@ -126,6 +126,12 @@
 		15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AB1C56A899000C28E0 /* AdminNavController.swift */; };
 		15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
 		15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
+		15E30D941C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */; };
+		15E30D951C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */; };
+		15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
+		15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
+		15E30D9A1C6D2D14008B77E1 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Label.swift */; };
+		15E30D9B1C6D2D14008B77E1 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Label.swift */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
@@ -241,6 +247,9 @@
 		15C993A11C56A870000C28E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15C993AB1C56A899000C28E0 /* AdminNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminNavController.swift; sourceTree = "<group>"; };
 		15C993AD1C56BA65000C28E0 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Label.swift; sourceTree = "<group>"; };
+		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
+		15E30D991C6D2D14008B77E1 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -417,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */,
+				15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */,
 			);
 			path = AWS_DynamoDB_Model;
 			sourceTree = "<group>";
@@ -446,6 +456,7 @@
 			children = (
 				15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */,
 				159245221C5539C500755814 /* Brand.swift */,
+				15E30D991C6D2D14008B77E1 /* Label.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +527,7 @@
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
 				154687781C5814D60060565B /* UnlabelExtensions.swift */,
 				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
+				15E30D961C6D0E07008B77E1 /* AWSHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1022,6 +1034,9 @@
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
 				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
+				15E30D951C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */,
+				15E30D9B1C6D2D14008B77E1 /* Label.swift in Sources */,
+				15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
 				15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */,
@@ -1043,6 +1058,7 @@
 				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				158545BB1C61499200BBDCF2 /* LabelCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
+				15E30D941C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
@@ -1050,8 +1066,10 @@
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
+				15E30D9A1C6D2D14008B77E1 /* Label.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
+				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,

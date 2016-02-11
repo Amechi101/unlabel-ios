@@ -25,11 +25,8 @@ class AddBrandVC: UIViewController {
     
     var imagePicker = UIImagePickerController()
     var imageURL = NSURL()
-    var selectedImage = UIImage()
     var uploadCompletionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
     var uploadFileURL: NSURL?
-    
-    let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
     
     
     //
@@ -66,11 +63,12 @@ extension AddBrandVC{
         if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
             if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
                 if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
-                    if let brandMainImage = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
+                    if let _ = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
                                 showLoading()
                             let imageName = "\(NSUUID().UUIDString).jpg"
-                            
-                            uploadImageWithCompletion(imageName: imageName, completionHandler: { (task, error) -> () in                                if ((error) != nil){
+                        
+                        AWSHelper.uploadImageWithCompletion(imageName: imageName,imageURL:self.imageURL,uploadPathKey:pathKeyBrands, completionHandler: { (task, error) -> () in
+                            if ((error) != nil){
                                     self.hideLoading()
                                     UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
                                         
@@ -85,8 +83,8 @@ extension AddBrandVC{
                                 dynamoDB_Brand.ImageName = imageName
                                 dynamoDB_Brand.isActive = true
                                 
-
-                                self.dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
+                                let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+                                dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
                                     self.hideLoading()
                                     if (task.error != nil) {
                                         UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
@@ -152,11 +150,7 @@ extension AddBrandVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
             
             let imageData = NSData(contentsOfFile: localPath)!
             imageURL = NSURL(fileURLWithPath: localPath)
-        
-        
-        selectedImage = chosenImage
-        
-        
+    
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -193,44 +187,7 @@ extension AddBrandVC:UITextFieldDelegate,UITextViewDelegate{
 //
 extension AddBrandVC{
     
-    func uploadImageWithCompletion(imageName imageName:String,completionHandler: (task:AWSS3TransferUtilityUploadTask, error:NSError?)->()){
-        
-        //defining bucket and upload file name
-        let S3BucketName: String = S3_BUCKET_NAME
-        let S3UploadKeyName: String = "public/\(imageName)"
-        
-        
-        let expression = AWSS3TransferUtilityUploadExpression()
-        expression.uploadProgress = {(task: AWSS3TransferUtilityTask, bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
-            dispatch_async(dispatch_get_main_queue(), {
-                let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-                NSLog("Progress is: %f",progress)
-            })
-        }
-        
-        self.uploadCompletionHandler = { (task, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(task: task,error:error)
-            })
-        }
-        
-        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
-        
-        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/jpeg", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
-            if let error = task.error {
-                NSLog("Error: %@",error.localizedDescription);
-            }
-            if let exception = task.exception {
-                NSLog("Exception: %@",exception.description);
-            }
-            if let _ = task.result {
-                NSLog("Upload Starting!")
-            }
-            
-            return nil;
-        }
-    }
-
+    
 }
 
 
