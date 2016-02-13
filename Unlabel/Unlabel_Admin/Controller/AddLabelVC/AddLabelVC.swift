@@ -59,9 +59,10 @@ class AddLabelVC: UIViewController {
                                         IBswitchIsActive.on = isLabelActive
                                         
                                         IBbtnLabelImage.setBackgroundImage(labelImage, forState: UIControlState.Normal)
-                                        changeImageDataToNSURL(imageName!, imageData: UIImagePNGRepresentation(labelImage)!)
+                                        changeImageDataToNSURL(labelImageName, imageData: UIImagePNGRepresentation(labelImage)!)
                                         self.imageName = labelImageName
                                         sSuccessMessage = "Label Edited Successfully"
+                                        self.IBbtnLabelImage.setTitle("", forState: UIControlState.Normal)
                                         self.title = "Edit \(brandName)"
                                     }else{ showUnableToEdit() }
                                 }else{ showUnableToEdit() }

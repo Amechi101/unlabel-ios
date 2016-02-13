@@ -10,5 +10,5 @@ import UIKit
 
 class Label: NSObject {
     var dynamoDB_Label:DynamoDB_Label = DynamoDB_Label()
-    var imgLabelImage:UIImage = UIImage()
+    var imgLabelImage:UIImage?
 }

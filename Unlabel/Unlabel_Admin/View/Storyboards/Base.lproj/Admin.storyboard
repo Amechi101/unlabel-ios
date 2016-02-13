@@ -298,7 +298,7 @@
                                                 </connections>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA5-a9-Gxn">
-                                                <rect key="frame" x="174" y="335" width="252" height="211"/>
+                                                <rect key="frame" x="165" y="335" width="270" height="211"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="211" id="FTV-gw-eYK"/>
@@ -329,7 +329,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="HA5-a9-Gxn" firstAttribute="width" secondItem="E4g-X7-8ah" secondAttribute="width" multiplier="0.42" id="2ro-dt-te8"/>
+                                            <constraint firstItem="HA5-a9-Gxn" firstAttribute="width" secondItem="E4g-X7-8ah" secondAttribute="width" multiplier="0.45" id="2ro-dt-te8"/>
                                             <constraint firstItem="7z0-l6-vcV" firstAttribute="top" secondItem="HA5-a9-Gxn" secondAttribute="bottom" constant="20" id="8si-It-oOh"/>
                                             <constraint firstItem="ufO-DE-JJU" firstAttribute="top" secondItem="HA5-a9-Gxn" secondAttribute="bottom" constant="25" id="CtE-Gb-yKk"/>
                                             <constraint firstItem="edN-w5-Gk0" firstAttribute="top" secondItem="NdA-bw-4cO" secondAttribute="bottom" constant="20" id="Fcu-Z3-DXk"/>
