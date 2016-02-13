@@ -34,6 +34,6 @@ class AdminNavController: UINavigationController {
                     }
                 }
             }
-        }
+        } 
     }
 }

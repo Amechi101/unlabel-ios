@@ -34,7 +34,7 @@ class AWSHelper: NSObject {
         
         let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
         
-        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/jpeg", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
+        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/png", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
             if let error = task.error {
                 NSLog("Error: %@",error.localizedDescription);
             }
@@ -81,6 +81,23 @@ class AWSHelper: NSObject {
             }
             return nil;
         }
-        
     }
+
+    class func deleteImageWithCompletion(inBucketName bucketName:String,imageName:String,deletePathKey:String,completion:(task: AWSTask)->()){
+        
+         let S3DeleteKeyName: String = "public/\(deletePathKey)/\(imageName)"
+
+        let awsDeleteRequest = AWSS3DeleteObjectRequest()
+        awsDeleteRequest.bucket = bucketName
+        awsDeleteRequest.key = S3DeleteKeyName
+        
+        let s3 = AWSS3.defaultS3()
+
+        s3.deleteObject(awsDeleteRequest).continueWithBlock { (task:AWSTask) -> AnyObject? in
+            completion(task: task)
+        
+            return nil
+        }
+    }
+    
 }

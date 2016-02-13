@@ -22,11 +22,12 @@ class AdminVC: UIViewController {
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var IBtblBrand: UITableView!
     
-    var arrBrandList = [Brand]()
     var arrDynamoDBBrand = [DynamoDB_Brand]()
-    var shouldReloadData = false
-    
     var didSelectIndexPath = NSIndexPath()
+    var arrBrandList = [Brand]()
+    var shouldReloadData = true
+    
+    var didClickEditAtIndexPath:NSIndexPath?
     
     
 //
@@ -37,21 +38,32 @@ class AdminVC: UIViewController {
         super.viewDidLoad()
         setupUIOnLoad()
 //        authenticateUser()
-        awsCallFetchBrands()
     }
     
     override func viewWillAppear(animated: Bool) {
         if shouldReloadData{
             self.awsCallFetchBrands()
-        }else{
-            shouldReloadData = true
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        shouldReloadData = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+}
+
+
+//
+//MARK:- AddBrandVCDelegate Methods
+//
+extension AdminVC:AddBrandVCDelegate{
+    func shouldReloadData(shouldReload: Bool) {
+        shouldReloadData = shouldReload
+    }
 }
 
 
@@ -90,18 +102,51 @@ extension AdminVC:UITableViewDataSource,UITableViewDelegate{
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            self.deleteBrandAtIndexPath(indexPath)
+            UnlabelHelper.showConfirmAlert(self, title: "Delete \(self.arrBrandList[indexPath.row].dynamoDB_Brand.BrandName)", message: sARE_YOU_SURE, onCancel: { () -> () in
+                
+                }, onOk: { () -> () in
+                    self.deleteBrandAtIndexPath(indexPath)
+            })
         })
         delete.backgroundColor = UIColor.redColor()
         
-        return [delete]
+        let edit = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            self.editBrandAtIndexPath(indexPath)
+        })
+        edit.backgroundColor = UIColor.blueColor()
+        
+        return [delete,edit]
     }
     
     func deleteBrandAtIndexPath(indexPath:NSIndexPath){
         awsCallDeleteBrand(atIndexPath: indexPath)
     }
     
-    
+    func editBrandAtIndexPath(indexPath:NSIndexPath){
+        didClickEditAtIndexPath = indexPath
+        performSegueWithIdentifier(S_ID_ADD_BRAND_VC, sender: self)
+    }
+}
+
+//
+//MARK:- Navigation Methods
+//
+extension AdminVC{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == S_ID_ADD_BRAND_VC{
+            if let addBrandVC:AddBrandVC = segue.destinationViewController as? AddBrandVC{
+                addBrandVC.delegate = self
+                if let editIndexPath = didClickEditAtIndexPath{
+                    if let brand:Brand = arrBrandList[editIndexPath.row]{
+                        addBrandVC.selectedBrand = brand
+                        didClickEditAtIndexPath = nil
+                    }
+                }else{
+                
+                }
+            }
+        }
+    }
 }
 
 
@@ -280,23 +325,22 @@ extension AdminVC{
                 if let arrItems:[DynamoDB_Brand] = result.items as? [DynamoDB_Brand] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.arrBrandList = [Brand]()
-                        for brand in arrItems{
-                            let brandObj = Brand()
-                            brandObj.dynamoDB_Brand = brand
-
-                            
-                            AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-                                if let downloadedData = data{
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        if let image = UIImage(data: downloadedData){
-                                            brandObj.imgBrandImage = image
-                                            self.IBtblBrand.reloadData()
-                                        }
-                                    })
-                                }
-                            })
-                            
-                            self.arrBrandList.append(brandObj)
+                            for (index, brand) in arrItems.enumerate() {
+                                let brandObj = Brand()
+                                brandObj.dynamoDB_Brand = brand
+                                
+                                AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                                    if let downloadedData = data{
+                                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                            if let image = UIImage(data: downloadedData){
+                                                brandObj.imgBrandImage = image
+                                                self.IBtblBrand.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+                                            }
+                                        })
+                                    }
+                                })
+                                
+                                self.arrBrandList.append(brandObj)
                         }
                         defer{
                             self.hideLoading()
@@ -348,16 +392,7 @@ extension AdminVC{
     
     func awsCallDeleteBrandImage(atIndexPath indexPath:NSIndexPath){
         
-        //defining bucket and upload file name
-        let S3DeleteKeyName: String = "public/\(arrBrandList[indexPath.row].dynamoDB_Brand.ImageName)"
-        
-        let awsDeleteRequest = AWSS3DeleteObjectRequest()
-        awsDeleteRequest.bucket = S3_BUCKET_NAME
-        awsDeleteRequest.key = S3DeleteKeyName
-        
-        let s3 = AWSS3.defaultS3()
-        s3.deleteObject(awsDeleteRequest).continueWithBlock { (task:AWSTask) -> AnyObject? in
-            
+        AWSHelper.deleteImageWithCompletion(inBucketName: S3_BUCKET_NAME, imageName: arrBrandList[indexPath.row].dynamoDB_Brand.ImageName, deletePathKey: "\(pathKeyBrands)") { (task) -> () in
             if (task.error != nil) {
                 UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
                     
@@ -370,12 +405,9 @@ extension AdminVC{
             }
             if (task.result != nil) {
                 UnlabelHelper.showAlert(onVC: self, title: "Success", message: "Brand Deleted Successfully", onOk: { () -> () in
-                    self.navigationController?.popViewControllerAnimated(true)
+//                    self.navigationController?.popViewControllerAnimated(true)
                 })
             }
-
-            return nil
         }
     }
-
 }
