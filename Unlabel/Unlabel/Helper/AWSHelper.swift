@@ -10,6 +10,10 @@ import UIKit
 import AWSS3
 
 class AWSHelper: NSObject {
+    
+    /**
+     AWS call to upload images
+     */
     class func uploadImageWithCompletion(imageName imageName:String,imageURL:NSURL,uploadPathKey:String,completionHandler: (task:AWSS3TransferUtilityUploadTask, error:NSError?)->()){
         
         //defining bucket and upload file name
@@ -49,6 +53,9 @@ class AWSHelper: NSObject {
         }
     }
     
+    /**
+     AWS call to download images
+     */
     class func downloadImageWithCompletion(forImageName imageName:String,uploadPathKey:String,completionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
         
         var completionHandlerObj: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
@@ -83,6 +90,9 @@ class AWSHelper: NSObject {
         }
     }
 
+    /**
+     AWS call to delete image
+     */
     class func deleteImageWithCompletion(inBucketName bucketName:String,imageName:String,deletePathKey:String,completion:(task: AWSTask)->()){
         
          let S3DeleteKeyName: String = "public/\(deletePathKey)/\(imageName)"

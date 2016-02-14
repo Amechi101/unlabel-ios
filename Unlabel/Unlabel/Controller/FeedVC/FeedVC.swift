@@ -1,4 +1,4 @@
-//
+    //
 //  ViewController.swift
 //  Unlabel
 //
@@ -22,6 +22,8 @@ class FeedVC: UIViewController {
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
     var arrBrandList:[Brand] = [Brand]()
+    
+    var didSelectIndexPath:NSIndexPath?
 
     
 //
@@ -33,6 +35,14 @@ class FeedVC: UIViewController {
         setupUIOnLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,10 +51,27 @@ class FeedVC: UIViewController {
 
 
 //
+//MARK:- Navigation Methods
+//
+extension FeedVC{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == S_ID_LABEL_VC{
+            if let labelVC:LabelVC = segue.destinationViewController as? LabelVC{
+                    if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
+                        labelVC.selectedBrand = brand
+                    }
+            }
+        }
+    }
+}
+    
+
+//
 //MARK:- UICollectionViewDelegate Methods
 //
 extension FeedVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        didSelectIndexPath = indexPath
         performSegueWithIdentifier(S_ID_LABEL_VC, sender: self)
     }
 }
@@ -63,7 +90,10 @@ extension FeedVC:UICollectionViewDataSource{
         feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].dynamoDB_Brand.Location
         if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             feedVCCell.IBimgBrandImage.image = brandMainImage
+        }else{
+            feedVCCell.IBimgBrandImage.image = UIImage(named: "splash")
         }
+        
         return feedVCCell
     }
 }
@@ -164,13 +194,41 @@ extension FeedVC{
      */
     func addChildVC(forViewController VCName:String){
         headerButtonEnabled(setEnabled: false)
-        self.removeChildVCIfExists(VCName)
+        removeChildVCIfExists(VCName)
         
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_FILTER_VC{
             addFilterVCAsChildVC(viewControllerName: VCName)
+        }else if VCName == S_ID_LAUNCH_LOADING_VC{
+            addLaunchLoadingAsChildVC(viewControllerName: VCName)
         }
+    }
+
+    /**
+     Adding Loading screen until data is fetched
+     */
+    func addLaunchLoadingAsChildVC(viewControllerName VCName:String){
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
+        let launchLoadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LaunchLoadingVC
+//        launchLoadingVC.delegate = self
+        launchLoadingVC.view.frame.size = self.view.frame.size
+        
+        //Animate leftViewController entry
+//        leftMenuVC.view.frame.origin.x = -self.view.frame.size.width
+//        leftMenuVC.view.alpha = 0
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            leftMenuVC.view.alpha = 1
+//            leftMenuVC.view.frame.origin.x = 0
+//        }
+        
+        self.navigationController!.addChildViewController(launchLoadingVC)
+        launchLoadingVC.didMoveToParentViewController(self)
+        
+        self.navigationController!.view.addSubview(launchLoadingVC.view)
     }
     
     /**
@@ -229,9 +287,11 @@ extension FeedVC{
             let childVCFromStoryboard:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(VCName)
             
             if childVC.nibName == childVCFromStoryboard.nibName{ //This condition prevents user to open any child VC twice at a time
-                childVC.willMoveToParentViewController(nil)
-                childVC.view.removeFromSuperview()
-                childVC.removeFromParentViewController()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    childVC.willMoveToParentViewController(nil)
+                    childVC.view.removeFromSuperview()
+                    childVC.removeFromParentViewController()
+                })
             }
         }
     }
@@ -277,7 +337,7 @@ extension FeedVC{
             
             //If exception
             if let exception = task.exception{
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.debugDescription, onOk: { () -> () in
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.description, onOk: { () -> () in
                     
                 })
                 return nil
@@ -289,24 +349,25 @@ extension FeedVC{
                 if let arrItems:[DynamoDB_Brand] = result.items as? [DynamoDB_Brand] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.arrBrandList = [Brand]()
-                        for brand in arrItems{
-                            let brandObj = Brand()
-                            brandObj.dynamoDB_Brand = brand
-                            
-                            self.awsCallDownloadImage(forImageFileName: brand.ImageName) { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-                                if let downloadedData = data{
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        brandObj.imgBrandImage = UIImage(data: downloadedData)!
-                                        self.IBcollectionViewFeed.reloadData()
+                            for (index, brand) in arrItems.enumerate() {
+                                let brandObj = Brand()
+                                brandObj.dynamoDB_Brand = brand
+                                AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                                        if let downloadedData = data{
+                                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                                if let image = UIImage(data: downloadedData){
+                                                    brandObj.imgBrandImage = image
+                                                    self.IBcollectionViewFeed.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
+                                                }
+                                            })
+                                        }
                                     })
-                                }
-                            }
-                            self.arrBrandList.append(brandObj)
+                                    self.arrBrandList.append(brandObj)
                         }
                         defer{
                             self.IBcollectionViewFeed.reloadData()
                         }
-                    })
+                })
                 }else{
                     UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
                     })
@@ -320,43 +381,4 @@ extension FeedVC{
             return nil
         }
     }
-    
-    /**
-     AWS call to download images
-     */
-    func awsCallDownloadImage(forImageFileName fileName:String,withCompletionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
-        
-        var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
-        
-        let S3BucketName: String = "unlabel-userfiles-mobilehub-626392447"
-        let S3DownloadKeyName: String = "public/\(fileName)"
-        
-        let expression = AWSS3TransferUtilityDownloadExpression()
-        expression.downloadProgress = {(task: AWSS3TransferUtilityTask, bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) in
-            dispatch_async(dispatch_get_main_queue(), {
-                let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-                print("Progress is: \(progress)")
-            })
-        }
-        
-        completionHandler = { (task, location, data, error) -> Void in
-            withCompletionHandler(task, location, data, error)
-        }
-        
-        let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
-        transferUtility.downloadToURL(nil, bucket: S3BucketName, key: S3DownloadKeyName, expression: expression, completionHander: completionHandler).continueWithBlock { (task) -> AnyObject! in
-            if let error = task.error {
-                print("Error: \(error.localizedDescription)")
-            }
-            if let exception = task.exception {
-                print("Exception: \(exception.description)")
-            }
-            if let _ = task.result {
-                print("Download Starting!")
-            }
-            return nil;
-        }
-        
-    }
-    
 }

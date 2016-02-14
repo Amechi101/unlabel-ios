@@ -242,7 +242,11 @@ extension LabelListVC{
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                         if let image = UIImage(data: downloadedData){
                                             labelObj.imgLabelImage = image
-                                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+                                            if let _ = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)){
+                                                self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+                                            }
+
+                                            
                                         }
                                     })
                                 }

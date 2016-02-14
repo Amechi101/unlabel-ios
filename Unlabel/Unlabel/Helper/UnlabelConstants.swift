@@ -59,6 +59,7 @@ let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_LABEL_LIST_VC              = "LabelListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
+let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 
 

@@ -336,7 +336,9 @@ extension AdminVC{
                                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                             if let image = UIImage(data: downloadedData){
                                                 brandObj.imgBrandImage = image
-                                                self.IBtblBrand.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+                                                if let _ = self.IBtblBrand.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)){
+                                                    self.IBtblBrand.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+                                                }
                                             }
                                         })
                                     }
