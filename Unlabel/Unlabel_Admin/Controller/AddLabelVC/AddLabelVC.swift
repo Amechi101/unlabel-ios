@@ -49,12 +49,12 @@ class AddLabelVC: UIViewController {
             if let brandName:String = selectedLabel.dynamoDB_Label.BrandName{
                 if let labelName:String = selectedLabel.dynamoDB_Label.LabelName{
                     if let labelImageName:String = selectedLabel.dynamoDB_Label.LabelImageName{
-                        if let labelPrice:String = selectedLabel.dynamoDB_Label.LabelPrice{
+                        if let labelPrice:CGFloat = selectedLabel.dynamoDB_Label.LabelPrice{
                             if let labelURL:String = selectedLabel.dynamoDB_Label.LabelURL{
                                 if let isLabelActive:Bool = selectedLabel.dynamoDB_Label.isActive{
                                     if let labelImage:UIImage = selectedLabel.imgLabelImage{
                                         IBtxtFieldLabelName.text = labelName
-                                        IBtxtFieldLabelPrice.text = labelPrice
+                                        IBtxtFieldLabelPrice.text = "\(labelPrice)"
                                         IBtxtFieldLabelURL.text = labelURL
                                         IBswitchIsActive.on = isLabelActive
                                         
@@ -93,6 +93,7 @@ class AddLabelVC: UIViewController {
 //
 extension AddLabelVC{
     @IBAction func IBActionSave(sender: AnyObject) {
+        self.resignFirstResponder()
         awsCallAddLabel()
     }
     
@@ -156,7 +157,7 @@ extension AddLabelVC{
         if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
             if let labelName:String = self.IBtxtFieldLabelName.text where labelName.characters.count > 0{
                 if let _:UIImage = self.IBbtnLabelImage.backgroundImageForState(UIControlState.Normal){
-                    if let labelPrice:String = self.IBtxtFieldLabelPrice.text where labelPrice.characters.count > 0{
+                    if let labelPrice:CGFloat = CGFloat((IBtxtFieldLabelPrice.text! as NSString).floatValue)  where labelPrice > 0{
                         if let labelURL:String = self.IBtxtFieldLabelURL.text where labelURL.characters.count > 0{
                             showLoading()
                             

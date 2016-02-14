@@ -57,6 +57,7 @@ class AddBrandVC: UIViewController {
                                     IBtxtViewDescription.text = description
                                     IBtxtFieldLocation.text = location
                                     IBbtnChooseImage.setBackgroundImage(brandImage, forState: UIControlState.Normal)
+                                    IBbtnChooseImage.setTitle("", forState: UIControlState.Normal)
                                     IBswitchIsActive.on = isBrandActive
                                     changeImageDataToNSURL(imageName, imageData: UIImagePNGRepresentation(brandImage)!)
                                     self.imageName = imageName
@@ -97,64 +98,8 @@ extension AddBrandVC{
     }
     
     @IBAction func IBActionSave(sender: AnyObject) {
-        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
-            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
-                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
-                    if let _ = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
-                                showLoading()
-                        
-                        AWSHelper.uploadImageWithCompletion(imageName: imageName!,imageURL:self.imageURL,uploadPathKey:pathKeyBrands, completionHandler: { (task, error) -> () in
-                            if ((error) != nil){
-                                    self.hideLoading()
-                                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
-                                        
-                                    })
-                                }
-                                else{
-                                
-                                let dynamoDB_Brand = DynamoDB_Brand()
-                                dynamoDB_Brand.BrandName = brandName
-                                dynamoDB_Brand.Description = brandDescription
-                                dynamoDB_Brand.Location = brandLocation
-                                dynamoDB_Brand.ImageName = self.imageName!
-                                dynamoDB_Brand.isActive = self.IBswitchIsActive.on
-                                
-                                let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-                                dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
-                                    self.hideLoading()
-                                    if (task.error != nil) {
-                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
-                                            
-                                        })
-                                    }
-                                    if (task.exception != nil) {
-                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.exception.debugDescription, onOk: { () -> () in
-                                            
-                                        })
-                                    }
-                                    if (task.result != nil) {
-                                        UnlabelHelper.showAlert(onVC: self, title: "Success", message: self.sSuccessMessage!, onOk: { () -> () in
-                                            self.delegate?.shouldReloadData(true)
-                                            self.navigationController?.popViewControllerAnimated(true)
-                                        })
-                                    }
-                                        return nil
-                                    })
-                                }
-
-                            })
-                    }else{
-                        showSomethingWentWrong()
-                    }
-                }else{
-                    showSomethingWentWrong()
-                }
-            }else{
-                showSomethingWentWrong()
-            }
-        }else{
-            showSomethingWentWrong()
-        }
+        self.resignFirstResponder()
+        awsCallAddBrand()
     }
     
     @IBAction func IBActionIsActive(sender: AnyObject) {
@@ -231,8 +176,66 @@ extension AddBrandVC:UITextFieldDelegate,UITextViewDelegate{
 //MARK:- AWS Call Methods
 //
 extension AddBrandVC{
-    
-    
+    func awsCallAddBrand(){
+        if let brandName = IBtxtFieldBrandName.text where IBtxtFieldBrandName.text?.characters.count>0{
+            if let brandDescription = IBtxtViewDescription.text where IBtxtViewDescription.text.characters.count>0{
+                if let brandLocation = IBtxtFieldLocation.text where IBtxtFieldLocation.text?.characters.count>0{
+                    if let _ = IBbtnChooseImage.backgroundImageForState(UIControlState.Normal){
+                        showLoading()
+                        
+                        AWSHelper.uploadImageWithCompletion(imageName: imageName!,imageURL:self.imageURL,uploadPathKey:pathKeyBrands, completionHandler: { (task, error) -> () in
+                            if ((error) != nil){
+                                self.hideLoading()
+                                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
+                                    
+                                })
+                            }
+                            else{
+                                
+                                let dynamoDB_Brand = DynamoDB_Brand()
+                                dynamoDB_Brand.BrandName = brandName
+                                dynamoDB_Brand.Description = brandDescription
+                                dynamoDB_Brand.Location = brandLocation
+                                dynamoDB_Brand.ImageName = self.imageName!
+                                dynamoDB_Brand.isActive = self.IBswitchIsActive.on
+                                
+                                let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+                                dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
+                                    self.hideLoading()
+                                    if (task.error != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
+                                            
+                                        })
+                                    }
+                                    if (task.exception != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.exception.debugDescription, onOk: { () -> () in
+                                            
+                                        })
+                                    }
+                                    if (task.result != nil) {
+                                        UnlabelHelper.showAlert(onVC: self, title: "Success", message: self.sSuccessMessage!, onOk: { () -> () in
+                                            self.delegate?.shouldReloadData(true)
+                                            self.navigationController?.popViewControllerAnimated(true)
+                                        })
+                                    }
+                                    return nil
+                                })
+                            }
+                            
+                        })
+                    }else{
+                        showSomethingWentWrong()
+                    }
+                }else{
+                    showSomethingWentWrong()
+                }
+            }else{
+                showSomethingWentWrong()
+            }
+        }else{
+            showSomethingWentWrong()
+        }
+    }
 }
 
 

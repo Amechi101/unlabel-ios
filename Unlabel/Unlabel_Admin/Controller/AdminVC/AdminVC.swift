@@ -88,6 +88,8 @@ extension AdminVC:UITableViewDataSource,UITableViewDelegate{
         brandsCell!.imageView?.contentMode = UIViewContentMode.ScaleToFill
         if let brandImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             brandsCell?.imageView?.image = brandImage
+        }else{
+            brandsCell?.imageView?.image = nil
         }
     
         return brandsCell!

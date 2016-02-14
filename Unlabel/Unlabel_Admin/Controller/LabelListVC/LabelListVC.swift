@@ -109,6 +109,8 @@ extension LabelListVC{
         labelCell!.imageView?.contentMode = UIViewContentMode.ScaleToFill
         if let labelImage:UIImage = arrLabelList[indexPath.row].imgLabelImage{
             labelCell?.imageView?.image = labelImage
+        }else{
+            labelCell?.imageView?.image = nil
         }
         
         return labelCell!
