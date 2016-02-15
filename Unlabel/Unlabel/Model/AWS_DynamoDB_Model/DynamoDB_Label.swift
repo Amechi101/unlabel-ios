@@ -14,7 +14,7 @@ class DynamoDB_Label: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
     var BrandName:String = String()
     var LabelName:String = String()
     var LabelImageName:String = String()
-    var LabelPrice:String = String()
+    var LabelPrice:CGFloat = CGFloat()
     var LabelURL:String = String()
     var isActive:Bool = Bool()
     

@@ -54,10 +54,12 @@ let S_NAME_ADMIN   = "Admin"
 let S_ID_FEED_VC                    = "FeedVC"
 let S_ID_LABEL_VC                   = "LabelVC"
 let S_ID_FILTER_VC                  = "FilterVC"
-let S_ID_ADDLABEL_VC                = "AddLabelVC"
+let S_ID_ADD_LABEL_VC               = "AddLabelVC"
+let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_LABEL_LIST_VC              = "LabelListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
+let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 
 
@@ -81,7 +83,7 @@ let FONT_STYLE_BOLD = "Bold"
 //MARK:- Strings
 //
 let sSOMETHING_WENT_WRONG = "Something Went Wrong!"
-
+let sARE_YOU_SURE = "Are you sure?"
 
 //
 //MARK:- Anonymous Constants

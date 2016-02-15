@@ -10,6 +10,10 @@ import UIKit
 import AWSS3
 
 class AWSHelper: NSObject {
+    
+    /**
+     AWS call to upload images
+     */
     class func uploadImageWithCompletion(imageName imageName:String,imageURL:NSURL,uploadPathKey:String,completionHandler: (task:AWSS3TransferUtilityUploadTask, error:NSError?)->()){
         
         //defining bucket and upload file name
@@ -34,7 +38,7 @@ class AWSHelper: NSObject {
         
         let transferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
         
-        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/jpeg", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
+        transferUtility.uploadFile(imageURL, bucket: S3BucketName, key: S3UploadKeyName, contentType: "image/png", expression: expression, completionHander: uploadCompletionHandler).continueWithBlock { (task) -> AnyObject! in
             if let error = task.error {
                 NSLog("Error: %@",error.localizedDescription);
             }
@@ -49,6 +53,9 @@ class AWSHelper: NSObject {
         }
     }
     
+    /**
+     AWS call to download images
+     */
     class func downloadImageWithCompletion(forImageName imageName:String,uploadPathKey:String,completionHandler:(AWSS3TransferUtilityDownloadTask, NSURL?, NSData?, NSError?)->()){
         
         var completionHandlerObj: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
@@ -81,6 +88,26 @@ class AWSHelper: NSObject {
             }
             return nil;
         }
-        
     }
+
+    /**
+     AWS call to delete image
+     */
+    class func deleteImageWithCompletion(inBucketName bucketName:String,imageName:String,deletePathKey:String,completion:(task: AWSTask)->()){
+        
+         let S3DeleteKeyName: String = "public/\(deletePathKey)/\(imageName)"
+
+        let awsDeleteRequest = AWSS3DeleteObjectRequest()
+        awsDeleteRequest.bucket = bucketName
+        awsDeleteRequest.key = S3DeleteKeyName
+        
+        let s3 = AWSS3.defaultS3()
+
+        s3.deleteObject(awsDeleteRequest).continueWithBlock { (task:AWSTask) -> AnyObject? in
+            completion(task: task)
+        
+            return nil
+        }
+    }
+    
 }

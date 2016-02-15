@@ -26,9 +26,28 @@ class UnlabelHelper: NSObject {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
                 onOk()
             }))
-            OnVC.presentViewController(alert, animated: true, completion: nil)
-            
+    
+            dispatch_async(dispatch_get_main_queue(), {
+                OnVC.presentViewController(alert, animated: true, completion: nil)
+            })   
         }
     }
+    
+    class func showConfirmAlert(onVC:UIViewController,title:String,message:String,onCancel:()->(),onOk:()->()){
+        let confirmAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            onCancel()
+        }))
+        
+        confirmAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            onOk()
+        }))
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            onVC.presentViewController(confirmAlert, animated: true, completion: nil)
+        })
+    }
+
 
 }

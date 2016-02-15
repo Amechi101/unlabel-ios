@@ -10,5 +10,5 @@ import UIKit
 
 class Brand: NSObject {
     var dynamoDB_Brand:DynamoDB_Brand = DynamoDB_Brand()
-    var imgBrandImage:UIImage = UIImage()
+    var imgBrandImage:UIImage?
 }
