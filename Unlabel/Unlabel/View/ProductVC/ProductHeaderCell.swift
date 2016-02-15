@@ -1,5 +1,5 @@
 //
-//  LabelHeaderCell.swift
+//  ProductHeaderCell.swift
 //  Unlabel
 //
 //  Created by ZAID PATHAN on 02/02/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LabelHeaderCell: UICollectionViewCell {
+class ProductHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var IBimgHeaderImage: UIImageView!
     @IBOutlet weak var IBbtnFollow: UIButton!

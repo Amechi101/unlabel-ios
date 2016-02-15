@@ -1,5 +1,5 @@
 //
-//  AddLabelVC.swift
+//  AddProductVC.swift
 //  Unlabel
 //
 //  Created by Zaid Pathan on 10/02/16.
@@ -9,29 +9,29 @@
 import UIKit
 import AWSDynamoDB
 
-protocol AddLabelVCDelegate{
+protocol AddProductVCDelegate{
     func shouldReloadData(shouldReload:Bool)
 }
 
-class AddLabelVC: UIViewController {
+class AddProductVC: UIViewController {
 
     //
     //MARK:- IBOutlets, constants, vars
     //
     
-    @IBOutlet weak var IBtxtFieldLabelName: UITextField!
-    @IBOutlet weak var IBtxtFieldLabelPrice: UITextField!
-    @IBOutlet weak var IBtxtFieldLabelURL: UITextField!
+    @IBOutlet weak var IBtxtFieldProductName: UITextField!
+    @IBOutlet weak var IBtxtFieldProductPrice: UITextField!
+    @IBOutlet weak var IBtxtFieldProductURL: UITextField!
     @IBOutlet weak var IBswitchIsActive: UISwitch!
-    @IBOutlet weak var IBbtnLabelImage: UIButton!
+    @IBOutlet weak var IBbtnProductImage: UIButton!
     
     var activityIndicator = UIActivityIndicatorView()
     var imagePicker = UIImagePickerController()
     var selectedBrand = Brand()
-    var selectedLabel = Label()
+    var selectedProduct = Product()
     var imageURL = NSURL()
     
-    var delegate:AddLabelVCDelegate?
+    var delegate:AddProductVCDelegate?
     var sSuccessMessage:String?
     var imageName:String?
 
@@ -45,24 +45,24 @@ class AddLabelVC: UIViewController {
         
         //Chech if new brand or editing existing one,
         //Editing
-        if let labelNameCharacters:Int = selectedLabel.dynamoDB_Label.LabelName.characters.count where labelNameCharacters > 0{
-            if let brandName:String = selectedLabel.dynamoDB_Label.BrandName{
-                if let labelName:String = selectedLabel.dynamoDB_Label.LabelName{
-                    if let labelImageName:String = selectedLabel.dynamoDB_Label.LabelImageName{
-                        if let labelPrice:CGFloat = selectedLabel.dynamoDB_Label.LabelPrice{
-                            if let labelURL:String = selectedLabel.dynamoDB_Label.LabelURL{
-                                if let isLabelActive:Bool = selectedLabel.dynamoDB_Label.isActive{
-                                    if let labelImage:UIImage = selectedLabel.imgLabelImage{
-                                        IBtxtFieldLabelName.text = labelName
-                                        IBtxtFieldLabelPrice.text = "\(labelPrice)"
-                                        IBtxtFieldLabelURL.text = labelURL
-                                        IBswitchIsActive.on = isLabelActive
+        if let productNameCharacters:Int = selectedProduct.dynamoDB_Product.ProductName.characters.count where productNameCharacters > 0{
+            if let brandName:String = selectedProduct.dynamoDB_Product.BrandName{
+                if let productName:String = selectedProduct.dynamoDB_Product.ProductName{
+                    if let productImageName:String = selectedProduct.dynamoDB_Product.ProductImageName{
+                        if let productPrice:CGFloat = selectedProduct.dynamoDB_Product.ProductPrice{
+                            if let productURL:String = selectedProduct.dynamoDB_Product.ProductURL{
+                                if let isProductActive:Bool = selectedProduct.dynamoDB_Product.isActive{
+                                    if let productImage:UIImage = selectedProduct.imgProductImage{
+                                        IBtxtFieldProductName.text = productName
+                                        IBtxtFieldProductPrice.text = "\(productPrice)"
+                                        IBtxtFieldProductURL.text = productURL
+                                        IBswitchIsActive.on = isProductActive
                                         
-                                        IBbtnLabelImage.setBackgroundImage(labelImage, forState: UIControlState.Normal)
-                                        changeImageDataToNSURL(labelImageName, imageData: UIImagePNGRepresentation(labelImage)!)
-                                        self.imageName = labelImageName
-                                        sSuccessMessage = "Label Edited Successfully"
-                                        self.IBbtnLabelImage.setTitle("", forState: UIControlState.Normal)
+                                        IBbtnProductImage.setBackgroundImage(productImage, forState: UIControlState.Normal)
+                                        changeImageDataToNSURL(productImageName, imageData: UIImagePNGRepresentation(productImage)!)
+                                        self.imageName = productImageName
+                                        sSuccessMessage = "Product Edited Successfully"
+                                        self.IBbtnProductImage.setTitle("", forState: UIControlState.Normal)
                                         self.title = "Edit \(brandName)"
                                     }else{ showUnableToEdit() }
                                 }else{ showUnableToEdit() }
@@ -74,11 +74,11 @@ class AddLabelVC: UIViewController {
         //Adding new brand
         }else{
             imageName = "\(NSUUID().UUIDString).png"
-            sSuccessMessage = "Label Added Successfully"
-            self.title = "Add New Label"
+            sSuccessMessage = "Product Added Successfully"
+            self.title = "Add New Product"
         }
 
-        self.title = "Add Label to \(selectedBrand.dynamoDB_Brand.BrandName)"
+        self.title = "Add Product to \(selectedBrand.dynamoDB_Brand.BrandName)"
         // Do any additional setup after loading the view.
     }
 
@@ -91,10 +91,10 @@ class AddLabelVC: UIViewController {
 //
 //MARK:- IBAction Methods
 //
-extension AddLabelVC{
+extension AddProductVC{
     @IBAction func IBActionSave(sender: AnyObject) {
         self.resignFirstResponder()
-        awsCallAddLabel()
+        awsCallAddProduct()
     }
     
     @IBAction func IBActionIsActive(sender: UISwitch) {
@@ -114,12 +114,12 @@ extension AddLabelVC{
 //
 //MARK:- UIImagePickerControllerDelegate Methods
 //
-extension AddLabelVC:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+extension AddProductVC:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     //    imagePickerController(_:didFinishPickingMediaWithInfo:){
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         let chosenImage:UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-        self.IBbtnLabelImage.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
-        self.IBbtnLabelImage.setTitle("", forState: UIControlState.Normal)
+        self.IBbtnProductImage.setBackgroundImage(chosenImage, forState: UIControlState.Normal)
+        self.IBbtnProductImage.setTitle("", forState: UIControlState.Normal)
         
         
         //getting details of image
@@ -152,16 +152,16 @@ extension AddLabelVC:UIImagePickerControllerDelegate,UINavigationControllerDeleg
 //
 //MARK:- AWS Call Methods
 //
-extension AddLabelVC{
-    func awsCallAddLabel(){
+extension AddProductVC{
+    func awsCallAddProduct(){
         if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
-            if let labelName:String = self.IBtxtFieldLabelName.text where labelName.characters.count > 0{
-                if let _:UIImage = self.IBbtnLabelImage.backgroundImageForState(UIControlState.Normal){
-                    if let labelPrice:CGFloat = CGFloat((IBtxtFieldLabelPrice.text! as NSString).floatValue)  where labelPrice > 0{
-                        if let labelURL:String = self.IBtxtFieldLabelURL.text where labelURL.characters.count > 0{
+            if let productName:String = self.IBtxtFieldProductName.text where productName.characters.count > 0{
+                if let _:UIImage = self.IBbtnProductImage.backgroundImageForState(UIControlState.Normal){
+                    if let productPrice:CGFloat = CGFloat((IBtxtFieldProductPrice.text! as NSString).floatValue)  where productPrice > 0{
+                        if let productURL:String = self.IBtxtFieldProductURL.text where productURL.characters.count > 0{
                             showLoading()
                             
-                            AWSHelper.uploadImageWithCompletion(imageName: imageName!,imageURL:self.imageURL,uploadPathKey:pathKeyLabels, completionHandler: { (task, error) -> () in
+                            AWSHelper.uploadImageWithCompletion(imageName: imageName!,imageURL:self.imageURL,uploadPathKey:pathKeyProducts, completionHandler: { (task, error) -> () in
                                 if ((error) != nil){
                                     self.hideLoading()
                                     UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.debugDescription, onOk: { () -> () in
@@ -169,16 +169,16 @@ extension AddLabelVC{
                                     })
                                 }
                                 else{
-                                    let dynamoDB_Label = DynamoDB_Label()
-                                    dynamoDB_Label.BrandName = brandName
-                                    dynamoDB_Label.LabelName = labelName
-                                    dynamoDB_Label.LabelImageName = self.imageName!
-                                    dynamoDB_Label.LabelPrice = labelPrice
-                                    dynamoDB_Label.LabelURL = labelURL
-                                    dynamoDB_Label.isActive = self.IBswitchIsActive.on  //return true if switch is on else return off
+                                    let dynamoDB_Product = DynamoDB_Product()
+                                    dynamoDB_Product.BrandName = brandName
+                                    dynamoDB_Product.ProductName = productName
+                                    dynamoDB_Product.ProductImageName = self.imageName!
+                                    dynamoDB_Product.ProductPrice = productPrice
+                                    dynamoDB_Product.ProductURL = productURL
+                                    dynamoDB_Product.isActive = self.IBswitchIsActive.on  //return true if switch is on else return off
                                     
                                     let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-                                    dynamoDBObjectMapper.save(dynamoDB_Label).continueWithBlock({(task: AWSTask) -> AnyObject? in
+                                    dynamoDBObjectMapper.save(dynamoDB_Product).continueWithBlock({(task: AWSTask) -> AnyObject? in
                                         self.hideLoading()
                                         if (task.error != nil) {
                                             UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
@@ -211,7 +211,7 @@ extension AddLabelVC{
 //
 //MARK:- Custom Methods
 //
-extension AddLabelVC{
+extension AddProductVC{
     func showLoading(){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.activityIndicator.frame = self.view.frame

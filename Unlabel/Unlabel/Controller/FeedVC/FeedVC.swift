@@ -55,10 +55,10 @@ class FeedVC: UIViewController {
 //
 extension FeedVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == S_ID_LABEL_VC{
-            if let labelVC:LabelVC = segue.destinationViewController as? LabelVC{
+        if segue.identifier == S_ID_PRODUCT_VC{
+            if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
                     if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
-                        labelVC.selectedBrand = brand
+                        productVC.selectedBrand = brand
                     }
             }
         }
@@ -72,7 +72,7 @@ extension FeedVC{
 extension FeedVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         didSelectIndexPath = indexPath
-        performSegueWithIdentifier(S_ID_LABEL_VC, sender: self)
+        performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
     }
 }
 

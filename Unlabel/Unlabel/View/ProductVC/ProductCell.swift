@@ -1,5 +1,5 @@
 //
-//  LabelCell.swift
+//  ProductCell.swift
 //  Unlabel
 //
 //  Created by ZAID PATHAN on 03/02/16.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LabelCell: UICollectionViewCell {
+class ProductCell: UICollectionViewCell {
 
     @IBOutlet weak var IBbtnHeart: UIButton!
-    @IBOutlet weak var IBimgLabelImage: UIImageView!
-    @IBOutlet weak var IBlblLabelName: UILabel!
-    @IBOutlet weak var IBlblLabelPrice: UILabel!
+    @IBOutlet weak var IBimgProductImage: UIImageView!
+    @IBOutlet weak var IBlblProductName: UILabel!
+    @IBOutlet weak var IBlblProductPrice: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
