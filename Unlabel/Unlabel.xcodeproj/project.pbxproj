@@ -87,6 +87,8 @@
 		15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */; };
 		15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */; };
 		15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */; };
+		15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C925281C73B93B00595A7B /* ProductFooterView.swift */; };
+		15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C9252A1C73B94500595A7B /* ProductFooterView.xib */; };
 		15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */; };
 		15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
@@ -131,7 +133,7 @@
 		15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26B1C723A8A00A7E389 /* ProductCell.xib */; };
 		15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */; };
 		15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */; };
-		15F0E2741C723BB100A7E389 /* LabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2731C723BB100A7E389 /* LabelVC.swift */; };
+		15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2731C723BB100A7E389 /* ProductVC.swift */; };
 		15F0E2771C72418500A7E389 /* ProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2761C72418500A7E389 /* ProductListVC.swift */; };
 		15F0E27A1C72433800A7E389 /* AddProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2791C72433800A7E389 /* AddProductVC.swift */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
@@ -234,6 +236,8 @@
 		15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Demi.otf"; sourceTree = "<group>"; };
 		15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Light.otf"; sourceTree = "<group>"; };
 		15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutra2Display-Bold.otf"; sourceTree = "<group>"; };
+		15C925281C73B93B00595A7B /* ProductFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductFooterView.swift; sourceTree = "<group>"; };
+		15C9252A1C73B94500595A7B /* ProductFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductFooterView.xib; sourceTree = "<group>"; };
 		15C993501C5693A6000C28E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15C993541C569596000C28E0 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		15C993601C56A0F6000C28E0 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Unlabel.framework; path = "Pods/../build/Debug-iphoneos/Pods_Unlabel.framework"; sourceTree = "<group>"; };
@@ -251,7 +255,7 @@
 		15F0E26B1C723A8A00A7E389 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderCell.swift; sourceTree = "<group>"; };
 		15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderCell.xib; sourceTree = "<group>"; };
-		15F0E2731C723BB100A7E389 /* LabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelVC.swift; sourceTree = "<group>"; };
+		15F0E2731C723BB100A7E389 /* ProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		15F0E2761C72418500A7E389 /* ProductListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListVC.swift; sourceTree = "<group>"; };
 		15F0E2791C72433800A7E389 /* AddProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductVC.swift; sourceTree = "<group>"; };
 		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
@@ -613,6 +617,8 @@
 				15F0E26B1C723A8A00A7E389 /* ProductCell.xib */,
 				15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */,
 				15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */,
+				15C925281C73B93B00595A7B /* ProductFooterView.swift */,
+				15C9252A1C73B94500595A7B /* ProductFooterView.xib */,
 			);
 			path = ProductVC;
 			sourceTree = "<group>";
@@ -620,7 +626,7 @@
 		15F0E2721C723BB100A7E389 /* ProductVC */ = {
 			isa = PBXGroup;
 			children = (
-				15F0E2731C723BB100A7E389 /* LabelVC.swift */,
+				15F0E2731C723BB100A7E389 /* ProductVC.swift */,
 			);
 			path = ProductVC;
 			sourceTree = "<group>";
@@ -917,6 +923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
+				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
 				15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
@@ -1075,7 +1082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
-				15F0E2741C723BB100A7E389 /* LabelVC.swift in Sources */,
+				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
@@ -1100,6 +1107,7 @@
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
 				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,
 				158F3E111C70988D00A3D0D6 /* LaunchLoadingVC.swift in Sources */,
+				15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

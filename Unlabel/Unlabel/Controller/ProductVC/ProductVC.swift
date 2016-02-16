@@ -24,6 +24,8 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     var arrProductList = [Product]()
     var selectedBrand = Brand()
     
+    var productFooterView:ProductFooterView?
+    
     //
     //MARK:- VC Lifecycle
     //
@@ -50,12 +52,48 @@ extension ProductVC:UICollectionViewDelegate{
             openSafariForIndexPath(indexPath)
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if arrProductList.count > 4{
+            return CGSizeMake(collectionView.frame.width, 44)
+        }else{
+                return CGSizeZero
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    
+        switch kind {
+            
+//        case UICollectionElementKindSectionHeader: break
+            
+//            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! UICollectionReusableView
+//            
+//            headerView.backgroundColor = UIColor.blueColor();
+//            return headerView
+            
+        case UICollectionElementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_ProductFooterView, forIndexPath: indexPath) as! ProductFooterView
+            
+            return footerView
+            
+        default:
+            assert(false, "No such element")
+            break
+        }
+    }
 }
 
 //
 //MARK:- UICollectionViewDataSource Methods
 //
 extension ProductVC:UICollectionViewDataSource{
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return arrProductList.count + 1           //+1 for header cell
     }
@@ -162,6 +200,12 @@ extension ProductVC{
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
 //        openFilterScreen()
     }
+    
+    //For ProductFooterView
+    @IBAction func IBActionViewMore(sender: AnyObject) {
+        
+       print("IBActionViewMore")
+    }
 }
 
 
@@ -181,6 +225,7 @@ extension ProductVC{
         
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
+        IBcollectionViewProduct.registerClass(ProductFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
         
         self.automaticallyAdjustsScrollViewInsets = false
 

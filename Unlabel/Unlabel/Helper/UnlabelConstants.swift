@@ -70,8 +70,9 @@ let REUSABLE_ID_ProductCell         = "ProductCell"
 let REUSABLE_ID_GenderCell          = "GenderCell"
 let REUSABLE_ID_FeedVCCell          = "FeedVCCell"
 let REUSABLE_ID_LocationCell        = "LocationCell"
-let REUSABLE_ID_ProductHeaderCell    = "ProductHeaderCell"
+let REUSABLE_ID_ProductHeaderCell   = "ProductHeaderCell"
 let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
+let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 
 //
 //MARK:- Font Style
