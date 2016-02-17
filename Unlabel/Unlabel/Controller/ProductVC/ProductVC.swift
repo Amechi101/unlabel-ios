@@ -1,5 +1,5 @@
 //
-//  LabelVC.swift
+//  ProductVC.swift
 //  Unlabel
 //
 //  Created by ZAID PATHAN on 02/02/16.
@@ -11,18 +11,20 @@ import AWSS3
 import AWSDynamoDB
 import SafariServices
 
-class LabelVC: UIViewController,UIViewControllerTransitioningDelegate {
+class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
 
     //
     //MARK:- IBOutlets, constants, vars
     //
     @IBOutlet weak var IBbtnTitle: UIButton!
     @IBOutlet weak var IBbtnFilter: UIBarButtonItem!
-    @IBOutlet weak var IBcollectionViewLabel: UICollectionView!
+    @IBOutlet weak var IBcollectionViewProduct: UICollectionView!
     
     var activityIndicator:UIActivityIndicatorView?
-    var arrLabelList = [Label]()
+    var arrProductList = [Product]()
     var selectedBrand = Brand()
+    
+    var productFooterView:ProductFooterView?
     
     //
     //MARK:- VC Lifecycle
@@ -30,7 +32,7 @@ class LabelVC: UIViewController,UIViewControllerTransitioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
-        awsCallFetchLabels()
+        awsCallFetchProducts()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,11 +45,42 @@ class LabelVC: UIViewController,UIViewControllerTransitioningDelegate {
 //
 //MARK:- UICollectionViewDelegate Methods
 //
-extension LabelVC:UICollectionViewDelegate{
+extension ProductVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //Not Header Cell
         if indexPath.row > 0{
             openSafariForIndexPath(indexPath)
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if arrProductList.count > 4{
+            return CGSizeMake(collectionView.frame.width, 44)
+        }else{
+                return CGSizeZero
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    
+        switch kind {
+            
+//        case UICollectionElementKindSectionHeader: break
+            
+//            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! UICollectionReusableView
+//            
+//            headerView.backgroundColor = UIColor.blueColor();
+//            return headerView
+            
+        case UICollectionElementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_ProductFooterView, forIndexPath: indexPath) as! ProductFooterView
+            
+            return footerView
+            
+        default:
+            assert(false, "No such element")
+            break
         }
     }
 }
@@ -55,66 +88,71 @@ extension LabelVC:UICollectionViewDelegate{
 //
 //MARK:- UICollectionViewDataSource Methods
 //
-extension LabelVC:UICollectionViewDataSource{
+extension ProductVC:UICollectionViewDataSource{
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return arrLabelList.count + 1           //+1 for header cell
+        return arrProductList.count + 1           //+1 for header cell
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         if indexPath.row == 0{
-            return getLabelHeaderCell(forIndexPath: indexPath)
+            return getProductHeaderCell(forIndexPath: indexPath)
         }else{
-            return getLabelCell(forIndexPath: indexPath)
+            return getProductCell(forIndexPath: indexPath)
         }
     }
     
     //Custom methods
-    func getLabelHeaderCell(forIndexPath indexPath:NSIndexPath)->LabelHeaderCell{
-        let labelHeaderCell = IBcollectionViewLabel.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_LabelHeaderCell, forIndexPath: indexPath) as! LabelHeaderCell
+    func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
+        let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
         
         if let brandImage:UIImage = selectedBrand.imgBrandImage{
-            labelHeaderCell.IBimgHeaderImage.image = brandImage
+            productHeaderCell.IBimgHeaderImage.image = brandImage
         }else{
-            labelHeaderCell.IBimgHeaderImage.image = UIImage(named: "splash")
+            productHeaderCell.IBimgHeaderImage.image = UIImage(named: "splash")
         }
         
         if let brandDescription:String = selectedBrand.dynamoDB_Brand.Description{
-            labelHeaderCell.IBlblLabelDescription.text = brandDescription
+            productHeaderCell.IBlblLabelDescription.text = brandDescription
         }else{
-            labelHeaderCell.IBlblLabelDescription.text = ""
+            productHeaderCell.IBlblLabelDescription.text = ""
         }
         
         if let brandLocation:String = selectedBrand.dynamoDB_Brand.Location{
-            labelHeaderCell.IBlblLabelLocation.text = brandLocation
+            productHeaderCell.IBlblLabelLocation.text = brandLocation
         }else{
-            labelHeaderCell.IBlblLabelLocation.text = ""
+            productHeaderCell.IBlblLabelLocation.text = ""
         }
         
-        return labelHeaderCell
+        return productHeaderCell
     }
     
-    func getLabelCell(forIndexPath indexPath:NSIndexPath)->LabelCell{
-        let labelCell = IBcollectionViewLabel.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_LabelCell, forIndexPath: indexPath) as! LabelCell
+    func getProductCell(forIndexPath indexPath:NSIndexPath)->ProductCell{
+        let productCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductCell, forIndexPath: indexPath) as! ProductCell
         
-        if let labelName:String = arrLabelList[indexPath.row-1].dynamoDB_Label.LabelName{
-            labelCell.IBlblLabelName.text = labelName
+        if let productName:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductName{
+            productCell.IBlblProductName.text = productName
         }else{
-            labelCell.IBlblLabelName.text = "Label"
+            productCell.IBlblProductName.text = "Product"
         }
 
-        if let labelPrice:CGFloat = arrLabelList[indexPath.row-1].dynamoDB_Label.LabelPrice{
-            labelCell.IBlblLabelPrice.text = "$\(labelPrice)"
+        if let productPrice:CGFloat = arrProductList[indexPath.row-1].dynamoDB_Product.ProductPrice{
+            productCell.IBlblProductPrice.text = "$\(productPrice)"
         }else{
-            labelCell.IBlblLabelName.text = ""
+            productCell.IBlblProductPrice.text = ""
         }
         
-        if let labelImage:UIImage = arrLabelList[indexPath.row-1].imgLabelImage{
-            labelCell.IBimgLabelImage.image = labelImage
+        if let productImage:UIImage = arrProductList[indexPath.row-1].imgProductImage{
+            productCell.IBimgProductImage.image = productImage
         }else{
-            labelCell.IBimgLabelImage.image = UIImage(named: "splash")
+            productCell.IBimgProductImage.image = UIImage(named: "splash")
         }
         
-        return labelCell
+        return productCell
     }
 }
 
@@ -122,7 +160,7 @@ extension LabelVC:UICollectionViewDataSource{
 //
 //MARK:- UICollectionViewDelegateFlowLayout Methods
 //
-extension LabelVC:UICollectionViewDelegateFlowLayout{
+extension ProductVC:UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.row == 0{
             return CGSizeMake(collectionView.frame.size.width, 360)
@@ -136,7 +174,7 @@ extension LabelVC:UICollectionViewDelegateFlowLayout{
 //
 //MARK:- SFSafariViewControllerDelegate Methods
 //
-extension LabelVC:SFSafariViewControllerDelegate{
+extension ProductVC:SFSafariViewControllerDelegate{
     func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
         return []
     }
@@ -154,7 +192,7 @@ extension LabelVC:SFSafariViewControllerDelegate{
 //
 //MARK:- IBAction Methods
 //
-extension LabelVC{
+extension ProductVC{
     @IBAction func IBActionBack(sender: UIButton) {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
@@ -162,13 +200,19 @@ extension LabelVC{
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
 //        openFilterScreen()
     }
+    
+    //For ProductFooterView
+    @IBAction func IBActionViewMore(sender: AnyObject) {
+        
+       print("IBActionViewMore")
+    }
 }
 
 
 //
 //MARK:- Custom Methods
 //
-extension LabelVC{
+extension ProductVC{
     func setupUIOnLoad(){
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         IBbtnFilter.setTitleTextAttributes([
@@ -179,8 +223,9 @@ extension LabelVC{
             IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
         }
         
-        IBcollectionViewLabel.registerNib(UINib(nibName: REUSABLE_ID_LabelHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_LabelHeaderCell)
-        IBcollectionViewLabel.registerNib(UINib(nibName: REUSABLE_ID_LabelCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_LabelCell)
+        IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
+        IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
+        IBcollectionViewProduct.registerClass(ProductFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
         
         self.automaticallyAdjustsScrollViewInsets = false
 
@@ -203,9 +248,9 @@ extension LabelVC{
     }
     
     func openSafariForIndexPath(indexPath:NSIndexPath){
-        if let labelURLString:String = arrLabelList[indexPath.row-1].dynamoDB_Label.LabelURL{
-            if let labelURL:NSURL = NSURL(string: labelURLString){
-                let safariVC = UnlabelSafariVC(URL: labelURL)
+        if let productURLString:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductURL{
+            if let productURL:NSURL = NSURL(string: productURLString){
+                let safariVC = UnlabelSafariVC(URL: productURL)
                 safariVC.delegate = self
                 safariVC.transitioningDelegate = self
                 self.presentViewController(safariVC, animated: true) { () -> Void in
@@ -227,8 +272,8 @@ extension LabelVC{
 //
 //MARK:- AWS Call Methods
 //
-extension LabelVC{
-    func awsCallFetchLabels(){
+extension ProductVC{
+    func awsCallFetchProducts(){
         showLoading()
         
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
@@ -237,7 +282,7 @@ extension LabelVC{
         scanExpression.filterExpression = "BrandName = :brandNameKey AND isActive = :isActiveKey"
         scanExpression.expressionAttributeValues = [":brandNameKey": selectedBrand.dynamoDB_Brand.BrandName,":isActiveKey":true]
         
-        dynamoDBObjectMapper.scan(DynamoDB_Label.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+        dynamoDBObjectMapper.scan(DynamoDB_Product.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
             
             //If error
             if let error = task.error{
@@ -260,28 +305,28 @@ extension LabelVC{
             //If got result
             if let result = task.result{
                 //If result items count > 0
-                if let arrItems:[DynamoDB_Label] = result.items as? [DynamoDB_Label] where arrItems.count>0{
+                if let arrItems:[DynamoDB_Product] = result.items as? [DynamoDB_Product] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrLabelList = [Label]()
-                        for (index, label) in arrItems.enumerate() {
-                            var labelObj = Label()
-                            labelObj.dynamoDB_Label = label
+                        self.arrProductList = [Product]()
+                        for (index, product) in arrItems.enumerate() {
+                            var productObj = Product()
+                            productObj.dynamoDB_Product = product
                             
-                            AWSHelper.downloadImageWithCompletion(forImageName: label.LabelImageName, uploadPathKey: pathKeyLabels, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                            AWSHelper.downloadImageWithCompletion(forImageName: product.ProductImageName, uploadPathKey: pathKeyProducts, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
                                 if let downloadedData = data{
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                         if let image = UIImage(data: downloadedData){
-                                            labelObj.imgLabelImage = image
-                                            self.IBcollectionViewLabel.reloadItemsAtIndexPaths([NSIndexPath(forRow: index+1, inSection: 0)])
+                                            productObj.imgProductImage = image
+                                            self.IBcollectionViewProduct.reloadItemsAtIndexPaths([NSIndexPath(forRow: index+1, inSection: 0)])
                                         }
                                     })
                                 }
                             })
-                            self.arrLabelList.append(labelObj)
+                            self.arrProductList.append(productObj)
                         }
                         defer{
                             self.hideLoading()
-                            self.IBcollectionViewLabel.reloadData()
+                            self.IBcollectionViewProduct.reloadData()
                         }
                     })
                 }else{

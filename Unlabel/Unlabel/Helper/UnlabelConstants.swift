@@ -28,7 +28,7 @@ let S3_BUCKET_NAME = "unlabel-userfiles-mobilehub-626392447"
 
 
 let pathKeyBrands = "brands"
-let pathKeyLabels = "labels"
+let pathKeyProducts = "products"
 
 
 //
@@ -52,12 +52,12 @@ let S_NAME_ADMIN   = "Admin"
 //MARK:- Storyboard IDs
 //
 let S_ID_FEED_VC                    = "FeedVC"
-let S_ID_LABEL_VC                   = "LabelVC"
 let S_ID_FILTER_VC                  = "FilterVC"
-let S_ID_ADD_LABEL_VC               = "AddLabelVC"
+let S_ID_PRODUCT_VC                 = "ProductVC"
 let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
-let S_ID_LABEL_LIST_VC              = "LabelListVC"
+let S_ID_ADD_PRODUCT_VC             = "AddProductVC"
+let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
@@ -66,12 +66,13 @@ let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 //
 //MARK:- Cell Reusable IDs
 //
-let REUSABLE_ID_LabelCell           = "LabelCell"
+let REUSABLE_ID_ProductCell         = "ProductCell"
 let REUSABLE_ID_GenderCell          = "GenderCell"
 let REUSABLE_ID_FeedVCCell          = "FeedVCCell"
 let REUSABLE_ID_LocationCell        = "LocationCell"
-let REUSABLE_ID_LabelHeaderCell     = "LabelHeaderCell"
+let REUSABLE_ID_ProductHeaderCell   = "ProductHeaderCell"
 let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
+let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 
 //
 //MARK:- Font Style

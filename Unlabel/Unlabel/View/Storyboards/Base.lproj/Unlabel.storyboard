@@ -438,17 +438,17 @@
                         <outlet property="IBbarBtnHamburger" destination="a2n-AP-hua" id="H1q-4a-gc8"/>
                         <outlet property="IBbtnUnlabel" destination="sdq-zW-PIY" id="6or-SW-hle"/>
                         <outlet property="IBcollectionViewFeed" destination="lg3-C2-4qs" id="TBf-Ed-Zpo"/>
-                        <segue destination="IL4-KD-zA1" kind="show" identifier="LabelVC" id="jWi-8m-sPs"/>
+                        <segue destination="IL4-KD-zA1" kind="show" identifier="ProductVC" id="jWi-8m-sPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="713.5" y="1092.5"/>
         </scene>
-        <!--LabelVC-->
+        <!--ProductVC-->
         <scene sceneID="Ptv-MT-4gb">
             <objects>
-                <viewController storyboardIdentifier="LabelVC" id="IL4-KD-zA1" customClass="LabelVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LabelVC" id="IL4-KD-zA1" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EJv-Um-4er"/>
                         <viewControllerLayoutGuide type="bottom" id="TXc-fT-su4"/>
@@ -457,8 +457,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
-                                <rect key="frame" x="15" y="76" width="335" height="591"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
+                                <rect key="frame" x="20" y="76" width="335" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="CIz-DF-a7p">
                                     <size key="itemSize" width="50" height="50"/>
@@ -536,7 +536,7 @@
                     <connections>
                         <outlet property="IBbtnFilter" destination="t7F-mO-tqo" id="fZX-LK-iQ9"/>
                         <outlet property="IBbtnTitle" destination="aKa-if-cLV" id="Jni-AL-lgz"/>
-                        <outlet property="IBcollectionViewLabel" destination="rmC-Tv-ZXd" id="k5V-L3-5KA"/>
+                        <outlet property="IBcollectionViewProduct" destination="rmC-Tv-ZXd" id="Q8T-fa-I3j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGd-SX-WdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

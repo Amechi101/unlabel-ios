@@ -14,11 +14,6 @@
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
-		158545B31C6121EF00BBDCF2 /* LabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B21C6121EF00BBDCF2 /* LabelVC.swift */; };
-		158545B71C61250E00BBDCF2 /* LabelHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */; };
-		158545B81C61250E00BBDCF2 /* LabelHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */; };
-		158545BB1C61499200BBDCF2 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158545B91C61499100BBDCF2 /* LabelCell.swift */; };
-		158545BC1C61499200BBDCF2 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158545BA1C61499200BBDCF2 /* LabelCell.xib */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* LocationCell.swift */; };
 		15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* LocationCell.xib */; };
@@ -92,8 +87,8 @@
 		15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */; };
 		15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */; };
 		15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */; };
-		15C47D921C6BB88600C80F37 /* AddLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C47D911C6BB88600C80F37 /* AddLabelVC.swift */; };
-		15C47D951C6BC75F00C80F37 /* LabelListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C47D941C6BC75F00C80F37 /* LabelListVC.swift */; };
+		15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C925281C73B93B00595A7B /* ProductFooterView.swift */; };
+		15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C9252A1C73B94500595A7B /* ProductFooterView.xib */; };
 		15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */; };
 		15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
@@ -128,12 +123,19 @@
 		15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AB1C56A899000C28E0 /* AdminNavController.swift */; };
 		15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
 		15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
-		15E30D941C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */; };
-		15E30D951C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */; };
+		15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
+		15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
 		15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
 		15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
-		15E30D9A1C6D2D14008B77E1 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Label.swift */; };
-		15E30D9B1C6D2D14008B77E1 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Label.swift */; };
+		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
+		15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
+		15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26A1C723A8A00A7E389 /* ProductCell.swift */; };
+		15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26B1C723A8A00A7E389 /* ProductCell.xib */; };
+		15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */; };
+		15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */; };
+		15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2731C723BB100A7E389 /* ProductVC.swift */; };
+		15F0E2771C72418500A7E389 /* ProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2761C72418500A7E389 /* ProductListVC.swift */; };
+		15F0E27A1C72433800A7E389 /* AddProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2791C72433800A7E389 /* AddProductVC.swift */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
@@ -163,11 +165,6 @@
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
-		158545B21C6121EF00BBDCF2 /* LabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelVC.swift; sourceTree = "<group>"; };
-		158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelHeaderCell.swift; sourceTree = "<group>"; };
-		158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelHeaderCell.xib; sourceTree = "<group>"; };
-		158545B91C61499100BBDCF2 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
-		158545BA1C61499200BBDCF2 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		15897E8E1C593E0F00FD0700 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
@@ -239,8 +236,8 @@
 		15B7E7C61C55201200244AC9 /* Neutraface2Text-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Demi.otf"; sourceTree = "<group>"; };
 		15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Light.otf"; sourceTree = "<group>"; };
 		15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutra2Display-Bold.otf"; sourceTree = "<group>"; };
-		15C47D911C6BB88600C80F37 /* AddLabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLabelVC.swift; sourceTree = "<group>"; };
-		15C47D941C6BC75F00C80F37 /* LabelListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelListVC.swift; sourceTree = "<group>"; };
+		15C925281C73B93B00595A7B /* ProductFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductFooterView.swift; sourceTree = "<group>"; };
+		15C9252A1C73B94500595A7B /* ProductFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductFooterView.xib; sourceTree = "<group>"; };
 		15C993501C5693A6000C28E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15C993541C569596000C28E0 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		15C993601C56A0F6000C28E0 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Unlabel.framework; path = "Pods/../build/Debug-iphoneos/Pods_Unlabel.framework"; sourceTree = "<group>"; };
@@ -251,9 +248,16 @@
 		15C993A11C56A870000C28E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15C993AB1C56A899000C28E0 /* AdminNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminNavController.swift; sourceTree = "<group>"; };
 		15C993AD1C56BA65000C28E0 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
-		15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Label.swift; sourceTree = "<group>"; };
+		15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Product.swift; sourceTree = "<group>"; };
 		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
-		15E30D991C6D2D14008B77E1 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		15F0E26A1C723A8A00A7E389 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		15F0E26B1C723A8A00A7E389 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderCell.swift; sourceTree = "<group>"; };
+		15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductHeaderCell.xib; sourceTree = "<group>"; };
+		15F0E2731C723BB100A7E389 /* ProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
+		15F0E2761C72418500A7E389 /* ProductListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListVC.swift; sourceTree = "<group>"; };
+		15F0E2791C72433800A7E389 /* AddProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductVC.swift; sourceTree = "<group>"; };
 		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -360,25 +364,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		158545B11C6121B700BBDCF2 /* LabelVC */ = {
-			isa = PBXGroup;
-			children = (
-				158545B21C6121EF00BBDCF2 /* LabelVC.swift */,
-			);
-			path = LabelVC;
-			sourceTree = "<group>";
-		};
-		158545B41C6124ED00BBDCF2 /* LabelVC */ = {
-			isa = PBXGroup;
-			children = (
-				158545B51C61250E00BBDCF2 /* LabelHeaderCell.swift */,
-				158545B61C61250E00BBDCF2 /* LabelHeaderCell.xib */,
-				158545B91C61499100BBDCF2 /* LabelCell.swift */,
-				158545BA1C61499200BBDCF2 /* LabelCell.xib */,
-			);
-			path = LabelVC;
-			sourceTree = "<group>";
-		};
 		15897E891C5935A500FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,7 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */,
-				15E30D931C6D0B5E008B77E1 /* DynamoDB_Label.swift */,
+				15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */,
 			);
 			path = AWS_DynamoDB_Model;
 			sourceTree = "<group>";
@@ -454,9 +439,9 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15F0E2721C723BB100A7E389 /* ProductVC */,
 				158F3E121C71073F00A3D0D6 /* UnlabelSafariVC */,
 				158F3E0F1C70987800A3D0D6 /* LaunchLoadingVC */,
-				158545B11C6121B700BBDCF2 /* LabelVC */,
 				15897E891C5935A500FD0700 /* FilterVC */,
 				15B7E7981C54A2D100244AC9 /* FeedVC */,
 				159245291C5557B700755814 /* LeftMenuVC */,
@@ -478,7 +463,7 @@
 			children = (
 				15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */,
 				159245221C5539C500755814 /* Brand.swift */,
-				15E30D991C6D2D14008B77E1 /* Label.swift */,
+				15E30D991C6D2D14008B77E1 /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -524,7 +509,7 @@
 		15B7E7A21C54A2D100244AC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				158545B41C6124ED00BBDCF2 /* LabelVC */,
+				15F0E2691C723A8A00A7E389 /* ProductVC */,
 				15897E8C1C593DC700FD0700 /* FilterVC */,
 				15B7E7A31C54A2D100244AC9 /* Storyboards */,
 				159245241C553B4C00755814 /* FeedVC */,
@@ -554,22 +539,6 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		15C47D901C6BB86900C80F37 /* AddLabelVC */ = {
-			isa = PBXGroup;
-			children = (
-				15C47D911C6BB88600C80F37 /* AddLabelVC.swift */,
-			);
-			path = AddLabelVC;
-			sourceTree = "<group>";
-		};
-		15C47D931C6BC74400C80F37 /* LabelListVC */ = {
-			isa = PBXGroup;
-			children = (
-				15C47D941C6BC75F00C80F37 /* LabelListVC.swift */,
-			);
-			path = LabelListVC;
-			sourceTree = "<group>";
-		};
 		15C993431C5693A6000C28E0 /* Unlabel_Admin */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,10 +561,10 @@
 		15C9938D1C56A870000C28E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15F0E2781C72433800A7E389 /* AddProductVC */,
+				15F0E2751C72418500A7E389 /* ProductListVC */,
 				15C9938F1C56A870000C28E0 /* AdminVC */,
 				158CC2CA1C578C9C00536B73 /* AddBrandVC */,
-				15C47D931C6BC74400C80F37 /* LabelListVC */,
-				15C47D901C6BB86900C80F37 /* AddLabelVC */,
 				15C9938E1C56A870000C28E0 /* AdminNavController */,
 			);
 			path = Controller;
@@ -639,6 +608,43 @@
 				15C993A01C56A870000C28E0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		15F0E2691C723A8A00A7E389 /* ProductVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F0E26A1C723A8A00A7E389 /* ProductCell.swift */,
+				15F0E26B1C723A8A00A7E389 /* ProductCell.xib */,
+				15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */,
+				15F0E26D1C723A8A00A7E389 /* ProductHeaderCell.xib */,
+				15C925281C73B93B00595A7B /* ProductFooterView.swift */,
+				15C9252A1C73B94500595A7B /* ProductFooterView.xib */,
+			);
+			path = ProductVC;
+			sourceTree = "<group>";
+		};
+		15F0E2721C723BB100A7E389 /* ProductVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F0E2731C723BB100A7E389 /* ProductVC.swift */,
+			);
+			path = ProductVC;
+			sourceTree = "<group>";
+		};
+		15F0E2751C72418500A7E389 /* ProductListVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F0E2761C72418500A7E389 /* ProductListVC.swift */,
+			);
+			path = ProductListVC;
+			sourceTree = "<group>";
+		};
+		15F0E2781C72433800A7E389 /* AddProductVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F0E2791C72433800A7E389 /* AddProductVC.swift */,
+			);
+			path = AddProductVC;
 			sourceTree = "<group>";
 		};
 		400BDDFF1C1B890800487C6E = {
@@ -917,20 +923,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
+				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
 				15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
-				158545BC1C61499200BBDCF2 /* LabelCell.xib in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
 				15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */,
 				159245281C553B6800755814 /* FeedVCCell.xib in Resources */,
 				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
-				158545B81C61250E00BBDCF2 /* LabelHeaderCell.xib in Resources */,
 				15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */,
 				15897E941C59488800FD0700 /* GenderCell.xib in Resources */,
 				15B7E7AC1C54A2D100244AC9 /* Unlabel.storyboard in Resources */,
 				15897E981C5948B200FD0700 /* CategoryStyleCell.xib in Resources */,
 				15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */,
+				15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */,
 				15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */,
+				15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,15 +1056,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */,
-				15C47D951C6BC75F00C80F37 /* LabelListVC.swift in Sources */,
 				15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */,
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
 				15AD18341C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
 				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
-				15E30D951C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */,
-				15E30D9B1C6D2D14008B77E1 /* Label.swift in Sources */,
+				15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
+				15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
@@ -1065,8 +1071,9 @@
 				15C993681C56A156000C28E0 /* LeftMenuVC.swift in Sources */,
 				154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */,
 				15C9936A1C56A156000C28E0 /* Brand.swift in Sources */,
+				15F0E27A1C72433800A7E389 /* AddProductVC.swift in Sources */,
 				15C9936B1C56A156000C28E0 /* AppDelegate.swift in Sources */,
-				15C47D921C6BB88600C80F37 /* AddLabelVC.swift in Sources */,
+				15F0E2771C72418500A7E389 /* ProductListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,12 +1082,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
+				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
+				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
-				158545BB1C61499200BBDCF2 /* LabelCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
-				15E30D941C6D0B5E008B77E1 /* DynamoDB_Label.swift in Sources */,
+				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
@@ -1088,7 +1096,7 @@
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
-				15E30D9A1C6D2D14008B77E1 /* Label.swift in Sources */,
+				15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
@@ -1097,9 +1105,9 @@
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
-				158545B31C6121EF00BBDCF2 /* LabelVC.swift in Sources */,
-				158545B71C61250E00BBDCF2 /* LabelHeaderCell.swift in Sources */,
+				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,
 				158F3E111C70988D00A3D0D6 /* LaunchLoadingVC.swift in Sources */,
+				15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

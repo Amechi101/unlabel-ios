@@ -9,7 +9,7 @@
         <!--Title-->
         <scene sceneID="q7Z-oC-lvA">
             <objects>
-                <tableViewController storyboardIdentifier="LabelListVC" id="SoO-NL-vFn" customClass="LabelListVC" customModule="Unlabel_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProductListVC" id="SoO-NL-vFn" customClass="ProductListVC" customModule="Unlabel_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="H24-ns-fQJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,7 +33,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kg4-pD-bZT">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="pQJ-vD-OXK" kind="show" identifier="AddLabelVC" id="44c-Lu-lmt"/>
+                                <segue destination="pQJ-vD-OXK" kind="show" identifier="AddProductVC" id="44c-Lu-lmt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="261" y="-367"/>
         </scene>
-        <!--Add Label-->
+        <!--Add Product-->
         <scene sceneID="6Dy-pr-S0t">
             <objects>
-                <viewController storyboardIdentifier="AddLabelVC" id="pQJ-vD-OXK" customClass="AddLabelVC" customModule="Unlabel_Admin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProductVC" id="pQJ-vD-OXK" customClass="AddProductVC" customModule="Unlabel_Admin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WbK-rO-rKY"/>
                         <viewControllerLayoutGuide type="bottom" id="dEH-Vp-YZR"/>
@@ -60,24 +60,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-2K-8sx" userLabel="View - Container">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Label Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jU7-6A-QyI">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jU7-6A-QyI">
                                                 <rect key="frame" x="30" y="0.0" width="540" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDl-2z-mtq">
-                                                <rect key="frame" x="30" y="51" width="98" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDl-2z-mtq">
+                                                <rect key="frame" x="30" y="51" width="117" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Label Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K0l-sd-Ngt">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K0l-sd-Ngt">
                                                 <rect key="frame" x="30" y="310" width="540" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Label URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zil-44-6uJ">
-                                                <rect key="frame" x="30" y="370" width="540" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -114,6 +109,11 @@
                                                     <action selector="IBActionChooseImage:" destination="pQJ-vD-OXK" eventType="touchUpInside" id="Qxq-j8-GUw"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Product URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zil-44-6uJ">
+                                                <rect key="frame" x="30" y="370" width="540" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -155,7 +155,7 @@
                             <constraint firstAttribute="trailing" secondItem="SJd-4W-gBD" secondAttribute="trailing" id="kSa-xX-v9m"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Label" id="tD6-tq-AVw">
+                    <navigationItem key="navigationItem" title="Add Product" id="tD6-tq-AVw">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="LWN-Rj-ena">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -164,11 +164,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="IBbtnLabelImage" destination="xUP-rQ-Ym1" id="MWk-Bc-Hmk"/>
+                        <outlet property="IBbtnProductImage" destination="xUP-rQ-Ym1" id="l5f-4P-5lM"/>
                         <outlet property="IBswitchIsActive" destination="mc4-q2-hJR" id="iAS-xM-aJD"/>
-                        <outlet property="IBtxtFieldLabelName" destination="jU7-6A-QyI" id="voK-Ei-T40"/>
-                        <outlet property="IBtxtFieldLabelPrice" destination="K0l-sd-Ngt" id="d2O-jd-jyo"/>
-                        <outlet property="IBtxtFieldLabelURL" destination="Zil-44-6uJ" id="nLB-xC-fY2"/>
+                        <outlet property="IBtxtFieldProductName" destination="jU7-6A-QyI" id="jVv-Ol-9m4"/>
+                        <outlet property="IBtxtFieldProductPrice" destination="K0l-sd-Ngt" id="thN-Ur-BxR"/>
+                        <outlet property="IBtxtFieldProductURL" destination="Zil-44-6uJ" id="Gx3-lF-hIE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqJ-B5-Rrx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,7 +187,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="eyb-Qt-0Qk" kind="relationship" relationship="rootViewController" id="fv7-hY-oCq"/>
-                        <segue destination="SoO-NL-vFn" kind="show" identifier="LabelListVC" id="Ut9-XP-Hkt"/>
+                        <segue destination="SoO-NL-vFn" kind="show" identifier="ProductListVC" id="Ut9-XP-Hkt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="353-YG-3Gs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,7 +317,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isActive:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufO-DE-JJU">
                                                 <rect key="frame" x="40" y="571" width="65" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7z0-l6-vcV">

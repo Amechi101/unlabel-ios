@@ -1,5 +1,5 @@
 //
-//  LabelListVC.swift
+//  ProductListVC.swift
 //  Unlabel
 //
 //  Created by Zaid Pathan on 11/02/16.
@@ -10,7 +10,7 @@ import UIKit
 import AWSS3
 import AWSDynamoDB
 
-class LabelListVC: UITableViewController {
+class ProductListVC: UITableViewController {
 
     //
     //MARK:- IBOutlets, constants, vars
@@ -19,7 +19,7 @@ class LabelListVC: UITableViewController {
     var activityIndicator = UIActivityIndicatorView()
     var didSelectIndexPath = NSIndexPath()
     var shouldReloadData = true
-    var arrLabelList = [Label]()
+    var arrProductList = [Product]()
     var selectedBrand = Brand()
     
 
@@ -32,12 +32,12 @@ class LabelListVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 100
-        self.title = "\(selectedBrand.dynamoDB_Brand.BrandName) Labels"
+        self.title = "\(selectedBrand.dynamoDB_Brand.BrandName) Products"
     }
     
     override func viewWillAppear(animated: Bool) {
         if shouldReloadData{
-            awsCallFetchLabels()
+            awsCallFetchProducts()
         }
     }
     
@@ -59,14 +59,14 @@ class LabelListVC: UITableViewController {
     //
 //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == S_ID_ADD_LABEL_VC{
-            if let addLabelVC:AddLabelVC = segue.destinationViewController as? AddLabelVC{
-                addLabelVC.delegate = self
+        if segue.identifier == S_ID_ADD_PRODUCT_VC{
+            if let addProductVC:AddProductVC = segue.destinationViewController as? AddProductVC{
+                addProductVC.delegate = self
                     if let brand:Brand = selectedBrand{
-                        addLabelVC.selectedBrand = brand
+                        addProductVC.selectedBrand = brand
                             if let editIndexPath = didClickEditAtIndexPath{
-                                if let label:Label = arrLabelList[editIndexPath.row]{
-                                addLabelVC.selectedLabel = label
+                                if let product:Product = arrProductList[editIndexPath.row]{
+                                addProductVC.selectedProduct = product
                                 didClickEditAtIndexPath = nil
                             }
                         }
@@ -82,7 +82,7 @@ class LabelListVC: UITableViewController {
 //MARK:- UITableViewDataSource,UITableViewDelegate Methods
 //
 
-extension LabelListVC{
+extension ProductListVC{
     
     // MARK: - Table view data source
     
@@ -93,49 +93,49 @@ extension LabelListVC{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return arrLabelList.count
+        return arrProductList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var labelCell = tableView.dequeueReusableCellWithIdentifier("Cell")
+        var productCell = tableView.dequeueReusableCellWithIdentifier("Cell")
         
-        if labelCell == nil{
-            labelCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
+        if productCell == nil{
+            productCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         }
         
-        labelCell!.textLabel?.text = arrLabelList[indexPath.row].dynamoDB_Label.LabelName
-        labelCell?.detailTextLabel?.numberOfLines = 0
-        labelCell?.detailTextLabel?.text = "Price: \(arrLabelList[indexPath.row].dynamoDB_Label.LabelPrice),\n URL:\(arrLabelList[indexPath.row].dynamoDB_Label.LabelURL) \n isActive:\(arrLabelList[indexPath.row].dynamoDB_Label.isActive)"
-        labelCell!.imageView?.contentMode = UIViewContentMode.ScaleToFill
-        if let labelImage:UIImage = arrLabelList[indexPath.row].imgLabelImage{
-            labelCell?.imageView?.image = labelImage
+        productCell!.textLabel?.text = arrProductList[indexPath.row].dynamoDB_Product.ProductName
+        productCell?.detailTextLabel?.numberOfLines = 0
+        productCell?.detailTextLabel?.text = "Price: \(arrProductList[indexPath.row].dynamoDB_Product.ProductPrice),\n URL:\(arrProductList[indexPath.row].dynamoDB_Product.ProductURL) \n isActive:\(arrProductList[indexPath.row].dynamoDB_Product.isActive)"
+        productCell!.imageView?.contentMode = UIViewContentMode.ScaleToFill
+        if let productImage:UIImage = arrProductList[indexPath.row].imgProductImage{
+            productCell?.imageView?.image = productImage
         }else{
-            labelCell?.imageView?.image = nil
+            productCell?.imageView?.image = nil
         }
         
-        return labelCell!
+        return productCell!
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         didSelectIndexPath = indexPath
-//        self.navigationController!.performSegueWithIdentifier(S_ID_LABEL_LIST_VC, sender: self)
+//        self.navigationController!.performSegueWithIdentifier(S_ID_PRODUCT_LIST_VC, sender: self)
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
 
-            UnlabelHelper.showConfirmAlert(self, title: "Delete \(self.arrLabelList[indexPath.row].dynamoDB_Label.LabelName)", message: sARE_YOU_SURE, onCancel: { () -> () in
+            UnlabelHelper.showConfirmAlert(self, title: "Delete \(self.arrProductList[indexPath.row].dynamoDB_Product.ProductName)", message: sARE_YOU_SURE, onCancel: { () -> () in
                 
                 }, onOk: { () -> () in
-                    self.deleteLabelAtIndexPath(indexPath)
+                    self.deleteProductAtIndexPath(indexPath)
             })
         })
         delete.backgroundColor = UIColor.redColor()
         
         let edit = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            self.editLabelAtIndexPath(indexPath)
+            self.editProductAtIndexPath(indexPath)
         })
         edit.backgroundColor = UIColor.blueColor()
 
@@ -143,13 +143,13 @@ extension LabelListVC{
         return [delete,edit]
     }
     
-    func deleteLabelAtIndexPath(indexPath:NSIndexPath){
-        awsCallDeleteLabel(atIndexPath: indexPath)
+    func deleteProductAtIndexPath(indexPath:NSIndexPath){
+        awsCallDeleteProduct(atIndexPath: indexPath)
     }
     
-    func editLabelAtIndexPath(indexPath:NSIndexPath){
+    func editProductAtIndexPath(indexPath:NSIndexPath){
         didClickEditAtIndexPath = indexPath
-        performSegueWithIdentifier(S_ID_ADD_LABEL_VC, sender: self)
+        performSegueWithIdentifier(S_ID_ADD_PRODUCT_VC, sender: self)
     }
     
     
@@ -157,9 +157,9 @@ extension LabelListVC{
 
 
 //
-//MARK:- AddLabelVCDelegate Methods
+//MARK:- AddProductVCDelegate Methods
 //
-extension LabelListVC:AddLabelVCDelegate{
+extension ProductListVC:AddProductVCDelegate{
     func shouldReloadData(shouldReload: Bool) {
         shouldReloadData = shouldReload
     }
@@ -175,7 +175,7 @@ extension LabelListVC:AddLabelVCDelegate{
 //
 //MARK:- Custom Methods
 //
-extension LabelListVC{
+extension ProductListVC{
     func showLoading(){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.activityIndicator.frame = self.view.frame
@@ -196,8 +196,8 @@ extension LabelListVC{
 //
 //MARK:- AWS Call Methods
 //
-extension LabelListVC{
-    func awsCallFetchLabels(){
+extension ProductListVC{
+    func awsCallFetchProducts(){
         showLoading()
         
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
@@ -207,7 +207,7 @@ extension LabelListVC{
         scanExpression.filterExpression = "BrandName = :val"
         scanExpression.expressionAttributeValues = [":val": selectedBrand.dynamoDB_Brand.BrandName]
         
-        dynamoDBObjectMapper.scan(DynamoDB_Label.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+        dynamoDBObjectMapper.scan(DynamoDB_Product.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
             
             //If error
             if let error = task.error{
@@ -230,18 +230,18 @@ extension LabelListVC{
             //If got result
             if let result = task.result{
                 //If result items count > 0
-                if let arrItems:[DynamoDB_Label] = result.items as? [DynamoDB_Label] where arrItems.count>0{
+                if let arrItems:[DynamoDB_Product] = result.items as? [DynamoDB_Product] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrLabelList = [Label]()
-                        for (index, label) in arrItems.enumerate() {
-                            var labelObj = Label()
-                            labelObj.dynamoDB_Label = label
+                        self.arrProductList = [Product]()
+                        for (index, product) in arrItems.enumerate() {
+                            var productObj = Product()
+                            productObj.dynamoDB_Product = product
                             
-                            AWSHelper.downloadImageWithCompletion(forImageName: label.LabelImageName, uploadPathKey: pathKeyLabels, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+                            AWSHelper.downloadImageWithCompletion(forImageName: product.ProductImageName, uploadPathKey: pathKeyProducts, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
                                 if let downloadedData = data{
                                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                         if let image = UIImage(data: downloadedData){
-                                            labelObj.imgLabelImage = image
+                                            productObj.imgProductImage = image
                                             if let _ = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)){
                                                 self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
                                             }
@@ -251,7 +251,7 @@ extension LabelListVC{
                                     })
                                 }
                             })
-                            self.arrLabelList.append(labelObj)
+                            self.arrProductList.append(productObj)
                         }
                         defer{
                             self.hideLoading()
@@ -275,11 +275,11 @@ extension LabelListVC{
     }
     
     
-    func awsCallDeleteLabel(atIndexPath indexPath:NSIndexPath){
+    func awsCallDeleteProduct(atIndexPath indexPath:NSIndexPath){
         self.showLoading()
         
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-        dynamoDBObjectMapper.remove(arrLabelList[indexPath.row].dynamoDB_Label).continueWithBlock { (task:AWSTask) -> AnyObject? in
+        dynamoDBObjectMapper.remove(arrProductList[indexPath.row].dynamoDB_Product).continueWithBlock { (task:AWSTask) -> AnyObject? in
             self.hideLoading()
             if (task.error != nil) {
                 UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
@@ -292,8 +292,8 @@ extension LabelListVC{
                 })
             }
             if (task.result != nil) {
-                self.awsCallDeleteLabelImage(atIndexPath: indexPath)
-                self.arrLabelList.removeAtIndex(indexPath.row)
+                self.awsCallDeleteProductImage(atIndexPath: indexPath)
+                self.arrProductList.removeAtIndex(indexPath.row)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.tableView.reloadData()
                 })
@@ -302,9 +302,9 @@ extension LabelListVC{
         }
     }
 
-    func awsCallDeleteLabelImage(atIndexPath indexPath:NSIndexPath){
+    func awsCallDeleteProductImage(atIndexPath indexPath:NSIndexPath){
         
-        AWSHelper.deleteImageWithCompletion(inBucketName: S3_BUCKET_NAME, imageName: arrLabelList[indexPath.row].dynamoDB_Label.LabelImageName, deletePathKey: "\(pathKeyLabels)") { (task) -> () in
+        AWSHelper.deleteImageWithCompletion(inBucketName: S3_BUCKET_NAME, imageName: arrProductList[indexPath.row].dynamoDB_Product.ProductImageName, deletePathKey: "\(pathKeyProducts)") { (task) -> () in
             if (task.error != nil) {
                 UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: task.error.debugDescription, onOk: { () -> () in
                     
@@ -316,7 +316,7 @@ extension LabelListVC{
                 })
             }
             if (task.result != nil) {
-                UnlabelHelper.showAlert(onVC: self, title: "Success", message: "Label Deleted Successfully", onOk: { () -> () in
+                UnlabelHelper.showAlert(onVC: self, title: "Success", message: "Product Deleted Successfully", onOk: { () -> () in
 //                    self.navigationController?.popViewControllerAnimated(true)
                 })
             }

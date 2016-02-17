@@ -1,5 +1,5 @@
 //
-//  DynamoDB_Label.swift
+//  DynamoDB_Product.swift
 //  Unlabel
 //
 //  Created by Zaid Pathan on 12/02/16.
@@ -9,20 +9,20 @@
 import Foundation
 import AWSDynamoDB
 
-class DynamoDB_Label: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
+class DynamoDB_Product: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
 
     var BrandName:String = String()
-    var LabelName:String = String()
-    var LabelImageName:String = String()
-    var LabelPrice:CGFloat = CGFloat()
-    var LabelURL:String = String()
+    var ProductName:String = String()
+    var ProductImageName:String = String()
+    var ProductPrice:CGFloat = CGFloat()
+    var ProductURL:String = String()
     var isActive:Bool = Bool()
     
     static func dynamoDBTableName() -> String! {
-        return "DynamoDB_Label"
+        return "DynamoDB_Product"
     }
     
     static func hashKeyAttribute() -> String! {
-        return "LabelImageName"
+        return "ProductImageName"
     }
 }

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LabelCell" id="gTV-IL-0wX" customClass="LabelCell" customModule="Unlabel" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="gTV-IL-0wX" customClass="ProductCell" customModule="Unlabel" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="216" height="260"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -76,9 +76,9 @@
             <size key="customSize" width="216" height="261"/>
             <connections>
                 <outlet property="IBbtnHeart" destination="K5Q-lh-Mgd" id="lf3-Jg-PHI"/>
-                <outlet property="IBimgLabelImage" destination="Itb-hf-DVC" id="8l1-B2-JA5"/>
-                <outlet property="IBlblLabelName" destination="E2p-bU-cui" id="dBB-ia-D8w"/>
-                <outlet property="IBlblLabelPrice" destination="vqs-8C-thh" id="hwO-eK-Mkd"/>
+                <outlet property="IBimgProductImage" destination="Itb-hf-DVC" id="iyy-Dt-F3u"/>
+                <outlet property="IBlblProductName" destination="E2p-bU-cui" id="2M2-Pz-oqv"/>
+                <outlet property="IBlblProductPrice" destination="vqs-8C-thh" id="2T8-PB-VuL"/>
             </connections>
             <point key="canvasLocation" x="188" y="354.5"/>
         </collectionViewCell>
