@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductFooterView" id="Hoe-z1-htB" customClass="ProductFooterView" customModule="Unlabel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkG-Zm-evB">
@@ -29,11 +29,11 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="tkG-Zm-evB" secondAttribute="trailing" id="MLF-RG-ABp"/>
-                <constraint firstAttribute="bottom" secondItem="tkG-Zm-evB" secondAttribute="bottom" id="Y3x-A1-90S"/>
+                <constraint firstAttribute="bottom" secondItem="tkG-Zm-evB" secondAttribute="bottom" constant="37" id="Y3x-A1-90S"/>
                 <constraint firstItem="tkG-Zm-evB" firstAttribute="leading" secondItem="Hoe-z1-htB" secondAttribute="leading" id="jMY-XS-S6J"/>
                 <constraint firstItem="tkG-Zm-evB" firstAttribute="top" secondItem="Hoe-z1-htB" secondAttribute="top" id="kZC-xF-zXS"/>
             </constraints>
-            <point key="canvasLocation" x="529" y="333"/>
+            <point key="canvasLocation" x="505" y="-65"/>
         </collectionReusableView>
     </objects>
 </document>
