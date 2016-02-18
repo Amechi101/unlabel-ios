@@ -20,18 +20,20 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     @IBOutlet weak var IBbtnFilter: UIBarButtonItem!
     @IBOutlet weak var IBcollectionViewProduct: UICollectionView!
     
+    let iPaginationCount = 2
+    let fFooterHeight:CGFloat = 81.0
     var activityIndicator:UIActivityIndicatorView?
     var arrProductList = [Product]()
     var selectedBrand = Brand()
+    var lastEvaluatedKey:[NSObject : AnyObject]!
     
-    var productFooterView:ProductFooterView?
     
     //
     //MARK:- VC Lifecycle
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIOnLoad()
+        setupOnLoad()
         awsCallFetchProducts()
     }
 
@@ -54,10 +56,10 @@ extension ProductVC:UICollectionViewDelegate{
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if arrProductList.count > 4{
-            return CGSizeMake(collectionView.frame.width, 44)
+        if let _ = lastEvaluatedKey{
+            return CGSizeMake(collectionView.frame.width, fFooterHeight)
         }else{
-                return CGSizeZero
+            return CGSizeZero
         }
         
     }
@@ -65,16 +67,9 @@ extension ProductVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
     
         switch kind {
-            
-//        case UICollectionElementKindSectionHeader: break
-            
-//            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! UICollectionReusableView
-//            
-//            headerView.backgroundColor = UIColor.blueColor();
-//            return headerView
-            
+        
         case UICollectionElementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_ProductFooterView, forIndexPath: indexPath) as! ProductFooterView
+            let footerView:ProductFooterView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_ProductFooterView, forIndexPath: indexPath) as! ProductFooterView
             
             return footerView
             
@@ -203,7 +198,7 @@ extension ProductVC{
     
     //For ProductFooterView
     @IBAction func IBActionViewMore(sender: AnyObject) {
-        
+        awsCallFetchProducts()
        print("IBActionViewMore")
     }
 }
@@ -213,7 +208,10 @@ extension ProductVC{
 //MARK:- Custom Methods
 //
 extension ProductVC{
-    func setupUIOnLoad(){
+    func setupOnLoad(){
+        lastEvaluatedKey = nil
+        self.arrProductList = [Product]()
+        
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         IBbtnFilter.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
@@ -225,7 +223,8 @@ extension ProductVC{
         
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
-        IBcollectionViewProduct.registerClass(ProductFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
+        IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductFooterView, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
+
         
         self.automaticallyAdjustsScrollViewInsets = false
 
@@ -279,6 +278,9 @@ extension ProductVC{
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
         
         var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
+        scanExpression.exclusiveStartKey = self.lastEvaluatedKey
+        scanExpression.limit = iPaginationCount;
+        
         scanExpression.filterExpression = "BrandName = :brandNameKey AND isActive = :isActiveKey"
         scanExpression.expressionAttributeValues = [":brandNameKey": selectedBrand.dynamoDB_Brand.BrandName,":isActiveKey":true]
         
@@ -304,10 +306,21 @@ extension ProductVC{
             
             //If got result
             if let result = task.result{
+                if let paginatedOutput:AWSDynamoDBPaginatedOutput = task.result as? AWSDynamoDBPaginatedOutput{
+                    self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey //Update lastEvaluatedKey
+                    if let lastEvaluatedKeyObj = paginatedOutput.lastEvaluatedKey{
+//                        self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey // Update lastEvaluatedKey
+                        print(" more data available")// more data found
+                    }else{
+                        print("No more data available")//no more data found
+                    }
+                    
+                }
+
+                
                 //If result items count > 0
                 if let arrItems:[DynamoDB_Product] = result.items as? [DynamoDB_Product] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrProductList = [Product]()
                         for (index, product) in arrItems.enumerate() {
                             var productObj = Product()
                             productObj.dynamoDB_Product = product
