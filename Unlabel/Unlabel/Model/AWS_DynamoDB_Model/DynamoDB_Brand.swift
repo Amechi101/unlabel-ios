@@ -11,6 +11,7 @@ import AWSDynamoDB
 
 class DynamoDB_Brand: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
     
+    var BrandID:String = String()
     var BrandName:String = String()
     var Description:String = String()
     var Location:String = String()
@@ -22,6 +23,6 @@ class DynamoDB_Brand: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
     }
     
     static func hashKeyAttribute() -> String! {
-        return "BrandName"
+        return "BrandID"
     }
 }
