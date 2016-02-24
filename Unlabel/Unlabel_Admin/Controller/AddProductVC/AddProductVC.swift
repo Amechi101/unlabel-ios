@@ -46,7 +46,7 @@ class AddProductVC: UIViewController {
         //Chech if new brand or editing existing one,
         //Editing
         if let productNameCharacters:Int = selectedProduct.dynamoDB_Product.ProductName.characters.count where productNameCharacters > 0{
-            if let brandName:String = selectedProduct.dynamoDB_Product.BrandName{
+            if let brandName:String = selectedProduct.dynamoDB_Product.BrandID{
                 if let productName:String = selectedProduct.dynamoDB_Product.ProductName{
                     if let productImageName:String = selectedProduct.dynamoDB_Product.ProductImageName{
                         if let productPrice:CGFloat = selectedProduct.dynamoDB_Product.ProductPrice{
@@ -170,7 +170,7 @@ extension AddProductVC{
                                 }
                                 else{
                                     let dynamoDB_Product = DynamoDB_Product()
-                                    dynamoDB_Product.BrandName = brandName
+                                    dynamoDB_Product.BrandID = brandName
                                     dynamoDB_Product.ProductName = productName
                                     dynamoDB_Product.ProductImageName = self.imageName!
                                     dynamoDB_Product.ProductPrice = productPrice

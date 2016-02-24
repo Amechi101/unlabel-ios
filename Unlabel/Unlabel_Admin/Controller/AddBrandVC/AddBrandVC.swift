@@ -26,8 +26,18 @@ class AddBrandVC: UIViewController {
     @IBOutlet weak var IBtxtViewDescription: UITextView!
     @IBOutlet weak var IBtxtFieldLocation: UITextField!
     @IBOutlet weak var IBbtnChooseImage: UIButton!
+    
     @IBOutlet weak var IBswitchIsActive: UISwitch!
+    @IBOutlet weak var IBswitchIsMale: UISwitch!
+    @IBOutlet weak var IBswitchIsFemale: UISwitch!
+    @IBOutlet weak var IBswitchAllCategories: UISwitch!
+    @IBOutlet weak var IBswitchClothing: UISwitch!
+    @IBOutlet weak var IBswitchAccessories: UISwitch!
+    @IBOutlet weak var IBswitchJewelry: UISwitch!
+    @IBOutlet weak var IBswitchShoes: UISwitch!
+    @IBOutlet weak var IBswitchBags: UISwitch!
 
+    
     var imagePicker = UIImagePickerController()
     var delegate:AddBrandVCDelegate?
     var selectedBrand = Brand()
@@ -47,23 +57,51 @@ class AddBrandVC: UIViewController {
         //Chech if new brand or editing existing one,
         //Editing
         if let brandNameCharacters:Int = selectedBrand.dynamoDB_Brand.BrandName.characters.count where brandNameCharacters > 0{
-            if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
-                if let description:String = selectedBrand.dynamoDB_Brand.Description{
-                    if let location:String = selectedBrand.dynamoDB_Brand.Location{
-                        if let imageName:String = selectedBrand.dynamoDB_Brand.ImageName{
-                            if let brandImage:UIImage = selectedBrand.imgBrandImage{
-                                if let isBrandActive:Bool = selectedBrand.dynamoDB_Brand.isActive{
-                                    IBtxtFieldBrandName.text = brandName
-                                    IBtxtViewDescription.text = description
-                                    IBtxtFieldLocation.text = location
-                                    IBbtnChooseImage.setBackgroundImage(brandImage, forState: UIControlState.Normal)
-                                    IBbtnChooseImage.setTitle("", forState: UIControlState.Normal)
-                                    IBswitchIsActive.on = isBrandActive
-                                    changeImageDataToNSURL(imageName, imageData: UIImagePNGRepresentation(brandImage)!)
-                                    self.imageName = imageName
-                                    sSuccessMessage = "Brand Edited Successfully"
-                                    self.title = "Edit \(brandName)"
-                                }
+            if let brandID:String = selectedBrand.dynamoDB_Brand.BrandID{
+                if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
+                    if let description:String = selectedBrand.dynamoDB_Brand.Description{
+                        if let location:String = selectedBrand.dynamoDB_Brand.Location{
+                            if let imageName:String = selectedBrand.dynamoDB_Brand.ImageName{
+                                if let brandImage:UIImage = selectedBrand.imgBrandImage{
+                                    if let isBrandActive:Bool = selectedBrand.dynamoDB_Brand.isActive{
+                                        if let isMale:Bool = selectedBrand.dynamoDB_Brand.Male{
+                                            if let isFemale:Bool = selectedBrand.dynamoDB_Brand.Female{
+                                                if let isAllCategories:Bool = selectedBrand.dynamoDB_Brand.AllCategories{
+                                                    if let isClothing:Bool = selectedBrand.dynamoDB_Brand.Clothing{
+                                                        if let isAccessories:Bool = selectedBrand.dynamoDB_Brand.Accessories{
+                                                            if let isJewelry:Bool = selectedBrand.dynamoDB_Brand.Jewelry{
+                                                                if let isShoes:Bool = selectedBrand.dynamoDB_Brand.Shoes{
+                                                                    if let isBags:Bool = selectedBrand.dynamoDB_Brand.Bags{
+                                                                        IBtxtFieldBrandName.text = brandName
+                                                                        IBtxtViewDescription.text = description
+                                                                        IBtxtFieldLocation.text = location
+                                                                        IBbtnChooseImage.setBackgroundImage(brandImage, forState: UIControlState.Normal)
+                                                                        IBbtnChooseImage.setTitle("", forState: UIControlState.Normal)
+                                                                        IBswitchIsActive.on = isBrandActive
+                                                                        changeImageDataToNSURL(imageName, imageData: UIImagePNGRepresentation(brandImage)!)
+                                                                        self.imageName = imageName
+                                                                        sSuccessMessage = "Brand Edited Successfully"
+                                                                        self.title = "Edit \(brandName)"
+                                                                        
+                                                                        IBswitchIsMale.on = isMale
+                                                                        IBswitchIsFemale.on = isFemale
+                                                                        IBswitchAllCategories.on = isAllCategories
+                                                                        IBswitchClothing.on = isClothing
+                                                                        IBswitchAccessories.on = isAccessories
+                                                                        IBswitchJewelry.on = isJewelry
+                                                                        IBswitchShoes.on = isShoes
+                                                                        IBswitchBags.on = isBags
+  
+                                                                    }else{ showUnableToEdit() }
+                                                                }else{ showUnableToEdit() }
+                                                            }else{ showUnableToEdit() }
+                                                        }else{ showUnableToEdit() }
+                                                    }else{ showUnableToEdit() }
+                                                }else{ showUnableToEdit() }
+                                            }else{ showUnableToEdit() }
+                                        }else{ showUnableToEdit() }
+                                    }else{ showUnableToEdit() }
+                                }else{ showUnableToEdit() }
                             }else{ showUnableToEdit() }
                         }else{ showUnableToEdit() }
                     }else{ showUnableToEdit() }
@@ -193,12 +231,21 @@ extension AddBrandVC{
                             else{
                                 
                                 let dynamoDB_Brand = DynamoDB_Brand()
+                                dynamoDB_Brand.BrandID = NSUUID().UUIDString
                                 dynamoDB_Brand.BrandName = brandName
                                 dynamoDB_Brand.Description = brandDescription
                                 dynamoDB_Brand.Location = brandLocation
                                 dynamoDB_Brand.ImageName = self.imageName!
                                 dynamoDB_Brand.isActive = self.IBswitchIsActive.on
-                                
+                                dynamoDB_Brand.Male = self.IBswitchIsMale.on
+                                dynamoDB_Brand.Female = self.IBswitchIsFemale.on
+                                dynamoDB_Brand.AllCategories = self.IBswitchAllCategories.on
+                                dynamoDB_Brand.Clothing = self.IBswitchClothing.on
+                                dynamoDB_Brand.Accessories = self.IBswitchAccessories.on
+                                dynamoDB_Brand.Jewelry = self.IBswitchJewelry.on
+                                dynamoDB_Brand.Shoes = self.IBswitchShoes.on
+                                dynamoDB_Brand.Bags = self.IBswitchBags.on
+        
                                 let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
                                 dynamoDBObjectMapper.save(dynamoDB_Brand).continueWithBlock({(task: AWSTask) -> AnyObject? in
                                     self.hideLoading()

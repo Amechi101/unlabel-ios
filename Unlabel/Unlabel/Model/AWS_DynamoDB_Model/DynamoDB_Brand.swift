@@ -17,6 +17,21 @@ class DynamoDB_Brand: AWSDynamoDBObjectModel,AWSDynamoDBModeling {
     var Location:String = String()
     var ImageName:String = String()
     var isActive:Bool = Bool()
+
+    //Sex
+    var Male:Bool = Bool()
+    var Female:Bool = Bool()
+    
+    //Categories
+    var AllCategories:Bool = Bool()               //i.e. All Categories
+    var Clothing:Bool = Bool()
+    var Accessories:Bool = Bool()
+    var Jewelry:Bool = Bool()
+    var Shoes:Bool = Bool()
+    var Bags:Bool = Bool()
+
+    
+    //Other filters should be added here. i.e. styles etc...
     
     static func dynamoDBTableName() -> String! {
         return "DynamoDB_Brand"
