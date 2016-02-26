@@ -66,8 +66,6 @@
 		15AD18301C6266BA00A3F513 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD182E1C62669200A3F513 /* UIKit.framework */; };
 		15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */; };
 		15AD18341C62911300A3F513 /* DynamoDB_Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */; };
-		15B314991C7646F0004A482D /* DynamoDB_Brand_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B314981C7646F0004A482D /* DynamoDB_Brand_Filter.swift */; };
-		15B3149A1C7646F0004A482D /* DynamoDB_Brand_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B314981C7646F0004A482D /* DynamoDB_Brand_Filter.swift */; };
 		15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
 		15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7A11C54A2D100244AC9 /* Assets.xcassets */; };
@@ -217,7 +215,6 @@
 		15AD181C1C62663D00A3F513 /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSQS.framework; path = "Pods/../build/Debug-iphoneos/AWSSQS.framework"; sourceTree = "<group>"; };
 		15AD182E1C62669200A3F513 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Brand.swift; sourceTree = "<group>"; };
-		15B314981C7646F0004A482D /* DynamoDB_Brand_Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Brand_Filter.swift; sourceTree = "<group>"; };
 		15B7E7991C54A2D100244AC9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		15B7E79E1C54A2D100244AC9 /* Unlabel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unlabel.xcdatamodel; sourceTree = "<group>"; };
 		15B7E7A11C54A2D100244AC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -435,7 +432,6 @@
 			children = (
 				15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */,
 				15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */,
-				15B314981C7646F0004A482D /* DynamoDB_Brand_Filter.swift */,
 			);
 			path = AWS_DynamoDB_Model;
 			sourceTree = "<group>";
@@ -1066,7 +1062,6 @@
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
 				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
-				15B3149A1C7646F0004A482D /* DynamoDB_Brand_Filter.swift in Sources */,
 				15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
@@ -1093,7 +1088,6 @@
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
-				15B314991C7646F0004A482D /* DynamoDB_Brand_Filter.swift in Sources */,
 				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */,
