@@ -15,8 +15,8 @@
 		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
-		15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* LocationCell.swift */; };
-		15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* LocationCell.xib */; };
+		15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */; };
+		15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */; };
 		15897E931C59488800FD0700 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E911C59488800FD0700 /* GenderCell.swift */; };
 		15897E941C59488800FD0700 /* GenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E921C59488800FD0700 /* GenderCell.xib */; };
 		15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E951C5948B200FD0700 /* CategoryStyleCell.swift */; };
@@ -166,8 +166,8 @@
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
-		15897E8D1C593E0F00FD0700 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
-		15897E8E1C593E0F00FD0700 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
+		15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryLocationCell.xib; sourceTree = "<group>"; };
 		15897E911C59488800FD0700 /* GenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
 		15897E921C59488800FD0700 /* GenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenderCell.xib; sourceTree = "<group>"; };
 		15897E951C5948B200FD0700 /* CategoryStyleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStyleCell.swift; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 		15897E8C1C593DC700FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
-				15897E8D1C593E0F00FD0700 /* LocationCell.swift */,
-				15897E8E1C593E0F00FD0700 /* LocationCell.xib */,
+				15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */,
+				15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */,
 				15897E911C59488800FD0700 /* GenderCell.swift */,
 				15897E921C59488800FD0700 /* GenderCell.xib */,
 				15897E951C5948B200FD0700 /* CategoryStyleCell.swift */,
@@ -924,7 +924,7 @@
 			files = (
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
 				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
-				15897E901C593E0F00FD0700 /* LocationCell.xib in Resources */,
+				15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
 				15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */,
@@ -1090,7 +1090,7 @@
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
-				15897E8F1C593E0F00FD0700 /* LocationCell.swift in Sources */,
+				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,

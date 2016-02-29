@@ -1,5 +1,5 @@
 //
-//  LocationCell.swift
+//  CategoryLocationCell.swift
 //  Unlabel
 //
 //  Created by ZAID PATHAN on 27/01/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationCell: UITableViewCell {
+class CategoryLocationCell: UITableViewCell {
 
     @IBOutlet weak var IBtblLocation: UITableView!
     
@@ -30,7 +30,7 @@ class LocationCell: UITableViewCell {
     //
     //MARK:- UITableViewDelegate Methods
     //
-    extension LocationCell:UITableViewDelegate{
+    extension CategoryLocationCell:UITableViewDelegate{
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
@@ -40,7 +40,7 @@ class LocationCell: UITableViewCell {
     //
     //MARK:- UITableViewDataSource Methods
     //
-    extension LocationCell:UITableViewDataSource{
+    extension CategoryLocationCell:UITableViewDataSource{
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
             return 10
             //        return arrTitles.count

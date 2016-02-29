@@ -41,6 +41,8 @@ let MEDIUM_GRAY_TEXT_COLOR = UIColor(red: 69/255, green: 73/255, blue: 78/255, a
 
 let LIGHT_GRAY_BORDER_COLOR = UIColor(red: 153/255, green: 156/255, blue: 165/255, alpha: 1)
 
+let DARK_GRAY_COLOR = UIColor(red: 40/255, green: 44/255, blue: 53/255, alpha: 1)
+
 //
 //MARK:- Storyboard Names
 //
@@ -69,7 +71,7 @@ let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 let REUSABLE_ID_ProductCell         = "ProductCell"
 let REUSABLE_ID_GenderCell          = "GenderCell"
 let REUSABLE_ID_FeedVCCell          = "FeedVCCell"
-let REUSABLE_ID_LocationCell        = "LocationCell"
+let REUSABLE_ID_CategoryLocationCell = "CategoryLocationCell"
 let REUSABLE_ID_ProductHeaderCell   = "ProductHeaderCell"
 let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"

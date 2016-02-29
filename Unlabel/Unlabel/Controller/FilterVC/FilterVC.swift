@@ -36,13 +36,14 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBviewPickerMainContainer: UIView!
     @IBOutlet weak var IBviewPickerContainer: UIView!
     
+    @IBOutlet weak var IBbtnClear: UIButton!
     @IBOutlet weak var IBconstraintPickerMainTop: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
     private var sAllCategories = "All categories"
     private var sAllStyles     = "All styles"
 
-    private let arrFilterTitles:[String] = ["SEX","CATEGORY","STYLE","LOCATION"]
+    private let arrFilterTitles:[String] = ["SEX","CATEGORY","LOCATION"]
     private let arrCategories:[String] = ["Category1","Category2","Category3","Category4","Category5","Category6","Category7","Category8","Category9","Category10"]
     private let arrStyle:[String] = ["Style1","Style2","Style3","Style4","Style5","Style6","Style7","Style8","Style9","Style10"]
     
@@ -112,25 +113,21 @@ extension FilterVC:UITableViewDataSource{
         return categoryStyleCell
     }
 
-    func locationCell()->LocationCell{
-        let locationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_LocationCell) as! LocationCell
+    func categoryLocationCell()->CategoryLocationCell{
+        let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
         
-        return locationCell
+        return categoryLocationCell
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 6 {
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
             return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
         }else if indexPath.row == 1{
             return genderCell()
-        }else if indexPath.row == 3{
-            return categoryStyleCell(title: sAllCategories, tag:PickerType.Categories.rawValue)
-        }else if indexPath.row == 5{
-            return categoryStyleCell(title: sAllStyles, tag:PickerType.Styles.rawValue)
-        }else if indexPath.row == 7{
-            return locationCell()
+        }else if indexPath.row == 3 || indexPath.row == 5{
+            return categoryLocationCell()
         }else{
             return UITableViewCell()
         }
@@ -225,8 +222,9 @@ extension FilterVC{
         hidePicker()
         registerCell(withID: REUSABLE_ID_GenderCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
-        registerCell(withID: REUSABLE_ID_LocationCell)
+        registerCell(withID: REUSABLE_ID_CategoryLocationCell)
 
+        IBbtnClear.layer.borderColor = DARK_GRAY_COLOR.CGColor
         IBtblFilter.estimatedRowHeight = 200
         IBtblFilter.rowHeight = UITableViewAutomaticDimension
         IBtblFilter.tableFooterView = UIView()
@@ -270,11 +268,11 @@ extension FilterVC{
      Hides picker view with animation
      */
     func hidePicker(){
-        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
-        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
-        UIView.animateWithDuration(0.3) { () -> Void in
-            self.view.layoutSubviews()
-        }
+//        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
+//        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            self.view.layoutSubviews()
+//        }
         
     }
 
