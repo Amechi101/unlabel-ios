@@ -123,6 +123,7 @@
 		15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AB1C56A899000C28E0 /* AdminNavController.swift */; };
 		15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
 		15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
+		15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBF35C1C84DD23005F59E4 /* Filter.swift */; };
 		15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
 		15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
 		15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
@@ -248,6 +249,7 @@
 		15C993A11C56A870000C28E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15C993AB1C56A899000C28E0 /* AdminNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminNavController.swift; sourceTree = "<group>"; };
 		15C993AD1C56BA65000C28E0 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		15CBF35C1C84DD23005F59E4 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Product.swift; sourceTree = "<group>"; };
 		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */,
 				159245221C5539C500755814 /* Brand.swift */,
 				15E30D991C6D2D14008B77E1 /* Product.swift */,
+				15CBF35C1C84DD23005F59E4 /* Filter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
+				15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */,
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,

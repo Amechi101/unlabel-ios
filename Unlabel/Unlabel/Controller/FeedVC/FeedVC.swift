@@ -194,14 +194,15 @@ extension FeedVC{
      */
     func addChildVC(forViewController VCName:String){
         headerButtonEnabled(setEnabled: false)
-        removeChildVCIfExists(VCName)
         
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
+            removeChildVCIfExists(VCName)
         }else if VCName == S_ID_FILTER_VC{
-            addFilterVCAsChildVC(viewControllerName: VCName)
+            addFilterVCAsChildVC(viewControllerName: VCName) //Not removing child view controller, so that filter screen state remain same as last filter
         }else if VCName == S_ID_LAUNCH_LOADING_VC{
             addLaunchLoadingAsChildVC(viewControllerName: VCName)
+            removeChildVCIfExists(VCName)
         }
     }
 
@@ -282,20 +283,35 @@ extension FeedVC{
      - parameter VCName: ViewController's Storyboard ID
      */
     func removeChildVCIfExists(VCName:String){
+        if isChildVCExists(vcName: VCName){
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let childVCFromStoryboard:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(VCName)
+                childVCFromStoryboard.willMoveToParentViewController(nil)
+                childVCFromStoryboard.view.removeFromSuperview()
+                childVCFromStoryboard.removeFromParentViewController()
+            })
+        }else{
+            print("Child VC Doesn't existst for : \(VCName)")
+        }
+    }
+
+    func isChildVCExists(vcName VCName:String)->Bool{
+        var isExists:Bool = false
+        
         for vc in self.navigationController!.childViewControllers{
             let childVC:UIViewController = vc
             let childVCFromStoryboard:UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier(VCName)
             
-            if childVC.nibName == childVCFromStoryboard.nibName{ //This condition prevents user to open any child VC twice at a time
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    childVC.willMoveToParentViewController(nil)
-                    childVC.view.removeFromSuperview()
-                    childVC.removeFromParentViewController()
-                })
+            if isExists == false{
+                if childVC.nibName == childVCFromStoryboard.nibName{
+                    isExists = true
+                }
             }
         }
+        
+        return isExists
     }
-
+    
     func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
         print(indexPath.row)
     }
