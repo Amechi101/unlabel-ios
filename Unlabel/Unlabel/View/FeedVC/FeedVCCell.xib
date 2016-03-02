@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vE-L8-6kN" userLabel="View - Container">
                         <rect key="frame" x="22" y="0.0" width="247" height="241"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="N9R-XX-zKM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N9R-XX-zKM">
                                 <rect key="frame" x="0.0" y="0.0" width="247" height="241"/>
                             </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYE-u7-CMl" userLabel="View - CompsContainer">
@@ -76,17 +76,26 @@
                             <constraint firstAttribute="bottom" secondItem="N9R-XX-zKM" secondAttribute="bottom" id="xAN-Lp-YOS"/>
                         </constraints>
                     </view>
+                    <activityIndicatorView opaque="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ikt-sQ-1rc">
+                        <rect key="frame" x="22" y="0.0" width="247" height="241"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="2vE-L8-6kN" secondAttribute="bottom" id="5ZO-5S-BAt"/>
                 <constraint firstItem="2vE-L8-6kN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="22" id="76h-cn-No7"/>
+                <constraint firstItem="ikt-sQ-1rc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="22" id="WGL-wt-y7I"/>
                 <constraint firstAttribute="trailing" secondItem="2vE-L8-6kN" secondAttribute="trailing" constant="22" id="Zb7-Yv-LKj"/>
+                <constraint firstItem="ikt-sQ-1rc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="a2X-uG-FCQ"/>
+                <constraint firstAttribute="bottom" secondItem="ikt-sQ-1rc" secondAttribute="bottom" id="dsx-h6-E6l"/>
                 <constraint firstItem="2vE-L8-6kN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="egw-q8-cDa"/>
+                <constraint firstAttribute="trailing" secondItem="ikt-sQ-1rc" secondAttribute="trailing" constant="22" id="l9J-D4-Ht5"/>
             </constraints>
             <size key="customSize" width="291" height="241"/>
             <connections>
+                <outlet property="IBactivityIndicator" destination="ikt-sQ-1rc" id="io9-QG-qaA"/>
                 <outlet property="IBbtnStar" destination="Es1-B5-K0z" id="p3B-8u-FDd"/>
                 <outlet property="IBimgBrandImage" destination="N9R-XX-zKM" id="X1j-Uy-e6s"/>
                 <outlet property="IBlblBrandName" destination="273-CG-rr4" id="CxV-7E-yA2"/>
@@ -97,6 +106,5 @@
     </objects>
     <resources>
         <image name="notStarred" width="18" height="18"/>
-        <image name="test" width="350" height="350"/>
     </resources>
 </document>

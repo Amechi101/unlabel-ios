@@ -24,6 +24,7 @@ class FeedVC: UIViewController {
     var arrBrandList:[Brand] = [Brand]()
     
     var didSelectIndexPath:NSIndexPath?
+    var filterChildVC:FilterVC?
 
     
 //
@@ -90,8 +91,12 @@ extension FeedVC:UICollectionViewDataSource{
         feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].dynamoDB_Brand.Location
         if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
             feedVCCell.IBimgBrandImage.image = brandMainImage
+            feedVCCell.IBactivityIndicator.stopAnimating()
+            feedVCCell.IBactivityIndicator.hidden = true
         }else{
-            feedVCCell.IBimgBrandImage.image = UIImage(named: "splash")
+            feedVCCell.IBactivityIndicator.startAnimating()
+            feedVCCell.IBactivityIndicator.hidden = false
+            feedVCCell.IBimgBrandImage.image = UIImage()
         }
         
         return feedVCCell
@@ -258,22 +263,33 @@ extension FeedVC{
      Adding Filter VC As Child VC
      */
     func addFilterVCAsChildVC(viewControllerName VCName:String){
-        let filterVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! FilterVC
-        filterVC.delegate = self
-        filterVC.view.frame.size = self.view.frame.size
-        
-        //Animate filterVC entry
-        filterVC.view.frame.origin.x = self.view.frame.size.width
-        filterVC.view.alpha = 0
-        UIView.animateWithDuration(0.3) { () -> Void in
-            filterVC.view.alpha = 1
-            filterVC.view.frame.origin.x = 0
+        if let filterChildVCObj = filterChildVC{
+            //Animate filterVC entry
+            filterChildVCObj.view.frame.origin.x = self.view.frame.size.width
+            filterChildVCObj.view.alpha = 0
+            UIView.animateWithDuration(0.3) { () -> Void in
+                filterChildVCObj.view.alpha = 1
+                filterChildVCObj.view.frame.origin.x = 0
+            }
+        }else{
+            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
+            filterChildVC!.delegate = self
+            filterChildVC!.view.frame.size = self.view.frame.size
+            
+            //Animate filterVC entry
+            filterChildVC!.view.frame.origin.x = self.view.frame.size.width
+            filterChildVC!.view.alpha = 0
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.filterChildVC!.view.alpha = 1
+                self.filterChildVC!.view.frame.origin.x = 0
+            }
+            
+            self.navigationController!.addChildViewController(filterChildVC!)
+            filterChildVC!.didMoveToParentViewController(self)
+            
+            self.navigationController!.view.addSubview(filterChildVC!.view)
+
         }
-        
-        self.navigationController!.addChildViewController(filterVC)
-        filterVC.didMoveToParentViewController(self)
-        
-        self.navigationController!.view.addSubview(filterVC.view)
     }
 
     /**

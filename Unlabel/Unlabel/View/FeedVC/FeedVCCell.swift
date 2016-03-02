@@ -14,6 +14,7 @@ class FeedVCCell: UICollectionViewCell {
     @IBOutlet weak var IBlblBrandName: UILabel!
     @IBOutlet weak var IBlblLocation: UILabel!
     @IBOutlet weak var IBbtnStar: UIButton!
+    @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
