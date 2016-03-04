@@ -149,7 +149,7 @@ extension FeedVC{
     }
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
-        openFilterScreen()
+//        openFilterScreen()
     }
 }
 

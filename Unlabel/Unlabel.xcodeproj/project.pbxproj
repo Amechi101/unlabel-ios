@@ -137,6 +137,9 @@
 		15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2731C723BB100A7E389 /* ProductVC.swift */; };
 		15F0E2771C72418500A7E389 /* ProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2761C72418500A7E389 /* ProductListVC.swift */; };
 		15F0E27A1C72433800A7E389 /* AddProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E2791C72433800A7E389 /* AddProductVC.swift */; };
+		15F5A31C1C8A240200FDE610 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5A31B1C8A240200FDE610 /* EntryVC.swift */; };
+		15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5A31F1C8A2B6C00FDE610 /* LoginVC.swift */; };
+		15F5A3221C8A2B7900FDE610 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5A3211C8A2B7900FDE610 /* SignupVC.swift */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
@@ -260,6 +263,9 @@
 		15F0E2731C723BB100A7E389 /* ProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductVC.swift; sourceTree = "<group>"; };
 		15F0E2761C72418500A7E389 /* ProductListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListVC.swift; sourceTree = "<group>"; };
 		15F0E2791C72433800A7E389 /* AddProductVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductVC.swift; sourceTree = "<group>"; };
+		15F5A31B1C8A240200FDE610 /* EntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
+		15F5A31F1C8A2B6C00FDE610 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		15F5A3211C8A2B7900FDE610 /* SignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -441,6 +447,9 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15F5A31D1C8A2B5C00FDE610 /* LoginVC */,
+				15F5A31E1C8A2B5C00FDE610 /* SignupVC */,
+				15F5A31A1C8A23EE00FDE610 /* EntryVC */,
 				15F0E2721C723BB100A7E389 /* ProductVC */,
 				158F3E121C71073F00A3D0D6 /* UnlabelSafariVC */,
 				158F3E0F1C70987800A3D0D6 /* LaunchLoadingVC */,
@@ -648,6 +657,30 @@
 				15F0E2791C72433800A7E389 /* AddProductVC.swift */,
 			);
 			path = AddProductVC;
+			sourceTree = "<group>";
+		};
+		15F5A31A1C8A23EE00FDE610 /* EntryVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F5A31B1C8A240200FDE610 /* EntryVC.swift */,
+			);
+			path = EntryVC;
+			sourceTree = "<group>";
+		};
+		15F5A31D1C8A2B5C00FDE610 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F5A31F1C8A2B6C00FDE610 /* LoginVC.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		15F5A31E1C8A2B5C00FDE610 /* SignupVC */ = {
+			isa = PBXGroup;
+			children = (
+				15F5A3211C8A2B7900FDE610 /* SignupVC.swift */,
+			);
+			path = SignupVC;
 			sourceTree = "<group>";
 		};
 		400BDDFF1C1B890800487C6E = {
@@ -1091,12 +1124,14 @@
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
+				15F5A31C1C8A240200FDE610 /* EntryVC.swift in Sources */,
 				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
+				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */,
@@ -1109,6 +1144,7 @@
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
+				15F5A3221C8A2B7900FDE610 /* SignupVC.swift in Sources */,
 				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,
 				158F3E111C70988D00A3D0D6 /* LaunchLoadingVC.swift in Sources */,
 				15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */,

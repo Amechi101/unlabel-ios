@@ -15,7 +15,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var isUserLoggedIn = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setupOnLaunch()
@@ -177,21 +177,34 @@ extension AppDelegate{
      */
     private func setupRootVC(){
         let storyboard:UIStoryboard?
-        let rootVC:UINavigationController?
+        let rootNavVC:UINavigationController?
+        let rootVC:EntryVC?
         
         #if ADMIN
             storyboard = UIStoryboard(name: S_NAME_ADMIN, bundle: nil)
             rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_ADMIN_NAV_CONTROLLER) as? UINavigationController
+            
+            if let window = self.window {
+                window.rootViewController = rootVC
+            }
+            
         #else
             storyboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
-            rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+            
+            if isUserLoggedIn{
+                rootNavVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+                if let window = self.window {
+                    window.rootViewController = rootNavVC
+                }
+            }else{
+                rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
+                if let window = self.window {
+                    window.rootViewController = rootVC
+                }
+            }
+            
             setupUnlabelApp()
         #endif
-        
-        
-        if let window = self.window {
-            window.rootViewController = rootVC
-        }
     }
     
     /**
