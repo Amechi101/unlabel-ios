@@ -32,7 +32,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        awsCallFetchActiveBrands()
+//        awsCallFetchActiveBrands()
         setupUIOnLoad()
     }
     
@@ -149,7 +149,7 @@ extension FeedVC{
     }
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
-//        openFilterScreen()
+        openFilterScreen()
     }
 }
 
