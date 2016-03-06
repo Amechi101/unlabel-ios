@@ -32,6 +32,7 @@ class CategoryLocationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        IBtblLocation.tableFooterView = UIView()
         let bottomWhiteGradient = CAGradientLayer()
         bottomWhiteGradient.colors = [UIColor.clearColor().CGColor,UIColor.whiteColor().colorWithAlphaComponent(0.6).CGColor]
         bottomWhiteGradient.zPosition = -1

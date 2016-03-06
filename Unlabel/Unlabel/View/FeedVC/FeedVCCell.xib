@@ -46,7 +46,6 @@
                                             <constraint firstAttribute="width" constant="18" id="RsL-MG-6CT"/>
                                             <constraint firstAttribute="height" constant="18" id="sZX-Rr-YvB"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="notStarred"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -104,7 +103,4 @@
             <point key="canvasLocation" x="241.5" y="415.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="notStarred" width="18" height="18"/>
-    </resources>
 </document>

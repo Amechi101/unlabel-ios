@@ -77,7 +77,7 @@ extension FilterVC:UITableViewDelegate{
 //
 extension FilterVC:UITableViewDataSource{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 6    
+        return 4
     }
     
     func cellWithTitle(title title:String)->UITableViewCell{
@@ -103,9 +103,6 @@ extension FilterVC:UITableViewDataSource{
         if indexPath.row == 3{
             categoryLocationCell.cellType = CategoryLocationCellType.Category
             categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
-        }else if indexPath.row == 5{
-            categoryLocationCell.cellType = CategoryLocationCellType.Location
-            categoryLocationCell.IBtblLocation.tag = TableViewType.Location.rawValue
         }else{
             categoryLocationCell.cellType = CategoryLocationCellType.Unknown
             categoryLocationCell.IBtblLocation.tag = TableViewType.Unknown.rawValue
@@ -123,7 +120,7 @@ extension FilterVC:UITableViewDataSource{
             return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
         }else if indexPath.row == 1{
             return genderCell()
-        }else if indexPath.row == 3 || indexPath.row == 5{
+        }else if indexPath.row == 3{
             return categoryLocationCell(indexPath)
         }else{
             return UITableViewCell()
@@ -222,7 +219,7 @@ extension FilterVC{
         registerCell(withID: REUSABLE_ID_CategoryLocationCell)
 
         IBbtnClear.layer.borderColor = DARK_GRAY_COLOR.CGColor
-        IBtblFilter.estimatedRowHeight = 200
+        IBtblFilter.estimatedRowHeight = SCREEN_HEIGHT - 218 //218 for StatusBar+Footer+XButton height
         IBtblFilter.rowHeight = UITableViewAutomaticDimension
         IBtblFilter.tableFooterView = UIView()
     }

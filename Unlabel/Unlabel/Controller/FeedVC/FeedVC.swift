@@ -32,7 +32,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        awsCallFetchActiveBrands()
+//        awsCallFetchActiveBrands()
         setupUIOnLoad()
     }
     

@@ -23,7 +23,7 @@ class LeftMenuVC: UIViewController {
 //MARK:- IBOutlets, constants, vars
 //
     @IBOutlet weak var IBtblLeftMenu: UITableView!
-    private let arrTitles = ["WHAT'S NEW","DISCOVER","FOLLOWING","FAVORITE PRODUCTS","SETTINGS"]
+    private let arrTitles = ["DISCOVER","FOLLOWING","SETTINGS"]
     var delegate:LeftMenuVCDelegate?
     
     

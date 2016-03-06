@@ -54,6 +54,7 @@ let S_NAME_ADMIN   = "Admin"
 //MARK:- Storyboard IDs
 //
 let S_ID_FEED_VC                    = "FeedVC"
+let S_ID_ENTRY_VC                   = "EntryVC"
 let S_ID_FILTER_VC                  = "FilterVC"
 let S_ID_PRODUCT_VC                 = "ProductVC"
 let S_ID_ADD_BRAND_VC               = "AddBrandVC"
