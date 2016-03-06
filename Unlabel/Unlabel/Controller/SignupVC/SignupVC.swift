@@ -82,11 +82,24 @@ extension SignupVC:UITextFieldDelegate{
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-       
+        if textField == IBtxtFieldName{
+            
+        }else if textField == IBtxtFieldEmail{
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.IBscrollView.contentOffset = CGPointMake(0, 60)
+            })
+        }else if textField == IBtxtFieldPassword{
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.IBscrollView.contentOffset = CGPointMake(0, 160)
+            })
+        }
+
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-    
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.IBscrollView.contentOffset = CGPointMake(0, 0)
+        })
     }
 }
 
@@ -141,18 +154,7 @@ extension SignupVC{
     func keyboardWillShow(notification: NSNotification) {
         for subview in self.view.subviews{
             if subview.isFirstResponder(){
-                if subview == IBtxtFieldName{
-
-                }else if subview == IBtxtFieldEmail{
-                    UIView.animateWithDuration(0, animations: { () -> Void in
-                        self.view.center.y = self.view.frame.size.height/2 - 100
-                    })
-                }else if subview == IBtxtFieldPassword{
-                    UIView.animateWithDuration(0, animations: { () -> Void in
-                        self.view.center.y = self.view.frame.size.height/2 - 150
-                    })
-                }
-            }
+                            }
         }
 //        if let userInfo = notification.userInfo {
 //            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
@@ -163,9 +165,7 @@ extension SignupVC{
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0, animations: { () -> Void in
-            self.view.center.y = self.view.frame.size.height/2
-        })
+       
     }
     
     func animateTextField(up: Bool) {

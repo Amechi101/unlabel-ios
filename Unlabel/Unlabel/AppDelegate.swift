@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import Bolts
+import Fabric
 import CoreData
 import AWSCognito
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,11 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isUserLoggedIn = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         setupOnLaunch()
         setupAWS()
         
-        Fabric.with([Crashlytics.self, AWSCognito.self])
-
         return true
     }
     
@@ -155,6 +154,7 @@ extension AppDelegate{
      Init everything needed on app launch.
      */
     private func setupOnLaunch(){
+        Fabric.with([Crashlytics.self, AWSCognito.self])
         registerForPushNotifications()
         setupRootVC()
     }
