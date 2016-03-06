@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import Parse
+import Fabric
+import Crashlytics
 import Bolts
 import CoreData
+import AWSCognito
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setupOnLaunch()
         setupAWS()
+        
+        Fabric.with([Crashlytics.self, AWSCognito.self])
+
         return true
     }
     
@@ -163,14 +168,6 @@ extension AppDelegate{
         UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
-    /**
-     Init Parse on app launch.
-     */
-    private  func setupParse(){
-        // Initialize Parse.
-        Parse.setApplicationId("2ITzXWzCVa9YRbisoFeCzmPJvoBjBURfibsbVnEU",
-            clientKey: "ENFJOyHvcxhrjKQongGfjyVtnvYycVXKov9MFf20")
-    }
     
     /**
      Init UI on app launch.

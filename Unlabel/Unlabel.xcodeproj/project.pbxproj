@@ -805,6 +805,7 @@
 				400BDE061C1B890800487C6E /* Resources */,
 				44E2C765F1294BEDA82C38C5 /* Embed Pods Frameworks */,
 				A342024F2A60AFE1A6D04ED6 /* Copy Pods Resources */,
+				40AC9E581C8C387800EFA413 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1005,6 +1006,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		40AC9E581C8C387800EFA413 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 06069638a30af80dd44e96e3bbacf8bc860316b8 83161b69f5e1dce920858f93d52deeb4ea1b18e2586991d9a7c6de4840b09762";
 		};
 		44E2C765F1294BEDA82C38C5 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
