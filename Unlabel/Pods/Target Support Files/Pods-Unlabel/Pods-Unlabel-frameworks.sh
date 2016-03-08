@@ -102,6 +102,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Unlabel/AWSSQS.framework"
   install_framework "Pods-Unlabel/AWSSimpleDB.framework"
   install_framework "Pods-Unlabel/Bolts.framework"
+  install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
+  install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Unlabel/AWSAutoScaling.framework"
@@ -122,4 +124,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Unlabel/AWSSQS.framework"
   install_framework "Pods-Unlabel/AWSSimpleDB.framework"
   install_framework "Pods-Unlabel/Bolts.framework"
+  install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
+  install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
 fi

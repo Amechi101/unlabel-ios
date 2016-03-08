@@ -27,5 +27,8 @@ target :Unlabel, :exclusive => true do
     pod 'Fabric'
     pod 'Crashlytics'
     
+    pod 'FBSDKCoreKit', '~> 4.10'
+    pod 'FBSDKLoginKit', '~> 4.10'
+    
     
 end

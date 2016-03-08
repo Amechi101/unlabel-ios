@@ -13,6 +13,7 @@
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
+		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
@@ -170,6 +171,7 @@
 		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
+		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
 		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				154687781C5814D60060565B /* UnlabelExtensions.swift */,
 				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
 				15E30D961C6D0E07008B77E1 /* AWSHelper.swift */,
+				15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1155,6 +1158,7 @@
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
+				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,

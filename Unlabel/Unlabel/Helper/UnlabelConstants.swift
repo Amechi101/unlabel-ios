@@ -92,5 +92,12 @@ let sARE_YOU_SURE = "Are you sure?"
 //
 //MARK:- Anonymous Constants
 //
+let APP_DELEGATE        = UIApplication.sharedApplication().delegate as! AppDelegate
 let SCREEN_WIDTH        = UIScreen.mainScreen().bounds.size.width
 let SCREEN_HEIGHT       = UIScreen.mainScreen().bounds.size.height
+
+//
+//MARK:- Error codes
+//
+let FB_ALREADY_LOGGED_IN = (111,"User already logged in.") //Error code and message
+let FB_LOGIN_FAILED = (112,"Login failed.")

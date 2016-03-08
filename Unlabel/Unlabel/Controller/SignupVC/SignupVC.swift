@@ -29,19 +29,6 @@ class SignupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-//    override func viewWillAppear(animated:Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
-//    }
-//    
-//    override func viewWillDisappear(animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        
-//        NSNotificationCenter.defaultCenter().removeObserver(self)
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,7 +102,7 @@ extension SignupVC{
     }
     
     @IBAction func IBActionSignupWithFB(sender: UIButton) {
-        
+        handleFBLogin()
     }
 }
 
@@ -123,6 +110,22 @@ extension SignupVC{
 //MARK:- Custom Methods
 //
 extension SignupVC{
+    
+    func handleFBLogin(){
+        UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+                if let window = APP_DELEGATE.window {
+                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: {
+                        window.rootViewController = rootNavVC
+                        }, completion: nil)
+                }
+            })
+            }) { (error:NSError?) -> () in
+                print(error)
+        }
+    }
+    
     func isValidName()->Bool{
         if let iCharacters = IBtxtFieldName.text?.characters.count where iCharacters > 0{
             return true
@@ -151,27 +154,4 @@ extension SignupVC{
         return true
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        for subview in self.view.subviews{
-            if subview.isFirstResponder(){
-                            }
-        }
-//        if let userInfo = notification.userInfo {
-//            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//                kbHeight = keyboardSize.height
-//                self.animateTextField(true)
-//            }
-//        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-       
-    }
-    
-    func animateTextField(up: Bool) {
-//        let movement = (up ? -kbHeight : kbHeight)
-        
-        
-    
-    }
 }
