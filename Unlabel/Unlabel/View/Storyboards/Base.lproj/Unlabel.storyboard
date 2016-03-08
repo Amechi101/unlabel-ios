@@ -15,10 +15,10 @@
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
-            <string>Neutraface2Text-Book</string>
-            <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
@@ -620,22 +620,13 @@ NOT RANDOM SH*T</string>
                                                     <action selector="IBActionClose:" destination="cn9-ol-XhO" eventType="touchUpInside" id="gfb-Ft-hbk"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6X-hF-9dV">
-                                                <rect key="frame" x="20" y="60" width="335" height="16"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="Gvg-9P-gv8"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7G-Yd-viU">
                                                 <rect key="frame" x="35" y="92" width="305" height="74"/>
                                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="J7G-Yd-viU" secondAttribute="height" multiplier="305:74" id="2s0-V4-fRZ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <state key="normal" title="SIGN UP W/ FACEBOOK">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -719,11 +710,11 @@ NOT RANDOM SH*T</string>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK0-Yy-hUA">
                                                 <rect key="frame" x="35" y="470" width="305" height="72"/>
-                                                <color key="backgroundColor" red="0.88627450980392153" green="0.89411764705882346" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.15686274509803921" green="0.17254901960784313" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="aK0-Yy-hUA" secondAttribute="height" multiplier="315:74" id="99B-js-HMl"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="25"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="24"/>
                                                 <state key="normal" title="SIGN UP">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -735,7 +726,7 @@ NOT RANDOM SH*T</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="305" height="20"/>
                                                         <gestureRecognizers/>
                                                         <attributedString key="attributedText">
-                                                            <fragment content="By joining you agree to our ">
+                                                            <fragment content="By joining you agree to our">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
@@ -743,12 +734,49 @@ NOT RANDOM SH*T</string>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
+                                                            <fragment content=" ">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
                                                             <fragment content="Legal Stuff">
                                                                 <attributes>
-                                                                    <color key="NSColor" red="0.15686274509803921" green="0.17254901960784313" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
-                                                                    <font key="NSOriginalFont" size="12" name="Neutraface2Text-Book"/>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <font key="NSOriginalFont" size="12" name="Neutraface2Text-Demi"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    <integer key="NSUnderline" value="1"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content=" ">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="&amp;">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content=" ">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="Privacy Policy">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    <integer key="NSUnderline" value="1"/>
                                                                 </attributes>
                                                             </fragment>
                                                         </attributedString>
@@ -767,6 +795,15 @@ NOT RANDOM SH*T</string>
                                                     <outletCollection property="gestureRecognizers" destination="wXg-mO-LOg" appends="YES" id="V1y-DU-3Zb"/>
                                                 </connections>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6X-hF-9dV">
+                                                <rect key="frame" x="20" y="60" width="335" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="Gvg-9P-gv8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
