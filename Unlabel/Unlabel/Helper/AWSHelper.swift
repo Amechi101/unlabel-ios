@@ -8,8 +8,42 @@
 
 import UIKit
 import AWSS3
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class AWSHelper: NSObject {
+    
+    /**
+    AWS setup
+    */
+    class func setup(){
+        let credentialsProvider = getCredentialsProvider()
+        let configuration = AWSServiceConfiguration(
+            region: DefaultServiceRegionType,
+            credentialsProvider: credentialsProvider)
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        AWSLogger.defaultLogger().logLevel = .Verbose
+    }
+    
+    /**
+     AWS configuration with FB
+     */
+    class func configureAWSWithFBToken(){
+        if let accessToken = FBSDKAccessToken.currentAccessToken(){
+            let fbToken = accessToken.tokenString
+            AWSHelper.getCredentialsProvider().logins = [AWSCognitoLoginProviderKey.Facebook.rawValue: fbToken]
+        }else{
+            print("not logged in with fb")
+        }
+    }
+    
+    class func getCredentialsProvider()->AWSCognitoCredentialsProvider{
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: CognitoRegionType,
+            identityPoolId: CognitoIdentityPoolId)
+        
+        return credentialsProvider
+    }
     
     /**
      AWS call to upload images

@@ -19,7 +19,6 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var isUserLoggedIn = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -149,14 +148,8 @@ extension AppDelegate{
      Configure AWS
      */
     func setupAWS(){
-        let credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: CognitoRegionType,
-            identityPoolId: CognitoIdentityPoolId)
-        let configuration = AWSServiceConfiguration(
-            region: DefaultServiceRegionType,
-            credentialsProvider: credentialsProvider)
-        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
-        AWSLogger.defaultLogger().logLevel = .None
+        AWSHelper.setup()
+        AWSHelper.configureAWSWithFBToken()
     }
     
     /**

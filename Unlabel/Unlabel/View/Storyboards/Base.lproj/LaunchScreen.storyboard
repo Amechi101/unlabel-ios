@@ -16,16 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="dfr-gj-GgD">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="96k-QG-um7">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="dfr-gj-GgD" secondAttribute="bottom" id="8EK-5b-mLU"/>
-                            <constraint firstAttribute="trailing" secondItem="dfr-gj-GgD" secondAttribute="trailing" id="OXX-wg-RcT"/>
-                            <constraint firstItem="dfr-gj-GgD" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Q3z-HT-Kpr"/>
-                            <constraint firstItem="dfr-gj-GgD" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="r1A-2U-3Dx"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="96k-QG-um7" secondAttribute="bottom" id="F34-j1-C5K"/>
+                            <constraint firstItem="96k-QG-um7" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="SmQ-i1-QLO"/>
+                            <constraint firstAttribute="trailing" secondItem="96k-QG-um7" secondAttribute="trailing" id="buY-Wk-zc3"/>
+                            <constraint firstItem="96k-QG-um7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="gcc-Q5-us1"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="375" height="647"/>
+        <image name="logo_white.png" width="251" height="255"/>
     </resources>
 </document>

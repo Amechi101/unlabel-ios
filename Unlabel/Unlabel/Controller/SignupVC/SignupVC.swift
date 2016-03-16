@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import AWSCore
+import AWSCognito
+import FBSDKCoreKit
+import FBSDKLoginKit
+
+enum UserLoggedInType{
+ case FB
+ case Email
+}
 
 class SignupVC: UIViewController {
 
@@ -111,12 +120,41 @@ extension SignupVC{
 //
 extension SignupVC{
     
+    func setupCognitoForUser(loggedType:UserLoggedInType){
+        if loggedType == .FB{
+            setupCognitoForFB()
+        }else if loggedType == .Email{
+        
+        }else{
+            print("Unknown login")
+        }
+    }
+    
+    func setupCognitoForFB(){
+        AWSHelper.configureAWSWithFBToken()
+        AWSHelper.getCredentialsProvider().getIdentityId().continueWithBlock { (task: AWSTask!) -> AnyObject! in
+            
+            if (task.error != nil) {
+                print("Error: " + task.error!.localizedDescription)
+                
+            } else {
+                // the task result will contain the identity id
+                let cognitoId = task.result
+                print(cognitoId)
+            }
+            return nil
+        }
+    }
+    
     func handleFBLogin(){
         UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
+            
+            self.setupCognitoForUser(.FB)
+            
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
                 let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
                 if let window = APP_DELEGATE.window {
-                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: {
+                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                         window.rootViewController = rootNavVC
                         }, completion: nil)
                 }
