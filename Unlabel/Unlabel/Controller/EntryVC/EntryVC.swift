@@ -25,6 +25,16 @@ class EntryVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC:LegalStuffPrivacyPolicyVC = segue.destinationViewController as! LegalStuffPrivacyPolicyVC
+        
+        if segue.identifier == SEGUE_LEGAL_STUFF{
+            destinationVC.vcType = .LegalStuff
+        }else if segue.identifier == SEGUE_PRIVACY_POLICY{
+            destinationVC.vcType = .PrivacyPolicy
+        }
+    }
 }
 
     //
@@ -32,10 +42,6 @@ class EntryVC: UIViewController {
     //
 
     extension EntryVC {
-        @IBAction func unwindToEntry(segue:UIStoryboardSegue){
-            
-        }
-        
         @IBAction func IBActionContinueWithFB(sender: UIButton) {
             handleFBLogin()
         }

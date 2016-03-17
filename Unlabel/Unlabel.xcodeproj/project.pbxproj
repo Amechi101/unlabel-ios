@@ -133,6 +133,7 @@
 		15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
 		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
+		15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */; };
 		15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26A1C723A8A00A7E389 /* ProductCell.swift */; };
 		15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26B1C723A8A00A7E389 /* ProductCell.xib */; };
 		15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */; };
@@ -262,6 +263,7 @@
 		15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Product.swift; sourceTree = "<group>"; };
 		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalStuffPrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		15F0E26A1C723A8A00A7E389 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		15F0E26B1C723A8A00A7E389 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		15F0E26C1C723A8A00A7E389 /* ProductHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderCell.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15E472771C9B2DA100D56608 /* LegalStuffPrivacyPolicyVC */,
 				15F5A31D1C8A2B5C00FDE610 /* LoginVC */,
 				15F5A31E1C8A2B5C00FDE610 /* SignupVC */,
 				15F5A31A1C8A23EE00FDE610 /* EntryVC */,
@@ -637,6 +640,14 @@
 				15C993A01C56A870000C28E0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		15E472771C9B2DA100D56608 /* LegalStuffPrivacyPolicyVC */ = {
+			isa = PBXGroup;
+			children = (
+				15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */,
+			);
+			path = LegalStuffPrivacyPolicyVC;
 			sourceTree = "<group>";
 		};
 		15F0E2691C723A8A00A7E389 /* ProductVC */ = {
@@ -1164,6 +1175,7 @@
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
+				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,

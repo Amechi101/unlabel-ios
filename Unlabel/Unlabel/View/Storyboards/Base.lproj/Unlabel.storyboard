@@ -15,8 +15,15 @@
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
@@ -493,7 +500,7 @@
                                             <constraint firstAttribute="width" secondItem="KOY-9P-hT4" secondAttribute="height" multiplier="49:34" id="J0t-L5-N2U"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="Odf-II-rFn" kind="presentation" id="4yd-lW-gkU"/>
+                                            <segue destination="Odf-II-rFn" kind="presentation" identifier="PrivacyPolicy" id="4yd-lW-gkU"/>
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52m-Wm-I8i">
@@ -502,7 +509,7 @@
                                             <constraint firstAttribute="width" secondItem="52m-Wm-I8i" secondAttribute="height" multiplier="79:68" id="ZRL-bq-RHE"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="Odf-II-rFn" kind="presentation" id="pVK-UB-dGD"/>
+                                            <segue destination="Odf-II-rFn" kind="presentation" identifier="LegalStuff" id="pVK-UB-dGD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -668,42 +675,136 @@ NOT RANDOM SH*T</string>
             </objects>
             <point key="canvasLocation" x="673.5" y="2592.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Legal Stuff Privacy PolicyVC-->
         <scene sceneID="mqz-Fb-A9A">
             <objects>
-                <viewController id="Odf-II-rFn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LegalStuffPrivacyPolicyVC" id="Odf-II-rFn" customClass="LegalStuffPrivacyPolicyVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yRF-dJ-sFu"/>
                         <viewControllerLayoutGuide type="bottom" id="qYd-Mz-X9w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sUb-wk-35j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IId-Ip-jr7" userLabel="Close">
                                 <rect key="frame" x="315" y="20" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Khc-Ex-RfE"/>
-                                    <constraint firstAttribute="height" constant="60" id="gcl-aY-9T8"/>
+                                    <constraint firstAttribute="width" constant="60" id="IbU-kM-WW9"/>
+                                    <constraint firstAttribute="height" constant="60" id="sxE-R5-zVa"/>
                                 </constraints>
                                 <state key="normal" image="X"/>
                                 <connections>
-                                    <segue destination="sXc-yQ-iuD" kind="unwind" unwindAction="unwindToEntry:" id="LTW-7g-jUa"/>
+                                    <action selector="IBActionClose:" destination="Odf-II-rFn" eventType="touchUpInside" id="gri-1d-1jA"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-RV-aDA">
+                                <rect key="frame" x="0.0" y="78" width="375" height="922"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-uM-kkE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Policy purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypO-qr-ylh">
+                                                <rect key="frame" x="22" y="0.0" width="100" height="16"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWb-G6-PTt">
+                                                <rect key="frame" x="22" y="33" width="331" height="240"/>
+                                                <mutableString key="text">Unlabel App (“Unlabel”) provides this Privacy Policy to inform you of our policies and procedures for the collection, use and disclosure of personal information we receive from users of unlabel.us (this “Site”). This Privacy Policy only applies to information you provide to us through the Site.
+This Privacy Policy may change from time to time. We will not reduce your rights under this Privacy Policy without your consent. We will post all privacy policy changes on this page unlabel.us/terms. If changes are significant, we will provide a more prominent notice (including, for certain services, email notification of privacy policy changes).</mutableString>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="External links" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-bS-MAN">
+                                                <rect key="frame" x="22" y="300" width="91" height="16"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-cK-IAl">
+                                                <rect key="frame" x="22" y="333" width="331" height="144"/>
+                                                <string key="text">Our Site contains links to multiple designers. If you choose to visit a website by "clicking on" a website link on Unlabel you will be directed to that designer's website. We do not take responsibility for cookies or other files that could be placed on your computer by these designers. We encourage you to read each designer's privacy policy if you have concerns with their behavior.</string>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpZ-yE-bGq">
+                                                <rect key="frame" x="22" y="504" width="85" height="16"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="038-6b-wps">
+                                                <rect key="frame" x="22" y="537" width="331" height="176"/>
+                                                <string key="text">When you subscribe to Unlabel's subscription list, you are agreeing to receive emails, newsletters, recommendations and policy updates. If you would like to opt out of our emails, please contact info@unlabel.us, or follow up unsubscribe link on those emails.
+Unlabel reserves the right to delete your email without notice, for legitimate business reasons. In the unlikely event that this occurs, we will provide an email notification with further details.
+</string>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="ypO-qr-ylh" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="2Xw-pE-l32"/>
+                                            <constraint firstItem="038-6b-wps" firstAttribute="top" secondItem="IpZ-yE-bGq" secondAttribute="bottom" constant="17" id="5Mq-qx-oAy"/>
+                                            <constraint firstAttribute="bottom" secondItem="038-6b-wps" secondAttribute="bottom" constant="50" id="9cv-ct-XoT"/>
+                                            <constraint firstAttribute="trailing" secondItem="038-6b-wps" secondAttribute="trailing" constant="22" id="E93-OA-uBS"/>
+                                            <constraint firstItem="iWb-G6-PTt" firstAttribute="top" secondItem="ypO-qr-ylh" secondAttribute="bottom" constant="17" id="KGP-Eq-EYb"/>
+                                            <constraint firstItem="fw4-bS-MAN" firstAttribute="top" secondItem="iWb-G6-PTt" secondAttribute="bottom" constant="27" id="RiJ-0V-i0P"/>
+                                            <constraint firstItem="iWb-G6-PTt" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="S5e-LH-P1I"/>
+                                            <constraint firstItem="fw4-bS-MAN" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="SZj-zV-8jg"/>
+                                            <constraint firstItem="ypO-qr-ylh" firstAttribute="top" secondItem="TNu-uM-kkE" secondAttribute="top" id="SyH-FC-pQl"/>
+                                            <constraint firstItem="IpZ-yE-bGq" firstAttribute="top" secondItem="xNX-cK-IAl" secondAttribute="bottom" constant="27" id="VeN-po-3cu"/>
+                                            <constraint firstItem="038-6b-wps" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="aoO-lQ-vCY"/>
+                                            <constraint firstItem="IpZ-yE-bGq" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="oBR-9C-KUv"/>
+                                            <constraint firstItem="xNX-cK-IAl" firstAttribute="leading" secondItem="TNu-uM-kkE" secondAttribute="leading" constant="22" id="oSo-KQ-4xB"/>
+                                            <constraint firstAttribute="trailing" secondItem="xNX-cK-IAl" secondAttribute="trailing" constant="22" id="orn-NM-d50"/>
+                                            <constraint firstItem="xNX-cK-IAl" firstAttribute="top" secondItem="fw4-bS-MAN" secondAttribute="bottom" constant="17" id="pvF-BE-vBo"/>
+                                            <constraint firstAttribute="trailing" secondItem="iWb-G6-PTt" secondAttribute="trailing" constant="22" id="wVp-qc-oeX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="TNu-uM-kkE" secondAttribute="trailing" id="CxQ-Dd-mDJ"/>
+                                    <constraint firstItem="TNu-uM-kkE" firstAttribute="width" secondItem="Bxa-RV-aDA" secondAttribute="width" id="QjG-3j-9Sk"/>
+                                    <constraint firstItem="TNu-uM-kkE" firstAttribute="top" secondItem="Bxa-RV-aDA" secondAttribute="top" id="RDy-2m-Iq4"/>
+                                    <constraint firstItem="TNu-uM-kkE" firstAttribute="leading" secondItem="Bxa-RV-aDA" secondAttribute="leading" id="W3H-rH-0Ys"/>
+                                    <constraint firstAttribute="bottom" secondItem="TNu-uM-kkE" secondAttribute="bottom" id="nDi-P7-5Ui"/>
+                                </constraints>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL STUFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8H2-hv-7Rd">
+                                <rect key="frame" x="132" y="28" width="111" height="18"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="18"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IId-Ip-jr7" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" id="69n-Be-pFy"/>
-                            <constraint firstAttribute="trailing" secondItem="IId-Ip-jr7" secondAttribute="trailing" id="pJD-yq-PBC"/>
+                            <constraint firstItem="Bxa-RV-aDA" firstAttribute="leading" secondItem="sUb-wk-35j" secondAttribute="leading" id="41g-rR-lDL"/>
+                            <constraint firstItem="8H2-hv-7Rd" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" constant="8" id="5iA-a9-nmy"/>
+                            <constraint firstAttribute="trailing" secondItem="IId-Ip-jr7" secondAttribute="trailing" id="GTg-XR-vol"/>
+                            <constraint firstItem="IId-Ip-jr7" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" id="JFc-kZ-4rr"/>
+                            <constraint firstItem="8H2-hv-7Rd" firstAttribute="centerX" secondItem="sUb-wk-35j" secondAttribute="centerX" id="hmd-uI-u6G"/>
+                            <constraint firstItem="qYd-Mz-X9w" firstAttribute="top" secondItem="Bxa-RV-aDA" secondAttribute="bottom" id="p5g-Jb-juX"/>
+                            <constraint firstAttribute="trailing" secondItem="Bxa-RV-aDA" secondAttribute="trailing" id="sK4-ZU-xrU"/>
+                            <constraint firstItem="Bxa-RV-aDA" firstAttribute="top" secondItem="8H2-hv-7Rd" secondAttribute="bottom" constant="32" id="xy8-QM-B9p"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="IBbtnClose" destination="IId-Ip-jr7" id="ifC-Gx-1hv"/>
+                        <outlet property="IBlblTitle" destination="8H2-hv-7Rd" id="k3D-Am-ub1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6H-84-u1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sXc-yQ-iuD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-556.5" y="2690.5"/>
+            <point key="canvasLocation" x="-556.5" y="2857"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="quR-ls-Okt">

@@ -65,6 +65,11 @@ let S_ID_NAV_CONTROLLER             = "NavController"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 
+//
+//MARK:- Segue IDs
+//
+let SEGUE_PRIVACY_POLICY       = "PrivacyPolicy"
+let SEGUE_LEGAL_STUFF          = "LegalStuff"
 
 //
 //MARK:- Cell Reusable IDs
@@ -88,6 +93,9 @@ let FONT_STYLE_BOLD = "Bold"
 //
 let sSOMETHING_WENT_WRONG = "Something Went Wrong!"
 let sARE_YOU_SURE = "Are you sure?"
+
+let sLegal_Stuff = "LEGAL STUFF"
+let sPrivacy_Policy = "PRIVACY POLICY"
 
 //
 //MARK:- Anonymous Constants
