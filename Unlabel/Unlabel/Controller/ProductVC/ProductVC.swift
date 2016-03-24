@@ -273,7 +273,7 @@ extension ProductVC{
 //
 extension ProductVC{
     func awsCallFetchProducts(){
-        showLoading()
+//        showLoading()
         
         let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
         

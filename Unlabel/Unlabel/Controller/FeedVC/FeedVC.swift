@@ -135,6 +135,9 @@ extension FeedVC:FilterVCDelegate{
 //
 extension FeedVC{
     func willCloseChildVC(childVCName: String) {
+        if childVCName == S_ID_LEFT_MENU_VC{
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
         headerButtonEnabled(setEnabled: true)
     }
 }
@@ -189,8 +192,10 @@ extension FeedVC{
      another is opened.
      */
     func headerButtonEnabled(setEnabled setEnabled:Bool){
-        self.navigationItem.leftBarButtonItem?.enabled = setEnabled
-        self.navigationItem.rightBarButtonItem?.enabled = setEnabled
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.navigationItem.leftBarButtonItem?.enabled = setEnabled
+            self.navigationItem.rightBarButtonItem?.enabled = setEnabled
+        }
     }
     
     /**
@@ -253,10 +258,11 @@ extension FeedVC{
             leftMenuVC.view.frame.origin.x = 0
         }
         
-        self.navigationController!.addChildViewController(leftMenuVC)
+        addChildViewController(leftMenuVC)
         leftMenuVC.didMoveToParentViewController(self)
         
-        self.navigationController!.view.addSubview(leftMenuVC.view)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        view.addSubview(leftMenuVC.view)
     }
     
     /**
@@ -329,7 +335,26 @@ extension FeedVC{
     }
     
     func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
-        print(indexPath.row)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        if indexPath.row == LeftMenuItems.Discover.rawValue{
+            openDiscover()
+        }else if indexPath.row == LeftMenuItems.Following.rawValue{
+            openFollowing()
+        }else if indexPath.row == LeftMenuItems.Settings.rawValue{
+            openSettings()
+        }
+    }
+    
+    func openDiscover(){
+        
+    }
+    
+    func openFollowing(){
+    
+    }
+    
+    func openSettings(){
+        performSegueWithIdentifier("SettingsVC", sender: self)
     }
     
     func addTestData(){

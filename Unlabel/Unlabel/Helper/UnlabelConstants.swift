@@ -59,6 +59,7 @@ let S_ID_FILTER_VC                  = "FilterVC"
 let S_ID_PRODUCT_VC                 = "ProductVC"
 let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
+let S_ID_SETTINGS_VC                = "SettingsVC"
 let S_ID_ADD_PRODUCT_VC             = "AddProductVC"
 let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
@@ -70,6 +71,7 @@ let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 //
 let SEGUE_PRIVACY_POLICY       = "PrivacyPolicy"
 let SEGUE_LEGAL_STUFF          = "LegalStuff"
+let SEGUE_SETTINGS             = "Settings"
 
 //
 //MARK:- Cell Reusable IDs

@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum LeftMenuItems:Int{
+    case Discover = 0
+    case Following = 1
+    case Settings = 2
+}
+
 //
 //MARK:- LeftMenuVC Protocols
 //
