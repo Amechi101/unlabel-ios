@@ -55,20 +55,30 @@ class EntryVC: UIViewController {
     extension EntryVC {
         func handleFBLogin(){
             UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
-                
+                self.registerForPushNotifications()
                 self.setupCognitoForFB()
                 
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-                    if let window = APP_DELEGATE.window {
+                let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+                if let window = APP_DELEGATE.window {
+                    window.rootViewController = rootNavVC
+                    window.rootViewController!.view.layoutIfNeeded()
+                    
                         UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                            window.rootViewController = rootNavVC
-                            }, completion: nil)
+                            window.rootViewController!.view.layoutIfNeeded()
+                        }, completion: nil)
                     }
-                })
                 }) { (error:NSError?) -> () in
                     print(error)
             }
+        }
+        
+        /**
+         Register current device to recieve push notifications
+         */
+        func registerForPushNotifications(){
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         
         func setupCognitoForFB(){

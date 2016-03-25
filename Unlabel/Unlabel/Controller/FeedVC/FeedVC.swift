@@ -170,7 +170,7 @@ extension FeedVC{
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
-        self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = true
     }
     
     /**

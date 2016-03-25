@@ -157,19 +157,8 @@ extension AppDelegate{
      */
     private func setupOnLaunch(){
         Fabric.with([Crashlytics.self, AWSCognito.self])
-        registerForPushNotifications()
         setupRootVC()
     }
-
-    /**
-     Register current device to recieve push notifications
-     */
-    func registerForPushNotifications(){
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-    }
-    
     
     /**
      Init UI on app launch.

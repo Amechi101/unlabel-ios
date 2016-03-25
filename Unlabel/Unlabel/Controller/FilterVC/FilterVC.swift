@@ -76,6 +76,7 @@ extension FilterVC:UITableViewDelegate{
 //MARK:- UITableViewDataSource Methods
 //
 extension FilterVC:UITableViewDataSource{
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 4
     }
@@ -103,6 +104,7 @@ extension FilterVC:UITableViewDataSource{
         if indexPath.row == 3{
             categoryLocationCell.cellType = CategoryLocationCellType.Category
             categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
+            categoryLocationCell.IBconstraintCategoryTableHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
         }else{
             categoryLocationCell.cellType = CategoryLocationCellType.Unknown
             categoryLocationCell.IBtblLocation.tag = TableViewType.Unknown.rawValue
@@ -222,6 +224,7 @@ extension FilterVC{
         IBtblFilter.estimatedRowHeight = SCREEN_HEIGHT - 218 //218 for StatusBar+Footer+XButton height
         IBtblFilter.rowHeight = UITableViewAutomaticDimension
         IBtblFilter.tableFooterView = UIView()
+        IBtblFilter.reloadData()
     }
     
     /**
