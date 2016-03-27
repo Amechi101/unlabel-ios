@@ -60,11 +60,14 @@ let S_ID_PRODUCT_VC                 = "ProductVC"
 let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_SETTINGS_VC                = "SettingsVC"
+let S_ID_FOLLOWING_VC               = "FollowingVC"
 let S_ID_ADD_PRODUCT_VC             = "AddProductVC"
 let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
+let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
+
 
 //
 //MARK:- Segue IDs

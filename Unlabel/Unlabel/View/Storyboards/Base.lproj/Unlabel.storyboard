@@ -22,8 +22,11 @@
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
@@ -470,11 +473,117 @@
                         <outlet property="IBbtnFilter" destination="t7F-mO-tqo" id="fZX-LK-iQ9"/>
                         <outlet property="IBbtnTitle" destination="aKa-if-cLV" id="Jni-AL-lgz"/>
                         <outlet property="IBcollectionViewProduct" destination="rmC-Tv-ZXd" id="Q8T-fa-I3j"/>
+                        <segue destination="9XV-MJ-OHN" kind="presentation" identifier="ProductDetailVC" id="oOL-3s-s48"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGd-SX-WdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1214.5" y="756.5"/>
+        </scene>
+        <!--Product DetailVC-->
+        <scene sceneID="J3Y-3J-AW6">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetailVC" id="9XV-MJ-OHN" customClass="ProductDetailVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sid-Wg-s3P"/>
+                        <viewControllerLayoutGuide type="bottom" id="pEx-GD-P7b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wJy-fD-BtV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbX-5E-97e">
+                                <rect key="frame" x="315" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="UKF-ls-UNS"/>
+                                    <constraint firstAttribute="height" constant="60" id="yFh-ja-9K4"/>
+                                </constraints>
+                                <state key="normal" image="X">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionClose:" destination="Fug-ik-USM" eventType="touchUpInside" id="7TQ-QR-gne"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjy-Jg-PUN">
+                                <rect key="frame" x="49" y="580" width="277" height="44"/>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DRg-d3-F2e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
+                                <state key="normal" title="BUY ON CUTE &amp; BROKE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxv-ar-7Tm">
+                                <rect key="frame" x="49" y="528" width="277" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="44g-vO-ZVK"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="33" maxY="0.0"/>
+                                <state key="normal" title="SHARE INSPIRATION" image="hamburger">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="0.15686274509803921" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzu-o1-g6K">
+                                <rect key="frame" x="50" y="501" width="275" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="hLM-QQ-qRe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
+                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="XHu-yl-tly">
+                                <rect key="frame" x="33" y="88" width="309" height="374"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coby Tee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPP-DW-Cmx">
+                                <rect key="frame" x="50" y="479" width="275" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="cvZ-UY-VnM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XHu-yl-tly" firstAttribute="leading" secondItem="wJy-fD-BtV" secondAttribute="leading" constant="33" id="33g-oJ-StO"/>
+                            <constraint firstItem="wPP-DW-Cmx" firstAttribute="top" secondItem="XHu-yl-tly" secondAttribute="bottom" constant="17" id="61q-Me-Pe5"/>
+                            <constraint firstItem="XHu-yl-tly" firstAttribute="top" secondItem="gbX-5E-97e" secondAttribute="bottom" constant="8" id="8ek-eW-TO5"/>
+                            <constraint firstItem="Bxv-ar-7Tm" firstAttribute="top" secondItem="Qzu-o1-g6K" secondAttribute="bottom" constant="15" id="Cso-Oq-F23"/>
+                            <constraint firstItem="gbX-5E-97e" firstAttribute="top" secondItem="Sid-Wg-s3P" secondAttribute="bottom" id="EGE-io-NFc"/>
+                            <constraint firstItem="Qzu-o1-g6K" firstAttribute="leading" secondItem="wJy-fD-BtV" secondAttribute="leading" constant="50" id="HPq-uY-mU6"/>
+                            <constraint firstItem="pEx-GD-P7b" firstAttribute="top" secondItem="Wjy-Jg-PUN" secondAttribute="bottom" constant="43" id="JgM-De-DoJ"/>
+                            <constraint firstItem="Wjy-Jg-PUN" firstAttribute="top" secondItem="Bxv-ar-7Tm" secondAttribute="bottom" constant="8" id="MG6-Ql-qPO"/>
+                            <constraint firstAttribute="trailing" secondItem="Wjy-Jg-PUN" secondAttribute="trailing" constant="49" id="VU9-73-PNY"/>
+                            <constraint firstItem="Bxv-ar-7Tm" firstAttribute="leading" secondItem="wJy-fD-BtV" secondAttribute="leading" constant="49" id="XOS-n4-ZgE"/>
+                            <constraint firstAttribute="trailing" secondItem="wPP-DW-Cmx" secondAttribute="trailing" constant="50" id="aAr-Oi-Kc9"/>
+                            <constraint firstItem="Qzu-o1-g6K" firstAttribute="top" secondItem="wPP-DW-Cmx" secondAttribute="bottom" constant="8" id="baF-Gm-rtl"/>
+                            <constraint firstAttribute="trailing" secondItem="gbX-5E-97e" secondAttribute="trailing" id="fKk-j3-Ypg"/>
+                            <constraint firstAttribute="trailing" secondItem="XHu-yl-tly" secondAttribute="trailing" constant="33" id="g7H-Ut-bmN"/>
+                            <constraint firstAttribute="trailing" secondItem="Bxv-ar-7Tm" secondAttribute="trailing" constant="49" id="m7e-9v-Lw4"/>
+                            <constraint firstItem="Wjy-Jg-PUN" firstAttribute="leading" secondItem="wJy-fD-BtV" secondAttribute="leading" constant="49" id="otk-Sd-jrD"/>
+                            <constraint firstItem="wPP-DW-Cmx" firstAttribute="leading" secondItem="wJy-fD-BtV" secondAttribute="leading" constant="50" id="yo9-YL-Yu8"/>
+                            <constraint firstAttribute="trailing" secondItem="Qzu-o1-g6K" secondAttribute="trailing" constant="50" id="z8t-Fe-iLZ"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ycr-O6-dPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1677.5" y="756.5"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="PLw-F3-4p9">
@@ -1522,6 +1631,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <image name="hamburger" width="20" height="15"/>
         <image name="logo_black" width="126" height="127"/>
         <image name="splash" width="375" height="647"/>
+        <image name="test" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="skI-k5-ll8"/>

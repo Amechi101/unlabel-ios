@@ -14,6 +14,7 @@
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
+		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
 		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
@@ -30,6 +31,7 @@
 		159245271C553B6800755814 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
 		159245281C553B6800755814 /* FeedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159245261C553B6800755814 /* FeedVCCell.xib */; };
 		1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592452A1C5557D900755814 /* LeftMenuVC.swift */; };
+		15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC8D771CA87058000B2BF3 /* FollowingVC.swift */; };
 		15AD17FB1C62663200A3F513 /* AWSAutoScaling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EA1C62663100A3F513 /* AWSAutoScaling.framework */; };
 		15AD17FC1C62663200A3F513 /* AWSCloudWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EB1C62663100A3F513 /* AWSCloudWatch.framework */; };
 		15AD17FD1C62663200A3F513 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EC1C62663100A3F513 /* AWSCognito.framework */; };
@@ -174,6 +176,7 @@
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
+		1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		159245251C553B6800755814 /* FeedVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCCell.swift; sourceTree = "<group>"; };
 		159245261C553B6800755814 /* FeedVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedVCCell.xib; sourceTree = "<group>"; };
 		1592452A1C5557D900755814 /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		15AC8D771CA87058000B2BF3 /* FollowingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		15AD17EA1C62663100A3F513 /* AWSAutoScaling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSAutoScaling.framework; path = "Pods/../build/Debug-iphoneos/AWSAutoScaling.framework"; sourceTree = "<group>"; };
 		15AD17EB1C62663100A3F513 /* AWSCloudWatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCloudWatch.framework; path = "Pods/../build/Debug-iphoneos/AWSCloudWatch.framework"; sourceTree = "<group>"; };
 		15AD17EC1C62663100A3F513 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Pods/../build/Debug-iphoneos/AWSCognito.framework"; sourceTree = "<group>"; };
@@ -395,6 +399,14 @@
 			path = Additional_Images;
 			sourceTree = "<group>";
 		};
+		1578949D1CA85AA500E4C1A6 /* ProductDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */,
+			);
+			path = ProductDetailVC;
+			sourceTree = "<group>";
+		};
 		15897E891C5935A500FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +470,14 @@
 			path = LeftMenuVC;
 			sourceTree = "<group>";
 		};
+		15AC8D761CA8703D000B2BF3 /* FollowingVC */ = {
+			isa = PBXGroup;
+			children = (
+				15AC8D771CA87058000B2BF3 /* FollowingVC.swift */,
+			);
+			path = FollowingVC;
+			sourceTree = "<group>";
+		};
 		15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +490,8 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15AC8D761CA8703D000B2BF3 /* FollowingVC */,
+				1578949D1CA85AA500E4C1A6 /* ProductDetailVC */,
 				15B7E7981C54A2D100244AC9 /* FeedVC */,
 				15EF18021CA4816F0028BA8B /* AccountInfoVC */,
 				150AE9411CA1CF6C00131A0A /* SettingsVC */,
@@ -1177,6 +1199,7 @@
 			files = (
 				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
+				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
@@ -1200,6 +1223,7 @@
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
+				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */,
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,

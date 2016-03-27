@@ -1,14 +1,14 @@
 //
-//  NavController.swift
+//  ProductDetailVC.swift
 //  Unlabel
 //
-//  Created by ZAID PATHAN on 26/01/16.
+//  Created by Zaid Pathan on 27/03/16.
 //  Copyright © 2016 Unlabel. All rights reserved.
 //
 
 import UIKit
 
-class NavController: UINavigationController {
+class ProductDetailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +22,14 @@ class NavController: UINavigationController {
     }
     
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }

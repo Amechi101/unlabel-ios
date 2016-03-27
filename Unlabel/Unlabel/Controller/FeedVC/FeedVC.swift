@@ -10,6 +10,12 @@ import UIKit
 import AWSS3
 import AWSDynamoDB
 
+    
+enum MainVCType{
+    case Feed
+    case Following
+}
+    
 class FeedVC: UIViewController {
 
 //
@@ -25,6 +31,7 @@ class FeedVC: UIViewController {
     
     var didSelectIndexPath:NSIndexPath?
     var filterChildVC:FilterVC?
+    var mainVCType:MainVCType = .Feed
 
     
 //
@@ -32,7 +39,8 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        awsCallFetchActiveBrands()
+        addTestData()
+//        awsCallFetchActiveBrands()
         setupUIOnLoad()
     }
     
@@ -170,6 +178,21 @@ extension FeedVC{
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
+        
+        if mainVCType == .Feed{
+            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
+            IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
+            IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)
+            navigationController?.navigationItem.rightBarButtonItem?.title = "FILTER"
+            navigationController?.navigationItem.rightBarButtonItem?.enabled = true
+        }else if mainVCType == .Following{
+            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
+            IBbtnUnlabel.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
+            IBbtnUnlabel.setTitle("FOLLOWING", forState: .Normal)
+            navigationController?.navigationItem.rightBarButtonItem?.title = ""
+            navigationController?.navigationItem.rightBarButtonItem?.enabled = false
+        }
+        
         self.automaticallyAdjustsScrollViewInsets = true
     }
     
@@ -350,16 +373,20 @@ extension FeedVC{
     }
     
     func openFollowing(){
-    
+            if let feedVC:FeedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC{
+                feedVC.mainVCType = .Following
+                navigationController?.showViewController(feedVC, sender: self)
+        }
     }
     
     func openSettings(){
-        performSegueWithIdentifier("SettingsVC", sender: self)
+        performSegueWithIdentifier(S_ID_SETTINGS_VC, sender: self)
     }
     
     func addTestData(){
         for _ in 0...39{
             arrBrandList.append(Brand())
+            IBcollectionViewFeed.reloadData()
         }
     }
 }
