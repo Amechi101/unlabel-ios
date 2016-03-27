@@ -358,7 +358,7 @@ extension FeedVC{
     }
     
     func addTestData(){
-        for (var i = 0 ; i < 40 ; i++){
+        for _ in 0...39{
             arrBrandList.append(Brand())
         }
     }
@@ -403,7 +403,7 @@ extension FeedVC{
             //If got result
             if let result = task.result{
                 //If result items count > 0
-                if let arrItems:[DynamoDB_Brand] = result.items as? [DynamoDB_Brand] where arrItems.count>0{
+                if let arrItems:[DynamoDB_Brand] = result.allItems as? [DynamoDB_Brand] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.arrBrandList = [Brand]()
                             for (index, brand) in arrItems.enumerate() {

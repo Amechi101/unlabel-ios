@@ -319,7 +319,7 @@ extension ProductVC{
 
                 
                 //If result items count > 0
-                if let arrItems:[DynamoDB_Product] = result.items as? [DynamoDB_Product] where arrItems.count>0{
+                if let arrItems:[DynamoDB_Product] = result.allItems as? [DynamoDB_Product] where arrItems.count>0{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         for (index, product) in arrItems.enumerate() {
                             var productObj = Product()
