@@ -62,7 +62,9 @@ extension AboutUsVC{
             
             presentViewController(mail, animated: true, completion: nil)
         } else {
-            // show failure alert
+            UnlabelHelper.showAlert(onVC: self, title: "Your Mail is not configured!", message: "Please confugure your mail and try again!", onOk: {
+                
+            })
         }
     }
 }
