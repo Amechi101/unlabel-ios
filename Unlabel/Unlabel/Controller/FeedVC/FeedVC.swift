@@ -11,7 +11,7 @@ import AWSS3
 import AWSDynamoDB
 
     
-enum MainVCType{
+    enum MainVCType:Int{
     case Feed
     case Following
 }
@@ -22,6 +22,7 @@ class FeedVC: UIViewController {
 //MARK:- IBOutlets, constants, vars
 //
     @IBOutlet weak var IBbarBtnHamburger: UIBarButtonItem!
+    @IBOutlet weak var IBbtnHamburger: UIButton!
     @IBOutlet weak var IBbarBtnFilter: UIBarButtonItem!
     @IBOutlet weak var IBbtnUnlabel: UIButton!
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
@@ -31,6 +32,7 @@ class FeedVC: UIViewController {
     
     var didSelectIndexPath:NSIndexPath?
     var filterChildVC:FilterVC?
+    var leftMenuChildVC:LeftMenuVC?
     var mainVCType:MainVCType = .Feed
 
     
@@ -143,9 +145,7 @@ extension FeedVC:FilterVCDelegate{
 //
 extension FeedVC{
     func willCloseChildVC(childVCName: String) {
-        if childVCName == S_ID_LEFT_MENU_VC{
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        }
+        navigationController?.setNavigationBarHidden(false, animated: true)
         headerButtonEnabled(setEnabled: true)
     }
 }
@@ -156,10 +156,18 @@ extension FeedVC{
 //
 extension FeedVC{
     @IBAction func IBActionHamburger(sender: UIButton) {
-        openLeftMenu()
+        handleHamburgerAndBack(sender)
     }
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
+        openFilterScreen()
+    }
+    
+    @IBAction func IBActionSwipeRight(sender: AnyObject) {
+        handleHamburgerAndBack(sender)
+    }
+    
+    @IBAction func IBActionSwipeLeft(sender: AnyObject) {
         openFilterScreen()
     }
 }
@@ -178,22 +186,25 @@ extension FeedVC{
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
+        IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
         
         if mainVCType == .Feed{
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
             IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
             IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)
-            navigationController?.navigationItem.rightBarButtonItem?.title = "FILTER"
-            navigationController?.navigationItem.rightBarButtonItem?.enabled = true
+            self.IBbarBtnFilter.title = "FILTER     "
+            self.IBbarBtnFilter.enabled = true
+            IBbtnHamburger.setImage(UIImage(named: IMG_HAMBURGER), forState: .Normal)
         }else if mainVCType == .Following{
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
             IBbtnUnlabel.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
             IBbtnUnlabel.setTitle("FOLLOWING", forState: .Normal)
-            navigationController?.navigationItem.rightBarButtonItem?.title = ""
-            navigationController?.navigationItem.rightBarButtonItem?.enabled = false
+            self.IBbarBtnFilter.title = ""
+            self.IBbarBtnFilter.enabled = false
+            IBbtnHamburger.setImage(UIImage(named: IMG_BACK), forState: .Normal)
         }
         
-        self.automaticallyAdjustsScrollViewInsets = true
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     /**
@@ -269,29 +280,41 @@ extension FeedVC{
      Adding Left Menu As Child VC
      */
     func addLeftMenuAsChildVC(viewControllerName VCName:String){
-        let leftMenuVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LeftMenuVC
-        leftMenuVC.delegate = self
-        leftMenuVC.view.frame.size = self.view.frame.size
-        
-        //Animate leftViewController entry
-        leftMenuVC.view.frame.origin.x = -self.view.frame.size.width
-        leftMenuVC.view.alpha = 0
-        UIView.animateWithDuration(0.3) { () -> Void in
-            leftMenuVC.view.alpha = 1
-            leftMenuVC.view.frame.origin.x = 0
-        }
-        
-        addChildViewController(leftMenuVC)
-        leftMenuVC.didMoveToParentViewController(self)
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
-        view.addSubview(leftMenuVC.view)
+        if let leftMenuChildVCObj = leftMenuChildVC{
+            //Animate leftViewController entry
+            leftMenuChildVCObj.view.frame.origin.x = -self.view.frame.size.width
+            leftMenuChildVCObj.view.alpha = 0
+            UIView.animateWithDuration(0.3) { () -> Void in
+                leftMenuChildVCObj.view.alpha = 1
+                leftMenuChildVCObj.view.frame.origin.x = 0
+            }
+        }else{
+            leftMenuChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? LeftMenuVC
+            leftMenuChildVC!.delegate = self
+            leftMenuChildVC!.view.frame.size = self.view.frame.size
+            
+            //Animate leftViewController entry
+            leftMenuChildVC!.view.frame.origin.x = -self.view.frame.size.width
+            leftMenuChildVC!.view.alpha = 0
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.leftMenuChildVC!.view.alpha = 1
+                self.leftMenuChildVC!.view.frame.origin.x = 0
+            }
+            
+            addChildViewController(leftMenuChildVC!)
+            leftMenuChildVC!.didMoveToParentViewController(self)
+            
+            navigationController?.setNavigationBarHidden(true, animated: true)
+            view.addSubview(leftMenuChildVC!.view)
+        }
     }
     
     /**
      Adding Filter VC As Child VC
      */
     func addFilterVCAsChildVC(viewControllerName VCName:String){
+        navigationController?.setNavigationBarHidden(true, animated: true)
         if let filterChildVCObj = filterChildVC{
             //Animate filterVC entry
             filterChildVCObj.view.frame.origin.x = self.view.frame.size.width
@@ -313,10 +336,10 @@ extension FeedVC{
                 self.filterChildVC!.view.frame.origin.x = 0
             }
             
-            self.navigationController!.addChildViewController(filterChildVC!)
+            addChildViewController(filterChildVC!)
             filterChildVC!.didMoveToParentViewController(self)
             
-            self.navigationController!.view.addSubview(filterChildVC!.view)
+            view.addSubview(filterChildVC!.view)
 
         }
     }
@@ -358,7 +381,7 @@ extension FeedVC{
     }
     
     func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         if indexPath.row == LeftMenuItems.Discover.rawValue{
             openDiscover()
         }else if indexPath.row == LeftMenuItems.Following.rawValue{
@@ -387,6 +410,21 @@ extension FeedVC{
         for _ in 0...39{
             arrBrandList.append(Brand())
             IBcollectionViewFeed.reloadData()
+        }
+    }
+    
+    private func popVC(){
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    /**
+     Used whan hamberger on FeedVC and Back on Following Screen pressed or swiped from left to right
+     */
+    private func handleHamburgerAndBack(sender: AnyObject){
+        if mainVCType.rawValue == MainVCType.Feed.rawValue{
+            openLeftMenu()
+        }else if mainVCType.rawValue == MainVCType.Following.rawValue{
+            popVC()
         }
     }
 }

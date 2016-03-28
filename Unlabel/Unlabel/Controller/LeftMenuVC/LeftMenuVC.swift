@@ -108,9 +108,9 @@ extension LeftMenuVC{
             self.view.alpha = 0
             self.view.frame.origin.x = -SCREEN_WIDTH
             }) { (value:Bool) -> Void in
-                self.willMoveToParentViewController(nil)
-                self.view.removeFromSuperview()
-                self.removeFromParentViewController()
+//                self.willMoveToParentViewController(nil)
+//                self.view.removeFromSuperview()
+//                self.removeFromParentViewController()
                 self.delegate?.willCloseChildVC(S_ID_LEFT_MENU_VC)
         }
     }

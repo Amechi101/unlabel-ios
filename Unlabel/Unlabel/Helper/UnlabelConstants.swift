@@ -49,7 +49,6 @@ let DARK_GRAY_COLOR = UIColor(red: 40/255, green: 44/255, blue: 53/255, alpha: 1
 let S_NAME_UNLABEL = "Unlabel"
 let S_NAME_ADMIN   = "Admin"
 
-
 //
 //MARK:- Storyboard IDs
 //
@@ -57,6 +56,7 @@ let S_ID_FEED_VC                    = "FeedVC"
 let S_ID_ENTRY_VC                   = "EntryVC"
 let S_ID_FILTER_VC                  = "FilterVC"
 let S_ID_PRODUCT_VC                 = "ProductVC"
+let S_ID_ABOUT_US_VC                = "AboutUsVC"
 let S_ID_ADD_BRAND_VC               = "AddBrandVC"
 let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_SETTINGS_VC                = "SettingsVC"
@@ -68,6 +68,11 @@ let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 
+//
+//MARK:- Image Name Constants
+//
+let IMG_HAMBURGER              = "hamburger"
+let IMG_BACK                   = "back"
 
 //
 //MARK:- Segue IDs
