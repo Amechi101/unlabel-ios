@@ -43,7 +43,7 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         addTestData()
 //        awsCallFetchActiveBrands()
-        setupUIOnLoad()
+        setupOnLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -149,8 +149,19 @@ extension FeedVC{
         headerButtonEnabled(setEnabled: true)
     }
 }
+    
 
-
+//
+//MARK:- NotFoundViewDelegate Methods
+//
+    
+extension FeedVC:NotFoundViewDelegate{
+    func didSelectViewLabels() {
+        popVC()
+    }
+}
+    
+    
 //
 //MARK:- IBAction Methods
 //
@@ -181,7 +192,7 @@ extension FeedVC{
     /**
      Setup UI on VC Load.
      */
-    func setupUIOnLoad(){
+    func setupOnLoad(){
         IBbarBtnFilter.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
@@ -205,6 +216,15 @@ extension FeedVC{
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    /**
+     If user not following any brand, show this view
+     */
+    func addNotFoundView(){
+        let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
+        notFoundView.delegate = self
+        IBcollectionViewFeed.backgroundView = notFoundView
     }
     
     /**
@@ -429,7 +449,7 @@ extension FeedVC{
     }
 }
 
-
+    
 //
 //MARK:- AWS Call Methods
 //
