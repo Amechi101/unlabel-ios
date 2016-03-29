@@ -36,6 +36,9 @@ class AccountInfoVC: UITableViewController {
 extension AccountInfoVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.row == 2{
+            UnlabelHelper.logout()
+        }
     }
 }
 

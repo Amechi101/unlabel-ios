@@ -20,6 +20,26 @@ class UnlabelHelper: NSObject {
     //
     //MARK:- Anonymous Methods
     //
+    
+    /**
+     handleLogout
+     */
+    class func logout(){
+        UnlabelFBHelper.logout()
+        let rootVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
+        
+        if let window = APP_DELEGATE.window {
+            window.rootViewController = rootVC
+            window.rootViewController!.view.layoutIfNeeded()
+            
+            UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromTop, animations: {
+                window.rootViewController!.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
+
+    
+    
     class func showAlert(onVC OnVC:UIViewController,title:String,message:String,onOk:()->()){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)

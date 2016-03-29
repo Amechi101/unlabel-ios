@@ -38,4 +38,8 @@ class UnlabelFBHelper: NSObject {
             }
         }
     }
+    
+    class func logout(){
+         FBSDKLoginManager().logOut()
+    }
 }

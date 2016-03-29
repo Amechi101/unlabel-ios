@@ -36,6 +36,9 @@ class SettingsVC: UITableViewController {
 extension SettingsVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.row == 3{
+            UnlabelHelper.logout()
+        }
     }
 }
 
