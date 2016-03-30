@@ -524,7 +524,7 @@
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="IBActionClose:" destination="Fug-ik-USM" eventType="touchUpInside" id="7TQ-QR-gne"/>
+                                    <action selector="IBActionBack:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="Ied-mN-yI0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjy-Jg-PUN">
@@ -537,6 +537,9 @@
                                 <state key="normal" title="BUY ON CUTE &amp; BROKE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="IBActionBuyProduct:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="wht-fD-cFt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bxv-ar-7Tm">
                                 <rect key="frame" x="49" y="528" width="277" height="44"/>
@@ -556,6 +559,9 @@
                                         <color key="value" red="0.15686274509803921" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="IBActionShare:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="CVr-hA-i5m"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzu-o1-g6K">
                                 <rect key="frame" x="50" y="501" width="275" height="12"/>
@@ -602,6 +608,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="IBImgProductImage" destination="XHu-yl-tly" id="685-hx-f4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ycr-O6-dPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

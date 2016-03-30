@@ -34,7 +34,8 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOnLoad()
-        awsCallFetchProducts()
+        addTestData()
+//        awsCallFetchProducts()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +52,8 @@ extension ProductVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //Not Header Cell
         if indexPath.row > 0{
-            openSafariForIndexPath(indexPath)
+            performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_VC, sender: self)
+//            openSafariForIndexPath(indexPath)
         }
     }
     
@@ -262,6 +264,13 @@ extension ProductVC{
     func showAlertWebPageNotAvailable(){
         UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
             
+        }
+    }
+    
+    func addTestData(){
+        for _ in 0...39{
+            arrProductList.append(Product())
+            IBcollectionViewProduct.reloadData()
         }
     }
 
