@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.3.0)
   - AWSAutoScaling (2.3.4):
     - AWSCore (= 2.3.4)
   - AWSCloudWatch (2.3.4):
@@ -45,8 +46,10 @@ PODS:
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.0):
     - FBSDKCoreKit
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire
   - AWSAutoScaling
   - AWSCloudWatch
   - AWSCognito
@@ -69,8 +72,10 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit (~> 4.10)
   - FBSDKLoginKit (~> 4.10)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
   AWSAutoScaling: 58757e3fae42c8ba72ca742863c7bf7db879352d
   AWSCloudWatch: 3990aa0432b66662b10436676c3a514c4dc36ce7
   AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
@@ -93,5 +98,6 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

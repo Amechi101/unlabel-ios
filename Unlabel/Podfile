@@ -30,5 +30,8 @@ target :Unlabel, :exclusive => true do
     pod 'FBSDKCoreKit', '~> 4.10'
     pod 'FBSDKLoginKit', '~> 4.10'
     
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+    
     
 end
