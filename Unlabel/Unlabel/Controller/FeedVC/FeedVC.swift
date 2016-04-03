@@ -41,7 +41,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTestData()
+        
 //        awsCallFetchActiveBrands()
         setupOnLoad()
     }
@@ -200,6 +200,7 @@ extension FeedVC{
         IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
         
         if mainVCType == .Feed{
+            addTestData()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
             IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
             IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)
@@ -207,6 +208,7 @@ extension FeedVC{
             self.IBbarBtnFilter.enabled = true
             IBbtnHamburger.setImage(UIImage(named: IMG_HAMBURGER), forState: .Normal)
         }else if mainVCType == .Following{
+            addNotFoundView()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
             IBbtnUnlabel.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
             IBbtnUnlabel.setTitle("FOLLOWING", forState: .Normal)
@@ -261,9 +263,8 @@ extension FeedVC{
         
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
-            removeChildVCIfExists(VCName)
         }else if VCName == S_ID_FILTER_VC{
-            addFilterVCAsChildVC(viewControllerName: VCName) //Not removing child view controller, so that filter screen state remain same as last filter
+            addFilterVCAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_LAUNCH_LOADING_VC{
             addLaunchLoadingAsChildVC(viewControllerName: VCName)
             removeChildVCIfExists(VCName)
@@ -275,7 +276,7 @@ extension FeedVC{
      */
     func addLaunchLoadingAsChildVC(viewControllerName VCName:String){
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         
         let launchLoadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LaunchLoadingVC
@@ -300,16 +301,6 @@ extension FeedVC{
      Adding Left Menu As Child VC
      */
     func addLeftMenuAsChildVC(viewControllerName VCName:String){
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        if let leftMenuChildVCObj = leftMenuChildVC{
-            //Animate leftViewController entry
-            leftMenuChildVCObj.view.frame.origin.x = -self.view.frame.size.width
-            leftMenuChildVCObj.view.alpha = 0
-            UIView.animateWithDuration(0.3) { () -> Void in
-                leftMenuChildVCObj.view.alpha = 1
-                leftMenuChildVCObj.view.frame.origin.x = 0
-            }
-        }else{
             leftMenuChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? LeftMenuVC
             leftMenuChildVC!.delegate = self
             leftMenuChildVC!.view.frame.size = self.view.frame.size
@@ -320,30 +311,19 @@ extension FeedVC{
             UIView.animateWithDuration(0.3) { () -> Void in
                 self.leftMenuChildVC!.view.alpha = 1
                 self.leftMenuChildVC!.view.frame.origin.x = 0
+                self.leftMenuChildVC?.view.frame.size.height = SCREEN_HEIGHT
             }
             
-            addChildViewController(leftMenuChildVC!)
+            navigationController!.addChildViewController(leftMenuChildVC!)
             leftMenuChildVC!.didMoveToParentViewController(self)
             
-            navigationController?.setNavigationBarHidden(true, animated: true)
-            view.addSubview(leftMenuChildVC!.view)
-        }
+            navigationController?.view.addSubview(leftMenuChildVC!.view)
     }
     
     /**
      Adding Filter VC As Child VC
      */
     func addFilterVCAsChildVC(viewControllerName VCName:String){
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        if let filterChildVCObj = filterChildVC{
-            //Animate filterVC entry
-            filterChildVCObj.view.frame.origin.x = self.view.frame.size.width
-            filterChildVCObj.view.alpha = 0
-            UIView.animateWithDuration(0.3) { () -> Void in
-                filterChildVCObj.view.alpha = 1
-                filterChildVCObj.view.frame.origin.x = 0
-            }
-        }else{
             filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
             filterChildVC!.delegate = self
             filterChildVC!.view.frame.size = self.view.frame.size
@@ -354,14 +334,13 @@ extension FeedVC{
             UIView.animateWithDuration(0.3) { () -> Void in
                 self.filterChildVC!.view.alpha = 1
                 self.filterChildVC!.view.frame.origin.x = 0
+                self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
             }
             
-            addChildViewController(filterChildVC!)
+           navigationController!.addChildViewController(filterChildVC!)
             filterChildVC!.didMoveToParentViewController(self)
             
-            view.addSubview(filterChildVC!.view)
-
-        }
+            navigationController?.view.addSubview(filterChildVC!.view)
     }
 
     /**

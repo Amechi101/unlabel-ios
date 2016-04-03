@@ -20,7 +20,7 @@ class UnlabelFBHelper: NSObject {
             
             let login = FBSDKLoginManager()
             login.logInWithReadPermissions(facebookReadPermissions, fromViewController: viewController) { (result:FBSDKLoginManagerLoginResult!,error:NSError!) -> Void in
-                
+            
                 if let _ = error{
                     failureBlock(error)
                     return
@@ -37,6 +37,21 @@ class UnlabelFBHelper: NSObject {
                 }
             }
         }
+    }
+    
+    class func getUserDetails(response:(AnyObject?)->()){
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil)
+            {
+                response(result)
+                print("result \(result)")
+            }
+            else
+            {
+                print("error \(error)")
+            }
+        })
     }
     
     class func logout(){

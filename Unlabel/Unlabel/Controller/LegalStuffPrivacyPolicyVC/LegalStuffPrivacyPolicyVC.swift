@@ -16,8 +16,7 @@ enum VCType{
 
 class LegalStuffPrivacyPolicyVC: UIViewController {
     
-    @IBOutlet weak var IBlblTitle: UILabel!
-    @IBOutlet weak var IBbtnClose: UIButton!
+    @IBOutlet weak var IBbtnTitle: UIButton!
     
     var vcType:VCType = .Unknown
     
@@ -45,7 +44,7 @@ class LegalStuffPrivacyPolicyVC: UIViewController {
 
 extension LegalStuffPrivacyPolicyVC {
     @IBAction func IBActionClose(sender: UIButton) {
-        dismiss()
+        pop()
     }
 }
 
@@ -57,16 +56,16 @@ extension LegalStuffPrivacyPolicyVC {
 extension LegalStuffPrivacyPolicyVC {
     func configureViewOnLoad(){
         if vcType == .LegalStuff{
-            IBlblTitle.text = sLegal_Stuff
+            IBbtnTitle.setTitle(sLegal_Stuff, forState: .Normal)
         }else if vcType == .PrivacyPolicy{
-            IBlblTitle.text = sPrivacy_Policy
+            IBbtnTitle.setTitle(sPrivacy_Policy, forState: .Normal)
         }
         else {
             debugPrint("Unknown VC Type")
         }
     }
     
-    func dismiss(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func pop(){
+        navigationController?.popViewControllerAnimated(true)
     }
 }

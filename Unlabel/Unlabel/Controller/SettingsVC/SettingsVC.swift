@@ -27,6 +27,16 @@ class SettingsVC: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SEGUE_LEGALSTUFF_FROM_SETTINGS{
+            let destVC = segue.destinationViewController as! LegalStuffPrivacyPolicyVC
+            destVC.vcType = VCType.LegalStuff
+        }else if segue.identifier == SEGUE_PRIVACYPOLICY_FROM_SETTINGS{
+            let destVC = segue.destinationViewController as! LegalStuffPrivacyPolicyVC
+            destVC.vcType = VCType.PrivacyPolicy
+        }
+    }
 }
 
 
@@ -36,7 +46,7 @@ class SettingsVC: UITableViewController {
 extension SettingsVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 3{
+        if indexPath.row == 4{
             UnlabelHelper.logout()
         }
     }

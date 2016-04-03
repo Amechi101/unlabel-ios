@@ -10,6 +10,11 @@ import UIKit
 
 class EntryVC: UIViewController {
 
+    //
+    //MARK:- IBOutlets, constants, vars
+    //
+    @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
+    
     
     //
     //MARK:- VC Lifecycle
@@ -17,7 +22,7 @@ class EntryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        IBactivityIndicator.hidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -54,21 +59,31 @@ class EntryVC: UIViewController {
 
     extension EntryVC {
         func handleFBLogin(){
+            startLoading()
             UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
-                self.registerForPushNotifications()
-                self.setupCognitoForFB()
-                
-                let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-                if let window = APP_DELEGATE.window {
-                    window.rootViewController = rootNavVC
-                    window.rootViewController!.view.layoutIfNeeded()
-                    
-                        UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                UnlabelFBHelper.getUserDetails({ (result:AnyObject?) in
+                    if let userName:String? = result!["name"]{
+                        UnlabelHelper.setDefaultValue(userName!, key: sFB_NAME)
+                        self.stopLoading()
+                        self.registerForPushNotifications()
+                        self.setupCognitoForFB()
+                        
+                        let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+                        if let window = APP_DELEGATE.window {
+                            window.rootViewController = rootNavVC
                             window.rootViewController!.view.layoutIfNeeded()
-                        }, completion: nil)
+                            
+                            UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                                window.rootViewController!.view.layoutIfNeeded()
+                                }, completion: nil)
+                        }
                     }
-                }) { (error:NSError?) -> () in
-                    print(error)
+                })
+            }) { (error:NSError?) -> () in
+                    self.stopLoading()
+                UnlabelHelper.showAlert(onVC: self, title: "Facebook login failed!", message: "Please try again.", onOk: {
+                    
+                })
             }
         }
         
@@ -94,6 +109,26 @@ class EntryVC: UIViewController {
                     print(cognitoId)
                 }
                 return nil
+            }
+        }
+        
+        /**
+         Start loading
+         */
+        func startLoading(){
+            dispatch_async(dispatch_get_main_queue()) {
+                self.IBactivityIndicator.hidden = false
+                self.IBactivityIndicator.startAnimating()
+            }
+        }
+        
+        /**
+         Stop loading
+         */
+        func stopLoading(){
+            dispatch_async(dispatch_get_main_queue()) {
+                self.IBactivityIndicator.hidden = true
+                self.IBactivityIndicator.stopAnimating()
             }
         }
     }

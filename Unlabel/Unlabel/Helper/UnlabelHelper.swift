@@ -22,6 +22,20 @@ class UnlabelHelper: NSObject {
     //
     
     /**
+     Set user defaults
+     */
+    class func setDefaultValue(value:String,key:String){
+        NSUserDefaults.standardUserDefaults().setValue(value, forKey: key)
+    }
+    
+    /**
+     Get user defaults
+     */
+    class func getDefaultValue(key:String)->(String?){
+        return NSUserDefaults.standardUserDefaults().valueForKey(key) as? String
+    }
+    
+    /**
      handleLogout
      */
     class func logout(){

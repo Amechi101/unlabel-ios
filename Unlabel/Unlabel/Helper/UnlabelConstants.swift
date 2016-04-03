@@ -77,9 +77,11 @@ let IMG_BACK                   = "back"
 //
 //MARK:- Segue IDs
 //
-let SEGUE_PRIVACY_POLICY       = "PrivacyPolicy"
-let SEGUE_LEGAL_STUFF          = "LegalStuff"
 let SEGUE_SETTINGS             = "Settings"
+let SEGUE_LEGAL_STUFF          = "LegalStuff"
+let SEGUE_PRIVACY_POLICY       = "PrivacyPolicy"
+let SEGUE_LEGALSTUFF_FROM_SETTINGS           = "LegalStuffFromSettings"
+let SEGUE_PRIVACYPOLICY_FROM_SETTINGS        = "PrivacyPolicyFromSettings"
 
 //
 //MARK:- Cell Reusable IDs
@@ -106,6 +108,8 @@ let sARE_YOU_SURE = "Are you sure?"
 
 let sLegal_Stuff = "LEGAL STUFF"
 let sPrivacy_Policy = "PRIVACY POLICY"
+
+let sFB_NAME = "name"
 
 //
 //MARK:- Anonymous Constants
