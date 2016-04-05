@@ -17,7 +17,6 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     //MARK:- IBOutlets, constants, vars
     //
     @IBOutlet weak var IBbtnTitle: UIButton!
-    @IBOutlet weak var IBbtnFilter: UIBarButtonItem!
     @IBOutlet weak var IBcollectionViewProduct: UICollectionView!
     
     let iPaginationCount = 2
@@ -185,6 +184,46 @@ extension ProductVC:SFSafariViewControllerDelegate{
     }
 }
 
+//
+//MARK:- ViewFollowingLabelPopup Methods
+//
+
+extension ProductVC:PopupviewDelegate{
+    /**
+     If user not following any brand, show this view
+     */
+    func addPopupView(popupType:PopupType,initialFrame:CGRect){
+        let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as! ViewFollowingLabelPopup
+        viewFollowingLabelPopup.delegate = self
+        viewFollowingLabelPopup.popupType = popupType
+        viewFollowingLabelPopup.frame = initialFrame
+        viewFollowingLabelPopup.alpha = 0
+        view.addSubview(viewFollowingLabelPopup)
+        UIView.animateWithDuration(0.2) {
+            viewFollowingLabelPopup.frame = self.view.frame
+            viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
+            viewFollowingLabelPopup.alpha = 1
+        }
+        if popupType == PopupType.Follow{
+            viewFollowingLabelPopup.setFollowSubTitle("Brand")
+        }
+        viewFollowingLabelPopup.updateView()
+    }
+    
+    func popupDidClickCancel(){
+        
+    }
+    
+    func popupDidClickDelete(){
+        print("delete account")
+    }
+    
+    func popupDidClickClose(){
+        
+    }
+}
+
+
 
 //
 //MARK:- IBAction Methods
@@ -203,6 +242,16 @@ extension ProductVC{
         awsCallFetchProducts()
        print("IBActionViewMore")
     }
+    
+    @IBAction func IBActionFollow(sender: UIButton) {
+        print("Follow clicked")
+        if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+            
+        }else{
+            addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+            UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+        }
+    }
 }
 
 
@@ -215,9 +264,6 @@ extension ProductVC{
         self.arrProductList = [Product]()
         
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
-        IBbtnFilter.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
-            forState: UIControlState.Normal)
         
         if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
             IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)

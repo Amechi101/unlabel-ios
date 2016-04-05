@@ -13,17 +13,13 @@ class GenderCell: UITableViewCell {
     @IBOutlet weak var IBbtnMale: UIButton!
     @IBOutlet weak var IBbtnFemale: UIButton!
     
-    //Default selected gender Male
-    var isSelectedGenderMale:Bool = true
+    //Default both gender selected
+    var isMaleSelected:Bool = true
+    var isFemaleSelected:Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if isSelectedGenderMale{
-            changeButtonState(makeEnabled: IBbtnMale, makeDisabled: IBbtnFemale)
-        }else{
-            changeButtonState(makeEnabled: IBbtnFemale, makeDisabled: IBbtnMale)
-        }
         
         // Initialization code
     }
@@ -42,16 +38,7 @@ class GenderCell: UITableViewCell {
 extension GenderCell{
     //Tag 1 for Male, 2 for Female
     @IBAction func IBActionGenderClicked(sender: UIButton) {
-        //Male Clicked
-        if sender.tag == 1{
-            isSelectedGenderMale = true
-            changeButtonState(makeEnabled: IBbtnMale, makeDisabled: IBbtnFemale)
-            
-            //Female Clicked
-        }else{
-            isSelectedGenderMale = false
-            changeButtonState(makeEnabled: IBbtnFemale, makeDisabled: IBbtnMale)
-        }
+        handleGenderSelection(sender)
     }
 }
 
@@ -60,15 +47,46 @@ extension GenderCell{
 //MARK:- Custom Methods
 //
 extension GenderCell{
+    
+    func handleGenderSelection(sender:UIButton){
+        //Male Clicked
+        if sender.tag == 1{
+            isMaleSelected = !isMaleSelected
+            if isMaleSelected{
+                enableButton(IBbtnMale)
+            }else{
+                disableButton(IBbtnMale)
+            }
+            
+        //Female Clicked
+        }else{
+            isFemaleSelected = !isFemaleSelected
+            if isFemaleSelected{
+                enableButton(IBbtnFemale)
+            }else{
+                disableButton(IBbtnFemale)
+            }
+        }
+    }
+    
     /**
-     Change button state, i.e.For GenderCell
+     Enable button
      */
-    func changeButtonState(makeEnabled makeEnabled:UIButton,makeDisabled:UIButton){
+    func enableButton(makeEnabled:UIButton){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             makeEnabled.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
             makeEnabled.layer.borderColor = MEDIUM_GRAY_TEXT_COLOR.CGColor
+        }
+    }
+    
+    /**
+     Disable button
+     */
+    func disableButton(makeDisabled:UIButton){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
             makeDisabled.titleLabel?.textColor = LIGHT_GRAY_BORDER_COLOR
             makeDisabled.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
         }
     }
+    
 }

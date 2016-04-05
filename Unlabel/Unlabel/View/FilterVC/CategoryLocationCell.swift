@@ -62,14 +62,46 @@ class CategoryLocationCell: UITableViewCell {
     extension CategoryLocationCell:UITableViewDelegate{
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            if tableView.tag == TableViewType.Category.rawValue{
-                dictSelectedCategories[indexPath.row] = !dictSelectedCategories[indexPath.row]! //If ticked then do untick and vise-versa
-            }else if tableView.tag == TableViewType.Location.rawValue{
-                dictSelectedLocations[indexPath.row] = !dictSelectedLocations[indexPath.row]!   //If ticked then do untick and vise-versa
+                handleSelection(forIndexPath: indexPath)
+        }
+        
+        func handleSelection(forIndexPath indexPath:NSIndexPath){
+            if indexPath.row == 0 {
+                //If every cell selected then deselect all cells
+                if dictSelectedCategories[indexPath.row] == true{
+                    dictSelectedCategories[0] = false
+                    for (index,_) in arrCategories.enumerate(){
+                        dictSelectedCategories[index] = false
+                    }
+                    
+                //If not every cell selected then select all cells
+                }else{
+                    dictSelectedCategories[0] = true
+                    for (index,_) in arrCategories.enumerate(){
+                        dictSelectedCategories[index] = true
+                    }
+                }
             }else{
-            
+                dictSelectedCategories[indexPath.row] = !dictSelectedCategories[indexPath.row]! //If ticked then do untick and vise-versa
+                if isAllCellsSelected(){
+                    dictSelectedCategories[0] = true
+                }else{
+                    dictSelectedCategories[0] = false
+                }
             }
-                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            IBtblLocation.reloadData()
+        }
+        
+        func isAllCellsSelected()->Bool{
+            var isAllCellsSelected = true
+            for (index,_) in arrCategories.enumerate(){
+                if index > 0 {                                  //Ignoring "All Categories" Cell
+                    if dictSelectedCategories[index] == false{
+                        isAllCellsSelected = false              //If any of cell is deselected
+                    }
+                }
+            }
+            return isAllCellsSelected
         }
     }
     

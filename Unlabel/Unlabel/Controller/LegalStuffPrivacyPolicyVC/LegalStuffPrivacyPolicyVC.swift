@@ -17,6 +17,10 @@ enum VCType{
 class LegalStuffPrivacyPolicyVC: UIViewController {
     
     @IBOutlet weak var IBbtnTitle: UIButton!
+    @IBOutlet weak var IBbtnTitle2: UIButton!
+    
+    @IBOutlet weak var IBbtnX: UIButton!
+    @IBOutlet weak var IBconstraintScrollviewToTop: NSLayoutConstraint!
     
     var vcType:VCType = .Unknown
     
@@ -46,6 +50,10 @@ extension LegalStuffPrivacyPolicyVC {
     @IBAction func IBActionClose(sender: UIButton) {
         pop()
     }
+    
+    @IBAction func IBActionX(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 
@@ -55,13 +63,30 @@ extension LegalStuffPrivacyPolicyVC {
 
 extension LegalStuffPrivacyPolicyVC {
     func configureViewOnLoad(){
-        if vcType == .LegalStuff{
-            IBbtnTitle.setTitle(sLegal_Stuff, forState: .Normal)
-        }else if vcType == .PrivacyPolicy{
-            IBbtnTitle.setTitle(sPrivacy_Policy, forState: .Normal)
-        }
-        else {
-            debugPrint("Unknown VC Type")
+        if let _ = navigationController{
+            if vcType == .LegalStuff{
+                IBbtnTitle.setTitle(sLegal_Stuff, forState: .Normal)
+            }else if vcType == .PrivacyPolicy{
+                IBbtnTitle.setTitle(sPrivacy_Policy, forState: .Normal)
+            }
+            else {
+                debugPrint("Unknown VC Type")
+            }
+            IBbtnX.hidden = true
+            IBbtnTitle2.hidden = true
+            IBconstraintScrollviewToTop.constant = 20
+        }else{
+            if vcType == .LegalStuff{
+                IBbtnTitle2.setTitle(sLegal_Stuff, forState: .Normal)
+            }else if vcType == .PrivacyPolicy{
+                IBbtnTitle2.setTitle(sPrivacy_Policy, forState: .Normal)
+            }
+            else {
+                debugPrint("Unknown VC Type")
+            }
+            IBbtnX.hidden = false
+            IBbtnTitle2.hidden = false
+            IBconstraintScrollviewToTop.constant = 64
         }
     }
     

@@ -110,6 +110,8 @@ let sLegal_Stuff = "LEGAL STUFF"
 let sPrivacy_Policy = "PRIVACY POLICY"
 
 let sFB_NAME = "name"
+let sPOPUP_SEEN_ONCE = "popup_seen_once"
+
 
 //
 //MARK:- Anonymous Constants

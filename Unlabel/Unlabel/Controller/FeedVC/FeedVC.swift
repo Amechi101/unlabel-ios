@@ -11,7 +11,7 @@ import AWSS3
 import AWSDynamoDB
 
     
-    enum MainVCType:Int{
+enum MainVCType:Int{
     case Feed
     case Following
 }
@@ -152,15 +152,23 @@ extension FeedVC{
     
 
 //
-//MARK:- NotFoundViewDelegate Methods
+//MARK:- NotFoundView Methods
 //
     
 extension FeedVC:NotFoundViewDelegate{
+    /**
+     If user not following any brand, show this view
+     */
+    func addNotFoundView(){
+        let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
+        notFoundView.delegate = self
+        IBcollectionViewFeed.backgroundView = notFoundView
+    }
+    
     func didSelectViewLabels() {
         popVC()
     }
 }
-    
     
 //
 //MARK:- IBAction Methods
@@ -218,15 +226,6 @@ extension FeedVC{
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
-    }
-    
-    /**
-     If user not following any brand, show this view
-     */
-    func addNotFoundView(){
-        let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
-        notFoundView.delegate = self
-        IBcollectionViewFeed.backgroundView = notFoundView
     }
     
     /**

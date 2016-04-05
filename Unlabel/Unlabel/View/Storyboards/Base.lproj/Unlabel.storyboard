@@ -52,6 +52,8 @@
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -554,18 +556,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="44g-vO-ZVK"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="33" maxY="0.0"/>
-                                <state key="normal" title="SHARE INSPIRATION" image="hamburger">
-                                    <color key="titleColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="SHARE INSPIRATION">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                        <color key="value" red="0.15686274509803921" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="IBActionShare:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="CVr-hA-i5m"/>
                                 </connections>
@@ -1407,7 +1402,7 @@ NOT RANDOM SH*T</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-RV-aDA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="916"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="872"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-uM-kkE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
@@ -1487,13 +1482,41 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <constraint firstAttribute="bottom" secondItem="TNu-uM-kkE" secondAttribute="bottom" id="nDi-P7-5Ui"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2R-uq-Ihr">
+                                <rect key="frame" x="151" y="7" width="74" height="28"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
+                                <state key="normal" title="Legal Stuff">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-qQ-W9U">
+                                <rect key="frame" x="315" y="0.0" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Zry-3V-5vK"/>
+                                    <constraint firstAttribute="width" constant="60" id="lLi-ZV-KVJ"/>
+                                </constraints>
+                                <state key="normal" image="X">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionClose:" destination="PAN-GT-FN7" eventType="touchUpInside" id="iNI-US-Usx"/>
+                                    <action selector="IBActionX:" destination="Odf-II-rFn" eventType="touchUpInside" id="oYo-QZ-DzX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Bxa-RV-aDA" firstAttribute="leading" secondItem="sUb-wk-35j" secondAttribute="leading" id="41g-rR-lDL"/>
-                            <constraint firstItem="Bxa-RV-aDA" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" constant="20" id="5zn-Ba-udg"/>
+                            <constraint firstItem="Bxa-RV-aDA" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" constant="64" id="5zn-Ba-udg"/>
+                            <constraint firstItem="z2R-uq-Ihr" firstAttribute="centerX" secondItem="sUb-wk-35j" secondAttribute="centerX" id="Ai9-fs-XSo"/>
+                            <constraint firstItem="0Bk-qQ-W9U" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" id="Bfy-ew-v7I"/>
+                            <constraint firstAttribute="trailing" secondItem="0Bk-qQ-W9U" secondAttribute="trailing" id="Hjh-Nx-iqG"/>
+                            <constraint firstItem="z2R-uq-Ihr" firstAttribute="top" secondItem="yRF-dJ-sFu" secondAttribute="bottom" constant="7" id="Nna-Ie-Cx8"/>
+                            <constraint firstItem="z2R-uq-Ihr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sUb-wk-35j" secondAttribute="leading" constant="10" id="hGI-ed-Rjc"/>
                             <constraint firstItem="qYd-Mz-X9w" firstAttribute="top" secondItem="Bxa-RV-aDA" secondAttribute="bottom" id="p5g-Jb-juX"/>
                             <constraint firstAttribute="trailing" secondItem="Bxa-RV-aDA" secondAttribute="trailing" id="sK4-ZU-xrU"/>
+                            <constraint firstItem="0Bk-qQ-W9U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z2R-uq-Ihr" secondAttribute="trailing" constant="15" id="yMR-TS-ZP3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jeK-5t-Nyg">
@@ -1526,7 +1549,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
-                            <state key="normal" title="SETTINGS">
+                            <state key="normal" title="Legal Stuff">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
@@ -1534,7 +1557,10 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="IBbtnTitle" destination="hOc-rm-vL6" id="mfx-mK-DHS"/>
+                        <outlet property="IBbtnTitle" destination="hOc-rm-vL6" id="p8d-0I-qQ7"/>
+                        <outlet property="IBbtnTitle2" destination="z2R-uq-Ihr" id="Dlk-dV-kK1"/>
+                        <outlet property="IBbtnX" destination="0Bk-qQ-W9U" id="plQ-Q2-pfJ"/>
+                        <outlet property="IBconstraintScrollviewToTop" destination="5zn-Ba-udg" id="XBV-Ab-gly"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6H-84-u1U" userLabel="First Responder" sceneMemberID="firstResponder"/>

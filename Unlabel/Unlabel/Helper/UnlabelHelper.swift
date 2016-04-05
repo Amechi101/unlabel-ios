@@ -28,6 +28,10 @@ class UnlabelHelper: NSObject {
         NSUserDefaults.standardUserDefaults().setValue(value, forKey: key)
     }
     
+    class func setBoolValue(value:Bool,key:String){
+        NSUserDefaults.standardUserDefaults().setBool(value, forKey: key)
+    }
+    
     /**
      Get user defaults
      */
@@ -35,11 +39,26 @@ class UnlabelHelper: NSObject {
         return NSUserDefaults.standardUserDefaults().valueForKey(key) as? String
     }
     
+    class func getBoolValue(key:String)->(Bool){
+        return NSUserDefaults.standardUserDefaults().boolForKey(key)
+    }
+    
+    /**
+     Remove user defaults
+     */
+    class func removePrefForKey(key:String){
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
     /**
      handleLogout
      */
     class func logout(){
         UnlabelFBHelper.logout()
+        UnlabelHelper.removePrefForKey(sFB_NAME)
+        UnlabelHelper.removePrefForKey(sPOPUP_SEEN_ONCE)
+        
         let rootVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
         
         if let window = APP_DELEGATE.window {
