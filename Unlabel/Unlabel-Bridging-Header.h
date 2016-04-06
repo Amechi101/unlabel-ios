@@ -3,6 +3,7 @@
 //
 
 
+#import "Reachability.h"
 #import <Bolts/Bolts.h>
 #import <AWSCore/AWSCore.h>
 #import <AWSS3/AWSS3.h>

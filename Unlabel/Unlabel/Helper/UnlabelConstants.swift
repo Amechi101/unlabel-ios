@@ -103,14 +103,18 @@ let FONT_STYLE_BOLD = "Bold"
 //
 //MARK:- Strings
 //
-let sSOMETHING_WENT_WRONG = "Something Went Wrong!"
-let sARE_YOU_SURE = "Are you sure?"
+let sSOMETHING_WENT_WRONG       = "Something Went Wrong!"
+let S_TRY_AGAIN                 = "Please try agian later"
+let sARE_YOU_SURE               = "Are you sure?"
 
-let sLegal_Stuff = "LEGAL STUFF"
-let sPrivacy_Policy = "PRIVACY POLICY"
+let sLegal_Stuff                = "LEGAL STUFF"
+let sPrivacy_Policy             = "PRIVACY POLICY"
 
-let sFB_NAME = "name"
-let sPOPUP_SEEN_ONCE = "popup_seen_once"
+let sFB_NAME                    = "name"
+let sPOPUP_SEEN_ONCE            = "popup_seen_once"
+
+let S_NO_INTERNET               = "No Internet Available!"
+let S_PLEASE_CONNECT            = "Please connect to the Internet."
 
 
 //

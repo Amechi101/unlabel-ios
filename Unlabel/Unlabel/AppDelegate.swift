@@ -15,10 +15,16 @@ import Crashlytics
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+protocol AppDelegateDelegates {
+    func reachabilityChanged(reachable:Bool)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var reachability:Reachability!;
+    var delegate:AppDelegateDelegates?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -156,8 +162,54 @@ extension AppDelegate{
      Init everything needed on app launch.
      */
     private func setupOnLaunch(){
-        Fabric.with([Crashlytics.self, AWSCognito.self])
+        configure()
         setupRootVC()
+    }
+    
+    /**
+     Configure required things.
+     */
+    private func configure(){
+        Fabric.with([Crashlytics.self, AWSCognito.self])
+        addInternetStateChangeObserver()
+    }
+    
+    /**
+     Observe internet state change.
+     */
+    func addInternetStateChangeObserver(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: kReachabilityChangedNotification, object: nil);
+        
+        self.reachability = Reachability.reachabilityForInternetConnection()
+        self.reachability.startNotifier();
+    }
+    
+    /**
+     Check for reachability whenever internet state changes.
+     */
+    func checkForReachability(notification:NSNotification)
+    {
+        let networkReachability = notification.object as! Reachability
+        let remoteHostStatus = networkReachability.currentReachabilityStatus()
+        
+        if (remoteHostStatus == NotReachable)
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                guard let reachable = self.delegate?.reachabilityChanged(false)
+                     else {
+                        return
+                }
+                self.delegate?.reachabilityChanged(false)
+            })
+            print("Unreachable")
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+              self.delegate?.reachabilityChanged(true)
+            })
+            print("Reachable")
+        }
     }
     
     /**

@@ -41,9 +41,27 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        awsCallFetchActiveBrands()
+        wsCallGetLabels()
         setupOnLoad()
+    }
+    
+    func wsCallGetLabels(){
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            UnlabelAPIHelper.getBrands({ (arrBrands:[Brand]) in
+                self.arrBrandList = arrBrands
+                self.IBcollectionViewFeed.reloadData()
+            }) { (error) in
+                print(error)
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {
+                    
+                })
+            }
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
+                
+            })
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,17 +115,17 @@ extension FeedVC:UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].dynamoDB_Brand.BrandName.uppercaseString
-        feedVCCell.IBlblLocation.text = arrBrandList[indexPath.row].dynamoDB_Brand.Location
-        if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
-            feedVCCell.IBimgBrandImage.image = brandMainImage
-            feedVCCell.IBactivityIndicator.stopAnimating()
-            feedVCCell.IBactivityIndicator.hidden = true
-        }else{
-            feedVCCell.IBactivityIndicator.startAnimating()
-            feedVCCell.IBactivityIndicator.hidden = false
-            feedVCCell.IBimgBrandImage.image = UIImage()
-        }
+        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].Name.uppercaseString
+        feedVCCell.IBlblLocation.text = "\(arrBrandList[indexPath.row].OriginCity), \(arrBrandList[indexPath.row].StateOrCountry)"
+//        if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
+//            feedVCCell.IBimgBrandImage.image = brandMainImage
+//            feedVCCell.IBactivityIndicator.stopAnimating()
+//            feedVCCell.IBactivityIndicator.hidden = true
+//        }else{
+//            feedVCCell.IBactivityIndicator.startAnimating()
+//            feedVCCell.IBactivityIndicator.hidden = false
+//            feedVCCell.IBimgBrandImage.image = UIImage()
+//        }
         
         return feedVCCell
     }
@@ -436,69 +454,69 @@ extension FeedVC{
     /**
      AWS call to fetch all active brands
      */
-    func awsCallFetchActiveBrands(){
-        
-        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-        
-        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
-        
-        scanExpression.filterExpression = "isActive = :val"
-        scanExpression.expressionAttributeValues = [":val": true]
-        
-        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
-            
-            //If error
-            if let error = task.error{
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
-                    
-                })
-                return nil
-            }
-            
-            //If exception
-            if let exception = task.exception{
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.description, onOk: { () -> () in
-                    
-                })
-                return nil
-            }
-            
-            //If got result
-            if let result = task.result{
-                //If result items count > 0
-                if let arrItems:[DynamoDB_Brand] = result.allItems as? [DynamoDB_Brand] where arrItems.count>0{
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrBrandList = [Brand]()
-                            for (index, brand) in arrItems.enumerate() {
-                                let brandObj = Brand()
-                                brandObj.dynamoDB_Brand = brand
-                                AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-                                        if let downloadedData = data{
-                                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                                if let image = UIImage(data: downloadedData){
-                                                    brandObj.imgBrandImage = image
-                                                    self.IBcollectionViewFeed.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
-                                                }
-                                            })
-                                        }
-                                    })
-                                    self.arrBrandList.append(brandObj)
-                        }
-                        defer{
-                            self.IBcollectionViewFeed.reloadData()
-                        }
-                })
-                }else{
-                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                    })
-                }
-            }else{
-                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                })
-            }
-            
-            
-            return nil
-        }
-    }
+//    func awsCallFetchActiveBrands(){
+//        
+//        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+//        
+//        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
+//        
+//        scanExpression.filterExpression = "isActive = :val"
+//        scanExpression.expressionAttributeValues = [":val": true]
+//        
+//        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+//            
+//            //If error
+//            if let error = task.error{
+//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
+//                    
+//                })
+//                return nil
+//            }
+//            
+//            //If exception
+//            if let exception = task.exception{
+//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.description, onOk: { () -> () in
+//                    
+//                })
+//                return nil
+//            }
+//            
+//            //If got result
+//            if let result = task.result{
+//                //If result items count > 0
+//                if let arrItems:[DynamoDB_Brand] = result.allItems as? [DynamoDB_Brand] where arrItems.count>0{
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        self.arrBrandList = [Brand]()
+//                            for (index, brand) in arrItems.enumerate() {
+//                                let brandObj = Brand()
+//                                brandObj.dynamoDB_Brand = brand
+//                                AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+//                                        if let downloadedData = data{
+//                                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                                                if let image = UIImage(data: downloadedData){
+//                                                    brandObj.imgBrandImage = image
+//                                                    self.IBcollectionViewFeed.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
+//                                                }
+//                                            })
+//                                        }
+//                                    })
+//                                    self.arrBrandList.append(brandObj)
+//                        }
+//                        defer{
+//                            self.IBcollectionViewFeed.reloadData()
+//                        }
+//                })
+//                }else{
+//                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+//                    })
+//                }
+//            }else{
+//                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+//                })
+//            }
+//            
+//            
+//            return nil
+//        }
+//    }
 }

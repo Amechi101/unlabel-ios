@@ -106,23 +106,23 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
         let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
         
-        if let brandImage:UIImage = selectedBrand.imgBrandImage{
-            productHeaderCell.IBimgHeaderImage.image = brandImage
-        }else{
-            productHeaderCell.IBimgHeaderImage.image = UIImage(named: "splash")
-        }
-        
-        if let brandDescription:String = selectedBrand.dynamoDB_Brand.Description{
-            productHeaderCell.IBlblLabelDescription.text = brandDescription
-        }else{
-            productHeaderCell.IBlblLabelDescription.text = ""
-        }
-        
-        if let brandLocation:String = selectedBrand.dynamoDB_Brand.Location{
-            productHeaderCell.IBlblLabelLocation.text = brandLocation
-        }else{
-            productHeaderCell.IBlblLabelLocation.text = ""
-        }
+//        if let brandImage:UIImage = selectedBrand.imgBrandImage{
+//            productHeaderCell.IBimgHeaderImage.image = brandImage
+//        }else{
+//            productHeaderCell.IBimgHeaderImage.image = UIImage(named: "splash")
+//        }
+//        
+//        if let brandDescription:String = selectedBrand.dynamoDB_Brand.Description{
+//            productHeaderCell.IBlblLabelDescription.text = brandDescription
+//        }else{
+//            productHeaderCell.IBlblLabelDescription.text = ""
+//        }
+//        
+//        if let brandLocation:String = selectedBrand.dynamoDB_Brand.Location{
+//            productHeaderCell.IBlblLabelLocation.text = brandLocation
+//        }else{
+//            productHeaderCell.IBlblLabelLocation.text = ""
+//        }
         
         return productHeaderCell
     }
@@ -239,7 +239,7 @@ extension ProductVC{
     
     //For ProductFooterView
     @IBAction func IBActionViewMore(sender: AnyObject) {
-        awsCallFetchProducts()
+//        awsCallFetchProducts()
        print("IBActionViewMore")
     }
     
@@ -265,9 +265,9 @@ extension ProductVC{
         
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         
-        if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
-            IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
-        }
+//        if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
+//            IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
+//        }
         
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
@@ -327,89 +327,89 @@ extension ProductVC{
 //MARK:- AWS Call Methods
 //
 extension ProductVC{
-    func awsCallFetchProducts(){
-//        showLoading()
-        
-        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-        
-        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
-        scanExpression.exclusiveStartKey = self.lastEvaluatedKey
-        scanExpression.limit = iPaginationCount;
-        
-        scanExpression.filterExpression = "BrandName = :brandNameKey AND isActive = :isActiveKey"
-        scanExpression.expressionAttributeValues = [":brandNameKey": selectedBrand.dynamoDB_Brand.BrandName,":isActiveKey":true]
-        
-        dynamoDBObjectMapper.scan(DynamoDB_Product.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
-            
-            //If error
-            if let error = task.error{
-                self.hideLoading()
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
-                    
-                })
-                return nil
-            }
-            
-            //If exception
-            if let exception = task.exception{
-                self.hideLoading()
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.debugDescription, onOk: { () -> () in
-                    
-                })
-                return nil
-            }
-            
-            //If got result
-            if let result = task.result{
-                if let paginatedOutput:AWSDynamoDBPaginatedOutput = task.result as? AWSDynamoDBPaginatedOutput{
-                    self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey //Update lastEvaluatedKey
-                    if let lastEvaluatedKeyObj = paginatedOutput.lastEvaluatedKey{
-//                        self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey // Update lastEvaluatedKey
-                        print(" more data available")// more data found
-                    }else{
-                        print("No more data available")//no more data found
-                    }
-                    
-                }
-
-                
-                //If result items count > 0
-                if let arrItems:[DynamoDB_Product] = result.allItems as? [DynamoDB_Product] where arrItems.count>0{
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        for (index, product) in arrItems.enumerate() {
-                            var productObj = Product()
-                            productObj.dynamoDB_Product = product
-                            
-                            AWSHelper.downloadImageWithCompletion(forImageName: product.ProductImageName, uploadPathKey: pathKeyProducts, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-                                if let downloadedData = data{
-                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        if let image = UIImage(data: downloadedData){
-                                            productObj.imgProductImage = image
-                                            self.IBcollectionViewProduct.reloadItemsAtIndexPaths([NSIndexPath(forRow: index+1, inSection: 0)])
-                                        }
-                                    })
-                                }
-                            })
-                            self.arrProductList.append(productObj)
-                        }
-                        defer{
-                            self.hideLoading()
-                            self.IBcollectionViewProduct.reloadData()
-                        }
-                    })
-                }else{
-                    self.hideLoading()
-                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                    })
-                }
-            }else{
-                self.hideLoading()
-                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-                })
-            }
-            
-            
-            return nil
-        }
-    }
+//    func awsCallFetchProducts(){
+////        showLoading()
+//        
+//        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
+//        
+//        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
+//        scanExpression.exclusiveStartKey = self.lastEvaluatedKey
+//        scanExpression.limit = iPaginationCount;
+//        
+//        scanExpression.filterExpression = "BrandName = :brandNameKey AND isActive = :isActiveKey"
+//        scanExpression.expressionAttributeValues = [":brandNameKey": selectedBrand.dynamoDB_Brand.BrandName,":isActiveKey":true]
+//        
+//        dynamoDBObjectMapper.scan(DynamoDB_Product.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
+//            
+//            //If error
+//            if let error = task.error{
+//                self.hideLoading()
+//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
+//                    
+//                })
+//                return nil
+//            }
+//            
+//            //If exception
+//            if let exception = task.exception{
+//                self.hideLoading()
+//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.debugDescription, onOk: { () -> () in
+//                    
+//                })
+//                return nil
+//            }
+//            
+//            //If got result
+//            if let result = task.result{
+//                if let paginatedOutput:AWSDynamoDBPaginatedOutput = task.result as? AWSDynamoDBPaginatedOutput{
+//                    self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey //Update lastEvaluatedKey
+//                    if let lastEvaluatedKeyObj = paginatedOutput.lastEvaluatedKey{
+////                        self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey // Update lastEvaluatedKey
+//                        print(" more data available")// more data found
+//                    }else{
+//                        print("No more data available")//no more data found
+//                    }
+//                    
+//                }
+//
+//                
+//                //If result items count > 0
+//                if let arrItems:[DynamoDB_Product] = result.allItems as? [DynamoDB_Product] where arrItems.count>0{
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        for (index, product) in arrItems.enumerate() {
+//                            var productObj = Product()
+//                            productObj.dynamoDB_Product = product
+//                            
+//                            AWSHelper.downloadImageWithCompletion(forImageName: product.ProductImageName, uploadPathKey: pathKeyProducts, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
+//                                if let downloadedData = data{
+//                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                                        if let image = UIImage(data: downloadedData){
+//                                            productObj.imgProductImage = image
+//                                            self.IBcollectionViewProduct.reloadItemsAtIndexPaths([NSIndexPath(forRow: index+1, inSection: 0)])
+//                                        }
+//                                    })
+//                                }
+//                            })
+//                            self.arrProductList.append(productObj)
+//                        }
+//                        defer{
+//                            self.hideLoading()
+//                            self.IBcollectionViewProduct.reloadData()
+//                        }
+//                    })
+//                }else{
+//                    self.hideLoading()
+//                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+//                    })
+//                }
+//            }else{
+//                self.hideLoading()
+//                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
+//                })
+//            }
+//            
+//            
+//            return nil
+//        }
+//    }
 }

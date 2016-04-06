@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */; };
+		15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */; };
+		15056BE01CB58AAC0058765D /* Checklist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15056BDF1CB58AAC0058765D /* Checklist.txt */; };
+		15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */; };
+		15056BE51CB5A5C10058765D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE41CB5A5C10058765D /* Reachability.m */; };
 		150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150AE9421CA1CF7D00131A0A /* SettingsVC.swift */; };
 		154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */; };
 		154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154241D31CAAFBA800EC59A7 /* NotFoundView.xib */; };
@@ -176,6 +181,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAPIHelper.swift; sourceTree = "<group>"; };
+		15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelWSConstants.swift; sourceTree = "<group>"; };
+		15056BDF1CB58AAC0058765D /* Checklist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Checklist.txt; sourceTree = "<group>"; };
+		15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilitySwift.swift; sourceTree = "<group>"; };
+		15056BE31CB5A5C10058765D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		15056BE41CB5A5C10058765D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		150AE9421CA1CF7D00131A0A /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 		154241D31CAAFBA800EC59A7 /* NotFoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotFoundView.xib; sourceTree = "<group>"; };
@@ -612,6 +623,9 @@
 		15B7E7AD1C54A57700244AC9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */,
+				15056BE31CB5A5C10058765D /* Reachability.h */,
+				15056BE41CB5A5C10058765D /* Reachability.m */,
 				15B7E7AE1C54A59300244AC9 /* UnlabelConstants.swift */,
 				15C993AD1C56BA65000C28E0 /* ParseConstants.swift */,
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
@@ -619,6 +633,8 @@
 				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
 				15E30D961C6D0E07008B77E1 /* AWSHelper.swift */,
 				15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */,
+				15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */,
+				15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -791,6 +807,7 @@
 		400BDDFF1C1B890800487C6E = {
 			isa = PBXGroup;
 			children = (
+				15056BDF1CB58AAC0058765D /* Checklist.txt */,
 				40714ED51C1DE5FE0063FF43 /* Podfile */,
 				400BDE0A1C1B890800487C6E /* Unlabel */,
 				400BDE221C1B890800487C6E /* UnlabelTests */,
@@ -1076,6 +1093,7 @@
 				154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */,
 				15897E941C59488800FD0700 /* GenderCell.xib in Resources */,
 				15B7E7AC1C54A2D100244AC9 /* Unlabel.storyboard in Resources */,
+				15056BE01CB58AAC0058765D /* Checklist.txt in Resources */,
 				15897E981C5948B200FD0700 /* CategoryStyleCell.xib in Resources */,
 				15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */,
 				15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */,
@@ -1251,9 +1269,11 @@
 				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
+				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
+				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
@@ -1264,8 +1284,10 @@
 				15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
+				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
+				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */,

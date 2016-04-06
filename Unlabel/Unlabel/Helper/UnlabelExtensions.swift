@@ -16,6 +16,15 @@ extension String {
     func removeWhitespace() -> String {
         return self.replace(" ", replacement: "")
     }
+    
+    func encodedURL()->String{
+        if let encodedURL = self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()){
+            return encodedURL
+        }else{
+            return ""
+        }
+    }
+
 }
 
 

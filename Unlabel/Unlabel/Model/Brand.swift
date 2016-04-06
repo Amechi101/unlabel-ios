@@ -8,7 +8,25 @@
 
 import UIKit
 
+//Label == Brand
 class Brand: NSObject {
-    var dynamoDB_Brand:DynamoDB_Brand = DynamoDB_Brand()
-    var imgBrandImage:UIImage?
+    var ID:String = String()
+    var Name:String = String()
+    var OriginCity:String = String()
+    var StateOrCountry:String = String()
+    var Description:String = String()
+    var FeatureImage:String = String()
+    var CreatedDate:String = String()
+    var isActive:Bool = Bool()
+    
+    //Sex
+    var Menswear:Bool = Bool()
+    var Womenswear:Bool = Bool()
+    
+    //Categories
+    var Clothing:Bool = Bool()
+    var Accessories:Bool = Bool()
+    var Jewelry:Bool = Bool()
+    var Shoes:Bool = Bool()
+    var Bags:Bool = Bool()
 }
