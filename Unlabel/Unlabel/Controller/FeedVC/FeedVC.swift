@@ -42,6 +42,7 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         wsCallGetLabels()
+
         setupOnLoad()
     }
     
@@ -65,7 +66,7 @@ class FeedVC: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        UnlabelHelper.setAppDelegateDelegates(self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -117,20 +118,30 @@ extension FeedVC:UICollectionViewDataSource{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
         feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].Name.uppercaseString
         feedVCCell.IBlblLocation.text = "\(arrBrandList[indexPath.row].OriginCity), \(arrBrandList[indexPath.row].StateOrCountry)"
-//        if let brandMainImage:UIImage = arrBrandList[indexPath.row].imgBrandImage{
-//            feedVCCell.IBimgBrandImage.image = brandMainImage
-//            feedVCCell.IBactivityIndicator.stopAnimating()
-//            feedVCCell.IBactivityIndicator.hidden = true
-//        }else{
-//            feedVCCell.IBactivityIndicator.startAnimating()
-//            feedVCCell.IBactivityIndicator.hidden = false
-//            feedVCCell.IBimgBrandImage.image = UIImage()
-//        }
+        
+        feedVCCell.IBimgBrandImage.image = nil
+        ImageLoader.sharedLoader.imageForUrl(UnlabelHelper.getCloudnaryObj().url(arrBrandList[indexPath.row].FeatureImage), completionHandler:{(image: UIImage?, url: String) in
+            feedVCCell.IBimgBrandImage.image = image
+        })
+        
+        if let _:UIImage = feedVCCell.IBimgBrandImage.image{
+            handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+        }else{
+            handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+        }
         
         return feedVCCell
     }
 }
 
+    func handleFeedVCCellActivityIndicator(feedVCCell:FeedVCCell,shouldStop:Bool){
+        feedVCCell.IBactivityIndicator.hidden = shouldStop
+        if shouldStop {
+            feedVCCell.IBactivityIndicator.stopAnimating()
+        }else{
+        feedVCCell.IBactivityIndicator.startAnimating()
+        }
+    }
 
 //
 //MARK:- UICollectionViewDelegateFlowLayout Methods
@@ -168,6 +179,25 @@ extension FeedVC{
     }
 }
     
+//
+//MARK:- AppDelegateDelegates Methods
+//
+extension FeedVC:AppDelegateDelegates{
+    func reachabilityChanged(reachable: Bool) {
+        if reachable{
+            if mainVCType == .Feed{
+                if arrBrandList.count == 0{
+                    wsCallGetLabels()
+                }
+            }else if mainVCType == .Following{
+            
+            }else{
+                print("unknown vctype")
+            }
+        }
+        print("reachabilityChanged : \(reachable)")
+    }
+}
 
 //
 //MARK:- NotFoundView Methods
@@ -226,7 +256,7 @@ extension FeedVC{
         IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
         
         if mainVCType == .Feed{
-            addTestData()
+            wsCallGetLabels()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
             IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
             IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)

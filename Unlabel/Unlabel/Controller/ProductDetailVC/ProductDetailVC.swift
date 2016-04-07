@@ -44,7 +44,7 @@ extension ProductDetailVC{
         
     }
     
-    @IBAction func IBActionBack(sender: UIButton) {
+    @IBAction func IBActionBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 }

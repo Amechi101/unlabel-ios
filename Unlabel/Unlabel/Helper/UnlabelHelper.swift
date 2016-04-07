@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cloudinary
 
 class UnlabelHelper: NSObject {
     
@@ -71,7 +72,10 @@ class UnlabelHelper: NSObject {
         }
     }
 
-    
+    class func setAppDelegateDelegates(delegate:AppDelegateDelegates){
+        let appDelegate = APP_DELEGATE as AppDelegate
+        appDelegate.delegate = delegate
+    }
     
     class func showAlert(onVC OnVC:UIViewController,title:String,message:String,onOk:()->()){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
@@ -110,6 +114,15 @@ class UnlabelHelper: NSObject {
         
         return result
         
+    }
+    
+    //Cloudnary setup
+    class func getCloudnaryObj()->CLCloudinary{
+        let cloudinary: CLCloudinary = CLCloudinary()
+        cloudinary.config()["cloud_name"] = "hqz2myoz0"
+        cloudinary.config()["api_key"] = "849968616415457"
+        cloudinary.config()["api_secret"] = "KEHl083N5M7NsHrVVR4TXnR4Xg4"
+        return cloudinary
     }
 }
 

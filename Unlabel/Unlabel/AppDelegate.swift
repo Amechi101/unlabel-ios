@@ -195,10 +195,6 @@ extension AppDelegate{
         if (remoteHostStatus == NotReachable)
         {
             dispatch_async(dispatch_get_main_queue(), {
-                guard let reachable = self.delegate?.reachabilityChanged(false)
-                     else {
-                        return
-                }
                 self.delegate?.reachabilityChanged(false)
             })
             print("Unreachable")

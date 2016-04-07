@@ -3,6 +3,7 @@
 //
 
 
+#import "Cloudinary/Cloudinary.h"
 #import "Reachability.h"
 #import <Bolts/Bolts.h>
 #import <AWSCore/AWSCore.h>

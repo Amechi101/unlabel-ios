@@ -37,10 +37,23 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
 //        awsCallFetchProducts()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        UnlabelHelper.setAppDelegateDelegates(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+//
+//MARK:- AppDelegateDelegates Methods
+//
+extension ProductVC:AppDelegateDelegates{
+    func reachabilityChanged(reachable: Bool) {
+        print("reachabilityChanged : \(reachable)")
+    }
 }
 
 

@@ -48,7 +48,14 @@ class EntryVC: UIViewController {
 
     extension EntryVC {
         @IBAction func IBActionContinueWithFB(sender: UIButton) {
-            handleFBLogin()
+            //Internet available
+            if ReachabilitySwift.isConnectedToNetwork(){
+                handleFBLogin()
+            }else{
+                UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
+                    
+                })
+            }
         }
     }
 
