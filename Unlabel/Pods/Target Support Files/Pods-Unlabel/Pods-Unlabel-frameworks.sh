@@ -106,6 +106,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Unlabel/Cloudinary.framework"
   install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
   install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
+  install_framework "Pods-Unlabel/SDWebImage.framework"
   install_framework "Pods-Unlabel/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -131,5 +132,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Unlabel/Cloudinary.framework"
   install_framework "Pods-Unlabel/FBSDKCoreKit.framework"
   install_framework "Pods-Unlabel/FBSDKLoginKit.framework"
+  install_framework "Pods-Unlabel/SDWebImage.framework"
   install_framework "Pods-Unlabel/SwiftyJSON.framework"
 fi

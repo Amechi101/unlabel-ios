@@ -4,6 +4,7 @@
 
 
 #import "Cloudinary/Cloudinary.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "Reachability.h"
 #import <Bolts/Bolts.h>
 #import <AWSCore/AWSCore.h>

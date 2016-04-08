@@ -47,6 +47,9 @@ PODS:
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.0):
     - FBSDKCoreKit
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -74,6 +77,7 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit (~> 4.10)
   - FBSDKLoginKit (~> 4.10)
+  - SDWebImage (~> 3.7)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -101,6 +105,7 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

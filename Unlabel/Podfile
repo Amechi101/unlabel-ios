@@ -33,6 +33,7 @@ target :Unlabel, :exclusive => true do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'Cloudinary', '~> 1.0'
+    pod 'SDWebImage', '~>3.7'
     
     
 end

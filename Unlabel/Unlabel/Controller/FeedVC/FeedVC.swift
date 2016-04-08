@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import AWSS3
-import AWSDynamoDB
+import SDWebImage
 
     
 enum MainVCType:Int{
@@ -120,9 +119,10 @@ extension FeedVC:UICollectionViewDataSource{
         feedVCCell.IBlblLocation.text = "\(arrBrandList[indexPath.row].OriginCity), \(arrBrandList[indexPath.row].StateOrCountry)"
         
         feedVCCell.IBimgBrandImage.image = nil
-        ImageLoader.sharedLoader.imageForUrl(UnlabelHelper.getCloudnaryObj().url(arrBrandList[indexPath.row].FeatureImage), completionHandler:{(image: UIImage?, url: String) in
-            feedVCCell.IBimgBrandImage.image = image
-        })
+        
+        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrBrandList[indexPath.row].FeatureImage)){
+            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url)
+        }
         
         if let _:UIImage = feedVCCell.IBimgBrandImage.image{
             handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
