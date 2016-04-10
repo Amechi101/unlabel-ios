@@ -8,9 +8,8 @@
 
 import Foundation
 
-//http://unlabel.us/unlabel-network/unlabel-network-api/v1/labels/?username=unlabel_us_api&api_key=f54c309313f3bb0f28322f035cfc169c8631faf9
 
-let BASE_URL = "http://unlabel.us/unlabel-network/unlabel-network-api/v1"
+let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
 
 let SUB_URL_LABELS = "/labels"
 

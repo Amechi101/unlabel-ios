@@ -67,7 +67,12 @@ class EntryVC: UIViewController {
     extension EntryVC {
         func handleFBLogin(){
             startLoading()
+            let windowTintColor = APP_DELEGATE.window?.tintColor
+            
+            APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
             UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
+            APP_DELEGATE.window?.tintColor = windowTintColor
+                
                 UnlabelFBHelper.getUserDetails({ (result:AnyObject?) in
                     if let userName:String? = result!["name"]{
                         UnlabelHelper.setDefaultValue(userName!, key: sFB_NAME)

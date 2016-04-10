@@ -121,13 +121,13 @@ extension FeedVC:UICollectionViewDataSource{
         feedVCCell.IBimgBrandImage.image = nil
         
         if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrBrandList[indexPath.row].FeatureImage)){
-            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url)
-        }
-        
-        if let _:UIImage = feedVCCell.IBimgBrandImage.image{
-            handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
-        }else{
-            handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+                if let _ = error{
+                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+                }else{
+                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+                }
+            })
         }
         
         return feedVCCell

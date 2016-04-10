@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import AWSS3
-import AWSDynamoDB
+import SDWebImage
 import SafariServices
 
 class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
@@ -119,23 +118,20 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
         let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
         
-//        if let brandImage:UIImage = selectedBrand.imgBrandImage{
-//            productHeaderCell.IBimgHeaderImage.image = brandImage
-//        }else{
-//            productHeaderCell.IBimgHeaderImage.image = UIImage(named: "splash")
-//        }
-//        
-//        if let brandDescription:String = selectedBrand.dynamoDB_Brand.Description{
-//            productHeaderCell.IBlblLabelDescription.text = brandDescription
-//        }else{
-//            productHeaderCell.IBlblLabelDescription.text = ""
-//        }
-//        
-//        if let brandLocation:String = selectedBrand.dynamoDB_Brand.Location{
-//            productHeaderCell.IBlblLabelLocation.text = brandLocation
-//        }else{
-//            productHeaderCell.IBlblLabelLocation.text = ""
-//        }
+        productHeaderCell.IBlblLabelDescription.text = selectedBrand.Description
+        productHeaderCell.IBlblLabelLocation.text = "\(selectedBrand.OriginCity), \(selectedBrand.StateOrCountry)"
+        
+        productHeaderCell.IBimgHeaderImage.image = nil
+        
+        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(selectedBrand.FeatureImage)){
+            productHeaderCell.IBimgHeaderImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+                if let _ = error{
+//                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+                }else{
+//                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+                }
+            })
+        }
         
         return productHeaderCell
     }

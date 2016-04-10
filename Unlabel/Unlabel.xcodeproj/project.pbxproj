@@ -145,6 +145,8 @@
 		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */; };
+		15E704F71CBAF24300DB9069 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */; };
+		15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E704F81CBAF35100DB9069 /* GAHelper.swift */; };
 		15EF18041CA481810028BA8B /* AccountInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EF18031CA481810028BA8B /* AccountInfoVC.swift */; };
 		15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26A1C723A8A00A7E389 /* ProductCell.swift */; };
 		15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F0E26B1C723A8A00A7E389 /* ProductCell.xib */; };
@@ -180,6 +182,19 @@
 			remoteInfo = Unlabel;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1509D6B11CBA73C3004AF26F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAPIHelper.swift; sourceTree = "<group>"; };
@@ -289,6 +304,8 @@
 		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalStuffPrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		15E704F81CBAF35100DB9069 /* GAHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAHelper.swift; sourceTree = "<group>"; };
 		15EF18031CA481810028BA8B /* AccountInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoVC.swift; sourceTree = "<group>"; };
 		15F0E26A1C723A8A00A7E389 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		15F0E26B1C723A8A00A7E389 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
@@ -407,6 +424,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1509D6AA1CBA709C004AF26F /* AmazonAws */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AmazonAws;
+			sourceTree = "<group>";
+		};
 		150AE9411CA1CF6C00131A0A /* SettingsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,6 +649,7 @@
 		15B7E7AD1C54A57700244AC9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1509D6AA1CBA709C004AF26F /* AmazonAws */,
 				15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */,
 				15056BE31CB5A5C10058765D /* Reachability.h */,
 				15056BE41CB5A5C10058765D /* Reachability.m */,
@@ -638,6 +663,7 @@
 				15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */,
 				15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */,
 				15C83BD51CB6F289009933C4 /* ImageLoader.swift */,
+				15E704F81CBAF35100DB9069 /* GAHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -811,6 +837,7 @@
 			isa = PBXGroup;
 			children = (
 				15056BDF1CB58AAC0058765D /* Checklist.txt */,
+				15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */,
 				40714ED51C1DE5FE0063FF43 /* Podfile */,
 				400BDE0A1C1B890800487C6E /* Unlabel */,
 				400BDE221C1B890800487C6E /* UnlabelTests */,
@@ -964,6 +991,7 @@
 				44E2C765F1294BEDA82C38C5 /* Embed Pods Frameworks */,
 				A342024F2A60AFE1A6D04ED6 /* Copy Pods Resources */,
 				40AC9E581C8C387800EFA413 /* ShellScript */,
+				1509D6B11CBA73C3004AF26F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1100,6 +1128,7 @@
 				15897E981C5948B200FD0700 /* CategoryStyleCell.xib in Resources */,
 				15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */,
 				15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */,
+				15E704F71CBAF24300DB9069 /* GoogleService-Info.plist in Resources */,
 				15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */,
 				15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */,
 			);
@@ -1267,6 +1296,7 @@
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
+				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
 				15FF26BE1CA97C1A004A59EC /* AboutUsVC.swift in Sources */,
 				15F5A31C1C8A240200FDE610 /* EntryVC.swift in Sources */,
 				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
@@ -1516,6 +1546,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Unlabel/Helper/AmazonAws",
 				);
 				INFOPLIST_FILE = Unlabel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1539,6 +1570,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Unlabel/Helper/AmazonAws",
 				);
 				INFOPLIST_FILE = Unlabel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

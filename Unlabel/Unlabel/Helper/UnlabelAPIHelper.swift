@@ -15,12 +15,13 @@ class UnlabelAPIHelper{
     
     class func getBrands(success:([Brand])->(),failed:(error:NSError)->()){
         let requestURL = GET_LABELS_URL.encodedURL()
-        print(requestURL)
-        Alamofire.request(.GET, GET_LABELS_URL.encodedURL()).responseJSON { response in
+//        print(requestURL)
+        Alamofire.request(.GET, requestURL).responseJSON { response in
             switch response.result {
                 
             case .Success(let data):
                 let json = JSON(data)
+                print("*******")
                 print(json)
                 if let arrBrands = getBrandModels(fromJSON: json){
                     success(arrBrands)
@@ -72,7 +73,7 @@ class UnlabelAPIHelper{
                 }
                 
                 if let _ = thisBrand[PRM_PRODUCTS]{
-                    print("products need to set *******")
+//                    print("products need to set *******")
                 }
                 
                 if let menswear = thisBrand[PRM_MENSWEAR]{

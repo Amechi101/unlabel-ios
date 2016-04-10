@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
@@ -68,17 +69,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /**
      APNS specific delegates
     */
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("device_token:\(deviceToken)")
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        
-    }
-
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        
-    }
+//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+//        print("device_token:\(deviceToken)")
+//        AWSMobileClient.sharedInstance.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+//    }
+//    
+//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+//        AWSMobileClient.sharedInstance.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+//    }
+//
+//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+//        AWSMobileClient.sharedInstance.application(application, didReceiveRemoteNotification: userInfo)
+//    }
     
     
     // MARK: - Core Data stack
@@ -146,6 +148,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    }
 
 
+//extension AppDelegate: AWSPushManagerDelegate {
+//    func pushManagerDidRegister(pushManager: AWSPushManager) {
+//    
+//    }
+//}
+
 //
 //MARK:- Custom Methods
 //
@@ -163,13 +171,30 @@ extension AppDelegate{
      */
     private func setupOnLaunch(){
         configure()
+        configureGoogleAnalytics()
         setupRootVC()
     }
+    
+    func configureGoogleAnalytics(){
+        // Configure tracker from GoogleService-Info.plist.
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        // Optional: configure GAI options.
+        let gai = GAI.sharedInstance()
+        gai.trackUncaughtExceptions = true  // report uncaught exceptions
+        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+    }
+  
     
     /**
      Configure required things.
      */
     private func configure(){
+//        let pushManager: AWSPushManager = AWSPushManager.defaultPushManager()
+//        pushManager.delegate = self
+        
         Fabric.with([Crashlytics.self, AWSCognito.self])
         addInternetStateChangeObserver()
     }
