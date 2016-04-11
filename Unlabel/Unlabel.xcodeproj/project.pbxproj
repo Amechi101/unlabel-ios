@@ -13,6 +13,7 @@
 		15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */; };
 		15056BE51CB5A5C10058765D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE41CB5A5C10058765D /* Reachability.m */; };
 		150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150AE9421CA1CF7D00131A0A /* SettingsVC.swift */; };
+		153FF7DB1CBC2838002CE247 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */; };
 		154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */; };
 		154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154241D31CAAFBA800EC59A7 /* NotFoundView.xib */; };
 		15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15452D9E1C5AA950006D17DF /* LocationNameCell.swift */; };
@@ -22,6 +23,7 @@
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
+		157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */; };
 		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
@@ -39,23 +41,6 @@
 		159245281C553B6800755814 /* FeedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159245261C553B6800755814 /* FeedVCCell.xib */; };
 		1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592452A1C5557D900755814 /* LeftMenuVC.swift */; };
 		15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC8D771CA87058000B2BF3 /* FollowingVC.swift */; };
-		15AD17FB1C62663200A3F513 /* AWSAutoScaling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EA1C62663100A3F513 /* AWSAutoScaling.framework */; };
-		15AD17FC1C62663200A3F513 /* AWSCloudWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EB1C62663100A3F513 /* AWSCloudWatch.framework */; };
-		15AD17FD1C62663200A3F513 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EC1C62663100A3F513 /* AWSCognito.framework */; };
-		15AD17FE1C62663200A3F513 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17ED1C62663100A3F513 /* AWSCore.framework */; };
-		15AD17FF1C62663200A3F513 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EE1C62663100A3F513 /* AWSDynamoDB.framework */; };
-		15AD18001C62663200A3F513 /* AWSEC2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17EF1C62663100A3F513 /* AWSEC2.framework */; };
-		15AD18011C62663200A3F513 /* AWSElasticLoadBalancing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F01C62663100A3F513 /* AWSElasticLoadBalancing.framework */; };
-		15AD18021C62663200A3F513 /* AWSIoT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F11C62663100A3F513 /* AWSIoT.framework */; };
-		15AD18031C62663200A3F513 /* AWSKinesis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F21C62663100A3F513 /* AWSKinesis.framework */; };
-		15AD18041C62663200A3F513 /* AWSLambda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F31C62663100A3F513 /* AWSLambda.framework */; };
-		15AD18051C62663200A3F513 /* AWSMachineLearning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F41C62663100A3F513 /* AWSMachineLearning.framework */; };
-		15AD18061C62663200A3F513 /* AWSMobileAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F51C62663100A3F513 /* AWSMobileAnalytics.framework */; };
-		15AD18071C62663200A3F513 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F61C62663100A3F513 /* AWSS3.framework */; };
-		15AD18081C62663200A3F513 /* AWSSES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F71C62663100A3F513 /* AWSSES.framework */; };
-		15AD18091C62663200A3F513 /* AWSSimpleDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F81C62663100A3F513 /* AWSSimpleDB.framework */; };
-		15AD180A1C62663200A3F513 /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17F91C62663100A3F513 /* AWSSNS.framework */; };
-		15AD180B1C62663200A3F513 /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD17FA1C62663200A3F513 /* AWSSQS.framework */; };
 		15AD181D1C62663D00A3F513 /* AWSAutoScaling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD180C1C62663D00A3F513 /* AWSAutoScaling.framework */; };
 		15AD181E1C62663D00A3F513 /* AWSCloudWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD180D1C62663D00A3F513 /* AWSCloudWatch.framework */; };
 		15AD181F1C62663D00A3F513 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD180E1C62663D00A3F513 /* AWSCognito.framework */; };
@@ -140,12 +125,9 @@
 		15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */; };
 		15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
 		15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
-		15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
-		15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D961C6D0E07008B77E1 /* AWSHelper.swift */; };
 		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */; };
-		15E704F71CBAF24300DB9069 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */; };
 		15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E704F81CBAF35100DB9069 /* GAHelper.swift */; };
 		15EF18041CA481810028BA8B /* AccountInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EF18031CA481810028BA8B /* AccountInfoVC.swift */; };
 		15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F0E26A1C723A8A00A7E389 /* ProductCell.swift */; };
@@ -204,6 +186,7 @@
 		15056BE31CB5A5C10058765D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		15056BE41CB5A5C10058765D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		150AE9421CA1CF7D00131A0A /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 		154241D31CAAFBA800EC59A7 /* NotFoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotFoundView.xib; sourceTree = "<group>"; };
 		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
@@ -211,6 +194,7 @@
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
 		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
 		1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
+		157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
@@ -301,10 +285,8 @@
 		15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFollowingLabelPopup.swift; sourceTree = "<group>"; };
 		15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFollowingLabelPopup.xib; sourceTree = "<group>"; };
 		15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Product.swift; sourceTree = "<group>"; };
-		15E30D961C6D0E07008B77E1 /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSHelper.swift; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalStuffPrivacyPolicyVC.swift; sourceTree = "<group>"; };
-		15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15E704F81CBAF35100DB9069 /* GAHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAHelper.swift; sourceTree = "<group>"; };
 		15EF18031CA481810028BA8B /* AccountInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoVC.swift; sourceTree = "<group>"; };
 		15F0E26A1C723A8A00A7E389 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
@@ -376,23 +358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15AD18301C6266BA00A3F513 /* UIKit.framework in Frameworks */,
-				15AD17FB1C62663200A3F513 /* AWSAutoScaling.framework in Frameworks */,
-				15AD17FC1C62663200A3F513 /* AWSCloudWatch.framework in Frameworks */,
-				15AD17FD1C62663200A3F513 /* AWSCognito.framework in Frameworks */,
-				15AD17FE1C62663200A3F513 /* AWSCore.framework in Frameworks */,
-				15AD17FF1C62663200A3F513 /* AWSDynamoDB.framework in Frameworks */,
-				15AD18001C62663200A3F513 /* AWSEC2.framework in Frameworks */,
-				15AD18011C62663200A3F513 /* AWSElasticLoadBalancing.framework in Frameworks */,
-				15AD18021C62663200A3F513 /* AWSIoT.framework in Frameworks */,
-				15AD18031C62663200A3F513 /* AWSKinesis.framework in Frameworks */,
-				15AD18041C62663200A3F513 /* AWSLambda.framework in Frameworks */,
-				15AD18051C62663200A3F513 /* AWSMachineLearning.framework in Frameworks */,
-				15AD18061C62663200A3F513 /* AWSMobileAnalytics.framework in Frameworks */,
-				15AD18071C62663200A3F513 /* AWSS3.framework in Frameworks */,
-				15AD18081C62663200A3F513 /* AWSSES.framework in Frameworks */,
-				15AD18091C62663200A3F513 /* AWSSimpleDB.framework in Frameworks */,
-				15AD180A1C62663200A3F513 /* AWSSNS.framework in Frameworks */,
-				15AD180B1C62663200A3F513 /* AWSSQS.framework in Frameworks */,
 				15B7E7C31C54AA2600244AC9 /* libsqlite3.tbd in Frameworks */,
 				15B7E7C11C54AA1A00244AC9 /* libz.tbd in Frameworks */,
 				15B7E7BF1C54AA0B00244AC9 /* SystemConfiguration.framework in Frameworks */,
@@ -658,12 +623,12 @@
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
 				154687781C5814D60060565B /* UnlabelExtensions.swift */,
 				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
-				15E30D961C6D0E07008B77E1 /* AWSHelper.swift */,
 				15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */,
 				15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */,
 				15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */,
 				15C83BD51CB6F289009933C4 /* ImageLoader.swift */,
 				15E704F81CBAF35100DB9069 /* GAHelper.swift */,
+				153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -837,7 +802,7 @@
 			isa = PBXGroup;
 			children = (
 				15056BDF1CB58AAC0058765D /* Checklist.txt */,
-				15E704F61CBAF24300DB9069 /* GoogleService-Info.plist */,
+				157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */,
 				40714ED51C1DE5FE0063FF43 /* Podfile */,
 				400BDE0A1C1B890800487C6E /* Unlabel */,
 				400BDE221C1B890800487C6E /* UnlabelTests */,
@@ -1050,6 +1015,7 @@
 				TargetAttributes = {
 					400BDE071C1B890800487C6E = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 8YT5VLJRKH;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1128,7 +1094,7 @@
 				15897E981C5948B200FD0700 /* CategoryStyleCell.xib in Resources */,
 				15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */,
 				15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */,
-				15E704F71CBAF24300DB9069 /* GoogleService-Info.plist in Resources */,
+				157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */,
 				15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */,
 				15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */,
 			);
@@ -1270,7 +1236,6 @@
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */,
-				15E30D981C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
 				15C993671C56A156000C28E0 /* FeedVCCell.swift in Sources */,
@@ -1307,6 +1272,7 @@
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
 				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,
+				153FF7DB1CBC2838002CE247 /* FirebaseHelper.swift in Sources */,
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
@@ -1318,7 +1284,6 @@
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
-				15E30D971C6D0E07008B77E1 /* AWSHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15C83BD61CB6F289009933C4 /* ImageLoader.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
@@ -1553,7 +1518,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "373389ac-f65d-48ea-a644-f13ce91e172a";
+				PROVISIONING_PROFILE = "b3261f33-e2f5-4618-9125-692b0012f05c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1577,7 +1542,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "373389ac-f65d-48ea-a644-f13ce91e172a";
+				PROVISIONING_PROFILE = "b3261f33-e2f5-4618-9125-692b0012f05c";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

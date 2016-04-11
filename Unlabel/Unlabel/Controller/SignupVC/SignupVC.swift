@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AWSCore
-import AWSCognito
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -122,27 +120,11 @@ extension SignupVC{
     
     func setupCognitoForUser(loggedType:UserLoggedInType){
         if loggedType == .FB{
-            setupCognitoForFB()
+     
         }else if loggedType == .Email{
         
         }else{
             print("Unknown login")
-        }
-    }
-    
-    func setupCognitoForFB(){
-        AWSHelper.configureAWSWithFBToken()
-        AWSHelper.getCredentialsProvider().getIdentityId().continueWithBlock { (task: AWSTask!) -> AnyObject! in
-            
-            if (task.error != nil) {
-                print("Error: " + task.error!.localizedDescription)
-                
-            } else {
-                // the task result will contain the identity id
-                let cognitoId = task.result
-                print(cognitoId)
-            }
-            return nil
         }
     }
     

@@ -139,17 +139,17 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductCell(forIndexPath indexPath:NSIndexPath)->ProductCell{
         let productCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductCell, forIndexPath: indexPath) as! ProductCell
         
-        if let productName:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductName{
-            productCell.IBlblProductName.text = productName
-        }else{
-            productCell.IBlblProductName.text = "Product"
-        }
-
-        if let productPrice:CGFloat = arrProductList[indexPath.row-1].dynamoDB_Product.ProductPrice{
-            productCell.IBlblProductPrice.text = "$\(productPrice)"
-        }else{
-            productCell.IBlblProductPrice.text = ""
-        }
+//        if let productName:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductName{
+//            productCell.IBlblProductName.text = productName
+//        }else{
+//            productCell.IBlblProductName.text = "Product"
+//        }
+//
+//        if let productPrice:CGFloat = arrProductList[indexPath.row-1].dynamoDB_Product.ProductPrice{
+//            productCell.IBlblProductPrice.text = "$\(productPrice)"
+//        }else{
+//            productCell.IBlblProductPrice.text = ""
+//        }
         
         if let productImage:UIImage = arrProductList[indexPath.row-1].imgProductImage{
             productCell.IBimgProductImage.image = productImage
@@ -171,6 +171,22 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
             return CGSizeMake(collectionView.frame.size.width, 360)
         }else{
             return CGSizeMake((collectionView.frame.size.width/2)-6, 260)
+        }
+    }
+}
+
+//
+//MARK:- Navigation Methods
+//
+extension ProductVC{
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == S_ID_PRODUCT_DETAIL_VC{
+            if let productDetailVC:ProductDetailVC = segue.destinationViewController as? ProductDetailVC{
+//                if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
+                    //productVC.selectedBrand = brand
+//                    GAHelper.trackValue(brand.Name)
+//                }
+            }
         }
     }
 }
@@ -303,18 +319,18 @@ extension ProductVC{
         }
     }
     
-    func openSafariForIndexPath(indexPath:NSIndexPath){
-        if let productURLString:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductURL{
-            if let productURL:NSURL = NSURL(string: productURLString){
-                let safariVC = UnlabelSafariVC(URL: productURL)
-                safariVC.delegate = self
-                safariVC.transitioningDelegate = self
-                self.presentViewController(safariVC, animated: true) { () -> Void in
-                    
-                }
-            }else{ showAlertWebPageNotAvailable() }
-        }else{ showAlertWebPageNotAvailable() }
-    }
+//    func openSafariForIndexPath(indexPath:NSIndexPath){
+//        if let productURLString:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductURL{
+//            if let productURL:NSURL = NSURL(string: productURLString){
+//                let safariVC = UnlabelSafariVC(URL: productURL)
+//                safariVC.delegate = self
+//                safariVC.transitioningDelegate = self
+//                self.presentViewController(safariVC, animated: true) { () -> Void in
+//                    
+//                }
+//            }else{ showAlertWebPageNotAvailable() }
+//        }else{ showAlertWebPageNotAvailable() }
+//    }
     
     func showAlertWebPageNotAvailable(){
         UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in

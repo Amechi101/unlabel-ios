@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -16,22 +17,48 @@ class UnlabelFBHelper: NSObject {
         if let _ = FBSDKAccessToken.currentAccessToken(){
             failureBlock(NSError(domain: FB_ALREADY_LOGGED_IN.1, code: FB_ALREADY_LOGGED_IN.0, userInfo: nil))
         }else{
-            let facebookReadPermissions = ["public_profile", "email", "user_friends"]
+            let facebookReadPermissions = ["public_profile", "email"]
             
             let login = FBSDKLoginManager()
+    
             login.logInWithReadPermissions(facebookReadPermissions, fromViewController: viewController) { (result:FBSDKLoginManagerLoginResult!,error:NSError!) -> Void in
             
                 if let _ = error{
                     failureBlock(error)
                     return
-                }
-                
-                if result.isCancelled{
+                }else if result.isCancelled{
                     print("isCancelled")
                     failureBlock(NSError(domain: FB_LOGIN_FAILED.1, code: FB_LOGIN_FAILED.0, userInfo: nil))
                     return
                 }else{
-                    successBlock()
+                    let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                    let ref = Firebase(url: sFIREBASE_URL)
+                    
+                    ref.authWithOAuthProvider("facebook", token: accessToken, withCompletionBlock: { (error:NSError!, authData:FAuthData!) in
+                        if error != nil {
+                            failureBlock(error)
+                            print("Login failed. \(error)")
+                        } else {
+                            if let userName = authData.providerData[sDISPLAY_NAME]{
+                                UnlabelHelper.setDefaultValue(userName as! String, key: sDISPLAY_NAME)
+                            }
+                            
+                            if let userProfilePic = authData.providerData[sPROFILE_IMAGE_URL]{
+                                UnlabelHelper.setDefaultValue(userProfilePic as! String, key: sPROFILE_IMAGE_URL)
+                            }
+                            
+                            let newUser = [
+                                sPROVIDER: authData.provider,
+                                sDISPLAY_NAME: authData.providerData[sDISPLAY_NAME] as? NSString as? String
+                            ]
+                            
+                            ref.childByAppendingPath("users")
+                                .childByAppendingPath(authData.uid).setValue(newUser)
+                            
+                            
+                            successBlock()
+                        }
+                    })
                     print("Login success")
                     return
                 }

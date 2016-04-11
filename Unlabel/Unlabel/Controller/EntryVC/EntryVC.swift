@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EntryVC: UIViewController {
 
@@ -68,29 +69,22 @@ class EntryVC: UIViewController {
         func handleFBLogin(){
             startLoading()
             let windowTintColor = APP_DELEGATE.window?.tintColor
-            
+
             APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
             UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             APP_DELEGATE.window?.tintColor = windowTintColor
-                
-                UnlabelFBHelper.getUserDetails({ (result:AnyObject?) in
-                    if let userName:String? = result!["name"]{
-                        UnlabelHelper.setDefaultValue(userName!, key: sFB_NAME)
-                        self.stopLoading()
-                        self.registerForPushNotifications()
-                        self.setupCognitoForFB()
-                        
-                        let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-                        if let window = APP_DELEGATE.window {
-                            window.rootViewController = rootNavVC
-                            window.rootViewController!.view.layoutIfNeeded()
-                            
-                            UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                                window.rootViewController!.view.layoutIfNeeded()
-                                }, completion: nil)
-                        }
-                    }
-                })
+                self.stopLoading()
+                self.registerForPushNotifications()
+                //
+                let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+                if let window = APP_DELEGATE.window {
+                    window.rootViewController = rootNavVC
+                    window.rootViewController!.view.layoutIfNeeded()
+                    
+                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                        window.rootViewController!.view.layoutIfNeeded()
+                        }, completion: nil)
+                }
             }) { (error:NSError?) -> () in
                     self.stopLoading()
                 UnlabelHelper.showAlert(onVC: self, title: "Facebook login failed!", message: "Please try again.", onOk: {
@@ -106,22 +100,6 @@ class EntryVC: UIViewController {
             let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(settings)
             UIApplication.sharedApplication().registerForRemoteNotifications()
-        }
-        
-        func setupCognitoForFB(){
-            AWSHelper.configureAWSWithFBToken()
-            AWSHelper.getCredentialsProvider().getIdentityId().continueWithBlock { (task: AWSTask!) -> AnyObject! in
-                
-                if (task.error != nil) {
-                    print("Error: " + task.error!.localizedDescription)
-                    
-                } else {
-                    // the task result will contain the identity id
-                    let cognitoId = task.result
-                    print(cognitoId)
-                }
-                return nil
-            }
         }
         
         /**

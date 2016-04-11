@@ -9,6 +9,6 @@
 import UIKit
 
 class Product: NSObject {
-    var dynamoDB_Product:DynamoDB_Product = DynamoDB_Product()
+//    var dynamoDB_Product:DynamoDB_Product = DynamoDB_Product()
     var imgProductImage:UIImage?
 }

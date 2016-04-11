@@ -8,7 +8,13 @@
 
 import Foundation
 
+//FIREBASE
+let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
+let sDISPLAY_NAME               = "displayName"
+let sPROFILE_IMAGE_URL          = "profileImageURL"
+let sPROVIDER                   = "provider"
 
+//API
 let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
 
 let SUB_URL_LABELS = "/labels"

@@ -9,9 +9,9 @@
 import UIKit
 
 class GAHelper: NSObject {
-    class func trackBrandClicked(brandName brandName:String){
+    class func trackValue(value:String){
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "Label Name")
+        tracker.set(kGAIScreenName, value: value)
         
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])

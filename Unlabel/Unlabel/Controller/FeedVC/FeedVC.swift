@@ -86,9 +86,10 @@ extension FeedVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == S_ID_PRODUCT_VC{
             if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
-                    if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
-                        productVC.selectedBrand = brand
-                    }
+                if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
+                    productVC.selectedBrand = brand
+                    GAHelper.trackValue(brand.Name)
+                }
             }
         }
     }

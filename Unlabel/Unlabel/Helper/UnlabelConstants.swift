@@ -17,20 +17,6 @@ enum ChildVCName {
     case FilterVC
 }
 
-
-//
-//MARK:- AWS Constants
-//
-let CognitoRegionType = AWSRegionType.USEast1  // e.g. AWSRegionType.USEast1
-let DefaultServiceRegionType = AWSRegionType.USEast1 // e.g. AWSRegionType.USEast1
-let CognitoIdentityPoolId = "us-east-1:b660d049-9d0d-4e48-820e-4e32fd614ed7"
-let S3_BUCKET_NAME = "unlabel-userfiles-mobilehub-626392447"
-
-
-let pathKeyBrands = "brands"
-let pathKeyProducts = "products"
-
-
 //
 //MARK:- UIColor Constants
 //
@@ -103,6 +89,7 @@ let FONT_STYLE_BOLD = "Bold"
 //
 //MARK:- Strings
 //
+
 let sSOMETHING_WENT_WRONG       = "Something Went Wrong!"
 let S_TRY_AGAIN                 = "Please try agian later"
 let sARE_YOU_SURE               = "Are you sure?"
@@ -110,7 +97,6 @@ let sARE_YOU_SURE               = "Are you sure?"
 let sLegal_Stuff                = "LEGAL STUFF"
 let sPrivacy_Policy             = "PRIVACY POLICY"
 
-let sFB_NAME                    = "name"
 let sPOPUP_SEEN_ONCE            = "popup_seen_once"
 
 let S_NO_INTERNET               = "No Internet Available!"

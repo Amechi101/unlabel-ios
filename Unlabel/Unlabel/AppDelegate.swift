@@ -10,7 +10,6 @@ import UIKit
 import Bolts
 import Fabric
 import CoreData
-import AWSCognito
 import Crashlytics
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -31,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         setupOnLaunch()
-        setupAWS()
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance()
+            .application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -111,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
 
-            dict[NSUnderlyingErrorKey] = error as NSError
+            dict[NSUnderlyingErrorKey] = error as! NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -159,14 +158,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 extension AppDelegate{
     /**
-     Configure AWS
-     */
-    func setupAWS(){
-        AWSHelper.setup()
-        AWSHelper.configureAWSWithFBToken()
-    }
-    
-    /**
      Init everything needed on app launch.
      */
     private func setupOnLaunch(){
@@ -195,7 +186,7 @@ extension AppDelegate{
 //        let pushManager: AWSPushManager = AWSPushManager.defaultPushManager()
 //        pushManager.delegate = self
         
-        Fabric.with([Crashlytics.self, AWSCognito.self])
+        Fabric.with([Crashlytics.self])
         addInternetStateChangeObserver()
     }
     
