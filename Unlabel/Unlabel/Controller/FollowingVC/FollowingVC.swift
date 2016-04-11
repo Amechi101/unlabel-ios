@@ -65,7 +65,7 @@ extension FollowingVC:UICollectionViewDelegate{
             
         default:
             assert(false, "No such element")
-            break
+            return UICollectionReusableView()
         }
     }
 }
