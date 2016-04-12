@@ -60,8 +60,6 @@
 		15AD182D1C62663D00A3F513 /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD181C1C62663D00A3F513 /* AWSSQS.framework */; };
 		15AD182F1C62669200A3F513 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD182E1C62669200A3F513 /* UIKit.framework */; };
 		15AD18301C6266BA00A3F513 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD182E1C62669200A3F513 /* UIKit.framework */; };
-		15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */; };
-		15AD18341C62911300A3F513 /* DynamoDB_Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */; };
 		15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
 		15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7A11C54A2D100244AC9 /* Assets.xcassets */; };
@@ -123,8 +121,6 @@
 		15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBF35C1C84DD23005F59E4 /* Filter.swift */; };
 		15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */; };
 		15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */; };
-		15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
-		15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */; };
 		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
 		15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */; };
@@ -246,7 +242,6 @@
 		15AD181B1C62663D00A3F513 /* AWSSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSNS.framework; path = "Pods/../build/Debug-iphoneos/AWSSNS.framework"; sourceTree = "<group>"; };
 		15AD181C1C62663D00A3F513 /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSQS.framework; path = "Pods/../build/Debug-iphoneos/AWSSQS.framework"; sourceTree = "<group>"; };
 		15AD182E1C62669200A3F513 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Brand.swift; sourceTree = "<group>"; };
 		15B7E7991C54A2D100244AC9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		15B7E79E1C54A2D100244AC9 /* Unlabel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unlabel.xcdatamodel; sourceTree = "<group>"; };
 		15B7E7A11C54A2D100244AC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -284,7 +279,6 @@
 		15CBF35C1C84DD23005F59E4 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFollowingLabelPopup.swift; sourceTree = "<group>"; };
 		15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFollowingLabelPopup.xib; sourceTree = "<group>"; };
-		15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamoDB_Product.swift; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		15E472781C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalStuffPrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		15E704F81CBAF35100DB9069 /* GAHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAHelper.swift; sourceTree = "<group>"; };
@@ -499,15 +493,6 @@
 			path = FollowingVC;
 			sourceTree = "<group>";
 		};
-		15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */ = {
-			isa = PBXGroup;
-			children = (
-				15AD18321C62911300A3F513 /* DynamoDB_Brand.swift */,
-				15E30D931C6D0B5E008B77E1 /* DynamoDB_Product.swift */,
-			);
-			path = AWS_DynamoDB_Model;
-			sourceTree = "<group>";
-		};
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,7 +527,6 @@
 		15B7E79A1C54A2D100244AC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15AD18311C6290BA00A3F513 /* AWS_DynamoDB_Model */,
 				159245221C5539C500755814 /* Brand.swift */,
 				15E30D991C6D2D14008B77E1 /* Product.swift */,
 				15CBF35C1C84DD23005F59E4 /* Filter.swift */,
@@ -1230,11 +1214,9 @@
 				15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */,
 				15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */,
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
-				15AD18341C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
 				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
-				15E30D951C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
 				15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */,
@@ -1259,12 +1241,10 @@
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
-				15AD18331C62911300A3F513 /* DynamoDB_Brand.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
 				15FF26BE1CA97C1A004A59EC /* AboutUsVC.swift in Sources */,
 				15F5A31C1C8A240200FDE610 /* EntryVC.swift in Sources */,
-				15E30D941C6D0B5E008B77E1 /* DynamoDB_Product.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
@@ -1518,7 +1498,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4498b1b0-7735-41d7-8900-cfb7b7475c26";
+				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1542,7 +1522,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4498b1b0-7735-41d7-8900-cfb7b7475c26";
+				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

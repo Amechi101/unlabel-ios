@@ -29,4 +29,6 @@ class Brand: NSObject {
     var Jewelry:Bool = Bool()
     var Shoes:Bool = Bool()
     var Bags:Bool = Bool()
+    
+    var arrProducts = [Product]()
 }

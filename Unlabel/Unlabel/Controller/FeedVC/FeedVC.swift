@@ -88,7 +88,7 @@ extension FeedVC{
             if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
                 if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
                     productVC.selectedBrand = brand
-                    GAHelper.trackValue(brand.Name)
+                    GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
                 }
             }
         }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import SafariServices
 
 class ProductDetailVC: UIViewController {
 
@@ -14,17 +16,38 @@ class ProductDetailVC: UIViewController {
     //MARK:- IBOutlets, constants, vars
     //
     
+    @IBOutlet weak var IBbtnBuyOnBrand: UIButton!
+    @IBOutlet weak var IBbtnShareInspiration: UIButton!
+    @IBOutlet weak var IBlblPrice: UILabel!
+    @IBOutlet weak var IBlblProductName: UILabel!
+    
     @IBOutlet weak var IBImgProductImage: UIImageView!
+    var product = Product()
+    let windowTintColor = APP_DELEGATE.window?.tintColor
     
     //
     //MARK:- VC Lifecycle
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupOnLoad()
         // Do any additional setup after loading the view.
     }
 
+    func setupOnLoad(){
+        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
+            IBImgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+
+            })
+        }
+        
+        IBbtnBuyOnBrand.setTitle("BUY ON \(product.ProductBrandName.uppercaseString)", forState: .Normal)
+        IBlblPrice.text = "$\(product.ProductPrice)"
+        IBlblProductName.text = "\(product.ProductName)"
+
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,7 +64,8 @@ extension ProductDetailVC{
     }
     
     @IBAction func IBActionBuyProduct(sender: AnyObject) {
-        
+        GAHelper.trackEvent(GAEventType.BuyLabelClicked, labelName: product.ProductBrandName, productName: product.ProductName, buyProductName: product.ProductName)
+        openSafariForURL(product.ProductURL)
     }
     
     @IBAction func IBActionBack(sender: AnyObject) {
@@ -49,6 +73,41 @@ extension ProductDetailVC{
     }
 }
 
+//
+//MARK:- Custom and SFSafariViewControllerDelegate Methods
+//
+extension ProductDetailVC:SFSafariViewControllerDelegate,UIViewControllerTransitioningDelegate{
+    
+    func openSafariForURL(urlString:String){
+            if let productURL:NSURL = NSURL(string: urlString){
+                APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
+                let safariVC = UnlabelSafariVC(URL: productURL)
+                safariVC.delegate = self
+                safariVC.transitioningDelegate = self
+                self.presentViewController(safariVC, animated: true) { () -> Void in
+                    
+                }
+            }else{ showAlertWebPageNotAvailable() }
+    }
+    
+    func showAlertWebPageNotAvailable(){
+        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
+            
+        }
+    }
+    
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
+        return []
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController){
+        APP_DELEGATE.window?.tintColor = windowTintColor
+    }
+    
+    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
+        
+    }
+}
 
 //
 //MARK:- Custom Methods

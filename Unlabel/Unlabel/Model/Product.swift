@@ -9,6 +9,11 @@
 import UIKit
 
 class Product: NSObject {
-//    var dynamoDB_Product:DynamoDB_Product = DynamoDB_Product()
-    var imgProductImage:UIImage?
+    var ProductBrandName:String = String()
+    var ProductURL:String = String()
+    var BrandID:String = String()
+    var ProductImage:String = String()
+    var isActive:Bool = Bool()
+    var ProductName:String = String()
+    var ProductPrice:String = String()
 }

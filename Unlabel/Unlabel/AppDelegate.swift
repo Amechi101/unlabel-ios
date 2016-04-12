@@ -183,9 +183,6 @@ extension AppDelegate{
      Configure required things.
      */
     private func configure(){
-//        let pushManager: AWSPushManager = AWSPushManager.defaultPushManager()
-//        pushManager.delegate = self
-        
         Fabric.with([Crashlytics.self])
         addInternetStateChangeObserver()
     }
@@ -205,22 +202,23 @@ extension AppDelegate{
      */
     func checkForReachability(notification:NSNotification)
     {
-        let networkReachability = notification.object as! Reachability
-        let remoteHostStatus = networkReachability.currentReachabilityStatus()
-        
-        if (remoteHostStatus == NotReachable)
-        {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.delegate?.reachabilityChanged(false)
-            })
-            print("Unreachable")
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), {
-              self.delegate?.reachabilityChanged(true)
-            })
-            print("Reachable")
+        if let networkReachability = notification.object as? Reachability{
+            let remoteHostStatus = networkReachability.currentReachabilityStatus()
+            
+            if (remoteHostStatus == NotReachable)
+            {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.delegate?.reachabilityChanged(false)
+                })
+                print("Unreachable")
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.delegate?.reachabilityChanged(true)
+                })
+                print("Reachable")
+            }
         }
     }
     

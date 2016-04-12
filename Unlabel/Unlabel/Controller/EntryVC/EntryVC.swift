@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Batch
 import Firebase
 
 class EntryVC: UIViewController {
@@ -32,6 +33,9 @@ class EntryVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destinationVC:LegalStuffPrivacyPolicyVC = segue.destinationViewController as! LegalStuffPrivacyPolicyVC
         
@@ -69,12 +73,11 @@ class EntryVC: UIViewController {
         func handleFBLogin(){
             startLoading()
             let windowTintColor = APP_DELEGATE.window?.tintColor
-
             APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
             UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             APP_DELEGATE.window?.tintColor = windowTintColor
                 self.stopLoading()
-                self.registerForPushNotifications()
+                self.configureBatchForPushNotification()
                 //
                 let rootNavVC = self.storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
                 if let window = APP_DELEGATE.window {
@@ -94,12 +97,12 @@ class EntryVC: UIViewController {
         }
         
         /**
-         Register current device to recieve push notifications
+         Configure Batch
          */
-        func registerForPushNotifications(){
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-            UIApplication.sharedApplication().registerForRemoteNotifications()
+        func configureBatchForPushNotification(){
+            Batch.startWithAPIKey("DEV570AA966234C896E4E2F497CA2E") // dev
+            // Batch.startWithAPIKey("570AA96621F60821C10E17741A43D1") // live
+            BatchPush.registerForRemoteNotifications()
         }
         
         /**

@@ -53,18 +53,19 @@ extension AccountInfoVC:PopupviewDelegate{
      If user not following any brand, show this view
      */
     func addPopupView(popupType:PopupType,initialFrame:CGRect){
-        let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as! ViewFollowingLabelPopup
-        viewFollowingLabelPopup.delegate = self
-        viewFollowingLabelPopup.popupType = popupType
-        viewFollowingLabelPopup.frame = initialFrame
-        viewFollowingLabelPopup.alpha = 0
-        view.addSubview(viewFollowingLabelPopup)
-        UIView.animateWithDuration(0.2) {
-            viewFollowingLabelPopup.frame = self.view.frame
-            viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
-            viewFollowingLabelPopup.alpha = 1
+        if let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as? ViewFollowingLabelPopup{
+            viewFollowingLabelPopup.delegate = self
+            viewFollowingLabelPopup.popupType = popupType
+            viewFollowingLabelPopup.frame = initialFrame
+            viewFollowingLabelPopup.alpha = 0
+            view.addSubview(viewFollowingLabelPopup)
+            UIView.animateWithDuration(0.2) {
+                viewFollowingLabelPopup.frame = self.view.frame
+                viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
+                viewFollowingLabelPopup.alpha = 1
+            }
+            viewFollowingLabelPopup.updateView()
         }
-        viewFollowingLabelPopup.updateView()
     }
     
     func popupDidClickCancel(){

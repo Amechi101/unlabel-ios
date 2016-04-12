@@ -19,4 +19,6 @@ target :Unlabel, :exclusive => true do
     pod 'SDWebImage', '~>3.7'
     pod 'Google/Analytics'
     pod 'Firebase'
+    pod 'Batch'
+    
 end

@@ -8,9 +8,8 @@
 
 import UIKit
 import SDWebImage
-import SafariServices
 
-class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
+class ProductVC: UIViewController {
 
     //
     //MARK:- IBOutlets, constants, vars
@@ -21,7 +20,6 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     let iPaginationCount = 2
     let fFooterHeight:CGFloat = 81.0
     var activityIndicator:UIActivityIndicatorView?
-    var arrProductList = [Product]()
     var selectedBrand = Brand()
     var lastEvaluatedKey:[NSObject : AnyObject]!
     
@@ -32,7 +30,8 @@ class ProductVC: UIViewController,UIViewControllerTransitioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOnLoad()
-        addTestData()
+    
+//        addTestData()
 //        awsCallFetchProducts()
     }
 
@@ -63,7 +62,7 @@ extension ProductVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //Not Header Cell
         if indexPath.row > 0{
-            performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_VC, sender: self)
+            performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_VC, sender: indexPath)
 //            openSafariForIndexPath(indexPath)
         }
     }
@@ -103,7 +102,7 @@ extension ProductVC:UICollectionViewDataSource{
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return arrProductList.count + 1           //+1 for header cell
+        return selectedBrand.arrProducts.count + 1          //+1 for header cell
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
@@ -139,26 +138,45 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductCell(forIndexPath indexPath:NSIndexPath)->ProductCell{
         let productCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductCell, forIndexPath: indexPath) as! ProductCell
         
-//        if let productName:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductName{
-//            productCell.IBlblProductName.text = productName
-//        }else{
-//            productCell.IBlblProductName.text = "Product"
-//        }
-//
-//        if let productPrice:CGFloat = arrProductList[indexPath.row-1].dynamoDB_Product.ProductPrice{
-//            productCell.IBlblProductPrice.text = "$\(productPrice)"
-//        }else{
-//            productCell.IBlblProductPrice.text = ""
-//        }
+        if let productName:String = selectedBrand.arrProducts[indexPath.row - 1].ProductName{
+            productCell.IBlblProductName.text = productName
+        }else{
+            productCell.IBlblProductName.text = "Product"
+        }
+
+        if let productPrice:String = selectedBrand.arrProducts[indexPath.row - 1].ProductPrice{
+            productCell.IBlblProductPrice.text = "$\(productPrice)"
+        }else{
+            productCell.IBlblProductPrice.text = ""
+        }
         
-        if let productImage:UIImage = arrProductList[indexPath.row-1].imgProductImage{
-            productCell.IBimgProductImage.image = productImage
+        if let productImage:String = selectedBrand.arrProducts[indexPath.row - 1].ProductImage{
+            if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(productImage)){
+                productCell.IBimgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+                    if let _ = error{
+                        self.handleProductCellActivityIndicator(productCell, shouldStop: false)
+                    }else{
+                        self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+                    }
+                })
+            }
+            
         }else{
             productCell.IBimgProductImage.image = UIImage(named: "splash")
         }
         
         return productCell
     }
+    
+    func handleProductCellActivityIndicator(productCell:ProductCell,shouldStop:Bool){
+        productCell.IBactivityIndicator.hidden = shouldStop
+        if shouldStop {
+            productCell.IBactivityIndicator.stopAnimating()
+        }else{
+            productCell.IBactivityIndicator.startAnimating()
+        }
+    }
+    
 }
 
 
@@ -182,30 +200,15 @@ extension ProductVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == S_ID_PRODUCT_DETAIL_VC{
             if let productDetailVC:ProductDetailVC = segue.destinationViewController as? ProductDetailVC{
-//                if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
-                    //productVC.selectedBrand = brand
-//                    GAHelper.trackValue(brand.Name)
-//                }
+                if let indexPath:NSIndexPath = sender as? NSIndexPath{
+                    if let product:Product = selectedBrand.arrProducts[indexPath.row-1]{
+                        product.ProductBrandName = selectedBrand.Name
+                        productDetailVC.product = product
+                        GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
+                    }
+                }
             }
         }
-    }
-}
-
-
-//
-//MARK:- SFSafariViewControllerDelegate Methods
-//
-extension ProductVC:SFSafariViewControllerDelegate{
-    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
-        return []
-    }
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController){
-    
-    }
-    
-    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
-    
     }
 }
 
@@ -286,13 +289,13 @@ extension ProductVC{
 extension ProductVC{
     func setupOnLoad(){
         lastEvaluatedKey = nil
-        self.arrProductList = [Product]()
+//        self.arrProductList = [Product]()
         
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         
-//        if let brandName:String = selectedBrand.dynamoDB_Brand.BrandName{
-//            IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
-//        }
+        if let brandName:String = selectedBrand.Name{
+            IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
+        }
         
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
@@ -319,31 +322,12 @@ extension ProductVC{
         }
     }
     
-//    func openSafariForIndexPath(indexPath:NSIndexPath){
-//        if let productURLString:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductURL{
-//            if let productURL:NSURL = NSURL(string: productURLString){
-//                let safariVC = UnlabelSafariVC(URL: productURL)
-//                safariVC.delegate = self
-//                safariVC.transitioningDelegate = self
-//                self.presentViewController(safariVC, animated: true) { () -> Void in
-//                    
-//                }
-//            }else{ showAlertWebPageNotAvailable() }
-//        }else{ showAlertWebPageNotAvailable() }
+//    func addTestData(){
+//        for _ in 0...39{
+//            arrProductList.append(Product())
+//            IBcollectionViewProduct.reloadData()
+//        }
 //    }
-    
-    func showAlertWebPageNotAvailable(){
-        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
-            
-        }
-    }
-    
-    func addTestData(){
-        for _ in 0...39{
-            arrProductList.append(Product())
-            IBcollectionViewProduct.reloadData()
-        }
-    }
 
 }
 

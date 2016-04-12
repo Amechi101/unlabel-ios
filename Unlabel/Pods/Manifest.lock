@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.0)
+  - Batch (1.5.1)
   - Bolts (1.6.0):
     - Bolts/AppLinks (= 1.6.0)
     - Bolts/Tasks (= 1.6.0)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Batch
   - Bolts
   - Cloudinary (~> 1.0)
   - Crashlytics
@@ -51,6 +53,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Batch: 968cfffd316d2f0e8cd652c97608c6c19e2ec099
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   Cloudinary: f80af4565ec08c521d5e58cb56d9fbe1e4595e40
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d

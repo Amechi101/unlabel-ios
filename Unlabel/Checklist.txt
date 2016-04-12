@@ -5,3 +5,5 @@ Version 1.0:
 1. Set Info.plist allowArbitrary loads to NO
 2. TLS certificates
 3. Handle App Transport Security Settings in Info.plist
+4. See only isActive Brands.
+5. gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release

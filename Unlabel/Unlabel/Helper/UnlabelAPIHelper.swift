@@ -44,68 +44,68 @@ class UnlabelAPIHelper{
                 let brand = Brand()
                 
                 
-                if let id = thisBrand[PRM_ID]{
-                    brand.ID = id as! String
+                if let id = thisBrand[PRM_ID] as? String {
+                    brand.ID = id
                 }
                 
-                if let featureImage = thisBrand[PRM_BRAND_FEATURE_IMAGE]{
-                    brand.FeatureImage = featureImage as! String
+                if let featureImage = thisBrand[PRM_BRAND_FEATURE_IMAGE] as? String{
+                    brand.FeatureImage = featureImage
                 }
                 
-                if let description = thisBrand[PRM_BRAND_DESCRIPTION]{
-                    brand.Description = description as! String
+                if let description = thisBrand[PRM_BRAND_DESCRIPTION] as? String{
+                    brand.Description = description
                 }
                 
-                if let name = thisBrand[PRM_BRAND_NAME]{
-                    brand.Name = name as! String
+                if let name = thisBrand[PRM_BRAND_NAME] as? String{
+                    brand.Name = name
                 }
                 
-                if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY]{
-                    brand.StateOrCountry = stateOrCountry as! String
+                if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY] as? String{
+                    brand.StateOrCountry = stateOrCountry
                 }
                 
-                if let createdDate = thisBrand[PRM_CREATED]{
-                    brand.CreatedDate = createdDate as! String
+                if let createdDate = thisBrand[PRM_CREATED] as? String{
+                    brand.CreatedDate = createdDate
                 }
                 
-                if let originCity = thisBrand[PRM_ORIGIN_CITY]{
-                    brand.OriginCity = originCity as! String
+                if let originCity = thisBrand[PRM_ORIGIN_CITY] as? String{
+                    brand.OriginCity = originCity
                 }
                 
-                if let _ = thisBrand[PRM_PRODUCTS]{
-//                    print("products need to set *******")
+                if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
+                    brand.arrProducts = getProductsArrayFromJSON(arrProducts)
                 }
                 
-                if let menswear = thisBrand[PRM_MENSWEAR]{
-                    brand.Menswear = menswear as! Bool
+                if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
+                    brand.Menswear = menswear
                 }
                 
-                if let jewelry = thisBrand[PRM_JEWELRY]{
-                    brand.Jewelry = jewelry as! Bool
+                if let jewelry = thisBrand[PRM_JEWELRY] as? Bool{
+                    brand.Jewelry = jewelry
                 }
                 
-                if let accessories = thisBrand[PRM_ACCESSORIES]{
-                    brand.Accessories = accessories as! Bool
+                if let accessories = thisBrand[PRM_ACCESSORIES] as? Bool{
+                    brand.Accessories = accessories
                 }
                 
-                if let shoes = thisBrand[PRM_SHOES]{
-                    brand.Shoes = shoes as! Bool
+                if let shoes = thisBrand[PRM_SHOES] as? Bool{
+                    brand.Shoes = shoes
                 }
                 
-                if let isActive = thisBrand[PRM_IS_ACTIVE]{
-                    brand.isActive = isActive as! Bool
+                if let isActive = thisBrand[PRM_IS_ACTIVE] as? Bool{
+                    brand.isActive = isActive
                 }
                 
-                if let bags = thisBrand[PRM_BAGS]{
-                    brand.Bags = bags as! Bool
+                if let bags = thisBrand[PRM_BAGS] as? Bool{
+                    brand.Bags = bags
                 }
                 
-                if let clothing = thisBrand[PRM_CLOTHING]{
-                    brand.Clothing = clothing as! Bool
+                if let clothing = thisBrand[PRM_CLOTHING] as? Bool{
+                    brand.Clothing = clothing
                 }
                 
-                if let womenswear = thisBrand[PRM_WOMENSWEAR]{
-                    brand.Womenswear = womenswear as! Bool
+                if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
+                    brand.Womenswear = womenswear
                 }
                 
                 arrBrands.append(brand)
@@ -115,6 +115,42 @@ class UnlabelAPIHelper{
         }else{
             return nil
         }
+    }
+    
+    class func getProductsArrayFromJSON(arrProductsJSON:[[String:AnyObject]])->[Product]{
+        var arrProducts = [Product]()
+        
+        for product in arrProductsJSON{
+            let productObj = Product()
+            
+            if let productURL:String = product[PRM_PRODUCT_URL] as? String{
+                productObj.ProductURL = productURL
+            }
+            
+            if let brandID:String = product[PRM_BRAND_ID] as? String{
+                productObj.BrandID = brandID
+            }
+            
+            if let productImage:String = product[PRM_PRODUCT_IMAGE] as? String{
+                productObj.ProductImage = productImage
+            }
+            
+            if let isActive:Bool = product[PRM_PRODUCTIS_ACTIVE] as? Bool{
+                productObj.isActive = isActive
+            }
+            
+            if let productName:String = product[PRM_PRODUCT_NAME] as? String{
+                productObj.ProductName = productName
+            }
+            
+            if let productPrice:String = product[PRM_PRODUCT_PRICE] as? String{
+                productObj.ProductPrice = productPrice
+            }
+            
+            arrProducts.append(productObj)
+        }
+        
+        return arrProducts
     }
     
 }

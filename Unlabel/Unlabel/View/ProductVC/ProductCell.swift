@@ -10,10 +10,10 @@ import UIKit
 
 class ProductCell: UICollectionViewCell {
 
-    @IBOutlet weak var IBbtnHeart: UIButton!
     @IBOutlet weak var IBimgProductImage: UIImageView!
     @IBOutlet weak var IBlblProductName: UILabel!
     @IBOutlet weak var IBlblProductPrice: UILabel!
+    @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
