@@ -65,23 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-    /**
-     APNS specific delegates
-    */
-//    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-//        print("device_token:\(deviceToken)")
-//        AWSMobileClient.sharedInstance.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-//    }
-//    
-//    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-//        AWSMobileClient.sharedInstance.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
-//    }
-//
-//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-//        AWSMobileClient.sharedInstance.application(application, didReceiveRemoteNotification: userInfo)
-//    }
-    
-    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -144,14 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-   }
-
-
-//extension AppDelegate: AWSPushManagerDelegate {
-//    func pushManagerDidRegister(pushManager: AWSPushManager) {
-//    
-//    }
-//}
+}
 
 //
 //MARK:- Custom Methods

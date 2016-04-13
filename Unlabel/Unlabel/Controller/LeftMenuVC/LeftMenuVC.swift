@@ -101,7 +101,7 @@ extension LeftMenuVC{
      */
     func setupUIOnLoad(){
         IBtblLeftMenu.tableFooterView = UIView()
-        IBlblUserName.text = UnlabelHelper.getDefaultValue(sDISPLAY_NAME)
+        IBlblUserName.text = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME)
     }
 
     /**

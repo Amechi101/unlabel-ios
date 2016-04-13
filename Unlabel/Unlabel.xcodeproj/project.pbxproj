@@ -116,7 +116,6 @@
 		15C993A91C56A870000C28E0 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15C9939E1C56A870000C28E0 /* Admin.storyboard */; };
 		15C993AA1C56A870000C28E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15C993A01C56A870000C28E0 /* LaunchScreen.storyboard */; };
 		15C993AC1C56A899000C28E0 /* AdminNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AB1C56A899000C28E0 /* AdminNavController.swift */; };
-		15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
 		15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C993AD1C56BA65000C28E0 /* ParseConstants.swift */; };
 		15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBF35C1C84DD23005F59E4 /* Filter.swift */; };
 		15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */; };
@@ -383,13 +382,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1509D6AA1CBA709C004AF26F /* AmazonAws */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AmazonAws;
-			sourceTree = "<group>";
-		};
 		150AE9411CA1CF6C00131A0A /* SettingsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,7 +590,6 @@
 		15B7E7AD1C54A57700244AC9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				1509D6AA1CBA709C004AF26F /* AmazonAws */,
 				15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */,
 				15056BE31CB5A5C10058765D /* Reachability.h */,
 				15056BE41CB5A5C10058765D /* Reachability.m */,
@@ -1254,7 +1245,6 @@
 				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,
 				153FF7DB1CBC2838002CE247 /* FirebaseHelper.swift in Sources */,
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
-				15C993AE1C56BA65000C28E0 /* ParseConstants.swift in Sources */,
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
 				150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
@@ -1486,8 +1476,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1498,7 +1488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
+				PROVISIONING_PROFILE = "1a3bf8d0-e7b4-4a68-b72c-0f1b886c6cae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1510,8 +1500,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1522,7 +1512,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
+				PROVISIONING_PROFILE = "1a3bf8d0-e7b4-4a68-b72c-0f1b886c6cae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

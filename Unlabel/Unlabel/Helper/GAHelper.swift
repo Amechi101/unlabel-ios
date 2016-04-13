@@ -9,23 +9,23 @@
 import UIKit
 import Firebase
 
-enum GAEventType{
-    case LabelClicked
-    case ProductClicked
-    case BuyLabelClicked
+enum GAEventType:String{
+    case LabelClicked = "Label Clicked"
+    case ProductClicked = "Product Clicked"
+    case BuyLabelClicked = "Buy Product Clicked"
 }
 class GAHelper: NSObject {
     class func trackEvent(eventType:GAEventType ,labelName:String, productName:String?,buyProductName:String?){
         let tracker = GAI.sharedInstance().defaultTracker
         if eventType == .LabelClicked{
-            tracker.set("Label Click", value: labelName)
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("Label", action: GAEventType.LabelClicked.rawValue, label: labelName, value: 1).build() as [NSObject:AnyObject])
         }else if eventType == .ProductClicked{
             if let productNameValue = productName {
-                tracker.set("Product Click", value: productNameValue)
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("Product", action: GAEventType.ProductClicked.rawValue, label: productNameValue, value: 1).build() as [NSObject:AnyObject])
             }
         }else if eventType == .BuyLabelClicked{
             if let buyProductNameValue = buyProductName {
-                tracker.set("Product Buy", value: buyProductNameValue)
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("Product", action: GAEventType.BuyLabelClicked.rawValue, label: buyProductNameValue, value: 1).build() as [NSObject:AnyObject])
             }
         }else{
         

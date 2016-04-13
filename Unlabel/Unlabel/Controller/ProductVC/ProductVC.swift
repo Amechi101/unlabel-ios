@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import SDWebImage
 
 class ProductVC: UIViewController {
@@ -273,6 +274,16 @@ extension ProductVC{
     
     @IBAction func IBActionFollow(sender: UIButton) {
         print("Follow clicked")
+
+        updateFollowButton(sender, isFollowing: true)
+        
+        FirebaseHelper.followBrand(selectedBrand.ID, userID: fbAccessToken, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+            if error != nil{
+                
+            }else{
+                
+            }
+        })
         if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
             
         }else{
@@ -304,6 +315,18 @@ extension ProductVC{
         
         self.automaticallyAdjustsScrollViewInsets = false
 
+    }
+    
+    func updateFollowButton(button:UIButton,isFollowing:Bool){
+        if isFollowing{
+            button.setTitle("Unfollow", forState: .Normal)
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        }else{
+            button.setTitle("Follow", forState: .Normal)
+            button.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
+            button.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
+        }
     }
     
     func showLoading(){

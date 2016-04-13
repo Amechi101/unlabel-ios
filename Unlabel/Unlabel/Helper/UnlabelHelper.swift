@@ -58,7 +58,7 @@ class UnlabelHelper: NSObject {
     class func logout(){
         UnlabelFBHelper.logout()
         FirebaseHelper.logout()
-        UnlabelHelper.removePrefForKey(sDISPLAY_NAME)
+        UnlabelHelper.removePrefForKey(PRM_DISPLAY_NAME)
         UnlabelHelper.removePrefForKey(sPOPUP_SEEN_ONCE)
         
         let rootVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
