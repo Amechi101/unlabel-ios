@@ -13,8 +13,13 @@ class AboutUsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let _ = self.navigationController{
+            navigationController?.interactivePopGestureRecognizer!.delegate = self
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +35,23 @@ class AboutUsVC: UIViewController {
 extension AboutUsVC: MFMailComposeViewControllerDelegate{
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+//
+//MARK:- UIGestureRecognizerDelegate Methods
+//
+extension AboutUsVC:UIGestureRecognizerDelegate{
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let navVC = navigationController{
+            if navVC.viewControllers.count > 1{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
     }
 }
 

@@ -30,8 +30,14 @@ class LegalStuffPrivacyPolicyVC: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewOnLoad()
+        setupOnLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if let _ = self.navigationController{
+            navigationController?.interactivePopGestureRecognizer!.delegate = self
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,11 +47,26 @@ class LegalStuffPrivacyPolicyVC: UIViewController {
 }
 
 
+//
+//MARK:- UIGestureRecognizerDelegate Methods
+//
+extension LegalStuffPrivacyPolicyVC:UIGestureRecognizerDelegate{
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let navVC = navigationController{
+            if navVC.viewControllers.count > 1{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+}
 
 //
 //MARK:- IBAction Methods
 //
-
 extension LegalStuffPrivacyPolicyVC {
     @IBAction func IBActionClose(sender: UIButton) {
         pop()
@@ -62,7 +83,7 @@ extension LegalStuffPrivacyPolicyVC {
 //
 
 extension LegalStuffPrivacyPolicyVC {
-    func configureViewOnLoad(){
+    func setupOnLoad(){
         if let _ = navigationController{
             if vcType == .LegalStuff{
                 IBbtnTitle.setTitle(sLegal_Stuff, forState: .Normal)

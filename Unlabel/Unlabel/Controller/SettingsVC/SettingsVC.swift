@@ -23,6 +23,12 @@ class SettingsVC: UITableViewController {
        setupOnLoad()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        if let _ = self.navigationController{
+            navigationController?.interactivePopGestureRecognizer!.delegate = self
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,6 +58,22 @@ extension SettingsVC{
     }
 }
 
+//
+//MARK:- UIGestureRecognizerDelegate Methods
+//
+extension SettingsVC:UIGestureRecognizerDelegate{
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let navVC = navigationController{
+            if navVC.viewControllers.count > 1{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+}
 
 //
 //MARK:- IBAction Methods
@@ -73,6 +95,6 @@ extension SettingsVC{
      Setup UI on VC Load.
      */
     func setupOnLoad(){
-        
+       
     }
 }

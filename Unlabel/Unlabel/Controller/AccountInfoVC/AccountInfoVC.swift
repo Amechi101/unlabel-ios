@@ -23,6 +23,12 @@ class AccountInfoVC: UITableViewController {
         setupOnLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if let _ = self.navigationController{
+            navigationController?.interactivePopGestureRecognizer!.delegate = self
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,6 +87,22 @@ extension AccountInfoVC:PopupviewDelegate{
     }
 }
 
+//
+//MARK:- UIGestureRecognizerDelegate Methods
+//
+extension AccountInfoVC:UIGestureRecognizerDelegate{
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let navVC = navigationController{
+            if navVC.viewControllers.count > 1{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+}
 
 //
 //MARK:- IBAction Methods

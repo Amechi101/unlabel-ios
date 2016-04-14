@@ -175,7 +175,6 @@ extension FeedVC:FilterVCDelegate{
 //
 extension FeedVC{
     func willCloseChildVC(childVCName: String) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
         headerButtonEnabled(setEnabled: true)
     }
 }
@@ -323,10 +322,6 @@ extension FeedVC{
      Adding Loading screen until data is fetched
      */
     func addLaunchLoadingAsChildVC(viewControllerName VCName:String){
-        
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        
         let launchLoadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as! LaunchLoadingVC
 //        launchLoadingVC.delegate = self
         launchLoadingVC.view.frame.size = self.view.frame.size
@@ -428,7 +423,6 @@ extension FeedVC{
     }
     
     func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
-        navigationController?.setNavigationBarHidden(false, animated: false)
         if indexPath.row == LeftMenuItems.Discover.rawValue{
             openDiscover()
         }else if indexPath.row == LeftMenuItems.Following.rawValue{

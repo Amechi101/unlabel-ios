@@ -35,15 +35,17 @@ class ProductVC: UIViewController {
 //        addTestData()
 //        awsCallFetchProducts()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         UnlabelHelper.setAppDelegateDelegates(self)
+        if let _ = self.navigationController{
+            navigationController?.interactivePopGestureRecognizer!.delegate = self
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 //
@@ -293,6 +295,23 @@ extension ProductVC{
     }
 }
 
+//
+//MARK:- UIGestureRecognizerDelegate Methods
+//
+extension ProductVC:UIGestureRecognizerDelegate{
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let navVC = navigationController{
+            if navVC.viewControllers.count > 1{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+}
+
 
 //
 //MARK:- Custom Methods
@@ -300,8 +319,7 @@ extension ProductVC{
 extension ProductVC{
     func setupOnLoad(){
         lastEvaluatedKey = nil
-//        self.arrProductList = [Product]()
-        
+
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         
         if let brandName:String = selectedBrand.Name{
