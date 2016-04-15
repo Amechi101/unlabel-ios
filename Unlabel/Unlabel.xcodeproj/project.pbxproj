@@ -21,6 +21,7 @@
 		154687771C57B9EA0060565B /* UnlabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687751C57B9AF0060565B /* UnlabelHelper.swift */; };
 		154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
 		1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154687781C5814D60060565B /* UnlabelExtensions.swift */; };
+		156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156BB18C1CC1810500E672AF /* LoginSignupVC.swift */; };
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
 		157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */; };
@@ -187,6 +188,7 @@
 		15452D9E1C5AA950006D17DF /* LocationNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNameCell.swift; sourceTree = "<group>"; };
 		154687751C57B9AF0060565B /* UnlabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelHelper.swift; sourceTree = "<group>"; };
 		154687781C5814D60060565B /* UnlabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelExtensions.swift; sourceTree = "<group>"; };
+		156BB18C1CC1810500E672AF /* LoginSignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupVC.swift; sourceTree = "<group>"; };
 		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
 		1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -406,6 +408,14 @@
 			path = NotFoundView;
 			sourceTree = "<group>";
 		};
+		156BB18B1CC180F600E672AF /* LoginSignupVC */ = {
+			isa = PBXGroup;
+			children = (
+				156BB18C1CC1810500E672AF /* LoginSignupVC.swift */,
+			);
+			path = LoginSignupVC;
+			sourceTree = "<group>";
+		};
 		1578949D1CA85AA500E4C1A6 /* ProductDetailVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +498,7 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				156BB18B1CC180F600E672AF /* LoginSignupVC */,
 				15FF26BC1CA97C08004A59EC /* AboutUsVC */,
 				15AC8D761CA8703D000B2BF3 /* FollowingVC */,
 				1578949D1CA85AA500E4C1A6 /* ProductDetailVC */,
@@ -1251,6 +1262,7 @@
 				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */,
+				156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,

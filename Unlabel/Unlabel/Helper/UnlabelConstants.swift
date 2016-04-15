@@ -63,9 +63,12 @@ let IMG_BACK                   = "back"
 //
 //MARK:- Segue IDs
 //
-let SEGUE_SETTINGS             = "Settings"
-let SEGUE_LEGAL_STUFF          = "LegalStuff"
-let SEGUE_PRIVACY_POLICY       = "PrivacyPolicy"
+let SEGUE_LOGIN                     = "Login"
+let SEGUE_SIGNUP                    = "Signup"
+let SEGUE_SETTINGS                  = "Settings"
+let SEGUE_LEGAL_STUFF               = "LegalStuff"
+let SEGUE_TERMS                     = "Terms"
+let SEGUE_PRIVACY_POLICY            = "PrivacyPolicy"
 let SEGUE_LEGALSTUFF_FROM_SETTINGS           = "LegalStuffFromSettings"
 let SEGUE_PRIVACYPOLICY_FROM_SETTINGS        = "PrivacyPolicyFromSettings"
 
