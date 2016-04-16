@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 let FIREBASE_REF = Firebase(url: sFIREBASE_URL)
+let FIREBASE_USER_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
 
 class FirebaseHelper: NSObject {
     
@@ -31,8 +32,12 @@ class FirebaseHelper: NSObject {
             PRM_DISPLAY_NAME: authData.providerData[PRM_DISPLAY_NAME] as? NSString as? String
         ]
         
-        FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-            block(error,firebase)
+        dispatch_async(dispatch_get_main_queue(), {
+            FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    block(error,firebase)
+                })
+            })
         })
     }
     

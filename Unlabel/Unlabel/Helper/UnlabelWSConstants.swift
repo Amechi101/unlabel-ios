@@ -10,6 +10,8 @@ import Foundation
 
 //FIREBASE
 let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
+let sEND_USERS = "/users/"
+
 let PRM_DISPLAY_NAME                = "displayName"
 let PRM_PROFILE_IMAGE_URL           = "profileImageURL"
 let PRM_PROVIDER                    = "provider"

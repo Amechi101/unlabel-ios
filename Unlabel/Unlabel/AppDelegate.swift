@@ -151,7 +151,7 @@ extension AppDelegate{
         // Optional: configure GAI options.
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+//        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
     }
   
     
@@ -217,7 +217,7 @@ extension AppDelegate{
         #else
             storyboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
             
-            if let _ = FBSDKAccessToken.currentAccessToken(){
+            if let _ = FIREBASE_REF.authData{
                 rootNavVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
                 if let window = self.window {
                     window.rootViewController = rootNavVC

@@ -1339,7 +1339,6 @@ NOT RANDOM SH*T</string>
         <!--Login SignupVC-->
         <scene sceneID="ily-2B-oaY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dDy-Kk-Wve" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginVC" id="sKX-5q-srO" customClass="LoginSignupVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h2Y-Qo-XIP"/>
@@ -1422,6 +1421,7 @@ NOT RANDOM SH*T</string>
                                                     <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <integer key="NSUnderline" value="1"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" &amp;">
@@ -1431,11 +1431,19 @@ NOT RANDOM SH*T</string>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
-                                            <fragment content=" Privacy Policy">
+                                            <fragment content=" ">
                                                 <attributes>
                                                     <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Privacy Policy">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <integer key="NSUnderline" value="1"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -1514,6 +1522,7 @@ NOT RANDOM SH*T</string>
                         <outlet property="IBviewFooterContainer" destination="rU3-7W-Gt2" id="CwO-aC-uIC"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDy-Kk-Wve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="669.5" y="2466.5"/>
         </scene>

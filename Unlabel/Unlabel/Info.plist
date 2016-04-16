@@ -24,6 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1421811444777881</string>
+                <string>ak1421811444777881</string>
 			</array>
 		</dict>
 	</array>
@@ -45,6 +46,8 @@
 	</dict>
 	<key>FacebookAppID</key>
 	<string>1421811444777881</string>
+    <key>AccountKitClientToken</key>
+    <string>ac91609192fb922160919f29bb3306af</string>
 	<key>FacebookDisplayName</key>
 	<string>Unlabel</string>
 	<key>LSApplicationQueriesSchemes</key>
