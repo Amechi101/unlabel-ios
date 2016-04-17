@@ -10,13 +10,16 @@ import Foundation
 
 //FIREBASE
 let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
-let sEND_USERS = "/users/"
+let sEND_USERS = "/users"
 
+let PRM_USER_ID                     = "userID"
+let PRM_EMAIL                       = "email"
+let PRM_PHONE                       = "phone"
 let PRM_DISPLAY_NAME                = "displayName"
 let PRM_PROFILE_IMAGE_URL           = "profileImageURL"
 let PRM_PROVIDER                    = "provider"
-let PRM_FOLLOWING_LABALES           = "followingLabels"
-let PRM_FOLLOWING_LABALES_COUNT     = "followingLabelsCount"
+let PRM_FOLLOWING_BRANDS            = "followingBrands"
+let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 
 //API
 let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"

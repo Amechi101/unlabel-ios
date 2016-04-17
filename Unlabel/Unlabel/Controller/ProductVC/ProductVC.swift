@@ -279,18 +279,20 @@ extension ProductVC{
 
         updateFollowButton(sender, isFollowing: true)
         
-        FirebaseHelper.followBrand(selectedBrand.ID, userID: fbAccessToken, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-            if error != nil{
+        if let fbAccessToken = FB_ACCESS_TOKEN{
+            FirebaseHelper.followBrand(selectedBrand.ID, userID: FB_ACCESS_TOKEN, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                if error != nil{
+                    
+                }else{
+                    
+                }
+            })
+            if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
                 
             }else{
-                
+                addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
             }
-        })
-        if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-            
-        }else{
-            addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-            UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
         }
     }
 }

@@ -17,28 +17,29 @@ class FirebaseHelper: NSObject {
     /**
     // Add new user data after successfull authentication
     */
-    class func addNewUser(authData: FAuthData!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
-        
-        if let userName = authData.providerData[PRM_DISPLAY_NAME]{
-            UnlabelHelper.setDefaultValue(userName as! String, key: PRM_DISPLAY_NAME)
-        }
-        
-        if let userProfilePic = authData.providerData[PRM_PROFILE_IMAGE_URL]{
-            UnlabelHelper.setDefaultValue(userProfilePic as! String, key: PRM_PROFILE_IMAGE_URL)
-        }
-        
-        let newUser = [
-            PRM_PROVIDER: authData.provider,
-            PRM_DISPLAY_NAME: authData.providerData[PRM_DISPLAY_NAME] as? NSString as? String
-        ]
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_USERS_REF.childByAppendingPath(authData.uid).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    block(error,firebase)
+    class func addNewUser(userData: [String:AnyObject]!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+        print(userData)
+        if let userID:String = userData[PRM_USER_ID] as? String{
+            dispatch_async(dispatch_get_main_queue(), {
+                FIREBASE_USERS_REF.childByAppendingPath(userID).setValue(userData, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        block(error,firebase)
+                    })
                 })
             })
-        })
+//            UnlabelHelper.setDefaultValue(userName as! String, key: PRM_DISPLAY_NAME)
+        }
+//
+//        if let userProfilePic = authData.providerData[PRM_PROFILE_IMAGE_URL]{
+//            UnlabelHelper.setDefaultValue(userProfilePic as! String, key: PRM_PROFILE_IMAGE_URL)
+//        }
+        
+//        let newUser = [
+//            PRM_PROVIDER: authData.provider,
+//            PRM_DISPLAY_NAME: authData.providerData[PRM_DISPLAY_NAME] as? NSString as? String
+//        ]
+        
+       
     }
     
    
@@ -58,13 +59,13 @@ class FirebaseHelper: NSObject {
      */
     class func followBrand(brandID:String,userID:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
         
-        let newBrand = [
-            PRM_FOLLOWING_LABALES_COUNT: 2,
-            PRM_FOLLOWING_LABALES: ["1","2"]
-        ]
-        FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(FIREBASE_REF.authData.uid).updateChildValues(newBrand) { (error:NSError!, firebase:Firebase!) in
-         block(error,firebase)   
-        }
+//        let newBrand = [
+//            PRM_FOLLOWING_LABALES_COUNT: 2,
+//            PRM_FOLLOWING_LABALES: ["1","2"]
+//        ]
+//        FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(FIREBASE_REF.authData.uid).updateChildValues(newBrand) { (error:NSError!, firebase:Firebase!) in
+//         block(error,firebase)   
+//        }
     }
     
     class func logout(){

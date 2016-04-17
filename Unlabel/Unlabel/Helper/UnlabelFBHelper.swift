@@ -11,7 +11,7 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-let fbAccessToken = FBSDKAccessToken.currentAccessToken().tokenString
+let FB_ACCESS_TOKEN = FBSDKAccessToken.currentAccessToken().tokenString
 class UnlabelFBHelper: NSObject {
     class func login(fromViewController viewController:UIViewController,successBlock: () -> (), andFailure failureBlock: (NSError?) -> ()){
         
@@ -38,7 +38,7 @@ class UnlabelFBHelper: NSObject {
                 }else{
                     //Firebase call for authentication
                     dispatch_async(dispatch_get_main_queue(), {
-                        FIREBASE_REF.authWithOAuthProvider("facebook", token: fbAccessToken, withCompletionBlock: { (error:NSError!, authData:FAuthData!) in
+                        FIREBASE_REF.authWithOAuthProvider("facebook", token: FB_ACCESS_TOKEN, withCompletionBlock: { (error:NSError!, authData:FAuthData!) in
                             if error != nil {
                                 dispatch_async(dispatch_get_main_queue(), {
                                     failureBlock(error)
