@@ -16,7 +16,7 @@ class UnlabelFBHelper: NSObject {
     class func login(fromViewController viewController:UIViewController,successBlock: () -> (), andFailure failureBlock: (NSError?) -> ()){
         
         if let _ = FBSDKAccessToken.currentAccessToken(){
-            failureBlock(NSError(domain: FB_ALREADY_LOGGED_IN.1, code: FB_ALREADY_LOGGED_IN.0, userInfo: nil))
+            successBlock()
         }else{
             let facebookReadPermissions = ["public_profile", "email"]
             

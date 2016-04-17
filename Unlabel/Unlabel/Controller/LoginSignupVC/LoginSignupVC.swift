@@ -73,29 +73,27 @@ extension LoginSignupVC {
         }
     }
     
-    func isUserAlreadyExist(userLoginSubType:LoginSignupSubType) -> Bool{
-        if userLoginSubType == .Facebook{
-            dispatch_async(dispatch_get_main_queue(), {
-
-                FIREBASE_USER_REF.queryEqualToValue(FIREBASE_REF.authData.uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    if snapshot.exists() {
-                    print("yes")
-                    }else{
-                    print("not")
-                    }
-                })
-//                FIREBASE_USER_REF.queryEqualToValue(FIREBASE_REF.authData.uid, childKey: "users").observeEventType(.Value, withBlock: { (snap:FDataSnapshot!) in
-//                    print(snap)
-//                })
-
-            })
-        }else if (userLoginSubType == .Email || userLoginSubType == .Phone){
+    func handleUserExist(subType: LoginSignupSubType,snapshot:FDataSnapshot){
+        print(snapshot)
+        if subType == .Email || subType == .Phone {
+            
+        }else if subType == .Facebook{
+        
+        }else{
+        
+        }
+    }
+    
+    func handleUserDoesntExist(subType: LoginSignupSubType){
+        if subType == .Email || subType == .Phone {
+            
+        }else if subType == .Facebook{
             
         }else{
-            return false
+            
         }
-        return false//+++++++
     }
+
     
     func handleFBLogin(){
         startLoading()
@@ -104,11 +102,22 @@ extension LoginSignupVC {
         UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             APP_DELEGATE.window?.tintColor = windowTintColor
             
-            if self.isUserAlreadyExist(.Facebook){
-            
+            if let userID = FIREBASE_REF.authData.uid{
+                self.isUserAlreadyExist(userID, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
+                    if snapshot.exists() {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.handleUserExist(.Facebook,snapshot: snapshot)
+                        })
+                    }else{
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.handleUserDoesntExist(.Facebook)
+                        })
+                    }
+                }
             }else{
-            
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
             }
+            
             
 //            //Add user data after successfull authentication
 //            dispatch_async(dispatch_get_main_queue(), {
@@ -142,9 +151,7 @@ extension LoginSignupVC {
 //            }
         }) { (error:NSError?) -> () in
             self.stopLoading()
-            UnlabelHelper.showAlert(onVC: self, title: "Facebook login failed!", message: "Please try again.", onOk: {
-                
-            })
+            UnlabelHelper.showAlert(onVC: self, title: "Facebook login failed!", message: "Please try again.", onOk: {})
         }
     }
 }
@@ -184,9 +191,7 @@ extension LoginSignupVC:AKFViewControllerDelegate {
             viewControllerObj.delegate = self
             presentViewController(viewControllerObj as! UIViewController, animated: true, completion: nil)
         }else{
-            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {
-                
-            })
+            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
         }
     }
     
@@ -202,25 +207,18 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     }
     
     func viewController(viewController: UIViewController!, didCompleteLoginWithAccessToken accessToken: AKFAccessToken!, state: String!) {
-        print("2")
-        
-        let newUser = [
-            PRM_PROVIDER: "AccountKit",
-            PRM_DISPLAY_NAME: "Zaid",//authData.providerData[PRM_DISPLAY_NAME] as? NSString as? String
-            "displayImage": "jsflsjflsajfklsjf"
-        ]
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(accessToken.accountID).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+        self.isUserAlreadyExist(accessToken.accountID, userLoginSubType: .Email) { (snapshot:FDataSnapshot) in
+            
+            if snapshot.exists() {
                 dispatch_async(dispatch_get_main_queue(), {
-//                    block(error,firebase)
+                    self.handleUserExist(.Email,snapshot: snapshot)
                 })
-            })
-        })
-        
-        
-        
-        print(accessToken.accountID)
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.handleUserDoesntExist(.Email)
+                })
+            }
+        }
     }
     
     func viewController(viewController: UIViewController!, didFailWithError error: NSError!) {
@@ -235,6 +233,36 @@ extension LoginSignupVC:AKFViewControllerDelegate {
 
 //Custom Methods
 extension LoginSignupVC{
+    
+    func isUserAlreadyExist(userID:String,userLoginSubType:LoginSignupSubType,block:(FDataSnapshot)->Void){
+        
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            var userID:String?
+            
+            if userLoginSubType == .Facebook{
+                userID = FIREBASE_REF.authData.uid
+            }else if (userLoginSubType == .Email || userLoginSubType == .Phone){
+                userID = accountKit.currentAccessToken?.accountID
+            }else{
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let userIDObj = userID{
+                    FirebaseHelper.checkIfUserExists(forID: userIDObj, withBlock: { (snapshot:FDataSnapshot!) in
+                        block(snapshot)
+                    })
+                }else{
+                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+                }
+            })
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+        }
+    }
+    
+    
     func setupOnLoad(){
         stopLoading()
         

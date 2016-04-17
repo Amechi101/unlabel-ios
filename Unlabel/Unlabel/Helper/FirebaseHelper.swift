@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 let FIREBASE_REF = Firebase(url: sFIREBASE_URL)
-let FIREBASE_USER_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
+let FIREBASE_USERS_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
 
 class FirebaseHelper: NSObject {
     
@@ -33,13 +33,25 @@ class FirebaseHelper: NSObject {
         ]
         
         dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+            FIREBASE_USERS_REF.childByAppendingPath(authData.uid).setValue(newUser, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                 dispatch_async(dispatch_get_main_queue(), {
                     block(error,firebase)
                 })
             })
         })
     }
+    
+   
+    
+    /**
+     Check if user exist for specific id.
+     */
+    class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
+        FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            block(snapshot)
+        })
+    }
+    
     
     /**
      // Add new user data after successfull authentication
