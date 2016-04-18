@@ -27,29 +27,20 @@ class FirebaseHelper: NSObject {
                     })
                 })
             })
-//            UnlabelHelper.setDefaultValue(userName as! String, key: PRM_DISPLAY_NAME)
         }
-//
-//        if let userProfilePic = authData.providerData[PRM_PROFILE_IMAGE_URL]{
-//            UnlabelHelper.setDefaultValue(userProfilePic as! String, key: PRM_PROFILE_IMAGE_URL)
-//        }
-        
-//        let newUser = [
-//            PRM_PROVIDER: authData.provider,
-//            PRM_DISPLAY_NAME: authData.providerData[PRM_DISPLAY_NAME] as? NSString as? String
-//        ]
-        
-       
     }
     
-   
     
     /**
      Check if user exist for specific id.
      */
     class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
-        FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            block(snapshot)
+        dispatch_async(dispatch_get_main_queue(), {
+            FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    block(snapshot)
+                })
+            })
         })
     }
     

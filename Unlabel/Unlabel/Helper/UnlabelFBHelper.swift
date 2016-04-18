@@ -15,7 +15,7 @@ let FB_ACCESS_TOKEN = FBSDKAccessToken.currentAccessToken().tokenString
 class UnlabelFBHelper: NSObject {
     class func login(fromViewController viewController:UIViewController,successBlock: () -> (), andFailure failureBlock: (NSError?) -> ()){
         
-        if let _ = FBSDKAccessToken.currentAccessToken(){
+        if let _ = FIREBASE_REF.authData{
             successBlock()
         }else{
             let facebookReadPermissions = ["public_profile", "email"]

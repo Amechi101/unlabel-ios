@@ -56,37 +56,34 @@ extension LoginSignupVC {
         if ReachabilitySwift.isConnectedToNetwork(){
             handleFBLogin()
         }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
-                
-            })
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
     
     func handleFBLogin(){
-        startLoading()
         let windowTintColor = APP_DELEGATE.window?.tintColor
         APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
         
         UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             APP_DELEGATE.window?.tintColor = windowTintColor
             
-            if let userID = FIREBASE_REF.authData.uid{
-                
-                self.isUserAlreadyExist(userID, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
-                    
-                    if snapshot.exists() {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.handleUserExist(snapshot)
-                        })
-                    }else{
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.handleUserDoesntExist(.Facebook)
-                        })
+            if let authData = FIREBASE_REF.authData{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.isUserAlreadyExist(authData.uid, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
+                        
+                        if snapshot.exists() {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.handleUserExist(snapshot)
+                            })
+                        }else{
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.handleUserDoesntExist(.Facebook)
+                            })
+                        }
                     }
-                    
-                }
-                
+                })
             }else{
+                self.stopLoading()
                 UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
             }
             
@@ -111,9 +108,7 @@ extension LoginSignupVC:AKFViewControllerDelegate {
         if ReachabilitySwift.isConnectedToNetwork(){
             handleAccountKitLogin(loginSubType)
         }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
-                
-            })
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
     
@@ -153,25 +148,32 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     }
     
     func viewController(viewController: UIViewController!, didCompleteLoginWithAccessToken accessToken: AKFAccessToken!, state: String!) {
-        self.isUserAlreadyExist(accessToken.accountID, userLoginSubType: .Email) { (snapshot:FDataSnapshot) in
-            
-            if snapshot.exists() {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.handleUserExist(snapshot)
-                })
-            }else{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.handleUserDoesntExist(.Email)
-                })
+        startLoading()
+        if let accountID:String = accessToken.accountID{
+            self.isUserAlreadyExist(accountID, userLoginSubType: .Email) { (snapshot:FDataSnapshot) in
+                
+                if snapshot.exists() {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.handleUserExist(snapshot)
+                    })
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.handleUserDoesntExist(.Email)
+                    })
+                }
             }
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
         }
     }
     
     func viewController(viewController: UIViewController!, didFailWithError error: NSError!) {
         print("3")
+        stopLoading()
     }
     
     func viewControllerDidCancel(viewController: UIViewController!) {
+        stopLoading()
         print("4")
     }
     
@@ -188,25 +190,11 @@ extension LoginSignupVC{
         
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
-            var userID:String?
-            
-            if userLoginSubType == .Facebook{
-                userID = FIREBASE_REF.authData.uid
-            }else if (userLoginSubType == .Email || userLoginSubType == .Phone){
-                userID = accountKit.currentAccessToken?.accountID
-            }else{
-                
-            }
-            
             dispatch_async(dispatch_get_main_queue(), {
-                if let userIDObj = userID{
-                    FirebaseHelper.checkIfUserExists(forID: userIDObj, withBlock: { (snapshot:FDataSnapshot!) in
+                FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
                         block(snapshot)
                     })
-                }else{
-                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-                }
-            })
+                })
         }else{
             UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
@@ -293,10 +281,11 @@ extension LoginSignupVC{
      */
     private func handleUserDoesntExist(subType: LoginSignupSubType){
         print("doesn't exist")
+        var userInfo:[String:AnyObject] = [:]
+        
         if subType == .Email || subType == .Phone {
             //Add user data after successfull authentication
             accountKit.requestAccount({ (account:AKFAccount?, error:NSError?) in
-                var userInfo:[String:AnyObject] = [:]
                 
                 if let phoneNumber = account?.phoneNumber?.stringRepresentation(){
                     userInfo[PRM_PHONE] = phoneNumber
@@ -315,30 +304,51 @@ extension LoginSignupVC{
                 userInfo[PRM_CURRENT_FOLLOWING_COUNT] = 0
                 userInfo[PRM_FOLLOWING_BRANDS] = [:]
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                        if error != nil{
-                            print("User adding failed \(error)")
-                            dispatch_async(dispatch_get_main_queue(), {
-                                UnlabelHelper.showAlert(onVC: self, title: error.localizedDescription, message: S_TRY_AGAIN, onOk: {})
-                            })
-                        }else{
-                            print("User adding success")
-                            dispatch_async(dispatch_get_main_queue(), {
-                                self.goToFeedVC(withUserInfo: userInfo)
-                            })
-                        }
-                    })
-                })
-                
+                self.handleAddNewUser(userInfo)
             })
         }else if subType == .Facebook{
-        
+            
+            if let emailAddress = FIREBASE_REF.authData.providerData[PRM_EMAIL]{
+                userInfo[PRM_EMAIL] = emailAddress
+            }
+            
+            if let displayName = FIREBASE_REF.authData.providerData[PRM_DISPLAY_NAME]{
+                userInfo[PRM_DISPLAY_NAME] = displayName
+            }
+            
+            if let userID = FIREBASE_REF.authData.uid{
+                userInfo[PRM_USER_ID] = "\(userID)"
+            }
+            
+            userInfo[PRM_PROVIDER] = "Facebook"
+            
+            userInfo[PRM_CURRENT_FOLLOWING_COUNT] = 0
+            userInfo[PRM_FOLLOWING_BRANDS] = [:]
+            
+            handleAddNewUser(userInfo)
         }else{
             
         }
     }
 
+    private func handleAddNewUser(userInfo:[String:AnyObject]){
+        dispatch_async(dispatch_get_main_queue(), {
+            FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                if error != nil{
+                    self.stopLoading()
+                    print("User adding failed \(error)")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        UnlabelHelper.showAlert(onVC: self, title: error.localizedDescription, message: S_TRY_AGAIN, onOk: {})
+                    })
+                }else{
+                    print("User adding success")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.goToFeedVC(withUserInfo: userInfo)
+                    })
+                }
+            })
+        })
+    }
     
     private func setupOnLoad(){
         stopLoading()
@@ -393,6 +403,7 @@ extension LoginSignupVC{
     }
     
     @IBAction func IBActionFacebook(sender: UIButton) {
+        startLoading()
         if loginSignupType == .Login {
             loginWithFB()
         }else{
