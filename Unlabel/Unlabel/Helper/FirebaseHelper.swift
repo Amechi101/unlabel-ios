@@ -44,16 +44,58 @@ class FirebaseHelper: NSObject {
         })
     }
     
-    
     /**
      // Add new user data after successfull authentication
      */
-    class func followBrand(brandID:String,userID:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+    class func followUnfollowBrand(follow shouldFollow:Bool,brandID:String,userID:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+        dispatch_async(dispatch_get_main_queue()) {
+            FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
+                
+                var newFollowingBrands:[String]?
+                
+                //Following some brands
+                if var followingBrands:[String] = snapshot.value[PRM_FOLLOWING_BRANDS] as? [String]{
+                    
+                    //Follow brand
+                    if shouldFollow{
+                        followingBrands.append(brandID)
+                        newFollowingBrands = followingBrands
+                        
+                    //Unfollow brand
+                    }else{
+                        for (index,currentBrandID) in followingBrands.enumerate(){
+                            if currentBrandID == brandID{
+                                followingBrands.removeAtIndex(index)
+                            }
+                        }
+                    }
+                    
+                //Not following any brand
+                }else{
+                    if shouldFollow{
+                        newFollowingBrands = [brandID]
+                    }
+                }
+                
+                let newSnap:[NSObject:AnyObject]?
+                
+                if newFollowingBrands?.count > 0{
+                    newSnap = [
+                        PRM_FOLLOWING_BRANDS: newFollowingBrands as! AnyObject
+                    ]
+                }else{
+                    newSnap = [:]
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                FIREBASE_USERS_REF.childByAppendingPath(FIREBASE_REF.authData.uid).updateChildValues(newSnap) { (error:NSError!, firebase:Firebase!) in
+                    block(error,firebase)
+                    }
+                }
+                
+            })
+        }
         
-//        let newBrand = [
-//            PRM_FOLLOWING_LABALES_COUNT: 2,
-//            PRM_FOLLOWING_LABALES: ["1","2"]
-//        ]
 //        FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(FIREBASE_REF.authData.uid).updateChildValues(newBrand) { (error:NSError!, firebase:Firebase!) in
 //         block(error,firebase)   
 //        }

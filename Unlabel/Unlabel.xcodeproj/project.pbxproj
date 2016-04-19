@@ -1413,7 +1413,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a3bf8d0-e7b4-4a68-b72c-0f1b886c6cae";
+				PROVISIONING_PROFILE = "994e0c35-8a55-46c9-b3a9-3fceab80a6c2";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1438,7 +1438,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a3bf8d0-e7b4-4a68-b72c-0f1b886c6cae";
+				PROVISIONING_PROFILE = "994e0c35-8a55-46c9-b3a9-3fceab80a6c2";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

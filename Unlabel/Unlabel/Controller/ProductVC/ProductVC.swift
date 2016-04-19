@@ -279,14 +279,15 @@ extension ProductVC{
 
         updateFollowButton(sender, isFollowing: true)
         
-        if let fbAccessToken = FB_ACCESS_TOKEN{
-            FirebaseHelper.followBrand(selectedBrand.ID, userID: FB_ACCESS_TOKEN, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            FirebaseHelper.followUnfollowBrand(follow:true,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                 if error != nil{
                     
                 }else{
                     
                 }
             })
+            
             if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
                 
             }else{

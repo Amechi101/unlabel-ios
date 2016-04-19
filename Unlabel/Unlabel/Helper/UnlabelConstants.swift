@@ -93,6 +93,9 @@ let FONT_STYLE_BOLD = "Bold"
 //MARK:- Strings
 //
 
+let S_PROVIDER_FACEBOOK = "Facebook"
+let S_PROVIDER_ACCOUNTKIT = "AccountKit"
+
 let sSOMETHING_WENT_WRONG       = "Something Went Wrong!"
 let S_TRY_AGAIN                 = "Please try agian later"
 let sARE_YOU_SURE               = "Are you sure?"

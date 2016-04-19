@@ -23,12 +23,13 @@ enum LoginSignupSubType{
 }
 
 
+let AccountKit = AKFAccountKit(responseType: .AccessToken)
+
 class LoginSignupVC: UIViewController{
 
     @IBOutlet weak var IBviewFooterContainer: UIView!
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
-    let accountKit = AKFAccountKit(responseType: .AccessToken)
     var pendingLoginViewController: UIViewController?
     
     var loginSignupType:LoginSigupType?
@@ -113,16 +114,16 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     }
     
     func handleAccountKitLogin(loginSubType:LoginSignupSubType){
-        pendingLoginViewController = accountKit.viewControllerForLoginResume()
+        pendingLoginViewController = AccountKit.viewControllerForLoginResume()
         
         var viewController:AKFViewController?
         
         if loginSubType == .Phone{
-            viewController = accountKit.viewControllerForPhoneLoginWithPhoneNumber(nil, state: generateState()) as? AKFViewController
+            viewController = AccountKit.viewControllerForPhoneLoginWithPhoneNumber(nil, state: generateState()) as? AKFViewController
         }else if loginSubType == .Email{
-            viewController = accountKit.viewControllerForEmailLoginWithEmail(nil, state: generateState()) as? AKFViewController
+            viewController = AccountKit.viewControllerForEmailLoginWithEmail(nil, state: generateState()) as? AKFViewController
         }else{
-            viewController = accountKit.viewControllerForEmailLoginWithEmail(nil, state: generateState()) as? AKFViewController
+            viewController = AccountKit.viewControllerForEmailLoginWithEmail(nil, state: generateState()) as? AKFViewController
         }
         
         if let viewControllerObj = viewController{
@@ -243,6 +244,10 @@ extension LoginSignupVC{
        
         self.configureBatchForPushNotification()
         
+        if let userID:String = userInfo[PRM_USER_ID] as? String{
+            UnlabelHelper.setDefaultValue(userID, key: PRM_USER_ID)
+        }
+        
         if let phoneNumber:String = userInfo[PRM_PHONE] as? String{
             UnlabelHelper.setDefaultValue(phoneNumber, key: PRM_PHONE)
         }
@@ -285,7 +290,7 @@ extension LoginSignupVC{
         
         if subType == .Email || subType == .Phone {
             //Add user data after successfull authentication
-            accountKit.requestAccount({ (account:AKFAccount?, error:NSError?) in
+            AccountKit.requestAccount({ (account:AKFAccount?, error:NSError?) in
                 
                 if let phoneNumber = account?.phoneNumber?.stringRepresentation(){
                     userInfo[PRM_PHONE] = phoneNumber
@@ -300,7 +305,7 @@ extension LoginSignupVC{
                     userInfo[PRM_DISPLAY_NAME] = "User: \(accountID)"
                 }
                 
-                userInfo[PRM_PROVIDER] = "AccountKit"
+                userInfo[PRM_PROVIDER] = S_PROVIDER_ACCOUNTKIT
                 userInfo[PRM_CURRENT_FOLLOWING_COUNT] = 0
                 userInfo[PRM_FOLLOWING_BRANDS] = [:]
                 
@@ -320,7 +325,7 @@ extension LoginSignupVC{
                 userInfo[PRM_USER_ID] = "\(userID)"
             }
             
-            userInfo[PRM_PROVIDER] = "Facebook"
+            userInfo[PRM_PROVIDER] = S_PROVIDER_FACEBOOK
             
             userInfo[PRM_CURRENT_FOLLOWING_COUNT] = 0
             userInfo[PRM_FOLLOWING_BRANDS] = [:]
