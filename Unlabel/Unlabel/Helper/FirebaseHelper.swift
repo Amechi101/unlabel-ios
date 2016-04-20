@@ -85,7 +85,7 @@ class FirebaseHelper: NSObject {
             if shouldFollow{
                 let followValues:[NSObject:AnyObject] = [brandID:true]
                 dispatch_async(dispatch_get_main_queue()) {
-                    FIREBASE_USERS_REF.childByAppendingPath(FIREBASE_REF.authData.uid).childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                         block(error,firebase)
                         if error == nil{
                             print("brand followed")
@@ -96,7 +96,7 @@ class FirebaseHelper: NSObject {
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue()) {
-                    FIREBASE_USERS_REF.childByAppendingPath(FIREBASE_REF.authData.uid).childByAppendingPath(PRM_FOLLOWING_BRANDS).childByAppendingPath(brandID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+                    FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).childByAppendingPath(brandID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
                         block(error,firebase)
                         if error == nil{
                             print("brand removed")

@@ -339,18 +339,18 @@ extension LoginSignupVC{
     private func handleAddNewUser(userInfo:[String:AnyObject]){
         dispatch_async(dispatch_get_main_queue(), {
             FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                dispatch_async(dispatch_get_main_queue(), {
                 if error != nil{
                     self.stopLoading()
                     print("User adding failed \(error)")
-                    dispatch_async(dispatch_get_main_queue(), {
                         UnlabelHelper.showAlert(onVC: self, title: error.localizedDescription, message: S_TRY_AGAIN, onOk: {})
-                    })
                 }else{
                     print("User adding success")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.goToFeedVC(withUserInfo: userInfo)
                     })
                 }
+                    })
             })
         })
     }
