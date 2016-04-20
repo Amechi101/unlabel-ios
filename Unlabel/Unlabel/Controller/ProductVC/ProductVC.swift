@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import SDWebImage
 
+protocol ProductVCDelegate {
+    func didClickFollow(forBrand brand:Brand)
+}
 class ProductVC: UIViewController {
 
     //
@@ -23,6 +26,7 @@ class ProductVC: UIViewController {
     var activityIndicator:UIActivityIndicatorView?
     var selectedBrand = Brand()
     var lastEvaluatedKey:[NSObject : AnyObject]!
+    var delegate:ProductVCDelegate?
     
     
     //
@@ -122,7 +126,7 @@ extension ProductVC:UICollectionViewDataSource{
         
         productHeaderCell.IBlblLabelDescription.text = selectedBrand.Description
         productHeaderCell.IBlblLabelLocation.text = "\(selectedBrand.OriginCity), \(selectedBrand.StateOrCountry)"
-        
+        updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
         productHeaderCell.IBimgHeaderImage.image = nil
         
         if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(selectedBrand.FeatureImage)){
@@ -276,24 +280,37 @@ extension ProductVC{
     
     @IBAction func IBActionFollow(sender: UIButton) {
         print("Follow clicked")
-
-        updateFollowButton(sender, isFollowing: true)
-        
-        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-            FirebaseHelper.followUnfollowBrand(follow:true,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                if error != nil{
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            if selectedBrand.isFollowing {
+                selectedBrand.isFollowing = false
+            }else{
+                selectedBrand.isFollowing = true
+            }
+            
+            updateFollowButton(sender, isFollowing: selectedBrand.isFollowing)
+            
+            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+                FirebaseHelper.followUnfollowBrand(follow:selectedBrand.isFollowing,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    if error != nil{
+                        
+                    }else{
+                        self.IBcollectionViewProduct.reloadData()
+                    }
+                })
+                
+                if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
                     
                 }else{
-                    
+                    addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                    UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
                 }
-            })
-            
-            if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                
-            }else{
-                addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
             }
+            
+            delegate?.didClickFollow(forBrand: selectedBrand)
+            self.IBcollectionViewProduct.reloadData()
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
 }
@@ -335,7 +352,6 @@ extension ProductVC{
 
         
         self.automaticallyAdjustsScrollViewInsets = false
-
     }
     
     func updateFollowButton(button:UIButton,isFollowing:Bool){

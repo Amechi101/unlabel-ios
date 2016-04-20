@@ -7,8 +7,8 @@
 //
 
 import UIKit
+import Firebase
 import SDWebImage
-
     
 enum MainVCType:Int{
     case Feed
@@ -28,6 +28,7 @@ class FeedVC: UIViewController {
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
     var arrBrandList:[Brand] = [Brand]()
+//    var arrFollowingBrandIDs:[String] = [String]()
     
     var didSelectIndexPath:NSIndexPath?
     var filterChildVC:FilterVC?
@@ -41,7 +42,6 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         wsCallGetLabels()
-
         setupOnLoad()
     }
     
@@ -53,18 +53,15 @@ class FeedVC: UIViewController {
                 self.IBcollectionViewFeed.reloadData()
             }) { (error) in
                 print(error)
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {
-                    
-                })
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
             }
         }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
-                
-            })
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
     
     override func viewWillAppear(animated: Bool) {
+        firebaseCallGetFollowingBrands()
         UnlabelHelper.setAppDelegateDelegates(self)
     }
     
@@ -88,6 +85,7 @@ extension FeedVC{
             if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
                 if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
                     productVC.selectedBrand = brand
+                    productVC.delegate = self
                     GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
                 }
             }
@@ -118,6 +116,13 @@ extension FeedVC:UICollectionViewDataSource{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
         feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].Name.uppercaseString
         feedVCCell.IBlblLocation.text = "\(arrBrandList[indexPath.row].OriginCity), \(arrBrandList[indexPath.row].StateOrCountry)"
+        feedVCCell.IBbtnStar.tag = indexPath.row
+        
+        if arrBrandList[indexPath.row].isFollowing{
+            feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), forState: .Normal)
+        }else{
+            feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), forState: .Normal)
+        }
         
         feedVCCell.IBimgBrandImage.image = nil
         
@@ -237,6 +242,40 @@ extension FeedVC{
     @IBAction func IBActionSwipeLeft(sender: AnyObject) {
         openFilterScreen()
     }
+    
+    @IBAction func IBActionStarClicked(sender: UIButton) {
+        
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+                if let selectedBrandID:String = arrBrandList[sender.tag].ID{
+                    
+                    //If already following
+                    if arrBrandList[sender.tag].isFollowing{
+                        arrBrandList[sender.tag].isFollowing = false
+                        
+                        //If not already following
+                    }else{
+                        arrBrandList[sender.tag].isFollowing = true
+                    }
+                    
+                    FirebaseHelper.followUnfollowBrand(follow: arrBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                        //Followd/Unfollowd brand
+                        if error == nil{
+                            self.firebaseCallGetFollowingBrands()
+                        }else{
+                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+                        }
+                    })
+                    
+                    IBcollectionViewFeed.reloadData()
+                }
+            }
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+        }
+    }
+    
 }
 
 
@@ -470,78 +509,39 @@ extension FeedVC{
     }
 }
 
+    //
+    //MARK:- ProductVCDelegate Call Methods
+    //
+    
+    extension FeedVC:ProductVCDelegate{
+        func didClickFollow(forBrand brand: Brand) {
+            arrBrandList[brand.currentIndex] = brand
+            IBcollectionViewFeed.reloadData()
+        }
+    }
     
 //
-//MARK:- AWS Call Methods
+//MARK:- Firebase Call Methods
 //
 
 extension FeedVC{
     /**
-     AWS call to fetch all active brands
+    Firebase call get all following brands
      */
-//    func awsCallFetchActiveBrands(){
-//        
-//        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-//        
-//        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
-//        
-//        scanExpression.filterExpression = "isActive = :val"
-//        scanExpression.expressionAttributeValues = [":val": true]
-//        
-//        dynamoDBObjectMapper.scan(DynamoDB_Brand.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
-//            
-//            //If error
-//            if let error = task.error{
-//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
-//                    
-//                })
-//                return nil
-//            }
-//            
-//            //If exception
-//            if let exception = task.exception{
-//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.description, onOk: { () -> () in
-//                    
-//                })
-//                return nil
-//            }
-//            
-//            //If got result
-//            if let result = task.result{
-//                //If result items count > 0
-//                if let arrItems:[DynamoDB_Brand] = result.allItems as? [DynamoDB_Brand] where arrItems.count>0{
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        self.arrBrandList = [Brand]()
-//                            for (index, brand) in arrItems.enumerate() {
-//                                let brandObj = Brand()
-//                                brandObj.dynamoDB_Brand = brand
-//                                AWSHelper.downloadImageWithCompletion(forImageName: brand.ImageName, uploadPathKey: pathKeyBrands, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-//                                        if let downloadedData = data{
-//                                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                                                if let image = UIImage(data: downloadedData){
-//                                                    brandObj.imgBrandImage = image
-//                                                    self.IBcollectionViewFeed.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
-//                                                }
-//                                            })
-//                                        }
-//                                    })
-//                                    self.arrBrandList.append(brandObj)
-//                        }
-//                        defer{
-//                            self.IBcollectionViewFeed.reloadData()
-//                        }
-//                })
-//                }else{
-//                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-//                    })
-//                }
-//            }else{
-//                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-//                })
-//            }
-//            
-//            
-//            return nil
-//        }
-//    }
+    func firebaseCallGetFollowingBrands(){
+        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
+                if let followingBrandIDsObj = followingBrandIDs{
+                    for brand in self.arrBrandList{
+                        if followingBrandIDsObj.contains(brand.ID){
+                            brand.isFollowing = true
+                        }
+                    }
+
+                    self.IBcollectionViewFeed.reloadData()
+                }
+            })
+        }
+    }
+
 }

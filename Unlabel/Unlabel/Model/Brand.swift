@@ -31,4 +31,7 @@ class Brand: NSObject {
     var Bags:Bool = Bool()
     
     var arrProducts = [Product]()
+    
+    var isFollowing = false
+    var currentIndex = Int()
 }
