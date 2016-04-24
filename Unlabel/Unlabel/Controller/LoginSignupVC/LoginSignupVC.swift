@@ -205,6 +205,8 @@ extension LoginSignupVC{
      handleUserExist on Firebase
      */
     private func handleUserExist(snapshot:FDataSnapshot){
+        
+//        UnlabelHelper.showAlert(onVC: self, title: "User Already Exists", message: "Please Login with this account") {}
         print(snapshot)
         
         var userInfo:[String:AnyObject] = [:]
@@ -249,11 +251,15 @@ extension LoginSignupVC{
         }
         
         if let phoneNumber:String = userInfo[PRM_PHONE] as? String{
-            UnlabelHelper.setDefaultValue(phoneNumber, key: PRM_PHONE)
+            if phoneNumber.characters.count > 0{
+                UnlabelHelper.setDefaultValue(phoneNumber, key: PRM_PHONE)
+            }
         }
         
         if let emailAddress:String = userInfo[PRM_EMAIL] as? String{
-            UnlabelHelper.setDefaultValue(emailAddress, key: PRM_EMAIL)
+            if emailAddress.characters.count > 0{
+                UnlabelHelper.setDefaultValue(emailAddress, key: PRM_EMAIL)
+            }
         }
         
         if let displayName:String = userInfo[PRM_DISPLAY_NAME] as? String{

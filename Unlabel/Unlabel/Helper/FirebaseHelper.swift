@@ -64,18 +64,6 @@ class FirebaseHelper: NSObject {
                 }
             })
         })
-        
-//        dispatch_async(dispatch_get_main_queue()) {
-//            FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
-//                
-//                //Following some brands
-//                if let followingBrands:[String] = snapshot.value[PRM_FOLLOWING_BRANDS] as? [String]{
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                      block(followingBrands)
-//                    })
-//                }
-//            })
-//        }
     }
     
     /**

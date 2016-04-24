@@ -14,6 +14,46 @@ class AccountInfoVC: UITableViewController {
     //MARK:- IBOutlets, constants, vars
     //
     
+    @IBOutlet weak var IBlblLoggedInWith: UILabel!
+    @IBOutlet weak var IBlblUserName: UILabel!
+    @IBOutlet weak var IBlblEmailOrPhone: UILabel!
+    
+    
+    let userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
+        if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
+            
+            //Facebook user
+            if provider == S_PROVIDER_FACEBOOK{
+                if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+                    if let email = UnlabelHelper.getDefaultValue(PRM_EMAIL){
+                        return (displayName,email,"Facebook")
+                    }else{
+                        return (displayName,"Unlabel User","Facebook")
+                    }
+                }else{
+                    return ("Unlabel User","Unlabel User","Facebook")
+                }
+                
+                
+            //AccountKit
+            }else{
+                if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+                    if let email = UnlabelHelper.getDefaultValue(PRM_EMAIL){
+                        return (displayName,email,"Email Only")
+                    }else if let phone = UnlabelHelper.getDefaultValue(PRM_PHONE){
+                        return (displayName,phone,"Mobile Number")
+                    }else{
+                        return ("Unlabel User","Unlabel User","Email or Phone")
+                    }
+                }else{
+                    return ("Unlabel User","Unlabel User","Email or Phone")
+                }
+            }
+        }else{
+            return ("Unlabel User","Unlabel User","Facebook or Email or Phone")
+        }
+    }()
+    
     
     //
     //MARK:- VC Lifecycle
@@ -124,6 +164,8 @@ extension AccountInfoVC{
      Setup UI on VC Load.
      */
     func setupOnLoad(){
-        
+        IBlblUserName.text = userDetails.displayName
+        IBlblEmailOrPhone.text = userDetails.EmailOrPhone
+        IBlblLoggedInWith.text = "Signed In with \(userDetails.SignedInWith):"
     }
 }

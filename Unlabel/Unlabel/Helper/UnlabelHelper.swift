@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import Cloudinary
 
 class UnlabelHelper: NSObject {
@@ -58,7 +59,11 @@ class UnlabelHelper: NSObject {
     class func logout(){
         UnlabelFBHelper.logout()
         FirebaseHelper.logout()
+        UnlabelHelper.removePrefForKey(PRM_USER_ID)
+        UnlabelHelper.removePrefForKey(PRM_PHONE)
+        UnlabelHelper.removePrefForKey(PRM_EMAIL)
         UnlabelHelper.removePrefForKey(PRM_DISPLAY_NAME)
+        UnlabelHelper.removePrefForKey(PRM_PROVIDER)
         UnlabelHelper.removePrefForKey(sPOPUP_SEEN_ONCE)
         
         let rootVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
@@ -71,6 +76,48 @@ class UnlabelHelper: NSObject {
                 window.rootViewController!.view.layoutIfNeeded()
                 }, completion: nil)
         }
+    }
+    
+    /**
+     handle delete account
+     
+     Note:- For Facebook only removing following brands, because there is no way to delete it from Firebase
+     For AccountKit deleting acccount.
+     */
+    class func deleteAccount(userID:String){
+            if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
+                
+                //Facebook user
+                if provider == S_PROVIDER_FACEBOOK{
+                    dispatch_async(dispatch_get_main_queue()) {
+                        FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+                            if error == nil{
+                                print("all following brands removed")
+                            }else{
+                                print("all following brands not removed : \(error)")
+                            }
+                        })
+                    }
+                    
+                    
+                    //AccountKit
+                }else{
+                    dispatch_async(dispatch_get_main_queue()) {
+                        FIREBASE_USERS_REF.childByAppendingPath(userID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+                            if error == nil{
+                                print("account removed")
+                            }else{
+                                print("account not removed : \(error)")
+                            }
+                        })
+                    }
+                }
+            }else{
+              
+            }
+       
+        
+        UnlabelHelper.logout()
     }
 
     class func setAppDelegateDelegates(delegate:AppDelegateDelegates){

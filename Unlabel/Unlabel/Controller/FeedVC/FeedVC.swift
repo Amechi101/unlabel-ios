@@ -41,7 +41,7 @@ class FeedVC: UIViewController {
 //
     override func viewDidLoad() {
         super.viewDidLoad()
-        wsCallGetLabels()
+//        wsCallGetLabels()
         setupOnLoad()
     }
     
@@ -61,7 +61,9 @@ class FeedVC: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        firebaseCallGetFollowingBrands()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.firebaseCallGetFollowingBrands()
+        }
         UnlabelHelper.setAppDelegateDelegates(self)
     }
     
