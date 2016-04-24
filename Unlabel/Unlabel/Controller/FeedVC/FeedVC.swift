@@ -27,13 +27,12 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
-    var arrBrandList:[Brand] = [Brand]()
-//    var arrFollowingBrandIDs:[String] = [String]()
-    
-    var didSelectIndexPath:NSIndexPath?
-    var filterChildVC:FilterVC?
-    var leftMenuChildVC:LeftMenuVC?
-    var mainVCType:MainVCType = .Feed
+    private let refreshControl = UIRefreshControl()
+    private var arrBrandList:[Brand] = [Brand]()
+    private var didSelectIndexPath:NSIndexPath?
+    private var filterChildVC:FilterVC?
+    private var leftMenuChildVC:LeftMenuVC?
+    private var mainVCType:MainVCType = .Feed
 
     
 //
@@ -43,21 +42,6 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
 //        wsCallGetLabels()
         setupOnLoad()
-    }
-    
-    func wsCallGetLabels(){
-        //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
-            UnlabelAPIHelper.getBrands({ (arrBrands:[Brand]) in
-                self.arrBrandList = arrBrands
-                self.IBcollectionViewFeed.reloadData()
-            }) { (error) in
-                print(error)
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-            }
-        }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -290,6 +274,7 @@ extension FeedVC{
      Setup UI on VC Load.
      */
     func setupOnLoad(){
+        addPullToRefresh()
         IBbarBtnFilter.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
@@ -315,6 +300,14 @@ extension FeedVC{
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    /**
+    Add pull to refresh on Collectionview
+     */
+    func addPullToRefresh(){
+        refreshControl.addTarget(self, action: #selector(FeedVC.wsCallGetLabels), forControlEvents: .ValueChanged)
+        IBcollectionViewFeed.addSubview(refreshControl)
     }
     
     /**
@@ -545,5 +538,32 @@ extension FeedVC{
             })
         }
     }
-
 }
+    
+    
+    //
+    //MARK:- WS Call Methods
+    //
+    
+    extension FeedVC{
+        /**
+         WS call get all brands
+         */
+        func wsCallGetLabels(){
+            //Internet available
+            if ReachabilitySwift.isConnectedToNetwork(){
+                UnlabelAPIHelper.getBrands({ (arrBrands:[Brand]) in
+                    self.arrBrandList = arrBrands
+                    self.IBcollectionViewFeed.reloadData()
+                    self.refreshControl.endRefreshing()
+                }) { (error) in
+                    print(error)
+                    self.refreshControl.endRefreshing()
+                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+                }
+            }else{
+                self.refreshControl.endRefreshing()
+                UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+            }
+        }
+    }
