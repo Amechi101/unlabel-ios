@@ -716,9 +716,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="22" minY="0.0" maxX="22" maxY="0.0"/>
-                                        <connections>
-                                            <segue destination="Odf-II-rFn" kind="show" identifier="PrivacyPolicyFromSettings" id="RzS-8M-eyo"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="qOD-0E-x9t">
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
@@ -727,8 +724,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEGAL STUFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
-                                                    <rect key="frame" x="22" y="0.0" width="93" height="54"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
+                                                    <rect key="frame" x="22" y="0.0" width="48" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -750,9 +747,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="22" minY="0.0" maxX="22" maxY="0.0"/>
-                                        <connections>
-                                            <segue destination="Odf-II-rFn" kind="show" identifier="LegalStuffFromSettings" id="skI-k5-ll8"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="idA-dm-grz">
                                         <rect key="frame" x="0.0" y="165" width="375" height="55"/>
@@ -1505,10 +1499,10 @@ NOT RANDOM SH*T</string>
                         <viewControllerLayoutGuide type="bottom" id="qYd-Mz-X9w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sUb-wk-35j">
-                        <rect key="frame" x="0.0" y="64" width="375" height="936"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-RV-aDA">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-RV-aDA">
                                 <rect key="frame" x="0.0" y="84" width="375" height="916"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-uM-kkE">
@@ -1589,7 +1583,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <constraint firstAttribute="bottom" secondItem="TNu-uM-kkE" secondAttribute="bottom" id="nDi-P7-5Ui"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2R-uq-Ihr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2R-uq-Ihr">
                                 <rect key="frame" x="167" y="27" width="41" height="28"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
@@ -1597,7 +1591,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-qQ-W9U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-qQ-W9U">
                                 <rect key="frame" x="315" y="20" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Zry-3V-5vK"/>
@@ -2023,7 +2017,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <image name="test" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="skI-k5-ll8"/>
+        <segue reference="bCY-FC-Z83"/>
         <segue reference="XRw-lG-PtZ"/>
     </inferredMetricsTieBreakers>
 </document>

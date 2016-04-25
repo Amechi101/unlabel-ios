@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsVC: UITableViewController {
 
@@ -52,9 +53,48 @@ class SettingsVC: UITableViewController {
 extension SettingsVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 4{
+        if indexPath.row == 1{
+            openSafariForURL(URL_PRIVACY_POLICY)
+        }else if indexPath.row == 2{
+            openSafariForURL(URL_TERMS)
+        }else if indexPath.row == 4{
             UnlabelHelper.logout()
         }
+        
+    }
+}
+
+//
+//MARK:- Custom and SFSafariViewControllerDelegate Methods
+//
+extension SettingsVC:SFSafariViewControllerDelegate{
+    func openSafariForURL(urlString:String){
+        if let productURL:NSURL = NSURL(string: urlString){
+            APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
+            let safariVC = SFSafariViewController(URL: productURL)
+            safariVC.delegate = self
+            self.presentViewController(safariVC, animated: true) { () -> Void in
+                
+            }
+        }else{ showAlertWebPageNotAvailable() }
+    }
+    
+    func showAlertWebPageNotAvailable(){
+        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
+            
+        }
+    }
+    
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
+        return []
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController){
+        APP_DELEGATE.window?.tintColor = WINDOW_TINT_COLOR
+    }
+    
+    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
+        
     }
 }
 
