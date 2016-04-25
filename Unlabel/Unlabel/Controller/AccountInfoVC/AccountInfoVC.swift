@@ -83,8 +83,6 @@ extension AccountInfoVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.row == 1{
-            addPopupView(.Delete, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-        }else if indexPath.row == 2{
             UnlabelHelper.logout()
         }
     }

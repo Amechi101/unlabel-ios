@@ -10,6 +10,7 @@ import UIKit
 import Batch
 import Firebase
 import AccountKit
+import SafariServices
 
 enum LoginSigupType{
     case Login
@@ -179,6 +180,44 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     }
     
   }
+
+
+//
+//MARK:- Custom and SFSafariViewControllerDelegate Methods
+//
+extension LoginSignupVC:SFSafariViewControllerDelegate{
+    func openSafariForURL(urlString:String){
+        if let productURL:NSURL = NSURL(string: urlString){
+            APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
+            let safariVC = SFSafariViewController(URL: productURL)
+            safariVC.delegate = self
+            self.presentViewController(safariVC, animated: true) { () -> Void in
+                
+            }
+        }else{ showAlertWebPageNotAvailable() }
+    }
+    
+    func showAlertWebPageNotAvailable(){
+        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
+            
+        }
+    }
+    
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
+        return []
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController){
+        APP_DELEGATE.window?.tintColor = WINDOW_TINT_COLOR
+    }
+    
+    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
+        
+    }
+}
+
+
+
 //---------------------------------------------------------------------------------------------
 
 
@@ -442,5 +481,12 @@ extension LoginSignupVC{
         }
     }
     
+    @IBAction func IBActionTerms(sender: UIButton) {
+        openSafariForURL(URL_TERMS)
+    }
+    
+    @IBAction func IBActionPrivacyPolicy(sender: AnyObject) {
+        openSafariForURL(URL_PRIVACY_POLICY)
+    }
 }
 //---------------------------------------------------------------------------------------------

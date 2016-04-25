@@ -17,6 +17,7 @@ class Brand: NSObject {
     var Description:String = String()
     var FeatureImage:String = String()
     var CreatedDate:String = String()
+    var BrandWebsiteURL:String = String()
     var isActive:Bool = Bool()
     
     //Sex

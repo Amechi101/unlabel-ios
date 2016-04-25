@@ -23,7 +23,6 @@ class ProductDetailVC: UIViewController {
     
     @IBOutlet weak var IBImgProductImage: UIImageView!
     var product = Product()
-    let windowTintColor = APP_DELEGATE.window?.tintColor
     
     //
     //MARK:- VC Lifecycle
@@ -101,7 +100,7 @@ extension ProductDetailVC:SFSafariViewControllerDelegate,UIViewControllerTransit
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController){
-        APP_DELEGATE.window?.tintColor = windowTintColor
+        APP_DELEGATE.window?.tintColor = WINDOW_TINT_COLOR
     }
     
     func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){

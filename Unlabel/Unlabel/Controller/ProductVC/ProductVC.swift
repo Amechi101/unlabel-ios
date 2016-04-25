@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SDWebImage
+import SafariServices
 
 protocol ProductVCDelegate {
     func didClickFollow(forBrand brand:Brand)
@@ -124,8 +125,7 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
         let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
         
-        productHeaderCell.IBlblLabelDescription.text = selectedBrand.Description
-        productHeaderCell.IBlblLabelLocation.text = "\(selectedBrand.OriginCity), \(selectedBrand.StateOrCountry)"
+        productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT \(selectedBrand.Name.uppercaseString)", forState: .Normal)
         updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
         productHeaderCell.IBimgHeaderImage.image = nil
         
@@ -193,7 +193,7 @@ extension ProductVC:UICollectionViewDataSource{
 extension ProductVC:UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.row == 0{
-            return CGSizeMake(collectionView.frame.size.width, 360)
+            return CGSizeMake(collectionView.frame.size.width, 291)
         }else{
             return CGSizeMake((collectionView.frame.size.width/2)-6, 260)
         }
@@ -313,6 +313,11 @@ extension ProductVC{
             UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
+    
+    @IBAction func IBActionAboutBrandClicked(sender: AnyObject) {
+        openSafariForURL(selectedBrand.BrandWebsiteURL)
+    }
+    
 }
 
 //
@@ -329,6 +334,41 @@ extension ProductVC:UIGestureRecognizerDelegate{
         }else{
             return false
         }
+    }
+}
+
+//
+//MARK:- Custom and SFSafariViewControllerDelegate Methods
+//
+extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioningDelegate{
+    func openSafariForURL(urlString:String){
+        if let productURL:NSURL = NSURL(string: urlString){
+            APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
+            let safariVC = UnlabelSafariVC(URL: productURL)
+            safariVC.delegate = self
+            safariVC.transitioningDelegate = self
+            self.presentViewController(safariVC, animated: true) { () -> Void in
+                
+            }
+        }else{ showAlertWebPageNotAvailable() }
+    }
+    
+    func showAlertWebPageNotAvailable(){
+        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
+            
+        }
+    }
+    
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
+        return []
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController){
+        APP_DELEGATE.window?.tintColor = WINDOW_TINT_COLOR
+    }
+    
+    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
+        
     }
 }
 

@@ -12,13 +12,12 @@ class ProductHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var IBimgHeaderImage: UIImageView!
     @IBOutlet weak var IBbtnFollow: UIButton!
-    @IBOutlet weak var IBlblLabelDescription: UILabel!
-    @IBOutlet weak var IBlblLabelLocation: UILabel!
+    @IBOutlet weak var IBbtnAboutBrand: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
-        IBlblLabelLocation.textColor = MEDIUM_GRAY_TEXT_COLOR
     }
 
 }

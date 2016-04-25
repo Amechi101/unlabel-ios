@@ -29,6 +29,8 @@ let LIGHT_GRAY_BORDER_COLOR = UIColor(red: 153/255, green: 156/255, blue: 165/25
 
 let DARK_GRAY_COLOR = UIColor(red: 40/255, green: 44/255, blue: 53/255, alpha: 1)
 
+let WINDOW_TINT_COLOR = APP_DELEGATE.window?.tintColor
+
 //
 //MARK:- Storyboard Names
 //

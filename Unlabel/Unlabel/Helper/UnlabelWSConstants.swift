@@ -8,6 +8,10 @@
 
 import Foundation
 
+//Unlabel.us URLs
+let URL_PRIVACY_POLICY = "https://unlabel.us/privacy-policy/"
+let URL_TERMS = "https://unlabel.us/terms/"
+
 //FIREBASE
 let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
 let sEND_USERS = "/users"
@@ -59,3 +63,4 @@ let PRM_PRODUCT_IMAGE         = "product_image"
 let PRM_PRODUCTIS_ACTIVE      = "product_isActive"
 let PRM_PRODUCT_NAME          = "product_name"
 let PRM_PRODUCT_PRICE         = "product_price"
+let PRM_BRAND_WEBSITE_URL     = "brand_website_url"

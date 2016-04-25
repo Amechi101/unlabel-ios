@@ -74,6 +74,10 @@ class UnlabelAPIHelper{
                     brand.OriginCity = originCity
                 }
                 
+                if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
+                    brand.BrandWebsiteURL = brandWebsiteURL
+                }
+                
                 if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
                     brand.arrProducts = getProductsArrayFromJSON(arrProducts)
                 }
