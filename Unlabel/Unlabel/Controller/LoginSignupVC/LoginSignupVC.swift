@@ -72,12 +72,14 @@ extension LoginSignupVC {
             if let authData = FIREBASE_REF.authData{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.isUserAlreadyExist(authData.uid, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
-                        
+                        print("handleFBLogin---1")
                         if snapshot.exists() {
+                            print("handleFBLogin---2")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.handleUserExist(snapshot)
                             })
                         }else{
+                            print("handleFBLogin---3")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.handleUserDoesntExist(.Facebook)
                             })
@@ -227,11 +229,12 @@ extension LoginSignupVC:SFSafariViewControllerDelegate{
 extension LoginSignupVC{
     
     private func isUserAlreadyExist(userID:String,userLoginSubType:LoginSignupSubType,block:(FDataSnapshot)->Void){
-        
+        print("isUserAlreadyExist---1")
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             dispatch_async(dispatch_get_main_queue(), {
                 FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
+                    print("isUserAlreadyExist---2")
                         block(snapshot)
                     })
                 })
@@ -244,7 +247,7 @@ extension LoginSignupVC{
      handleUserExist on Firebase
      */
     private func handleUserExist(snapshot:FDataSnapshot){
-        
+        print("handleUserExist---1")
 //        UnlabelHelper.showAlert(onVC: self, title: "User Already Exists", message: "Please Login with this account") {}
         print(snapshot)
         
@@ -330,13 +333,16 @@ extension LoginSignupVC{
      handleUserDoesn'tExist on Firebase
      */
     private func handleUserDoesntExist(subType: LoginSignupSubType){
-        print("doesn't exist")
+        print("handleUserDoesntExist---1")
         var userInfo:[String:AnyObject] = [:]
         
         if subType == .Email || subType == .Phone {
+            
+            print("handleUserDoesntExist---2 ")
+            
             //Add user data after successfull authentication
             AccountKit.requestAccount({ (account:AKFAccount?, error:NSError?) in
-                
+            print("handleUserDoesntExist---3")
                 if let phoneNumber = account?.phoneNumber?.stringRepresentation(){
                     userInfo[PRM_PHONE] = phoneNumber
                 }
@@ -357,7 +363,7 @@ extension LoginSignupVC{
                 self.handleAddNewUser(userInfo)
             })
         }else if subType == .Facebook{
-            
+            print("handleUserDoesntExist---4")
             if let emailAddress = FIREBASE_REF.authData.providerData[PRM_EMAIL]{
                 userInfo[PRM_EMAIL] = emailAddress
             }
@@ -377,14 +383,17 @@ extension LoginSignupVC{
             
             handleAddNewUser(userInfo)
         }else{
-            
+            print("handleUserDoesntExist---5")
         }
     }
 
     private func handleAddNewUser(userInfo:[String:AnyObject]){
         dispatch_async(dispatch_get_main_queue(), {
+            
+            print("handleAddNewUser---1")
             FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                 dispatch_async(dispatch_get_main_queue(), {
+                    print("handleAddNewUser---2")
                 if error != nil{
                     self.stopLoading()
                     print("User adding failed \(error)")
@@ -394,8 +403,8 @@ extension LoginSignupVC{
                     dispatch_async(dispatch_get_main_queue(), {
                         self.goToFeedVC(withUserInfo: userInfo)
                     })
-                }
-                    })
+                    }
+                })
             })
         })
     }

@@ -36,8 +36,10 @@ class FirebaseHelper: NSObject {
      */
     class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
         dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            print("checkIfUserExists---1")
+            FIREBASE_USERS_REF.childByAppendingPath(id).observeEventType(.Value, withBlock: { (snapshot) in
                 dispatch_async(dispatch_get_main_queue(), {
+                    print("checkIfUserExists---2")
                     block(snapshot)
                 })
             })
@@ -49,14 +51,14 @@ class FirebaseHelper: NSObject {
      */
     class func getFollowingBrands(userID:String, withCompletionBlock block: (([String]?) -> Void)!){
         dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).observeSingleEventOfType(.Value, withBlock: { (snapshot:FDataSnapshot!) in
+            FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).observeEventType(.Value, withBlock: { (snapshot:FDataSnapshot!) in
                  if snapshot.exists(){
                     var followingBrandIDs:[String]? = [String]()
                     
                     for children in snapshot.children{
                         followingBrandIDs?.append(children.key)
                     }
-                    
+                    print("following")
                     block(followingBrandIDs)
                  }else{
                     print("not following")
