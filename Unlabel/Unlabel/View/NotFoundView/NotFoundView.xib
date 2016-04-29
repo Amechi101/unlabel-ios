@@ -26,13 +26,13 @@
                         <constraint firstAttribute="width" constant="160" id="aDM-il-vWZ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not following any labels. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not following any labels. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
                     <rect key="frame" x="78" y="326" width="219" height="15"/>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                     <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tM-s7-uaU">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tM-s7-uaU">
                     <rect key="frame" x="141" y="365" width="93" height="27"/>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                     <state key="normal" title="VIEW LABELS">
@@ -42,7 +42,7 @@
                         <action selector="IBActionViewLabels:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fgf-1f-3sc"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-Ce-PzW">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-Ce-PzW">
                     <rect key="frame" x="141" y="389" width="93" height="2"/>
                     <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

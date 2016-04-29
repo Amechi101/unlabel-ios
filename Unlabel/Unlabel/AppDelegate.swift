@@ -202,35 +202,28 @@ extension AppDelegate{
      Init UI on app launch.
      */
     private func setupRootVC(){
-        let storyboard:UIStoryboard?
-        let rootNavVC:UINavigationController?
-        let rootVC:EntryVC?
-        
-        #if ADMIN
-            storyboard = UIStoryboard(name: S_NAME_ADMIN, bundle: nil)
-            rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_ADMIN_NAV_CONTROLLER) as? UINavigationController
-            
-            if let window = self.window {
-                window.rootViewController = rootVC
-            }
-            
-        #else
-            storyboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
-            
-            if let _ = FIREBASE_REF.authData{
-                rootNavVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-                if let window = self.window {
-                    window.rootViewController = rootNavVC
-                }
+        if let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil){
+            if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+                goToFeedVC(storyboard)
             }else{
-                rootVC = storyboard!.instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
-                if let window = self.window {
-                    window.rootViewController = rootVC
-                }
+                goToEntryVC(storyboard)
             }
-            
-            setupUnlabelApp()
-        #endif
+        }
+        setupUnlabelApp()
+    }
+    
+    private func goToFeedVC(storyboard:UIStoryboard){
+        let rootNavVC:UINavigationController? = storyboard.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+        if let window = self.window {
+            window.rootViewController = rootNavVC
+        }
+    }
+    
+    private func goToEntryVC(storyboard:UIStoryboard){
+        let rootVC:EntryVC? = storyboard.instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
+        if let window = self.window {
+            window.rootViewController = rootVC
+        }
     }
     
     /**

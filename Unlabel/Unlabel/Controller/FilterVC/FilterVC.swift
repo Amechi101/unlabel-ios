@@ -13,6 +13,7 @@ import UIKit
 //
 protocol FilterVCDelegate{
    func willCloseChildVC(childVCName:String)
+    func didClickApply(forFilterModel filterModel:Brand)
 }
 
 
@@ -38,9 +39,9 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
     private var sAllCategories = "All categories"
-
     private let arrFilterTitles:[String] = ["SEX","CATEGORY","LOCATION"]
-
+    var filterModel = Brand()
+    
     
     var delegate:FilterVCDelegate?
     var selectedPickerType:PickerType = .Unknown
@@ -77,6 +78,19 @@ extension FilterVC:UITableViewDelegate{
 //
 extension FilterVC:UITableViewDataSource{
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+            return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
+        }else if indexPath.row == 1{
+            return genderCell()
+        }else if indexPath.row == 3{
+            return categoryLocationCell(indexPath)
+        }else{
+            return UITableViewCell()
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 4
     }
@@ -91,15 +105,28 @@ extension FilterVC:UITableViewDataSource{
         
         return cellWithTitle
     }
-
     
     func genderCell()->GenderCell{
         let genderCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_GenderCell) as! GenderCell
+        
+        if filterModel.Menswear{
+            enableButton(genderCell.IBbtnMale)
+        }else{
+            disableButton(genderCell.IBbtnMale)
+        }
+        
+        if filterModel.Womenswear{
+            enableButton(genderCell.IBbtnFemale)
+        }else{
+            disableButton(genderCell.IBbtnFemale)
+        }
+        
         return genderCell
     }
 
     func categoryLocationCell(indexPath:NSIndexPath)->CategoryLocationCell{
         let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
+        categoryLocationCell.delegate = self
         
         if indexPath.row == 3{
             categoryLocationCell.cellType = CategoryLocationCellType.Category
@@ -113,45 +140,8 @@ extension FilterVC:UITableViewDataSource{
         return categoryLocationCell
     }
     
-    
-
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        
-        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
-            return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
-        }else if indexPath.row == 1{
-            return genderCell()
-        }else if indexPath.row == 3{
-            return categoryLocationCell(indexPath)
-        }else{
-            return UITableViewCell()
-        }
-        
-       
-    }
 }
 
-//
-//MARK:- UIPickerViewDataSource,UIPickerViewDelegate Methods
-//
-//extension FilterVC:UIPickerViewDataSource,UIPickerViewDelegate{
-//    
-//    //UIPickerViewDataSource
-//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
-//       return 1
-//    }
-//    
-//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-//       return arrPickerTitle.count
-//    }
-//    
-//    //UIPickerViewDelegate
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-//        return "\(arrPickerTitle[row])"
-//    }
-//
-//}
 
 extension FilterVC{
     
@@ -182,6 +172,15 @@ extension FilterVC{
     
     @IBAction func IBActionSwipeClosePicker(sender: UISwipeGestureRecognizer) {
         hidePicker()
+    }
+    
+    @IBAction func IBActionApply(sender: UIButton) {
+        close()
+        delegate?.didClickApply(forFilterModel: filterModel)
+    }
+    
+    @IBAction func IBActionClear(sender: UIButton) {
+        
     }
     
 //
@@ -272,8 +271,88 @@ extension FilterVC{
 //        }
         
     }
+    
+    
+
 
 }
 
 
+//
+//MARK:- Gender Cell
+//
+extension FilterVC{
+    
+    //
+    //MARK:- Gender cell IBAction Methods
+    //
+    //Tag 1 for Male, 2 for Female
+    @IBAction func IBActionGenderClicked(sender: UIButton) {
+        handleGenderSelection(sender)
+    }
+    
+    //
+    //MARK:- Gender cell Custom Methods
+    //
+        func handleGenderSelection(sender:UIButton){
+            //Male Clicked
+            if sender.tag == 1{
+                filterModel.Menswear = !filterModel.Menswear
+                
+                //Female Clicked
+            }else{
+                filterModel.Womenswear = !filterModel.Womenswear
+            }
+            
+            IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+    
+        /**
+         Enable button
+         */
+        func enableButton(makeEnabled:UIButton){
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                makeEnabled.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+                makeEnabled.layer.borderColor = MEDIUM_GRAY_TEXT_COLOR.CGColor
+            }
+        }
+        
+        /**
+         Disable button
+         */
+        func disableButton(makeDisabled:UIButton){
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                makeDisabled.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
+                makeDisabled.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
+            }
+        }
+}
 
+//
+//MARK:- Category Cell
+//
+extension FilterVC:CategoryDelegate{
+    func didSelectRow(withSelectedCategories dictCategories: [Int : Bool]) {
+        
+        if let clothing:Bool = dictCategories[1]{
+            filterModel.Clothing = clothing
+        }
+        
+        if let accessories:Bool = dictCategories[2]{
+            filterModel.Accessories = accessories
+        }
+        
+        if let jewelry:Bool = dictCategories[3]{
+            filterModel.Jewelry = jewelry
+        }
+        
+        if let shoes:Bool = dictCategories[4]{
+            filterModel.Shoes = shoes
+        }
+        
+        if let bags:Bool = dictCategories[5]{
+            filterModel.Bags = bags
+        }
+        
+    }
+}

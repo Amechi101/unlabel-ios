@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CategoryDelegate {
+    func didSelectRow(withSelectedCategories dictCategories:[Int:Bool]) //arrCategories is key index
+}
+
 enum CategoryLocationCellType{
     case Unknown
     case Category
@@ -30,6 +34,7 @@ class CategoryLocationCell: UITableViewCell {
     private let arrLocations:[String] = ["Manhattan, NY","Los Angeles, CA","Brooklyn, NY","Madrid, Spain","Novi Sad, Serbia","San Deigo, CA","Minneapolis, Minnesota","New York, NY","Lower East Side, NY","Australia","London","Paris, France","Denver, Colorado","Boston, MA","Dallas, Texas","Chicago","Netherlands","Nashville, TN","San Francisco, CA","Rotterdam, The Netherlands","Canada"]
     private var dictSelectedCategories = [Int:Bool]()
     private var dictSelectedLocations = [Int:Bool]()
+    var delegate:CategoryDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,6 +95,7 @@ class CategoryLocationCell: UITableViewCell {
                 }
             }
             IBtblLocation.reloadData()
+            delegate?.didSelectRow(withSelectedCategories: dictSelectedCategories)
         }
         
         func isAllCellsSelected()->Bool{

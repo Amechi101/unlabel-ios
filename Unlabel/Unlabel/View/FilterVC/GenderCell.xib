@@ -31,7 +31,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="IBActionGenderClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WyB-vY-vdk"/>
+                            <action selector="IBActionGenderClicked:" destination="-1" eventType="touchUpInside" id="UnL-vC-ZMT"/>
                         </connections>
                     </button>
                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTD-ZN-Qvn">
@@ -49,7 +49,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="IBActionGenderClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ael-db-JGv"/>
+                            <action selector="IBActionGenderClicked:" destination="-1" eventType="touchUpInside" id="eJE-zF-H1n"/>
                         </connections>
                     </button>
                 </subviews>
@@ -67,8 +67,8 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="2000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="IBbtnFemale" destination="R82-1V-gI8" id="TYD-Ol-ONg"/>
-                <outlet property="IBbtnMale" destination="FTD-ZN-Qvn" id="Y0A-9N-WOp"/>
+                <outlet property="IBbtnFemale" destination="R82-1V-gI8" id="Nlb-Ip-oDN"/>
+                <outlet property="IBbtnMale" destination="FTD-ZN-Qvn" id="0SA-fY-sK7"/>
             </connections>
         </tableViewCell>
     </objects>

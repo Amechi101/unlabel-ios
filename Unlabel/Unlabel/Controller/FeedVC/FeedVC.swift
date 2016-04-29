@@ -29,6 +29,7 @@ class FeedVC: UIViewController {
     private let FEED_CELL_HEIGHT:CGFloat = 211
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
+    private var arrFilteredBrandList:[Brand] = [Brand]()
     private var didSelectIndexPath:NSIndexPath?
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
@@ -69,7 +70,7 @@ extension FeedVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == S_ID_PRODUCT_VC{
             if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
-                if let brand:Brand = self.arrBrandList[self.didSelectIndexPath!.row]{
+                if let brand:Brand = self.arrFilteredBrandList[self.didSelectIndexPath!.row]{
                     productVC.selectedBrand = brand
                     productVC.delegate = self
                     GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
@@ -95,16 +96,16 @@ extension FeedVC:UICollectionViewDelegate{
 //
 extension FeedVC:UICollectionViewDataSource{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return arrBrandList.count
+        return arrFilteredBrandList.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
-        feedVCCell.IBlblBrandName.text = arrBrandList[indexPath.row].Name.uppercaseString
-        feedVCCell.IBlblLocation.text = "\(arrBrandList[indexPath.row].OriginCity), \(arrBrandList[indexPath.row].StateOrCountry)"
+        feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercaseString
+        feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].OriginCity), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
         feedVCCell.IBbtnStar.tag = indexPath.row
         
-        if arrBrandList[indexPath.row].isFollowing{
+        if arrFilteredBrandList[indexPath.row].isFollowing{
             feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), forState: .Normal)
         }else{
             feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), forState: .Normal)
@@ -112,7 +113,7 @@ extension FeedVC:UICollectionViewDataSource{
         
         feedVCCell.IBimgBrandImage.image = nil
         
-        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrBrandList[indexPath.row].FeatureImage)){
+        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrFilteredBrandList[indexPath.row].FeatureImage)){
             feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                 if let _ = error{
                     handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
@@ -158,7 +159,32 @@ extension FeedVC:LeftMenuVCDelegate{
 //MARK:- FilterVCDelegate Methods
 //
 extension FeedVC:FilterVCDelegate{
-
+    func didClickApply(forFilterModel filterModel: Brand) {
+        
+        //If anything from filter is selected
+        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
+            arrFilteredBrandList = []
+            for brand in arrBrandList{
+                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
+                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true))){
+                    
+                    if (((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
+                        ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
+                        ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
+                        ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
+                        ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
+                        arrFilteredBrandList.append(brand)
+                    }
+                }
+            }
+        //Nothing selected in filter screen
+        }else{
+        
+        }
+        
+        
+        IBcollectionViewFeed.reloadData()
+    }
 }
 
 //
@@ -177,7 +203,7 @@ extension FeedVC:AppDelegateDelegates{
     func reachabilityChanged(reachable: Bool) {
         if reachable{
             if mainVCType == .Feed{
-                if arrBrandList.count == 0{
+                if arrFilteredBrandList.count == 0{
                     wsCallGetLabels()
                 }
             }else if mainVCType == .Following{
@@ -234,18 +260,18 @@ extension FeedVC{
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-                if let selectedBrandID:String = arrBrandList[sender.tag].ID{
+                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
                     
                     //If already following
-                    if arrBrandList[sender.tag].isFollowing{
-                        arrBrandList[sender.tag].isFollowing = false
+                    if arrFilteredBrandList[sender.tag].isFollowing{
+                        arrFilteredBrandList[sender.tag].isFollowing = false
                         
                         //If not already following
                     }else{
-                        arrBrandList[sender.tag].isFollowing = true
+                        arrFilteredBrandList[sender.tag].isFollowing = true
                     }
                     
-                    FirebaseHelper.followUnfollowBrand(follow: arrBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                         //Followd/Unfollowd brand
                         if error == nil{
                             self.firebaseCallGetFollowingBrands()
@@ -401,10 +427,17 @@ extension FeedVC{
      Adding Filter VC As Child VC
      */
     func addFilterVCAsChildVC(viewControllerName VCName:String){
+        if filterChildVC == nil{
             filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
             filterChildVC!.delegate = self
-            filterChildVC!.view.frame.size = self.view.frame.size
-            
+        }
+        
+        filterChildVC!.view.frame.size = self.view.frame.size
+        navigationController!.addChildViewController(filterChildVC!)
+        filterChildVC!.didMoveToParentViewController(self)
+        
+        navigationController?.view.addSubview(filterChildVC!.view)
+        
             //Animate filterVC entry
             filterChildVC!.view.frame.origin.x = self.view.frame.size.width
             filterChildVC!.view.alpha = 0
@@ -413,11 +446,6 @@ extension FeedVC{
                 self.filterChildVC!.view.frame.origin.x = 0
                 self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
             }
-            
-           navigationController!.addChildViewController(filterChildVC!)
-            filterChildVC!.didMoveToParentViewController(self)
-            
-            navigationController?.view.addSubview(filterChildVC!.view)
     }
 
     /**
@@ -483,7 +511,7 @@ extension FeedVC{
     
     func addTestData(){
         for _ in 0...39{
-            arrBrandList.append(Brand())
+            arrFilteredBrandList.append(Brand())
             IBcollectionViewFeed.reloadData()
         }
     }
@@ -510,7 +538,7 @@ extension FeedVC{
     
     extension FeedVC:ProductVCDelegate{
         func didClickFollow(forBrand brand: Brand) {
-            arrBrandList[brand.currentIndex] = brand
+            arrFilteredBrandList[brand.currentIndex] = brand
             IBcollectionViewFeed.reloadData()
         }
     }
@@ -554,6 +582,7 @@ extension FeedVC{
             if ReachabilitySwift.isConnectedToNetwork(){
                 UnlabelAPIHelper.getBrands({ (arrBrands:[Brand]) in
                     self.arrBrandList = arrBrands
+                    self.arrFilteredBrandList = arrBrands
                     self.IBcollectionViewFeed.reloadData()
                     self.refreshControl.endRefreshing()
                 }) { (error) in

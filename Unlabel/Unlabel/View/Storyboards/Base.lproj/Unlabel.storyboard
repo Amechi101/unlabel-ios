@@ -236,6 +236,9 @@
                                                 <state key="normal" title="APPLY">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="IBActionApply:" destination="Fug-ik-USM" eventType="touchUpInside" id="JON-Dy-eTL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qcv-tu-yO3">
                                                 <rect key="frame" x="27" y="82" width="277" height="44"/>
@@ -251,6 +254,9 @@
                                                         <integer key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="IBActionClear:" destination="Fug-ik-USM" eventType="touchUpInside" id="5pg-dF-emM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
