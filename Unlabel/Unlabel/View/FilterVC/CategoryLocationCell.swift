@@ -29,10 +29,11 @@ class CategoryLocationCell: UITableViewCell {
     @IBOutlet weak var IBconstraintCategoryTableHeight: NSLayoutConstraint!
     @IBOutlet weak var IBtblLocation: UITableView!
     var cellType = CategoryLocationCellType.Unknown
+    var shouldClearCategories = false
 
     private let arrCategories:[String] = ["All Categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
     private let arrLocations:[String] = ["Manhattan, NY","Los Angeles, CA","Brooklyn, NY","Madrid, Spain","Novi Sad, Serbia","San Deigo, CA","Minneapolis, Minnesota","New York, NY","Lower East Side, NY","Australia","London","Paris, France","Denver, Colorado","Boston, MA","Dallas, Texas","Chicago","Netherlands","Nashville, TN","San Francisco, CA","Rotterdam, The Netherlands","Canada"]
-    private var dictSelectedCategories = [Int:Bool]()
+    var dictSelectedCategories = [Int:Bool]()
     private var dictSelectedLocations = [Int:Bool]()
     var delegate:CategoryDelegate?
     

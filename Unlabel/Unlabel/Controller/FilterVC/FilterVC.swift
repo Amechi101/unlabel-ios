@@ -11,9 +11,9 @@ import UIKit
 //
 //MARK:- FilterVC Protocols
 //
-protocol FilterVCDelegate{
-   func willCloseChildVC(childVCName:String)
-    func didClickApply(forFilterModel filterModel:Brand)
+@objc protocol FilterVCDelegate{
+    optional func willCloseChildVC(childVCName:String)
+    optional func didClickApply(forFilterModel filterModel:Brand)
 }
 
 
@@ -41,6 +41,7 @@ class FilterVC: UIViewController {
     private var sAllCategories = "All categories"
     private let arrFilterTitles:[String] = ["SEX","CATEGORY","LOCATION"]
     var filterModel = Brand()
+    var shouldClearCategories = false
     
     
     var delegate:FilterVCDelegate?
@@ -129,6 +130,13 @@ extension FilterVC:UITableViewDataSource{
         categoryLocationCell.delegate = self
         
         if indexPath.row == 3{
+            if shouldClearCategories{
+                for (index,_) in categoryLocationCell.dictSelectedCategories{
+                    categoryLocationCell.dictSelectedCategories.updateValue(false, forKey: index)
+                    categoryLocationCell.IBtblLocation.reloadData()
+                }
+                shouldClearCategories = false
+            }
             categoryLocationCell.cellType = CategoryLocationCellType.Category
             categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
             categoryLocationCell.IBconstraintCategoryTableHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
@@ -176,11 +184,19 @@ extension FilterVC{
     
     @IBAction func IBActionApply(sender: UIButton) {
         close()
-        delegate?.didClickApply(forFilterModel: filterModel)
+        delegate?.didClickApply!(forFilterModel: filterModel)
     }
     
     @IBAction func IBActionClear(sender: UIButton) {
-        
+        filterModel.Menswear = false
+        filterModel.Womenswear = false
+        filterModel.Clothing = false
+        filterModel.Accessories = false
+        filterModel.Jewelry = false
+        filterModel.Shoes = false
+        filterModel.Bags = false
+        shouldClearCategories = true
+        IBtblFilter.reloadData()
     }
     
 //
@@ -244,7 +260,7 @@ extension FilterVC{
                 self.willMoveToParentViewController(nil)
                 self.view.removeFromSuperview()
                 self.removeFromParentViewController()
-                self.delegate?.willCloseChildVC(S_ID_FILTER_VC)
+                self.delegate?.willCloseChildVC!(S_ID_FILTER_VC)
         }
     }
     

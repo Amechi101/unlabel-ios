@@ -166,25 +166,24 @@ extension FeedVC:FilterVCDelegate{
             arrFilteredBrandList = []
             for brand in arrBrandList{
                 if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
-                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true))){
-                    
-                    if (((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
-                        ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
-                        ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
-                        ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
-                        ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
+                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
+                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
+                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
+                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
+                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
+                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
                         arrFilteredBrandList.append(brand)
-                    }
                 }
             }
+    
         //Nothing selected in filter screen
         }else{
-        
+          debugPrint("Nothing Selected for filtering")
         }
-        
         
         IBcollectionViewFeed.reloadData()
     }
+    
 }
 
 //
