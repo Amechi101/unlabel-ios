@@ -388,9 +388,8 @@ extension LoginSignupVC{
     }
 
     private func handleAddNewUser(userInfo:[String:AnyObject]){
+        print("handleAddNewUser---1")
         dispatch_async(dispatch_get_main_queue(), {
-            
-            print("handleAddNewUser---1")
             FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                 dispatch_async(dispatch_get_main_queue(), {
                     print("handleAddNewUser---2")

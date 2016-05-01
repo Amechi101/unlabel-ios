@@ -17,9 +17,9 @@ class AccountInfoVC: UITableViewController {
     @IBOutlet weak var IBlblLoggedInWith: UILabel!
     @IBOutlet weak var IBlblUserName: UILabel!
     @IBOutlet weak var IBlblEmailOrPhone: UILabel!
+    @IBOutlet var IBtblAccountInfo: UITableView!
     
-    
-    let userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
+    var userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
         if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
             
             //Facebook user
@@ -60,10 +60,10 @@ class AccountInfoVC: UITableViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupOnLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
+        setupOnWillAppear()
         if let _ = self.navigationController{
             navigationController?.interactivePopGestureRecognizer!.delegate = self
         }
@@ -83,8 +83,14 @@ extension AccountInfoVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.row == 1{
+            goToChangeName()
+        }else if indexPath.row == 2{
             UnlabelHelper.logout()
         }
+    }
+    
+    func goToChangeName(){
+    
     }
 }
 
@@ -146,7 +152,6 @@ extension AccountInfoVC:UIGestureRecognizerDelegate{
 //MARK:- IBAction Methods
 //
 extension AccountInfoVC{
-    
     @IBAction func IBActionBack(sender: UIButton) {
         navigationController?.popViewControllerAnimated(true)
     }
@@ -161,7 +166,11 @@ extension AccountInfoVC{
     /**
      Setup UI on VC Load.
      */
-    func setupOnLoad(){
+    func setupOnWillAppear(){
+        if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+            userDetails.displayName = displayName
+        }
+        userDetails.displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME)!
         IBlblUserName.text = userDetails.displayName
         IBlblEmailOrPhone.text = userDetails.EmailOrPhone
         IBlblLoggedInWith.text = "Signed In with \(userDetails.SignedInWith):"

@@ -27,6 +27,7 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
+    private let fFooterHeight:CGFloat = 28.0
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
     private var arrFilteredBrandList:[Brand] = [Brand]()
@@ -88,6 +89,25 @@ extension FeedVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         didSelectIndexPath = indexPath
         performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+            return CGSizeMake(collectionView.frame.width, fFooterHeight)
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+            
+        case UICollectionElementKindSectionFooter:
+            let footerView:FeedVCFooterCell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell, forIndexPath: indexPath) as! FeedVCFooterCell
+            
+            return footerView
+            
+        default:
+            assert(false, "No such element")
+            return UICollectionReusableView()
+        }
     }
 }
 
@@ -304,6 +324,7 @@ extension FeedVC{
             NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
                 forState: UIControlState.Normal)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
+        IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
         IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
         
         if mainVCType == .Feed{

@@ -57,8 +57,8 @@ class UnlabelHelper: NSObject {
      handleLogout
      */
     class func logout(){
-        UnlabelFBHelper.logout()
         FirebaseHelper.logout()
+        UnlabelFBHelper.logout()
         UnlabelHelper.removePrefForKey(PRM_USER_ID)
         UnlabelHelper.removePrefForKey(PRM_PHONE)
         UnlabelHelper.removePrefForKey(PRM_EMAIL)

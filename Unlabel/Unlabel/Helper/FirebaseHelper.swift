@@ -9,25 +9,42 @@
 import UIKit
 import Firebase
 
-let FIREBASE_REF = Firebase(url: sFIREBASE_URL)
-let FIREBASE_USERS_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
+var FIREBASE_REF = Firebase(url: sFIREBASE_URL)
+var FIREBASE_USERS_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
 
 class FirebaseHelper: NSObject {
+    
+    /**
+     // Update user's name
+     */
+    class func updateUserName(userName:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+            let displayName:[NSObject:AnyObject] = [PRM_DISPLAY_NAME:userName]
+            dispatch_async(dispatch_get_main_queue()) {
+                FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).updateChildValues(displayName, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    block(error,firebase)
+                    if error == nil{
+                        debugPrint("Name Updated")
+                    }else{
+                        debugPrint("Name Updatation failed : \(error)")
+                    }
+                })
+            }
+    }
     
     /**
     // Add new user data after successfull authentication
     */
     class func addNewUser(userData: [String:AnyObject]!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
         print(userData)
-        if let userID:String = userData[PRM_USER_ID] as? String{
-            dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let userID:String = userData[PRM_USER_ID] as? String{
                 FIREBASE_USERS_REF.childByAppendingPath(userID).setValue(userData, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                     dispatch_async(dispatch_get_main_queue(), {
                         block(error,firebase)
                     })
                 })
-            })
-        }
+            }
+        })
     }
     
     
@@ -35,8 +52,8 @@ class FirebaseHelper: NSObject {
      Check if user exist for specific id.
      */
     class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
+        print("checkIfUserExists---1")
         dispatch_async(dispatch_get_main_queue(), {
-            print("checkIfUserExists---1")
             FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 dispatch_async(dispatch_get_main_queue(), {
                     print("checkIfUserExists---2")
@@ -96,73 +113,19 @@ class FirebaseHelper: NSObject {
                     })
                 }
             }
-            
-          
-            
-//            FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
-//                
-//                //If following brands exist,add new brand
-//                if let followingBrands = snapshot.value[PRM_FOLLOWING_BRANDS] as? [String:AnyObject]{
-//                    
-//                    FIREBASE_USERS_REF.childByAppendingPath(FIREBASE_REF.authData.uid).childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followingBrands) { (error:NSError!, firebase:Firebase!) in
-//                        block(error,firebase)
-//                    }
-//                    
-//                //If not following any brand
-//                }else{
-//                
-//                }
-//            })
-        
     }
     
-//                var newFollowingBrands:[String]?
-//                
-//                //Following some brands
-//                if var followingBrands:[String] = snapshot.value[PRM_FOLLOWING_BRANDS] as? [String]{
-//                    
-//                    //Follow brand
-//                    if shouldFollow{
-//                        followingBrands.append(brandID)
-//                        newFollowingBrands = followingBrands
-//                        
-//                    //Unfollow brand
-//                    }else{
-//                        for (index,currentBrandID) in followingBrands.enumerate(){
-//                            if currentBrandID == brandID{
-//                                followingBrands.removeAtIndex(index)
-//                            }
-//                        }
-//                    }
-//                    
-//                //Not following any brand
-//                }else{
-//                    if shouldFollow{
-//                        newFollowingBrands = [brandID]
-//                    }
-//                }
-//                
-//                let newSnap:[NSObject:AnyObject]?
-//                
-//                if newFollowingBrands?.count > 0{
-//                    newSnap = [
-//                        PRM_FOLLOWING_BRANDS: newFollowingBrands as! AnyObject
-//                    ]
-//                }else{
-//                    newSnap = [:]
-//                }
-//                
-//                dispatch_async(dispatch_get_main_queue()) {
-                
-//        }
-        
-//        FIREBASE_REF.childByAppendingPath("users").childByAppendingPath(FIREBASE_REF.authData.uid).updateChildValues(newBrand) { (error:NSError!, firebase:Firebase!) in
-//         block(error,firebase)   
-//        }
-//    }
-    
     class func logout(){
-        let ref = Firebase(url: sFIREBASE_URL)
-        ref.unauth()
+        let fireBaseRef = FIREBASE_REF
+        let fireBaseUserRef = FIREBASE_USERS_REF
+        
+        FIREBASE_REF.unauth()
+        FIREBASE_REF = nil
+        
+        FIREBASE_USERS_REF.unauth()
+        FIREBASE_USERS_REF = nil
+        
+        FIREBASE_REF = fireBaseRef
+        FIREBASE_USERS_REF = fireBaseUserRef
     }
 }

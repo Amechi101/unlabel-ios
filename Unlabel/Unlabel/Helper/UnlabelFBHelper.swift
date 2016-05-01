@@ -39,8 +39,8 @@ class UnlabelFBHelper: NSObject {
                     return
                 }else{
                     //Firebase call for authentication
+                    print("fb---4")
                     dispatch_async(dispatch_get_main_queue(), {
-                        print("fb---4")
                         FIREBASE_REF.authWithOAuthProvider("facebook", token: FB_ACCESS_TOKEN, withCompletionBlock: { (error:NSError!, authData:FAuthData!) in
                             dispatch_async(dispatch_get_main_queue(), {
                                 if error != nil {

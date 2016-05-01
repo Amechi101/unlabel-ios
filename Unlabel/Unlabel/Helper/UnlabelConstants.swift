@@ -27,6 +27,8 @@ let MEDIUM_GRAY_TEXT_COLOR = UIColor(red: 69/255, green: 73/255, blue: 78/255, a
 
 let LIGHT_GRAY_BORDER_COLOR = UIColor(red: 153/255, green: 156/255, blue: 165/255, alpha: 1)
 
+let MEDIUM_GRAY_BORDER_COLOR = UIColor(red: 187/255, green: 189/255, blue: 194/255, alpha: 1)
+
 let DARK_GRAY_COLOR = UIColor(red: 40/255, green: 44/255, blue: 53/255, alpha: 1)
 
 let WINDOW_TINT_COLOR = APP_DELEGATE.window?.tintColor
@@ -50,6 +52,7 @@ let S_ID_LEFT_MENU_VC               = "LeftMenuVC"
 let S_ID_SETTINGS_VC                = "SettingsVC"
 let S_ID_FOLLOWING_VC               = "FollowingVC"
 let S_ID_ADD_PRODUCT_VC             = "AddProductVC"
+let S_ID_CHANGE_NAME_VC             = "ChangeNameVC"
 let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
 let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
@@ -84,6 +87,7 @@ let REUSABLE_ID_CategoryLocationCell = "CategoryLocationCell"
 let REUSABLE_ID_ProductHeaderCell   = "ProductHeaderCell"
 let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
+let REUSABLE_ID_FeedVCFooterCell   = "FeedVCFooterCell"
 
 //
 //MARK:- Font Style
