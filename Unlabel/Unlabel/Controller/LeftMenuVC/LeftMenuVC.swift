@@ -57,9 +57,8 @@ class LeftMenuVC: UIViewController {
 //
 extension LeftMenuVC:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.didSelectRowAtIndexPath(indexPath)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        close()
+        close(withIndexPath: indexPath)
     }
 }
 
@@ -86,7 +85,7 @@ extension LeftMenuVC:UITableViewDataSource{
 //
 extension LeftMenuVC{
     @IBAction func IBActionClose(sender: AnyObject) {
-     close()
+     close(withIndexPath: nil)
     }
 }
 
@@ -107,8 +106,8 @@ extension LeftMenuVC{
     /**
      Remove self from parentViewController
      */
-    func close(){
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+    func close(withIndexPath indexPath:NSIndexPath?){
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.view.alpha = 0
             self.view.frame.origin.x = -SCREEN_WIDTH
             }) { (value:Bool) -> Void in
@@ -116,10 +115,11 @@ extension LeftMenuVC{
                 self.view.removeFromSuperview()
                 self.removeFromParentViewController()
                 self.delegate?.willCloseChildVC(S_ID_LEFT_MENU_VC)
+                if let index = indexPath{
+                    self.delegate?.didSelectRowAtIndexPath(index)
+                }
         }
     }
-
-    
 }
 
 
