@@ -443,9 +443,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
-                                <rect key="frame" x="20" y="12" width="335" height="591"/>
+                                <rect key="frame" x="22" y="12" width="331" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="CIz-DF-a7p">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="11" minimumInteritemSpacing="11" id="CIz-DF-a7p">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -470,10 +470,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rmC-Tv-ZXd" firstAttribute="leading" secondItem="xvf-b3-xD9" secondAttribute="leading" constant="20" id="3BF-Og-mvc"/>
+                            <constraint firstItem="rmC-Tv-ZXd" firstAttribute="leading" secondItem="xvf-b3-xD9" secondAttribute="leading" constant="22" id="3BF-Og-mvc"/>
                             <constraint firstItem="rmC-Tv-ZXd" firstAttribute="top" secondItem="EJv-Um-4er" secondAttribute="bottom" constant="12" id="52B-0N-KWK"/>
                             <constraint firstItem="TXc-fT-su4" firstAttribute="top" secondItem="rmC-Tv-ZXd" secondAttribute="bottom" id="cUa-SW-rl9"/>
-                            <constraint firstAttribute="trailing" secondItem="rmC-Tv-ZXd" secondAttribute="trailing" constant="20" id="uEL-Ws-os6"/>
+                            <constraint firstAttribute="trailing" secondItem="rmC-Tv-ZXd" secondAttribute="trailing" constant="22" id="uEL-Ws-os6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="r9o-nS-ned">

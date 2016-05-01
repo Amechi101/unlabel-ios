@@ -195,7 +195,7 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
         if indexPath.row == 0{
             return CGSizeMake(collectionView.frame.size.width, 291)
         }else{
-            return CGSizeMake((collectionView.frame.size.width/2)-6, 260)
+            return CGSizeMake((collectionView.frame.size.width/2)-5.5, 260)
         }
     }
 }
