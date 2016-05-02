@@ -159,6 +159,9 @@ extension ProductVC:UICollectionViewDataSource{
         
         if let productImage:String = selectedBrand.arrProducts[indexPath.row - 1].ProductImage{
             if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(productImage)){
+                
+                productCell.IBimgProductImage.contentMode = UIViewContentMode.ScaleAspectFill;
+                
                 productCell.IBimgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                     if let _ = error{
                         self.handleProductCellActivityIndicator(productCell, shouldStop: false)
