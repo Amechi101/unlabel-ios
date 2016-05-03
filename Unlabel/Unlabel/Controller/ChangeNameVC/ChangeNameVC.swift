@@ -82,19 +82,23 @@ extension ChangeNameVC{
     func updateUserName(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
-            if let updatedUserName = IBtxtFieldEnterNewName.text where updatedUserName.characters.count > 0{
-                IBtxtFieldEnterNewName.resignFirstResponder()
-                UnlabelHelper.setDefaultValue(updatedUserName, key: PRM_DISPLAY_NAME)
-                setUserName()
-                FirebaseHelper.updateUserName(updatedUserName, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                    if error == nil{
-                        print(firebase)
-                    }else{
-                        print(error)
-                    }
-                })
+            if let trimmedName = IBtxtFieldEnterNewName.text?.removeWhitespace() where trimmedName.characters.count > 0{ //Checking if user has entered all white space
+                if let updatedUserName = IBtxtFieldEnterNewName.text where updatedUserName.characters.count > 0{
+                    IBtxtFieldEnterNewName.resignFirstResponder()
+                    UnlabelHelper.setDefaultValue(updatedUserName, key: PRM_DISPLAY_NAME)
+                    setUserName()
+                    FirebaseHelper.updateUserName(updatedUserName, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                        if error == nil{
+                            print(firebase)
+                        }else{
+                            print(error)
+                        }
+                    })
+                }else{
+                    UnlabelHelper.showAlert(onVC: self, title: "Name Can't be empty", message: "Please provide correct name", onOk: {})
+                }
             }else{
-                UnlabelHelper.showAlert(onVC: self, title: "Name Can't be empty", message: "Please provide your name", onOk: {})
+                UnlabelHelper.showAlert(onVC: self, title: "Invalid User Name", message: "Please provide correct name", onOk: {})
             }
         }else{
             UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})

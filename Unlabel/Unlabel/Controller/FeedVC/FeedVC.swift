@@ -424,10 +424,15 @@ extension FeedVC{
      Adding Left Menu As Child VC
      */
     func addLeftMenuAsChildVC(viewControllerName VCName:String){
+        if leftMenuChildVC == nil{
             leftMenuChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? LeftMenuVC
             leftMenuChildVC!.delegate = self
-            leftMenuChildVC!.view.frame.size = self.view.frame.size
-            
+        }
+        leftMenuChildVC!.view.frame.size = self.view.frame.size
+        navigationController!.addChildViewController(leftMenuChildVC!)
+        leftMenuChildVC!.didMoveToParentViewController(self)
+        
+        navigationController?.view.addSubview(leftMenuChildVC!.view)
             //Animate leftViewController entry
             leftMenuChildVC!.view.frame.origin.x = -self.view.frame.size.width
             leftMenuChildVC!.view.alpha = 0
@@ -437,10 +442,7 @@ extension FeedVC{
                 self.leftMenuChildVC?.view.frame.size.height = SCREEN_HEIGHT
             }
             
-            navigationController!.addChildViewController(leftMenuChildVC!)
-            leftMenuChildVC!.didMoveToParentViewController(self)
-            
-            navigationController?.view.addSubview(leftMenuChildVC!.view)
+        
     }
     
     /**
@@ -507,8 +509,8 @@ extension FeedVC{
     func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
         if indexPath.row == LeftMenuItems.Discover.rawValue{
             openDiscover()
-        }else if indexPath.row == LeftMenuItems.Following.rawValue{
-            openFollowing()
+//        }else if indexPath.row == LeftMenuItems.Following.rawValue{
+//            openFollowing()
         }else if indexPath.row == LeftMenuItems.Settings.rawValue{
             openSettings()
         }

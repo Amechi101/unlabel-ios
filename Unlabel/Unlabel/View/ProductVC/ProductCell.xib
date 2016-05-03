@@ -24,7 +24,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="Itb-hf-DVC">
                                 <rect key="frame" x="0.0" y="0.0" width="216" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="SKI-Oi-WHc"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="SKI-Oi-WHc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jocelyn off shoulder..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-bU-cui">

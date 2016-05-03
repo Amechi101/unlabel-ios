@@ -63,6 +63,7 @@ extension LoginSignupVC {
     }
     
     func handleFBLogin(){
+        startLoading()
         let windowTintColor = APP_DELEGATE.window?.tintColor
         APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
         
@@ -461,7 +462,6 @@ extension LoginSignupVC{
     }
     
     @IBAction func IBActionFacebook(sender: UIButton) {
-        startLoading()
         if loginSignupType == .Login {
             loginWithFB()
         }else{

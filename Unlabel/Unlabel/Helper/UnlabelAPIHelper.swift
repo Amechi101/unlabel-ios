@@ -46,77 +46,80 @@ class UnlabelAPIHelper{
                 
                 brand.currentIndex = index
                 
-                if let id = thisBrand[PRM_ID] as? String {
-                    brand.ID = id
-                }
-                
-                if let featureImage = thisBrand[PRM_BRAND_FEATURE_IMAGE] as? String{
-                    brand.FeatureImage = featureImage
-                }
-                
-                if let description = thisBrand[PRM_BRAND_DESCRIPTION] as? String{
-                    brand.Description = description
-                }
-                
-                if let name = thisBrand[PRM_BRAND_NAME] as? String{
-                    brand.Name = name
-                }
-                
-                if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY] as? String{
-                    brand.StateOrCountry = stateOrCountry
-                }
-                
-                if let createdDate = thisBrand[PRM_CREATED] as? String{
-                    brand.CreatedDate = createdDate
-                }
-                
-                if let originCity = thisBrand[PRM_ORIGIN_CITY] as? String{
-                    brand.OriginCity = originCity
-                }
-                
-                if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
-                    brand.BrandWebsiteURL = brandWebsiteURL
-                }
-                
-                if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
-                    brand.arrProducts = getProductsArrayFromJSON(arrProducts)
-                }
-                
-                if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
-                    brand.Menswear = menswear
-                }
-                
-                if let jewelry = thisBrand[PRM_JEWELRY] as? Bool{
-                    brand.Jewelry = jewelry
-                }
-                
-                if let accessories = thisBrand[PRM_ACCESSORIES] as? Bool{
-                    brand.Accessories = accessories
-                }
-                
-                if let shoes = thisBrand[PRM_SHOES] as? Bool{
-                    brand.Shoes = shoes
-                }
-                
                 if let isActive = thisBrand[PRM_IS_ACTIVE] as? Bool{
                     brand.isActive = isActive
                 }
                 
-                if let bags = thisBrand[PRM_BAGS] as? Bool{
-                    brand.Bags = bags
+                //Add only active brands
+                if brand.isActive{
+                    
+                    if let id = thisBrand[PRM_ID] as? String {
+                        brand.ID = id
+                    }
+                    
+                    if let featureImage = thisBrand[PRM_BRAND_FEATURE_IMAGE] as? String{
+                        brand.FeatureImage = featureImage
+                    }
+                    
+                    if let description = thisBrand[PRM_BRAND_DESCRIPTION] as? String{
+                        brand.Description = description
+                    }
+                    
+                    if let name = thisBrand[PRM_BRAND_NAME] as? String{
+                        brand.Name = name
+                    }
+                    
+                    if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY] as? String{
+                        brand.StateOrCountry = stateOrCountry
+                    }
+                    
+                    if let createdDate = thisBrand[PRM_CREATED] as? String{
+                        brand.CreatedDate = createdDate
+                    }
+                    
+                    if let originCity = thisBrand[PRM_ORIGIN_CITY] as? String{
+                        brand.OriginCity = originCity
+                    }
+                    
+                    if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
+                        brand.BrandWebsiteURL = brandWebsiteURL
+                    }
+                    
+                    if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
+                        brand.arrProducts = getProductsArrayFromJSON(arrProducts)
+                    }
+                    
+                    if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
+                        brand.Menswear = menswear
+                    }
+                    
+                    if let jewelry = thisBrand[PRM_JEWELRY] as? Bool{
+                        brand.Jewelry = jewelry
+                    }
+                    
+                    if let accessories = thisBrand[PRM_ACCESSORIES] as? Bool{
+                        brand.Accessories = accessories
+                    }
+                    
+                    if let shoes = thisBrand[PRM_SHOES] as? Bool{
+                        brand.Shoes = shoes
+                    }
+                    
+                    if let bags = thisBrand[PRM_BAGS] as? Bool{
+                        brand.Bags = bags
+                    }
+                    
+                    if let clothing = thisBrand[PRM_CLOTHING] as? Bool{
+                        brand.Clothing = clothing
+                    }
+                    
+                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
+                        brand.Womenswear = womenswear
+                    }
+                    
+                    arrBrands.append(brand)
                 }
-                
-                if let clothing = thisBrand[PRM_CLOTHING] as? Bool{
-                    brand.Clothing = clothing
-                }
-                
-                if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
-                    brand.Womenswear = womenswear
-                }
-                
-                arrBrands.append(brand)
-            }
-            
+            }            
             return arrBrands
         }else{
             return nil
@@ -129,31 +132,35 @@ class UnlabelAPIHelper{
         for product in arrProductsJSON{
             let productObj = Product()
             
-            if let productURL:String = product[PRM_PRODUCT_URL] as? String{
-                productObj.ProductURL = productURL
-            }
-            
-            if let brandID:String = product[PRM_BRAND_ID] as? String{
-                productObj.BrandID = brandID
-            }
-            
-            if let productImage:String = product[PRM_PRODUCT_IMAGE] as? String{
-                productObj.ProductImage = productImage
-            }
-            
             if let isActive:Bool = product[PRM_PRODUCTIS_ACTIVE] as? Bool{
                 productObj.isActive = isActive
             }
             
-            if let productName:String = product[PRM_PRODUCT_NAME] as? String{
-                productObj.ProductName = productName
+            //Add only active products
+            if productObj.isActive{
+                
+                if let productURL:String = product[PRM_PRODUCT_URL] as? String{
+                    productObj.ProductURL = productURL
+                }
+                
+                if let brandID:String = product[PRM_BRAND_ID] as? String{
+                    productObj.BrandID = brandID
+                }
+                
+                if let productImage:String = product[PRM_PRODUCT_IMAGE] as? String{
+                    productObj.ProductImage = productImage
+                }
+                
+                if let productName:String = product[PRM_PRODUCT_NAME] as? String{
+                    productObj.ProductName = productName
+                }
+                
+                if let productPrice:String = product[PRM_PRODUCT_PRICE] as? String{
+                    productObj.ProductPrice = productPrice
+                }
+                
+                arrProducts.append(productObj)
             }
-            
-            if let productPrice:String = product[PRM_PRODUCT_PRICE] as? String{
-                productObj.ProductPrice = productPrice
-            }
-            
-            arrProducts.append(productObj)
         }
         
         return arrProducts

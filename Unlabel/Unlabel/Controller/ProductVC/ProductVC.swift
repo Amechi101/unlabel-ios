@@ -38,7 +38,6 @@ class ProductVC: UIViewController {
         setupOnLoad()
     
 //        addTestData()
-//        awsCallFetchProducts()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -218,6 +217,10 @@ extension ProductVC{
                     }
                 }
             }
+        }else if segue.identifier == S_ID_ABOUT_LABEL_VC{
+            if let aboutLabelVC:AboutLabelVC = segue.destinationViewController as? AboutLabelVC{
+                aboutLabelVC.selectedBrand = selectedBrand
+            }
         }
     }
 }
@@ -318,7 +321,7 @@ extension ProductVC{
     }
     
     @IBAction func IBActionAboutBrandClicked(sender: AnyObject) {
-        openSafariForURL(selectedBrand.BrandWebsiteURL)
+        performSegueWithIdentifier(S_ID_ABOUT_LABEL_VC, sender: self)
     }
     
 }

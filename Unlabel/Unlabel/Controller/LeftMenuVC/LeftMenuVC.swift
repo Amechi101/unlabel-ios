@@ -10,8 +10,8 @@ import UIKit
 
 enum LeftMenuItems:Int{
     case Discover = 0
-    case Following = 1
-    case Settings = 2
+//    case Following = 1
+    case Settings = 1
 }
 
 //
@@ -32,7 +32,7 @@ class LeftMenuVC: UIViewController {
     @IBOutlet weak var IBlblUserName: UILabel!
     
     
-    private let arrTitles = ["DISCOVER","FOLLOWING","SETTINGS"]
+    private let arrTitles = ["DISCOVER","SETTINGS"]
     var delegate:LeftMenuVCDelegate?
     
     

@@ -30,6 +30,9 @@
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
             <string>Neutraface2Text-Demi</string>
@@ -435,6 +438,101 @@
             </objects>
             <point key="canvasLocation" x="713.5" y="1092.5"/>
         </scene>
+        <!--About LabelVC-->
+        <scene sceneID="hOI-bm-Mc6">
+            <objects>
+                <viewController storyboardIdentifier="AboutLabelVC" id="iTj-Ja-Y5j" customClass="AboutLabelVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="poA-qU-SYY"/>
+                        <viewControllerLayoutGuide type="bottom" id="YEx-Km-jDw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P7R-ie-YhR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBY-uT-mO4">
+                                <rect key="frame" x="315" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="r92-QC-hFd"/>
+                                    <constraint firstAttribute="width" constant="60" id="tei-xl-yXD"/>
+                                </constraints>
+                                <state key="normal" image="X">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionClose:" destination="iTj-Ja-Y5j" eventType="touchUpInside" id="yP3-Ec-GAC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkl-6N-c4C">
+                                <rect key="frame" x="20" y="326" width="335" height="15"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
+                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AOo-CM-C5q">
+                                <rect key="frame" x="50" y="276" width="277" height="22"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="21"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjK-N4-FLw">
+                                <rect key="frame" x="142" y="423" width="92" height="27"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
+                                <state key="normal" title="VIEW LABELS">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionViewLabel:" destination="iTj-Ja-Y5j" eventType="touchUpInside" id="G2k-I9-ebv"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGF-lx-qxE">
+                                <rect key="frame" x="142" y="447" width="92" height="2"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="Cav-f1-eC8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="AOo-CM-C5q" firstAttribute="leading" secondItem="P7R-ie-YhR" secondAttribute="leading" constant="49" id="2f9-lA-I1f"/>
+                            <constraint firstItem="JBY-uT-mO4" firstAttribute="top" secondItem="poA-qU-SYY" secondAttribute="bottom" id="Fmb-Ba-xkV"/>
+                            <constraint firstItem="AOo-CM-C5q" firstAttribute="centerX" secondItem="P7R-ie-YhR" secondAttribute="centerX" id="LkY-Cq-idw"/>
+                            <constraint firstItem="Zkl-6N-c4C" firstAttribute="top" secondItem="AOo-CM-C5q" secondAttribute="bottom" constant="28" id="Qqj-gl-7fx"/>
+                            <constraint firstAttribute="trailing" secondItem="Zkl-6N-c4C" secondAttribute="trailing" constant="20" id="RXk-Hg-Heb"/>
+                            <constraint firstItem="MjK-N4-FLw" firstAttribute="centerX" secondItem="P7R-ie-YhR" secondAttribute="centerX" id="SKk-id-060"/>
+                            <constraint firstAttribute="trailing" secondItem="JBY-uT-mO4" secondAttribute="trailing" id="Sua-2z-1C0"/>
+                            <constraint firstItem="YGF-lx-qxE" firstAttribute="trailing" secondItem="MjK-N4-FLw" secondAttribute="trailing" id="UCd-kD-tJX"/>
+                            <constraint firstAttribute="trailing" secondItem="AOo-CM-C5q" secondAttribute="trailing" constant="49" id="W4M-Ie-swg"/>
+                            <constraint firstItem="Zkl-6N-c4C" firstAttribute="centerY" secondItem="P7R-ie-YhR" secondAttribute="centerY" id="fJV-6e-niU"/>
+                            <constraint firstItem="YGF-lx-qxE" firstAttribute="leading" secondItem="MjK-N4-FLw" secondAttribute="leading" id="ifk-in-tzC"/>
+                            <constraint firstItem="AOo-CM-C5q" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JBY-uT-mO4" secondAttribute="bottom" constant="10" id="iyr-jk-Xu4"/>
+                            <constraint firstItem="YGF-lx-qxE" firstAttribute="top" secondItem="MjK-N4-FLw" secondAttribute="bottom" constant="-3" id="v1G-P0-QcE"/>
+                            <constraint firstItem="Zkl-6N-c4C" firstAttribute="leading" secondItem="P7R-ie-YhR" secondAttribute="leading" constant="20" id="x2c-ea-in8"/>
+                            <constraint firstItem="MjK-N4-FLw" firstAttribute="top" secondItem="Zkl-6N-c4C" secondAttribute="bottom" constant="82" id="y5n-wX-CbG"/>
+                            <constraint firstItem="YGF-lx-qxE" firstAttribute="centerX" secondItem="P7R-ie-YhR" secondAttribute="centerX" id="zAa-Wu-eWM"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="37r-LU-Ufo" appends="YES" id="jgX-qV-dQa"/>
+                        </connections>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="IBbtnViewLabelName" destination="MjK-N4-FLw" id="dBb-ma-QnW"/>
+                        <outlet property="IBlblDescription" destination="AOo-CM-C5q" id="jWi-Ay-g7Y"/>
+                        <outlet property="IBlblLocation" destination="Zkl-6N-c4C" id="Phh-xi-2KA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5xm-XC-iRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="37r-LU-Ufo">
+                    <connections>
+                        <action selector="IBActionClose:" destination="iTj-Ja-Y5j" id="NnM-fg-U8q"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1214.5" y="-2.5"/>
+        </scene>
         <!--ProductVC-->
         <scene sceneID="Ptv-MT-4gb">
             <objects>
@@ -521,6 +619,7 @@
                         <outlet property="IBbtnTitle" destination="aKa-if-cLV" id="Jni-AL-lgz"/>
                         <outlet property="IBcollectionViewProduct" destination="rmC-Tv-ZXd" id="Q8T-fa-I3j"/>
                         <segue destination="9XV-MJ-OHN" kind="presentation" identifier="ProductDetailVC" id="oOL-3s-s48"/>
+                        <segue destination="iTj-Ja-Y5j" kind="presentation" identifier="AboutLabelVC" id="Wtn-eP-R8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGd-SX-WdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
