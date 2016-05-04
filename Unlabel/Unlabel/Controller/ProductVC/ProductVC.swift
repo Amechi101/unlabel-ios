@@ -171,7 +171,7 @@ extension ProductVC:UICollectionViewDataSource{
             }
             
         }else{
-            productCell.IBimgProductImage.image = UIImage(named: "splash")
+            productCell.IBimgProductImage.image = UIImage()
         }
         
         return productCell

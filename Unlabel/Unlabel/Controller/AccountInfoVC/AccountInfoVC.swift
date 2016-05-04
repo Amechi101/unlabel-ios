@@ -170,7 +170,6 @@ extension AccountInfoVC{
         if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
             userDetails.displayName = displayName
         }
-        userDetails.displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME)!
         IBlblUserName.text = userDetails.displayName
         IBlblEmailOrPhone.text = userDetails.EmailOrPhone
         IBlblLoggedInWith.text = "Signed In with \(userDetails.SignedInWith):"

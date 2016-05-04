@@ -31,7 +31,7 @@ class LeftMenuVC: UIViewController {
     @IBOutlet weak var IBtblLeftMenu: UITableView!
     @IBOutlet weak var IBlblUserName: UILabel!
     
-    
+    private let tempDisplayName = String()
     private let arrTitles = ["DISCOVER","SETTINGS"]
     var delegate:LeftMenuVCDelegate?
     
@@ -42,6 +42,7 @@ class LeftMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
+        IBlblUserName.text = tempDisplayName
         // Do any additional setup after loading the view.
     }
 
@@ -100,7 +101,6 @@ extension LeftMenuVC{
      */
     func setupUIOnLoad(){
         IBtblLeftMenu.tableFooterView = UIView()
-        IBlblUserName.text = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME)
     }
 
     /**

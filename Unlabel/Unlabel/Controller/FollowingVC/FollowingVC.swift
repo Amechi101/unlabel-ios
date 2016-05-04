@@ -90,24 +90,6 @@ extension FollowingVC:UICollectionViewDataSource{
     func getProductCell(forIndexPath indexPath:NSIndexPath)->ProductCell{
         let productCell = IBcollectionViewFollowing.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductCell, forIndexPath: indexPath) as! ProductCell
         
-//        if let productName:String = arrProductList[indexPath.row-1].dynamoDB_Product.ProductName{
-//            productCell.IBlblProductName.text = productName
-//        }else{
-//            productCell.IBlblProductName.text = "Product"
-//        }
-//        
-//        if let productPrice:CGFloat = arrProductList[indexPath.row-1].dynamoDB_Product.ProductPrice{
-//            productCell.IBlblProductPrice.text = "$\(productPrice)"
-//        }else{
-//            productCell.IBlblProductPrice.text = ""
-//        }
-//        
-//        if let productImage:UIImage = arrProductList[indexPath.row-1].imgProductImage{
-//            productCell.IBimgProductImage.image = productImage
-//        }else{
-//            productCell.IBimgProductImage.image = UIImage(named: "splash")
-//        }
-        
         return productCell
     }
 }

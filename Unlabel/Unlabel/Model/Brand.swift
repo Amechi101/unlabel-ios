@@ -16,9 +16,10 @@ class Brand: NSObject {
     var StateOrCountry:String = String()
     var Description:String = String()
     var FeatureImage:String = String()
-    var CreatedDate:String = String()
+    var CreatedDateString:String = String()
     var BrandWebsiteURL:String = String()
     var isActive:Bool = Bool()
+    var CreatedDate:NSDate = NSDate()
     
     //Sex
     var Menswear:Bool = Bool()

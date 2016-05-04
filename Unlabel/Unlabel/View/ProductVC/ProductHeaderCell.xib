@@ -66,7 +66,7 @@
                                     <constraint firstAttribute="height" constant="1" id="bky-9R-CKl"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-c8-M68">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-c8-M68">
                                 <rect key="frame" x="0.0" y="0.0" width="354" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="211" id="n4f-A5-XvX"/>
@@ -106,7 +106,4 @@
             <point key="canvasLocation" x="246" y="180"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="splash" width="375" height="647"/>
-    </resources>
 </document>

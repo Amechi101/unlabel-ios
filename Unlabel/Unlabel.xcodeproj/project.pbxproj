@@ -28,8 +28,6 @@
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
 		157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */; };
-		157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
-		157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */; };
 		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */; };
 		15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */; };
@@ -69,7 +67,6 @@
 		15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */; };
 		15B7E7CD1C5520B200244AC9 /* Neutra2Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */; };
 		15C4275C1CD9131900106722 /* AboutLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C4275B1CD9131900106722 /* AboutLabelVC.swift */; };
-		15C83BD61CB6F289009933C4 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C83BD51CB6F289009933C4 /* ImageLoader.swift */; };
 		15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C925281C73B93B00595A7B /* ProductFooterView.swift */; };
 		15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C9252A1C73B94500595A7B /* ProductFooterView.xib */; };
 		15C993651C56A156000C28E0 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
@@ -184,7 +181,6 @@
 		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
 		1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelAsyncLoader.swift; sourceTree = "<group>"; };
 		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
 		15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryLocationCell.xib; sourceTree = "<group>"; };
@@ -223,7 +219,6 @@
 		15B7E7C71C55201200244AC9 /* Neutraface2Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutraface2Text-Light.otf"; sourceTree = "<group>"; };
 		15B7E7CC1C5520B200244AC9 /* Neutra2Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Neutra2Display-Bold.otf"; sourceTree = "<group>"; };
 		15C4275B1CD9131900106722 /* AboutLabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLabelVC.swift; sourceTree = "<group>"; };
-		15C83BD51CB6F289009933C4 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		15C925281C73B93B00595A7B /* ProductFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductFooterView.swift; sourceTree = "<group>"; };
 		15C9252A1C73B94500595A7B /* ProductFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductFooterView.xib; sourceTree = "<group>"; };
 		15C993501C5693A6000C28E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -564,11 +559,9 @@
 				15C993AD1C56BA65000C28E0 /* ParseConstants.swift */,
 				154687751C57B9AF0060565B /* UnlabelHelper.swift */,
 				154687781C5814D60060565B /* UnlabelExtensions.swift */,
-				157DEF191C667F2B0085B1E8 /* UnlabelAsyncLoader.swift */,
 				15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */,
 				15056BDB1CB57EC60058765D /* UnlabelAPIHelper.swift */,
 				15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */,
-				15C83BD51CB6F289009933C4 /* ImageLoader.swift */,
 				15E704F81CBAF35100DB9069 /* GAHelper.swift */,
 				153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */,
 			);
@@ -1158,7 +1151,6 @@
 				15C993661C56A156000C28E0 /* UnlabelConstants.swift in Sources */,
 				15C993A21C56A870000C28E0 /* AdminVC.swift in Sources */,
 				158CC2CC1C578CB800536B73 /* AddBrandVC.swift in Sources */,
-				157DEF1B1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				1546877A1C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15E30D9B1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15C993AF1C56BA68000C28E0 /* ParseConstants.swift in Sources */,
@@ -1201,7 +1193,6 @@
 				15F5A3201C8A2B6C00FDE610 /* LoginVC.swift in Sources */,
 				150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */,
 				159245231C5539C500755814 /* Brand.swift in Sources */,
-				157DEF1A1C667F2B0085B1E8 /* UnlabelAsyncLoader.swift in Sources */,
 				15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */,
 				156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */,
@@ -1209,7 +1200,6 @@
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
-				15C83BD61CB6F289009933C4 /* ImageLoader.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
@@ -1432,8 +1422,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1445,7 +1435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5e86f6f4-4b23-4e12-a18e-edea48669f62";
+				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1457,8 +1447,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1470,7 +1460,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5e86f6f4-4b23-4e12-a18e-edea48669f62";
+				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

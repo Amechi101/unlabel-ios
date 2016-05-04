@@ -423,8 +423,8 @@ extension LoginSignupVC{
      Configure Batch
      */
     private func configureBatchForPushNotification(){
-        Batch.startWithAPIKey("DEV570AA966234C896E4E2F497CA2E") // dev
-        // Batch.startWithAPIKey("570AA96621F60821C10E17741A43D1") // live
+//        Batch.startWithAPIKey("DEV570AA966234C896E4E2F497CA2E") // dev
+        Batch.startWithAPIKey("570AA96621F60821C10E17741A43D1") // live
         BatchPush.registerForRemoteNotifications()
     }
     

@@ -47,9 +47,9 @@ class FeedVC: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.firebaseCallGetFollowingBrands()
-        }
+//        dispatch_async(dispatch_get_main_queue()) {
+//            self.firebaseCallGetFollowingBrands()
+//        }
         UnlabelHelper.setAppDelegateDelegates(self)
     }
     
@@ -428,11 +428,19 @@ extension FeedVC{
             leftMenuChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? LeftMenuVC
             leftMenuChildVC!.delegate = self
         }
+        
+       
         leftMenuChildVC!.view.frame.size = self.view.frame.size
         navigationController!.addChildViewController(leftMenuChildVC!)
         leftMenuChildVC!.didMoveToParentViewController(self)
         
         navigationController?.view.addSubview(leftMenuChildVC!.view)
+        
+        if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+            leftMenuChildVC!.IBlblUserName.text = displayName
+        }
+        
+        
             //Animate leftViewController entry
             leftMenuChildVC!.view.frame.origin.x = -self.view.frame.size.width
             leftMenuChildVC!.view.alpha = 0

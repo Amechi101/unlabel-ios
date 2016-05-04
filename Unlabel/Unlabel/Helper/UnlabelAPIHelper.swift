@@ -74,9 +74,17 @@ class UnlabelAPIHelper{
                     }
                     
                     if let createdDate = thisBrand[PRM_CREATED] as? String{
-                        brand.CreatedDate = createdDate
+                        brand.CreatedDateString = createdDate
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        
+                        let newDateString:String = String(brand.CreatedDateString.characters.prefix(10))
+                        if let createdDate = dateFormatter.dateFromString(newDateString){
+                            brand.CreatedDate = createdDate
+                        }
                     }
-                    
+ 
                     if let originCity = thisBrand[PRM_ORIGIN_CITY] as? String{
                         brand.OriginCity = originCity
                     }
@@ -119,7 +127,11 @@ class UnlabelAPIHelper{
                     
                     arrBrands.append(brand)
                 }
-            }            
+            }
+            
+            //Sorting arrBrands by created date
+            arrBrands.sortInPlace({ $0.CreatedDate.compare($1.CreatedDate) == NSComparisonResult.OrderedDescending })
+            
             return arrBrands
         }else{
             return nil
