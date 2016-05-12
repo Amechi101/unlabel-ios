@@ -1422,7 +1422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1435,7 +1435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
+				PROVISIONING_PROFILE = "5e86f6f4-4b23-4e12-a18e-edea48669f62";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1447,7 +1447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1460,7 +1460,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9ce7346-12fe-4d2c-816f-ce5f457e700e";
+				PROVISIONING_PROFILE = "5e86f6f4-4b23-4e12-a18e-edea48669f62";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;
