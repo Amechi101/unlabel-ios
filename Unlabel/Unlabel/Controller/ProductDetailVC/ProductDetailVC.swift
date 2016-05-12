@@ -59,7 +59,7 @@ class ProductDetailVC: UIViewController {
 extension ProductDetailVC{
     
     @IBAction func IBActionShare(sender: AnyObject) {
-        share(shareText: "Check this amazing label, don't miss any of them. http://unlabel.us", shareImage: IBImgProductImage.image)
+        share(shareText: "\(product.ProductName) from \(product.ProductBrandName)", shareImage: IBImgProductImage.image)
     }
     
     @IBAction func IBActionBuyProduct(sender: AnyObject) {

@@ -135,7 +135,7 @@ extension FeedVC:UICollectionViewDataSource{
         
         if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrFilteredBrandList[indexPath.row].FeatureImage)){
             
-            feedVCCell.IBimgBrandImage.contentMode = UIViewContentMode.ScaleAspectFill;
+//            feedVCCell.IBimgBrandImage.contentMode = UIViewContentMode.ScaleAspectFill;
             
             feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                 if let _ = error{
