@@ -1,25 +1,25 @@
 PODS:
-  - Alamofire (3.4.0)
-  - Batch (1.5.3)
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
+  - Alamofire (3.3.0)
+  - Batch (1.5.1)
+  - Bolts (1.6.0):
+    - Bolts/AppLinks (= 1.6.0)
+    - Bolts/Tasks (= 1.6.0)
+  - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
+  - Bolts/Tasks (1.6.0)
   - Cloudinary (1.0.15)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - FBSDKCoreKit (4.11.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.11.0):
+  - Fabric (1.6.6)
+  - FBSDKCoreKit (4.10.0):
+    - Bolts (~> 1.5)
+  - FBSDKLoginKit (4.10.0):
     - FBSDKCoreKit
   - Firebase (2.5.1)
-  - Google/Analytics (2.0.4):
+  - Google/Analytics (2.0.3):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
-  - Google/Core (2.0.4):
+  - Google/Core (2.0.3):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
@@ -30,11 +30,11 @@ PODS:
   - GoogleNetworkingUtilities (1.2.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleSymbolUtilities (1.1.0)
-  - GoogleUtilities (1.3.0):
+  - GoogleUtilities (1.2.0):
     - GoogleSymbolUtilities (~> 1.0)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -52,22 +52,22 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  Batch: e8b878faad90083e572812d725da0e6e536490a7
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Batch: 968cfffd316d2f0e8cd652c97608c6c19e2ec099
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
   Cloudinary: f80af4565ec08c521d5e58cb56d9fbe1e4595e40
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
-  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
+  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
-  Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
+  Google: 61379f0072bc561a7e174d23a6cbe41bd6d8599c
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: 427382e42d8a340038bec37c6fdfd316e14b5fa2
   GoogleNetworkingUtilities: ec1e9911aca811eb18b7144394fee6168b607785
   GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
-  GoogleUtilities: 5c653f7df2eedf0ce0efdfe5afe4f831f375fd7a
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  GoogleUtilities: 85f8ad6b251544286a97163133d042ec95f889c5
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

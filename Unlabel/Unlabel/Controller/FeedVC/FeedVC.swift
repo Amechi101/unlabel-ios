@@ -439,9 +439,15 @@ extension FeedVC{
         
         navigationController?.view.addSubview(leftMenuChildVC!.view)
         
-        if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
-            leftMenuChildVC!.IBlblUserName.text = displayName
+        var userDisplayName = S_LOGIN_REGISTER
+        
+        if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+                userDisplayName = displayName
+            }
         }
+        
+        leftMenuChildVC!.IBlblUserName.text = userDisplayName
         
         
             //Animate leftViewController entry

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Batch
 import Bolts
 import Fabric
 import CoreData
@@ -168,6 +169,7 @@ extension AppDelegate{
      */
     private func configure(){
         Fabric.with([Crashlytics.self])
+        configureBatchForPushNotification()
         addInternetStateChangeObserver()
     }
     
@@ -211,11 +213,11 @@ extension AppDelegate{
      */
     private func setupRootVC(){
         if let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil){
-            if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//            if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
                 goToFeedVC(storyboard)
-            }else{
-                goToEntryVC(storyboard)
-            }
+//            }else{
+//                goToEntryVC(storyboard)
+//            }
         }
         setupUnlabelApp()
     }
@@ -251,6 +253,15 @@ extension AppDelegate{
      */
     private func setupUnlabelAdmin(){
         
+    }
+    
+    /**
+     Configure Batch
+     */
+    private func configureBatchForPushNotification(){
+        //        Batch.startWithAPIKey("DEV570AA966234C896E4E2F497CA2E") // dev
+        Batch.startWithAPIKey("570AA96621F60821C10E17741A43D1") // live
+        BatchPush.registerForRemoteNotifications()
     }
 }
 

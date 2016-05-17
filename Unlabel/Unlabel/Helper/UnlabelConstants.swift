@@ -54,6 +54,7 @@ let S_ID_FOLLOWING_VC               = "FollowingVC"
 let S_ID_ABOUT_LABEL_VC             = "AboutLabelVC"
 let S_ID_ADD_PRODUCT_VC             = "AddProductVC"
 let S_ID_CHANGE_NAME_VC             = "ChangeNameVC"
+let S_ID_LOGIN_SIGNUP_VC            = "LoginSignupVC"
 let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
 let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
@@ -75,8 +76,9 @@ let SEGUE_SETTINGS                  = "Settings"
 let SEGUE_LEGAL_STUFF               = "LegalStuff"
 let SEGUE_TERMS                     = "Terms"
 let SEGUE_PRIVACY_POLICY            = "PrivacyPolicy"
-let SEGUE_LEGALSTUFF_FROM_SETTINGS           = "LegalStuffFromSettings"
-let SEGUE_PRIVACYPOLICY_FROM_SETTINGS        = "PrivacyPolicyFromSettings"
+let SEGUE_LEGALSTUFF_FROM_SETTINGS      = "LegalStuffFromSettings"
+let SEGUE_PRIVACYPOLICY_FROM_SETTINGS   = "PrivacyPolicyFromSettings"
+let SEGUE_ACCOUNTINFO_FROM_SETTINGS     = "AccountInfoFromSettings"
 
 //
 //MARK:- Cell Reusable IDs
@@ -114,6 +116,10 @@ let sPOPUP_SEEN_ONCE            = "popup_seen_once"
 
 let S_NO_INTERNET               = "No Internet Available!"
 let S_PLEASE_CONNECT            = "Please connect to the Internet."
+
+let S_LOGIN_REGISTER            = "LOGIN / REGISTER"
+let S_LOGIN                     = "LOGIN"
+let S_MUST_LOGGED_IN            = "You must be logged in to access this feature."
 
 
 //

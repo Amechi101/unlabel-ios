@@ -14,7 +14,8 @@ class SettingsVC: UITableViewController {
     //
     //MARK:- IBOutlets, constants, vars
     //
-    
+    @IBOutlet weak var IBcellLogout: UITableViewCell!
+    @IBOutlet weak var IBbtnLogout: UILabel!
     
     //
     //MARK:- VC Lifecycle
@@ -44,6 +45,21 @@ class SettingsVC: UITableViewController {
             destVC.vcType = VCType.PrivacyPolicy
         }
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == SEGUE_ACCOUNTINFO_FROM_SETTINGS{
+            if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+                return true
+            }else{
+                UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
+                    self.openLoginSignupVC()
+                })
+                return false
+            }
+        }else{
+            return true
+        }
+    }
 }
 
 
@@ -60,7 +76,17 @@ extension SettingsVC{
         }else if indexPath.row == 4{
             UnlabelHelper.logout()
         }
-        
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            IBbtnLogout.hidden = false
+            IBcellLogout.userInteractionEnabled = true
+        }else{
+            IBbtnLogout.hidden = true
+            IBcellLogout.userInteractionEnabled = false
+        }
+        return 5;
     }
 }
 
@@ -125,6 +151,14 @@ extension SettingsVC{
     }
 }
 
+//
+//MARK:- Custom Methods
+//
+extension SettingsVC:LoginSignupVCDelegate{
+    func willDidmissViewController() {
+        tableView.reloadData()
+    }
+}
 
 //
 //MARK:- Custom Methods
@@ -136,5 +170,12 @@ extension SettingsVC{
      */
     func setupOnLoad(){
        
+    }
+    
+    func openLoginSignupVC(){
+        if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+            loginSignupVC.delegate = self
+            self.presentViewController(loginSignupVC, animated: true, completion: nil)
+        }
     }
 }

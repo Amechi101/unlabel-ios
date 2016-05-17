@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Batch
 import Firebase
 import AccountKit
 import SafariServices
@@ -26,11 +25,16 @@ enum LoginSignupSubType{
 
 let AccountKit = AKFAccountKit(responseType: .AccessToken)
 
+protocol LoginSignupVCDelegate{
+    func willDidmissViewController()
+}
+
 class LoginSignupVC: UIViewController{
 
     @IBOutlet weak var IBviewFooterContainer: UIView!
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
+    var delegate:LoginSignupVCDelegate?
     var pendingLoginViewController: UIViewController?
     
     var loginSignupType:LoginSigupType?
@@ -282,13 +286,11 @@ extension LoginSignupVC{
             userInfo[PRM_DISPLAY_NAME] = displayName
         }
         
-        goToFeedVC(withUserInfo: userInfo)
+        dismiss(withUserInfo: userInfo)
     }
     
-    private func goToFeedVC(withUserInfo userInfo:[String:AnyObject]){
+    private func dismiss(withUserInfo userInfo:[String:AnyObject]){
        
-        self.configureBatchForPushNotification()
-        
         if let userID:String = userInfo[PRM_USER_ID] as? String{
             UnlabelHelper.setDefaultValue(userID, key: PRM_USER_ID)
         }
@@ -313,21 +315,24 @@ extension LoginSignupVC{
             UnlabelHelper.setDefaultValue(provider, key: PRM_PROVIDER)
         }
     
-        if let storyboardObj = storyboard{
-            let rootNavVC = storyboardObj.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-            if let window = APP_DELEGATE.window {
-                window.rootViewController = rootNavVC
-                window.rootViewController!.view.layoutIfNeeded()
-                
-                if let window = APP_DELEGATE.window{
-                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                        window.rootViewController!.view.layoutIfNeeded()
-                        }, completion: nil)
-                }
-            }
+        if let delegate = delegate{
+            delegate.willDidmissViewController()
         }
         
-
+        dismiss()
+//        if let storyboardObj = storyboard{
+//            let rootNavVC = storyboardObj.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+//            if let window = APP_DELEGATE.window {
+//                window.rootViewController = rootNavVC
+//                window.rootViewController!.view.layoutIfNeeded()
+//                
+//                if let window = APP_DELEGATE.window{
+//                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+//                        window.rootViewController!.view.layoutIfNeeded()
+//                        }, completion: nil)
+//                }
+//            }
+//        }
     }
     
     /**
@@ -401,7 +406,7 @@ extension LoginSignupVC{
                 }else{
                     print("User adding success")
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.goToFeedVC(withUserInfo: userInfo)
+                        self.dismiss(withUserInfo: userInfo)
                     })
                     }
                 })
@@ -417,15 +422,6 @@ extension LoginSignupVC{
         }else{
             IBviewFooterContainer.hidden = false
         }
-    }
-    
-    /**
-     Configure Batch
-     */
-    private func configureBatchForPushNotification(){
-//        Batch.startWithAPIKey("DEV570AA966234C896E4E2F497CA2E") // dev
-        Batch.startWithAPIKey("570AA96621F60821C10E17741A43D1") // live
-        BatchPush.registerForRemoteNotifications()
     }
     
     /**
@@ -447,6 +443,10 @@ extension LoginSignupVC{
             self.IBactivityIndicator.stopAnimating()
         }
     }
+    
+    func dismiss(){
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
 //---------------------------------------------------------------------------------------------
@@ -458,7 +458,7 @@ extension LoginSignupVC{
 extension LoginSignupVC{
 
     @IBAction func IBActionClose(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss()
     }
     
     @IBAction func IBActionFacebook(sender: UIButton) {

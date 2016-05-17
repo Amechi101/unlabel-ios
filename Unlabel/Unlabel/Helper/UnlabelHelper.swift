@@ -66,10 +66,12 @@ class UnlabelHelper: NSObject {
         UnlabelHelper.removePrefForKey(PRM_PROVIDER)
         UnlabelHelper.removePrefForKey(sPOPUP_SEEN_ONCE)
         
-        let rootVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
+        
+        let rootNavVC:UINavigationController? = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
+        
         
         if let window = APP_DELEGATE.window {
-            window.rootViewController = rootVC
+            window.rootViewController = rootNavVC
             window.rootViewController!.view.layoutIfNeeded()
             
             UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromTop, animations: {
@@ -147,6 +149,22 @@ class UnlabelHelper: NSObject {
         
         confirmAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             onOk()
+        }))
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            onVC.presentViewController(confirmAlert, animated: true, completion: nil)
+        })
+    }
+    
+    class func showLoginAlert(onVC:UIViewController,title:String,message:String,onCancel:()->(),onSignIn:()->()){
+        let confirmAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            onCancel()
+        }))
+        
+        confirmAlert.addAction(UIAlertAction(title: "Sign In", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            onSignIn()
         }))
         
         dispatch_async(dispatch_get_main_queue(), {

@@ -122,13 +122,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkd-o7-Ake">
                                 <rect key="frame" x="0.0" y="0.0" width="325" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KN6-W2-qcj">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KN6-W2-qcj">
                                         <rect key="frame" x="23" y="623" width="279" height="16"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Njr-ld-VMq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="FLe-gf-iL0" appends="YES" id="Kbg-XT-0wC"/>
+                                        </connections>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-hn-wcy">
                                         <rect key="frame" x="22" y="80" width="273" height="510"/>
@@ -190,6 +194,11 @@
                         <action selector="IBActionClose:" destination="PAN-GT-FN7" id="WQe-7m-a2A"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer id="FLe-gf-iL0">
+                    <connections>
+                        <action selector="IBActionLoginRegister:" destination="PAN-GT-FN7" id="0Lt-oo-8Qg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="243" y="326"/>
         </scene>
@@ -865,12 +874,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
-                                                    <rect key="frame" x="22" y="0.0" width="111" height="54"/>
-                                                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
-                                                    <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="jfD-mA-kMa">
                                                     <rect key="frame" x="341" y="18" width="8" height="18"/>
                                                     <constraints>
@@ -878,6 +881,12 @@
                                                         <constraint firstAttribute="height" constant="18" id="MkW-Eb-Qgx"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
+                                                    <rect key="frame" x="22" y="0.0" width="111" height="54"/>
+                                                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
+                                                    <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jfD-mA-kMa" firstAttribute="centerY" secondItem="IDJ-h2-T5F" secondAttribute="centerY" id="34w-RI-b3f"/>
@@ -889,7 +898,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="22" minY="0.0" maxX="22" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="DDa-sh-oq4" kind="show" id="Jb9-AK-wXt"/>
+                                            <segue destination="DDa-sh-oq4" kind="show" identifier="AccountInfoFromSettings" id="Jb9-AK-wXt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="61" id="dAs-N5-9cN">
@@ -965,6 +974,10 @@
                         </button>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="IBbtnLogout" destination="1p7-oK-XLt" id="PWl-Vl-IHL"/>
+                        <outlet property="IBcellLogout" destination="dAs-N5-9cN" id="gMc-Lj-qjE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KkZ-zP-o4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1305,9 +1318,9 @@
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj3-2S-vD6">
                                                 <rect key="frame" x="22" y="259" width="276" height="413"/>
-                                                <mutableString key="text">For once, forget the objectives of others. You’re here, and you're ready to discover new ways of expressing yourself. Go with your gut - whatever grabs your attention is likable. Your taste is perfect enough. Really. It’s not so much about striving for the underground, as it’s about watching out for what's new. It’s about generating inspiration beyond the obvious. Beyond famed fashion magazines. Beyond what we’re told to want.
+                                                <string key="text">For once, forget the objectives of others. You’re here, and you're ready to discover new ways of expressing yourself. Go with your gut - whatever grabs your attention is likable. Your taste is perfect enough. Really. It’s not so much about striving for the underground, as it’s about watching out for what's new. It’s about generating inspiration beyond the obvious. Beyond famed fashion magazines. Beyond what we’re told to want.
 
-Stepping away from conventionalism, Unlabel is an app for trend-anticipating, forward-thinking people who want to explore the "what else" in fashion without compromising style. By exhibiting new independent designers each week from around the world, Unlabel introduces you to unique fashion brands that you might not discover otherwise.</mutableString>
+Stepping away from conventionalism, Unlabel is an app for trend-anticipating, forward-thinking people who want to explore the "what else" in fashion without compromising style. By exhibiting new independent designers each week from around the world, Unlabel introduces you to unique fashion brands that you might not discover otherwise.</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="17"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1566,7 +1579,7 @@ NOT RANDOM SH*T</string>
         <!--Login SignupVC-->
         <scene sceneID="ily-2B-oaY">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="sKX-5q-srO" customClass="LoginSignupVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSignupVC" id="sKX-5q-srO" customClass="LoginSignupVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h2Y-Qo-XIP"/>
                         <viewControllerLayoutGuide type="bottom" id="dTI-sK-wrS"/>
@@ -2282,7 +2295,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <image name="test" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SuH-CV-d5B"/>
         <segue reference="XRw-lG-PtZ"/>
+        <segue reference="SuH-CV-d5B"/>
     </inferredMetricsTieBreakers>
 </document>

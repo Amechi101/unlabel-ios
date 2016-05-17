@@ -42,6 +42,7 @@ class LeftMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
+        
         IBlblUserName.text = tempDisplayName
         // Do any additional setup after loading the view.
     }
@@ -88,8 +89,32 @@ extension LeftMenuVC{
     @IBAction func IBActionClose(sender: AnyObject) {
      close(withIndexPath: nil)
     }
+    
+    @IBAction func IBActionLoginRegister(sender: AnyObject) {
+        if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            
+        }else{
+           openLoginSignupVC()
+        }
+    }
 }
 
+//
+//MARK:- Custom Methods
+//
+extension LeftMenuVC:LoginSignupVCDelegate{
+    func willDidmissViewController() {
+        var userDisplayName = S_LOGIN_REGISTER
+        
+        if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+                userDisplayName = displayName
+            }
+        }
+        
+        IBlblUserName.text = userDisplayName
+    }
+}
 
 
 //
@@ -118,6 +143,13 @@ extension LeftMenuVC{
                 if let index = indexPath{
                     self.delegate?.didSelectRowAtIndexPath(index)
                 }
+        }
+    }
+    
+    func openLoginSignupVC(){
+        if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+            loginSignupVC.delegate = self
+            self.presentViewController(loginSignupVC, animated: true, completion: nil)
         }
     }
 }
