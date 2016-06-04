@@ -35,7 +35,6 @@ class FirebaseHelper: NSObject {
     // Add new user data after successfull authentication
     */
     class func addNewUser(userData: [String:AnyObject]!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
-        print(userData)
         dispatch_async(dispatch_get_main_queue(), {
             if let userID:String = userData[PRM_USER_ID] as? String{
                 FIREBASE_USERS_REF.childByAppendingPath(userID).setValue(userData, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
@@ -52,11 +51,9 @@ class FirebaseHelper: NSObject {
      Check if user exist for specific id.
      */
     class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
-        print("checkIfUserExists---1")
         dispatch_async(dispatch_get_main_queue(), {
             FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    print("checkIfUserExists---2")
                     block(snapshot)
                 })
             })
@@ -75,10 +72,10 @@ class FirebaseHelper: NSObject {
                     for children in snapshot.children{
                         followingBrandIDs?.append(children.key)
                     }
-                    print("following")
+                    debugPrint("following")
                     block(followingBrandIDs)
                  }else{
-                    print("not following")
+                    debugPrint("not following")
                     block([String]())
                 }
             })
@@ -95,9 +92,9 @@ class FirebaseHelper: NSObject {
                     FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                         block(error,firebase)
                         if error == nil{
-                            print("brand followed")
+                            debugPrint("brand followed")
                         }else{
-                            print("brand not followed : \(error)")
+                            debugPrint("brand not followed : \(error)")
                         }
                     })
                 }
@@ -106,9 +103,9 @@ class FirebaseHelper: NSObject {
                     FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).childByAppendingPath(brandID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
                         block(error,firebase)
                         if error == nil{
-                            print("brand removed")
+                            debugPrint("brand removed")
                         }else{
-                            print("brand not removed : \(error)")
+                            debugPrint("brand not removed : \(error)")
                         }
                     })
                 }

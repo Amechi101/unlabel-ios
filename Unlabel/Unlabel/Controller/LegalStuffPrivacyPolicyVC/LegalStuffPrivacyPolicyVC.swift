@@ -83,7 +83,7 @@ extension LegalStuffPrivacyPolicyVC {
 //
 
 extension LegalStuffPrivacyPolicyVC {
-    func setupOnLoad(){
+    private func setupOnLoad(){
         if let _ = navigationController{
             if vcType == .LegalStuff{
                 IBbtnTitle.setTitle(sLegal_Stuff, forState: .Normal)
@@ -111,7 +111,7 @@ extension LegalStuffPrivacyPolicyVC {
         }
     }
     
-    func pop(){
+    private func pop(){
         navigationController?.popViewControllerAnimated(true)
     }
 }

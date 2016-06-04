@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ChangeNameVC: UIViewController {
-
+    
     //
     //MARK:- IBOutlets, constants, vars
     //
@@ -63,7 +63,7 @@ extension ChangeNameVC:UITextFieldDelegate{
 //MARK:- Custom Methods
 //
 extension ChangeNameVC{
-    func setupOnLoad(){
+    private func setupOnLoad(){
         let bottomBorder = CALayer()
         bottomBorder.frame = CGRectMake(0.0, IBtxtFieldEnterNewName.frame.size.height - 1, IBtxtFieldEnterNewName.frame.size.width, 1.0);
         bottomBorder.backgroundColor = MEDIUM_GRAY_BORDER_COLOR.CGColor
@@ -71,7 +71,7 @@ extension ChangeNameVC{
         setUserName()
     }
     
-    func setUserName(){
+    private func setUserName(){
         if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
             IBlblName.text = displayName
         }else{
@@ -79,7 +79,7 @@ extension ChangeNameVC{
         }
     }
     
-    func updateUserName(){
+    private func updateUserName(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             if let trimmedName = IBtxtFieldEnterNewName.text?.removeWhitespace() where trimmedName.characters.count > 0{ //Checking if user has entered all white space
@@ -89,9 +89,9 @@ extension ChangeNameVC{
                     setUserName()
                     FirebaseHelper.updateUserName(updatedUserName, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                         if error == nil{
-                            print(firebase)
+                            debugPrint(firebase)
                         }else{
-                            print(error)
+                            debugPrint(error)
                         }
                     })
                 }else{

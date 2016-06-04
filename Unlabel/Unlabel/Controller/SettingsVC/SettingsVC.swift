@@ -145,7 +145,6 @@ extension SettingsVC:UIGestureRecognizerDelegate{
 //MARK:- IBAction Methods
 //
 extension SettingsVC{
-    
     @IBAction func IBActionBack(sender: UIButton) {
         navigationController?.popViewControllerAnimated(true)
     }
@@ -168,11 +167,11 @@ extension SettingsVC{
     /**
      Setup UI on VC Load.
      */
-    func setupOnLoad(){
+    private func setupOnLoad(){
        
     }
     
-    func openLoginSignupVC(){
+    private func openLoginSignupVC(){
         if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
             loginSignupVC.delegate = self
             self.presentViewController(loginSignupVC, animated: true, completion: nil)

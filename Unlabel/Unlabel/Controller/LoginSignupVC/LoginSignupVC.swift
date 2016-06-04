@@ -30,21 +30,27 @@ protocol LoginSignupVCDelegate{
 }
 
 class LoginSignupVC: UIViewController{
-
+    
+    //
+    //MARK:- IBOutlets, constants, vars
+    //
     @IBOutlet weak var IBviewFooterContainer: UIView!
     @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
     
     var delegate:LoginSignupVCDelegate?
     var pendingLoginViewController: UIViewController?
-    
     var loginSignupType:LoginSigupType?
     
+    
+    //
+    //MARK:- VC Lifecycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOnLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,12 +58,12 @@ class LoginSignupVC: UIViewController{
     
 }
 
-//---------------------------------------------------------------------------------------------
+//
 //MARK:- FB Methods
-//---------------------------------------------------------------------------------------------
+//
 extension LoginSignupVC {
     //Login Methods
-    func loginWithFB(){
+    private func loginWithFB(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             handleFBLogin()
@@ -66,7 +72,7 @@ extension LoginSignupVC {
         }
     }
     
-    func handleFBLogin(){
+    private func handleFBLogin(){
         startLoading()
         let windowTintColor = APP_DELEGATE.window?.tintColor
         APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
@@ -77,14 +83,11 @@ extension LoginSignupVC {
             if let authData = FIREBASE_REF.authData{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.isUserAlreadyExist(authData.uid, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
-                        print("handleFBLogin---1")
                         if snapshot.exists() {
-                            print("handleFBLogin---2")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.handleUserExist(snapshot)
                             })
                         }else{
-                            print("handleFBLogin---3")
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.handleUserDoesntExist(.Facebook)
                             })
@@ -104,12 +107,11 @@ extension LoginSignupVC {
     }
     
 }
-//---------------------------------------------------------------------------------------------
 
 
-//---------------------------------------------------------------------------------------------
+//
 //MARK:- AccountKit Methods
-//---------------------------------------------------------------------------------------------
+//
 extension LoginSignupVC:AKFViewControllerDelegate {
     
     func loginWithAccountKit(loginSubType:LoginSignupSubType){
@@ -149,11 +151,12 @@ extension LoginSignupVC:AKFViewControllerDelegate {
         return uuid.substringToIndex(indexOfDash)
     }
     
-    //-------------------------------------------------------------------------
+    
+    //
     //MARK:- AKFViewControllerDelegate
-    //-------------------------------------------------------------------------
+    //
     func viewController(viewController: UIViewController!, didCompleteLoginWithAuthorizationCode code: String!, state: String!) {
-        print("1")
+        debugPrint("didCompleteLoginWithAuthorizationCode")
     }
     
     func viewController(viewController: UIViewController!, didCompleteLoginWithAccessToken accessToken: AKFAccessToken!, state: String!) {
@@ -177,16 +180,16 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     }
     
     func viewController(viewController: UIViewController!, didFailWithError error: NSError!) {
-        print("3")
+        debugPrint("didFailWithError : \(error.debugDescription)")
         stopLoading()
     }
     
     func viewControllerDidCancel(viewController: UIViewController!) {
         stopLoading()
-        print("4")
+        debugPrint("viewControllerDidCancel")
     }
     
-  }
+}
 
 
 //
@@ -224,38 +227,75 @@ extension LoginSignupVC:SFSafariViewControllerDelegate{
 }
 
 
+//
+//MARK:- IBAction Methods
+//
+extension LoginSignupVC{
+    
+    @IBAction func IBActionClose(sender: AnyObject) {
+        dismiss()
+    }
+    
+    @IBAction func IBActionFacebook(sender: UIButton) {
+        if loginSignupType == .Login {
+            loginWithFB()
+        }else{
+            loginWithFB()
+        }
+    }
+    
+    @IBAction func IBActionMobileNumber(sender: UIButton) {
+        if loginSignupType == .Login {
+            loginWithAccountKit(.Phone)
+            debugPrint("mobile login")
+        }else{
+            loginWithAccountKit(.Phone)
+            debugPrint("mobile signup")
+        }
+    }
+    
+    @IBAction func IBActionEmailOnly(sender: UIButton) {
+        if loginSignupType == .Login {
+            loginWithAccountKit(.Email)
+            debugPrint("email login")
+        }else{
+            loginWithAccountKit(.Email)
+            debugPrint("email signup")
+        }
+    }
+    
+    @IBAction func IBActionTerms(sender: UIButton) {
+        openSafariForURL(URL_TERMS)
+    }
+    
+    @IBAction func IBActionPrivacyPolicy(sender: AnyObject) {
+        openSafariForURL(URL_PRIVACY_POLICY)
+    }
+}
 
-//---------------------------------------------------------------------------------------------
 
-
-//---------------------------------------------------------------------------------------------
+//
 //MARK:- Custom Methods
-//---------------------------------------------------------------------------------------------
+//
 extension LoginSignupVC{
     
     private func isUserAlreadyExist(userID:String,userLoginSubType:LoginSignupSubType,block:(FDataSnapshot)->Void){
-        print("isUserAlreadyExist---1")
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             dispatch_async(dispatch_get_main_queue(), {
                 FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
-                    print("isUserAlreadyExist---2")
-                        block(snapshot)
-                    })
+                    block(snapshot)
                 })
+            })
         }else{
             UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
-
+    
     /**
      handleUserExist on Firebase
      */
     private func handleUserExist(snapshot:FDataSnapshot){
-        print("handleUserExist---1")
-//        UnlabelHelper.showAlert(onVC: self, title: "User Already Exists", message: "Please Login with this account") {}
-        print(snapshot)
-        
         var userInfo:[String:AnyObject] = [:]
         
         if let phoneNumber = snapshot.value[PRM_PHONE]{
@@ -290,7 +330,7 @@ extension LoginSignupVC{
     }
     
     private func dismiss(withUserInfo userInfo:[String:AnyObject]){
-       
+        
         if let userID:String = userInfo[PRM_USER_ID] as? String{
             UnlabelHelper.setDefaultValue(userID, key: PRM_USER_ID)
         }
@@ -314,41 +354,24 @@ extension LoginSignupVC{
         if let provider:String = userInfo[PRM_PROVIDER] as? String{
             UnlabelHelper.setDefaultValue(provider, key: PRM_PROVIDER)
         }
-    
+        
         if let delegate = delegate{
             delegate.willDidmissViewController()
         }
         
         dismiss()
-//        if let storyboardObj = storyboard{
-//            let rootNavVC = storyboardObj.instantiateViewControllerWithIdentifier(S_ID_NAV_CONTROLLER) as? UINavigationController
-//            if let window = APP_DELEGATE.window {
-//                window.rootViewController = rootNavVC
-//                window.rootViewController!.view.layoutIfNeeded()
-//                
-//                if let window = APP_DELEGATE.window{
-//                    UIView.transitionWithView(APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-//                        window.rootViewController!.view.layoutIfNeeded()
-//                        }, completion: nil)
-//                }
-//            }
-//        }
     }
     
     /**
      handleUserDoesn'tExist on Firebase
      */
     private func handleUserDoesntExist(subType: LoginSignupSubType){
-        print("handleUserDoesntExist---1")
         var userInfo:[String:AnyObject] = [:]
         
         if subType == .Email || subType == .Phone {
             
-            print("handleUserDoesntExist---2 ")
-            
             //Add user data after successfull authentication
             AccountKit.requestAccount({ (account:AKFAccount?, error:NSError?) in
-            print("handleUserDoesntExist---3")
                 if let phoneNumber = account?.phoneNumber?.stringRepresentation(){
                     userInfo[PRM_PHONE] = phoneNumber
                 }
@@ -369,7 +392,6 @@ extension LoginSignupVC{
                 self.handleAddNewUser(userInfo)
             })
         }else if subType == .Facebook{
-            print("handleUserDoesntExist---4")
             if let emailAddress = FIREBASE_REF.authData.providerData[PRM_EMAIL]{
                 userInfo[PRM_EMAIL] = emailAddress
             }
@@ -389,25 +411,23 @@ extension LoginSignupVC{
             
             handleAddNewUser(userInfo)
         }else{
-            print("handleUserDoesntExist---5")
+            debugPrint("handleUserDoesntExist---5")
         }
     }
-
+    
     private func handleAddNewUser(userInfo:[String:AnyObject]){
-        print("handleAddNewUser---1")
         dispatch_async(dispatch_get_main_queue(), {
             FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    print("handleAddNewUser---2")
-                if error != nil{
-                    self.stopLoading()
-                    print("User adding failed \(error)")
+                    if error != nil{
+                        self.stopLoading()
+                        debugPrint("User adding failed \(error)")
                         UnlabelHelper.showAlert(onVC: self, title: error.localizedDescription, message: S_TRY_AGAIN, onOk: {})
-                }else{
-                    print("User adding success")
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.dismiss(withUserInfo: userInfo)
-                    })
+                    }else{
+                        debugPrint("User adding success")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.dismiss(withUserInfo: userInfo)
+                        })
                     }
                 })
             })
@@ -444,57 +464,8 @@ extension LoginSignupVC{
         }
     }
     
-    func dismiss(){
+    private func dismiss(){
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
 }
-//---------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------
-//MARK:- IBActions
-//---------------------------------------------------------------------------------------------
-extension LoginSignupVC{
-
-    @IBAction func IBActionClose(sender: AnyObject) {
-        dismiss()
-    }
-    
-    @IBAction func IBActionFacebook(sender: UIButton) {
-        if loginSignupType == .Login {
-            loginWithFB()
-        }else{
-            loginWithFB()
-        }
-    }
-    
-    @IBAction func IBActionMobileNumber(sender: UIButton) {
-        if loginSignupType == .Login {
-            loginWithAccountKit(.Phone)
-            print("mobile login")
-        }else{
-            loginWithAccountKit(.Phone)
-          print("mobile signup")
-        }
-    }
-    
-    @IBAction func IBActionEmailOnly(sender: UIButton) {
-        if loginSignupType == .Login {
-            loginWithAccountKit(.Email)
-            print("email login")
-        }else{
-            loginWithAccountKit(.Email)
-          print("email signup")
-        }
-    }
-    
-    @IBAction func IBActionTerms(sender: UIButton) {
-        openSafariForURL(URL_TERMS)
-    }
-    
-    @IBAction func IBActionPrivacyPolicy(sender: AnyObject) {
-        openSafariForURL(URL_PRIVACY_POLICY)
-    }
-}
-//---------------------------------------------------------------------------------------------

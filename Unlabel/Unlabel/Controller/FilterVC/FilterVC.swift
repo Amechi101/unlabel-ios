@@ -27,10 +27,10 @@ enum PickerType : Int {
 }
 
 class FilterVC: UIViewController {
-
-//
-//MARK:- IBOutlets, constants, vars
-//
+    
+    //
+    //MARK:- IBOutlets, constants, vars
+    //
     @IBOutlet weak var IBtblFilter: UITableView!
     @IBOutlet weak var IBpickerView: UIPickerView!
     
@@ -43,19 +43,18 @@ class FilterVC: UIViewController {
     var filterModel = Brand()
     var shouldClearCategories = false
     
-    
     var delegate:FilterVCDelegate?
     var selectedPickerType:PickerType = .Unknown
     
-//
-//MARK:- VC Lifecycle
-//
+    //
+    //MARK:- VC Lifecycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,7 +67,7 @@ class FilterVC: UIViewController {
 //
 extension FilterVC:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        delegate?.didSelectRowAtIndexPath(indexPath)
+        //        delegate?.didSelectRowAtIndexPath(indexPath)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         close()
     }
@@ -124,7 +123,7 @@ extension FilterVC:UITableViewDataSource{
         
         return genderCell
     }
-
+    
     func categoryLocationCell(indexPath:NSIndexPath)->CategoryLocationCell{
         let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
         categoryLocationCell.delegate = self
@@ -150,150 +149,6 @@ extension FilterVC:UITableViewDataSource{
     
 }
 
-
-extension FilterVC{
-    
-//
-//MARK:- FilterVC IBAction Methods
-//
-    @IBAction func IBActionClose(sender: AnyObject) {
-        close()
-    }
-    
-    @IBAction func IBActionPickerCancel(sender: UIButton) {
-        hidePicker()
-    }
-    
-    @IBAction func IBActionPickerSelect(sender: UIButton) {
-//        if selectedPickerType == .Categories{
-//            sAllCategories = arrCategories[IBpickerView.selectedRowInComponent(0)]
-//            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 3, inSection: 0)], withRowAnimation: .Fade)
-//        }else if selectedPickerType == .Styles{
-//            sAllStyles = arrStyle[IBpickerView.selectedRowInComponent(0)]
-//            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 5, inSection: 0)], withRowAnimation: .Fade)
-//        }else{
-//        
-//        }
-//        self.IBtblFilter.reloadData()
-//        hidePicker()
-    }
-    
-    @IBAction func IBActionSwipeClosePicker(sender: UISwipeGestureRecognizer) {
-        hidePicker()
-    }
-    
-    @IBAction func IBActionApply(sender: UIButton) {
-        close()
-        delegate?.didClickApply!(forFilterModel: filterModel)
-    }
-    
-    @IBAction func IBActionClear(sender: UIButton) {
-        filterModel.Menswear = false
-        filterModel.Womenswear = false
-        filterModel.Clothing = false
-        filterModel.Accessories = false
-        filterModel.Jewelry = false
-        filterModel.Shoes = false
-        filterModel.Bags = false
-        shouldClearCategories = true
-        IBtblFilter.reloadData()
-    }
-    
-//
-//MARK:- CategoryStyleCell IBAction Methods
-//
-    @IBAction func IBActionCategoryStyleClicked(sender: UIButton) {
-        openPickerForTag(sender.tag)
-    }
-    
-    func openPickerForTag(tag:Int){
-//        //All categories clicked
-//        if tag == PickerType.Categories.rawValue{
-//            selectedPickerType = .Categories
-//            arrPickerTitle = arrCategories
-//        //All styles clicked
-//        }else if tag == PickerType.Styles.rawValue{
-//            selectedPickerType = .Styles
-//            arrPickerTitle = arrStyle
-//        }
-//        showPicker()
-    }
-}
-
-
-
-//
-//MARK:- Custom Methods
-//
-extension FilterVC{
-    /**
-     Setup UI on VC Load.
-     */
-    func setupUIOnLoad(){
-        hidePicker()
-        registerCell(withID: REUSABLE_ID_GenderCell)
-        registerCell(withID: REUSABLE_ID_CategoryStyleCell)
-        registerCell(withID: REUSABLE_ID_CategoryLocationCell)
-
-        IBbtnClear.layer.borderColor = DARK_GRAY_COLOR.CGColor
-        IBtblFilter.estimatedRowHeight = SCREEN_HEIGHT - 218 //218 for StatusBar+Footer+XButton height
-        IBtblFilter.rowHeight = UITableViewAutomaticDimension
-        IBtblFilter.tableFooterView = UIView()
-        IBtblFilter.reloadData()
-    }
-    
-    /**
-     Register nib for given ID.
-     */
-    func registerCell(withID reusableID:String){
-        IBtblFilter.registerNib(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
-    }
-    
-    /**
-     Remove self from parentViewController
-     */
-    func close(){
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.alpha = 0
-            self.view.frame.origin.x = SCREEN_WIDTH
-            }) { (value:Bool) -> Void in
-                self.willMoveToParentViewController(nil)
-                self.view.removeFromSuperview()
-                self.removeFromParentViewController()
-                self.delegate?.willCloseChildVC!(S_ID_FILTER_VC)
-        }
-    }
-    
-    /**
-     Shows picker view with animation
-     */
-    func showPicker(){
-        IBpickerView.reloadAllComponents()
-        IBconstraintPickerMainTop.constant = 0
-        IBconstraintPickerMainBottom.constant = 0
-        UIView.animateWithDuration(0.3) { () -> Void in
-            self.view.layoutSubviews()
-        }
-    }
-
-    /**
-     Hides picker view with animation
-     */
-    func hidePicker(){
-//        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
-//        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
-//        UIView.animateWithDuration(0.3) { () -> Void in
-//            self.view.layoutSubviews()
-//        }
-        
-    }
-    
-    
-
-
-}
-
-
 //
 //MARK:- Gender Cell
 //
@@ -310,38 +165,38 @@ extension FilterVC{
     //
     //MARK:- Gender cell Custom Methods
     //
-        func handleGenderSelection(sender:UIButton){
-            //Male Clicked
-            if sender.tag == 1{
-                filterModel.Menswear = !filterModel.Menswear
-                
-                //Female Clicked
-            }else{
-                filterModel.Womenswear = !filterModel.Womenswear
-            }
+    func handleGenderSelection(sender:UIButton){
+        //Male Clicked
+        if sender.tag == 1{
+            filterModel.Menswear = !filterModel.Menswear
             
-            IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
-        }
-    
-        /**
-         Enable button
-         */
-        func enableButton(makeEnabled:UIButton){
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                makeEnabled.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
-                makeEnabled.layer.borderColor = MEDIUM_GRAY_TEXT_COLOR.CGColor
-            }
+            //Female Clicked
+        }else{
+            filterModel.Womenswear = !filterModel.Womenswear
         }
         
-        /**
-         Disable button
-         */
-        func disableButton(makeDisabled:UIButton){
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                makeDisabled.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
-                makeDisabled.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
-            }
+        IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+    }
+    
+    /**
+     Enable button
+     */
+    func enableButton(makeEnabled:UIButton){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            makeEnabled.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+            makeEnabled.layer.borderColor = MEDIUM_GRAY_TEXT_COLOR.CGColor
         }
+    }
+    
+    /**
+     Disable button
+     */
+    func disableButton(makeDisabled:UIButton){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            makeDisabled.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
+            makeDisabled.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
+        }
+    }
 }
 
 //
@@ -369,6 +224,144 @@ extension FilterVC:CategoryDelegate{
         if let bags:Bool = dictCategories[5]{
             filterModel.Bags = bags
         }
+        
+    }
+}
+
+
+//
+//MARK:- FilterVC IBAction Methods
+//
+extension FilterVC{
+    
+    @IBAction func IBActionClose(sender: AnyObject) {
+        close()
+    }
+    
+    @IBAction func IBActionPickerCancel(sender: UIButton) {
+        hidePicker()
+    }
+    
+    @IBAction func IBActionPickerSelect(sender: UIButton) {
+        //        if selectedPickerType == .Categories{
+        //            sAllCategories = arrCategories[IBpickerView.selectedRowInComponent(0)]
+        //            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 3, inSection: 0)], withRowAnimation: .Fade)
+        //        }else if selectedPickerType == .Styles{
+        //            sAllStyles = arrStyle[IBpickerView.selectedRowInComponent(0)]
+        //            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 5, inSection: 0)], withRowAnimation: .Fade)
+        //        }else{
+        //
+        //        }
+        //        self.IBtblFilter.reloadData()
+        //        hidePicker()
+    }
+    
+    @IBAction func IBActionSwipeClosePicker(sender: UISwipeGestureRecognizer) {
+        hidePicker()
+    }
+    
+    @IBAction func IBActionApply(sender: UIButton) {
+        close()
+        delegate?.didClickApply!(forFilterModel: filterModel)
+    }
+    
+    @IBAction func IBActionClear(sender: UIButton) {
+        filterModel.Menswear = false
+        filterModel.Womenswear = false
+        filterModel.Clothing = false
+        filterModel.Accessories = false
+        filterModel.Jewelry = false
+        filterModel.Shoes = false
+        filterModel.Bags = false
+        shouldClearCategories = true
+        IBtblFilter.reloadData()
+    }
+    
+    //
+    //MARK:- CategoryStyleCell IBAction Methods
+    //
+    @IBAction func IBActionCategoryStyleClicked(sender: UIButton) {
+        openPickerForTag(sender.tag)
+    }
+    
+    func openPickerForTag(tag:Int){
+        //        //All categories clicked
+        //        if tag == PickerType.Categories.rawValue{
+        //            selectedPickerType = .Categories
+        //            arrPickerTitle = arrCategories
+        //        //All styles clicked
+        //        }else if tag == PickerType.Styles.rawValue{
+        //            selectedPickerType = .Styles
+        //            arrPickerTitle = arrStyle
+        //        }
+        //        showPicker()
+    }
+}
+
+
+//
+//MARK:- Custom Methods
+//
+extension FilterVC{
+    /**
+     Setup UI on VC Load.
+     */
+    private func setupUIOnLoad(){
+        hidePicker()
+        registerCell(withID: REUSABLE_ID_GenderCell)
+        registerCell(withID: REUSABLE_ID_CategoryStyleCell)
+        registerCell(withID: REUSABLE_ID_CategoryLocationCell)
+        
+        IBbtnClear.layer.borderColor = DARK_GRAY_COLOR.CGColor
+        IBtblFilter.estimatedRowHeight = SCREEN_HEIGHT - 218 //218 for StatusBar+Footer+XButton height
+        IBtblFilter.rowHeight = UITableViewAutomaticDimension
+        IBtblFilter.tableFooterView = UIView()
+        IBtblFilter.reloadData()
+    }
+    
+    /**
+     Register nib for given ID.
+     */
+    private func registerCell(withID reusableID:String){
+        IBtblFilter.registerNib(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
+    }
+    
+    /**
+     Remove self from parentViewController
+     */
+    private func close(){
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.view.alpha = 0
+            self.view.frame.origin.x = SCREEN_WIDTH
+        }) { (value:Bool) -> Void in
+            self.willMoveToParentViewController(nil)
+            self.view.removeFromSuperview()
+            self.removeFromParentViewController()
+            self.delegate?.willCloseChildVC!(S_ID_FILTER_VC)
+        }
+    }
+    
+    /**
+     Shows picker view with animation
+     */
+    private func showPicker(){
+        IBpickerView.reloadAllComponents()
+        IBconstraintPickerMainTop.constant = 0
+        IBconstraintPickerMainBottom.constant = 0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.layoutSubviews()
+        }
+    }
+    
+    /**
+     Hides picker view with animation
+     */
+    private func hidePicker(){
+        //        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
+        //        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
+        //        UIView.animateWithDuration(0.3) { () -> Void in
+        //            self.view.layoutSubviews()
+        //        }
         
     }
 }

@@ -124,14 +124,14 @@ extension LeftMenuVC{
     /**
      Setup UI on VC Load.
      */
-    func setupUIOnLoad(){
+    private func setupUIOnLoad(){
         IBtblLeftMenu.tableFooterView = UIView()
     }
 
     /**
      Remove self from parentViewController
      */
-    func close(withIndexPath indexPath:NSIndexPath?){
+    private func close(withIndexPath indexPath:NSIndexPath?){
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             self.view.alpha = 0
             self.view.frame.origin.x = -SCREEN_WIDTH
@@ -146,7 +146,7 @@ extension LeftMenuVC{
         }
     }
     
-    func openLoginSignupVC(){
+    private func openLoginSignupVC(){
         if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
             loginSignupVC.delegate = self
             self.presentViewController(loginSignupVC, animated: true, completion: nil)

@@ -19,7 +19,7 @@ class AccountInfoVC: UITableViewController {
     @IBOutlet weak var IBlblEmailOrPhone: UILabel!
     @IBOutlet var IBtblAccountInfo: UITableView!
     
-    var userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
+    private var userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
         if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
             
             //Facebook user
@@ -35,7 +35,7 @@ class AccountInfoVC: UITableViewController {
                 }
                 
                 
-            //AccountKit
+                //AccountKit
             }else{
                 if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
                     if let email = UnlabelHelper.getDefaultValue(PRM_EMAIL){
@@ -90,7 +90,7 @@ extension AccountInfoVC{
     }
     
     func goToChangeName(){
-    
+        
     }
 }
 
@@ -123,7 +123,7 @@ extension AccountInfoVC:PopupviewDelegate{
     }
     
     func popupDidClickDelete(){
-        print("delete account")
+        debugPrint("delete account")
     }
     
     func popupDidClickClose(){
@@ -166,7 +166,7 @@ extension AccountInfoVC{
     /**
      Setup UI on VC Load.
      */
-    func setupOnWillAppear(){
+    private func setupOnWillAppear(){
         if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
             userDetails.displayName = displayName
         }

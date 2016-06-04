@@ -30,26 +30,10 @@ class ProductDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOnLoad()
-        // Do any additional setup after loading the view.
     }
-
-    func setupOnLoad(){
-        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
-            IBImgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
-
-            })
-        }
-        
-        IBbtnBuyOnBrand.setTitle("BUY ON \(product.ProductBrandName.uppercaseString)", forState: .Normal)
-        IBlblPrice.text = "$\(product.ProductPrice)"
-        IBlblProductName.text = "\(product.ProductName)"
-
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -57,7 +41,6 @@ class ProductDetailVC: UIViewController {
 //MARK:- IBAction Methods
 //
 extension ProductDetailVC{
-    
     @IBAction func IBActionShare(sender: AnyObject) {
         share(shareText: "\(product.ProductName) from \(product.ProductBrandName)", shareImage: IBImgProductImage.image)
     }
@@ -76,7 +59,6 @@ extension ProductDetailVC{
 //MARK:- Custom and SFSafariViewControllerDelegate Methods
 //
 extension ProductDetailVC:SFSafariViewControllerDelegate,UIViewControllerTransitioningDelegate{
-    
     func openSafariForURL(urlString:String){
             if let productURL:NSURL = NSURL(string: urlString){
                 APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
@@ -112,7 +94,20 @@ extension ProductDetailVC:SFSafariViewControllerDelegate,UIViewControllerTransit
 //MARK:- Custom Methods
 //
 extension ProductDetailVC{
-    func share(shareText shareText:String?,shareImage:UIImage?){
+    private func setupOnLoad(){
+        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
+            IBImgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+                
+            })
+        }
+        
+        IBbtnBuyOnBrand.setTitle("BUY ON \(product.ProductBrandName.uppercaseString)", forState: .Normal)
+        IBlblPrice.text = "$\(product.ProductPrice)"
+        IBlblProductName.text = "\(product.ProductName)"
+        
+    }
+    
+    private func share(shareText shareText:String?,shareImage:UIImage?){
         
         var objectsToShare = [AnyObject]()
         
@@ -130,7 +125,7 @@ extension ProductDetailVC{
             
             presentViewController(activityViewController, animated: true, completion: nil)
         }else{
-            print("There is nothing to share")
+            debugPrint("There is nothing to share")
         }
     }
 }

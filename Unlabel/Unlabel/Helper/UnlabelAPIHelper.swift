@@ -21,8 +21,7 @@ class UnlabelAPIHelper{
                 
             case .Success(let data):
                 let json = JSON(data)
-                print("*******")
-                print(json)
+                debugPrint(json)
                 if let arrBrands = getBrandModels(fromJSON: json){
                     success(arrBrands)
                 }else{

@@ -24,7 +24,6 @@ class FollowingVC: UIViewController {
         super.viewDidLoad()
         setupOnLoad()
         addTestData()
-//        awsCallFetchProducts()
     }
     
     override func didReceiveMemoryWarning() {
@@ -119,15 +118,14 @@ extension FollowingVC{
 //MARK:- Custom Methods
 //
 extension FollowingVC{
-    
-    func addTestData(){
+    private func addTestData(){
         for i in 0...30{
             arrBrands.append(["ok":i])
         }
         IBcollectionViewFollowing.reloadData()
     }
     
-    func setupOnLoad(){
+    private func setupOnLoad(){
         IBcollectionViewFollowing.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
     }
 }

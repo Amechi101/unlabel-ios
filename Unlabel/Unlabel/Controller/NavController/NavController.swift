@@ -10,6 +10,9 @@ import UIKit
 
 class NavController: UINavigationController {
 
+    //
+    //MARK:- Controller Lifecycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,14 +24,9 @@ class NavController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
     }
-    
-
 }

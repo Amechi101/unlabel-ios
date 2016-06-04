@@ -94,9 +94,9 @@ class UnlabelHelper: NSObject {
                     dispatch_async(dispatch_get_main_queue()) {
                         FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
                             if error == nil{
-                                print("all following brands removed")
+                                debugPrint("all following brands removed")
                             }else{
-                                print("all following brands not removed : \(error)")
+                                debugPrint("all following brands not removed : \(error)")
                             }
                         })
                     }
@@ -107,9 +107,9 @@ class UnlabelHelper: NSObject {
                     dispatch_async(dispatch_get_main_queue()) {
                         FIREBASE_USERS_REF.childByAppendingPath(userID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
                             if error == nil{
-                                print("account removed")
+                                debugPrint("account removed")
                             }else{
-                                print("account not removed : \(error)")
+                                debugPrint("account not removed : \(error)")
                             }
                         })
                     }

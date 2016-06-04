@@ -79,7 +79,8 @@ extension AboutUsVC{
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["info@unlabel.us"])
+            S_NO_INTERNET
+            mail.setToRecipients([UNLABEL_EMAIL_ID])
             mail.setMessageBody("", isHTML: true)
             
             presentViewController(mail, animated: true, completion: nil)

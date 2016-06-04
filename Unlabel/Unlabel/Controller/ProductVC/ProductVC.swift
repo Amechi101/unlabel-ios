@@ -57,7 +57,7 @@ class ProductVC: UIViewController {
 //
 extension ProductVC:AppDelegateDelegates{
     func reachabilityChanged(reachable: Bool) {
-        print("reachabilityChanged : \(reachable)")
+        debugPrint("reachabilityChanged : \(reachable)")
     }
 }
 
@@ -256,7 +256,7 @@ extension ProductVC:PopupviewDelegate{
     }
     
     func popupDidClickDelete(){
-        print("delete account")
+        debugPrint("delete account")
     }
     
     func popupDidClickClose(){
@@ -281,11 +281,11 @@ extension ProductVC{
     //For ProductFooterView
     @IBAction func IBActionViewMore(sender: AnyObject) {
 //        awsCallFetchProducts()
-       print("IBActionViewMore")
+       debugPrint("IBActionViewMore")
     }
     
     @IBAction func IBActionFollow(sender: UIButton) {
-        print("Follow clicked")
+        debugPrint("Follow clicked")
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             if selectedBrand.isFollowing {
@@ -359,12 +359,6 @@ extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioning
         }else{ showAlertWebPageNotAvailable() }
     }
     
-    func showAlertWebPageNotAvailable(){
-        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
-            
-        }
-    }
-    
     func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
         return []
     }
@@ -383,7 +377,7 @@ extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioning
 //MARK:- Custom Methods
 //
 extension ProductVC{
-    func setupOnLoad(){
+    private func setupOnLoad(){
         lastEvaluatedKey = nil
 
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
@@ -400,7 +394,7 @@ extension ProductVC{
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
-    func updateFollowButton(button:UIButton,isFollowing:Bool){
+    private func updateFollowButton(button:UIButton,isFollowing:Bool){
         if isFollowing{
             button.setTitle("Unfollow", forState: .Normal)
             button.layer.borderColor = UIColor.blackColor().CGColor
@@ -412,7 +406,7 @@ extension ProductVC{
         }
     }
     
-    func showLoading(){
+    private func showLoading(){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.activityIndicator!.frame = self.view.frame
             self.activityIndicator!.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.6)
@@ -421,10 +415,16 @@ extension ProductVC{
         }
     }
     
-    func hideLoading(){
+    private func hideLoading(){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.activityIndicator!.stopAnimating()
             self.activityIndicator!.removeFromSuperview()
+        }
+    }
+    
+    private func showAlertWebPageNotAvailable(){
+        UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
+            
         }
     }
     
@@ -435,96 +435,4 @@ extension ProductVC{
 //        }
 //    }
 
-}
-
-
-//
-//MARK:- AWS Call Methods
-//
-extension ProductVC{
-//    func awsCallFetchProducts(){
-////        showLoading()
-//        
-//        let dynamoDBObjectMapper:AWSDynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper()
-//        
-//        var scanExpression: AWSDynamoDBScanExpression = AWSDynamoDBScanExpression()
-//        scanExpression.exclusiveStartKey = self.lastEvaluatedKey
-//        scanExpression.limit = iPaginationCount;
-//        
-//        scanExpression.filterExpression = "BrandName = :brandNameKey AND isActive = :isActiveKey"
-//        scanExpression.expressionAttributeValues = [":brandNameKey": selectedBrand.dynamoDB_Brand.BrandName,":isActiveKey":true]
-//        
-//        dynamoDBObjectMapper.scan(DynamoDB_Product.self, expression: scanExpression).continueWithSuccessBlock { (task:AWSTask) -> AnyObject? in
-//            
-//            //If error
-//            if let error = task.error{
-//                self.hideLoading()
-//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: error.localizedDescription, onOk: { () -> () in
-//                    
-//                })
-//                return nil
-//            }
-//            
-//            //If exception
-//            if let exception = task.exception{
-//                self.hideLoading()
-//                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: exception.debugDescription, onOk: { () -> () in
-//                    
-//                })
-//                return nil
-//            }
-//            
-//            //If got result
-//            if let result = task.result{
-//                if let paginatedOutput:AWSDynamoDBPaginatedOutput = task.result as? AWSDynamoDBPaginatedOutput{
-//                    self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey //Update lastEvaluatedKey
-//                    if let lastEvaluatedKeyObj = paginatedOutput.lastEvaluatedKey{
-////                        self.lastEvaluatedKey = paginatedOutput.lastEvaluatedKey // Update lastEvaluatedKey
-//                        print(" more data available")// more data found
-//                    }else{
-//                        print("No more data available")//no more data found
-//                    }
-//                    
-//                }
-//
-//                
-//                //If result items count > 0
-//                if let arrItems:[DynamoDB_Product] = result.allItems as? [DynamoDB_Product] where arrItems.count>0{
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        for (index, product) in arrItems.enumerate() {
-//                            var productObj = Product()
-//                            productObj.dynamoDB_Product = product
-//                            
-//                            AWSHelper.downloadImageWithCompletion(forImageName: product.ProductImageName, uploadPathKey: pathKeyProducts, completionHandler: { (task:AWSS3TransferUtilityDownloadTask, forURL:NSURL?, data:NSData?, error:NSError?) -> () in
-//                                if let downloadedData = data{
-//                                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                                        if let image = UIImage(data: downloadedData){
-//                                            productObj.imgProductImage = image
-//                                            self.IBcollectionViewProduct.reloadItemsAtIndexPaths([NSIndexPath(forRow: index+1, inSection: 0)])
-//                                        }
-//                                    })
-//                                }
-//                            })
-//                            self.arrProductList.append(productObj)
-//                        }
-//                        defer{
-//                            self.hideLoading()
-//                            self.IBcollectionViewProduct.reloadData()
-//                        }
-//                    })
-//                }else{
-//                    self.hideLoading()
-//                    UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-//                    })
-//                }
-//            }else{
-//                self.hideLoading()
-//                UnlabelHelper.showAlert(onVC: self, title: "No Data Found", message: "Add some data", onOk: { () -> () in
-//                })
-//            }
-//            
-//            
-//            return nil
-//        }
-//    }
 }

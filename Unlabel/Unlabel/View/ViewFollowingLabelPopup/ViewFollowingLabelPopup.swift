@@ -66,7 +66,7 @@ class ViewFollowingLabelPopup: UIView {
     //MARK:- Custom Methods
     //
     
-    func close(){
+    private func close(){
         UIView.animateWithDuration(0.2, animations: {
             self.frame.origin.y = SCREEN_HEIGHT
         }) { (value:Bool) in
@@ -85,10 +85,10 @@ class ViewFollowingLabelPopup: UIView {
             IBlblTitle.text = "VIEW FOLLOWING LABELS"
             IBviewRoundContainer.hidden = false
             IBviewDeleteContainer.hidden = true
-            print(IBviewRoundContainer.frame.size.height/2)
+            debugPrint(IBviewRoundContainer.frame.size.height/2)
             IBviewRoundContainer.layer.cornerRadius = IBviewRoundContainer.frame.size.height/2
         }else{
-            print("Popup type unknown")
+            debugPrint("Popup type unknown")
         }
     }
     

@@ -27,7 +27,7 @@ class SignupVC: UIViewController {
     @IBOutlet weak var IBbtnSignUp: UIButton!
     @IBOutlet weak var IBscrollView: UIScrollView!
     
-    var kbHeight: CGFloat!
+    private var kbHeight: CGFloat!
     
 
 //
@@ -117,18 +117,17 @@ extension SignupVC{
 //MARK:- Custom Methods
 //
 extension SignupVC{
-    
-    func setupCognitoForUser(loggedType:UserLoggedInType){
+    private func setupCognitoForUser(loggedType:UserLoggedInType){
         if loggedType == .FB{
      
         }else if loggedType == .Email{
         
         }else{
-            print("Unknown login")
+            debugPrint("Unknown login")
         }
     }
     
-    func handleFBLogin(){
+    private func handleFBLogin(){
         UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             
             self.setupCognitoForUser(.FB)
@@ -142,11 +141,11 @@ extension SignupVC{
                 }
             })
             }) { (error:NSError?) -> () in
-                print(error)
+                debugPrint(error)
         }
     }
     
-    func isValidName()->Bool{
+    private func isValidName()->Bool{
         if let iCharacters = IBtxtFieldName.text?.characters.count where iCharacters > 0{
             return true
         }else{
@@ -155,7 +154,7 @@ extension SignupVC{
         }
     }
     
-    func isValidEmail()->Bool{
+    private func isValidEmail()->Bool{
         if let email = IBtxtFieldEmail.text where email.characters.count > 0{
             if UnlabelHelper.isValidEmail(IBtxtFieldEmail.text!){
                 return true
@@ -169,7 +168,7 @@ extension SignupVC{
         }
     }
     
-    func isValidUserPassword()->Bool{
+    private func isValidUserPassword()->Bool{
         
         return true
     }

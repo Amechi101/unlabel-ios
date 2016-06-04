@@ -46,28 +46,3 @@ class EntryVC: UIViewController {
         }
     }
 }
-
-    //
-    //MARK:- IBAction Methods
-    //
-
-//    extension EntryVC {
-//        @IBAction func IBActionContinueWithFB(sender: UIButton) {
-//            //Internet available
-//            if ReachabilitySwift.isConnectedToNetwork(){
-//                handleFBLogin()
-//            }else{
-//                UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {
-//                    
-//                })
-//            }
-//        }
-//    }
-
-    
-    //
-    //MARK:- Custom Methods
-    //
-
-//    extension EntryVC {
-//    }

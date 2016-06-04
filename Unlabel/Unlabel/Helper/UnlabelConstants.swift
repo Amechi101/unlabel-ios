@@ -125,6 +125,7 @@ let S_MUST_LOGGED_IN            = "You must be logged in to access this feature.
 //
 //MARK:- Anonymous Constants
 //
+let UNLABEL_EMAIL_ID    = "info@unlabel.us"
 let APP_DELEGATE        = UIApplication.sharedApplication().delegate as! AppDelegate
 let SCREEN_WIDTH        = UIScreen.mainScreen().bounds.size.width
 let SCREEN_HEIGHT       = UIScreen.mainScreen().bounds.size.height
