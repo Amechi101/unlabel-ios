@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Branch
 import Firebase
 import SDWebImage
 import SafariServices

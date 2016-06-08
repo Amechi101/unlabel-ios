@@ -3,3 +3,4 @@ Before Going live keep in mind things.
 Version 1.1:
 1. Update BASE_URL, USERNAME, API_KEY to live.
 2. Update batch live key : Batch.startWithAPIKey
+3. Update branch_key,branch_app_domain in info.plist (Can be found in UnlabelWSConstants.swift file)

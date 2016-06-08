@@ -8,6 +8,14 @@
 
 import Foundation
 
+//Branch.io
+//let branch_key_live = ""
+//let branch_app_domain_live = "u8cw.app.link"
+//
+//let branch_key_test = ""
+//let branch_app_domain_test = "u8cw.test-app.link"
+
+
 //Unlabel.us URLs
 let URL_PRIVACY_POLICY = "https://unlabel.us/privacy-policy/"
 let URL_TERMS = "https://unlabel.us/terms/"

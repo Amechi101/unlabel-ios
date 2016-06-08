@@ -82,6 +82,7 @@
 		15F5A3221C8A2B7900FDE610 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5A3211C8A2B7900FDE610 /* SignupVC.swift */; };
 		15FB1D941CC25E4D007E408F /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB1D921CC25E4D007E408F /* AccountKit.framework */; };
 		15FB1D951CC25E4D007E408F /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15FB1D931CC25E4D007E408F /* AccountKitStrings.bundle */; };
+		15FB38AD1D0869D400617F88 /* Unlabel.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 150798DD1D0720C800404AFA /* Unlabel.entitlements */; };
 		15FF26BE1CA97C1A004A59EC /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF26BD1CA97C1A004A59EC /* AboutUsVC.swift */; };
 		400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE0B1C1B890800487C6E /* AppDelegate.swift */; };
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
@@ -127,6 +128,7 @@
 		15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilitySwift.swift; sourceTree = "<group>"; };
 		15056BE31CB5A5C10058765D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		15056BE41CB5A5C10058765D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		150798DD1D0720C800404AFA /* Unlabel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Unlabel.entitlements; sourceTree = "<group>"; };
 		150AE9421CA1CF7D00131A0A /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 		400BDE0A1C1B890800487C6E /* Unlabel */ = {
 			isa = PBXGroup;
 			children = (
+				150798DD1D0720C800404AFA /* Unlabel.entitlements */,
 				15FB1D911CC25E4D007E408F /* ExternalFrameworks */,
 				400BDE0B1C1B890800487C6E /* AppDelegate.swift */,
 				15B7E7971C54A2D100244AC9 /* Controller */,
@@ -751,6 +754,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					400BDE1E1C1B890800487C6E = {
@@ -789,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
+				15FB38AD1D0869D400617F88 /* Unlabel.entitlements in Resources */,
 				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
 				15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */,
 				15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */,
@@ -1084,6 +1091,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1097,7 +1105,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "56919144-ef4f-4cdd-8f10-83e231d72c5e";
+				PROVISIONING_PROFILE = "880a48f4-004f-479e-900e-4208f838d75b";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1109,6 +1117,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1122,7 +1131,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "56919144-ef4f-4cdd-8f10-83e231d72c5e";
+				PROVISIONING_PROFILE = "880a48f4-004f-479e-900e-4208f838d75b";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

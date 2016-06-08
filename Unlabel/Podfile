@@ -20,5 +20,6 @@ target :Unlabel, :exclusive => true do
     pod 'Google/Analytics'
     pod 'Firebase'
     pod 'Batch'
+    pod 'Branch'
     
 end

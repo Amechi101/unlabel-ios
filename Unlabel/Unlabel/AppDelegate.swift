@@ -10,6 +10,7 @@ import UIKit
 import Batch
 import Bolts
 import Fabric
+import Branch
 import CoreData
 import Crashlytics
 import FBSDKCoreKit
@@ -30,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        setupOnLaunch()
+        setupOnLaunch(launchOptions)
         
         return FBSDKApplicationDelegate.sharedInstance()
             .application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -63,6 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if (!Branch.getInstance().handleDeepLink(url)) {
+            // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+        }
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
@@ -74,6 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
     }
     
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+         return Branch.getInstance().continueUserActivity(userActivity)
+    }
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -145,10 +152,33 @@ extension AppDelegate{
     /**
      Init everything needed on app launch.
      */
-    private func setupOnLaunch(){
-        configure()
-        configureGoogleAnalytics()
+    private func setupOnLaunch(launchOptions: [NSObject: AnyObject]?){
+        configure(launchOptions)
         setupRootVC()
+    }
+    
+    /**
+     Configure required things.
+     */
+    private func configure(launchOptions: [NSObject: AnyObject]?){
+        Fabric.with([Crashlytics.self])
+        configureBranch(launchOptions)
+        configureGoogleAnalytics()
+        configureBatchForPushNotification()
+        addInternetStateChangeObserver()
+    }
+    
+    /**
+     Configuring Branch.io.
+     */
+    private func configureBranch(launchOptions: [NSObject: AnyObject]?){
+        let branch: Branch = Branch.getInstance()
+        branch.accountForFacebookSDKPreventingAppLaunch()
+        branch.initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
+            if params != nil{
+                print(params)
+            }
+        })
     }
     
     /**
@@ -164,15 +194,6 @@ extension AppDelegate{
         let gai = GAI.sharedInstance()
         gai.trackUncaughtExceptions = true  // report uncaught exceptions
         //        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
-    }
-    
-    /**
-     Configure required things.
-     */
-    private func configure(){
-        Fabric.with([Crashlytics.self])
-        configureBatchForPushNotification()
-        addInternetStateChangeObserver()
     }
     
     /**

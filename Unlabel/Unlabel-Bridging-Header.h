@@ -8,3 +8,4 @@
 #import "Reachability.h"
 #import <Bolts/Bolts.h>
 #import <Google/Analytics.h>
+#import <Branch/Branch.h>

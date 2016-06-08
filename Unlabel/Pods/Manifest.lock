@@ -7,6 +7,11 @@ PODS:
   - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
+  - Branch (0.12.2):
+    - Branch/Core (= 0.12.2)
+    - Branch/without-IDFA (= 0.12.2)
+  - Branch/Core (0.12.2)
+  - Branch/without-IDFA (0.12.2)
   - Cloudinary (1.0.15)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -41,6 +46,7 @@ DEPENDENCIES:
   - Alamofire
   - Batch
   - Bolts
+  - Branch
   - Cloudinary (~> 1.0)
   - Crashlytics
   - Fabric
@@ -55,6 +61,7 @@ SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
   Batch: 968cfffd316d2f0e8cd652c97608c6c19e2ec099
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Branch: 8dc4c9b6c3bcdc6ad590938a0b333ddbfe60efe4
   Cloudinary: f80af4565ec08c521d5e58cb56d9fbe1e4595e40
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59

@@ -29,6 +29,14 @@
 				<string>ak1421811444777881</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>unlabel</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -111,7 +119,7 @@
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
-			<key>unlabel.us</key>
+			<key>unlabel-dev.herokuapp.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
@@ -120,14 +128,14 @@
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
-			<key>unlabel-dev.herokuapp.com</key>
+			<key>unlabel.us</key>
 			<dict>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
 				<key>NSIncludesSubdomains</key>
 				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
 			</dict>
 		</dict>
 	</dict>
@@ -155,5 +163,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>branch_app_domain</key>
+	<string>u8cw.test-app.link</string>
+	<key>branch_key</key>
+	<string>key_test_lakYO8yu4JkGNbCT9XFSMgnesDoDlslG</string>
 </dict>
 </plist>

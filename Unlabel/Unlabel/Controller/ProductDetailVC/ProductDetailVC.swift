@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Branch
 import SDWebImage
 import SafariServices
 
@@ -23,6 +24,8 @@ class ProductDetailVC: UIViewController {
     
     @IBOutlet weak var IBImgProductImage: UIImageView!
     var product = Product()
+    var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
+    var activityIndicator:UIActivityIndicatorView?
     
     //
     //MARK:- VC Lifecycle
@@ -42,7 +45,31 @@ class ProductDetailVC: UIViewController {
 //
 extension ProductDetailVC{
     @IBAction func IBActionShare(sender: AnyObject) {
-        share(shareText: "\(product.ProductName) from \(product.ProductBrandName)", shareImage: IBImgProductImage.image)
+        let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "label/\(product.BrandID)")
+        branchUniversalObject.title = product.ProductName
+        branchUniversalObject.imageUrl = UnlabelHelper.getCloudnaryObj().url(product.ProductImage)
+        branchUniversalObject.contentDescription = "\(product.ProductName) from \(product.ProductBrandName), See more..."
+        branchUniversalObject.addMetadataKey(PRM_BRAND_ID, value: product.BrandID)
+        
+        let linkProperties: BranchLinkProperties = BranchLinkProperties()
+        linkProperties.feature = "sharing"
+        linkProperties.channel = "share inspiration"
+        
+        branchUniversalObject.listOnSpotlight()
+    
+        showLoading()
+        branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+            self.hideLoading()
+            if error == nil {
+                if let urlObj = url{
+                    self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName) \(urlObj)", shareImage: self.IBImgProductImage.image)
+                }else{
+                    self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName)", shareImage: self.IBImgProductImage.image)
+                }
+            }else{
+                self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName)", shareImage: self.IBImgProductImage.image)
+            }
+        })
     }
     
     @IBAction func IBActionBuyProduct(sender: AnyObject) {
@@ -90,11 +117,14 @@ extension ProductDetailVC:SFSafariViewControllerDelegate,UIViewControllerTransit
     }
 }
 
+
 //
 //MARK:- Custom Methods
 //
 extension ProductDetailVC{
     private func setupOnLoad(){
+        activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
+        
         if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
             IBImgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                 
@@ -108,6 +138,7 @@ extension ProductDetailVC{
     }
     
     private func share(shareText shareText:String?,shareImage:UIImage?){
+        
         
         var objectsToShare = [AnyObject]()
         
@@ -126,6 +157,22 @@ extension ProductDetailVC{
             presentViewController(activityViewController, animated: true, completion: nil)
         }else{
             debugPrint("There is nothing to share")
+        }
+    }
+    
+    private func showLoading(){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.activityIndicator!.frame = self.view.frame
+            self.activityIndicator!.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.6)
+            self.activityIndicator!.startAnimating()
+            self.view.addSubview(self.activityIndicator!)
+        }
+    }
+    
+    private func hideLoading(){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.activityIndicator!.stopAnimating()
+            self.activityIndicator!.removeFromSuperview()
         }
     }
 }
