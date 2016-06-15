@@ -178,12 +178,12 @@ extension AppDelegate{
         let branch: Branch = Branch.getInstance()
         branch.accountForFacebookSDKPreventingAppLaunch()
         branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
-            if error == nil, let params = optParams {
-                // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-                // params will be empty if no data found
-                // ... insert custom logic here ...
-                print("params: %@", params.description)
-            }
+//            if error == nil, let params = optParams {
+//                // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+//                // params will be empty if no data found
+//                // ... insert custom logic here ...
+////                print("params: %@", params.description)
+//            }
         })
 //        branch.initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
 //            if params != nil{

@@ -39,6 +39,7 @@
 		159245271C553B6800755814 /* FeedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159245251C553B6800755814 /* FeedVCCell.swift */; };
 		159245281C553B6800755814 /* FeedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159245261C553B6800755814 /* FeedVCCell.xib */; };
 		1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592452A1C5557D900755814 /* LeftMenuVC.swift */; };
+		1592BB431D11D21000EEC05D /* FeedVCHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592BB421D11D21000EEC05D /* FeedVCHeaderCell.swift */; };
 		15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC8D771CA87058000B2BF3 /* FollowingVC.swift */; };
 		15AD18301C6266BA00A3F513 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD182E1C62669200A3F513 /* UIKit.framework */; };
 		15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
@@ -156,6 +157,7 @@
 		159245251C553B6800755814 /* FeedVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCCell.swift; sourceTree = "<group>"; };
 		159245261C553B6800755814 /* FeedVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedVCCell.xib; sourceTree = "<group>"; };
 		1592452A1C5557D900755814 /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		1592BB421D11D21000EEC05D /* FeedVCHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCHeaderCell.swift; sourceTree = "<group>"; };
 		15AC8D771CA87058000B2BF3 /* FollowingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		15AD182E1C62669200A3F513 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		15B7E7991C54A2D100244AC9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				159245261C553B6800755814 /* FeedVCCell.xib */,
 				154F193B1CD64D49006DFC42 /* FeedVCFooterCell.swift */,
 				154F193C1CD64D49006DFC42 /* FeedVCFooterCell.xib */,
+				1592BB421D11D21000EEC05D /* FeedVCHeaderCell.swift */,
 			);
 			path = FeedVC;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				159245231C5539C500755814 /* Brand.swift in Sources */,
 				15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */,
 				15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */,
+				1592BB431D11D21000EEC05D /* FeedVCHeaderCell.swift in Sources */,
 				156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,

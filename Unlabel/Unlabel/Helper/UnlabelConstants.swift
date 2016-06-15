@@ -91,6 +91,8 @@ let REUSABLE_ID_ProductHeaderCell   = "ProductHeaderCell"
 let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 let REUSABLE_ID_FeedVCFooterCell   = "FeedVCFooterCell"
+let REUSABLE_ID_FeedVCHeaderCell   = "FeedVCHeaderCell"
+
 
 //
 //MARK:- Font Style

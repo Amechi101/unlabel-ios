@@ -97,6 +97,11 @@ extension FeedVC:UICollectionViewDelegate{
         
         switch kind {
             
+        case UICollectionElementKindSectionHeader:
+            let headerView:FeedVCHeaderCell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as! FeedVCHeaderCell
+            
+            return headerView
+            
         case UICollectionElementKindSectionFooter:
             let footerView:FeedVCFooterCell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell, forIndexPath: indexPath) as! FeedVCFooterCell
             
@@ -151,6 +156,10 @@ extension FeedVC:UICollectionViewDataSource{
 extension FeedVC:UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.frame.size.width, FEED_CELL_HEIGHT)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeMake(SCREEN_WIDTH, 140)
     }
 }
 
