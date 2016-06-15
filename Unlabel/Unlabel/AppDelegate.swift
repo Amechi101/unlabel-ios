@@ -16,8 +16,9 @@ import Crashlytics
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-protocol AppDelegateDelegates {
+@objc protocol AppDelegateDelegates {
     func reachabilityChanged(reachable:Bool)
+    optional func didLaunchWithBrandId(brandId:String)
 }
 
 @UIApplicationMain
@@ -66,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if (!Branch.getInstance().handleDeepLink(url)) {
             // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+        }else{
+            Branch.getInstance().handleDeepLink(url);
         }
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
@@ -174,11 +177,22 @@ extension AppDelegate{
     private func configureBranch(launchOptions: [NSObject: AnyObject]?){
         let branch: Branch = Branch.getInstance()
         branch.accountForFacebookSDKPreventingAppLaunch()
-        branch.initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
-            if params != nil{
-                print(params)
+        branch.initSessionWithLaunchOptions(launchOptions, andRegisterDeepLinkHandler: { optParams, error in
+            if error == nil, let params = optParams {
+                // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                // params will be empty if no data found
+                // ... insert custom logic here ...
+                print("params: %@", params.description)
             }
         })
+//        branch.initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
+//            if params != nil{
+//                if let brandId = params[PRM_BRAND_ID] as? String,let _ = params["+clicked_branch_link"]{
+//                    debugPrint("clicked_branch_link")
+//                    self.delegate?.didLaunchWithBrandId?(brandId)
+//                }
+//            }
+//        })
     }
     
     /**

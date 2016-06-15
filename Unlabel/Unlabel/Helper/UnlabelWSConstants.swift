@@ -33,6 +33,9 @@ let PRM_PROVIDER                    = "provider"
 let PRM_FOLLOWING_BRANDS            = "followingBrands"
 let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 
+
+//http://localhost:8000/unlabel-network/unlabel-network-api/v1/labels/22123793-2904-4b3f-841e-0db81e717f2b/
+
 //API
 
 let SUB_URL_LABELS = "/labels"
@@ -49,7 +52,9 @@ let API_KEY =  "cf56d87b4e86a262feb6cbe852489915abd7695e"
 
 
 //API URLs
-let GET_LABELS_URL = "\(BASE_URL)\(SUB_URL_LABELS)/?\(PRM_USERNAME)=\(USERNAME)&\(PRM_API_KEY)=\(API_KEY)"
+let URL_PREFIX = "\(BASE_URL)\(SUB_URL_LABELS)/"
+let URL_POSTFIX = "?\(PRM_USERNAME)=\(USERNAME)&\(PRM_API_KEY)=\(API_KEY)"
+let GET_LABELS_URL = "\(URL_PREFIX)\(URL_POSTFIX)"
 
 let PRM_USERNAME = "username"
 let PRM_API_KEY  = "api_key"

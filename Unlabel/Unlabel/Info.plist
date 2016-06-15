@@ -166,6 +166,11 @@
 	<key>branch_app_domain</key>
 	<string>u8cw.test-app.link</string>
 	<key>branch_key</key>
-	<string>key_test_lakYO8yu4JkGNbCT9XFSMgnesDoDlslG</string>
+	<dict>
+		<key>live</key>
+		<string>key_live_jknYG5BuWHoLVcCT92AtTbnfwEmqcrhD</string>
+		<key>test</key>
+		<string>key_test_lakYO8yu4JkGNbCT9XFSMgnesDoDlslG</string>
+	</dict>
 </dict>
 </plist>

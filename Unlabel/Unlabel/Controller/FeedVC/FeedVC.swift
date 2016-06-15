@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Branch
 import Firebase
 import SDWebImage
 
@@ -31,11 +32,11 @@ class FeedVC: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
     private var arrFilteredBrandList:[Brand] = [Brand]()
-    private var didSelectIndexPath:NSIndexPath?
+    private var didSelectBrand:Brand?
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var mainVCType:MainVCType = .Feed
-    
+    var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
     
     //
     //MARK:- VC Lifecycle
@@ -66,7 +67,7 @@ extension FeedVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == S_ID_PRODUCT_VC{
             if let productVC:ProductVC = segue.destinationViewController as? ProductVC{
-                if let brand:Brand = self.arrFilteredBrandList[self.didSelectIndexPath!.row]{
+                if let brand:Brand = didSelectBrand{
                     productVC.selectedBrand = brand
                     productVC.delegate = self
                     GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
@@ -82,7 +83,9 @@ extension FeedVC{
 //
 extension FeedVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        didSelectIndexPath = indexPath
+        if let brandAtIndexPath:Brand? = self.arrFilteredBrandList[indexPath.row]{
+            didSelectBrand = brandAtIndexPath
+        }
         performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
     }
     
@@ -219,6 +222,23 @@ extension FeedVC:AppDelegateDelegates{
         }
         debugPrint("reachabilityChanged : \(reachable)")
     }
+    
+    func didLaunchWithBrandId(brandId: String) {
+        print("didLaunchWithBrandId:\(brandId)")
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            UnlabelAPIHelper.getBrands(brandId, success: { (arrBrands:[Brand]) in
+                if arrBrands.count > 0{
+                    self.didSelectBrand = arrBrands[0]
+                    self.performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
+                }
+            }) { (error) in
+                
+            }
+        }else{
+           UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+        }
+    }
 }
 
 //
@@ -228,6 +248,23 @@ extension FeedVC:ProductVCDelegate{
     func didClickFollow(forBrand brand: Brand) {
         arrFilteredBrandList[brand.currentIndex] = brand
         IBcollectionViewFeed.reloadData()
+    }
+}
+
+//
+//MARK:- BranchDeepLinkingController Methods
+//
+extension FeedVC: BranchDeepLinkingController {
+    func configureControlWithData(data: [NSObject : AnyObject]!) {
+        if let brandId = data[PRM_BRAND_ID]{
+            print(brandId)
+        }
+        
+        // show the picture
+    }
+    
+    func closePressed() {
+        self.deepLinkingCompletionDelegate!.deepLinkingControllerCompleted()
     }
 }
 
@@ -609,16 +646,16 @@ extension FeedVC{
     func wsCallGetLabels(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
-            UnlabelAPIHelper.getBrands({ (arrBrands:[Brand]) in
+            UnlabelAPIHelper.getBrands(nil, success: { (arrBrands:[Brand]) in
                 self.arrBrandList = arrBrands
                 self.arrFilteredBrandList = arrBrands
                 self.IBcollectionViewFeed.reloadData()
                 self.refreshControl.endRefreshing()
-            }) { (error) in
-                debugPrint(error)
-                self.refreshControl.endRefreshing()
-                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-            }
+                }, failed: { (error) in
+                    debugPrint(error)
+                    self.refreshControl.endRefreshing()
+                    UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+            })
         }else{
             self.refreshControl.endRefreshing()
             UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})

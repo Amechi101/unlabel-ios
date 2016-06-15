@@ -51,6 +51,8 @@ extension ProductDetailVC{
         branchUniversalObject.contentDescription = "\(product.ProductName) from \(product.ProductBrandName), See more..."
         branchUniversalObject.addMetadataKey(PRM_BRAND_ID, value: product.BrandID)
         
+        
+        
         let linkProperties: BranchLinkProperties = BranchLinkProperties()
         linkProperties.feature = "sharing"
         linkProperties.channel = "share inspiration"
@@ -60,12 +62,8 @@ extension ProductDetailVC{
         showLoading()
         branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
             self.hideLoading()
-            if error == nil {
-                if let urlObj = url{
-                    self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName) \(urlObj)", shareImage: self.IBImgProductImage.image)
-                }else{
-                    self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName)", shareImage: self.IBImgProductImage.image)
-                }
+            if error == nil ,let urlObj = url{
+                self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName) \(urlObj)", shareImage: self.IBImgProductImage.image)
             }else{
                 self.share(shareText: "\(self.product.ProductName) from \(self.product.ProductBrandName)", shareImage: self.IBImgProductImage.image)
             }

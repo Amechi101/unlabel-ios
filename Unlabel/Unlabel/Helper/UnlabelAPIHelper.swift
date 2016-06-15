@@ -13,24 +13,36 @@ import SwiftyJSON
 
 class UnlabelAPIHelper{
     
-    class func getBrands(success:([Brand])->(),failed:(error:NSError)->()){
-        let requestURL = GET_LABELS_URL.encodedURL()
-//        print(requestURL)
-        Alamofire.request(.GET, requestURL).responseJSON { response in
-            switch response.result {
-                
-            case .Success(let data):
-                let json = JSON(data)
-                debugPrint(json)
-                if let arrBrands = getBrandModels(fromJSON: json){
-                    success(arrBrands)
-                }else{
-                    failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
+    //If need single brand then pass brand ID else will return all brands
+    class func getBrands(brandId:String?,success:([Brand])->(),failed:(error:NSError)->()){
+        
+        let requestURL:String?
+        
+        if let brandIdObj = brandId {
+             requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
+        }else{
+             requestURL = GET_LABELS_URL.encodedURL()
+        }
+        
+        print(requestURL)
+        
+        if let requestURLObj = requestURL{
+            Alamofire.request(.GET, requestURLObj).responseJSON { response in
+                switch response.result {
+                    
+                case .Success(let data):
+                    let json = JSON(data)
+                    debugPrint(json)
+                    if let arrBrands = getBrandModels(fromJSON: json){
+                        success(arrBrands)
+                    }else{
+                        failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
+                    }
+                    
+                    
+                case .Failure(let error):
+                    failed(error: error)
                 }
-                
-                
-            case .Failure(let error):
-                failed(error: error)
             }
         }
     }
@@ -129,7 +141,7 @@ class UnlabelAPIHelper{
             }
             
             //Sorting arrBrands by created date
-            arrBrands.sortInPlace({ $0.CreatedDate.compare($1.CreatedDate) == NSComparisonResult.OrderedDescending })
+//            arrBrands.sortInPlace({ $0.CreatedDate.compare($1.CreatedDate) == NSComparisonResult.OrderedDescending })
             
             return arrBrands
         }else{
