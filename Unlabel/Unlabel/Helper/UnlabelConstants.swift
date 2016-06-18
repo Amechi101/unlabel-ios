@@ -57,9 +57,11 @@ let S_ID_CHANGE_NAME_VC             = "ChangeNameVC"
 let S_ID_LOGIN_SIGNUP_VC            = "LoginSignupVC"
 let S_ID_PRODUCT_LIST_VC            = "ProductListVC"
 let S_ID_NAV_CONTROLLER             = "NavController"
+let S_ID_COMMON_TABLE_VC            = "CommonTableVC"
 let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
+
 
 //
 //MARK:- Image Name Constants
@@ -79,6 +81,7 @@ let SEGUE_PRIVACY_POLICY            = "PrivacyPolicy"
 let SEGUE_LEGALSTUFF_FROM_SETTINGS      = "LegalStuffFromSettings"
 let SEGUE_PRIVACYPOLICY_FROM_SETTINGS   = "PrivacyPolicyFromSettings"
 let SEGUE_ACCOUNTINFO_FROM_SETTINGS     = "AccountInfoFromSettings"
+let SEGUE_FILTER_LABELS             = "FilterLabels"
 
 //
 //MARK:- Cell Reusable IDs
@@ -92,6 +95,7 @@ let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 let REUSABLE_ID_FeedVCFooterCell   = "FeedVCFooterCell"
 let REUSABLE_ID_FeedVCHeaderCell   = "FeedVCHeaderCell"
+let REUSABLE_ID_CommonTableVCCell   = "CommonTableVCCell"
 
 
 //

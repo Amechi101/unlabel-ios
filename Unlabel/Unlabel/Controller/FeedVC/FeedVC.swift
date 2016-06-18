@@ -16,6 +16,12 @@ enum MainVCType:Int{
     case Following
 }
 
+enum FilterType:Int{
+    case Unknow
+    case Men
+    case Women
+}
+
 class FeedVC: UIViewController {
     
     //
@@ -23,7 +29,6 @@ class FeedVC: UIViewController {
     //
     @IBOutlet weak var IBbarBtnHamburger: UIBarButtonItem!
     @IBOutlet weak var IBbtnHamburger: UIButton!
-    @IBOutlet weak var IBbarBtnFilter: UIBarButtonItem!
     @IBOutlet weak var IBbtnUnlabel: UIButton!
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
@@ -36,6 +41,9 @@ class FeedVC: UIViewController {
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var mainVCType:MainVCType = .Feed
+    private var headerView:FeedVCHeaderCell?
+    var filteredProductCategory:ProductCategory?
+    
     var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
     
     //
@@ -73,6 +81,10 @@ extension FeedVC{
                     GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
                 }
             }
+        }else if segue.identifier == SEGUE_FILTER_LABELS{
+            if let commonTableVC:CommonTableVC = segue.destinationViewController as? CommonTableVC{
+                commonTableVC.commonVCType = .FilterLabels
+            }
         }
     }
 }
@@ -98,9 +110,9 @@ extension FeedVC:UICollectionViewDelegate{
         switch kind {
             
         case UICollectionElementKindSectionHeader:
-            let headerView:FeedVCHeaderCell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as! FeedVCHeaderCell
+            headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as? FeedVCHeaderCell
             
-            return headerView
+            return headerView!
             
         case UICollectionElementKindSectionFooter:
             let footerView:FeedVCFooterCell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell, forIndexPath: indexPath) as! FeedVCFooterCell
@@ -232,22 +244,6 @@ extension FeedVC:AppDelegateDelegates{
         debugPrint("reachabilityChanged : \(reachable)")
     }
     
-    func didLaunchWithBrandId(brandId: String) {
-        print("didLaunchWithBrandId:\(brandId)")
-        //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
-            UnlabelAPIHelper.getBrands(brandId, success: { (arrBrands:[Brand]) in
-                if arrBrands.count > 0{
-                    self.didSelectBrand = arrBrands[0]
-                    self.performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
-                }
-            }) { (error) in
-                
-            }
-        }else{
-           UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-        }
-    }
 }
 
 //
@@ -304,16 +300,8 @@ extension FeedVC{
         handleHamburgerAndBack(sender)
     }
     
-    @IBAction func IBActionFilter(sender: UIBarButtonItem) {
-        openFilterScreen()
-    }
-    
     @IBAction func IBActionSwipeRight(sender: AnyObject) {
         handleHamburgerAndBack(sender)
-    }
-    
-    @IBAction func IBActionSwipeLeft(sender: AnyObject) {
-        openFilterScreen()
     }
     
     @IBAction func IBActionStarClicked(sender: UIButton) {
@@ -349,6 +337,22 @@ extension FeedVC{
         }
     }
     
+    @IBAction func IBActionFilterWomen(sender: UIButton) {
+        if let headerView = headerView{
+            headerView.updateFilterHeader(true)
+        }
+    }
+    
+    @IBAction func IBActionFilterMen(sender: UIButton) {
+        if let headerView = headerView{
+            headerView.updateFilterHeader(false)
+        }
+    }
+    
+    @IBAction func IBActionFilter(sender: UIButton) {
+        
+    }
+   
 }
 
 
@@ -362,9 +366,6 @@ extension FeedVC{
      */
     private func setupOnLoad(){
         addPullToRefresh()
-        IBbarBtnFilter.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Neutraface2Text-Demi", size: 15)!],
-                                              forState: UIControlState.Normal)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
         IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
         IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
@@ -374,16 +375,12 @@ extension FeedVC{
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
             IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
             IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)
-            self.IBbarBtnFilter.title = "FILTER     "
-            self.IBbarBtnFilter.enabled = true
             IBbtnHamburger.setImage(UIImage(named: IMG_HAMBURGER), forState: .Normal)
         }else if mainVCType == .Following{
             addNotFoundView()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
             IBbtnUnlabel.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
             IBbtnUnlabel.setTitle("FOLLOWING", forState: .Normal)
-            self.IBbarBtnFilter.title = ""
-            self.IBbarBtnFilter.enabled = false
             IBbtnHamburger.setImage(UIImage(named: IMG_BACK), forState: .Normal)
         }
         
@@ -655,7 +652,7 @@ extension FeedVC{
     func wsCallGetLabels(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
-            UnlabelAPIHelper.getBrands(nil, success: { (arrBrands:[Brand]) in
+            UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
                 self.arrBrandList = arrBrands
                 self.arrFilteredBrandList = arrBrands
                 self.IBcollectionViewFeed.reloadData()

@@ -42,6 +42,8 @@
 		1592BB431D11D21000EEC05D /* FeedVCHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1592BB421D11D21000EEC05D /* FeedVCHeaderCell.swift */; };
 		15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC8D771CA87058000B2BF3 /* FollowingVC.swift */; };
 		15AD18301C6266BA00A3F513 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AD182E1C62669200A3F513 /* UIKit.framework */; };
+		15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6C6951D1597420031D1D0 /* CommonTableVC.swift */; };
+		15B6C6991D1597E90031D1D0 /* CommonTableVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6C6981D1597E90031D1D0 /* CommonTableVCCell.swift */; };
 		15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E7991C54A2D100244AC9 /* FeedVC.swift */; };
 		15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B7E79D1C54A2D100244AC9 /* Unlabel.xcdatamodeld */; };
 		15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B7E7A11C54A2D100244AC9 /* Assets.xcassets */; };
@@ -160,6 +162,8 @@
 		1592BB421D11D21000EEC05D /* FeedVCHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVCHeaderCell.swift; sourceTree = "<group>"; };
 		15AC8D771CA87058000B2BF3 /* FollowingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		15AD182E1C62669200A3F513 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		15B6C6951D1597420031D1D0 /* CommonTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTableVC.swift; sourceTree = "<group>"; };
+		15B6C6981D1597E90031D1D0 /* CommonTableVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTableVCCell.swift; sourceTree = "<group>"; };
 		15B7E7991C54A2D100244AC9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		15B7E79E1C54A2D100244AC9 /* Unlabel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unlabel.xcdatamodel; sourceTree = "<group>"; };
 		15B7E7A11C54A2D100244AC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -372,9 +376,26 @@
 			path = FollowingVC;
 			sourceTree = "<group>";
 		};
+		15B6C6941D15972F0031D1D0 /* CommonTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				15B6C6951D1597420031D1D0 /* CommonTableVC.swift */,
+			);
+			path = CommonTableVC;
+			sourceTree = "<group>";
+		};
+		15B6C6971D1597D10031D1D0 /* CommonTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				15B6C6981D1597E90031D1D0 /* CommonTableVCCell.swift */,
+			);
+			path = CommonTableVC;
+			sourceTree = "<group>";
+		};
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15B6C6941D15972F0031D1D0 /* CommonTableVC */,
 				15C4275A1CD9130000106722 /* AboutLabelVC */,
 				154F19381CD60D66006DFC42 /* ChangeNameVC */,
 				156BB18B1CC180F600E672AF /* LoginSignupVC */,
@@ -457,6 +478,7 @@
 		15B7E7A21C54A2D100244AC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				15B6C6971D1597D10031D1D0 /* CommonTableVC */,
 				15E232081CB2F180001220EA /* ViewFollowingLabelPopup */,
 				154241D01CAAFB8400EC59A7 /* NotFoundView */,
 				15F0E2691C723A8A00A7E389 /* ProductVC */,
@@ -909,6 +931,7 @@
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
+				15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
@@ -916,6 +939,7 @@
 				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
 				15FF26BE1CA97C1A004A59EC /* AboutUsVC.swift in Sources */,
 				15F5A31C1C8A240200FDE610 /* EntryVC.swift in Sources */,
+				15B6C6991D1597E90031D1D0 /* CommonTableVCCell.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,

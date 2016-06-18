@@ -12,16 +12,15 @@ import SwiftyJSON
 
 
 class UnlabelAPIHelper{
+    static let sharedInstance = UnlabelAPIHelper()
     
     //If need single brand then pass brand ID else will return all brands
-    class func getBrands(brandId:String?,success:([Brand])->(),failed:(error:NSError)->()){
-        
+    func getBrands(brandId:String?,success:([Brand])->(),failed:(error:NSError)->()){
         let requestURL:String?
-        
         if let brandIdObj = brandId {
-             requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
+            requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
         }else{
-             requestURL = GET_LABELS_URL.encodedURL()
+            requestURL = GET_LABELS_URL.encodedURL()
         }
         
         print(requestURL)
@@ -33,7 +32,7 @@ class UnlabelAPIHelper{
                 case .Success(let data):
                     let json = JSON(data)
                     debugPrint(json)
-                    if let arrBrands = getBrandModels(fromJSON: json){
+                    if let arrBrands = self.getBrandModels(fromJSON: json){
                         success(arrBrands)
                     }else{
                         failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
@@ -47,7 +46,7 @@ class UnlabelAPIHelper{
         }
     }
     
-    class func getBrandModels(fromJSON json:JSON)->[Brand]?{
+    func getBrandModels(fromJSON json:JSON)->[Brand]?{
         var arrBrands = [Brand]()
         
         if let brandList = json.dictionaryObject![PRM_LABELS]{
@@ -149,7 +148,7 @@ class UnlabelAPIHelper{
         }
     }
     
-    class func getProductsArrayFromJSON(arrProductsJSON:[[String:AnyObject]])->[Product]{
+    func getProductsArrayFromJSON(arrProductsJSON:[[String:AnyObject]])->[Product]{
         var arrProducts = [Product]()
         
         for product in arrProductsJSON{
