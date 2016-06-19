@@ -590,6 +590,7 @@
                     <connections>
                         <outlet property="IBbarBtnHamburger" destination="a2n-AP-hua" id="H1q-4a-gc8"/>
                         <outlet property="IBbtnHamburger" destination="E1C-bh-bi3" id="hYm-mF-ijP"/>
+                        <outlet property="IBbtnLeftBarButton" destination="E1C-bh-bi3" id="47R-35-vV8"/>
                         <outlet property="IBbtnUnlabel" destination="sdq-zW-PIY" id="6or-SW-hle"/>
                         <outlet property="IBcollectionViewFeed" destination="lg3-C2-4qs" id="TBf-Ed-Zpo"/>
                         <segue destination="IL4-KD-zA1" kind="show" identifier="ProductVC" id="jWi-8m-sPs"/>
@@ -691,6 +692,9 @@
                         </button>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="IBbtnTitle" destination="X1a-T4-qBF" id="aep-la-abf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VuR-nQ-mM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

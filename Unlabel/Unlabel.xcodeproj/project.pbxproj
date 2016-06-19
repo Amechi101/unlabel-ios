@@ -70,6 +70,9 @@
 		15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C9252A1C73B94500595A7B /* ProductFooterView.xib */; };
 		15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9938B1C56A76D000C28E0 /* NavController.swift */; };
 		15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CBF35C1C84DD23005F59E4 /* Filter.swift */; };
+		15CCC6EF1D1696DA00FD602F /* UnlabelLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CCC6EE1D1696DA00FD602F /* UnlabelLoadingView.swift */; };
+		15CCC6F71D16A53C00FD602F /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CCC6F41D16A53C00FD602F /* FBShimmeringLayer.m */; };
+		15CCC6F81D16A53C00FD602F /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CCC6F61D16A53C00FD602F /* FBShimmeringView.m */; };
 		15E2320A1CB2F192001220EA /* ViewFollowingLabelPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */; };
 		15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */; };
 		15E30D9A1C6D2D14008B77E1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E30D991C6D2D14008B77E1 /* Product.swift */; };
@@ -192,6 +195,13 @@
 		15C9938B1C56A76D000C28E0 /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		15C993AD1C56BA65000C28E0 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		15CBF35C1C84DD23005F59E4 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		15CCC6EE1D1696DA00FD602F /* UnlabelLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelLoadingView.swift; sourceTree = "<group>"; };
+		15CCC6F11D16A53C00FD602F /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		15CCC6F21D16A53C00FD602F /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		15CCC6F31D16A53C00FD602F /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		15CCC6F41D16A53C00FD602F /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		15CCC6F51D16A53C00FD602F /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		15CCC6F61D16A53C00FD602F /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		15E232091CB2F192001220EA /* ViewFollowingLabelPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFollowingLabelPopup.swift; sourceTree = "<group>"; };
 		15E2320B1CB2F19A001220EA /* ViewFollowingLabelPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewFollowingLabelPopup.xib; sourceTree = "<group>"; };
 		15E30D991C6D2D14008B77E1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -395,6 +405,7 @@
 		15B7E7971C54A2D100244AC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15CCC6ED1D1696C000FD602F /* UnlabelLoadingView */,
 				15B6C6941D15972F0031D1D0 /* CommonTableVC */,
 				15C4275A1CD9130000106722 /* AboutLabelVC */,
 				154F19381CD60D66006DFC42 /* ChangeNameVC */,
@@ -533,6 +544,27 @@
 			path = NavController;
 			sourceTree = "<group>";
 		};
+		15CCC6ED1D1696C000FD602F /* UnlabelLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				15CCC6EE1D1696DA00FD602F /* UnlabelLoadingView.swift */,
+			);
+			path = UnlabelLoadingView;
+			sourceTree = "<group>";
+		};
+		15CCC6F01D16A53C00FD602F /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				15CCC6F11D16A53C00FD602F /* FBShimmering-Prefix.pch */,
+				15CCC6F21D16A53C00FD602F /* FBShimmering.h */,
+				15CCC6F31D16A53C00FD602F /* FBShimmeringLayer.h */,
+				15CCC6F41D16A53C00FD602F /* FBShimmeringLayer.m */,
+				15CCC6F51D16A53C00FD602F /* FBShimmeringView.h */,
+				15CCC6F61D16A53C00FD602F /* FBShimmeringView.m */,
+			);
+			path = FBShimmering;
+			sourceTree = "<group>";
+		};
 		15E232081CB2F180001220EA /* ViewFollowingLabelPopup */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +630,7 @@
 		15FB1D911CC25E4D007E408F /* ExternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15CCC6F01D16A53C00FD602F /* FBShimmering */,
 				15FB1D921CC25E4D007E408F /* AccountKit.framework */,
 				15FB1D931CC25E4D007E408F /* AccountKitStrings.bundle */,
 			);
@@ -931,6 +964,7 @@
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
+				15CCC6F71D16A53C00FD602F /* FBShimmeringLayer.m in Sources */,
 				15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
@@ -942,6 +976,7 @@
 				15B6C6991D1597E90031D1D0 /* CommonTableVCCell.swift in Sources */,
 				159245271C553B6800755814 /* FeedVCCell.swift in Sources */,
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
+				15CCC6EF1D1696DA00FD602F /* UnlabelLoadingView.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
@@ -958,6 +993,7 @@
 				156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
+				15CCC6F81D16A53C00FD602F /* FBShimmeringView.m in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,

@@ -11,8 +11,8 @@ import UIKit
 enum CommonVCType{
     case Unknown
     case FilterLabels
-    case FilterCategory
-    case FilterLocation
+    case FilterByCategory
+    case FilterByLocation
 }
 
 enum ProductCategory:Int{
@@ -28,9 +28,14 @@ class CommonTableVC: UITableViewController {
     //
     //MARK:- IBOutlets, constants, vars
     //
+    
+    @IBOutlet weak var IBbtnTitle: UIButton!
+    
     var commonVCType:CommonVCType = .Unknown
     
     var arrTitles:[String] = [ ]
+    var arrBrands:[Brand] = [ ]
+    var isFollowdByLocation:(value:Bool,location:String?)?
     
     
     //
@@ -106,21 +111,28 @@ extension CommonTableVC{
             let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
             
             if indexPath.row == 0{
-                commonTableVC?.commonVCType = .FilterLocation
+                commonTableVC?.commonVCType = .FilterByLocation
             }else if indexPath.row == 1{
-                commonTableVC?.commonVCType = .FilterCategory
+                commonTableVC?.commonVCType = .FilterByCategory
             }else{
                 debugPrint("handleCellClick Unknown")
             }
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
-        }else if commonVCType == . FilterCategory{
+        }else if commonVCType == . FilterByCategory{
+            
             let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
             feedVC?.filteredProductCategory = ProductCategory.init(rawValue: indexPath.row)
+            feedVC?.mainVCType = .Filter
             navigationController?.pushViewController(feedVC!, animated: true)
-        }else if commonVCType == . FilterLocation{
+            
+        }else if commonVCType == . FilterByLocation{
+        
             let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
-            commonTableVC?.commonVCType = .FilterCategory
+            commonTableVC?.commonVCType = .FilterByCategory
+            commonTableVC?.isFollowdByLocation = (true,arrTitles[indexPath.row])
+            navigationController?.pushViewController(commonTableVC!, animated: true)
+            
         }else{
             debugPrint("getTitles commonVCType Unknown")
         }
@@ -145,19 +157,36 @@ extension CommonTableVC{
     func setupOnLoad(){
         func getTitles(commonVCType:CommonVCType)->[String]{
             if commonVCType == . FilterLabels{
+                
+                IBbtnTitle.setTitle("FILTER LABELS", forState: .Normal)
                 return ["By Location","By Category"]
-            }else if commonVCType == . FilterCategory{
+                
+            }else if commonVCType == . FilterByCategory{
+                
+                var headerTitle = "CATEGORY"
+                if let isFollowdByLocationObj = isFollowdByLocation{
+                    if isFollowdByLocationObj.value{
+                        headerTitle = (isFollowdByLocationObj.location?.uppercaseString)!
+                    }
+                }
+                IBbtnTitle.setTitle(headerTitle, forState: .Normal)
                 return ["Clothing","Accessories","Jewelry","Shoes","Bags"]
-            }else if commonVCType == . FilterLocation{
-                return []
+                
             }else{
+                
                 debugPrint("getTitles commonVCType Unknown")
                 return []
+                
             }
+        }
+        arrTitles = getTitles(commonVCType)
+        
+        if commonVCType == .FilterByLocation {
+            IBbtnTitle.setTitle("LOCATION", forState: .Normal)
+            wsCallGetLabels()
         }
         
         tableView.tableFooterView = UIView()
-        arrTitles = getTitles(commonVCType)
     }
 }
 
@@ -175,6 +204,36 @@ extension CommonTableVC:UIGestureRecognizerDelegate{
             }
         }else{
             return false
+        }
+    }
+}
+
+
+//
+//MARK:- wsCallGetLabels Methods
+//
+extension CommonTableVC{
+    /**
+     WS call get all brands
+     */
+    func wsCallGetLabels(){
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            UnlabelLoadingView.sharedInstance.start(view)
+            UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
+                UnlabelLoadingView.sharedInstance.stop(self.view)
+                self.arrBrands = arrBrands
+                for brand in arrBrands{
+                    self.arrTitles.append(brand.OriginCity)
+                    self.tableView.reloadData()
+                }
+            }, failed: { (error) in
+                UnlabelLoadingView.sharedInstance.stop(self.view)
+                debugPrint(error)
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+            })
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
 }

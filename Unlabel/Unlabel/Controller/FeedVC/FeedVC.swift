@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FeedVC.swift
 //  Unlabel
 //
 //  Created by Amechi Egbe on 12/11/15.
@@ -14,6 +14,7 @@ import SDWebImage
 enum MainVCType:Int{
     case Feed
     case Following
+    case Filter
 }
 
 enum FilterType:Int{
@@ -32,6 +33,8 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBbtnUnlabel: UIButton!
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
+    @IBOutlet weak var IBbtnLeftBarButton: UIButton!
+    
     private let FEED_CELL_HEIGHT:CGFloat = 211
     private let fFooterHeight:CGFloat = 28.0
     private let refreshControl = UIRefreshControl()
@@ -40,9 +43,11 @@ class FeedVC: UIViewController {
     private var didSelectBrand:Brand?
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
-    private var mainVCType:MainVCType = .Feed
     private var headerView:FeedVCHeaderCell?
+    
+    var mainVCType:MainVCType = .Feed
     var filteredProductCategory:ProductCategory?
+    var filteredLocation:String?
     
     var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
     
@@ -237,6 +242,8 @@ extension FeedVC:AppDelegateDelegates{
                 }
             }else if mainVCType == .Following{
                 
+            }else if mainVCType == .Filter{
+                
             }else{
                 debugPrint("unknown vctype")
             }
@@ -366,24 +373,8 @@ extension FeedVC{
      */
     private func setupOnLoad(){
         addPullToRefresh()
-        IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
-        IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
-        IBbtnHamburger.tag = mainVCType.rawValue //Important to handle Hamburger and Back clicks
-        
-        if mainVCType == .Feed{
-            wsCallGetLabels()
-            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
-            IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
-            IBbtnUnlabel.setTitle("UNLABEL", forState: .Normal)
-            IBbtnHamburger.setImage(UIImage(named: IMG_HAMBURGER), forState: .Normal)
-        }else if mainVCType == .Following{
-            addNotFoundView()
-            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
-            IBbtnUnlabel.titleLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
-            IBbtnUnlabel.setTitle("FOLLOWING", forState: .Normal)
-            IBbtnHamburger.setImage(UIImage(named: IMG_BACK), forState: .Normal)
-        }
-        
+        registerCells()
+        setupNavBar()
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -393,6 +384,33 @@ extension FeedVC{
     private func addPullToRefresh(){
         refreshControl.addTarget(self, action: #selector(FeedVC.wsCallGetLabels), forControlEvents: .ValueChanged)
         IBcollectionViewFeed.addSubview(refreshControl)
+    }
+    
+    private func registerCells(){
+        IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
+        IBcollectionViewFeed.registerNib(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
+    }
+    
+    private func setupNavBar(){
+        var titleText = "UNLABEL"
+        var leftBarButtonImage = IMG_HAMBURGER
+        
+        if mainVCType == .Feed{
+            wsCallGetLabels()
+        }else if mainVCType == .Filter{
+//            titleText = filteredLocation!
+        }
+        
+        if self.navigationController?.viewControllers.count > 1{
+            leftBarButtonImage = IMG_BACK
+        }
+        
+        
+        IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
+        IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
+        IBbtnUnlabel.setTitle(titleText, forState: .Normal)
+        IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), forState: .Normal)
+        
     }
     
     /**
@@ -603,6 +621,10 @@ extension FeedVC{
             openLeftMenu()
         }else if mainVCType.rawValue == MainVCType.Following.rawValue{
             popVC()
+        }else if mainVCType.rawValue == MainVCType.Filter.rawValue{
+            popVC()
+        }else{
+            debugPrint("handleHamburgerAndBack uknown")
         }
     }
     
@@ -652,12 +674,15 @@ extension FeedVC{
     func wsCallGetLabels(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
+            UnlabelLoadingView.sharedInstance.start(view)
             UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
+                UnlabelLoadingView.sharedInstance.stop(self.view)
                 self.arrBrandList = arrBrands
                 self.arrFilteredBrandList = arrBrands
                 self.IBcollectionViewFeed.reloadData()
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
+                    UnlabelLoadingView.sharedInstance.stop(self.view)
                     debugPrint(error)
                     self.refreshControl.endRefreshing()
                     UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
