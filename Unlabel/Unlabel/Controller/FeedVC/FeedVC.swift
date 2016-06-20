@@ -39,15 +39,15 @@ class FeedVC: UIViewController {
     private let fFooterHeight:CGFloat = 28.0
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
-    private var arrFilteredBrandList:[Brand] = [Brand]()
+    var arrFilteredBrandList:[Brand] = [Brand]()
     private var didSelectBrand:Brand?
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var headerView:FeedVCHeaderCell?
     
     var mainVCType:MainVCType = .Feed
-    var filteredProductCategory:ProductCategory?
-    var filteredLocation:String?
+    var filteredNavTitle:String?
+    var filteredString:String?
     
     var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
     
@@ -89,6 +89,8 @@ extension FeedVC{
         }else if segue.identifier == SEGUE_FILTER_LABELS{
             if let commonTableVC:CommonTableVC = segue.destinationViewController as? CommonTableVC{
                 commonTableVC.commonVCType = .FilterLabels
+                commonTableVC.filterType = (headerView?.selectedTab)!
+                commonTableVC.arrBrandList = self.arrBrandList
             }
         }
     }
@@ -135,8 +137,8 @@ extension FeedVC:UICollectionViewDelegate{
                 
                 var titleText:String = ""
                 
-                if let filteredProductCategoryObj = filteredProductCategory{
-                    titleText = "Current: \((headerView?.selectedTab)!), \(filteredProductCategoryObj)"
+                if let filteredStringObj = filteredString{
+                    titleText = filteredStringObj
                 }
                 headerView?.IBbtnFilter.setTitle(titleText, forState: .Normal)
             }else{
@@ -440,8 +442,8 @@ extension FeedVC{
             wsCallGetLabels()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
         }else if mainVCType == .Filter{
-            if let filteredProductCategoryObj = filteredProductCategory{
-                titleText = "\(filteredProductCategoryObj)"
+            if let filteredNavTitleObj = filteredNavTitle{
+                titleText = "\(filteredNavTitleObj)"
             }
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 18)
             IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)

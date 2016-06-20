@@ -69,11 +69,11 @@ class SettingsVC: UITableViewController {
 extension SettingsVC{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 1{
+        if indexPath.row == 0{
             openSafariForURL(URL_PRIVACY_POLICY)
-        }else if indexPath.row == 2{
+        }else if indexPath.row == 1{
             openSafariForURL(URL_TERMS)
-        }else if indexPath.row == 4{
+        }else if indexPath.row == 3{
             UnlabelHelper.logout()
         }
     }
@@ -86,7 +86,7 @@ extension SettingsVC{
             IBbtnLogout.hidden = true
             IBcellLogout.userInteractionEnabled = false
         }
-        return 5;
+        return 4;
     }
 }
 
