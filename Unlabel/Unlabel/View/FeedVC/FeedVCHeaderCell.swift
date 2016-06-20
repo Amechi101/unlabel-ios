@@ -13,7 +13,11 @@ class FeedVCHeaderCell: UICollectionReusableView {
     @IBOutlet weak var IBviewWomenUnderline: UIView!
     @IBOutlet weak var IBviewMenUnderline: UIView!
     
-    var selectedTab:FilterType = .Unknow
+    @IBOutlet weak var IBbtnFilter: UIButton!
+    @IBOutlet weak var IBimgArrow: UIImageView!
+    @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
+    
+    var selectedTab:FilterType = .Unknown
     
     override func awakeFromNib() {
         if selectedTab == .Men {

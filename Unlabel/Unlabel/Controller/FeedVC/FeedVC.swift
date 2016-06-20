@@ -18,7 +18,7 @@ enum MainVCType:Int{
 }
 
 enum FilterType:Int{
-    case Unknow
+    case Unknown
     case Men
     case Women
 }
@@ -92,6 +92,18 @@ extension FeedVC{
             }
         }
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == SEGUE_FILTER_LABELS{
+            if arrBrandList.count > 0{
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return true
+        }
+    }
 }
 
 
@@ -106,16 +118,31 @@ extension FeedVC:UICollectionViewDelegate{
         performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSizeMake(collectionView.frame.width, fFooterHeight)
-    }
-    
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         switch kind {
             
         case UICollectionElementKindSectionHeader:
             headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as? FeedVCHeaderCell
+            
+            if mainVCType == .Feed{
+                headerView?.IBconstraintGenderContainerHeight.constant = 56
+                headerView?.IBimgArrow.hidden = false
+                headerView?.IBbtnFilter.setTitle("Filter Labels", forState: .Normal)
+            }else if mainVCType == .Filter{
+                headerView?.IBconstraintGenderContainerHeight.constant = 0
+                headerView?.IBimgArrow.hidden = true
+                
+                var titleText:String = ""
+                
+                if let filteredProductCategoryObj = filteredProductCategory{
+                    titleText = "Current: \((headerView?.selectedTab)!), \(filteredProductCategoryObj)"
+                }
+                headerView?.IBbtnFilter.setTitle(titleText, forState: .Normal)
+            }else{
+                
+            }
+            
             
             return headerView!
             
@@ -171,13 +198,27 @@ extension FeedVC:UICollectionViewDataSource{
 //MARK:- UICollectionViewDelegateFlowLayout Methods
 //
 extension FeedVC:UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if mainVCType == .Feed{
+            return CGSizeMake(SCREEN_WIDTH, 140)
+        }else if mainVCType == .Filter{
+            return CGSizeMake(SCREEN_WIDTH, 84)
+        }else{
+            return CGSizeZero
+        }
+    
+    }
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.frame.size.width, FEED_CELL_HEIGHT)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(SCREEN_WIDTH, 140)
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSizeMake(collectionView.frame.width, fFooterHeight)
     }
+    
 }
 
 
@@ -397,8 +438,13 @@ extension FeedVC{
         
         if mainVCType == .Feed{
             wsCallGetLabels()
+            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
         }else if mainVCType == .Filter{
-//            titleText = filteredLocation!
+            if let filteredProductCategoryObj = filteredProductCategory{
+                titleText = "\(filteredProductCategoryObj)"
+            }
+            IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 18)
+            IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
         }
         
         if self.navigationController?.viewControllers.count > 1{
@@ -406,7 +452,7 @@ extension FeedVC{
         }
         
         
-        IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
+        
         IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
         IBbtnUnlabel.setTitle(titleText, forState: .Normal)
         IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), forState: .Normal)
