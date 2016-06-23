@@ -20,6 +20,8 @@ enum ChildVCName {
 //
 //MARK:- UIColor Constants
 //
+let EXTRA_LIGHT_GRAY_TEXT_COLOR = UIColor(red: 226/255, green: 228/255, blue: 231/255, alpha: 1)
+
 let LIGHT_GRAY_TEXT_COLOR = UIColor(red: 177/255, green: 179/255, blue: 184/255, alpha: 1)
 
 //#charcoalGrey

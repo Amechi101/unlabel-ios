@@ -174,8 +174,8 @@ extension CommonTableVC{
     func setupOnLoad(){
         func getTitles(commonVCType:CommonVCType)->[String]{
             if commonVCType == . FilterLabels{
-                
-                IBbtnTitle.setTitle("FILTER LABELS", forState: .Normal)
+                let filterTitle = "FILTER \(filterType)"
+                IBbtnTitle.setTitle(filterTitle.uppercaseString, forState: .Normal)
                 return ["By Location","By Category"]
                 
             }else if commonVCType == . FilterByCategory{

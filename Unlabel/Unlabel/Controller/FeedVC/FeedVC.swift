@@ -34,9 +34,11 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
     @IBOutlet weak var IBbtnLeftBarButton: UIButton!
+    @IBOutlet weak var IBbtnFilter: UIButton!
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
     private let fFooterHeight:CGFloat = 28.0
+    private let fHeaderHeight:CGFloat = 54.0
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
     var arrFilteredBrandList:[Brand] = [Brand]()
@@ -128,19 +130,18 @@ extension FeedVC:UICollectionViewDelegate{
             headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as? FeedVCHeaderCell
             
             if mainVCType == .Feed{
-                headerView?.IBconstraintGenderContainerHeight.constant = 56
-                headerView?.IBimgArrow.hidden = false
-                headerView?.IBbtnFilter.setTitle("Filter Labels", forState: .Normal)
+                headerView?.IBconstraintGenderContainerHeight.constant = fHeaderHeight
+                IBbtnFilter.hidden = false
             }else if mainVCType == .Filter{
                 headerView?.IBconstraintGenderContainerHeight.constant = 0
-                headerView?.IBimgArrow.hidden = true
+                IBbtnFilter.hidden = true
                 
                 var titleText:String = ""
                 
                 if let filteredStringObj = filteredString{
                     titleText = filteredStringObj
                 }
-                headerView?.IBbtnFilter.setTitle(titleText, forState: .Normal)
+                headerView?.IBlblFilterTitle.text = titleText.uppercaseString
             }else{
                 
             }
@@ -202,15 +203,7 @@ extension FeedVC:UICollectionViewDataSource{
 extension FeedVC:UICollectionViewDelegateFlowLayout{
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        if mainVCType == .Feed{
-            return CGSizeMake(SCREEN_WIDTH, 140)
-        }else if mainVCType == .Filter{
-            return CGSizeMake(SCREEN_WIDTH, 84)
-        }else{
-            return CGSizeZero
-        }
-    
+            return CGSizeMake(SCREEN_WIDTH, fHeaderHeight)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -418,6 +411,7 @@ extension FeedVC{
         addPullToRefresh()
         registerCells()
         setupNavBar()
+        (IBcollectionViewFeed.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
         self.automaticallyAdjustsScrollViewInsets = false
     }
     

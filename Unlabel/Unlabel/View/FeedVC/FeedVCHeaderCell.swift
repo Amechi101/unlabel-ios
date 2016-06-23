@@ -9,12 +9,10 @@
 import UIKit
 
 class FeedVCHeaderCell: UICollectionReusableView {
-        
-    @IBOutlet weak var IBviewWomenUnderline: UIView!
-    @IBOutlet weak var IBviewMenUnderline: UIView!
     
-    @IBOutlet weak var IBbtnFilter: UIButton!
-    @IBOutlet weak var IBimgArrow: UIImageView!
+    @IBOutlet weak var IBlblFilterTitle: UILabel!
+    @IBOutlet weak var IBbtnWomen: UIButton!
+    @IBOutlet weak var IBbtnMen: UIButton!
     @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
     
     var selectedTab:FilterType = .Unknown
@@ -30,27 +28,33 @@ class FeedVCHeaderCell: UICollectionReusableView {
         }
     }
     
+    func getAlternateColor(currentColor:UIColor)->UIColor{
+        if currentColor == EXTRA_LIGHT_GRAY_TEXT_COLOR{
+            return MEDIUM_GRAY_TEXT_COLOR
+        }else{
+            return EXTRA_LIGHT_GRAY_TEXT_COLOR
+        }
+    }
+    
     func updateFilterHeader(shouldHideMen:Bool){
         if shouldHideMen && selectedTab == .Women || !shouldHideMen && selectedTab == .Men{
             debugPrint("Tab already selected")
         }else{
-            var animation:UIViewAnimationOptions = UIViewAnimationOptions.TransitionFlipFromRight
+            
             if shouldHideMen {
                 selectedTab = .Women
-                animation = .TransitionFlipFromLeft
             }else{
                 selectedTab = .Men
-                animation = .TransitionFlipFromRight
             }
             
             if let superViewObj = superview {
-                UIView.transitionWithView(superViewObj, duration: 0.5, options: animation, animations: {() -> Void in
-                    self.IBviewMenUnderline.hidden = shouldHideMen
-                    self.IBviewWomenUnderline.hidden = !shouldHideMen
+                UIView.transitionWithView(superViewObj, duration: 0.5, options: .TransitionCrossDissolve, animations: {() -> Void in
+                    self.IBbtnMen.setTitleColor(self.getAlternateColor((self.IBbtnMen.titleLabel?.textColor)!), forState: .Normal)
+                    self.IBbtnWomen.setTitleColor(self.getAlternateColor((self.IBbtnMen.titleLabel?.textColor)!), forState: .Normal)
                     }, completion: { _ in })
             }else{
-                self.IBviewMenUnderline.hidden = shouldHideMen
-                self.IBviewWomenUnderline.hidden = !shouldHideMen
+                self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+                self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
             }
         }
     }
