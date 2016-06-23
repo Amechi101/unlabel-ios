@@ -141,7 +141,7 @@ extension FeedVC:UICollectionViewDelegate{
                 if let filteredStringObj = filteredString{
                     titleText = filteredStringObj
                 }
-                headerView?.IBlblFilterTitle.text = titleText.uppercaseString
+                headerView?.IBlblFilterTitle.text = titleText
             }else{
                 
             }
@@ -450,7 +450,7 @@ extension FeedVC{
         
         
         IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
-        IBbtnUnlabel.setTitle(titleText, forState: .Normal)
+        IBbtnUnlabel.setTitle(titleText.uppercaseString, forState: .Normal)
         IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), forState: .Normal)
         
     }
