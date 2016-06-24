@@ -205,11 +205,11 @@ extension CommonTableVC{
             if commonVCType == .FilterLabels{
                 let filterTitle = "FILTER \(filterType)"
                 IBbtnTitle.setTitle(filterTitle.uppercaseString, forState: .Normal)
-                return ["By Location","By Category"]
+                return ["By Location","By Label Category"]
                 
             }else if commonVCType == .FilterByCategory{
                 
-                var headerTitle = "CATEGORY"
+                var headerTitle = "LABEL CATEGORY"
                 if let isFollowdByLocationObj = isFollowdByLocation{
                     if isFollowdByLocationObj.value{
                         headerTitle = (isFollowdByLocationObj.location?.uppercaseString)!
