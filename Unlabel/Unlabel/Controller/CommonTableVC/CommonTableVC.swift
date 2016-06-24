@@ -204,7 +204,7 @@ extension CommonTableVC{
                 var arrTitles:[String] = []
                 
                 for brand in arrBrandList{
-                    arrTitles.append(brand.OriginCity)
+                    arrTitles.append(brand.StateOrCountry)
                 }
                 
                 return arrTitles
