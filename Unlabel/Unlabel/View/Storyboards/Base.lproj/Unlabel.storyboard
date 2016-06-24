@@ -391,12 +391,6 @@
                                                                 <action selector="IBActionFilterMen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vzE-bA-ySG"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP8-ad-XXx">
-                                                            <rect key="frame" x="-186" y="0.0" width="331" height="54"/>
-                                                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="17"/>
-                                                            <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -454,12 +448,22 @@
                                                 <constraint firstItem="VPr-8O-v32" firstAttribute="leading" secondItem="rSK-ku-GxY" secondAttribute="trailing" constant="10" id="vxh-JQ-FV1"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP8-ad-XXx">
+                                            <rect key="frame" x="8" y="8" width="359" height="38"/>
+                                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="17"/>
+                                            <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="PP8-ad-XXx" firstAttribute="top" secondItem="4Vm-kn-9gv" secondAttribute="topMargin" id="8mk-jc-D3V"/>
+                                        <constraint firstItem="PP8-ad-XXx" firstAttribute="leading" secondItem="4Vm-kn-9gv" secondAttribute="leadingMargin" id="POq-Yx-COD"/>
                                         <constraint firstItem="vOo-yO-1Kc" firstAttribute="leading" secondItem="4Vm-kn-9gv" secondAttribute="leading" constant="22" id="Up4-Gk-Ubt"/>
                                         <constraint firstAttribute="trailing" secondItem="vOo-yO-1Kc" secondAttribute="trailing" constant="22" id="ZJa-XP-6tO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="PP8-ad-XXx" secondAttribute="bottom" id="dpY-ju-U0Y"/>
                                         <constraint firstItem="vOo-yO-1Kc" firstAttribute="top" secondItem="4Vm-kn-9gv" secondAttribute="top" id="kbh-Zr-xKb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PP8-ad-XXx" secondAttribute="trailing" id="paS-CI-KHb"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="IBbtnMen" destination="geX-p5-eTH" id="P8V-4C-IiN"/>

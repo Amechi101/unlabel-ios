@@ -164,8 +164,8 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>branch_app_domain</key>
-	<string>u8cw.test-app.link</string>
+	<string>u8cw.app.link</string>
 	<key>branch_key</key>
-	<string>key_test_lakYO8yu4JkGNbCT9XFSMgnesDoDlslG</string>
+	<string>key_live_jknYG5BuWHoLVcCT92AtTbnfwEmqcrhD</string>
 </dict>
 </plist>

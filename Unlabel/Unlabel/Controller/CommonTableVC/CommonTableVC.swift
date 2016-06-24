@@ -35,7 +35,7 @@ class CommonTableVC: UITableViewController {
     var commonVCType:CommonVCType = .Unknown
     
     var arrTitles:[String] = [ ]
-    var arrBrandList:[Brand] = [ ]
+    var arrFilteredBrandList:[Brand] = [ ]
     var filterType:FilterType = .Unknown
     var isFollowdByLocation:(value:Bool,location:String?)?
     
@@ -111,7 +111,7 @@ extension CommonTableVC{
     func handleCellClick(forIndexPath indexPath:NSIndexPath){
         if commonVCType == . FilterLabels{
             let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
-            commonTableVC?.arrBrandList = self.arrBrandList
+            commonTableVC?.arrFilteredBrandList = self.arrFilteredBrandList
             commonTableVC?.isFollowdByLocation = self.isFollowdByLocation
             commonTableVC?.filterType = self.filterType
             
@@ -124,10 +124,25 @@ extension CommonTableVC{
             }
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
+        }else if commonVCType == . FilterByLocationThenCategory{
+        
+            let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
+            commonTableVC?.commonVCType = .FilterByCategory
+            commonTableVC?.isFollowdByLocation = (true,arrTitles[indexPath.row])
+            
+            for brand in arrFilteredBrandList{
+                if arrTitles[indexPath.row] == brand.StateOrCountry{
+                    commonTableVC?.arrFilteredBrandList.append(brand)
+                }
+            }
+
+            commonTableVC?.filterType = self.filterType
+            
+            navigationController?.pushViewController(commonTableVC!, animated: true)
+            
         }else if commonVCType == . FilterByCategory{
             
             let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
-            feedVC?.arrFilteredBrandList = arrBrandList
             
             var sCategoryTitle = String()
             if indexPath.row == 0{
@@ -147,17 +162,22 @@ extension CommonTableVC{
             }
             
             feedVC?.mainVCType = .Filter
+            
+            if indexPath.row == 0{  //All categories
+                feedVC?.arrFilteredBrandList = self.arrFilteredBrandList
+            }else{
+                for brand in arrFilteredBrandList{
+                    if (brand.Clothing && (arrTitles[indexPath.row] == "Clothing")) ||
+                    (brand.Accessories && (arrTitles[indexPath.row] == "Accessories")) ||
+                    (brand.Jewelry && (arrTitles[indexPath.row] == "Jewelry")) ||
+                    (brand.Shoes && (arrTitles[indexPath.row] == "Shoes")) ||
+                    (brand.Bags && (arrTitles[indexPath.row] == "Bags")){
+                        feedVC?.arrFilteredBrandList.append(brand)
+                    }
+                }
+            }
+            
             navigationController?.pushViewController(feedVC!, animated: true)
-            
-        }else if commonVCType == . FilterByLocationThenCategory{
-        
-            let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
-            commonTableVC?.commonVCType = .FilterByCategory
-            commonTableVC?.isFollowdByLocation = (true,arrTitles[indexPath.row])
-            commonTableVC?.arrBrandList = self.arrBrandList
-            commonTableVC?.filterType = self.filterType
-            
-            navigationController?.pushViewController(commonTableVC!, animated: true)
             
         }else{
             debugPrint("getTitles commonVCType Unknown")
@@ -203,7 +223,7 @@ extension CommonTableVC{
                 IBbtnTitle.setTitle("LOCATION", forState: .Normal)
                 var arrTitles:[String] = []
                 
-                for brand in arrBrandList{
+                for brand in arrFilteredBrandList{
                     arrTitles.append(brand.StateOrCountry)
                 }
                 

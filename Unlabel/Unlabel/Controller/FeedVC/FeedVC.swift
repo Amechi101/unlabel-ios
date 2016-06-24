@@ -92,7 +92,7 @@ extension FeedVC{
             if let commonTableVC:CommonTableVC = segue.destinationViewController as? CommonTableVC{
                 commonTableVC.commonVCType = .FilterLabels
                 commonTableVC.filterType = (headerView?.selectedTab)!
-                commonTableVC.arrBrandList = self.arrBrandList
+                commonTableVC.arrFilteredBrandList = arrFilteredBrandList
             }
         }
     }
@@ -166,6 +166,12 @@ extension FeedVC:UICollectionViewDelegate{
 //
 extension FeedVC:UICollectionViewDataSource{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if arrFilteredBrandList.count > 0{
+            IBcollectionViewFeed.backgroundView?.hidden = true
+        }else{
+            IBcollectionViewFeed.backgroundView?.hidden = false
+        }
+        
         return arrFilteredBrandList.count
     }
     
@@ -328,6 +334,7 @@ extension FeedVC:NotFoundViewDelegate{
         let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
         notFoundView.delegate = self
         IBcollectionViewFeed.backgroundView = notFoundView
+        IBcollectionViewFeed.backgroundView?.hidden = true
     }
     
     func didSelectViewLabels() {
@@ -383,12 +390,14 @@ extension FeedVC{
     @IBAction func IBActionFilterWomen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(true)
+            updateFilterArray(forFilterType: headerView.selectedTab)
         }
     }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(false)
+            updateFilterArray(forFilterType: headerView.selectedTab)
         }
     }
     
@@ -408,7 +417,6 @@ extension FeedVC{
      Setup UI on VC Load.
      */
     private func setupOnLoad(){
-        addPullToRefresh()
         registerCells()
         setupNavBar()
         (IBcollectionViewFeed.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
@@ -433,9 +441,11 @@ extension FeedVC{
         var leftBarButtonImage = IMG_HAMBURGER
         
         if mainVCType == .Feed{
+            addPullToRefresh()
             wsCallGetLabels()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
         }else if mainVCType == .Filter{
+            addNotFoundView()
             if let filteredNavTitleObj = filteredNavTitle{
                 titleText = "\(filteredNavTitleObj)"
             }
@@ -709,6 +719,27 @@ extension FeedVC{
 //
 
 extension FeedVC{
+    
+    func updateFilterArray(forFilterType filterType:FilterType){
+        arrFilteredBrandList = []
+        if filterType == .Men{
+            for brand in arrBrandList{
+                if brand.Menswear{
+                    arrFilteredBrandList.append(brand)
+                }
+            }
+        }else if filterType == .Women{
+            for brand in arrBrandList{
+                if brand.Womenswear{
+                    arrFilteredBrandList.append(brand)
+                }
+            }
+        }else{
+            debugPrint("updateFilterArray filterType unknown")
+        }
+        self.IBcollectionViewFeed.reloadData()
+    }
+    
     /**
      WS call get all brands
      */
@@ -719,8 +750,7 @@ extension FeedVC{
             UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
                 UnlabelLoadingView.sharedInstance.stop(self.view)
                 self.arrBrandList = arrBrands
-                self.arrFilteredBrandList = arrBrands
-                self.IBcollectionViewFeed.reloadData()
+                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
                     UnlabelLoadingView.sharedInstance.stop(self.view)
