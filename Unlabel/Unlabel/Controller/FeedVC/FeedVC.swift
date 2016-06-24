@@ -448,7 +448,6 @@ extension FeedVC{
         }
         
         
-        
         IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
         IBbtnUnlabel.setTitle(titleText.uppercaseString, forState: .Normal)
         IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), forState: .Normal)

@@ -16,11 +16,12 @@ enum CommonVCType{
 }
 
 enum ProductCategory:Int{
-    case Clothing = 0
-    case Accessories = 1
-    case Jewelry = 2
-    case Shoes = 3
-    case Bags = 4
+    case All = 0
+    case Clothing = 1
+    case Accessories = 2
+    case Jewelry = 3
+    case Shoes = 4
+    case Bags = 5
 }
 
 class CommonTableVC: UITableViewController {
@@ -127,14 +128,22 @@ extension CommonTableVC{
             
             let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
             feedVC?.arrFilteredBrandList = arrBrandList
-            feedVC?.filteredNavTitle = String(ProductCategory.init(rawValue: indexPath.row)!)
+            
+            var sCategoryTitle = String()
+            if indexPath.row == 0{
+                sCategoryTitle = "All categories"
+            }else{
+                sCategoryTitle = String(ProductCategory.init(rawValue: indexPath.row)!)
+            }
+            
+            feedVC?.filteredNavTitle = sCategoryTitle
             
             if let isFollowdByLocationObj = isFollowdByLocation{
                 if isFollowdByLocationObj.value{
-                    feedVC?.filteredString = "Current: \(filterType), \((isFollowdByLocation?.location)!), \(ProductCategory.init(rawValue: indexPath.row)!)"
+                    feedVC?.filteredString = "\(filterType) - \((isFollowdByLocation?.location)!) - \(sCategoryTitle)"
                 }
             }else{
-                feedVC?.filteredString = "Current: \(filterType), \(ProductCategory.init(rawValue: indexPath.row)!)"
+                feedVC?.filteredString = "\(filterType) - \(sCategoryTitle)"
             }
             
             feedVC?.mainVCType = .Filter
@@ -187,7 +196,7 @@ extension CommonTableVC{
                     }
                 }
                 IBbtnTitle.setTitle(headerTitle, forState: .Normal)
-                return ["Clothing","Accessories","Jewelry","Shoes","Bags"]
+                return ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
                 
             }else if commonVCType == .FilterByLocationThenCategory {
                 
