@@ -109,17 +109,17 @@ extension FilterVC:UITableViewDataSource{
     func genderCell()->GenderCell{
         let genderCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_GenderCell) as! GenderCell
         
-        if filterModel.Menswear{
-            enableButton(genderCell.IBbtnMale)
-        }else{
-            disableButton(genderCell.IBbtnMale)
-        }
-        
-        if filterModel.Womenswear{
-            enableButton(genderCell.IBbtnFemale)
-        }else{
-            disableButton(genderCell.IBbtnFemale)
-        }
+//        if filterModel.isMale{
+//            enableButton(genderCell.IBbtnMale)
+//        }else{
+//            disableButton(genderCell.IBbtnMale)
+//        }
+//        
+//        if filterModel.isFemale{
+//            enableButton(genderCell.IBbtnFemale)
+//        }else{
+//            disableButton(genderCell.IBbtnFemale)
+//        }
         
         return genderCell
     }
@@ -168,11 +168,11 @@ extension FilterVC{
     func handleGenderSelection(sender:UIButton){
         //Male Clicked
         if sender.tag == 1{
-            filterModel.Menswear = !filterModel.Menswear
+            filterModel.isMale = !filterModel.isMale
             
             //Female Clicked
         }else{
-            filterModel.Womenswear = !filterModel.Womenswear
+            filterModel.isFemale = !filterModel.isFemale
         }
         
         IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -266,8 +266,8 @@ extension FilterVC{
     }
     
     @IBAction func IBActionClear(sender: UIButton) {
-        filterModel.Menswear = false
-        filterModel.Womenswear = false
+//        filterModel.Menswear = false
+//        filterModel.Womenswear = false
         filterModel.Clothing = false
         filterModel.Accessories = false
         filterModel.Jewelry = false

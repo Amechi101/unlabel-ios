@@ -26,7 +26,6 @@
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
 		157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */; };
-		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */; };
 		15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */; };
 		15897E931C59488800FD0700 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E911C59488800FD0700 /* GenderCell.swift */; };
@@ -960,7 +959,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,

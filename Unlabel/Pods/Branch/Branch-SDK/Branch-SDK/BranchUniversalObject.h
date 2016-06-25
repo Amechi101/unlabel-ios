@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BranchLinkProperties.h"
 #import "Branch.h"
-
-@class BranchLinkProperties;
 
 typedef void (^callback) ();
 typedef void (^shareCompletion) (NSString *activityType, BOOL completed);

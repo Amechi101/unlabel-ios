@@ -111,6 +111,10 @@ class UnlabelAPIHelper{
                         brand.Menswear = menswear
                     }
                     
+                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
+                        brand.Womenswear = womenswear
+                    }
+                    
                     if let jewelry = thisBrand[PRM_JEWELRY] as? Bool{
                         brand.Jewelry = jewelry
                     }
@@ -129,10 +133,6 @@ class UnlabelAPIHelper{
                     
                     if let clothing = thisBrand[PRM_CLOTHING] as? Bool{
                         brand.Clothing = clothing
-                    }
-                    
-                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
-                        brand.Womenswear = womenswear
                     }
                     
                     arrBrands.append(brand)
@@ -179,6 +179,18 @@ class UnlabelAPIHelper{
                 
                 if let productPrice:String = product[PRM_PRODUCT_PRICE] as? String{
                     productObj.ProductPrice = productPrice
+                }
+                
+                if let isMale = product[PRM_PRODUCTIS_IS_MALE] as? Bool{
+                    productObj.isMale = isMale
+                }
+                
+                if let isFemale = product[PRM_PRODUCTIS_IS_FEMALE] as? Bool{
+                    productObj.isFemale = isFemale
+                }
+                
+                if let isUnisex = product[PRM_PRODUCTIS_IS_UNISEX] as? Bool{
+                    productObj.isUnisex = isUnisex
                 }
                 
                 arrProducts.append(productObj)

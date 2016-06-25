@@ -84,3 +84,7 @@ let PRM_PRODUCTIS_ACTIVE      = "product_isActive"
 let PRM_PRODUCT_NAME          = "product_name"
 let PRM_PRODUCT_PRICE         = "product_price"
 let PRM_BRAND_WEBSITE_URL     = "brand_website_url"
+
+let PRM_PRODUCTIS_IS_UNISEX     = "product_isUnisex"
+let PRM_PRODUCTIS_IS_MALE       = "product_isMale"
+let PRM_PRODUCTIS_IS_FEMALE     = "product_isFemale"

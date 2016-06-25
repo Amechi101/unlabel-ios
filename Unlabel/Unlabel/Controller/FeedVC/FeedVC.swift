@@ -43,7 +43,6 @@ class FeedVC: UIViewController {
     private var arrBrandList:[Brand] = [Brand]()
     var arrFilteredBrandList:[Brand] = [Brand]()
     private var didSelectBrand:Brand?
-    private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var headerView:FeedVCHeaderCell?
     
@@ -235,30 +234,30 @@ extension FeedVC:LeftMenuVCDelegate{
 //
 //MARK:- FilterVCDelegate Methods
 //
-extension FeedVC:FilterVCDelegate{
+extension FeedVC{
     func didClickApply(forFilterModel filterModel: Brand) {
         
-        //If anything from filter is selected
-        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
-            arrFilteredBrandList = []
-            for brand in arrBrandList{
-                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
-                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
-                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
-                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
-                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
-                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
-                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
-                    arrFilteredBrandList.append(brand)
-                }
-            }
-            
-            //Nothing selected in filter screen
-        }else{
-            debugPrint("Nothing Selected for filtering")
-        }
-        
-        IBcollectionViewFeed.reloadData()
+//        //If anything from filter is selected
+//        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
+//            arrFilteredBrandList = []
+//            for brand in arrBrandList{
+//                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
+//                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
+//                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
+//                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
+//                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
+//                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
+//                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
+//                    arrFilteredBrandList.append(brand)
+//                }
+//            }
+//            
+//            //Nothing selected in filter screen
+//        }else{
+//            debugPrint("Nothing Selected for filtering")
+//        }
+//        
+//        IBcollectionViewFeed.reloadData()
     }
     
 }
@@ -499,7 +498,7 @@ extension FeedVC{
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_FILTER_VC{
-            addFilterVCAsChildVC(viewControllerName: VCName)
+//            addFilterVCAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_LAUNCH_LOADING_VC{
             addLaunchLoadingAsChildVC(viewControllerName: VCName)
             removeChildVCIfExists(VCName)
@@ -570,27 +569,27 @@ extension FeedVC{
     /**
      Adding Filter VC As Child VC
      */
-    private func addFilterVCAsChildVC(viewControllerName VCName:String){
-        if filterChildVC == nil{
-            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
-            filterChildVC!.delegate = self
-        }
-        
-        filterChildVC!.view.frame.size = self.view.frame.size
-        navigationController!.addChildViewController(filterChildVC!)
-        filterChildVC!.didMoveToParentViewController(self)
-        
-        navigationController?.view.addSubview(filterChildVC!.view)
-        
-        //Animate filterVC entry
-        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
-        filterChildVC!.view.alpha = 0
-        UIView.animateWithDuration(0.3) { () -> Void in
-            self.filterChildVC!.view.alpha = 1
-            self.filterChildVC!.view.frame.origin.x = 0
-            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
-        }
-    }
+//    private func addFilterVCAsChildVC(viewControllerName VCName:String){
+//        if filterChildVC == nil{
+//            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
+//            filterChildVC!.delegate = self
+//        }
+//        
+//        filterChildVC!.view.frame.size = self.view.frame.size
+//        navigationController!.addChildViewController(filterChildVC!)
+//        filterChildVC!.didMoveToParentViewController(self)
+//        
+//        navigationController?.view.addSubview(filterChildVC!.view)
+//        
+//        //Animate filterVC entry
+//        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
+//        filterChildVC!.view.alpha = 0
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            self.filterChildVC!.view.alpha = 1
+//            self.filterChildVC!.view.frame.origin.x = 0
+//            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
+//        }
+//    }
     
     /**
      Removes ChildViewController for given ViewController's Storyboard ID
@@ -722,21 +721,30 @@ extension FeedVC{
     
     func updateFilterArray(forFilterType filterType:FilterType){
         arrFilteredBrandList = []
-        if filterType == .Men{
+        
             for brand in arrBrandList{
-                if brand.Menswear{
-                    arrFilteredBrandList.append(brand)
+                if brand.Menswear && brand.Womenswear{
+                    if filterType == .Men{
+                        var filteredProducts = [Product]()
+                        for product in brand.arrProducts{
+                            if product.isMale || product.isUnisex{
+                                filteredProducts.append(product)
+                            }
+                        }
+                        brand.arrProducts = filteredProducts
+                        arrFilteredBrandList.append(brand)
+                    }else if filterType == .Women{
+                        var filteredProducts = [Product]()
+                        for product in brand.arrProducts{
+                            if product.isFemale || product.isUnisex{
+                                filteredProducts.append(product)
+                            }
+                        }
+                        brand.arrProducts = filteredProducts
+                        arrFilteredBrandList.append(brand)
+                    }
                 }
             }
-        }else if filterType == .Women{
-            for brand in arrBrandList{
-                if brand.Womenswear{
-                    arrFilteredBrandList.append(brand)
-                }
-            }
-        }else{
-            debugPrint("updateFilterArray filterType unknown")
-        }
         self.IBcollectionViewFeed.reloadData()
     }
     

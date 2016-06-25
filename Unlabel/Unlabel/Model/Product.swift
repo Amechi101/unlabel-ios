@@ -16,4 +16,7 @@ class Product: NSObject {
     var isActive:Bool = Bool()
     var ProductName:String = String()
     var ProductPrice:String = String()
+    var isMale:Bool = Bool()
+    var isFemale:Bool = Bool()
+    var isUnisex:Bool = Bool()
 }

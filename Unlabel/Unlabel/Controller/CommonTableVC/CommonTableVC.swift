@@ -225,6 +225,7 @@ extension CommonTableVC{
                 
                 for brand in arrFilteredBrandList{
                     arrTitles.append(brand.StateOrCountry)
+                    arrTitles = Array(Set(arrTitles))
                 }
                 
                 return arrTitles
