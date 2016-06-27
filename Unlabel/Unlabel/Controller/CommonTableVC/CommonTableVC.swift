@@ -226,6 +226,7 @@ extension CommonTableVC{
                 for brand in arrFilteredBrandList{
                     arrTitles.append(brand.StateOrCountry)
                     arrTitles = Array(Set(arrTitles))
+                    arrTitles = arrTitles.sort{$0 < $1}
                 }
                 
                 return arrTitles

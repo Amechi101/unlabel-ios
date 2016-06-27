@@ -389,14 +389,14 @@ extension FeedVC{
     @IBAction func IBActionFilterWomen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(true)
-            updateFilterArray(forFilterType: headerView.selectedTab)
+            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(false)
-            updateFilterArray(forFilterType: headerView.selectedTab)
+            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
@@ -686,6 +686,54 @@ extension FeedVC{
             feedVCCell.IBactivityIndicator.startAnimating()
         }
     }
+    
+    private func updateFilterArray(forFilterType filterType:FilterType, brandsObj:[Brand]){
+        let brands = brandsObj
+       arrFilteredBrandList = []
+        
+        for (index,brand) in brands.enumerate(){
+                if filterType == .Men{
+                    if brand.Menswear {
+//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                        arrFilteredBrandList.append(brand)
+                    }else{
+                       
+                    }
+                }else{
+                    if brand.Womenswear {
+//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                        arrFilteredBrandList.append(brand)
+                    }else{
+                        
+                    }
+            }
+        }
+
+        print(arrBrandList.count)
+        print(arrFilteredBrandList.count)
+        
+        self.IBcollectionViewFeed.reloadData()
+    }
+}
+
+
+func getFilteredProducts(forFilterType filterType:FilterType,arrProducts:[Product])->[Product]{
+    var filteredProducts = [Product]()
+    if filterType == .Men{
+        for product in arrProducts{
+            if product.isMale || product.isUnisex{
+                filteredProducts.append(product)
+            }
+        }
+    }else{
+        for product in arrProducts{
+            if product.isFemale || product.isUnisex{
+                filteredProducts.append(product)
+            }
+        }
+    }
+    
+    return filteredProducts
 }
 
 //
@@ -718,36 +766,6 @@ extension FeedVC{
 //
 
 extension FeedVC{
-    
-    func updateFilterArray(forFilterType filterType:FilterType){
-        arrFilteredBrandList = []
-        
-            for brand in arrBrandList{
-                if brand.Menswear && brand.Womenswear{
-                    if filterType == .Men{
-                        var filteredProducts = [Product]()
-                        for product in brand.arrProducts{
-                            if product.isMale || product.isUnisex{
-                                filteredProducts.append(product)
-                            }
-                        }
-                        brand.arrProducts = filteredProducts
-                        arrFilteredBrandList.append(brand)
-                    }else if filterType == .Women{
-                        var filteredProducts = [Product]()
-                        for product in brand.arrProducts{
-                            if product.isFemale || product.isUnisex{
-                                filteredProducts.append(product)
-                            }
-                        }
-                        brand.arrProducts = filteredProducts
-                        arrFilteredBrandList.append(brand)
-                    }
-                }
-            }
-        self.IBcollectionViewFeed.reloadData()
-    }
-    
     /**
      WS call get all brands
      */
@@ -758,7 +776,8 @@ extension FeedVC{
             UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
                 UnlabelLoadingView.sharedInstance.stop(self.view)
                 self.arrBrandList = arrBrands
-                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
+                self.updateFilterArray(forFilterType: self.headerView!.selectedTab,brandsObj: self.arrBrandList)
+//                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
                     UnlabelLoadingView.sharedInstance.stop(self.view)
