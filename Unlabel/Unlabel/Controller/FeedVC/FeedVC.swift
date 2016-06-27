@@ -691,17 +691,17 @@ extension FeedVC{
         let brands = brandsObj
        arrFilteredBrandList = []
         
-        for (index,brand) in brands.enumerate(){
+        for (_,var brand) in brands.enumerate(){
                 if filterType == .Men{
                     if brand.Menswear {
-//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
                         arrFilteredBrandList.append(brand)
                     }else{
                        
                     }
                 }else{
                     if brand.Womenswear {
-//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
                         arrFilteredBrandList.append(brand)
                     }else{
                         
@@ -712,6 +712,7 @@ extension FeedVC{
         print(arrBrandList.count)
         print(arrFilteredBrandList.count)
         
+        arrBrandList = brandsObj
         self.IBcollectionViewFeed.reloadData()
     }
 }
@@ -748,7 +749,7 @@ extension FeedVC{
         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
             FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
                 if let followingBrandIDsObj = followingBrandIDs{
-                    for brand in self.arrBrandList{
+                    for var brand in self.arrBrandList{
                         if followingBrandIDsObj.contains(brand.ID){
                             brand.isFollowing = true
                         }

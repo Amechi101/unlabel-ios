@@ -52,7 +52,7 @@ class UnlabelAPIHelper{
         if let brandList = json.dictionaryObject![PRM_LABELS]{
             
             for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerate(){
-                let brand = Brand()
+                var brand = Brand()
                 
                 brand.currentIndex = index
                 

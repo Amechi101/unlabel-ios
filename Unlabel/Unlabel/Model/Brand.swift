@@ -9,7 +9,7 @@
 import UIKit
 
 //Label == Brand
-class Brand: NSObject {
+struct Brand {
     var ID:String = String()
     var Name:String = String()
     var OriginCity:String = String()
