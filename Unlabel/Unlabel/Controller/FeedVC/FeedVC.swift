@@ -692,25 +692,34 @@ extension FeedVC{
        arrFilteredBrandList = []
         
         for (_,var brand) in brands.enumerate(){
-                if filterType == .Men{
-                    if brand.Menswear {
-                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
-                        arrFilteredBrandList.append(brand)
-                    }else{
-                       
-                    }
-                }else{
-                    if brand.Womenswear {
-                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
-                        arrFilteredBrandList.append(brand)
-                    }else{
+            if filterType == .Men{
+                if brand.Menswear {
                         
+                    if brand.Menswear && brand.Womenswear == true{
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
                     }
+                    
+                    arrFilteredBrandList.append(brand)
+                }else{
+                       
+                }
+                
+            }else{
+                if brand.Womenswear {
+                        
+                    if brand.Menswear && brand.Womenswear == true {
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                    }
+                       
+                    arrFilteredBrandList.append(brand)
+                }else{
+                        
+                }
             }
         }
 
-        print(arrBrandList.count)
-        print(arrFilteredBrandList.count)
+//        print(arrBrandList.count)
+//        print(arrFilteredBrandList.count)
         
         arrBrandList = brandsObj
         self.IBcollectionViewFeed.reloadData()
