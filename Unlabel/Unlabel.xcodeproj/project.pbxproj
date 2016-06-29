@@ -26,7 +26,6 @@
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
 		1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */; };
 		157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */; };
-		15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */; };
 		15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */; };
 		15897E931C59488800FD0700 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E911C59488800FD0700 /* GenderCell.swift */; };
@@ -960,7 +959,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15897E8B1C5935C200FD0700 /* FilterVC.swift in Sources */,
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
@@ -1156,8 +1154,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1169,7 +1167,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "880a48f4-004f-479e-900e-4208f838d75b";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1182,8 +1180,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Amechi Egbe (LH397V98GV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amechi Egbe (LH397V98GV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1195,7 +1193,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "880a48f4-004f-479e-900e-4208f838d75b";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;

@@ -34,14 +34,15 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
     @IBOutlet weak var IBbtnLeftBarButton: UIButton!
+    @IBOutlet weak var IBbtnFilter: UIButton!
     
     private let FEED_CELL_HEIGHT:CGFloat = 211
     private let fFooterHeight:CGFloat = 28.0
+    private let fHeaderHeight:CGFloat = 54.0
     private let refreshControl = UIRefreshControl()
     private var arrBrandList:[Brand] = [Brand]()
     var arrFilteredBrandList:[Brand] = [Brand]()
     private var didSelectBrand:Brand?
-    private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var headerView:FeedVCHeaderCell?
     
@@ -90,7 +91,7 @@ extension FeedVC{
             if let commonTableVC:CommonTableVC = segue.destinationViewController as? CommonTableVC{
                 commonTableVC.commonVCType = .FilterLabels
                 commonTableVC.filterType = (headerView?.selectedTab)!
-                commonTableVC.arrBrandList = self.arrBrandList
+                commonTableVC.arrFilteredBrandList = arrFilteredBrandList
             }
         }
     }
@@ -128,19 +129,18 @@ extension FeedVC:UICollectionViewDelegate{
             headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as? FeedVCHeaderCell
             
             if mainVCType == .Feed{
-                headerView?.IBconstraintGenderContainerHeight.constant = 56
-                headerView?.IBimgArrow.hidden = false
-                headerView?.IBbtnFilter.setTitle("Filter Labels", forState: .Normal)
+                headerView?.IBconstraintGenderContainerHeight.constant = fHeaderHeight
+                IBbtnFilter.hidden = false
             }else if mainVCType == .Filter{
                 headerView?.IBconstraintGenderContainerHeight.constant = 0
-                headerView?.IBimgArrow.hidden = true
+                IBbtnFilter.hidden = true
                 
                 var titleText:String = ""
                 
                 if let filteredStringObj = filteredString{
                     titleText = filteredStringObj
                 }
-                headerView?.IBbtnFilter.setTitle(titleText, forState: .Normal)
+                headerView?.IBlblFilterTitle.text = titleText
             }else{
                 
             }
@@ -165,6 +165,12 @@ extension FeedVC:UICollectionViewDelegate{
 //
 extension FeedVC:UICollectionViewDataSource{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if arrFilteredBrandList.count > 0{
+            IBcollectionViewFeed.backgroundView?.hidden = true
+        }else{
+            IBcollectionViewFeed.backgroundView?.hidden = false
+        }
+        
         return arrFilteredBrandList.count
     }
     
@@ -202,15 +208,7 @@ extension FeedVC:UICollectionViewDataSource{
 extension FeedVC:UICollectionViewDelegateFlowLayout{
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        if mainVCType == .Feed{
-            return CGSizeMake(SCREEN_WIDTH, 140)
-        }else if mainVCType == .Filter{
-            return CGSizeMake(SCREEN_WIDTH, 84)
-        }else{
-            return CGSizeZero
-        }
-    
+            return CGSizeMake(SCREEN_WIDTH, fHeaderHeight)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -236,30 +234,30 @@ extension FeedVC:LeftMenuVCDelegate{
 //
 //MARK:- FilterVCDelegate Methods
 //
-extension FeedVC:FilterVCDelegate{
+extension FeedVC{
     func didClickApply(forFilterModel filterModel: Brand) {
         
-        //If anything from filter is selected
-        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
-            arrFilteredBrandList = []
-            for brand in arrBrandList{
-                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
-                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
-                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
-                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
-                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
-                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
-                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
-                    arrFilteredBrandList.append(brand)
-                }
-            }
-            
-            //Nothing selected in filter screen
-        }else{
-            debugPrint("Nothing Selected for filtering")
-        }
-        
-        IBcollectionViewFeed.reloadData()
+//        //If anything from filter is selected
+//        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
+//            arrFilteredBrandList = []
+//            for brand in arrBrandList{
+//                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
+//                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
+//                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
+//                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
+//                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
+//                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
+//                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
+//                    arrFilteredBrandList.append(brand)
+//                }
+//            }
+//            
+//            //Nothing selected in filter screen
+//        }else{
+//            debugPrint("Nothing Selected for filtering")
+//        }
+//        
+//        IBcollectionViewFeed.reloadData()
     }
     
 }
@@ -335,6 +333,7 @@ extension FeedVC:NotFoundViewDelegate{
         let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
         notFoundView.delegate = self
         IBcollectionViewFeed.backgroundView = notFoundView
+        IBcollectionViewFeed.backgroundView?.hidden = true
     }
     
     func didSelectViewLabels() {
@@ -390,12 +389,14 @@ extension FeedVC{
     @IBAction func IBActionFilterWomen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(true)
+            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(false)
+            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
@@ -415,9 +416,9 @@ extension FeedVC{
      Setup UI on VC Load.
      */
     private func setupOnLoad(){
-        addPullToRefresh()
         registerCells()
         setupNavBar()
+        (IBcollectionViewFeed.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -439,9 +440,11 @@ extension FeedVC{
         var leftBarButtonImage = IMG_HAMBURGER
         
         if mainVCType == .Feed{
+            addPullToRefresh()
             wsCallGetLabels()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
         }else if mainVCType == .Filter{
+            addNotFoundView()
             if let filteredNavTitleObj = filteredNavTitle{
                 titleText = "\(filteredNavTitleObj)"
             }
@@ -454,9 +457,8 @@ extension FeedVC{
         }
         
         
-        
         IBbtnUnlabel.titleLabel?.textColor = UIColor.blackColor()
-        IBbtnUnlabel.setTitle(titleText, forState: .Normal)
+        IBbtnUnlabel.setTitle(titleText.uppercaseString, forState: .Normal)
         IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), forState: .Normal)
         
     }
@@ -496,7 +498,7 @@ extension FeedVC{
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_FILTER_VC{
-            addFilterVCAsChildVC(viewControllerName: VCName)
+//            addFilterVCAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_LAUNCH_LOADING_VC{
             addLaunchLoadingAsChildVC(viewControllerName: VCName)
             removeChildVCIfExists(VCName)
@@ -567,27 +569,27 @@ extension FeedVC{
     /**
      Adding Filter VC As Child VC
      */
-    private func addFilterVCAsChildVC(viewControllerName VCName:String){
-        if filterChildVC == nil{
-            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
-            filterChildVC!.delegate = self
-        }
-        
-        filterChildVC!.view.frame.size = self.view.frame.size
-        navigationController!.addChildViewController(filterChildVC!)
-        filterChildVC!.didMoveToParentViewController(self)
-        
-        navigationController?.view.addSubview(filterChildVC!.view)
-        
-        //Animate filterVC entry
-        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
-        filterChildVC!.view.alpha = 0
-        UIView.animateWithDuration(0.3) { () -> Void in
-            self.filterChildVC!.view.alpha = 1
-            self.filterChildVC!.view.frame.origin.x = 0
-            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
-        }
-    }
+//    private func addFilterVCAsChildVC(viewControllerName VCName:String){
+//        if filterChildVC == nil{
+//            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
+//            filterChildVC!.delegate = self
+//        }
+//        
+//        filterChildVC!.view.frame.size = self.view.frame.size
+//        navigationController!.addChildViewController(filterChildVC!)
+//        filterChildVC!.didMoveToParentViewController(self)
+//        
+//        navigationController?.view.addSubview(filterChildVC!.view)
+//        
+//        //Animate filterVC entry
+//        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
+//        filterChildVC!.view.alpha = 0
+//        UIView.animateWithDuration(0.3) { () -> Void in
+//            self.filterChildVC!.view.alpha = 1
+//            self.filterChildVC!.view.frame.origin.x = 0
+//            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
+//        }
+//    }
     
     /**
      Removes ChildViewController for given ViewController's Storyboard ID
@@ -684,6 +686,64 @@ extension FeedVC{
             feedVCCell.IBactivityIndicator.startAnimating()
         }
     }
+    
+    private func updateFilterArray(forFilterType filterType:FilterType, brandsObj:[Brand]){
+        let brands = brandsObj
+       arrFilteredBrandList = []
+        
+        for (_,var brand) in brands.enumerate(){
+            if filterType == .Men{
+                if brand.Menswear {
+                        
+                    if brand.Menswear && brand.Womenswear == true{
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                    }
+                    
+                    arrFilteredBrandList.append(brand)
+                }else{
+                       
+                }
+                
+            }else{
+                if brand.Womenswear {
+                        
+                    if brand.Menswear && brand.Womenswear == true {
+                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+                    }
+                       
+                    arrFilteredBrandList.append(brand)
+                }else{
+                        
+                }
+            }
+        }
+
+//        print(arrBrandList.count)
+//        print(arrFilteredBrandList.count)
+        
+        arrBrandList = brandsObj
+        self.IBcollectionViewFeed.reloadData()
+    }
+}
+
+
+func getFilteredProducts(forFilterType filterType:FilterType,arrProducts:[Product])->[Product]{
+    var filteredProducts = [Product]()
+    if filterType == .Men{
+        for product in arrProducts{
+            if product.isMale || product.isUnisex{
+                filteredProducts.append(product)
+            }
+        }
+    }else{
+        for product in arrProducts{
+            if product.isFemale || product.isUnisex{
+                filteredProducts.append(product)
+            }
+        }
+    }
+    
+    return filteredProducts
 }
 
 //
@@ -698,7 +758,7 @@ extension FeedVC{
         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
             FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
                 if let followingBrandIDsObj = followingBrandIDs{
-                    for brand in self.arrBrandList{
+                    for var brand in self.arrBrandList{
                         if followingBrandIDsObj.contains(brand.ID){
                             brand.isFollowing = true
                         }
@@ -726,8 +786,8 @@ extension FeedVC{
             UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
                 UnlabelLoadingView.sharedInstance.stop(self.view)
                 self.arrBrandList = arrBrands
-                self.arrFilteredBrandList = arrBrands
-                self.IBcollectionViewFeed.reloadData()
+                self.updateFilterArray(forFilterType: self.headerView!.selectedTab,brandsObj: self.arrBrandList)
+//                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
                     UnlabelLoadingView.sharedInstance.stop(self.view)

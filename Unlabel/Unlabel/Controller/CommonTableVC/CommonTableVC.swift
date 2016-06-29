@@ -16,11 +16,12 @@ enum CommonVCType{
 }
 
 enum ProductCategory:Int{
-    case Clothing = 0
-    case Accessories = 1
-    case Jewelry = 2
-    case Shoes = 3
-    case Bags = 4
+    case All = 0
+    case Clothing = 1
+    case Accessory = 2
+    case Jewelry = 3
+    case Shoe = 4
+    case Bag = 5
 }
 
 class CommonTableVC: UITableViewController {
@@ -34,7 +35,7 @@ class CommonTableVC: UITableViewController {
     var commonVCType:CommonVCType = .Unknown
     
     var arrTitles:[String] = [ ]
-    var arrBrandList:[Brand] = [ ]
+    var arrFilteredBrandList:[Brand] = [ ]
     var filterType:FilterType = .Unknown
     var isFollowdByLocation:(value:Bool,location:String?)?
     
@@ -108,9 +109,9 @@ extension CommonTableVC{
     }
     
     func handleCellClick(forIndexPath indexPath:NSIndexPath){
-        if commonVCType == . FilterLabels{
+        if commonVCType == .FilterLabels{
             let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
-            commonTableVC?.arrBrandList = self.arrBrandList
+            commonTableVC?.arrFilteredBrandList = self.arrFilteredBrandList
             commonTableVC?.isFollowdByLocation = self.isFollowdByLocation
             commonTableVC?.filterType = self.filterType
             
@@ -123,32 +124,60 @@ extension CommonTableVC{
             }
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
-        }else if commonVCType == . FilterByCategory{
-            
-            let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
-            feedVC?.arrFilteredBrandList = arrBrandList
-            feedVC?.filteredNavTitle = String(ProductCategory.init(rawValue: indexPath.row)!)
-            
-            if let isFollowdByLocationObj = isFollowdByLocation{
-                if isFollowdByLocationObj.value{
-                    feedVC?.filteredString = "Current: \(filterType), \((isFollowdByLocation?.location)!), \(ProductCategory.init(rawValue: indexPath.row)!)"
-                }
-            }else{
-                feedVC?.filteredString = "Current: \(filterType), \(ProductCategory.init(rawValue: indexPath.row)!)"
-            }
-            
-            feedVC?.mainVCType = .Filter
-            navigationController?.pushViewController(feedVC!, animated: true)
-            
         }else if commonVCType == . FilterByLocationThenCategory{
         
             let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
             commonTableVC?.commonVCType = .FilterByCategory
             commonTableVC?.isFollowdByLocation = (true,arrTitles[indexPath.row])
-            commonTableVC?.arrBrandList = self.arrBrandList
+            
+            for brand in arrFilteredBrandList{
+                if arrTitles[indexPath.row] == brand.StateOrCountry{
+                    commonTableVC?.arrFilteredBrandList.append(brand)
+                }
+            }
+
             commonTableVC?.filterType = self.filterType
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
+            
+        }else if commonVCType == . FilterByCategory{
+            
+            let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
+            
+            var sCategoryTitle = String()
+            if indexPath.row == 0{
+                sCategoryTitle = "All Categories"
+            }else{
+                sCategoryTitle = "\(ProductCategory.init(rawValue: indexPath.row)!) Labels"
+            }
+            
+            feedVC?.filteredNavTitle = sCategoryTitle
+            
+            if let isFollowdByLocationObj = isFollowdByLocation{
+                if isFollowdByLocationObj.value{
+                    feedVC?.filteredString = "\(filterType) - \((isFollowdByLocation?.location)!) - \(sCategoryTitle)"
+                }
+            }else{
+                feedVC?.filteredString = "\(filterType) - \(sCategoryTitle)"
+            }
+            
+            feedVC?.mainVCType = .Filter
+            
+            if indexPath.row == 0{  //All categories
+                feedVC?.arrFilteredBrandList = self.arrFilteredBrandList
+            }else{
+                for brand in arrFilteredBrandList{
+                    if (brand.Clothing && (arrTitles[indexPath.row] == "Clothing Labels")) ||
+                    (brand.Accessories && (arrTitles[indexPath.row] == "Accessory Labels")) ||
+                    (brand.Jewelry && (arrTitles[indexPath.row] == "Jewelry Labels")) ||
+                    (brand.Shoes && (arrTitles[indexPath.row] == "Shoe Labels")) ||
+                    (brand.Bags && (arrTitles[indexPath.row] == "Bag Labels")){
+                        feedVC?.arrFilteredBrandList.append(brand)
+                    }
+                }
+            }
+            
+            navigationController?.pushViewController(feedVC!, animated: true)
             
         }else{
             debugPrint("getTitles commonVCType Unknown")
@@ -173,29 +202,31 @@ extension CommonTableVC{
 extension CommonTableVC{
     func setupOnLoad(){
         func getTitles(commonVCType:CommonVCType)->[String]{
-            if commonVCType == . FilterLabels{
+            if commonVCType == .FilterLabels{
+                let filterTitle = "FILTER \(filterType)"
+                IBbtnTitle.setTitle(filterTitle.uppercaseString, forState: .Normal)
+                return ["By Location","By Label Category"]
                 
-                IBbtnTitle.setTitle("FILTER LABELS", forState: .Normal)
-                return ["By Location","By Category"]
+            }else if commonVCType == .FilterByCategory{
                 
-            }else if commonVCType == . FilterByCategory{
-                
-                var headerTitle = "CATEGORY"
+                var headerTitle = "LABEL CATEGORY"
                 if let isFollowdByLocationObj = isFollowdByLocation{
                     if isFollowdByLocationObj.value{
                         headerTitle = (isFollowdByLocationObj.location?.uppercaseString)!
                     }
                 }
                 IBbtnTitle.setTitle(headerTitle, forState: .Normal)
-                return ["Clothing","Accessories","Jewelry","Shoes","Bags"]
+                return ["All Categories","Clothing Labels","Accessory Labels","Jewelry Labels","Shoe Labels","Bag Labels"]
                 
             }else if commonVCType == .FilterByLocationThenCategory {
                 
                 IBbtnTitle.setTitle("LOCATION", forState: .Normal)
                 var arrTitles:[String] = []
                 
-                for brand in arrBrandList{
-                    arrTitles.append(brand.OriginCity)
+                for brand in arrFilteredBrandList{
+                    arrTitles.append(brand.StateOrCountry)
+                    arrTitles = Array(Set(arrTitles))
+                    arrTitles = arrTitles.sort{$0 < $1}
                 }
                 
                 return arrTitles

@@ -8,9 +8,6 @@
         <mutableArray key="Neutraface2Text-Book.otf">
             <string>Neutraface2Text-Book</string>
         </mutableArray>
-        <mutableArray key="Neutraface2Text-Demi.otf">
-            <string>Neutraface2Text-Demi</string>
-        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -26,41 +23,22 @@
                         <constraint firstAttribute="width" constant="160" id="aDM-il-vWZ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not following any labels. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
-                    <rect key="frame" x="78" y="326" width="219" height="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
+                    <rect key="frame" x="78" y="337" width="219" height="60"/>
+                    <string key="text">Nothing to see here. 
+
+Currently no labels are within this filtering range.</string>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                     <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tM-s7-uaU">
-                    <rect key="frame" x="141" y="365" width="93" height="27"/>
-                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
-                    <state key="normal" title="VIEW LABELS">
-                        <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="IBActionViewLabels:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fgf-1f-3sc"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-Ce-PzW">
-                    <rect key="frame" x="141" y="389" width="93" height="2"/>
-                    <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="2" id="1xQ-TJ-TjP"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0X7-SL-FcU"/>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.6" id="6ec-jq-ZJj"/>
-                <constraint firstItem="1tM-s7-uaU" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="24" id="8h5-tQ-ZVZ"/>
-                <constraint firstItem="1tM-s7-uaU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dy3-vU-w18"/>
-                <constraint firstItem="ik6-Ce-PzW" firstAttribute="trailing" secondItem="1tM-s7-uaU" secondAttribute="trailing" id="MvS-m9-Eis"/>
-                <constraint firstItem="ik6-Ce-PzW" firstAttribute="leading" secondItem="1tM-s7-uaU" secondAttribute="leading" id="OeJ-YM-srr"/>
-                <constraint firstItem="ik6-Ce-PzW" firstAttribute="top" secondItem="1tM-s7-uaU" secondAttribute="bottom" constant="-3" id="Plv-RL-5wb"/>
                 <constraint firstAttribute="trailing" secondItem="Bes-q7-bD7" secondAttribute="trailing" constant="78" id="XXc-2k-EE0"/>
-                <constraint firstItem="Bes-q7-bD7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bSw-wW-65m"/>
+                <constraint firstItem="Bes-q7-bD7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.1" id="bSw-wW-65m"/>
                 <constraint firstItem="Bes-q7-bD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="78" id="tgr-g0-BDf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

@@ -9,10 +9,10 @@
 import Foundation
 
 //Branch.io
-//let branch_key_live = ""
+//let branch_key_live = "key_live_jknYG5BuWHoLVcCT92AtTbnfwEmqcrhD"
 //let branch_app_domain_live = "u8cw.app.link"
 //
-//let branch_key_test = ""
+//let branch_key_test = "key_test_lakYO8yu4JkGNbCT9XFSMgnesDoDlslG"
 //let branch_app_domain_test = "u8cw.test-app.link"
 
 
@@ -41,14 +41,14 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 let SUB_URL_LABELS = "/labels"
 
 //Live
-//let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
-//let USERNAME = "unlabel_us_api"
-//let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
+let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
+let USERNAME = "unlabel_us_api"
+let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
 
 //Dev
-let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
-let USERNAME = "amechiegbe"
-let API_KEY =  "cf56d87b4e86a262feb6cbe852489915abd7695e"
+//let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
+//let USERNAME = "amechiegbe"
+//let API_KEY =  "cf56d87b4e86a262feb6cbe852489915abd7695e"
 
 
 //API URLs
@@ -84,3 +84,7 @@ let PRM_PRODUCTIS_ACTIVE      = "product_isActive"
 let PRM_PRODUCT_NAME          = "product_name"
 let PRM_PRODUCT_PRICE         = "product_price"
 let PRM_BRAND_WEBSITE_URL     = "brand_website_url"
+
+let PRM_PRODUCTIS_IS_UNISEX     = "product_isUnisex"
+let PRM_PRODUCTIS_IS_MALE       = "product_isMale"
+let PRM_PRODUCTIS_IS_FEMALE     = "product_isFemale"

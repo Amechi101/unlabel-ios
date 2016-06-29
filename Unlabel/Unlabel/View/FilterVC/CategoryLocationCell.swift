@@ -31,7 +31,7 @@ class CategoryLocationCell: UITableViewCell {
     var cellType = CategoryLocationCellType.Unknown
     var shouldClearCategories = false
 
-    private let arrCategories:[String] = ["All Categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
     private let arrLocations:[String] = ["Manhattan, NY","Los Angeles, CA","Brooklyn, NY","Madrid, Spain","Novi Sad, Serbia","San Deigo, CA","Minneapolis, Minnesota","New York, NY","Lower East Side, NY","Australia","London","Paris, France","Denver, Colorado","Boston, MA","Dallas, Texas","Chicago","Netherlands","Nashville, TN","San Francisco, CA","Rotterdam, The Netherlands","Canada"]
     var dictSelectedCategories = [Int:Bool]()
     private var dictSelectedLocations = [Int:Bool]()
@@ -102,7 +102,7 @@ class CategoryLocationCell: UITableViewCell {
         func isAllCellsSelected()->Bool{
             var isAllCellsSelected = true
             for (index,_) in arrCategories.enumerate(){
-                if index > 0 {                                  //Ignoring "All Categories" Cell
+                if index > 0 {                                  //Ignoring "All categories" Cell
                     if dictSelectedCategories[index] == false{
                         isAllCellsSelected = false              //If any of cell is deselected
                     }

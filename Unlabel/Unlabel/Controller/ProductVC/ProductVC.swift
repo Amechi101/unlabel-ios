@@ -272,7 +272,7 @@ extension ProductVC:PopupviewDelegate{
 //
 extension ProductVC{
     @IBAction func IBActionBack(sender: UIButton) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func IBActionFilter(sender: UIBarButtonItem) {
