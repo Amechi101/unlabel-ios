@@ -20,12 +20,7 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.13.1):
     - FBSDKCoreKit
-  - Firebase (3.2.1):
-    - Firebase/Core (= 3.2.1)
-  - Firebase/Analytics (3.2.1):
-    - FirebaseAnalytics (= 3.2.0)
-  - Firebase/Core (3.2.1):
-    - Firebase/Analytics (= 3.2.1)
+  - Firebase (2.5.1)
   - FirebaseAnalytics (3.2.0):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
@@ -58,7 +53,7 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit (~> 4.10)
   - FBSDKLoginKit (~> 4.10)
-  - Firebase
+  - Firebase (~> 2.5.1)
   - Google/Analytics
   - SDWebImage (~> 3.7)
   - SwiftyJSON
@@ -73,7 +68,7 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
+  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
   FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e

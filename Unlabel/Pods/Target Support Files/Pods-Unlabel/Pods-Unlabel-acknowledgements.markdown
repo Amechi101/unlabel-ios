@@ -149,15 +149,7 @@ Fabric: Copyright 2015 Twitter, Inc. All Rights Reserved. Use of this software i
 
 ## Firebase
 
-Copyright 2016 Google Inc.
-
-## FirebaseAnalytics
-
-Copyright 2016 Google Inc.
-
-## FirebaseInstanceID
-
-Copyright 2016 Google Inc.
+https://www.firebase.com/terms/terms-of-service.html
 
 ## FirebaseAnalytics
 

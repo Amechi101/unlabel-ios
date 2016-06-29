@@ -196,7 +196,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright 2016 Google Inc.</string>
+			<string>https://www.firebase.com/terms/terms-of-service.html</string>
 			<key>Title</key>
 			<string>Firebase</string>
 			<key>Type</key>
