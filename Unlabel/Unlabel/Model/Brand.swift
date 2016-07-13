@@ -26,11 +26,7 @@ struct Brand {
     var Womenswear:Bool = Bool()
     
     //Categories
-    var Clothing:Bool = Bool()
-    var Accessories:Bool = Bool()
-    var Jewelry:Bool = Bool()
-    var Shoes:Bool = Bool()
-    var Bags:Bool = Bool()
+    var BrandCategory:String = String()
     
     var arrProducts = [Product]()
     

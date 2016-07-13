@@ -114,25 +114,9 @@ class UnlabelAPIHelper{
                     if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
                         brand.Womenswear = womenswear
                     }
-                    
-                    if let jewelry = thisBrand[PRM_JEWELRY] as? Bool{
-                        brand.Jewelry = jewelry
-                    }
-                    
-                    if let accessories = thisBrand[PRM_ACCESSORIES] as? Bool{
-                        brand.Accessories = accessories
-                    }
-                    
-                    if let shoes = thisBrand[PRM_SHOES] as? Bool{
-                        brand.Shoes = shoes
-                    }
-                    
-                    if let bags = thisBrand[PRM_BAGS] as? Bool{
-                        brand.Bags = bags
-                    }
-                    
-                    if let clothing = thisBrand[PRM_CLOTHING] as? Bool{
-                        brand.Clothing = clothing
+
+                    if let brandCategory = thisBrand[PRM_BRAND_CATEGORY] as? String{
+                        brand.BrandCategory = brandCategory
                     }
                     
                     arrBrands.append(brand)
