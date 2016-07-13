@@ -47,6 +47,7 @@ class UnlabelLoadingView: UIView {
                     shimmeringImageObj.shimmering = true
                     shimmeringImageObj.shimmeringAnimationOpacity = 0.1
                     addSubview(shimmeringImageObj)
+                    bringSubviewToFront(shimmeringImageObj)
                 }
             }
         }
@@ -64,6 +65,7 @@ class UnlabelLoadingView: UIView {
                     shimmeringLabelObj.shimmering = true
                     shimmeringLabelObj.shimmeringAnimationOpacity = 0.1
                     addSubview(shimmeringLabelObj)
+                    bringSubviewToFront(shimmeringLabelObj)
                 }
             }
         }
