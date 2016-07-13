@@ -125,7 +125,7 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
         let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
         
-        productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT \(selectedBrand.Name.uppercaseString)", forState: .Normal)
+        productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT", forState: .Normal)
         updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
         productHeaderCell.IBimgHeaderImage.image = nil
         
