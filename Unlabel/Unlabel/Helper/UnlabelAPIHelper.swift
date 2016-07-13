@@ -78,7 +78,7 @@ class UnlabelAPIHelper{
                     if let name = thisBrand[PRM_BRAND_NAME] as? String{
                         brand.Name = name
                     }
-                    
+            
                     if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY] as? String{
                         brand.StateOrCountry = stateOrCountry
                     }
@@ -96,6 +96,7 @@ class UnlabelAPIHelper{
                     }
  
                     if let originCity = thisBrand[PRM_ORIGIN_CITY] as? String{
+                    
                         brand.OriginCity = originCity
                     }
                     

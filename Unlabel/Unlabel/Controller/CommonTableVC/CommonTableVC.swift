@@ -167,6 +167,8 @@ extension CommonTableVC{
                 feedVC?.arrFilteredBrandList = self.arrFilteredBrandList
             }else{
                 for brand in arrFilteredBrandList{
+                    print(brand)
+                    print(arrTitles[indexPath.row])
                     if (brand.Clothing && (arrTitles[indexPath.row] == "Clothing Labels")) ||
                     (brand.Accessories && (arrTitles[indexPath.row] == "Accessory Labels")) ||
                     (brand.Jewelry && (arrTitles[indexPath.row] == "Jewelry Labels")) ||

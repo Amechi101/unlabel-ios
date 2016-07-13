@@ -41,14 +41,14 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 let SUB_URL_LABELS = "/labels"
 
 //Live
-let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
-let USERNAME = "unlabel_us_api"
-let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
+//let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
+//let USERNAME = "unlabel_us_api"
+//let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
 
 //Dev
-//let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
-//let USERNAME = "amechiegbe"
-//let API_KEY =  "cf56d87b4e86a262feb6cbe852489915abd7695e"
+let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
+let USERNAME = "amechiegbe"
+let API_KEY =  "79c86ba48fc323d61a0661f0ca5437fb9245a022"
 
 
 //API URLs
@@ -68,9 +68,9 @@ let PRM_BRAND_NAME          = "brand_name"
 let PRM_JEWELRY             = "jewelry"
 let PRM_ACCESSORIES         = "accessories"
 let PRM_SHOES               = "shoes"
-let PRM_BRAND_ORIGIN_STATE_OR_COUNTRY = "brand_origin_state_or_country"
+let PRM_BRAND_ORIGIN_STATE_OR_COUNTRY = "brand_location"
 let PRM_CREATED               = "created"
-let PRM_ORIGIN_CITY           = "brand_origin_city"
+let PRM_ORIGIN_CITY           = "brand_city"
 let PRM_IS_ACTIVE             = "brand_isActive"
 let PRM_PRODUCTS              = "products"
 let PRM_BAGS                  = "bags"
