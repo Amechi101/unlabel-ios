@@ -16,12 +16,13 @@ enum CommonVCType{
 }
 
 enum LabelListCategory:Int{
-    case Multi = 0
-    case Clothing = 1
-    case Accessory = 2
-    case Jewelry = 3
-    case Shoe = 4
-    case Bag = 5
+    case All = 0
+    case Multi = 1
+    case Clothing = 2
+    case Accessory = 3
+    case Jewelry = 4
+    case Shoe = 5
+    case Bag = 6
 }
 
 enum Labels:String{
@@ -155,8 +156,10 @@ extension CommonTableVC{
             let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
             
             var sCategoryTitle = String()
-            if indexPath.row == 0{
-                sCategoryTitle = "Multi Category Labels"
+            if ( indexPath.row == 0 ) {
+                sCategoryTitle = "All Categories"
+            } else if ( indexPath.row == 1 ){
+                sCategoryTitle = "Mixed Labels"
             }else{
                 sCategoryTitle = "\(LabelListCategory.init(rawValue: indexPath.row)!) Labels"
             }
@@ -172,16 +175,19 @@ extension CommonTableVC{
             }
             
             feedVC?.mainVCType = .Filter
-            
 
-            for brand in arrFilteredBrandList{
-                if ((brand.BrandCategory == Labels.Multi.rawValue) && (arrTitles[indexPath.row] == "Multi Category Labels") ||
-                (brand.BrandCategory == Labels.Clothing.rawValue) && (arrTitles[indexPath.row] == "Clothing Labels")) ||
-                ((brand.BrandCategory == Labels.Accessories.rawValue) && (arrTitles[indexPath.row] == "Accessory Labels")) ||
-                ((brand.BrandCategory == Labels.Jewelry.rawValue) && (arrTitles[indexPath.row] == "Jewelry Labels") ) ||
-                ((brand.BrandCategory == Labels.Shoes.rawValue) && (arrTitles[indexPath.row] == "Shoe Labels")) ||
-                ((brand.BrandCategory == Labels.Bags.rawValue) && (arrTitles[indexPath.row] == "Bag Labels")){
-                    feedVC?.arrFilteredBrandList.append(brand)
+            if indexPath.row == 0{  //All categories
+                feedVC?.arrFilteredBrandList = self.arrFilteredBrandList
+            }else{
+                for brand in arrFilteredBrandList{
+                    if ((brand.BrandCategory == Labels.Multi.rawValue) && (arrTitles[indexPath.row] == "Mixed Labels") ||
+                    (brand.BrandCategory == Labels.Clothing.rawValue) && (arrTitles[indexPath.row] == "Clothing Labels")) ||
+                    ((brand.BrandCategory == Labels.Accessories.rawValue) && (arrTitles[indexPath.row] == "Accessory Labels")) ||
+                    ((brand.BrandCategory == Labels.Jewelry.rawValue) && (arrTitles[indexPath.row] == "Jewelry Labels") ) ||
+                    ((brand.BrandCategory == Labels.Shoes.rawValue) && (arrTitles[indexPath.row] == "Shoe Labels")) ||
+                    ((brand.BrandCategory == Labels.Bags.rawValue) && (arrTitles[indexPath.row] == "Bag Labels")){
+                        feedVC?.arrFilteredBrandList.append(brand)
+                    }
                 }
             }
             
@@ -225,7 +231,7 @@ extension CommonTableVC{
                     }
                 }
                 IBbtnTitle.setTitle(headerTitle, forState: .Normal)
-                return ["Multi Category Labels","Clothing Labels","Accessory Labels","Jewelry Labels","Shoe Labels","Bag Labels"]
+                return ["All Categories", "Mixed Labels","Clothing Labels","Accessory Labels","Jewelry Labels","Shoe Labels","Bag Labels"]
                 
             }else if commonVCType == .FilterByLocationThenCategory {
                 

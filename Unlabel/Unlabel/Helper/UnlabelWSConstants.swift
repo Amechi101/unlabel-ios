@@ -41,14 +41,14 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 let SUB_URL_LABELS = "/labels"
 
 //Live
-let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
-let USERNAME = "unlabel_us_api"
-let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
+//let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
+//let USERNAME = "unlabel_us_api"
+//let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
 
 //Dev
-// let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
-// let USERNAME = "amechiegbe"
-// let API_KEY =  "79c86ba48fc323d61a0661f0ca5437fb9245a022"
+let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
+let USERNAME = "amechiegbe"
+let API_KEY =  "79c86ba48fc323d61a0661f0ca5437fb9245a022"
 
 
 //API URLs
