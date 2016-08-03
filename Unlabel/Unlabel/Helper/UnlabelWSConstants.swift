@@ -41,6 +41,7 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 let SUB_URL_LABELS = "/labels"
 
 //Live
+let ONLY_BASE_URL = "https://unlabel.us"
 let BASE_URL = "https://unlabel.us/unlabel-network/unlabel-network-api/v1"
 let USERNAME = "unlabel_us_api"
 let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"

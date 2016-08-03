@@ -10,6 +10,7 @@ import UIKit
 import Branch
 import Firebase
 import SDWebImage
+import SwiftyJSON
 
 enum MainVCType:Int{
     case Feed
@@ -49,6 +50,9 @@ class FeedVC: UIViewController {
     var mainVCType:MainVCType = .Feed
     var filteredNavTitle:String?
     var filteredString:String?
+    
+    var nextPageURL:String?
+    var isLoading = false
     
     var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
     
@@ -780,16 +784,29 @@ extension FeedVC{
      WS call get all brands
      */
     func wsCallGetLabels(){
+        wsCallGetLabelsResetOffset(true)
+    }
+    
+    func wsCallGetLabelsResetOffset(reset:Bool) {
+//        if reset {
+//            nextPageURL = nil
+//            arrBrandList = []
+//        }
         //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
+        if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
+            isLoading = true
             UnlabelLoadingView.sharedInstance.start(view)
-            UnlabelAPIHelper.sharedInstance.getBrands(nil, success: { (arrBrands:[Brand]) in
+            UnlabelAPIHelper.sharedInstance.getBrands(nil, next: nextPageURL, success: { (arrBrands:[Brand], meta: JSON) in
+                self.isLoading = false
+                self.nextPageURL = meta["next"].stringValue
+                
                 UnlabelLoadingView.sharedInstance.stop(self.view)
-                self.arrBrandList = arrBrands
+                self.arrBrandList.appendContentsOf(arrBrands)
                 self.updateFilterArray(forFilterType: self.headerView!.selectedTab,brandsObj: self.arrBrandList)
 //                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
+                    self.isLoading = false
                     UnlabelLoadingView.sharedInstance.stop(self.view)
                     debugPrint(error)
                     self.refreshControl.endRefreshing()

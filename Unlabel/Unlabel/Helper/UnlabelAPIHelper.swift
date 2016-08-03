@@ -15,11 +15,14 @@ class UnlabelAPIHelper{
     static let sharedInstance = UnlabelAPIHelper()
     
     //If need single brand then pass brand ID else will return all brands
-    func getBrands(brandId:String?,success:([Brand])->(),failed:(error:NSError)->()){
+    func getBrands(brandId:String?, next: String?, success:([Brand], meta:JSON)->(),failed:(error:NSError)->()){
         let requestURL:String?
         if let brandIdObj = brandId {
             requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
-        }else{
+        }else if let next = next {
+            requestURL = "\(ONLY_BASE_URL)\(next)".encodedURL()
+        }
+        else {
             requestURL = GET_LABELS_URL.encodedURL()
         }
         
@@ -31,9 +34,10 @@ class UnlabelAPIHelper{
                     
                 case .Success(let data):
                     let json = JSON(data)
+                    let meta = json["meta"]
                     debugPrint(json)
                     if let arrBrands = self.getBrandModels(fromJSON: json){
-                        success(arrBrands)
+                        success(arrBrands, meta: meta)
                     }else{
                         failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
                     }
