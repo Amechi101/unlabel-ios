@@ -153,7 +153,7 @@ https://www.firebase.com/terms/terms-of-service.html
 
 ## FirebaseAnalytics
 
-Copyright 2016 Google
+Copyright 2016 Google Inc.
 
 ## FirebaseInstanceID
 

@@ -100,7 +100,12 @@ NSInteger const ABOUT_30_DAYS_TIME_IN_SECONDS = 60 * 60 * 24 * 30;
     }
 
     if (branchKey) {
-        [urlString appendFormat:@"&branch_key=%@", branchKey];
+        if ([branchKey hasPrefix:@"key_"]) {
+            [urlString appendFormat:@"&branch_key=%@", branchKey];
+        }
+        else {
+            [urlString appendFormat:@"&app_id=%@", branchKey];
+        }
     }
 
     [urlString appendFormat:@"&sdk=ios%@", SDK_VERSION];

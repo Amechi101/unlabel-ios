@@ -180,7 +180,7 @@ extension FeedVC:UICollectionViewDataSource{
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        print("\(indexPath)")
+//        print("\(indexPath)")
         if indexPath.item == arrFilteredBrandList.count - 1 {
             wsCallGetLabelsResetOffset(false)
         }

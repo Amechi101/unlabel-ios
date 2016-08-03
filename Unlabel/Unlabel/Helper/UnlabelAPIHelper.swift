@@ -26,7 +26,7 @@ class UnlabelAPIHelper{
             requestURL = GET_LABELS_URL.encodedURL()
         }
         
-        print(requestURL)
+//        print(requestURL)
         
         if let requestURLObj = requestURL{
             Alamofire.request(.GET, requestURLObj).responseJSON { response in
@@ -35,7 +35,7 @@ class UnlabelAPIHelper{
                 case .Success(let data):
                     let json = JSON(data)
                     let meta = json["meta"]
-                    debugPrint(json)
+//                    debugPrint(json)
                     if let arrBrands = self.getBrandModels(fromJSON: json){
                         success(arrBrands, meta: meta)
                     }else{
