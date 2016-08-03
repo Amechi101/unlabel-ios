@@ -179,6 +179,11 @@ extension FeedVC:UICollectionViewDataSource{
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        print("\(indexPath)")
+        if indexPath.item == arrFilteredBrandList.count - 1 {
+            wsCallGetLabelsResetOffset(false)
+        }
+        
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
         feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercaseString
         feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].OriginCity), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
@@ -788,14 +793,19 @@ extension FeedVC{
     }
     
     func wsCallGetLabelsResetOffset(reset:Bool) {
-//        if reset {
-//            nextPageURL = nil
-//            arrBrandList = []
-//        }
+        if reset {
+            nextPageURL = nil
+            arrBrandList = []
+        }
+        else if let next = self.nextPageURL where next.characters.count == 0 {
+            return
+        }
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
             isLoading = true
-            UnlabelLoadingView.sharedInstance.start(view)
+            if self.nextPageURL == nil {
+                UnlabelLoadingView.sharedInstance.start(view)
+            }
             UnlabelAPIHelper.sharedInstance.getBrands(nil, next: nextPageURL, success: { (arrBrands:[Brand], meta: JSON) in
                 self.isLoading = false
                 self.nextPageURL = meta["next"].stringValue

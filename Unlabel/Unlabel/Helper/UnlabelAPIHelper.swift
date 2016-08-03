@@ -19,7 +19,7 @@ class UnlabelAPIHelper{
         let requestURL:String?
         if let brandIdObj = brandId {
             requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
-        }else if let next = next {
+        }else if let next = next where next.characters.count > 0 {
             requestURL = "\(ONLY_BASE_URL)\(next)".encodedURL()
         }
         else {
