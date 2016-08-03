@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -477,13 +477,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ukq-qA-lFk"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
+                                <rect key="frame" x="177" y="579" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="4mG-7B-1qp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OV6-0b-LQZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lg3-C2-4qs" secondAttribute="bottom" id="Zqh-oX-nYG"/>
                             <constraint firstItem="lg3-C2-4qs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="pJg-wN-twB"/>
                             <constraint firstAttribute="trailing" secondItem="lg3-C2-4qs" secondAttribute="trailing" id="rZd-Ih-OaB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4mG-7B-1qp" secondAttribute="bottom" constant="4" id="sdf-7o-B0A"/>
                             <constraint firstItem="lg3-C2-4qs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xIr-2h-eno"/>
                         </constraints>
                         <connections>
@@ -544,6 +549,7 @@
                         <outlet property="IBbtnLeftBarButton" destination="E1C-bh-bi3" id="47R-35-vV8"/>
                         <outlet property="IBbtnUnlabel" destination="sdq-zW-PIY" id="6or-SW-hle"/>
                         <outlet property="IBcollectionViewFeed" destination="lg3-C2-4qs" id="TBf-Ed-Zpo"/>
+                        <outlet property="bottonActivityIndicator" destination="4mG-7B-1qp" id="4zN-km-G50"/>
                         <segue destination="IL4-KD-zA1" kind="show" identifier="ProductVC" id="jWi-8m-sPs"/>
                         <segue destination="gQX-3T-UpU" kind="show" identifier="SettingsVC" id="IGv-je-epC"/>
                     </connections>
@@ -1856,14 +1862,14 @@ NOT RANDOM SH*T</string>
                                             <fragment content="By joining you agree to our ">
                                                 <attributes>
                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="Terms">
                                                 <attributes>
                                                     <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     <integer key="NSUnderline" value="1"/>
                                                 </attributes>
@@ -1871,21 +1877,21 @@ NOT RANDOM SH*T</string>
                                             <fragment content=" &amp;">
                                                 <attributes>
                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" ">
                                                 <attributes>
                                                     <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="Privacy Policy">
                                                 <attributes>
                                                     <color key="NSColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     <integer key="NSUnderline" value="1"/>
                                                 </attributes>
@@ -2288,52 +2294,38 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                             <fragment content="By joining you agree to our">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
-                                                                    <font key="NSOriginalFont" size="12" name="Neutraface2Text-Book"/>
+                                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
                                                             <fragment content=" ">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
+                                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
                                                             <fragment content="Legal Stuff">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
-                                                                    <font key="NSOriginalFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                                    <font key="NSOriginalFont" metaFont="cellTitle"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     <integer key="NSUnderline" value="1"/>
                                                                 </attributes>
                                                             </fragment>
-                                                            <fragment content=" ">
+                                                            <fragment content=" &amp; ">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="&amp;">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Book"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
                                                             <fragment content="Privacy Policy">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="12" name="Neutraface2Text-Demi"/>
+                                                                    <font key="NSFont" metaFont="cellTitle"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     <integer key="NSUnderline" value="1"/>
                                                                 </attributes>

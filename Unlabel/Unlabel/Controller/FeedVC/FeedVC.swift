@@ -34,6 +34,7 @@ class FeedVC: UIViewController {
     @IBOutlet weak var IBbtnUnlabel: UIButton!
     @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
     
+    @IBOutlet weak var bottonActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var IBbtnLeftBarButton: UIButton!
     @IBOutlet weak var IBbtnFilter: UIButton!
     
@@ -806,11 +807,15 @@ extension FeedVC{
             if self.nextPageURL == nil {
                 UnlabelLoadingView.sharedInstance.start(view)
             }
+            else {
+                self.bottonActivityIndicator.startAnimating()
+            }
             UnlabelAPIHelper.sharedInstance.getBrands(nil, next: nextPageURL, success: { (arrBrands:[Brand], meta: JSON) in
                 self.isLoading = false
                 self.nextPageURL = meta["next"].stringValue
                 
                 UnlabelLoadingView.sharedInstance.stop(self.view)
+                self.bottonActivityIndicator.stopAnimating()
                 self.arrBrandList.appendContentsOf(arrBrands)
                 self.updateFilterArray(forFilterType: self.headerView!.selectedTab,brandsObj: self.arrBrandList)
 //                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
@@ -818,6 +823,7 @@ extension FeedVC{
                 }, failed: { (error) in
                     self.isLoading = false
                     UnlabelLoadingView.sharedInstance.stop(self.view)
+                    self.bottonActivityIndicator.stopAnimating()
                     debugPrint(error)
                     self.refreshControl.endRefreshing()
                     UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
