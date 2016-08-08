@@ -11,9 +11,9 @@ import UIKit
 //
 //MARK:- FilterVC Protocols
 //
-@objc protocol FilterVCDelegate{
-    optional func willCloseChildVC(childVCName:String)
-    optional func didClickApply(forFilterModel filterModel:Brand)
+protocol FilterVCDelegate{
+    func willCloseChildVC(childVCName:String)
+    func didClickApply(forFilterModel filterModel:Brand)
 }
 
 
@@ -22,8 +22,7 @@ import UIKit
 //
 enum PickerType : Int {
     case Unknown = 0
-    case Categories = 1
-    case Styles = 2
+    case Location = 1
 }
 
 class FilterVC: UIViewController {
@@ -31,15 +30,17 @@ class FilterVC: UIViewController {
     //
     //MARK:- IBOutlets, constants, vars
     //
+    
+    
+    @IBOutlet weak var IBlblFilterFor: UILabel!
     @IBOutlet weak var IBtblFilter: UITableView!
     @IBOutlet weak var IBpickerView: UIPickerView!
     
-    @IBOutlet weak var IBbtnClear: UIButton!
     @IBOutlet weak var IBconstraintPickerMainTop: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
-    private var sAllCategories = "All categories"
-    private let arrFilterTitles:[String] = ["SEX","CATEGORY","LOCATION"]
+    private let sAllCategories = "All categories"
+    private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
     var filterModel = Brand()
     var shouldClearCategories = false
     
@@ -67,9 +68,7 @@ class FilterVC: UIViewController {
 //
 extension FilterVC:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        delegate?.didSelectRowAtIndexPath(indexPath)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        close()
+
     }
 }
 
@@ -78,12 +77,19 @@ extension FilterVC:UITableViewDelegate{
 //
 extension FilterVC:UITableViewDataSource{
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 3 {
+            return 320
+        }else{
+            return UITableViewAutomaticDimension
+        }
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+        if indexPath.row == 0 || indexPath.row == 2 {
             return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
         }else if indexPath.row == 1{
-            return genderCell()
+            return categoryStyleCell(indexPath)
         }else if indexPath.row == 3{
             return categoryLocationCell(indexPath)
         }else{
@@ -106,126 +112,56 @@ extension FilterVC:UITableViewDataSource{
         return cellWithTitle
     }
     
-    func genderCell()->GenderCell{
-        let genderCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_GenderCell) as! GenderCell
-        
-//        if filterModel.isMale{
-//            enableButton(genderCell.IBbtnMale)
-//        }else{
-//            disableButton(genderCell.IBbtnMale)
-//        }
-//        
-//        if filterModel.isFemale{
-//            enableButton(genderCell.IBbtnFemale)
-//        }else{
-//            disableButton(genderCell.IBbtnFemale)
-//        }
-        
-        return genderCell
+    func categoryStyleCell(indexPath:NSIndexPath)->CategoryStyleCell{
+        let categoryStyleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryStyleCell) as? CategoryStyleCell
+        categoryStyleCell?.delegate = self
+        categoryStyleCell?.IBbtnCategoryStyle.setTitle(sAllCategories, forState: .Normal)
+        return categoryStyleCell!
     }
     
     func categoryLocationCell(indexPath:NSIndexPath)->CategoryLocationCell{
         let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
         categoryLocationCell.delegate = self
-        
-        if indexPath.row == 3{
-            if shouldClearCategories{
-                for (index,_) in categoryLocationCell.dictSelectedCategories{
-                    categoryLocationCell.dictSelectedCategories.updateValue(false, forKey: index)
-                    categoryLocationCell.IBtblLocation.reloadData()
-                }
-                shouldClearCategories = false
-            }
-            categoryLocationCell.cellType = CategoryLocationCellType.Category
-            categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
-            categoryLocationCell.IBconstraintCategoryTableHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
-        }else{
-            categoryLocationCell.cellType = CategoryLocationCellType.Unknown
-            categoryLocationCell.IBtblLocation.tag = TableViewType.Unknown.rawValue
-        }
-        
+//        categoryLocationCell.IBconstraintCollectionViewHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
+//        if indexPath.row == 3{
+//            if shouldClearCategories{
+//                for (index,_) in categoryLocationCell.dictSelectedCategories{
+//                    categoryLocationCell.dictSelectedCategories.updateValue(false, forKey: index)
+//                    categoryLocationCell.IBtblLocation.reloadData()
+//                }
+//                shouldClearCategories = false
+//            }
+//            categoryLocationCell.cellType = CategoryLocationCellType.Category
+//            categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
+//            categoryLocationCell.IBconstraintCategoryTableHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
+//        }else{
+//            categoryLocationCell.cellType = CategoryLocationCellType.Unknown
+//            categoryLocationCell.IBtblLocation.tag = TableViewType.Unknown.rawValue
+//        }
+//        
         return categoryLocationCell
     }
     
 }
 
+
 //
-//MARK:- Gender Cell
+//MARK:- CategoryStyleCellDelegate
 //
-extension FilterVC{
-    
-    //
-    //MARK:- Gender cell IBAction Methods
-    //
-    //Tag 1 for Male, 2 for Female
-    @IBAction func IBActionGenderClicked(sender: UIButton) {
-        handleGenderSelection(sender)
-    }
-    
-    //
-    //MARK:- Gender cell Custom Methods
-    //
-    func handleGenderSelection(sender:UIButton){
-        //Male Clicked
-        if sender.tag == 1{
-            filterModel.isMale = !filterModel.isMale
-            
-            //Female Clicked
-        }else{
-            filterModel.isFemale = !filterModel.isFemale
-        }
+extension FilterVC:CategoryStyleCellDelegate{
+    func didClickStyleCell(forTag:Int){
         
-        IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
-    }
-    
-    /**
-     Enable button
-     */
-    func enableButton(makeEnabled:UIButton){
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            makeEnabled.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
-            makeEnabled.layer.borderColor = MEDIUM_GRAY_TEXT_COLOR.CGColor
-        }
-    }
-    
-    /**
-     Disable button
-     */
-    func disableButton(makeDisabled:UIButton){
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            makeDisabled.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
-            makeDisabled.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
-        }
     }
 }
 
+
 //
-//MARK:- Category Cell
+//MARK:- CategoryDelegate
 //
 extension FilterVC:CategoryDelegate{
-    func didSelectRow(withSelectedCategories dictCategories: [Int : Bool]) {
-        
-        if let clothing:Bool = dictCategories[1]{
-            filterModel.Clothing = clothing
-        }
-        
-        if let accessories:Bool = dictCategories[2]{
-            filterModel.Accessories = accessories
-        }
-        
-        if let jewelry:Bool = dictCategories[3]{
-            filterModel.Jewelry = jewelry
-        }
-        
-        if let shoes:Bool = dictCategories[4]{
-            filterModel.Shoes = shoes
-        }
-        
-        if let bags:Bool = dictCategories[5]{
-            filterModel.Bags = bags
-        }
-        
-    }
+    func didSelectRow(withSelectedCategories dictCategories:[Int:Bool]){
+    
+    } //arrCategories is key index
 }
 
 
@@ -262,20 +198,9 @@ extension FilterVC{
     
     @IBAction func IBActionApply(sender: UIButton) {
         close()
-        delegate?.didClickApply!(forFilterModel: filterModel)
+        delegate?.didClickApply(forFilterModel: filterModel)
     }
     
-    @IBAction func IBActionClear(sender: UIButton) {
-//        filterModel.Menswear = false
-//        filterModel.Womenswear = false
-        filterModel.Clothing = false
-        filterModel.Accessories = false
-        filterModel.Jewelry = false
-        filterModel.Shoes = false
-        filterModel.Bags = false
-        shouldClearCategories = true
-        IBtblFilter.reloadData()
-    }
     
     //
     //MARK:- CategoryStyleCell IBAction Methods
@@ -311,12 +236,6 @@ extension FilterVC{
         registerCell(withID: REUSABLE_ID_GenderCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
         registerCell(withID: REUSABLE_ID_CategoryLocationCell)
-        
-        IBbtnClear.layer.borderColor = DARK_GRAY_COLOR.CGColor
-        IBtblFilter.estimatedRowHeight = SCREEN_HEIGHT - 218 //218 for StatusBar+Footer+XButton height
-        IBtblFilter.rowHeight = UITableViewAutomaticDimension
-        IBtblFilter.tableFooterView = UIView()
-        IBtblFilter.reloadData()
     }
     
     /**
@@ -337,7 +256,7 @@ extension FilterVC{
             self.willMoveToParentViewController(nil)
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
-            self.delegate?.willCloseChildVC!(S_ID_FILTER_VC)
+            self.delegate?.willCloseChildVC(S_ID_FILTER_VC)
         }
     }
     

@@ -97,7 +97,9 @@ let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 let REUSABLE_ID_FeedVCFooterCell   = "FeedVCFooterCell"
 let REUSABLE_ID_FeedVCHeaderCell   = "FeedVCHeaderCell"
-let REUSABLE_ID_CommonTableVCCell   = "CommonTableVCCell"
+let REUSABLE_ID_CommonTableVCCell   = "TitleBoxCell"
+let REUSABLE_ID_TitleBoxCell        = "TitleBoxCell"
+let REUSABLE_ID_FilterTitleCell     = "FilterTitleCell"
 
 
 //

@@ -13,29 +13,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="320"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hmT-c9-nAo">
-                        <rect key="frame" x="0.0" y="0.0" width="358" height="320"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rTt-Dm-Zuu">
+                        <rect key="frame" x="30" y="0.0" width="298" height="320"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="320" id="Cot-gW-rd8"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="320" id="iyC-Zk-Vkk"/>
                         </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="8" id="LsK-Pt-9zJ">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
                         <connections>
-                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="tkf-Be-sso"/>
-                            <outlet property="delegate" destination="KGk-i7-Jjw" id="wnt-b1-9oR"/>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="TLj-JF-nvp"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="vZY-Hg-lzo"/>
                         </connections>
-                    </tableView>
+                    </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hmT-c9-nAo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1Vx-HA-5yf"/>
-                    <constraint firstAttribute="trailing" secondItem="hmT-c9-nAo" secondAttribute="trailing" id="9Im-Ij-YFy"/>
-                    <constraint firstItem="hmT-c9-nAo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tlT-mX-Q1V"/>
-                    <constraint firstAttribute="bottom" secondItem="hmT-c9-nAo" secondAttribute="bottom" id="zlL-o0-YRk"/>
+                    <constraint firstAttribute="bottom" secondItem="rTt-Dm-Zuu" secondAttribute="bottom" id="0sq-XF-J2v"/>
+                    <constraint firstItem="rTt-Dm-Zuu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dOO-b1-Uvf"/>
+                    <constraint firstItem="rTt-Dm-Zuu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="e37-MF-frS"/>
+                    <constraint firstAttribute="trailing" secondItem="rTt-Dm-Zuu" secondAttribute="trailing" constant="30" id="mvU-XO-qeh"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="2000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="IBconstraintCategoryTableHeight" destination="Cot-gW-rd8" id="efa-5h-Iie"/>
-                <outlet property="IBtblLocation" destination="hmT-c9-nAo" id="vfM-mq-wtq"/>
+                <outlet property="IBcollectionView" destination="rTt-Dm-Zuu" id="hnp-Ih-d0J"/>
+                <outlet property="IBconstraintCollectionViewHeight" destination="iyC-Zk-Vkk" id="eIj-Aq-TiO"/>
             </connections>
             <point key="canvasLocation" x="248" y="300.5"/>
         </tableViewCell>

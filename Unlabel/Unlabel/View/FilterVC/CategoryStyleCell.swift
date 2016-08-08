@@ -8,12 +8,21 @@
 
 import UIKit
 
+protocol CategoryStyleCellDelegate {
+    func didClickStyleCell(forTag:Int)
+}
 class CategoryStyleCell: UITableViewCell {
 
     @IBOutlet weak var IBbtnCategoryStyle: UIButton!
+    var delegate: CategoryStyleCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    @IBAction func IBActionClick(sender: AnyObject) {
+        delegate?.didClickStyleCell(sender.tag)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
