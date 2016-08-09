@@ -586,6 +586,7 @@ extension FeedVC{
             filterChildVC!.delegate = self
         }
         
+        filterChildVC?.selectedFilterType = (headerView?.selectedTab)!
         filterChildVC!.view.frame.size = self.view.frame.size
         navigationController!.addChildViewController(filterChildVC!)
         filterChildVC!.didMoveToParentViewController(self)
@@ -600,6 +601,8 @@ extension FeedVC{
             self.filterChildVC!.view.frame.origin.x = 0
             self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
         }
+        
+        filterChildVC?.setupBeforeAppear()
     }
     
     /**

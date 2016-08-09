@@ -188,4 +188,10 @@ class UnlabelAPIHelper{
         return arrProducts
     }
     
+    
+    //Filter
+    func getFilterCategory(){
+    
+    }
+    
 }

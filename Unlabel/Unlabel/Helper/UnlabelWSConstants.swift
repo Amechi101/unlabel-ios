@@ -38,8 +38,6 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 
 //API
 
-let SUB_URL_LABELS = "/labels"
-
 //Live
 let ONLY_BASE_URL = "https://unlabel.us"
 let BASE_URL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
@@ -47,10 +45,13 @@ let USERNAME = "unlabel_us_api"
 let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
 
 //Dev
-// let BASE_URL = "http://unlabel-dev.herokuapp.com/unlabel-network/unlabel-network-api/v1"
-// let USERNAME = "amechiegbe"
-// let API_KEY =  "79c86ba48fc323d61a0661f0ca5437fb9245a022"
+//let ONLY_BASE_URL = "http://unlabel-dev.herokuapp.com"
+//let BASE_URL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/Devlabels/"
+//let USERNAME = "amechiegbe"
+//let API_KEY =  "79c86ba48fc323d61a0661f0ca5437fb9245a022"
 
+
+let SUB_URL_LABELS = "/labels"
 
 //API URLs
 let URL_PREFIX = "\(BASE_URL)\(SUB_URL_LABELS)/"
@@ -85,3 +86,8 @@ let PRM_BRAND_WEBSITE_URL     = "brand_website_url"
 let PRM_PRODUCTIS_IS_UNISEX     = "product_isUnisex"
 let PRM_PRODUCTIS_IS_MALE       = "product_isMale"
 let PRM_PRODUCTIS_IS_FEMALE     = "product_isFemale"
+
+let PRM_menswear                = "menswear"
+let PRM_womenswear              = "womenswear"
+let PRM_brand_city__location__state_or_country     = "brand_city__location__state_or_country"
+

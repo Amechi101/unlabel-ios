@@ -34,23 +34,15 @@ class CategoryLocationCell: UITableViewCell {
 
     private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
     private let arrLocations:[String] = ["fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff"]
-    private var arrSelectedIndex:[NSIndexPath] = []
     
-    var dictSelectedCategories = [Int:Bool]()
-    private var dictSelectedLocations = [Int:Bool]()
+    private var selectedLocationIndex:NSIndexPath?
+    
     var delegate:CategoryDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     
         IBcollectionView.registerNib(UINib(nibName: REUSABLE_ID_TitleBoxCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_TitleBoxCell)
-        for (index,_) in arrCategories.enumerate(){
-            dictSelectedCategories[index] = false
-        }
-        
-        for (index,_) in arrLocations.enumerate(){
-            dictSelectedLocations[index] = false
-        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -75,7 +67,7 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
         let titleBoxCell = IBcollectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_TitleBoxCell, forIndexPath: indexPath) as? TitleBoxCell
         titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row]
         
-        if isIndexSelected(indexPath){
+        if indexPath == selectedLocationIndex{
             titleBoxCell?.IBlblBoxTitle.textColor = MEDIUM_GRAY_TEXT_COLOR
             titleBoxCell?.layer.borderColor = DARK_GRAY_COLOR.colorWithAlphaComponent(0.8).CGColor
         }else{
@@ -91,10 +83,10 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if isIndexSelected(indexPath){
-            arrSelectedIndex.removeObject(indexPath)
+        if indexPath == selectedLocationIndex{
+            selectedLocationIndex = nil
         }else{
-            arrSelectedIndex.append(indexPath)
+            selectedLocationIndex = indexPath
         }
         
         reloadData()
@@ -109,14 +101,5 @@ extension CategoryLocationCell{
         IBcollectionView.performBatchUpdates({
             self.IBcollectionView.reloadSections(NSIndexSet(index: 0))
             }, completion: nil)
-    }
-    
-    func isIndexSelected(indexPath:NSIndexPath)->Bool{
-        for index in arrSelectedIndex{
-            if indexPath == index{
-                return true
-            }
-        }
-        return false
     }
 }

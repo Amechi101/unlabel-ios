@@ -19,6 +19,8 @@ class CategoryStyleCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
     }
     
     @IBAction func IBActionClick(sender: AnyObject) {

@@ -20,10 +20,6 @@ protocol FilterVCDelegate{
 //
 //MARK:- FilterVC Enums
 //
-enum PickerType : Int {
-    case Unknown = 0
-    case Location = 1
-}
 
 class FilterVC: UIViewController {
     
@@ -36,16 +32,18 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBtblFilter: UITableView!
     @IBOutlet weak var IBpickerView: UIPickerView!
     
-    @IBOutlet weak var IBconstraintPickerMainTop: NSLayoutConstraint!
+    @IBOutlet weak var IBconstraintPickerHeight: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
-    private let sAllCategories = "    All categories"
+    private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    private var selectedCategoryIndexRow:Int = 0
+    
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
     var filterModel = Brand()
     var shouldClearCategories = false
     
     var delegate:FilterVCDelegate?
-    var selectedPickerType:PickerType = .Unknown
+    var selectedFilterType:FilterType = .Unknown
     
     //
     //MARK:- VC Lifecycle
@@ -54,6 +52,10 @@ class FilterVC: UIViewController {
         super.viewDidLoad()
         setupUIOnLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,6 +74,17 @@ extension FilterVC:UITableViewDelegate{
     }
 }
 
+
+//
+//MARK:- FilterTitleCellDelegate Methods
+//
+extension FilterVC:FilterTitleCellDelegate{
+    func didChangeTab(index: Int) {
+        reloadData()
+    }
+}
+
+
 //
 //MARK:- UITableViewDataSource Methods
 //
@@ -88,10 +101,12 @@ extension FilterVC:UITableViewDataSource{
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        if indexPath.row == 0 || indexPath.row == 2 {
+        if indexPath.row == 0 {
             return cellWithTitle(title: arrFilterTitles[indexPath.row/2])
         }else if indexPath.row == 1{
             return categoryStyleCell(indexPath)
+        }else if indexPath.row == 2 {
+            return filterTitleCell(indexPath)
         }else if indexPath.row == 3{
             return categoryLocationCell(indexPath)
         }else{
@@ -114,10 +129,40 @@ extension FilterVC:UITableViewDataSource{
         return cellWithTitle
     }
     
+    func filterTitleCell(indexPath:NSIndexPath)->FilterTitleCell{
+        let filterTitleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_FilterTitleCell) as? FilterTitleCell
+        filterTitleCell?.delegate = self
+        
+        var USATextColor:UIColor?
+        var InternationalTextColor:UIColor?
+        
+        if filterTitleCell?.selectedTab == 0{
+            USATextColor = MEDIUM_GRAY_TEXT_COLOR
+            InternationalTextColor = LIGHT_GRAY_TEXT_COLOR
+        }else{
+            USATextColor = LIGHT_GRAY_TEXT_COLOR
+            InternationalTextColor = MEDIUM_GRAY_TEXT_COLOR
+        }
+        
+        filterTitleCell?.IBbtnUSA.setTitleColor(USATextColor, forState: .Normal)
+        filterTitleCell?.IBBtnInternational.setTitleColor(InternationalTextColor, forState: .Normal)
+        
+        return filterTitleCell!
+    }
+    
     func categoryStyleCell(indexPath:NSIndexPath)->CategoryStyleCell{
         let categoryStyleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryStyleCell) as? CategoryStyleCell
         categoryStyleCell?.delegate = self
-        categoryStyleCell?.IBbtnCategoryStyle.setTitle(sAllCategories, forState: .Normal)
+        categoryStyleCell?.IBbtnCategoryStyle.setTitle("    \(arrCategories[selectedCategoryIndexRow])", forState: .Normal)
+        
+        if IBconstraintPickerMainBottom.constant != 0{
+            categoryStyleCell?.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
+            categoryStyleCell?.IBbtnCategoryStyle.setTitleColor(LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+        }else{
+            categoryStyleCell?.IBbtnCategoryStyle.layer.borderColor = DARK_GRAY_COLOR.colorWithAlphaComponent(0.8).CGColor
+            categoryStyleCell?.IBbtnCategoryStyle.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+        }
+        
         return categoryStyleCell!
     }
     
@@ -166,6 +211,23 @@ extension FilterVC:CategoryDelegate{
     } //arrCategories is key index
 }
 
+//
+//MARK:- UIPickerViewDelegate,UIPickerViewDataSource
+//
+extension FilterVC:UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrCategories.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arrCategories[row]
+    }
+}
+
 
 //
 //MARK:- FilterVC IBAction Methods
@@ -181,24 +243,16 @@ extension FilterVC{
     }
     
     @IBAction func IBActionPickerSelect(sender: UIButton) {
-        //        if selectedPickerType == .Categories{
-        //            sAllCategories = arrCategories[IBpickerView.selectedRowInComponent(0)]
-        //            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 3, inSection: 0)], withRowAnimation: .Fade)
-        //        }else if selectedPickerType == .Styles{
-        //            sAllStyles = arrStyle[IBpickerView.selectedRowInComponent(0)]
-        //            self.IBtblFilter.reloadRowsAtIndexPaths([NSIndexPath(forRow: 5, inSection: 0)], withRowAnimation: .Fade)
-        //        }else{
-        //
-        //        }
-        //        self.IBtblFilter.reloadData()
-        //        hidePicker()
+        selectedCategoryIndexRow = IBpickerView.selectedRowInComponent(0)
+        reloadData()
+        hidePicker()
     }
     
     @IBAction func IBActionSwipeClosePicker(sender: UISwipeGestureRecognizer) {
         hidePicker()
     }
     
-    @IBAction func IBActionApply(sender: UIButton) {
+    @IBAction func IBActionShowLabels(sender: UIButton) {
         close()
         delegate?.didClickApply(forFilterModel: filterModel)
     }
@@ -221,7 +275,7 @@ extension FilterVC{
         //            selectedPickerType = .Styles
         //            arrPickerTitle = arrStyle
         //        }
-        //        showPicker()
+        showPicker()
     }
 }
 
@@ -236,8 +290,20 @@ extension FilterVC{
     private func setupUIOnLoad(){
         hidePicker()
         registerCell(withID: REUSABLE_ID_GenderCell)
+        registerCell(withID: REUSABLE_ID_FilterTitleCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
         registerCell(withID: REUSABLE_ID_CategoryLocationCell)
+    }
+    
+    /**
+     Setup UI on before appear.
+     */
+    func setupBeforeAppear(){
+        if selectedFilterType == .Men{
+            IBlblFilterFor.text = "FILTER MEN"
+        }else{
+            IBlblFilterFor.text = "FILTER WOMEN"
+        }
     }
     
     /**
@@ -267,22 +333,29 @@ extension FilterVC{
      */
     private func showPicker(){
         IBpickerView.reloadAllComponents()
-        IBconstraintPickerMainTop.constant = 0
         IBconstraintPickerMainBottom.constant = 0
         UIView.animateWithDuration(0.3) { () -> Void in
             self.view.layoutSubviews()
         }
+        
+        reloadData()
     }
     
     /**
      Hides picker view with animation
      */
     private func hidePicker(){
-        //        IBconstraintPickerMainTop.constant = SCREEN_HEIGHT
-        //        IBconstraintPickerMainBottom.constant = -SCREEN_HEIGHT
-        //        UIView.animateWithDuration(0.3) { () -> Void in
-        //            self.view.layoutSubviews()
-        //        }
+        IBconstraintPickerMainBottom.constant = -IBconstraintPickerHeight.constant
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.layoutSubviews()
+        }
         
+        reloadData()
+    }
+    
+    private func reloadData(){
+        UIView.transitionWithView(IBtblFilter, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            self.IBtblFilter.reloadData()
+            }, completion: nil)
     }
 }
