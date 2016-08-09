@@ -213,7 +213,7 @@
         <!--View Controller-->
         <scene sceneID="efq-ch-UCu">
             <objects>
-                <viewController storyboardIdentifier="FilterVC" id="Fug-ik-USM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterVCOld" id="Fug-ik-USM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UuE-aw-9HS"/>
                         <viewControllerLayoutGuide type="bottom" id="tVf-As-ZcV"/>
@@ -482,25 +482,13 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
                                 <rect key="frame" x="177" y="579" width="20" height="20"/>
                             </activityIndicatorView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxd-5n-a3u">
-                                <rect key="frame" x="-5" y="0.0" width="380" height="603"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="380" id="I2H-GC-ESk"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="nWD-28-jS0" kind="embed" id="K3J-IM-Uzw"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="4mG-7B-1qp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OV6-0b-LQZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lg3-C2-4qs" secondAttribute="bottom" id="Zqh-oX-nYG"/>
-                            <constraint firstAttribute="trailing" secondItem="dxd-5n-a3u" secondAttribute="trailing" id="j6W-Wx-iej"/>
-                            <constraint firstItem="dxd-5n-a3u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nSd-Ln-Bzw"/>
                             <constraint firstItem="lg3-C2-4qs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="pJg-wN-twB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dxd-5n-a3u" secondAttribute="bottom" id="pQX-QA-Ohf"/>
                             <constraint firstAttribute="trailing" secondItem="lg3-C2-4qs" secondAttribute="trailing" id="rZd-Ih-OaB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4mG-7B-1qp" secondAttribute="bottom" constant="4" id="sdf-7o-B0A"/>
                             <constraint firstItem="lg3-C2-4qs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xIr-2h-eno"/>
@@ -550,9 +538,12 @@
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eZH-Io-YD4" kind="show" identifier="FilterLabels" id="XK9-gi-QLg"/>
+                                    <action selector="IBActionFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vMF-Sr-J6B"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="IBActionFilter:" destination="BYZ-38-t0r" id="IJT-os-9S4"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -582,7 +573,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CommonTableVC" id="eZH-Io-YD4" customClass="CommonTableVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="qUS-ZL-8bS">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2496,26 +2487,17 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <!--FilterVC-->
         <scene sceneID="aLY-uj-DIK">
             <objects>
-                <viewController id="nWD-28-jS0" customClass="FilterVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterVC" id="nWD-28-jS0" customClass="FilterVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dvc-ng-XMR"/>
+                        <viewControllerLayoutGuide type="bottom" id="cox-iJ-4zS"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Igs-Q7-zeg">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-35-7tM">
-                                <rect key="frame" x="306" y="0.0" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="2Zd-uF-OlO"/>
-                                    <constraint firstAttribute="width" constant="60" id="ngm-Vf-piR"/>
-                                </constraints>
-                                <state key="normal" image="X">
-                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="IBActionClose:" destination="nWD-28-jS0" eventType="touchUpInside" id="gvT-iu-jQ0"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="30" y="17" width="100" height="30"/>
+                                <rect key="frame" x="30" y="40" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                     <constraint firstAttribute="width" constant="100" id="KEi-b8-Y8I"/>
@@ -2525,7 +2507,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-b6-ugD">
-                                <rect key="frame" x="30" y="539" width="320" height="44"/>
+                                <rect key="frame" x="30" y="603" width="315" height="44"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="cJ5-qb-zC2"/>
@@ -2538,30 +2520,44 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <action selector="IBActionBuyProduct:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="rbb-Sn-DHp"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VDV-VY-lad">
-                                <rect key="frame" x="0.0" y="68" width="380" height="449"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VDV-VY-lad">
+                                <rect key="frame" x="0.0" y="100" width="375" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nWD-28-jS0" id="pis-X1-UuA"/>
                                     <outlet property="delegate" destination="nWD-28-jS0" id="ClT-ff-fXV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-35-7tM">
+                                <rect key="frame" x="301" y="30" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2Zd-uF-OlO"/>
+                                    <constraint firstAttribute="width" constant="60" id="ngm-Vf-piR"/>
+                                </constraints>
+                                <state key="normal" image="X">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionClose:" destination="nWD-28-jS0" eventType="touchUpInside" id="gvT-iu-jQ0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="31d-0R-aD5" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leading" constant="30" id="37i-Lr-FEH"/>
                             <constraint firstItem="1Ga-b6-ugD" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leading" constant="30" id="Ack-bl-7KN"/>
-                            <constraint firstItem="31d-0R-aD5" firstAttribute="top" secondItem="Igs-Q7-zeg" secondAttribute="top" constant="17" id="DJF-sY-7Ld"/>
-                            <constraint firstItem="xQT-35-7tM" firstAttribute="top" secondItem="Igs-Q7-zeg" secondAttribute="top" id="ER5-Vw-MDp"/>
                             <constraint firstAttribute="bottom" secondItem="1Ga-b6-ugD" secondAttribute="bottom" constant="20" id="K37-qs-XMQ"/>
                             <constraint firstAttribute="trailing" secondItem="xQT-35-7tM" secondAttribute="trailing" constant="14" id="Nzc-3j-u5e"/>
                             <constraint firstItem="VDV-VY-lad" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leading" id="Q8P-yD-5TE"/>
                             <constraint firstItem="VDV-VY-lad" firstAttribute="top" secondItem="xQT-35-7tM" secondAttribute="bottom" constant="10" id="UWQ-mF-1Xr"/>
+                            <constraint firstItem="xQT-35-7tM" firstAttribute="top" secondItem="Dvc-ng-XMR" secondAttribute="bottom" constant="10" id="ZRx-LX-ACa"/>
                             <constraint firstAttribute="trailing" secondItem="1Ga-b6-ugD" secondAttribute="trailing" constant="30" id="b3Z-40-KM1"/>
+                            <constraint firstItem="31d-0R-aD5" firstAttribute="top" secondItem="Dvc-ng-XMR" secondAttribute="bottom" constant="20" id="qXF-Y3-08V"/>
                             <constraint firstAttribute="trailing" secondItem="VDV-VY-lad" secondAttribute="trailing" id="sYk-8I-miH"/>
                             <constraint firstItem="1Ga-b6-ugD" firstAttribute="top" secondItem="VDV-VY-lad" secondAttribute="bottom" constant="20" id="vYA-zI-hEx"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="IBlblFilterFor" destination="31d-0R-aD5" id="a44-2d-phr"/>
                         <outlet property="IBtblFilter" destination="VDV-VY-lad" id="oR8-dw-maS"/>
@@ -2569,7 +2565,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ae1-Sv-fN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="293.5"/>
+            <point key="canvasLocation" x="713.5" y="350.5"/>
         </scene>
     </scenes>
     <resources>

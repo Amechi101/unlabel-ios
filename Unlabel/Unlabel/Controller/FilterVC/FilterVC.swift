@@ -39,7 +39,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerMainTop: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
-    private let sAllCategories = "All categories"
+    private let sAllCategories = "    All categories"
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
     var filterModel = Brand()
     var shouldClearCategories = false
@@ -78,7 +78,9 @@ extension FilterVC:UITableViewDelegate{
 extension FilterVC:UITableViewDataSource{
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 3 {
+        if indexPath.row == 1 {
+            return 50
+        }else if indexPath.row == 3 {
             return 320
         }else{
             return UITableViewAutomaticDimension
@@ -105,9 +107,9 @@ extension FilterVC:UITableViewDataSource{
         let cellWithTitle = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         cellWithTitle.textLabel?.text = title
         cellWithTitle.layoutMargins = UIEdgeInsetsZero
-        cellWithTitle.separatorInset = UIEdgeInsetsMake(0, 0, 0, 2)
+        cellWithTitle.separatorInset = UIEdgeInsetsMake(0, 30, 0, 28)
         cellWithTitle.textLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
-        cellWithTitle.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_BOLD, size: 16)
+        cellWithTitle.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_DEMI, size: 16)
         
         return cellWithTitle
     }

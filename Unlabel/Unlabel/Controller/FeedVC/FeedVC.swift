@@ -45,6 +45,7 @@ class FeedVC: UIViewController {
     private var arrBrandList:[Brand] = [Brand]()
     var arrFilteredBrandList:[Brand] = [Brand]()
     private var didSelectBrand:Brand?
+    private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
     private var headerView:FeedVCHeaderCell?
     
@@ -244,7 +245,7 @@ extension FeedVC:LeftMenuVCDelegate{
 //
 //MARK:- FilterVCDelegate Methods
 //
-extension FeedVC{
+extension FeedVC: FilterVCDelegate{
     func didClickApply(forFilterModel filterModel: Brand) {
         
 //        //If anything from filter is selected
@@ -410,8 +411,8 @@ extension FeedVC{
         }
     }
     
-    @IBAction func IBActionFilter(sender: UIButton) {
-        
+    @IBAction func IBActionFilter(sender: AnyObject) {
+        addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
     }
    
 }
@@ -508,7 +509,7 @@ extension FeedVC{
         if VCName == S_ID_LEFT_MENU_VC{
             addLeftMenuAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_FILTER_VC{
-//            addFilterVCAsChildVC(viewControllerName: VCName)
+            addFilterVCAsChildVC(viewControllerName: VCName)
         }else if VCName == S_ID_LAUNCH_LOADING_VC{
             addLaunchLoadingAsChildVC(viewControllerName: VCName)
             removeChildVCIfExists(VCName)
@@ -579,27 +580,27 @@ extension FeedVC{
     /**
      Adding Filter VC As Child VC
      */
-//    private func addFilterVCAsChildVC(viewControllerName VCName:String){
-//        if filterChildVC == nil{
-//            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
-//            filterChildVC!.delegate = self
-//        }
-//        
-//        filterChildVC!.view.frame.size = self.view.frame.size
-//        navigationController!.addChildViewController(filterChildVC!)
-//        filterChildVC!.didMoveToParentViewController(self)
-//        
-//        navigationController?.view.addSubview(filterChildVC!.view)
-//        
-//        //Animate filterVC entry
-//        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
-//        filterChildVC!.view.alpha = 0
-//        UIView.animateWithDuration(0.3) { () -> Void in
-//            self.filterChildVC!.view.alpha = 1
-//            self.filterChildVC!.view.frame.origin.x = 0
-//            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
-//        }
-//    }
+    private func addFilterVCAsChildVC(viewControllerName VCName:String){
+        if filterChildVC == nil{
+            filterChildVC = self.storyboard?.instantiateViewControllerWithIdentifier(VCName) as? FilterVC
+            filterChildVC!.delegate = self
+        }
+        
+        filterChildVC!.view.frame.size = self.view.frame.size
+        navigationController!.addChildViewController(filterChildVC!)
+        filterChildVC!.didMoveToParentViewController(self)
+        
+        navigationController?.view.addSubview(filterChildVC!.view)
+        
+        //Animate filterVC entry
+        filterChildVC!.view.frame.origin.x = self.view.frame.size.width
+        filterChildVC!.view.alpha = 0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.filterChildVC!.view.alpha = 1
+            self.filterChildVC!.view.frame.origin.x = 0
+            self.filterChildVC?.view.frame.size.height = SCREEN_HEIGHT
+        }
+    }
     
     /**
      Removes ChildViewController for given ViewController's Storyboard ID

@@ -4,8 +4,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Neutraface2Text-Demi.otf">
-            <string>Neutraface2Text-Demi</string>
+        <mutableArray key="Neutraface2Text-Book.otf">
+            <string>Neutraface2Text-Book</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,12 +18,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="323" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffG-l0-2rh">
-                        <rect key="frame" x="15" y="13" width="308" height="39"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffG-l0-2rh">
+                        <rect key="frame" x="30" y="13" width="265" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="xWe-re-GsS"/>
+                            <constraint firstAttribute="height" constant="36" id="xWe-re-GsS"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                         <state key="normal">
                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -38,7 +38,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-1y-IER">
-                        <rect key="frame" x="294" y="26" width="17" height="10"/>
+                        <rect key="frame" x="266" y="26" width="17" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="YNJ-nA-qSy"/>
                             <constraint firstAttribute="width" constant="17" id="zgf-5B-owN"/>
@@ -46,12 +46,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ffG-l0-2rh" secondAttribute="trailing" id="Cgm-4S-Xe0"/>
-                    <constraint firstItem="ffG-l0-2rh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="L9W-4t-XKb"/>
+                    <constraint firstAttribute="trailing" secondItem="ffG-l0-2rh" secondAttribute="trailing" constant="28" id="Cgm-4S-Xe0"/>
                     <constraint firstItem="SbV-1y-IER" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OD4-p4-gZe"/>
-                    <constraint firstAttribute="bottom" secondItem="ffG-l0-2rh" secondAttribute="bottom" constant="10" id="SRt-7s-S9Y"/>
-                    <constraint firstItem="ffG-l0-2rh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="oHe-0e-fMk"/>
-                    <constraint firstAttribute="trailing" secondItem="SbV-1y-IER" secondAttribute="trailing" constant="12" id="xUW-NE-Qnn"/>
+                    <constraint firstItem="ffG-l0-2rh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="oHe-0e-fMk"/>
+                    <constraint firstItem="ffG-l0-2rh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vrt-by-e8n"/>
+                    <constraint firstAttribute="trailing" secondItem="SbV-1y-IER" secondAttribute="trailing" constant="40" id="xUW-NE-Qnn"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="2000" minY="0.0" maxX="0.0" maxY="0.0"/>

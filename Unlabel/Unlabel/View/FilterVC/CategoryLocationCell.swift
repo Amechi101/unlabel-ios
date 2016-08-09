@@ -33,7 +33,9 @@ class CategoryLocationCell: UITableViewCell {
     var shouldClearCategories = false
 
     private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
-    let arrLocations:[String] = ["fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff"]
+    private let arrLocations:[String] = ["fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff"]
+    private var arrSelectedIndex:[NSIndexPath] = []
+    
     var dictSelectedCategories = [Int:Bool]()
     private var dictSelectedLocations = [Int:Bool]()
     var delegate:CategoryDelegate?
@@ -58,7 +60,9 @@ class CategoryLocationCell: UITableViewCell {
     }
 }
 
+//MARK:- UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource methods
 extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -70,6 +74,15 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let titleBoxCell = IBcollectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_TitleBoxCell, forIndexPath: indexPath) as? TitleBoxCell
         titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row]
+        
+        if isIndexSelected(indexPath){
+            titleBoxCell?.IBlblBoxTitle.textColor = MEDIUM_GRAY_TEXT_COLOR
+            titleBoxCell?.layer.borderColor = DARK_GRAY_COLOR.colorWithAlphaComponent(0.8).CGColor
+        }else{
+            titleBoxCell?.IBlblBoxTitle.textColor = LIGHT_GRAY_TEXT_COLOR
+            titleBoxCell?.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
+        }
+
         return titleBoxCell!
     }
     
@@ -77,4 +90,33 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
         return CGSizeMake((IBcollectionView.frame.size.width/2)-4, 32)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if isIndexSelected(indexPath){
+            arrSelectedIndex.removeObject(indexPath)
+        }else{
+            arrSelectedIndex.append(indexPath)
+        }
+        
+        reloadData()
+    }
+    
+}
+
+
+//MARK:- Custom methods
+extension CategoryLocationCell{
+    func reloadData(){
+        IBcollectionView.performBatchUpdates({
+            self.IBcollectionView.reloadSections(NSIndexSet(index: 0))
+            }, completion: nil)
+    }
+    
+    func isIndexSelected(indexPath:NSIndexPath)->Bool{
+        for index in arrSelectedIndex{
+            if indexPath == index{
+                return true
+            }
+        }
+        return false
+    }
 }
