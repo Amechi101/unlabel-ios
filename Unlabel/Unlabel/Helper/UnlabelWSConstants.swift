@@ -38,6 +38,74 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 
 //API
 
+
+
+struct API{
+    //Live
+//    static let onlyBaseURL = "https://unlabel.us"
+//    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
+//    static let userName = "unlabel_us_api"
+//    static let APIKey = "f54c309313f3bb0f28322f035cfc169c8631faf9"
+    
+    //Test
+    static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
+    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
+    static let userName = "amechiegbe"
+    static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
+    
+    static let labels       = "Devlabels/"
+    static let products     = "Devproducts/"
+    static let locations    = "Devlocations/"
+ 
+    static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
+    static let getProducts  = WSConstantFetcher.getFinalURLs(products)
+    static let getLocations = WSConstantFetcher.getFinalURLs(locations)
+}
+
+
+struct APIParams {
+    static let labelId          = "label_id"
+    static let brandGender      = "brand_gender"
+    static let brandCategory    = "brand_category"
+    
+    static let location         = "location"
+    static let locationChoices  = "location_choices"
+}
+
+class WSConstantFetcher{
+    class func getFinalURLs(subURL:String)->String{
+        return"\(API.baseURL)\(subURL)"
+    }
+    
+    class func getLabelsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
+        var subURL = ""
+        
+        if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None{
+            subURL = "?\(APIParams.brandGender)=\(brandGender.rawValue)"
+        }
+        
+        if let brandCategory = fetchBrandsRP.brandCategory where brandCategory != BrandCategory.None{
+            subURL = "&\(APIParams.brandCategory)=\(brandCategory.rawValue)"
+        }
+        
+        if let location = fetchBrandsRP.location where location.characters.count > 0{
+            subURL = "&\(APIParams.location)=\(location)"
+        }
+        
+        return subURL
+    }
+    
+    class func getProductsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
+        var subURL = ""
+        
+        if let labelId = fetchBrandsRP.brandId where labelId.characters.count > 0{
+            subURL = "?\(APIParams.labelId)=\(labelId)"
+        }
+        
+        return subURL
+    }
+}
+
 //Live
 let ONLY_BASE_URL = "https://unlabel.us"
 let BASE_URL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
@@ -55,7 +123,7 @@ let SUB_URL_LABELS = "/labels"
 
 //API URLs
 let URL_PREFIX = "\(BASE_URL)\(SUB_URL_LABELS)/"
-let URL_POSTFIX = "?\(PRM_USERNAME)=\(USERNAME)&\(PRM_API_KEY)=\(API_KEY)"
+let URL_POSTFIX = "&\(PRM_USERNAME)=\(USERNAME)&\(PRM_API_KEY)=\(API_KEY)"
 let GET_LABELS_URL = "\(URL_PREFIX)\(URL_POSTFIX)"
 
 let PRM_USERNAME = "username"

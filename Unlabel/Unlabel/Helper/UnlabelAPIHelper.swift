@@ -15,18 +15,22 @@ class UnlabelAPIHelper{
     static let sharedInstance = UnlabelAPIHelper()
     
     //If need single brand then pass brand ID else will return all brands
-    func getBrands(brandId:String?, next: String?, success:([Brand], meta:JSON)->(),failed:(error:NSError)->()){
+    func getBrands(fetchBrandsRP:FetchBrandsRP, success:([Brand], meta:JSON)->(),failed:(error:NSError)->()){
         let requestURL:String?
-        if let brandIdObj = brandId {
-            requestURL = "\(URL_PREFIX)\(brandIdObj)/\(URL_POSTFIX)".encodedURL()
-        }else if let next = next where next.characters.count > 0 {
-            requestURL = "\(ONLY_BASE_URL)\(next)".encodedURL()
+        
+        //If brandId exist in request , that means requesting products
+        if let brandId = fetchBrandsRP.brandId where brandId.characters.count > 0 {
+            requestURL = "\(API.getProducts)\(WSConstantFetcher.getProductsSubURL(fetchBrandsRP))".encodedURL()
+            
+            //"\(URL_PREFIX)\(brandId)/\(URL_POSTFIX)".encodedURL()
+        }else if let nextPage = fetchBrandsRP.nextPageURL where nextPage.characters.count > 0 {
+            requestURL = "\(ONLY_BASE_URL)\(nextPage)".encodedURL()
         }
         else {
-            requestURL = GET_LABELS_URL.encodedURL()
+            requestURL = "\(API.getLabels)\(WSConstantFetcher.getLabelsSubURL(fetchBrandsRP))\(URL_POSTFIX)".encodedURL()
         }
         
-//        print(requestURL)
+        print(requestURL)
         
         if let requestURLObj = requestURL{
             Alamofire.request(.GET, requestURLObj).responseJSON { response in

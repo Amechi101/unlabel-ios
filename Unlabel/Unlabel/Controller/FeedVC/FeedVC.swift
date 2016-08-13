@@ -22,6 +22,7 @@ enum FilterType:Int{
     case Unknown
     case Men
     case Women
+    case Both
 }
 
 class FeedVC: UIViewController {
@@ -411,6 +412,13 @@ extension FeedVC{
         }
     }
     
+    @IBAction func IBActionFilterMnW(sender: UIButton) {
+        if let headerView = headerView{
+            headerView.updateFilterHeader(false)
+            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
+        }
+    }
+    
     @IBAction func IBActionFilter(sender: AnyObject) {
         addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
     }
@@ -738,6 +746,18 @@ extension FeedVC{
         arrBrandList = brandsObj
         self.IBcollectionViewFeed.reloadData()
     }
+    
+    private func getSelectedGender()->BrandGender{
+        if headerView?.selectedTab == .Men{
+            return BrandGender.Men
+        }else if headerView?.selectedTab == .Women{
+            return BrandGender.Women
+        }else if headerView?.selectedTab == .Both{
+            return BrandGender.Both
+        }else{
+            return BrandGender.Men
+        }
+    }
 }
 
 
@@ -793,6 +813,11 @@ extension FeedVC{
     /**
      WS call get all brands
      */
+//    private func wsCallGetBrands(fetchBrandsRP:FetchBrandsRP){
+//        
+//    }
+    
+    
     func wsCallGetLabels(){
         wsCallGetLabelsResetOffset(true)
     }
@@ -814,7 +839,12 @@ extension FeedVC{
             else {
                 self.bottonActivityIndicator.startAnimating()
             }
-            UnlabelAPIHelper.sharedInstance.getBrands(nil, next: nextPageURL, success: { (arrBrands:[Brand], meta: JSON) in
+            
+            let fetchBrandsRequestParams = FetchBrandsRP()
+            fetchBrandsRequestParams.nextPageURL = nextPageURL
+            fetchBrandsRequestParams.brandGender = getSelectedGender()
+            
+            UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
                 self.isLoading = false
                 self.nextPageURL = meta["next"].stringValue
                 

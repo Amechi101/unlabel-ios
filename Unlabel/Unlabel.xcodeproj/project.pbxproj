@@ -13,6 +13,8 @@
 		15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE11CB5A3CD0058765D /* ReachabilitySwift.swift */; };
 		15056BE51CB5A5C10058765D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15056BE41CB5A5C10058765D /* Reachability.m */; };
 		150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150AE9421CA1CF7D00131A0A /* SettingsVC.swift */; };
+		153BE1FA1D5F9FB300A64816 /* UnlabelEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BE1F91D5F9FB300A64816 /* UnlabelEnums.swift */; };
+		153BE1FC1D5FAFEB00A64816 /* RequestPrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BE1FB1D5FAFEB00A64816 /* RequestPrams.swift */; };
 		153FF7DB1CBC2838002CE247 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */; };
 		154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */; };
 		154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154241D31CAAFBA800EC59A7 /* NotFoundView.xib */; };
@@ -140,6 +142,8 @@
 		15056BE41CB5A5C10058765D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		150798DD1D0720C800404AFA /* Unlabel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Unlabel.entitlements; sourceTree = "<group>"; };
 		150AE9421CA1CF7D00131A0A /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		153BE1F91D5F9FB300A64816 /* UnlabelEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelEnums.swift; sourceTree = "<group>"; };
+		153BE1FB1D5FAFEB00A64816 /* RequestPrams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPrams.swift; sourceTree = "<group>"; };
 		153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		154241D11CAAFB9D00EC59A7 /* NotFoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 		154241D31CAAFBA800EC59A7 /* NotFoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotFoundView.xib; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 				159245221C5539C500755814 /* Brand.swift */,
 				15E30D991C6D2D14008B77E1 /* Product.swift */,
 				15CBF35C1C84DD23005F59E4 /* Filter.swift */,
+				153BE1FB1D5FAFEB00A64816 /* RequestPrams.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				15056BDD1CB584A20058765D /* UnlabelWSConstants.swift */,
 				15E704F81CBAF35100DB9069 /* GAHelper.swift */,
 				153FF7DA1CBC2838002CE247 /* FirebaseHelper.swift */,
+				153BE1F91D5F9FB300A64816 /* UnlabelEnums.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1011,6 +1017,7 @@
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
 				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,
+				153BE1FC1D5FAFEB00A64816 /* RequestPrams.swift in Sources */,
 				153FF7DB1CBC2838002CE247 /* FirebaseHelper.swift in Sources */,
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				15C4275C1CD9131900106722 /* AboutLabelVC.swift in Sources */,
@@ -1030,6 +1037,7 @@
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
+				153BE1FA1D5F9FB300A64816 /* UnlabelEnums.swift in Sources */,
 				154F193D1CD64D49006DFC42 /* FeedVCFooterCell.swift in Sources */,
 				154F193A1CD60D84006DFC42 /* ChangeNameVC.swift in Sources */,
 				15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */,
