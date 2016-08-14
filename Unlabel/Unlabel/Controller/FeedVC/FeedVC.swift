@@ -43,8 +43,14 @@ class FeedVC: UIViewController {
     private let fFooterHeight:CGFloat = 28.0
     private let fHeaderHeight:CGFloat = 54.0
     private let refreshControl = UIRefreshControl()
-    private var arrBrandList:[Brand] = [Brand]()
+    
+//    private var arrBrandList:[Brand] = [Brand]()
     var arrFilteredBrandList:[Brand] = [Brand]()
+    
+    private var arrMenBrandList:[Brand] = [Brand]()
+    private var arrWomenBrandList:[Brand] = [Brand]()
+    private var arrBothBrandList:[Brand] = [Brand]()
+    
     private var didSelectBrand:Brand?
     private var filterChildVC:FilterVC?
     private var leftMenuChildVC:LeftMenuVC?
@@ -54,7 +60,11 @@ class FeedVC: UIViewController {
     var filteredNavTitle:String?
     var filteredString:String?
     
-    var nextPageURL:String?
+//    var nextPageURL:String?
+    var nextPageURLMen:String?
+    var nextPageURLWomen:String?
+    var nextPageURLBoth:String?
+    
     var isLoading = false
     
     var deepLinkingCompletionDelegate: BranchDeepLinkingControllerCompletionDelegate?
@@ -105,8 +115,12 @@ extension FeedVC{
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == SEGUE_FILTER_LABELS{
-            if arrBrandList.count > 0{
-                return true
+            if headerView?.selectedTab == .Men{
+                return arrMenBrandList.count > 0
+            }else if headerView?.selectedTab == .Women{
+                return arrWomenBrandList.count > 0
+            }else if headerView?.selectedTab == .Both{
+                return arrBothBrandList.count > 0
             }else{
                 return false
             }
@@ -365,62 +379,88 @@ extension FeedVC{
         handleHamburgerAndBack(sender)
     }
     
-    @IBAction func IBActionStarClicked(sender: UIButton) {
-        
-        //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
-            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
-                    
-                    //If already following
-                    if arrFilteredBrandList[sender.tag].isFollowing{
-                        arrFilteredBrandList[sender.tag].isFollowing = false
-                        
-                        //If not already following
-                    }else{
-                        arrFilteredBrandList[sender.tag].isFollowing = true
-                    }
-                    
-                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                        //Followd/Unfollowd brand
-                        if error == nil{
-                            self.firebaseCallGetFollowingBrands()
-                        }else{
-                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-                        }
-                    })
-                    
-                    IBcollectionViewFeed.reloadData()
-                }
+//    @IBAction func IBActionStarClicked(sender: UIButton) {
+//        
+//        //Internet available
+//        if ReachabilitySwift.isConnectedToNetwork(){
+//            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
+//                    
+//                    //If already following
+//                    if arrFilteredBrandList[sender.tag].isFollowing{
+//                        arrFilteredBrandList[sender.tag].isFollowing = false
+//                        
+//                        //If not already following
+//                    }else{
+//                        arrFilteredBrandList[sender.tag].isFollowing = true
+//                    }
+//                    
+//                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+//                        //Followd/Unfollowd brand
+//                        if error == nil{
+//                            self.firebaseCallGetFollowingBrands()
+//                        }else{
+//                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+//                        }
+//                    })
+//                    
+//                    IBcollectionViewFeed.reloadData()
+//                }
+//            }
+//        }else{
+//            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+//        }
+//    }
+    
+    @IBAction func IBActionFilterMen(sender: UIButton) {
+        if let headerView = headerView{
+            headerView.updateFilterHeader(forFilterType: .Men)
+            if arrMenBrandList.count == 0{
+                wsCallGetLabels()
+            }else{
+                updateFilterArray()
             }
-        }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
         }
     }
     
     @IBAction func IBActionFilterWomen(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(forFilterType: .Women)
-            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
-        }
-    }
-    
-    @IBAction func IBActionFilterMen(sender: UIButton) {
-        if let headerView = headerView{
-            headerView.updateFilterHeader(forFilterType: .Men)
-            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
+            if arrWomenBrandList.count == 0{
+                wsCallGetLabels()
+            }else{
+                updateFilterArray()
+            }
         }
     }
     
     @IBAction func IBActionFilterMnW(sender: UIButton) {
         if let headerView = headerView{
             headerView.updateFilterHeader(forFilterType: .Both)
-            updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
+            if arrBothBrandList.count == 0{
+                wsCallGetLabels()
+            }else{
+                updateFilterArray()
+            }
         }
     }
     
     @IBAction func IBActionFilter(sender: AnyObject) {
         addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
+    }
+    
+    private func updateFilterArray(){
+        if headerView?.selectedTab == .Men{
+            arrFilteredBrandList = arrMenBrandList
+        }else if headerView?.selectedTab == .Women{
+            arrFilteredBrandList = arrWomenBrandList
+        }else if headerView?.selectedTab == .Both{
+            arrFilteredBrandList = arrBothBrandList
+        }else{
+            
+        }
+        
+        IBcollectionViewFeed.reloadData()
     }
    
 }
@@ -709,43 +749,47 @@ extension FeedVC{
         }
     }
     
-    private func updateFilterArray(forFilterType filterType:FilterType, brandsObj:[Brand]){
-        let brands = brandsObj
-       arrFilteredBrandList = []
-        
-        for (_,var brand) in brands.enumerate(){
-            if filterType == .Men{
-                if brand.Menswear {
-                        
-                    if brand.Menswear && brand.Womenswear == true{
-                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
-                    }
-                    
-                    arrFilteredBrandList.append(brand)
-                }else{
-                       
-                }
-                
-            }else{
-                if brand.Womenswear {
-                        
-                    if brand.Menswear && brand.Womenswear == true {
-                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
-                    }
-                       
-                    arrFilteredBrandList.append(brand)
-                }else{
-                        
-                }
-            }
-        }
-
-//        print(arrBrandList.count)
-//        print(arrFilteredBrandList.count)
-        
-        arrBrandList = brandsObj
-        self.IBcollectionViewFeed.reloadData()
-    }
+//    private func updateFilterArray(){
+//        let brands = brandsObj
+//       arrFilteredBrandList = []
+//        
+//        for (_,var brand) in brands.enumerate(){
+//            if filterType == .Men{
+//                if brand.Menswear {
+//                        
+//                    if brand.Menswear && brand.Womenswear == true{
+//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+//                    }
+//                    
+//                    arrFilteredBrandList.append(brand)
+//                }else{
+//                       
+//                }
+//                
+//            }else if filterType == .Women{
+//                if brand.Womenswear {
+//                        
+//                    if brand.Menswear && brand.Womenswear == true {
+//                        brand.arrProducts = getFilteredProducts(forFilterType: filterType, arrProducts: brand.arrProducts)
+//                    }
+//                       
+//                    arrFilteredBrandList.append(brand)
+//                }else{
+//                        
+//                }
+//            }else if filterType == .Both{
+//            
+//            }else{
+//            
+//            }
+//        }
+//
+////        print(arrBrandList.count)
+////        print(arrFilteredBrandList.count)
+//        
+//        arrBrandList = brandsObj
+//        self.IBcollectionViewFeed.reloadData()
+//    }
     
     private func getSelectedGender()->BrandGender{
         if headerView?.selectedTab == .Men{
@@ -788,21 +832,21 @@ extension FeedVC{
     /**
      Firebase call get all following brands
      */
-    private func firebaseCallGetFollowingBrands(){
-        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-            FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
-                if let followingBrandIDsObj = followingBrandIDs{
-                    for var brand in self.arrBrandList{
-                        if followingBrandIDsObj.contains(brand.ID){
-                            brand.isFollowing = true
-                        }
-                    }
-                    
-                    self.IBcollectionViewFeed.reloadData()
-                }
-            })
-        }
-    }
+//    private func firebaseCallGetFollowingBrands(){
+//        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//            FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
+//                if let followingBrandIDsObj = followingBrandIDs{
+//                    for var brand in self.arrBrandList{
+//                        if followingBrandIDsObj.contains(brand.ID){
+//                            brand.isFollowing = true
+//                        }
+//                    }
+//                    
+//                    self.IBcollectionViewFeed.reloadData()
+//                }
+//            })
+//        }
+//    }
 }
 
 //
@@ -823,36 +867,110 @@ extension FeedVC{
     }
     
     func wsCallGetLabelsResetOffset(reset:Bool) {
-        if reset {
-            nextPageURL = nil
-            arrBrandList = []
+        var nextPageURL:String? = String()
+        
+        if headerView?.selectedTab == .Men{
+            nextPageURL = nextPageURLMen
+        }else if headerView?.selectedTab == .Women{
+            nextPageURL = nextPageURLWomen
+        }else if headerView?.selectedTab == .Both{
+            nextPageURL = nextPageURLBoth
+        }else{
+            
         }
-        else if let next = self.nextPageURL where next.characters.count == 0 {
+        
+        if reset {
+            if headerView?.selectedTab == .Men{
+                nextPageURLMen = nil
+                arrMenBrandList = []
+            }else if headerView?.selectedTab == .Women{
+                nextPageURLWomen = nil
+                arrWomenBrandList = []
+            }else if headerView?.selectedTab == .Both{
+                nextPageURLBoth = nil
+                arrMenBrandList = []
+            }else{
+            
+            }
+//            nextPageURL = nil
+//            arrBrandList = []
+        } else if let next:String = nextPageURL where next.characters.count == 0 {
             return
         }
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
             isLoading = true
-            if self.nextPageURL == nil {
-                UnlabelLoadingView.sharedInstance.start(view)
-            }
-            else {
-                self.bottonActivityIndicator.startAnimating()
+            
+            if headerView?.selectedTab == .Men{
+                if self.nextPageURLMen == nil {
+                    UnlabelLoadingView.sharedInstance.start(view)
+                }else{
+                    self.bottonActivityIndicator.startAnimating()
+                }
+
+            }else if headerView?.selectedTab == .Women{
+                if self.nextPageURLWomen == nil {
+                    UnlabelLoadingView.sharedInstance.start(view)
+                }else{
+                    self.bottonActivityIndicator.startAnimating()
+                }
+
+            }else if headerView?.selectedTab == .Both{
+                if self.nextPageURLBoth == nil {
+                    UnlabelLoadingView.sharedInstance.start(view)
+                }else{
+                    self.bottonActivityIndicator.startAnimating()
+                }
+
+            }else{
+                
             }
             
-            let fetchBrandsRequestParams = FetchBrandsRP()
-            fetchBrandsRequestParams.nextPageURL = nextPageURL
+            
+        let fetchBrandsRequestParams = FetchBrandsRP()
+        
+        if headerView?.selectedTab == .Men{
+            fetchBrandsRequestParams.nextPageURL = nextPageURLMen
+        }else if headerView?.selectedTab == .Women{
+            fetchBrandsRequestParams.nextPageURL = nextPageURLWomen
+        }else if headerView?.selectedTab == .Both{
+            fetchBrandsRequestParams.nextPageURL = nextPageURLBoth
+        }else{
+            
+        }
+        
             fetchBrandsRequestParams.brandGender = getSelectedGender()
+            
+            if let selectedTab = headerView?.selectedTab{
+                fetchBrandsRequestParams.selectedTab = selectedTab
+            }
+            
             
             UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
                 self.isLoading = false
-                self.nextPageURL = meta["next"].stringValue
                 
                 UnlabelLoadingView.sharedInstance.stop(self.view)
                 self.bottonActivityIndicator.stopAnimating()
-                self.arrBrandList.appendContentsOf(arrBrands)
-                self.updateFilterArray(forFilterType: self.headerView!.selectedTab,brandsObj: self.arrBrandList)
-//                self.updateFilterArray(forFilterType: (self.headerView?.selectedTab)!)
+                
+                self.arrFilteredBrandList = []
+                
+                if fetchBrandsRequestParams.selectedTab == .Men{
+                    self.arrMenBrandList.appendContentsOf(arrBrands)
+                    self.arrFilteredBrandList = self.arrMenBrandList
+                    self.nextPageURLMen = meta["next"].stringValue
+                }else if fetchBrandsRequestParams.selectedTab == .Women{
+                    self.arrWomenBrandList.appendContentsOf(arrBrands)
+                    self.arrFilteredBrandList = self.arrWomenBrandList
+                    self.nextPageURLWomen = meta["next"].stringValue
+                }else if fetchBrandsRequestParams.selectedTab == .Both{
+                    self.arrBothBrandList.appendContentsOf(arrBrands)
+                    self.arrFilteredBrandList = self.arrBothBrandList
+                    self.nextPageURLBoth = meta["next"].stringValue
+                }else{
+                
+                }
+                
+                self.IBcollectionViewFeed.reloadData()
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
                     self.isLoading = false

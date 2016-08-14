@@ -16,7 +16,7 @@ class FeedVCHeaderCell: UICollectionReusableView {
     @IBOutlet weak var IBbtnMen: UIButton!
     @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
     
-    var selectedTab:FilterType = .Unknown
+    var selectedTab:FilterType = .Men
     
     override func awakeFromNib() {
 //        if selectedTab == .Men {
@@ -41,6 +41,7 @@ class FeedVCHeaderCell: UICollectionReusableView {
     }
     
     func updateFilterHeader(forFilterType filterType:FilterType){
+        selectedTab = filterType
             if let superViewObj = superview {
                 UIView.transitionWithView(superViewObj, duration: 0.5, options: .TransitionCrossDissolve, animations: {() -> Void in
                     self.IBbtnMen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
