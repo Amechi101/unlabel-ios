@@ -400,21 +400,21 @@ extension FeedVC{
     
     @IBAction func IBActionFilterWomen(sender: UIButton) {
         if let headerView = headerView{
-            headerView.updateFilterHeader(true)
+            headerView.updateFilterHeader(forFilterType: .Women)
             updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
         if let headerView = headerView{
-            headerView.updateFilterHeader(false)
+            headerView.updateFilterHeader(forFilterType: .Men)
             updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }
     
     @IBAction func IBActionFilterMnW(sender: UIButton) {
         if let headerView = headerView{
-            headerView.updateFilterHeader(false)
+            headerView.updateFilterHeader(forFilterType: .Both)
             updateFilterArray(forFilterType: headerView.selectedTab,brandsObj: arrBrandList)
         }
     }

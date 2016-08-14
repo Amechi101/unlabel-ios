@@ -382,7 +382,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-yO-1Kc" userLabel="View - Top Container">
                                             <rect key="frame" x="22" y="0.0" width="331" height="54"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-We-URh" userLabel="View - Women Container">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-We-URh" userLabel="View - M&amp;W Container">
                                                     <rect key="frame" x="216" y="0.0" width="100" height="54"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrL-Dn-Mgc">
@@ -495,6 +495,7 @@
                                     </constraints>
                                     <connections>
                                         <outlet property="IBbtnMen" destination="geX-p5-eTH" id="P8V-4C-IiN"/>
+                                        <outlet property="IBbtnMnW" destination="vrL-Dn-Mgc" id="btZ-vj-CnF"/>
                                         <outlet property="IBbtnWomen" destination="MFw-4B-lbF" id="iew-B1-oLF"/>
                                         <outlet property="IBconstraintGenderContainerHeight" destination="lH1-jU-yYb" id="1Z1-zs-Wj5"/>
                                         <outlet property="IBlblFilterTitle" destination="PP8-ad-XXx" id="PIl-9b-b09"/>
