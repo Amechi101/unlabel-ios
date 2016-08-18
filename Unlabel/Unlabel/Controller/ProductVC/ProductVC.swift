@@ -134,6 +134,17 @@ extension ProductVC:UICollectionViewDataSource{
                 if let _ = error{
 //                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
                 }else{
+                    if (type == SDImageCacheType.None)
+                    {
+                        productHeaderCell.IBimgHeaderImage.alpha = 0;
+                        UIView.animateWithDuration(0.35, animations: {
+                            productHeaderCell.IBimgHeaderImage.alpha = 1;
+                        })
+                    }
+                    else
+                    {
+                        productHeaderCell.IBimgHeaderImage.alpha = 1;
+                    }
 //                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
                 }
             })
@@ -166,6 +177,18 @@ extension ProductVC:UICollectionViewDataSource{
                     if let _ = error{
                         self.handleProductCellActivityIndicator(productCell, shouldStop: false)
                     }else{
+                        if (type == SDImageCacheType.None)
+                        {
+                            productCell.IBimgProductImage.alpha = 0;
+                            UIView.animateWithDuration(0.35, animations: {
+                                productCell.IBimgProductImage.alpha = 1;
+                            })
+                        }
+                        else
+                        {
+                            productCell.IBimgProductImage.alpha = 1;
+                        }
+                        
                         self.handleProductCellActivityIndicator(productCell, shouldStop: true)
                     }
                 })

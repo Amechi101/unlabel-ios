@@ -219,6 +219,17 @@ extension FeedVC:UICollectionViewDataSource{
                 if let _ = error{
                     self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
                 }else{
+                    if (type == SDImageCacheType.None)
+                    {
+                        feedVCCell.IBimgBrandImage.alpha = 0;
+                        UIView.animateWithDuration(0.35, animations: {
+                            feedVCCell.IBimgBrandImage.alpha = 1;
+                        })
+                    }
+                    else
+                    {
+                        feedVCCell.IBimgBrandImage.alpha = 1;
+                    }
                     self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
                 }
             })

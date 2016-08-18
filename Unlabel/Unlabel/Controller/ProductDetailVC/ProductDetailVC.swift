@@ -126,6 +126,17 @@ extension ProductDetailVC{
         if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
             IBImgProductImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                 
+                if (type == SDImageCacheType.None)
+                {
+                    self.IBImgProductImage.alpha = 0;
+                    UIView.animateWithDuration(0.35, animations: {
+                        self.IBImgProductImage.alpha = 1;
+                    })
+                }
+                else
+                {
+                    self.IBImgProductImage.alpha = 1;
+                }
             })
         }
         
