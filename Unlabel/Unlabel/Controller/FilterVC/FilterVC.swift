@@ -35,7 +35,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerHeight: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
-    private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    private let arrCategories:[String] = ["Choose Category","Clothing","Accessories","Jewelry","Shoes","Bags"]
     private var selectedCategoryIndexRow:Int = 0
     
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
@@ -300,9 +300,9 @@ extension FilterVC{
      */
     func setupBeforeAppear(){
         if selectedFilterType == .Men{
-            IBlblFilterFor.text = "FILTER MEN"
+            IBlblFilterFor.text = "SEARCH MEN"
         }else{
-            IBlblFilterFor.text = "FILTER WOMEN"
+            IBlblFilterFor.text = "SEARCH WOMEN"
         }
     }
     
