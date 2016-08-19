@@ -10,11 +10,10 @@ import UIKit
 
 class FeedVCHeaderCell: UICollectionReusableView {
     
-    @IBOutlet weak var IBbtnMnW: UIButton!
     @IBOutlet weak var IBlblFilterTitle: UILabel!
     @IBOutlet weak var IBbtnWomen: UIButton!
     @IBOutlet weak var IBbtnMen: UIButton!
-    @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
+//    @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
     
     var selectedTab:FilterType = .Men
     
@@ -46,14 +45,11 @@ class FeedVCHeaderCell: UICollectionReusableView {
                 UIView.transitionWithView(superViewObj, duration: 0.5, options: .TransitionCrossDissolve, animations: {() -> Void in
                     self.IBbtnMen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
                     self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
-                    self.IBbtnMnW.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
                     
                     if filterType == .Men{
                         self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
                     }else if filterType == .Women{
                         self.IBbtnWomen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
-                    }else if filterType == .Both{
-                        self.IBbtnMnW.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
                     }else{
                         self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
                     }
@@ -62,7 +58,7 @@ class FeedVCHeaderCell: UICollectionReusableView {
             }else{
                 self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
                 self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
-                self.IBbtnMnW.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+//                self.IBbtnMnW.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
             }
     }
 }

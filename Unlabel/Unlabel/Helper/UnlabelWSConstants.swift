@@ -70,6 +70,9 @@ struct APIParams {
     
     static let location         = "location"
     static let locationChoices  = "location_choices"
+    
+    static let menswear         = "menswear"
+    static let womenswear       = "womenswear"
 }
 
 class WSConstantFetcher{
@@ -81,7 +84,11 @@ class WSConstantFetcher{
         var subURL = ""
         
         if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None{
-            subURL = "?\(APIParams.brandGender)=\(brandGender.rawValue)"
+            if fetchBrandsRP.brandGender == BrandGender.Men{
+                subURL = "?\(APIParams.menswear)=True"
+            }else{
+                subURL = "?\(APIParams.womenswear)=True"
+            }
         }
         
         if let brandCategory = fetchBrandsRP.brandCategory where brandCategory != BrandCategory.None{
@@ -155,7 +162,5 @@ let PRM_PRODUCTIS_IS_UNISEX     = "product_isUnisex"
 let PRM_PRODUCTIS_IS_MALE       = "product_isMale"
 let PRM_PRODUCTIS_IS_FEMALE     = "product_isFemale"
 
-let PRM_menswear                = "menswear"
-let PRM_womenswear              = "womenswear"
 let PRM_brand_city__location__state_or_country     = "brand_city__location__state_or_country"
 
