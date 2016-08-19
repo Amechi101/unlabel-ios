@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -36,7 +36,6 @@
             <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
-            <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
@@ -381,38 +380,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-yO-1Kc" userLabel="View - Top Container">
                                             <rect key="frame" x="22" y="0.0" width="331" height="54"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-We-URh" userLabel="View - M&amp;W Container">
-                                                    <rect key="frame" x="216" y="0.0" width="100" height="54"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrL-Dn-Mgc">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="54"/>
-                                                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
-                                                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
-                                                            <state key="normal" title="M&amp;W">
-                                                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="IBActionFilterMnW:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JQ3-lg-pm7"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="vrL-Dn-Mgc" secondAttribute="bottom" id="Auc-D8-b6M"/>
-                                                        <constraint firstItem="vrL-Dn-Mgc" firstAttribute="top" secondItem="cNd-We-URh" secondAttribute="top" id="Jb0-yJ-Rvk"/>
-                                                        <constraint firstAttribute="width" constant="100" id="ZTv-5O-EF4"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vrL-Dn-Mgc" secondAttribute="trailing" id="ZWY-yi-QBT"/>
-                                                        <constraint firstItem="vrL-Dn-Mgc" firstAttribute="leading" secondItem="cNd-We-URh" secondAttribute="leading" id="enT-re-tjF"/>
-                                                        <constraint firstAttribute="bottom" secondItem="vrL-Dn-Mgc" secondAttribute="bottom" id="fPe-Nt-WyK"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="Auc-D8-b6M"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RX-cx-WA1" userLabel="View - Men Container">
-                                                    <rect key="frame" x="116" y="0.0" width="100" height="54"/>
+                                                    <rect key="frame" x="175" y="0.0" width="100" height="54"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geX-p5-eTH">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="54"/>
@@ -437,7 +406,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-ku-GxY" userLabel="View - Women Container">
-                                                    <rect key="frame" x="16" y="0.0" width="100" height="54"/>
+                                                    <rect key="frame" x="56" y="0.0" width="100" height="54"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFw-4B-lbF">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="54"/>
@@ -461,18 +430,24 @@
                                                         <constraint firstAttribute="width" constant="100" id="yYH-C0-RKK"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gm1-hs-zBP">
+                                                    <rect key="frame" x="165" y="0.0" width="1" height="54"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="PTC-fq-8wC"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rSK-ku-GxY" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="6iY-HC-6Tw"/>
-                                                <constraint firstItem="cNd-We-URh" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="Axl-Ij-Acc"/>
-                                                <constraint firstItem="cNd-We-URh" firstAttribute="leading" secondItem="2RX-cx-WA1" secondAttribute="trailing" id="Fif-oO-qa1"/>
-                                                <constraint firstItem="2RX-cx-WA1" firstAttribute="centerX" secondItem="vOo-yO-1Kc" secondAttribute="centerX" id="J20-fR-twt"/>
-                                                <constraint firstAttribute="bottom" secondItem="cNd-We-URh" secondAttribute="bottom" id="PK1-A4-9S4"/>
+                                                <constraint firstItem="gm1-hs-zBP" firstAttribute="centerX" secondItem="vOo-yO-1Kc" secondAttribute="centerX" id="CZK-VK-cjL"/>
+                                                <constraint firstItem="2RX-cx-WA1" firstAttribute="leading" secondItem="gm1-hs-zBP" secondAttribute="leading" constant="10" id="Nhw-gJ-5kJ"/>
                                                 <constraint firstItem="2RX-cx-WA1" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="ShJ-Dv-IwR"/>
                                                 <constraint firstAttribute="bottom" secondItem="2RX-cx-WA1" secondAttribute="bottom" id="Sle-8j-Bqu"/>
-                                                <constraint firstItem="2RX-cx-WA1" firstAttribute="leading" secondItem="rSK-ku-GxY" secondAttribute="trailing" id="T0V-9m-aHI"/>
                                                 <constraint firstAttribute="height" constant="54" id="lH1-jU-yYb"/>
                                                 <constraint firstAttribute="bottom" secondItem="rSK-ku-GxY" secondAttribute="bottom" id="lVX-Wc-yIO"/>
+                                                <constraint firstItem="gm1-hs-zBP" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="pSp-v1-7gO"/>
+                                                <constraint firstAttribute="bottom" secondItem="gm1-hs-zBP" secondAttribute="bottom" id="rrP-6p-5z2"/>
+                                                <constraint firstItem="rSK-ku-GxY" firstAttribute="trailing" secondItem="gm1-hs-zBP" secondAttribute="trailing" constant="-10" id="ymc-3T-khU"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP8-ad-XXx">
@@ -494,9 +469,7 @@
                                     </constraints>
                                     <connections>
                                         <outlet property="IBbtnMen" destination="geX-p5-eTH" id="P8V-4C-IiN"/>
-                                        <outlet property="IBbtnMnW" destination="vrL-Dn-Mgc" id="btZ-vj-CnF"/>
                                         <outlet property="IBbtnWomen" destination="MFw-4B-lbF" id="iew-B1-oLF"/>
-                                        <outlet property="IBconstraintGenderContainerHeight" destination="lH1-jU-yYb" id="1Z1-zs-Wj5"/>
                                         <outlet property="IBlblFilterTitle" destination="PP8-ad-XXx" id="PIl-9b-b09"/>
                                     </connections>
                                 </collectionReusableView>

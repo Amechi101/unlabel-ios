@@ -157,14 +157,14 @@
 
   [self addTarget:self action:@selector(_buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_accessTokenDidChangeNotification:)
+                                           selector:@selector(_acessTokenDidChangeNotification:)
                                                name:FBSDKAccessTokenDidChangeNotification
                                              object:nil];
 }
 
 #pragma mark - Helper Methods
 
-- (void)_accessTokenDidChangeNotification:(NSNotification *)notification
+- (void)_acessTokenDidChangeNotification:(NSNotification *)notification
 {
   if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
     [self _updateContent];
@@ -222,11 +222,11 @@
 
     if (self.publishPermissions.count > 0) {
       [_loginManager logInWithPublishPermissions:self.publishPermissions
-                              fromViewController:[FBSDKInternalUtility viewControllerForView:self]
+                              fromViewController:[FBSDKInternalUtility viewControllerforView:self]
                                          handler:handler];
     } else {
       [_loginManager logInWithReadPermissions:self.readPermissions
-                           fromViewController:[FBSDKInternalUtility viewControllerForView:self]
+                           fromViewController:[FBSDKInternalUtility viewControllerforView:self]
                                       handler:handler];
     }
   }

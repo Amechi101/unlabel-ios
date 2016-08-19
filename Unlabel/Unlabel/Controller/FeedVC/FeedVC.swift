@@ -22,7 +22,6 @@ enum FilterType:Int{
     case Unknown
     case Men
     case Women
-    case Both
 }
 
 class FeedVC: UIViewController {
@@ -119,8 +118,6 @@ extension FeedVC{
                 return arrMenBrandList.count > 0
             }else if headerView?.selectedTab == .Women{
                 return arrWomenBrandList.count > 0
-            }else if headerView?.selectedTab == .Both{
-                return arrBothBrandList.count > 0
             }else{
                 return false
             }
@@ -150,10 +147,10 @@ extension FeedVC:UICollectionViewDelegate{
             headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, forIndexPath: indexPath) as? FeedVCHeaderCell
             
             if mainVCType == .Feed{
-                headerView?.IBconstraintGenderContainerHeight.constant = fHeaderHeight
+//                headerView?.IBconstraintGenderContainerHeight.constant = fHeaderHeight
                 IBbtnFilter.hidden = false
             }else if mainVCType == .Filter{
-                headerView?.IBconstraintGenderContainerHeight.constant = 0
+//                headerView?.IBconstraintGenderContainerHeight.constant = 0
                 IBbtnFilter.hidden = true
                 
                 var titleText:String = ""
@@ -214,7 +211,7 @@ extension FeedVC:UICollectionViewDataSource{
         
         feedVCCell.IBimgBrandImage.image = nil
         
-        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(arrFilteredBrandList[indexPath.row].FeatureImage)){
+        if let url = NSURL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
             feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
                 if let _ = error{
                     self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
@@ -445,16 +442,16 @@ extension FeedVC{
         }
     }
     
-    @IBAction func IBActionFilterMnW(sender: UIButton) {
-        if let headerView = headerView{
-            headerView.updateFilterHeader(forFilterType: .Both)
-            if arrBothBrandList.count == 0{
-                wsCallGetLabels()
-            }else{
-                updateFilterArray()
-            }
-        }
-    }
+//    @IBAction func IBActionFilterMnW(sender: UIButton) {
+//        if let headerView = headerView{
+//            headerView.updateFilterHeader(forFilterType: .Both)
+//            if arrBothBrandList.count == 0{
+//                wsCallGetLabels()
+//            }else{
+//                updateFilterArray()
+//            }
+//        }
+//    }
     
     @IBAction func IBActionFilter(sender: AnyObject) {
         addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
@@ -465,8 +462,6 @@ extension FeedVC{
             arrFilteredBrandList = arrMenBrandList
         }else if headerView?.selectedTab == .Women{
             arrFilteredBrandList = arrWomenBrandList
-        }else if headerView?.selectedTab == .Both{
-            arrFilteredBrandList = arrBothBrandList
         }else{
             
         }
@@ -807,8 +802,6 @@ extension FeedVC{
             return BrandGender.Men
         }else if headerView?.selectedTab == .Women{
             return BrandGender.Women
-        }else if headerView?.selectedTab == .Both{
-            return BrandGender.Both
         }else{
             return BrandGender.Men
         }
@@ -884,8 +877,6 @@ extension FeedVC{
             nextPageURL = nextPageURLMen
         }else if headerView?.selectedTab == .Women{
             nextPageURL = nextPageURLWomen
-        }else if headerView?.selectedTab == .Both{
-            nextPageURL = nextPageURLBoth
         }else{
             
         }
@@ -897,9 +888,6 @@ extension FeedVC{
             }else if headerView?.selectedTab == .Women{
                 nextPageURLWomen = nil
                 arrWomenBrandList = []
-            }else if headerView?.selectedTab == .Both{
-                nextPageURLBoth = nil
-                arrMenBrandList = []
             }else{
             
             }
@@ -926,13 +914,6 @@ extension FeedVC{
                     self.bottonActivityIndicator.startAnimating()
                 }
 
-            }else if headerView?.selectedTab == .Both{
-                if self.nextPageURLBoth == nil {
-                    UnlabelLoadingView.sharedInstance.start(view)
-                }else{
-                    self.bottonActivityIndicator.startAnimating()
-                }
-
             }else{
                 
             }
@@ -944,8 +925,6 @@ extension FeedVC{
             fetchBrandsRequestParams.nextPageURL = nextPageURLMen
         }else if headerView?.selectedTab == .Women{
             fetchBrandsRequestParams.nextPageURL = nextPageURLWomen
-        }else if headerView?.selectedTab == .Both{
-            fetchBrandsRequestParams.nextPageURL = nextPageURLBoth
         }else{
             
         }
@@ -973,10 +952,6 @@ extension FeedVC{
                     self.arrWomenBrandList.appendContentsOf(arrBrands)
                     self.arrFilteredBrandList = self.arrWomenBrandList
                     self.nextPageURLWomen = meta["next"].stringValue
-                }else if fetchBrandsRequestParams.selectedTab == .Both{
-                    self.arrBothBrandList.appendContentsOf(arrBrands)
-                    self.arrFilteredBrandList = self.arrBothBrandList
-                    self.nextPageURLBoth = meta["next"].stringValue
                 }else{
                 
                 }
