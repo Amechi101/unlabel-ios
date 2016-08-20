@@ -21,6 +21,11 @@ struct Brand {
     var isActive:Bool = Bool()
     var CreatedDate:NSDate = NSDate()
     
+    var city:String = String()
+    var location:String = String()
+    var latitude:String = String()
+    var longitude:String = String()
+    
     //Sex
     var Menswear:Bool = Bool()
     var Womenswear:Bool = Bool()

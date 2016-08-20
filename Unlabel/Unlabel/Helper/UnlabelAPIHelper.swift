@@ -75,6 +75,16 @@ class UnlabelAPIHelper{
                         brand.ID = id
                     }
                     
+                    if let brandCity = thisBrand[APIParams.brandCity] as? [NSObject:AnyObject] {
+                        if let city = brandCity[APIParams.city] as? String{
+                            brand.city = city
+                        }
+                        
+                        if let location = brandCity[APIParams.location]as? String{
+                            brand.location = location
+                        }
+                    }
+                    
                     if let featureImage = thisBrand[PRM_BRAND_FEATURE_IMAGE] as? String{
                         brand.FeatureImage = featureImage
                     }

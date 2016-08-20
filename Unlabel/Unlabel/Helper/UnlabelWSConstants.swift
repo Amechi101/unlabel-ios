@@ -65,13 +65,18 @@ struct API{
 
 struct APIParams {
     static let labelId          = "label_id"
+    static let brandCity        = "brand_city"
     static let brandGender      = "brand_gender"
     static let brandCategory    = "brand_category"
     
+    static let city             = "city"
     static let location         = "location"
     static let locations        = "locations"
     static let locationChoices  = "location_choices"
     static let stateOrCountry   = "state_or_country"
+    
+    static let latitude         = "latitude"
+    static let longitude        = "longitude"
     
     static let menswear         = "menswear"
     static let womenswear       = "womenswear"
@@ -96,15 +101,16 @@ class WSConstantFetcher{
             }
         }
         
-        if let brandCategory = fetchBrandsRP.brandCategory where brandCategory != BrandCategory.None{
-            subURL = "&\(APIParams.brandCategory)=\(brandCategory.rawValue)"
+        var subSubURL = ""
+        if let brandCategory = fetchBrandsRP.filterCategory{
+            subSubURL = "&\(APIParams.brandCategory)=\(brandCategory)"
         }
         
-        if let location = fetchBrandsRP.location where location.characters.count > 0{
-            subURL = "&\(APIParams.location)=\(location)"
+        if let location = fetchBrandsRP.filterLocation{
+            subSubURL = "\(subSubURL)&\(APIParams.location)=\(location)"
         }
         
-        return subURL
+        return subURL+subSubURL
     }
     
     class func getProductsSubURL(fetchBrandsRP:FetchBrandsRP)->String{

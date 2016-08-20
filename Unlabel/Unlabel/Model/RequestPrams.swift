@@ -11,9 +11,9 @@ import UIKit
 //RequestParams
 class FetchBrandsRP: NSObject {
     var brandGender:BrandGender?
-    var brandCategory:BrandCategory?
     var selectedTab:FilterType = .Men //Not used in request params but in response handling because of async.
-    var location:String?
+    var filterLocation:String?
+    var filterCategory:String?
     var nextPageURL:String?
     var brandId:String?
 }

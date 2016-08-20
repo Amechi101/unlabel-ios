@@ -13,7 +13,7 @@ import UIKit
 //
 protocol FilterVCDelegate{
     func willCloseChildVC(childVCName:String)
-    func didClickApply(forFilterModel filterModel:Brand)
+    func didClickShowLabels(category:String?,location:String?)
 }
 
 
@@ -41,9 +41,9 @@ class FilterVC: UIViewController {
     private var arrLocationsInternational:[Location] = []
     
     private var selectedCategoryIndexRow:Int = 0
+    private var selectedLocation:String?
     
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
-    var filterModel = Brand()
     var shouldClearCategories = false
     
     var delegate:FilterVCDelegate?
@@ -87,6 +87,7 @@ extension FilterVC:UITableViewDelegate{
 //
 extension FilterVC:FilterTitleCellDelegate{
     func didChangeTab(index: Int) {
+        selectedLocation = nil
         reloadData()
     }
 }
@@ -214,9 +215,10 @@ extension FilterVC:CategoryStyleCellDelegate{
 //MARK:- CategoryDelegate
 //
 extension FilterVC:CategoryDelegate{
-    func didSelectRow(withSelectedCategories dictCategories:[Int:Bool]){
-    
-    } //arrCategories is key index
+    func didSelectLocation(location: String?) {
+        selectedLocation = location
+        reloadData()
+    }
 }
 
 //
@@ -261,8 +263,13 @@ extension FilterVC{
     }
     
     @IBAction func IBActionShowLabels(sender: UIButton) {
+        var selectedCategory:String?
+        if selectedCategoryIndexRow > 0 {
+                selectedCategory = arrCategories[selectedCategoryIndexRow]
+        }
+    
+        delegate?.didClickShowLabels(selectedCategory, location: selectedLocation)
         close()
-        delegate?.didClickApply(forFilterModel: filterModel)
     }
     
     
@@ -319,7 +326,7 @@ extension FilterVC{
                         
                     }
                 }
-                self.IBtblFilter.reloadData()
+                self.reloadData()
             }else{
                 UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: { 
                   self.close()
@@ -389,6 +396,6 @@ extension FilterVC{
     private func reloadData(){
         UIView.transitionWithView(IBtblFilter, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             self.IBtblFilter.reloadData()
-            }, completion: nil)
+        }, completion: nil)
     }
 }

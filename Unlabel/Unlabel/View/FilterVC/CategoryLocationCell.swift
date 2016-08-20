@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CategoryDelegate {
-    func didSelectRow(withSelectedCategories dictCategories:[Int:Bool]) //arrCategories is key index
+    func didSelectLocation(location:String?)
 }
 
 enum CategoryLocationCellType{
@@ -86,8 +86,10 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath == selectedLocationIndex{
             selectedLocationIndex = nil
+            delegate?.didSelectLocation(nil)
         }else{
             selectedLocationIndex = indexPath
+            delegate?.didSelectLocation(arrLocations[indexPath.row].stateOrCountry)
         }
         
         reloadData()

@@ -57,6 +57,8 @@ class FeedVC: UIViewController {
     var mainVCType:MainVCType = .Feed
     var filteredNavTitle:String?
     var filteredString:String?
+    var sFilterCategory:String?
+    var sFilterLocation:String?
     
 //    var nextPageURL:String?
     var nextPageURLMen:String?
@@ -199,7 +201,7 @@ extension FeedVC:UICollectionViewDataSource{
         
         let feedVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_FeedVCCell, forIndexPath: indexPath) as! FeedVCCell
         feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercaseString
-        feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].OriginCity), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
+        feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location)"
         feedVCCell.IBbtnStar.tag = indexPath.row
         
         if arrFilteredBrandList[indexPath.row].isFollowing{
@@ -210,26 +212,26 @@ extension FeedVC:UICollectionViewDataSource{
         
         feedVCCell.IBimgBrandImage.image = nil
         
-//        if let url = NSURL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
-//            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
-//                if let _ = error{
-//                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
-//                }else{
-//                    if (type == SDImageCacheType.None)
-//                    {
-//                        feedVCCell.IBimgBrandImage.alpha = 0;
-//                        UIView.animateWithDuration(0.35, animations: {
-//                            feedVCCell.IBimgBrandImage.alpha = 1;
-//                        })
-//                    }
-//                    else
-//                    {
-//                        feedVCCell.IBimgBrandImage.alpha = 1;
-//                    }
-//                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
-//                }
-//            })
-//        }
+        if let url = NSURL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
+            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+                if let _ = error{
+                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+                }else{
+                    if (type == SDImageCacheType.None)
+                    {
+                        feedVCCell.IBimgBrandImage.alpha = 0;
+                        UIView.animateWithDuration(0.35, animations: {
+                            feedVCCell.IBimgBrandImage.alpha = 1;
+                        })
+                    }
+                    else
+                    {
+                        feedVCCell.IBimgBrandImage.alpha = 1;
+                    }
+                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+                }
+            })
+        }
         
         return feedVCCell
     }
@@ -268,31 +270,15 @@ extension FeedVC:LeftMenuVCDelegate{
 //MARK:- FilterVCDelegate Methods
 //
 extension FeedVC: FilterVCDelegate{
-    func didClickApply(forFilterModel filterModel: Brand) {
-        
-//        //If anything from filter is selected
-//        if filterModel.Menswear || filterModel.Womenswear || filterModel.Clothing || filterModel.Accessories || filterModel.Jewelry || filterModel.Shoes || filterModel.Bags {
-//            arrFilteredBrandList = []
-//            for brand in arrBrandList{
-//                if (((filterModel.Menswear == brand.Menswear) && (filterModel.Menswear == true)) ||
-//                    ((filterModel.Womenswear == brand.Womenswear) && (filterModel.Womenswear == true)) ||
-//                    ((filterModel.Clothing == brand.Clothing) && (filterModel.Clothing == true)) ||
-//                    ((filterModel.Accessories == brand.Accessories) && (filterModel.Accessories == true)) ||
-//                    ((filterModel.Jewelry == brand.Jewelry) && (filterModel.Jewelry == true)) ||
-//                    ((filterModel.Shoes == brand.Shoes) && (filterModel.Shoes == true)) ||
-//                    ((filterModel.Bags == brand.Bags) && (filterModel.Bags == true))){
-//                    arrFilteredBrandList.append(brand)
-//                }
-//            }
-//            
-//            //Nothing selected in filter screen
-//        }else{
-//            debugPrint("Nothing Selected for filtering")
-//        }
-//        
-//        IBcollectionViewFeed.reloadData()
+    func didClickShowLabels(category: String?, location: String?) {
+        arrFilteredBrandList = []
+        arrMenBrandList = []
+        arrWomenBrandList = []
+        sFilterCategory = category
+        sFilterLocation = location
+        wsCallGetLabels()
+//        wsCallGetLabelsResetOffset(true)
     }
-    
 }
 
 //
@@ -475,17 +461,6 @@ extension FeedVC{
     
     @IBAction func IBActionFilter(sender: AnyObject) {
         addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
-    }
-    
-    private func updateFilterArray(){
-        if headerView?.selectedTab == .Men{
-            arrFilteredBrandList = arrMenBrandList
-        }else if headerView?.selectedTab == .Women{
-            arrFilteredBrandList = arrWomenBrandList
-        }else{
-            
-        }
-        IBcollectionViewFeed.reloadData()
     }
    
 }
@@ -832,6 +807,18 @@ extension FeedVC{
             self.presentViewController(loginSignupVC, animated: true, completion: nil)
         }
     }
+    
+    private func updateFilterArray(){
+        if headerView?.selectedTab == .Men{
+            arrFilteredBrandList = arrMenBrandList
+        }else if headerView?.selectedTab == .Women{
+            arrFilteredBrandList = arrWomenBrandList
+        }else{
+            
+        }
+        IBcollectionViewFeed.reloadData()
+    }
+    
 }
 
 
@@ -963,7 +950,9 @@ extension FeedVC{
             
             
         let fetchBrandsRequestParams = FetchBrandsRP()
-        
+        fetchBrandsRequestParams.filterCategory = self.sFilterCategory
+        fetchBrandsRequestParams.filterLocation = self.sFilterLocation
+            
         if headerView?.selectedTab == .Men{
             fetchBrandsRequestParams.nextPageURL = nextPageURLMen
         }else if headerView?.selectedTab == .Women{
