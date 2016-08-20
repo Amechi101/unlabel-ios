@@ -36,6 +36,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
     private let arrCategories:[String] = ["Choose Category","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    private var arrLocations:[String] = []
     private var selectedCategoryIndexRow:Int = 0
     
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]

@@ -465,7 +465,6 @@ extension FeedVC{
         }else{
             
         }
-        
         IBcollectionViewFeed.reloadData()
     }
    
@@ -956,7 +955,7 @@ extension FeedVC{
                 
                 }
                 
-                self.IBcollectionViewFeed.reloadData()
+                self.updateFilterArray()
                 self.refreshControl.endRefreshing()
                 }, failed: { (error) in
                     self.isLoading = false
@@ -968,7 +967,9 @@ extension FeedVC{
             })
         }else{
             self.refreshControl.endRefreshing()
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+            if !ReachabilitySwift.isConnectedToNetwork(){
+                UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+            }
         }
     }
 }
