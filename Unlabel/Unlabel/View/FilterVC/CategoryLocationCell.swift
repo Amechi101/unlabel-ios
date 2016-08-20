@@ -33,9 +33,10 @@ class CategoryLocationCell: UITableViewCell {
     var shouldClearCategories = false
 
     private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
-    private let arrLocations:[String] = ["fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff","fsdsdff"]
+    var arrLocations:[Location] = []
     
-    private var selectedLocationIndex:NSIndexPath?
+    var selectedLocationIndex:NSIndexPath?
+    var locationChoices:LocationChoices = LocationChoices.International
     
     var delegate:CategoryDelegate?
     
@@ -65,7 +66,7 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let titleBoxCell = IBcollectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_TitleBoxCell, forIndexPath: indexPath) as? TitleBoxCell
-        titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row]
+        titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row].stateOrCountry
         
         if indexPath == selectedLocationIndex{
             titleBoxCell?.IBlblBoxTitle.textColor = MEDIUM_GRAY_TEXT_COLOR

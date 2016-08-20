@@ -48,7 +48,6 @@ class FeedVC: UIViewController {
     
     private var arrMenBrandList:[Brand] = [Brand]()
     private var arrWomenBrandList:[Brand] = [Brand]()
-    private var arrBothBrandList:[Brand] = [Brand]()
     
     private var didSelectBrand:Brand?
     private var filterChildVC:FilterVC?
@@ -211,26 +210,26 @@ extension FeedVC:UICollectionViewDataSource{
         
         feedVCCell.IBimgBrandImage.image = nil
         
-        if let url = NSURL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
-            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
-                if let _ = error{
-                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
-                }else{
-                    if (type == SDImageCacheType.None)
-                    {
-                        feedVCCell.IBimgBrandImage.alpha = 0;
-                        UIView.animateWithDuration(0.35, animations: {
-                            feedVCCell.IBimgBrandImage.alpha = 1;
-                        })
-                    }
-                    else
-                    {
-                        feedVCCell.IBimgBrandImage.alpha = 1;
-                    }
-                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
-                }
-            })
-        }
+//        if let url = NSURL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
+//            feedVCCell.IBimgBrandImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+//                if let _ = error{
+//                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+//                }else{
+//                    if (type == SDImageCacheType.None)
+//                    {
+//                        feedVCCell.IBimgBrandImage.alpha = 0;
+//                        UIView.animateWithDuration(0.35, animations: {
+//                            feedVCCell.IBimgBrandImage.alpha = 1;
+//                        })
+//                    }
+//                    else
+//                    {
+//                        feedVCCell.IBimgBrandImage.alpha = 1;
+//                    }
+//                    self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+//                }
+//            })
+//        }
         
         return feedVCCell
     }
@@ -338,6 +337,25 @@ extension FeedVC:ProductVCDelegate{
     }
 }
 
+
+//
+//MARK:- LoginSignupVCDelegate Methods
+//
+extension FeedVC:LoginSignupVCDelegate{
+    func willDidmissViewController() {
+//        var userDisplayName = S_LOGIN_REGISTER
+//        
+//        if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//            if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
+//                userDisplayName = displayName
+//            }
+//        }
+//        
+//        IBlblUserName.text = userDisplayName
+    }
+}
+
+
 //
 //MARK:- BranchDeepLinkingController Methods
 //
@@ -387,38 +405,40 @@ extension FeedVC{
         handleHamburgerAndBack(sender)
     }
     
-//    @IBAction func IBActionStarClicked(sender: UIButton) {
-//        
-//        //Internet available
-//        if ReachabilitySwift.isConnectedToNetwork(){
-//            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-//                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
-//                    
-//                    //If already following
-//                    if arrFilteredBrandList[sender.tag].isFollowing{
-//                        arrFilteredBrandList[sender.tag].isFollowing = false
-//                        
-//                        //If not already following
-//                    }else{
-//                        arrFilteredBrandList[sender.tag].isFollowing = true
-//                    }
-//                    
-//                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-//                        //Followd/Unfollowd brand
-//                        if error == nil{
-//                            self.firebaseCallGetFollowingBrands()
-//                        }else{
-//                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-//                        }
-//                    })
-//                    
-//                    IBcollectionViewFeed.reloadData()
-//                }
-//            }
-//        }else{
-//            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-//        }
-//    }
+    @IBAction func IBActionStarClicked(sender: UIButton) {
+        
+        //Internet available
+        if ReachabilitySwift.isConnectedToNetwork(){
+            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
+                    
+                    //If already following
+                    if arrFilteredBrandList[sender.tag].isFollowing{
+                        arrFilteredBrandList[sender.tag].isFollowing = false
+                        
+                        //If not already following
+                    }else{
+                        arrFilteredBrandList[sender.tag].isFollowing = true
+                    }
+                    
+                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                        //Followd/Unfollowd brand
+                        if error == nil{
+                            self.firebaseCallGetFollowingBrands()
+                        }else{
+                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+                        }
+                    })
+                    
+                    IBcollectionViewFeed.reloadData()
+                }
+            }else{
+                self.openLoginSignupVC()
+            }
+        }else{
+            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+        }
+    }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
         if let headerView = headerView{
@@ -805,6 +825,13 @@ extension FeedVC{
             return BrandGender.Men
         }
     }
+    
+    private func openLoginSignupVC(){
+        if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+            loginSignupVC.delegate = self
+            self.presentViewController(loginSignupVC, animated: true, completion: nil)
+        }
+    }
 }
 
 
@@ -835,21 +862,38 @@ extension FeedVC{
     /**
      Firebase call get all following brands
      */
-//    private func firebaseCallGetFollowingBrands(){
-//        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-//            FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
-//                if let followingBrandIDsObj = followingBrandIDs{
-//                    for var brand in self.arrBrandList{
-//                        if followingBrandIDsObj.contains(brand.ID){
-//                            brand.isFollowing = true
-//                        }
-//                    }
-//                    
-//                    self.IBcollectionViewFeed.reloadData()
-//                }
-//            })
-//        }
-//    }
+    private func firebaseCallGetFollowingBrands(){
+        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
+                if let followingBrandIDsObj = followingBrandIDs{
+                    var arrToBeUpdated = [Brand]()
+                    if self.headerView?.selectedTab == .Men {
+                        arrToBeUpdated = self.arrMenBrandList
+                    }else if self.headerView?.selectedTab == .Women{
+                        arrToBeUpdated = self.arrWomenBrandList
+                    }else{
+                        arrToBeUpdated = self.arrMenBrandList
+                    }
+                    for var brand in arrToBeUpdated{
+                        if followingBrandIDsObj.contains(brand.ID){
+                            brand.isFollowing = true
+                        }
+                    }
+                    
+                    if self.headerView?.selectedTab == .Men {
+                        self.arrMenBrandList = arrToBeUpdated
+                    }else if self.headerView?.selectedTab == .Women{
+                        self.arrWomenBrandList = arrToBeUpdated
+                    }else{
+                        self.arrMenBrandList = arrToBeUpdated
+                    }
+                    
+                    
+                    self.updateFilterArray()
+                }
+            })
+        }
+    }
 }
 
 //
@@ -914,7 +958,7 @@ extension FeedVC{
                 }
 
             }else{
-                
+                UnlabelLoadingView.sharedInstance.start(view)
             }
             
             
@@ -936,6 +980,7 @@ extension FeedVC{
             
             
             UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+                self.firebaseCallGetFollowingBrands()
                 self.isLoading = false
                 
                 UnlabelLoadingView.sharedInstance.stop(self.view)

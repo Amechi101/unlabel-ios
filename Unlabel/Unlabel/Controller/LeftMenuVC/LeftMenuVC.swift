@@ -100,7 +100,7 @@ extension LeftMenuVC{
 }
 
 //
-//MARK:- Custom Methods
+//MARK:- LoginSignupVCDelegate Methods
 //
 extension LeftMenuVC:LoginSignupVCDelegate{
     func willDidmissViewController() {

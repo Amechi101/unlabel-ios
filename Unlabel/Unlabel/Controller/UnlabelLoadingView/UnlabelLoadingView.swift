@@ -32,6 +32,7 @@ class UnlabelLoadingView: UIView {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
         visualEffectView.frame = rect
         addSubview(visualEffectView)
+        bringSubviewToFront(visualEffectView)
     }
     
     func addShimmeringImageAndLabel(){

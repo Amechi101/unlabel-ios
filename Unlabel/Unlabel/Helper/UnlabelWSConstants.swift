@@ -69,10 +69,15 @@ struct APIParams {
     static let brandCategory    = "brand_category"
     
     static let location         = "location"
+    static let locations        = "locations"
     static let locationChoices  = "location_choices"
+    static let stateOrCountry   = "state_or_country"
     
     static let menswear         = "menswear"
     static let womenswear       = "womenswear"
+    
+    static let locationChoicesCountry  = "Country"
+    static let locationChoicesState    = "State"
 }
 
 class WSConstantFetcher{

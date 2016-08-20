@@ -2514,7 +2514,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-b6-ugD">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-b6-ugD">
                                 <rect key="frame" x="30" y="603" width="315" height="44"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2525,7 +2525,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="IBActionBuyProduct:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="rbb-Sn-DHp"/>
                                     <action selector="IBActionShowLabels:" destination="nWD-28-jS0" eventType="touchUpInside" id="aEY-Ig-w2g"/>
                                 </connections>
                             </button>
@@ -2640,6 +2639,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="IBbtnShowLabels" destination="1Ga-b6-ugD" id="Ahz-Jc-CoC"/>
                         <outlet property="IBconstraintPickerHeight" destination="g4v-Uv-ikq" id="HVG-P5-g0L"/>
                         <outlet property="IBconstraintPickerMainBottom" destination="Shs-iz-uUF" id="U8S-LE-ejz"/>
                         <outlet property="IBlblFilterFor" destination="31d-0R-aD5" id="a44-2d-phr"/>

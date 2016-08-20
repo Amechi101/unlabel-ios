@@ -29,9 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var reachability:Reachability!;
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+        UIApplication.sharedApplication().statusBarFrame
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         setupOnLaunch(launchOptions)
         
         return FBSDKApplicationDelegate.sharedInstance()

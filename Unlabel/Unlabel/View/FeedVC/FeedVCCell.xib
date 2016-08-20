@@ -41,10 +41,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es1-B5-K0z">
-                                        <rect key="frame" x="212" y="0.0" width="35" height="35"/>
+                                        <rect key="frame" x="202" y="-5" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="RsL-MG-6CT"/>
-                                            <constraint firstAttribute="height" constant="35" id="sZX-Rr-YvB"/>
+                                            <constraint firstAttribute="width" constant="50" id="RsL-MG-6CT"/>
+                                            <constraint firstAttribute="height" constant="50" id="sZX-Rr-YvB"/>
                                         </constraints>
                                         <state key="normal" image="notStarred"/>
                                         <connections>
@@ -55,14 +55,14 @@
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="273-CG-rr4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tYE-u7-CMl" secondAttribute="leading" constant="20" id="1gs-Dm-AMr"/>
-                                    <constraint firstAttribute="trailing" secondItem="Es1-B5-K0z" secondAttribute="trailing" id="Miz-LW-IsJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Es1-B5-K0z" secondAttribute="trailing" constant="-5" id="Miz-LW-IsJ"/>
                                     <constraint firstItem="XyB-NV-hWx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tYE-u7-CMl" secondAttribute="leading" constant="30" id="NZC-RV-muk"/>
                                     <constraint firstItem="273-CG-rr4" firstAttribute="centerX" secondItem="tYE-u7-CMl" secondAttribute="centerX" id="f3b-3a-PX8"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XyB-NV-hWx" secondAttribute="trailing" constant="30" id="ggt-Bj-Nn0"/>
                                     <constraint firstItem="XyB-NV-hWx" firstAttribute="centerY" secondItem="tYE-u7-CMl" secondAttribute="centerY" multiplier="1.1" id="q6T-iG-9Iv"/>
                                     <constraint firstItem="273-CG-rr4" firstAttribute="centerY" secondItem="tYE-u7-CMl" secondAttribute="centerY" multiplier="0.8" id="qOf-fR-eNN"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="273-CG-rr4" secondAttribute="trailing" constant="20" id="tTa-44-eaU"/>
-                                    <constraint firstItem="Es1-B5-K0z" firstAttribute="top" secondItem="tYE-u7-CMl" secondAttribute="top" id="w52-ME-a5k"/>
+                                    <constraint firstItem="Es1-B5-K0z" firstAttribute="top" secondItem="tYE-u7-CMl" secondAttribute="top" constant="-5" id="w52-ME-a5k"/>
                                     <constraint firstItem="XyB-NV-hWx" firstAttribute="centerX" secondItem="tYE-u7-CMl" secondAttribute="centerX" id="xrK-pk-fxi"/>
                                 </constraints>
                             </view>

@@ -28,6 +28,7 @@ class FilterVC: UIViewController {
     //
     
     
+    @IBOutlet weak var IBbtnShowLabels: UIButton!
     @IBOutlet weak var IBlblFilterFor: UILabel!
     @IBOutlet weak var IBtblFilter: UITableView!
     @IBOutlet weak var IBpickerView: UIPickerView!
@@ -36,7 +37,9 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
     private let arrCategories:[String] = ["Choose Category","Clothing","Accessories","Jewelry","Shoes","Bags"]
-    private var arrLocations:[String] = []
+    private var arrLocationsUSA:[Location] = []
+    private var arrLocationsInternational:[Location] = []
+    
     private var selectedCategoryIndexRow:Int = 0
     
     private let arrFilterTitles:[String] = ["LABEL CATEGORY","LOCATION"]
@@ -46,12 +49,15 @@ class FilterVC: UIViewController {
     var delegate:FilterVCDelegate?
     var selectedFilterType:FilterType = .Unknown
     
+    var locationChoices:LocationChoices = LocationChoices.International
+    
     //
     //MARK:- VC Lifecycle
     //
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIOnLoad()
+        setupDataLoad()
         // Do any additional setup after loading the view.
     }
     
@@ -95,7 +101,7 @@ extension FilterVC:UITableViewDataSource{
         if indexPath.row == 1 {
             return 50
         }else if indexPath.row == 3 {
-            return 320
+            return SCREEN_HEIGHT-80-88-50-88    //Nav height/cell height/cell height/show labels button height
         }else{
             return UITableViewAutomaticDimension
         }
@@ -138,9 +144,11 @@ extension FilterVC:UITableViewDataSource{
         var InternationalTextColor:UIColor?
         
         if filterTitleCell?.selectedTab == 0{
+            locationChoices = .USA
             USATextColor = MEDIUM_GRAY_TEXT_COLOR
             InternationalTextColor = LIGHT_GRAY_TEXT_COLOR
         }else{
+            locationChoices = .International
             USATextColor = LIGHT_GRAY_TEXT_COLOR
             InternationalTextColor = MEDIUM_GRAY_TEXT_COLOR
         }
@@ -167,26 +175,25 @@ extension FilterVC:UITableViewDataSource{
         return categoryStyleCell!
     }
     
+    
+    //Location boxes
     func categoryLocationCell(indexPath:NSIndexPath)->CategoryLocationCell{
         let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
         categoryLocationCell.delegate = self
-//        categoryLocationCell.IBconstraintCollectionViewHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
-//        if indexPath.row == 3{
-//            if shouldClearCategories{
-//                for (index,_) in categoryLocationCell.dictSelectedCategories{
-//                    categoryLocationCell.dictSelectedCategories.updateValue(false, forKey: index)
-//                    categoryLocationCell.IBtblLocation.reloadData()
-//                }
-//                shouldClearCategories = false
-//            }
-//            categoryLocationCell.cellType = CategoryLocationCellType.Category
-//            categoryLocationCell.IBtblLocation.tag = TableViewType.Category.rawValue
-//            categoryLocationCell.IBconstraintCategoryTableHeight.constant = IBtblFilter.frame.size.height - 142 // 142 = Height of other cells than category table cell
-//        }else{
-//            categoryLocationCell.cellType = CategoryLocationCellType.Unknown
-//            categoryLocationCell.IBtblLocation.tag = TableViewType.Unknown.rawValue
-//        }
-//        
+        
+        if categoryLocationCell.locationChoices != locationChoices {
+            categoryLocationCell.selectedLocationIndex = nil
+        }
+        
+        categoryLocationCell.locationChoices = locationChoices
+        
+        if locationChoices == .USA{
+            categoryLocationCell.arrLocations = arrLocationsUSA
+        }else if locationChoices == .International{
+            categoryLocationCell.arrLocations = arrLocationsInternational
+        }
+        categoryLocationCell.IBcollectionView.reloadData()
+        
         return categoryLocationCell
     }
     
@@ -294,6 +301,31 @@ extension FilterVC{
         registerCell(withID: REUSABLE_ID_FilterTitleCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
         registerCell(withID: REUSABLE_ID_CategoryLocationCell)
+    }
+    
+    private func setupDataLoad(){
+        UnlabelLoadingView.sharedInstance.start(view)
+        UnlabelAPIHelper.sharedInstance.getLocations { (arrAllLocations) in
+            UnlabelLoadingView.sharedInstance.stop(self.view)
+            if let allLocations = arrAllLocations where allLocations.count > 0{
+                for location in allLocations{
+                    if location.locationChoices == APIParams.locationChoicesCountry{
+                        self.IBbtnShowLabels.hidden = false
+                        self.arrLocationsInternational.append(location)
+                    }else if location.locationChoices == APIParams.locationChoicesState{
+                        self.IBbtnShowLabels.hidden = false
+                        self.arrLocationsUSA.append(location)
+                    }else{
+                        
+                    }
+                }
+                self.IBtblFilter.reloadData()
+            }else{
+                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: { 
+                  self.close()
+                })
+            }
+        }
     }
     
     /**

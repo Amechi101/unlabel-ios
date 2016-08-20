@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-
+import ObjectMapper
 
 class UnlabelAPIHelper{
     static let sharedInstance = UnlabelAPIHelper()
@@ -196,6 +196,24 @@ class UnlabelAPIHelper{
     //Filter
     func getFilterCategory(){
     
+    }
+    
+    func getLocations(completion:[Location]?->()){
+        Alamofire.request(.GET, API.getLocations).responseJSON { (response) in
+            switch response.result {
+                
+            case .Success(let data):
+                let json = JSON(data)
+                let data = json[APIParams.locations].arrayObject
+                if let arrAllLocation:[Location] = Mapper<Location>().mapArray(data){
+                    completion(arrAllLocation)
+                }else{
+                    completion(nil)
+                }
+            case .Failure(_):
+               completion(nil)
+            }
+        }
     }
     
 }
