@@ -36,7 +36,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBconstraintPickerHeight: NSLayoutConstraint!
     @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
     
-    private let arrCategories:[String] = ["Choose Category","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    private let arrCategories:[String] = ["Choose Category","All","Clothing","Accessories","Jewelry","Shoes","Bags"]
     private var arrLocationsUSA:[Location] = []
     private var arrLocationsInternational:[Location] = []
     
@@ -102,7 +102,7 @@ extension FilterVC:UITableViewDataSource{
         if indexPath.row == 1 {
             return 50
         }else if indexPath.row == 3 {
-            return SCREEN_HEIGHT-80-88-50-88    //Nav height/cell height/cell height/show labels button height
+            return 160+45+12 //Total cell heigh + cell spaces height + collecitonview to top height
         }else{
             return UITableViewAutomaticDimension
         }
@@ -264,7 +264,7 @@ extension FilterVC{
     
     @IBAction func IBActionShowLabels(sender: UIButton) {
         var selectedCategory:String?
-        if selectedCategoryIndexRow > 0 {
+        if selectedCategoryIndexRow > 1 {
                 selectedCategory = arrCategories[selectedCategoryIndexRow]
         }
     

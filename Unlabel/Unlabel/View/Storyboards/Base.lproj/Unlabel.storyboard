@@ -76,6 +76,7 @@
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
+            <string>Neutraface2Text-Demi</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -520,7 +521,7 @@
                             </barButtonItem>
                         </leftBarButtonItems>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sdq-zW-PIY">
-                            <rect key="frame" x="83" y="7" width="210" height="30"/>
+                            <rect key="frame" x="124" y="7" width="127" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Bold" family="Neutraface 2 Text" pointSize="28"/>
@@ -539,9 +540,10 @@
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="lkt-u4-S8d">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mPX-PJ-PZf">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mPX-PJ-PZf">
                                     <rect key="frame" x="321" y="11" width="20" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                     <state key="normal" image="search">
                                         <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -2521,7 +2523,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <constraint firstAttribute="height" constant="44" id="cJ5-qb-zC2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
-                                <state key="normal" title="SHOW LABELS">
+                                <state key="normal" title="APPLY">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

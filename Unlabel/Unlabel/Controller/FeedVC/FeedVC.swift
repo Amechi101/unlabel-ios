@@ -150,16 +150,40 @@ extension FeedVC:UICollectionViewDelegate{
             if mainVCType == .Feed{
 //                headerView?.IBconstraintGenderContainerHeight.constant = fHeaderHeight
                 IBbtnFilter.hidden = false
+                headerView?.IBlblFilterTitle.hidden = true
+                headerView?.IBbtnMen.hidden = false
+                headerView?.IBbtnWomen.hidden = false
+                
+                var selectedTabString = String()
+                
+                if headerView?.selectedTab == .Men {
+                    selectedTabString = "Men"
+                }else if headerView?.selectedTab == .Women{
+                    selectedTabString = "Women"
+                }else{
+                
+                }
+                
+                if let sFilterCategory = sFilterCategory{
+                    headerView?.IBlblFilterTitle.hidden = false
+                    selectedTabString =  selectedTabString + " - " + sFilterCategory
+                }
+                
+                if let sFilterLocation = sFilterLocation{
+                    headerView?.IBlblFilterTitle.hidden = false
+                    selectedTabString = selectedTabString + " - " + sFilterLocation
+                }
+                
+                headerView?.IBbtnMen.hidden = !((headerView?.IBlblFilterTitle.hidden)!)
+                headerView?.IBbtnWomen.hidden = !((headerView?.IBlblFilterTitle.hidden)!)
+                
+                headerView?.IBlblFilterTitle.text = selectedTabString
+                
             }else if mainVCType == .Filter{
 //                headerView?.IBconstraintGenderContainerHeight.constant = 0
                 IBbtnFilter.hidden = true
                 
-                var titleText:String = ""
                 
-                if let filteredStringObj = filteredString{
-                    titleText = filteredStringObj
-                }
-                headerView?.IBlblFilterTitle.text = titleText
             }else{
                 
             }
@@ -276,8 +300,46 @@ extension FeedVC: FilterVCDelegate{
         arrWomenBrandList = []
         sFilterCategory = category
         sFilterLocation = location
+        
+        var shouldShowClear = false
+        
+        if let _ = category{
+            shouldShowClear = true
+        }
+        
+        if let _ = location{
+            shouldShowClear = true
+        }
+        
+        updateFilterButton(shouldShowClear: shouldShowClear)
+        
         wsCallGetLabels()
 //        wsCallGetLabelsResetOffset(true)
+    }
+    
+    private func updateFilterButton(shouldShowClear shouldShowClear:Bool){
+        if shouldShowClear {
+            IBbtnFilter.setImage(nil, forState: .Normal)
+            IBbtnFilter.setTitle(Strings.clear, forState: .Normal)
+            IBbtnFilter.frame.size.width = 60
+        }else{
+            IBbtnFilter.setTitle(nil, forState: .Normal)
+            IBbtnFilter.setImage(UIImage(named: IMG_SEARCH), forState: .Normal)
+            IBbtnFilter.frame.size.width = 60
+        }
+        navigationController?.navigationBar.setNeedsLayout()
+    }
+    
+    private func updateTabView(shouldShowTabs shouldShowTabs:Bool){
+        if shouldShowTabs {
+            headerView?.IBbtnMen.hidden = false
+            headerView?.IBbtnWomen.hidden = false
+            headerView?.IBlblFilterTitle.hidden = true
+        }else{
+            headerView?.IBbtnMen.hidden = true
+            headerView?.IBbtnWomen.hidden = true
+            headerView?.IBlblFilterTitle.hidden = false
+        }
     }
 }
 
@@ -318,8 +380,8 @@ extension FeedVC:AppDelegateDelegates{
 //
 extension FeedVC:ProductVCDelegate{
     func didClickFollow(forBrand brand: Brand) {
-        arrFilteredBrandList[brand.currentIndex] = brand
-        IBcollectionViewFeed.reloadData()
+//        arrFilteredBrandList[brand.currentIndex] = brand
+//        IBcollectionViewFeed.reloadData()
     }
 }
 
@@ -392,38 +454,38 @@ extension FeedVC{
     }
     
     @IBAction func IBActionStarClicked(sender: UIButton) {
-        
-        //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
-            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
-                    
-                    //If already following
-                    if arrFilteredBrandList[sender.tag].isFollowing{
-                        arrFilteredBrandList[sender.tag].isFollowing = false
-                        
-                        //If not already following
-                    }else{
-                        arrFilteredBrandList[sender.tag].isFollowing = true
-                    }
-                    
-                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                        //Followd/Unfollowd brand
-                        if error == nil{
-                            self.firebaseCallGetFollowingBrands()
-                        }else{
-                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-                        }
-                    })
-                    
-                    IBcollectionViewFeed.reloadData()
-                }
-            }else{
-                self.openLoginSignupVC()
-            }
-        }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-        }
+//        
+//        //Internet available
+//        if ReachabilitySwift.isConnectedToNetwork(){
+//            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//                if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
+//                    
+//                    //If already following
+//                    if arrFilteredBrandList[sender.tag].isFollowing{
+//                        arrFilteredBrandList[sender.tag].isFollowing = false
+//                        
+//                        //If not already following
+//                    }else{
+//                        arrFilteredBrandList[sender.tag].isFollowing = true
+//                    }
+//                    
+//                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+//                        //Followd/Unfollowd brand
+//                        if error == nil{
+//                            self.firebaseCallGetFollowingBrands()
+//                        }else{
+//                            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+//                        }
+//                    })
+//                    
+//                    IBcollectionViewFeed.reloadData()
+//                }
+//            }else{
+//                self.openLoginSignupVC()
+//            }
+//        }else{
+//            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+//        }
     }
     
     @IBAction func IBActionFilterMen(sender: UIButton) {
@@ -460,7 +522,18 @@ extension FeedVC{
 //    }
     
     @IBAction func IBActionFilter(sender: AnyObject) {
-        addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
+        if sFilterLocation != nil || sFilterCategory != nil {
+            arrFilteredBrandList = []
+            arrMenBrandList = []
+            arrWomenBrandList = []
+            sFilterCategory = nil
+            sFilterLocation = nil
+            wsCallGetLabels()
+            updateTabView(shouldShowTabs: true)
+            updateFilterButton(shouldShowClear: false)
+        }else{
+            addFilterVCAsChildVC(viewControllerName: S_ID_FILTER_VC)
+        }
     }
    
 }
@@ -499,6 +572,7 @@ extension FeedVC{
         var leftBarButtonImage = IMG_HAMBURGER
         
         if mainVCType == .Feed{
+            addNotFoundView()
             addPullToRefresh()
             wsCallGetLabels()
             IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)

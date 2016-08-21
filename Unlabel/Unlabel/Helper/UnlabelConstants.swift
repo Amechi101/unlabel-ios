@@ -70,6 +70,7 @@ let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
 //
 let IMG_HAMBURGER              = "hamburger"
 let IMG_BACK                   = "back"
+let IMG_SEARCH                 = "search"
 
 //
 //MARK:- Segue IDs
@@ -145,3 +146,8 @@ let SCREEN_HEIGHT       = UIScreen.mainScreen().bounds.size.height
 //
 let FB_ALREADY_LOGGED_IN = (111,"User already logged in.") //Error code and message
 let FB_LOGIN_FAILED = (112,"Login failed.")
+
+
+struct Strings{
+    static let clear = "CLEAR"
+}

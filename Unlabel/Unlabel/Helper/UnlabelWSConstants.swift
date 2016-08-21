@@ -53,9 +53,9 @@ struct API{
     static let userName = "amechiegbe"
     static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
     
-    static let labels       = "Devlabels/"
-    static let products     = "Devproducts/"
-    static let locations    = "Devlocations/"
+    static let labels       = "labels/"
+    static let products     = "products/"
+    static let locations    = "locations/"
  
     static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
     static let getProducts  = WSConstantFetcher.getFinalURLs(products)
