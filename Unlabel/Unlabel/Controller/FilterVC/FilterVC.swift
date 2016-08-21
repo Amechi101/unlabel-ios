@@ -314,7 +314,9 @@ extension FilterVC{
         UnlabelLoadingView.sharedInstance.start(view)
         UnlabelAPIHelper.sharedInstance.getLocations { (arrAllLocations) in
             UnlabelLoadingView.sharedInstance.stop(self.view)
-            if let allLocations = arrAllLocations where allLocations.count > 0{
+            
+            if var allLocations = arrAllLocations where allLocations.count > 0{
+                allLocations = allLocations.sort{$0.stateOrCountry < $1.stateOrCountry}
                 for location in allLocations{
                     if location.locationChoices == APIParams.locationChoicesCountry{
                         self.IBbtnShowLabels.hidden = false
