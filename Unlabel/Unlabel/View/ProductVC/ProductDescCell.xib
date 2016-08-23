@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Neutraface2Text-Book.otf">
+            <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductDescCell" id="gTV-IL-0wX" customClass="ProductDescCell" customModule="Unlabel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="322"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="322"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gma-Qu-Bbk">
+                        <rect key="frame" x="122" y="280" width="118" height="2"/>
+                        <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="sX3-BY-AIe"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
+                        <rect key="frame" x="30" y="0.0" width="301" height="216"/>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H30-dv-3gy">
+                        <rect key="frame" x="122" y="256" width="118" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="Q3r-Sz-9fi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
+                        <state key="normal" title="VIEW PRODUCTS">
+                            <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="IBActionViewProducts:" destination="-1" eventType="touchUpInside" id="j70-68-Zwe"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="Soa-HL-LhF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BzI-o7-5j3"/>
+                <constraint firstItem="H30-dv-3gy" firstAttribute="top" secondItem="Soa-HL-LhF" secondAttribute="bottom" constant="40" id="HbY-6d-DWF"/>
+                <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="30" id="HpA-qr-YFB"/>
+                <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="NUP-5E-IZ5"/>
+                <constraint firstItem="Gma-Qu-Bbk" firstAttribute="trailing" secondItem="H30-dv-3gy" secondAttribute="trailing" id="TdK-Fk-PHh"/>
+                <constraint firstItem="Gma-Qu-Bbk" firstAttribute="leading" secondItem="H30-dv-3gy" secondAttribute="leading" id="d2O-nY-WmZ"/>
+                <constraint firstItem="Gma-Qu-Bbk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="q47-wJ-Lbr"/>
+                <constraint firstItem="Gma-Qu-Bbk" firstAttribute="top" secondItem="H30-dv-3gy" secondAttribute="bottom" constant="-3" id="rWc-FY-1bU"/>
+                <constraint firstAttribute="bottom" secondItem="Gma-Qu-Bbk" secondAttribute="bottom" constant="40" id="sN5-ro-gtt"/>
+            </constraints>
+            <size key="customSize" width="361" height="322"/>
+            <connections>
+                <outlet property="IBlblDesc" destination="Soa-HL-LhF" id="Spn-tL-dzT"/>
+            </connections>
+            <point key="canvasLocation" x="387.5" y="401"/>
+        </collectionViewCell>
+    </objects>
+</document>

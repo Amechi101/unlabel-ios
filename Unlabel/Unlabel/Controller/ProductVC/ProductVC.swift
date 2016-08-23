@@ -110,14 +110,17 @@ extension ProductVC:UICollectionViewDataSource{
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return selectedBrand.arrProducts.count + 1          //+1 for header cell
+        return 2
+//        return selectedBrand.arrProducts.count + 1          //+1 for header cell
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         if indexPath.row == 0{
             return getProductHeaderCell(forIndexPath: indexPath)
+        }else if indexPath.row == 1{
+            return getProductDescCell(forIndexPath: indexPath)
         }else{
-            return getProductCell(forIndexPath: indexPath)
+            return UICollectionViewCell()
         }
     }
     
@@ -151,6 +154,12 @@ extension ProductVC:UICollectionViewDataSource{
         }
         
         return productHeaderCell
+    }
+    
+    func getProductDescCell(forIndexPath indexPath:NSIndexPath)->ProductDescCell{
+        let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
+        productDescCell.IBlblDesc.text = "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly."
+        return productDescCell
     }
     
     func getProductCell(forIndexPath indexPath:NSIndexPath)->ProductCell{
@@ -221,7 +230,7 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
         if indexPath.row == 0{
             return CGSizeMake(collectionView.frame.size.width, 291)
         }else{
-            return CGSizeMake((collectionView.frame.size.width/2)-5.5, 260)
+            return CGSizeMake((collectionView.frame.size.width)-5.5, 240)
         }
     }
 }
@@ -348,6 +357,10 @@ extension ProductVC{
         performSegueWithIdentifier(S_ID_ABOUT_LABEL_VC, sender: self)
     }
     
+    @IBAction func IBActionViewProducts(sender: AnyObject) {
+        
+    }
+    
 }
 
 //
@@ -410,6 +423,7 @@ extension ProductVC{
             IBbtnTitle.setTitle(brandName.uppercaseString, forState: .Normal)
         }
         
+        IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductDescCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductDescCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
         IBcollectionViewProduct.registerNib(UINib(nibName: REUSABLE_ID_ProductFooterView, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
