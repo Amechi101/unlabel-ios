@@ -70,7 +70,7 @@ extension ProductVC:UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //Not Header Cell
         if indexPath.row > 0{
-            performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_VC, sender: indexPath)
+            performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_WEBVIEW_VC, sender: indexPath)
 //            openSafariForIndexPath(indexPath)
         }
     }
@@ -240,15 +240,16 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
 //
 extension ProductVC{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == S_ID_PRODUCT_DETAIL_VC{
-            if let productDetailVC:ProductDetailVC = segue.destinationViewController as? ProductDetailVC{
-                if let indexPath:NSIndexPath = sender as? NSIndexPath{
-                    if let product:Product = selectedBrand.arrProducts[indexPath.row-1]{
-                        product.ProductBrandName = selectedBrand.Name
-                        productDetailVC.product = product
-                        GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
-                    }
-                }
+        if segue.identifier == S_ID_PRODUCT_DETAIL_WEBVIEW_VC{
+            if let productDetailWVVC:ProductDetailsWebViewVC = segue.destinationViewController as? ProductDetailsWebViewVC{
+//                if let indexPath:NSIndexPath = sender as? NSIndexPath{
+                    productDetailWVVC.selectedBrand = self.selectedBrand
+//                    if let product:Product = selectedBrand.arrProducts[indexPath.row-1]{
+//                        product.ProductBrandName = selectedBrand.Name
+//                        productDetailVC.product = product
+//                        GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
+//                    }
+//                }
             }
         }else if segue.identifier == S_ID_ABOUT_LABEL_VC{
             if let aboutLabelVC:AboutLabelVC = segue.destinationViewController as? AboutLabelVC{
@@ -358,7 +359,7 @@ extension ProductVC{
     }
     
     @IBAction func IBActionViewProducts(sender: AnyObject) {
-        
+        performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_WEBVIEW_VC, sender: self)
     }
     
 }

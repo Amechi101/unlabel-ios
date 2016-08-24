@@ -63,6 +63,7 @@ let S_ID_COMMON_TABLE_VC            = "CommonTableVC"
 let S_ID_PRODUCT_DETAIL_VC          = "ProductDetailVC"
 let S_ID_LAUNCH_LOADING_VC          = "LaunchLoadingVC"
 let S_ID_ADMIN_NAV_CONTROLLER       = "AdminNavController"
+let S_ID_PRODUCT_DETAIL_WEBVIEW_VC  = "ProductDetailsWebVeiwVC"
 
 
 //
