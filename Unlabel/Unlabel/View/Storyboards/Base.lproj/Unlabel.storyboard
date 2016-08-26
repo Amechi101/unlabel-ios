@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O2s-F5-Ypr">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -36,6 +36,7 @@
             <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
             <string>Neutraface2Text-Demi</string>
@@ -365,6 +366,9 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
+                                <rect key="frame" x="177" y="579" width="20" height="20"/>
+                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lg3-C2-4qs">
                                 <rect key="frame" x="0.0" y="12" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -480,18 +484,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ukq-qA-lFk"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
-                                <rect key="frame" x="177" y="579" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="lg3-C2-4qs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="FHf-E1-Ttx"/>
                             <constraint firstItem="4mG-7B-1qp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OV6-0b-LQZ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lg3-C2-4qs" secondAttribute="bottom" id="Zqh-oX-nYG"/>
-                            <constraint firstItem="lg3-C2-4qs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="pJg-wN-twB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lg3-C2-4qs" secondAttribute="bottom" id="e54-lV-2iW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4mG-7B-1qp" secondAttribute="bottom" constant="4" id="qem-YP-br3"/>
                             <constraint firstAttribute="trailing" secondItem="lg3-C2-4qs" secondAttribute="trailing" id="rZd-Ih-OaB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4mG-7B-1qp" secondAttribute="bottom" constant="4" id="sdf-7o-B0A"/>
                             <constraint firstItem="lg3-C2-4qs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xIr-2h-eno"/>
                         </constraints>
                         <connections>
@@ -569,6 +570,7 @@
                         <outlet property="bottonActivityIndicator" destination="4mG-7B-1qp" id="4zN-km-G50"/>
                         <segue destination="IL4-KD-zA1" kind="show" identifier="ProductVC" id="jWi-8m-sPs"/>
                         <segue destination="gQX-3T-UpU" kind="show" identifier="SettingsVC" id="IGv-je-epC"/>
+                        <segue destination="XMT-Tn-UFI" kind="show" identifier="FollowingVC" id="BoV-tj-4Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -767,7 +769,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1214.5" y="-2.5"/>
+            <point key="canvasLocation" x="1470.5" y="-204.5"/>
         </scene>
         <!--Product Details Web ViewVC-->
         <scene sceneID="1SK-y1-slp">
@@ -791,8 +793,7 @@
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="9XV-MJ-OHN" eventType="touchUpInside" id="Ied-mN-yI0"/>
-                                    <action selector="IBActionClose:" destination="saY-pr-CyQ" eventType="touchUpInside" id="xVM-uK-2Xb"/>
+                                    <segue destination="7Tt-Ie-mU1" kind="unwind" identifier="unwindToProductViewController" unwindAction="unwindToProductViewController:" id="HL8-R0-6OU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VK7-fu-gTg">
@@ -853,14 +854,17 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="IBbtnBack" destination="ea7-J8-ZPy" id="Tvl-mK-6AI"/>
+                        <outlet property="IBbtnForward" destination="1dz-wd-6BR" id="FoX-iL-rWY"/>
                         <outlet property="IBbtnStar" destination="VK7-fu-gTg" id="Xnx-Ph-EA6"/>
                         <outlet property="IBlblBrandName" destination="gbj-uc-MqO" id="oDD-C4-EsR"/>
                         <outlet property="IBwebView" destination="b3H-Tj-5Dy" id="X71-YU-QQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Db0-Ty-ecA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Tt-Ie-mU1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1677.5" y="-2.5"/>
+            <point key="canvasLocation" x="2053.5" y="-204.5"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="Ptv-MT-4gb">
@@ -1058,7 +1062,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1677.5" y="756.5"/>
+            <point key="canvasLocation" x="2027.5" y="756.5"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="PLw-F3-4p9">
@@ -2731,6 +2735,80 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ae1-Sv-fN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="713.5" y="350.5"/>
+        </scene>
+        <!--FollowingVC-->
+        <scene sceneID="adm-de-0kZ">
+            <objects>
+                <viewController storyboardIdentifier="FollowingVC" id="XMT-Tn-UFI" customClass="FollowingVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vzt-ah-Pwd"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Za-8H-7jZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rx0-Sr-KfS">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-tR-YRa">
+                                <rect key="frame" x="177" y="292" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8bp-MZ-Jg4">
+                                <rect key="frame" x="0.0" y="6" width="375" height="591"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="zfi-xb-1iu">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="XMT-Tn-UFI" id="BsX-Xg-cKL"/>
+                                    <outlet property="delegate" destination="XMT-Tn-UFI" id="HYm-qA-KWl"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="G6l-te-NTi">
+                        <nil key="title"/>
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="vqg-H0-YON">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="COb-we-Ljn">
+                                    <rect key="frame" x="16" y="7" width="10" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem title="Item" style="plain" id="cSK-4w-PRF">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LP8-Jp-OCh">
+                                    <rect key="frame" x="34" y="11" width="16" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="back"/>
+                                    <connections>
+                                        <action selector="IBActionBack:" destination="XMT-Tn-UFI" eventType="touchUpInside" id="zhD-ab-Mtr"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Oab-qz-8dM">
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
+                            <state key="normal" title="FOLLOWING">
+                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="IBcollectionViewFollowing" destination="8bp-MZ-Jg4" id="lx8-e3-JMQ"/>
+                        <outlet property="bottonActivityIndicator" destination="RP6-tR-YRa" id="NNG-NM-hhT"/>
+                        <outlet property="view" destination="rx0-Sr-KfS" id="a6D-xu-q3s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-yk-3zN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713.5" y="1884.5"/>
         </scene>
     </scenes>
     <resources>

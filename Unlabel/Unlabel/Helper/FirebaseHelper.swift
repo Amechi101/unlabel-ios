@@ -89,14 +89,19 @@ class FirebaseHelper: NSObject {
             if shouldFollow{
                 let followValues:[NSObject:AnyObject] = [brandID:true]
                 dispatch_async(dispatch_get_main_queue()) {
-                    FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                  let userRef =  FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID))
+                  
+                   userRef.childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                         block(error,firebase)
                         if error == nil{
                             debugPrint("brand followed")
+                           //TODO: update firebase by something...
                         }else{
                             debugPrint("brand not followed : \(error)")
                         }
                     })
+                  
+//                  userRef.childByAppendingPath(PRM_FOLLOWING_BRANDS).setValue(followValues)
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue()) {

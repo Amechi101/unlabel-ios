@@ -10,8 +10,17 @@ import UIKit
 
 enum LeftMenuItems:Int{
     case Discover = 0
-//    case Following = 1
-    case Settings = 1
+    case Following = 1
+    case Settings = 2
+   
+   
+   var getLeftMenuTitle:String {
+      switch self {
+         case .Discover: return "DISCOVER"
+         case .Following: return "FOLLOWING"
+         case .Settings: return "SETTINGS"
+      }
+   }
 }
 
 //
@@ -32,7 +41,7 @@ class LeftMenuVC: UIViewController {
     @IBOutlet weak var IBlblUserName: UILabel!
     
     private let tempDisplayName = String()
-    private let arrTitles = ["DISCOVER","SETTINGS"]
+    private let arrTitles = ["DISCOVER","FOLLOWING", "SETTINGS"]
     var delegate:LeftMenuVCDelegate?
     
     
@@ -61,6 +70,9 @@ extension LeftMenuVC:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         close(withIndexPath: indexPath)
+      
+      
+      
     }
 }
 

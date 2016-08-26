@@ -51,6 +51,16 @@ class ProductVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+   
+   
+   @IBAction func unwindToProductViewController(segue: UIStoryboardSegue) {
+      if segue.identifier == "unwindToProductViewController" {
+         let productDetail = segue.sourceViewController as! ProductDetailsWebViewVC
+          self.selectedBrand = productDetail.selectedBrand!
+         let headerCellIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+         IBcollectionViewProduct.reloadItemsAtIndexPaths([ headerCellIndexPath ])
+       }
+   }
 }
 
 //
