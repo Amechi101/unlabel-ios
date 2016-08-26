@@ -38,3 +38,10 @@ class Brand {
     var isFollowing = false
     var currentIndex = Int()
 }
+
+
+
+
+
+
+
