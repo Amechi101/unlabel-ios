@@ -119,6 +119,12 @@ extension ProductDetailsWebViewVC:PopupviewDelegate{
 //
 extension ProductDetailsWebViewVC{
    
+   private func openLoginSignupVC(){
+      if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+         //         loginSignupVC.delegate = self
+         self.presentViewController(loginSignupVC, animated: true, completion: nil)
+      }
+   }
    
    @IBAction func IBActionFollow(sender: AnyObject) {
       guard let _selectedBrand = selectedBrand else {
@@ -128,16 +134,14 @@ extension ProductDetailsWebViewVC{
       debugPrint("Follow clicked")
       //Internet available
       if ReachabilitySwift.isConnectedToNetwork(){
-         if _selectedBrand.isFollowing {
-            _selectedBrand.isFollowing = false
-         }else{
-            _selectedBrand.isFollowing = true
-         }
-         
-         self.updateButtonUI()
-
          
          if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            if _selectedBrand.isFollowing {
+               _selectedBrand.isFollowing = false
+            }else{
+               _selectedBrand.isFollowing = true
+            }
+             self.updateButtonUI()
             FirebaseHelper.followUnfollowBrand(follow: _selectedBrand.isFollowing, brandID:_selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                if error != nil{
                   
@@ -150,7 +154,9 @@ extension ProductDetailsWebViewVC{
                addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
                UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
             }
-         }         
+         } else{
+            self.openLoginSignupVC()
+         }
        
       }else{
          UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})

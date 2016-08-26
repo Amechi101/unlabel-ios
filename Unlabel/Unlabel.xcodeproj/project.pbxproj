@@ -105,6 +105,7 @@
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
 		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
 		C2561AAE06FA0796D165A7CC /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */; };
+		CB92E5FD1D70D744003795B2 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = CB92E5FC1D70D744003795B2 /* GoogleService-Info (2).plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +253,7 @@
 		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
 		536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unlabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
+		CB92E5FC1D70D744003795B2 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +690,7 @@
 			children = (
 				15056BDF1CB58AAC0058765D /* Checklist.txt */,
 				157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */,
+				CB92E5FC1D70D744003795B2 /* GoogleService-Info (2).plist */,
 				40714ED51C1DE5FE0063FF43 /* Podfile */,
 				400BDE0A1C1B890800487C6E /* Unlabel */,
 				400BDE221C1B890800487C6E /* UnlabelTests */,
@@ -894,6 +897,7 @@
 				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
 				15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */,
 				15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */,
+				CB92E5FD1D70D744003795B2 /* GoogleService-Info (2).plist in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
 				15B7E7AA1C54A2D100244AC9 /* Assets.xcassets in Resources */,
@@ -947,7 +951,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 06069638a30af80dd44e96e3bbacf8bc860316b8 83161b69f5e1dce920858f93d52deeb4ea1b18e2586991d9a7c6de4840b09762";
+			shellScript = "#\"${PODS_ROOT}/Fabric/run\" 06069638a30af80dd44e96e3bbacf8bc860316b8 83161b69f5e1dce920858f93d52deeb4ea1b18e2586991d9a7c6de4840b09762";
 		};
 		41FB13D44D40459347E05E7E /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

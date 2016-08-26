@@ -17,14 +17,12 @@ class FollowingVC: UIViewController {
     //
     //MARK:- IBOutlets, constants, vars
     //
-   @IBOutlet weak var IBcollectionViewFollowing: UICollectionView! {
-      didSet {
-          addNotFoundView()
-      }
-   }
+   @IBOutlet weak var IBcollectionViewFollowing: UICollectionView!
    
      private var arrFollowingBrandList:[Brand] = [Brand]()
       private let FEED_CELL_HEIGHT:CGFloat = 211
+   
+   private var didSelectBrand: Brand?
    
    @IBOutlet weak var bottonActivityIndicator: UIActivityIndicatorView!
    
@@ -42,7 +40,99 @@ class FollowingVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+   
+   
+   private func openLoginSignupVC(){
+      if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+//         loginSignupVC.delegate = self
+         self.presentViewController(loginSignupVC, animated: true, completion: nil)
+      }
+   }
+   
+   @IBAction func IBActionStarClicked(sender: UIButton) {
+      
+      //Internet available
+      if ReachabilitySwift.isConnectedToNetwork(){
+         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            if let selectedBrandID:String = arrFollowingBrandList[sender.tag].ID{
+               
+               //If already following
+               if arrFollowingBrandList[sender.tag].isFollowing{
+                  arrFollowingBrandList[sender.tag].isFollowing = false
+               }else{
+                  arrFollowingBrandList[sender.tag].isFollowing = true
+               }
+               
+               IBcollectionViewFollowing.reloadData()
+               
+               FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                  //Followd/Unfollowd brand
+                  if error == nil{
+                     self.firebaseCallGetFollowingBrands(self.arrFollowingBrandList)
+                  }else{
+                     UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
+                  }
+               })
+               
+               
+               if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                  
+               } else{
+                  addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                  UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+               }
+               
+               
+               
+            }
+         }else{
+            self.openLoginSignupVC()
+         }
+      }else{
+         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+      }
+   }
+
+}
+
+
+//
+//MARK:- ViewFollowingLabelPopup Methods
+//
+
+extension FollowingVC:PopupviewDelegate{
+   /**
+    If user not following any brand, show this view
+    */
+   func addPopupView(popupType:PopupType,initialFrame:CGRect){
+      let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as! ViewFollowingLabelPopup
+      viewFollowingLabelPopup.delegate = self
+      viewFollowingLabelPopup.popupType = popupType
+      viewFollowingLabelPopup.frame = initialFrame
+      viewFollowingLabelPopup.alpha = 0
+      view.addSubview(viewFollowingLabelPopup)
+      UIView.animateWithDuration(0.2) {
+         viewFollowingLabelPopup.frame = self.view.frame
+         viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
+         viewFollowingLabelPopup.alpha = 1
+      }
+      if popupType == PopupType.Follow{
+         viewFollowingLabelPopup.setFollowSubTitle("Brand")
+      }
+      viewFollowingLabelPopup.updateView()
+   }
+   
+   func popupDidClickCancel(){
+      
+   }
+   
+   func popupDidClickDelete(){
+      debugPrint("delete account")
+   }
+   
+   func popupDidClickClose(){
+      
+   }
 }
 
 
@@ -50,12 +140,14 @@ class FollowingVC: UIViewController {
 //MARK:- UICollectionViewDelegate Methods
 //
 extension FollowingVC:UICollectionViewDelegate{
-//   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//      if let brandAtIndexPath:Brand? = self.arrFollowingBrandList[indexPath.row]{
-//         didSelectBrand = brandAtIndexPath
-//      }
-//      performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
-//   }
+   
+   
+   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      if let brandAtIndexPath:Brand? = self.arrFollowingBrandList[indexPath.row]{
+         didSelectBrand = brandAtIndexPath
+      }
+      performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
+   }
    
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
 //        if let _ = lastEvaluatedKey{
@@ -174,33 +266,43 @@ extension FollowingVC {
    
    private func getBrands() {
       
-      let fetchBrandParams = FetchBrandsRP()
-      fetchBrandParams.brandGender = BrandGender.Both
-      self.bottonActivityIndicator.startAnimating()
-      UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandParams, success: { (arrBrands:[Brand], meta: JSON) in
-         
-         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.firebaseCallGetFollowingBrands(arrBrands)
+      if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+         addNotFoundView()
+         UnlabelLoadingView.sharedInstance.start(view)
+         let fetchBrandParams = FetchBrandsRP()
+         fetchBrandParams.brandGender = BrandGender.Both
+         self.bottonActivityIndicator.startAnimating()
+         UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandParams, success: { (arrBrands:[Brand], meta: JSON) in
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+               self.firebaseCallGetFollowingBrands(arrBrands)
+            })
+            
+            
+            
+            }, failed: { (error) in
+               UnlabelLoadingView.sharedInstance.stop(self.view)
+               debugPrint(error)
+               
+               UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
          })
-         
-        
-         
-         }, failed: { (error) in
-             UnlabelLoadingView.sharedInstance.stop(self.view)
-             debugPrint(error)
-           
-            UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
-      })
+      } else {
+         self.openLoginSignupVC()
+      }
    }
    
    
    
-   private func firebaseCallGetFollowingBrands(arrBrands:[Brand]){
+   private func firebaseCallGetFollowingBrands(arrBrands:[Brand]?){
       if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
          FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
             if let followingBrandIDsObj = followingBrandIDs {
                
-               let arrToBeUpdated = arrBrands.filter { followingBrandIDsObj.contains($0.ID)  }
+               guard let arBrands = arrBrands else {
+                  return
+               }
+               
+               let arrToBeUpdated = arBrands.filter { followingBrandIDsObj.contains($0.ID)  }
                
                for  brand in arrToBeUpdated {
                   if followingBrandIDsObj.contains(brand.ID){
