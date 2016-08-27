@@ -499,6 +499,7 @@ extension FeedVC{
     }
     
     @IBAction func IBActionStarClicked(sender: UIButton) {
+      return; //FIXME: version 3
         
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
@@ -820,9 +821,12 @@ extension FeedVC{
     private func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
         if indexPath.row == LeftMenuItems.Discover.rawValue{
             openDiscover()
-        }else if indexPath.row == LeftMenuItems.Following.rawValue{
-            openFollowing()
-        } else if indexPath.row == LeftMenuItems.Settings.rawValue{
+        }
+         //FIXME: version 3
+//        else if indexPath.row == LeftMenuItems.Following.rawValue{
+//            openFollowing()
+//        }
+        else if indexPath.row == LeftMenuItems.Settings.rawValue{
             openSettings()
         }
     }

@@ -18,6 +18,8 @@ class ProductHeaderCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
+      
+         IBbtnFollow.hidden = true //FIXME: Version 3
     }
 
 }

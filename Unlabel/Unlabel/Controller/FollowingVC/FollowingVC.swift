@@ -355,10 +355,6 @@ extension FollowingVC{
    
     
     private func setupOnLoad(){
-         
-        self.title = LeftMenuItems.Following.getLeftMenuTitle
-      
-      
-        IBcollectionViewFollowing.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
+      IBcollectionViewFollowing.registerNib(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
     }
 }

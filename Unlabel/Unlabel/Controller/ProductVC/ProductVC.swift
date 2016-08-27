@@ -330,6 +330,9 @@ extension ProductVC{
     }
     
    @IBAction func IBActionFollow(sender: UIButton) {
+      return; // FIXME: version 3
+      
+      
       debugPrint("Follow clicked")
       //Internet available
       if ReachabilitySwift.isConnectedToNetwork(){

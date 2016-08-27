@@ -29,12 +29,22 @@ class ProductDetailsWebViewVC: UIViewController {
         // Do any additional setup after loading the view.
     
       updateButtonUI()
+      IBbtnStar.hidden = true //FIXME: star hide button v3
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+   
+   override func viewWillDisappear(animated: Bool) {
+      super.viewWillDisappear(animated)
+      
+      if IBwebView.loading {
+         IBwebView.stopLoading()
+      }
+   }
+   
    
    
    func updateButtonUI() {
@@ -60,9 +70,11 @@ extension ProductDetailsWebViewVC: UIWebViewDelegate {
    
    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
      
+ 
       
-      IBbtnBack.enabled = IBwebView.canGoBack
-      IBbtnForward.enabled = IBwebView.canGoForward
+         IBbtnBack.enabled = IBwebView.canGoBack
+         IBbtnForward.enabled = IBwebView.canGoForward
+  
      
       
       return true
@@ -126,6 +138,9 @@ extension ProductDetailsWebViewVC{
    }
    
    @IBAction func IBActionFollow(sender: AnyObject) {
+      
+      return; //FIXME: version 3
+      
       guard let _selectedBrand = selectedBrand else {
          return
       }
