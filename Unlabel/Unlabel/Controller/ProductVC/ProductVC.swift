@@ -26,7 +26,7 @@ class ProductVC: UIViewController {
     let iPaginationCount = 2
     let fFooterHeight:CGFloat = 81.0
     var activityIndicator:UIActivityIndicatorView?
-    var selectedBrand = Brand()
+    var selectedBrand:Brand!
     var lastEvaluatedKey:[NSObject : AnyObject]!
     var delegate:ProductVCDelegate?
     
@@ -36,6 +36,10 @@ class ProductVC: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+      if selectedBrand == nil {
+         selectedBrand = Brand()
+      }
+      
         setupOnLoad()
     
 //        addTestData()
@@ -135,37 +139,34 @@ extension ProductVC:UICollectionViewDataSource{
     }
     
     //Custom methods
-    func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
-        let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
-        
-        productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT", forState: .Normal)
-        updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
-        productHeaderCell.IBimgHeaderImage.image = nil
-        
-        if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(selectedBrand.FeatureImage)){
-            productHeaderCell.IBimgHeaderImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
-                if let _ = error{
-//                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
-                }else{
-                    if (type == SDImageCacheType.None)
-                    {
-                        productHeaderCell.IBimgHeaderImage.alpha = 0;
-                        UIView.animateWithDuration(0.35, animations: {
-                            productHeaderCell.IBimgHeaderImage.alpha = 1;
-                        })
-                    }
-                    else
-                    {
-                        productHeaderCell.IBimgHeaderImage.alpha = 1;
-                    }
-//                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
-                }
-            })
-        }
-        
-        return productHeaderCell
-    }
-    
+   func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
+      let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
+      
+      productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT", forState: .Normal)
+      productHeaderCell.IBimgHeaderImage.image = nil
+      
+      updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
+      
+      if let url = NSURL(string: UnlabelHelper.getCloudnaryObj().url(selectedBrand.FeatureImage)){
+         productHeaderCell.IBimgHeaderImage.sd_setImageWithURL(url, completed: { (iimage:UIImage!, error:NSError!, type:SDImageCacheType, url:NSURL!) in
+            if let _ = error{
+               //                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
+            }else{
+               if (type == SDImageCacheType.None)  {
+                  productHeaderCell.IBimgHeaderImage.alpha = 0;
+                  UIView.animateWithDuration(0.35, animations: {
+                     productHeaderCell.IBimgHeaderImage.alpha = 1;
+                  })
+               } else  {
+                  productHeaderCell.IBimgHeaderImage.alpha = 1;
+               }
+               //                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
+            }
+         })
+      }
+      return productHeaderCell
+   }
+   
     func getProductDescCell(forIndexPath indexPath:NSIndexPath)->ProductDescCell{
         let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
         productDescCell.IBlblDesc.text = "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly."
@@ -328,42 +329,38 @@ extension ProductVC{
        debugPrint("IBActionViewMore")
     }
     
-    @IBAction func IBActionFollow(sender: UIButton) {
-        debugPrint("Follow clicked")
-        //Internet available
-        if ReachabilitySwift.isConnectedToNetwork(){
-            if selectedBrand.isFollowing {
-                selectedBrand.isFollowing = false
-            }else{
-                selectedBrand.isFollowing = true
-            }
-            
+   @IBAction func IBActionFollow(sender: UIButton) {
+      debugPrint("Follow clicked")
+      //Internet available
+      if ReachabilitySwift.isConnectedToNetwork(){
+         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+            selectedBrand.isFollowing = !selectedBrand.isFollowing
             updateFollowButton(sender, isFollowing: selectedBrand.isFollowing)
+            FirebaseHelper.followUnfollowBrand(follow:selectedBrand.isFollowing,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+               if error != nil{
+                  
+               }else{
+                  self.IBcollectionViewProduct.reloadData()
+               }
+            })
             
-            if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-                FirebaseHelper.followUnfollowBrand(follow:selectedBrand.isFollowing,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                    if error != nil{
-                        
-                    }else{
-                        self.IBcollectionViewProduct.reloadData()
-                    }
-                })
-                
-                if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                    
-                }else{
-                    addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                    UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-                }
+            if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+               
+            }else{
+               addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+               UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
             }
-            
-            delegate?.didClickFollow(forBrand: selectedBrand)
-            self.IBcollectionViewProduct.reloadData()
-        }else{
-            UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-        }
-    }
-    
+         } else {
+            self.openLoginSignupVC()
+         }
+         
+         delegate?.didClickFollow(forBrand: selectedBrand)
+         self.IBcollectionViewProduct.reloadData()
+      }else{
+         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+      }
+   }
+   
     @IBAction func IBActionAboutBrandClicked(sender: AnyObject) {
         performSegueWithIdentifier(S_ID_ABOUT_LABEL_VC, sender: self)
     }
@@ -371,7 +368,14 @@ extension ProductVC{
     @IBAction func IBActionViewProducts(sender: AnyObject) {
         performSegueWithIdentifier(S_ID_PRODUCT_DETAIL_WEBVIEW_VC, sender: self)
     }
-    
+   
+   private func openLoginSignupVC(){
+      if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
+//         loginSignupVC.delegate = self
+         self.presentViewController(loginSignupVC, animated: true, completion: nil)
+      }
+   }
+   
 }
 
 //
@@ -443,18 +447,22 @@ extension ProductVC{
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
-    private func updateFollowButton(button:UIButton,isFollowing:Bool){
-        if isFollowing{
+   private func updateFollowButton(button:UIButton,isFollowing:Bool){
+      if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+         if isFollowing{
             button.setTitle("Unfollow", forState: .Normal)
             button.layer.borderColor = UIColor.blackColor().CGColor
             button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        }else{
+         }else{
             button.setTitle("Follow", forState: .Normal)
             button.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
             button.setTitleColor(LIGHT_GRAY_BORDER_COLOR, forState: .Normal)
-        }
-    }
-    
+         }
+      } else {
+//         self.openLoginSignupVC()
+      }
+   }
+   
     private func showLoading(){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.activityIndicator!.frame = self.view.frame

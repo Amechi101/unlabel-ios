@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Neutraface2Text-Book.otf">
+            <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
         </mutableArray>
     </customFonts>
@@ -32,16 +33,29 @@ Currently no labels are within this filtering range.</string>
                     <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-ce-7eO">
+                    <rect key="frame" x="142" y="446" width="92" height="27"/>
+                    <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
+                    <state key="normal" title="VIEW LABELS">
+                        <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0X7-SL-FcU"/>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.6" id="6ec-jq-ZJj"/>
+                <constraint firstItem="8tp-ce-7eO" firstAttribute="centerX" secondItem="Bes-q7-bD7" secondAttribute="centerX" id="Lvk-g0-hmZ"/>
                 <constraint firstAttribute="trailing" secondItem="Bes-q7-bD7" secondAttribute="trailing" constant="78" id="XXc-2k-EE0"/>
                 <constraint firstItem="Bes-q7-bD7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.1" id="bSw-wW-65m"/>
+                <constraint firstItem="8tp-ce-7eO" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="49" id="cEf-a2-ZEX"/>
                 <constraint firstItem="Bes-q7-bD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="78" id="tgr-g0-BDf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <connections>
+                <outlet property="IBbtnViewLabels" destination="8tp-ce-7eO" id="7NK-1M-v98"/>
+                <outlet property="IBlblMessage" destination="Bes-q7-bD7" id="gYA-Wl-KM8"/>
+            </connections>
             <point key="canvasLocation" x="454.5" y="481.5"/>
         </view>
     </objects>

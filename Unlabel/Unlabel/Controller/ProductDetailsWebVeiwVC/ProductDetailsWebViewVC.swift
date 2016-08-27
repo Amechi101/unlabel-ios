@@ -21,7 +21,7 @@ class ProductDetailsWebViewVC: UIViewController {
    @IBOutlet weak var IBbtnBack: UIBarButtonItem!
    @IBOutlet weak var IBbtnForward: UIBarButtonItem!
    
-   var selectedBrand:Brand?
+    weak var selectedBrand:Brand?
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,6 @@ class ProductDetailsWebViewVC: UIViewController {
         // Do any additional setup after loading the view.
     
       updateButtonUI()
-      
     }
 
     override func didReceiveMemoryWarning() {

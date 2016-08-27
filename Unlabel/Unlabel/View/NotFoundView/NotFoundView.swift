@@ -13,9 +13,35 @@ protocol NotFoundViewDelegate {
 }
 class NotFoundView: UIView {
 
+   @IBOutlet weak var IBlblMessage: UILabel!
+   
+   @IBOutlet weak var IBbtnViewLabels: UIButton!
+   
     var delegate:NotFoundViewDelegate?
+   
+   
+   var showViewLabelBtn:Bool = false {
+      didSet {
+         if showViewLabelBtn == true {
+             IBbtnViewLabels.hidden = false
+             delegate?.didSelectViewLabels()
+         } else {
+              IBbtnViewLabels.hidden = true
+         }
+      }
+   }
+   
+   
+   override func awakeFromNib() {
+      super.awakeFromNib()
+        IBbtnViewLabels.hidden = true
+   }
+   
     
-    @IBAction func IBActionViewLabels(sender: AnyObject) {
+    func IBActionViewLabels(sender: AnyObject) {
         delegate?.didSelectViewLabels()
     }
+   
+   
+   
 }

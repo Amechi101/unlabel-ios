@@ -143,10 +143,14 @@ extension FollowingVC:UICollectionViewDelegate{
    
    
    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-      if let brandAtIndexPath:Brand? = self.arrFollowingBrandList[indexPath.row]{
-         didSelectBrand = brandAtIndexPath
+      if let brandAtIndexPath:Brand = self.arrFollowingBrandList[indexPath.row]{
+         
+         let productViewController = self.storyboard?.instantiateViewControllerWithIdentifier(S_ID_PRODUCT_VC) as! ProductVC
+         productViewController.selectedBrand = brandAtIndexPath
+//         performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
+            self.navigationController?.pushViewController(productViewController, animated: true)
+         
       }
-      performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
    }
    
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -256,18 +260,24 @@ extension FollowingVC:UICollectionViewDelegateFlowLayout{
 //MARK:- Firebase Call Methods
 //
 
-extension FollowingVC {
+extension FollowingVC: NotFoundViewDelegate {
+   
+   func didSelectViewLabels() {
+      
+   }
    
    func addNotFoundView(){
       let notFoundView:NotFoundView = NSBundle.mainBundle().loadNibNamed("NotFoundView", owner: self, options: nil) [0] as! NotFoundView
+      notFoundView.delegate = self
+      notFoundView.IBlblMessage.text = "Not following any Labels."
+      notFoundView.showViewLabelBtn = true
       IBcollectionViewFollowing.backgroundView = notFoundView
       IBcollectionViewFollowing.backgroundView?.hidden = true
    }
    
    private func getBrands() {
-      
+       addNotFoundView()
       if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-         addNotFoundView()
          UnlabelLoadingView.sharedInstance.start(view)
          let fetchBrandParams = FetchBrandsRP()
          fetchBrandParams.brandGender = BrandGender.Both
@@ -286,9 +296,10 @@ extension FollowingVC {
                
                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
          })
-      } else {
-         self.openLoginSignupVC()
       }
+//      else {
+////         self.openLoginSignupVC()
+//      }
    }
    
    

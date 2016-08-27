@@ -83,7 +83,9 @@ class FeedVC: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
       super.viewDidAppear(animated)
-        wsCallGetLabelsResetOffset(false)
+         if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
+            wsCallGetLabelsResetOffset(false)
+         }
     }
     
     override func didReceiveMemoryWarning() {
