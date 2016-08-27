@@ -169,7 +169,7 @@ extension ProductVC:UICollectionViewDataSource{
    
     func getProductDescCell(forIndexPath indexPath:NSIndexPath)->ProductDescCell{
         let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
-        productDescCell.IBlblDesc.text = "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly."
+        setTextWithLineSpacing(productDescCell.IBlblDesc, text: "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly.", lineSpacing: 3.0)
         return productDescCell
     }
     
@@ -486,6 +486,17 @@ extension ProductVC{
         UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
             
         }
+    }
+    
+    private func setTextWithLineSpacing(label:UILabel,text:String,lineSpacing:CGFloat){
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.alignment = NSTextAlignment.Center
+        
+        let attrString = NSMutableAttributedString(string: text)
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        
+        label.attributedText = attrString
     }
     
 //    func addTestData(){

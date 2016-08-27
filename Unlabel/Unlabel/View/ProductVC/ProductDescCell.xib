@@ -25,9 +25,9 @@
                             <constraint firstAttribute="height" constant="2" id="sX3-BY-AIe"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
-                        <rect key="frame" x="30" y="0.0" width="301" height="216"/>
-                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
+                        <rect key="frame" x="10" y="0.0" width="341" height="216"/>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="18"/>
                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -50,8 +50,8 @@
             <constraints>
                 <constraint firstItem="Soa-HL-LhF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BzI-o7-5j3"/>
                 <constraint firstItem="H30-dv-3gy" firstAttribute="top" secondItem="Soa-HL-LhF" secondAttribute="bottom" constant="40" id="HbY-6d-DWF"/>
-                <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="30" id="HpA-qr-YFB"/>
-                <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="NUP-5E-IZ5"/>
+                <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="10" id="HpA-qr-YFB"/>
+                <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="NUP-5E-IZ5"/>
                 <constraint firstItem="Gma-Qu-Bbk" firstAttribute="trailing" secondItem="H30-dv-3gy" secondAttribute="trailing" id="TdK-Fk-PHh"/>
                 <constraint firstItem="Gma-Qu-Bbk" firstAttribute="leading" secondItem="H30-dv-3gy" secondAttribute="leading" id="d2O-nY-WmZ"/>
                 <constraint firstItem="Gma-Qu-Bbk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="q47-wJ-Lbr"/>

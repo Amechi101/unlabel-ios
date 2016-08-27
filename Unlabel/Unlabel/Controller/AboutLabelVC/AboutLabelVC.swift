@@ -30,9 +30,9 @@ class AboutLabelVC: UIViewController {
                 IBlblDescription.text = description
             }
             
-            if let originCity = selectedBrand?.OriginCity{
-                if let stateOrCountry = selectedBrand?.StateOrCountry{
-                    IBlblLocation.text = "\(originCity), \(stateOrCountry)"
+            if let city = selectedBrand?.city{
+                if let location = selectedBrand?.location{
+                    IBlblLocation.text = "\(city), \(location)"
                 }
             }
             
