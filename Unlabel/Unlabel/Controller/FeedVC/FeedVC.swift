@@ -518,12 +518,24 @@ extension FeedVC{
                         //Followd/Unfollowd brand
                         if error == nil{
                            self.firebaseCallGetFollowingBrands(nil)
+                           
+                           
+                           dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                              if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                                 
+                              } else{
+                                 self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                                 UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                              }                             
+                           })
+                           
+                           
                         }else{
                             UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
                         }
                     })
                   
-                  
+                 
                   
                   
                 }
@@ -1010,14 +1022,7 @@ extension FeedVC{
                   self.IBcollectionViewFeed.reloadData()
                   
                   
-                  if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                     
-                  } else{
-                     self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                     UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-                  }
-
-               })
+                                 })
                
                // uncessary values here...
                //                    self.updateFilterArray()
