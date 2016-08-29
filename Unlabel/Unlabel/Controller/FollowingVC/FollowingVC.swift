@@ -20,7 +20,7 @@ class FollowingVC: UIViewController {
    @IBOutlet weak var IBcollectionViewFollowing: UICollectionView!
    
      private var arrFollowingBrandList:[Brand] = [Brand]()
-      private let FEED_CELL_HEIGHT:CGFloat = 211
+       private let FEED_CELL_HEIGHT:CGFloat = 211
    
    private var didSelectBrand: Brand?
    
@@ -34,7 +34,10 @@ class FollowingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOnLoad()
-        getBrands()
+      
+      addNotFoundView()
+      self.firebaseCallGetFollowingBrands()
+      
      }
     
     override func didReceiveMemoryWarning() {
@@ -54,25 +57,36 @@ class FollowingVC: UIViewController {
       //Internet available
       if ReachabilitySwift.isConnectedToNetwork(){
          if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-            if let selectedBrandID:String = arrFollowingBrandList[sender.tag].ID{
+            if let selectedBrand:Brand = arrFollowingBrandList[sender.tag] where arrFollowingBrandList.count > 0{
+               let _index = sender.tag
+               
                
                //If already following
-               if arrFollowingBrandList[sender.tag].isFollowing{
-                  arrFollowingBrandList[sender.tag].isFollowing = false
+               if arrFollowingBrandList[_index].isFollowing{
+                  arrFollowingBrandList[_index].isFollowing = false
                }else{
-                  arrFollowingBrandList[sender.tag].isFollowing = true
+                  arrFollowingBrandList[_index].isFollowing = true
                }
+               let _indexPath = NSIndexPath(forRow: _index, inSection: 0)
                
-               IBcollectionViewFollowing.reloadData()
+               IBcollectionViewFollowing.reloadItemsAtIndexPaths([_indexPath])
                
-               FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+
+               FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                   //Followd/Unfollowd brand
                   if error == nil{
-                     self.firebaseCallGetFollowingBrands(self.arrFollowingBrandList)
+                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.arrFollowingBrandList.removeAtIndex(_index)
+                         self.IBcollectionViewFollowing.reloadData()
+                     })
+                     
                   }else{
                      UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
                   }
                })
+               
+               
+               
                
                
                if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
@@ -263,7 +277,7 @@ extension FollowingVC:UICollectionViewDelegateFlowLayout{
 extension FollowingVC: NotFoundViewDelegate {
    
    func didSelectViewLabels() {
-      
+       navigationController?.popToRootViewControllerAnimated(true)
    }
    
    func addNotFoundView(){
@@ -275,20 +289,26 @@ extension FollowingVC: NotFoundViewDelegate {
       IBcollectionViewFollowing.backgroundView?.hidden = true
    }
    
-   private func getBrands() {
-       addNotFoundView()
-      if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+   private func getBrandsByID(brandID:String) {
+      
+     
          UnlabelLoadingView.sharedInstance.start(view)
+         
          let fetchBrandParams = FetchBrandsRP()
          fetchBrandParams.brandGender = BrandGender.Both
+         fetchBrandParams.brandId = brandID
+         
          self.bottonActivityIndicator.startAnimating()
-         UnlabelAPIHelper.sharedInstance.getBrands(fetchBrandParams, success: { (arrBrands:[Brand], meta: JSON) in
+         UnlabelAPIHelper.sharedInstance.getSingleBrand(fetchBrandParams, success: { (brand:Brand, meta: JSON) in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-               self.firebaseCallGetFollowingBrands(arrBrands)
-            })
+            brand.isFollowing = true
+            self.arrFollowingBrandList.append(brand)
             
-            
+            dispatch_async(dispatch_get_main_queue()) {
+               UnlabelLoadingView.sharedInstance.stop(self.view)
+               self.bottonActivityIndicator.stopAnimating()
+               self.IBcollectionViewFollowing.reloadData()
+            }
             
             }, failed: { (error) in
                UnlabelLoadingView.sharedInstance.stop(self.view)
@@ -296,40 +316,21 @@ extension FollowingVC: NotFoundViewDelegate {
                
                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
          })
-      }
-//      else {
-////         self.openLoginSignupVC()
-//      }
+
    }
    
    
-   
-   private func firebaseCallGetFollowingBrands(arrBrands:[Brand]?){
-      if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-         FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: { (followingBrandIDs:[String]?) in
+   private func firebaseCallGetFollowingBrands() {
+      if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
+         FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: {[unowned self] (followingBrandIDs:[String]?) in
             if let followingBrandIDsObj = followingBrandIDs {
                
-               guard let arBrands = arrBrands else {
-                  return
-               }
-               
-               let arrToBeUpdated = arBrands.filter { followingBrandIDsObj.contains($0.ID)  }
-               
-               for  brand in arrToBeUpdated {
-                  if followingBrandIDsObj.contains(brand.ID){
-                     brand.isFollowing = true
-                  } else {
-                     brand.isFollowing = false
+               dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                  for brandId in followingBrandIDsObj {
+                        self.getBrandsByID(brandId)
                   }
-               }
-               self.arrFollowingBrandList = arrToBeUpdated
+               })
                
-               UnlabelLoadingView.sharedInstance.stop(self.view)
-               self.bottonActivityIndicator.stopAnimating()
-               
-               dispatch_async(dispatch_get_main_queue()) {
-                  self.IBcollectionViewFollowing.reloadData()
-               }
             }
          })
       }

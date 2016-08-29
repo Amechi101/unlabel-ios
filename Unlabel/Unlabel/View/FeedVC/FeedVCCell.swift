@@ -19,8 +19,6 @@ class FeedVCCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-      
-      IBbtnStar.hidden = true //FIXME: version 3
     }
 
 }

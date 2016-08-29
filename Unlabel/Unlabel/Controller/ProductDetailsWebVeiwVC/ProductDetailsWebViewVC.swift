@@ -29,7 +29,7 @@ class ProductDetailsWebViewVC: UIViewController {
         // Do any additional setup after loading the view.
     
       updateButtonUI()
-      IBbtnStar.hidden = true //FIXME: star hide button v3
+      
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,7 +139,7 @@ extension ProductDetailsWebViewVC{
    
    @IBAction func IBActionFollow(sender: AnyObject) {
       
-      return; //FIXME: version 3
+      // return;  version 3
       
       guard let _selectedBrand = selectedBrand else {
          return

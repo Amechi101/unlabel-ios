@@ -330,7 +330,7 @@ extension ProductVC{
     }
     
    @IBAction func IBActionFollow(sender: UIButton) {
-      return; // FIXME: version 3
+      //  return;
       
       
       debugPrint("Follow clicked")

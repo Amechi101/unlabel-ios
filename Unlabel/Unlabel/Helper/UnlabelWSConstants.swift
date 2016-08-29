@@ -21,7 +21,9 @@ let URL_PRIVACY_POLICY = "https://unlabel.us/privacy-policy/"
 let URL_TERMS = "https://unlabel.us/terms/"
 
 //FIREBASE
-let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
+//let sFIREBASE_URL = "https://glowing-torch-9591.firebaseio.com"
+let sFIREBASE_URL = "https://userdata-f2a6b.firebaseio.com"
+
 let sEND_USERS = "/users"
 
 let PRM_USER_ID                     = "userID"
@@ -64,6 +66,7 @@ struct API{
 
 
 struct APIParams {
+    static let brandId          = "id"
     static let labelId          = "label_id"
     static let brandCity        = "brand_city"
     static let brandGender      = "brand_gender"
@@ -93,11 +96,13 @@ class WSConstantFetcher{
     class func getLabelsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
         var subURL = ""
         
-        if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None{
+        if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None {
             if fetchBrandsRP.brandGender == BrandGender.Men{
                 subURL = "?\(APIParams.menswear)=True"
-            }else{
+            } else if fetchBrandsRP.brandGender == BrandGender.Women {
                 subURL = "?\(APIParams.womenswear)=True"
+            } else { //FIXME: both
+               subURL = "?\(APIParams.womenswear)=True&\(APIParams.menswear)=True"
             }
         }
         
@@ -117,7 +122,7 @@ class WSConstantFetcher{
         var subURL = ""
         
         if let labelId = fetchBrandsRP.brandId where labelId.characters.count > 0{
-            subURL = "?\(APIParams.labelId)=\(labelId)"
+            subURL = "?\(APIParams.brandId)=\(labelId)"
         }
         
         return subURL

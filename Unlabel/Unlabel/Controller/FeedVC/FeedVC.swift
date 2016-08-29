@@ -499,7 +499,6 @@ extension FeedVC{
     }
     
     @IBAction func IBActionStarClicked(sender: UIButton) {
-      return; //FIXME: version 3
         
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
@@ -525,13 +524,6 @@ extension FeedVC{
                     })
                   
                   
-                     if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                        
-                     } else{
-                        addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                        UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-                     }
-
                   
                   
                 }
@@ -821,12 +813,9 @@ extension FeedVC{
     private func handleLeftMenuSelection(forIndexPath indexPath:NSIndexPath){
         if indexPath.row == LeftMenuItems.Discover.rawValue{
             openDiscover()
-        }
-         //FIXME: version 3
-//        else if indexPath.row == LeftMenuItems.Following.rawValue{
-//            openFollowing()
-//        }
-        else if indexPath.row == LeftMenuItems.Settings.rawValue{
+        } else if indexPath.row == LeftMenuItems.Following.rawValue{
+            openFollowing()
+        }  else if indexPath.row == LeftMenuItems.Settings.rawValue{
             openSettings()
         }
     }
@@ -1019,6 +1008,15 @@ extension FeedVC{
                
                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                   self.IBcollectionViewFeed.reloadData()
+                  
+                  
+                  if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                     
+                  } else{
+                     self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                     UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                  }
+
                })
                
                // uncessary values here...

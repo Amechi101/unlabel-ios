@@ -13,7 +13,44 @@ import ObjectMapper
 
 class UnlabelAPIHelper{
     static let sharedInstance = UnlabelAPIHelper()
+   
+   /*
+      https://unlabel.us/unlabel-network/labels-api/v3/labels/?id=4ff9ef59-c785-4e14-819d-083aae4e4121&username=unlabel_us_api&api_key=f54c309313f3bb0f28322f035cfc169c8631faf9c
     
+    */
+   
+   func getSingleBrand(fetchBrandsRP:FetchBrandsRP, success:(Brand, meta:JSON)->(),failed:(error:NSError)->()) {
+      var requestURL:String?
+      
+      if let brandId = fetchBrandsRP.brandId where brandId.characters.count > 0 {
+         requestURL = "\(API.getLabels)\(WSConstantFetcher.getProductsSubURL(fetchBrandsRP))\(URL_POSTFIX)".encodedURL()
+      }
+      
+      print(requestURL)
+      
+      if let requestURLObj = requestURL {
+         Alamofire.request(.GET, requestURLObj).responseJSON { response in
+            switch response.result {
+               
+            case .Success(let data):
+               let json = JSON(data)
+               let meta = json["meta"]
+               debugPrint(json)
+               if let brand = self.getBrandModels(fromJSON: json)?.first {
+                  success(brand, meta: meta)
+               }else{
+                  failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
+               }
+               
+               
+            case .Failure(let error):
+               failed(error: error)
+            }
+         }
+      }
+   }
+   
+   
     //If need single brand then pass brand ID else will return all brands
     func getBrands(fetchBrandsRP:FetchBrandsRP, success:([Brand], meta:JSON)->(),failed:(error:NSError)->()){
         let requestURL:String?
@@ -21,7 +58,6 @@ class UnlabelAPIHelper{
         //If brandId exist in request , that means requesting products
         if let brandId = fetchBrandsRP.brandId where brandId.characters.count > 0 {
             requestURL = "\(API.getProducts)\(WSConstantFetcher.getProductsSubURL(fetchBrandsRP))".encodedURL()
-            
             //"\(URL_PREFIX)\(brandId)/\(URL_POSTFIX)".encodedURL()
         }else if let nextPage = fetchBrandsRP.nextPageURL where nextPage.characters.count > 0 {
             requestURL = "\(ONLY_BASE_URL)\(nextPage)".encodedURL()
@@ -39,7 +75,7 @@ class UnlabelAPIHelper{
                 case .Success(let data):
                     let json = JSON(data)
                     let meta = json["meta"]
-//                    debugPrint(json)
+                    debugPrint(json)
                     if let arrBrands = self.getBrandModels(fromJSON: json){
                         success(arrBrands, meta: meta)
                     }else{

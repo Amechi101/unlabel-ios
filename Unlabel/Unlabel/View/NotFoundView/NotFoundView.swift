@@ -17,16 +17,18 @@ class NotFoundView: UIView {
    
    @IBOutlet weak var IBbtnViewLabels: UIButton!
    
+   @IBOutlet weak var IBviewHorizontal: UIView!
     var delegate:NotFoundViewDelegate?
    
    
    var showViewLabelBtn:Bool = false {
       didSet {
          if showViewLabelBtn == true {
-             IBbtnViewLabels.hidden = false
-             delegate?.didSelectViewLabels()
+            IBviewHorizontal.hidden = false
+             IBbtnViewLabels.hidden = false         
          } else {
-              IBbtnViewLabels.hidden = true
+             IBviewHorizontal.hidden = true
+             IBbtnViewLabels.hidden = true
          }
       }
    }
@@ -34,7 +36,28 @@ class NotFoundView: UIView {
    
    override func awakeFromNib() {
       super.awakeFromNib()
-        IBbtnViewLabels.hidden = true
+      
+      IBbtnViewLabels.hidden = true
+      IBviewHorizontal.hidden = true
+      
+      IBbtnViewLabels.addTarget(self, action: #selector(NotFoundView.IBActionViewLabels(_:)), forControlEvents: .TouchUpInside)
+//      let _textColor =  UIColor(red:151.1/255.0,green:81.0/255.0,blue:86.0/255.0,alpha:255.0/255.0)
+
+      /*let _title = "View Labels".uppercaseString
+      let titleString : NSMutableAttributedString = NSMutableAttributedString(string: _title)
+      
+    
+      titleString.addAttributes([
+         NSFontAttributeName: UIFont(name: "Neutraface2Text-Book", size: 15)!,
+         NSForegroundColorAttributeName: _textColor,
+         NSUnderlineStyleAttributeName:  NSUnderlineStyle.StyleSingle.rawValue
+         ], range: NSMakeRange(0, _title.utf8.count))
+      */
+      
+//      IBbtnViewLabels.setTitleColor(_textColor, forState: .Normal)
+      IBbtnViewLabels.titleLabel?.font = UIFont(name: "Neutraface2Text-Book", size: 15)!
+      IBbtnViewLabels.setTitle("View Labels".uppercaseString, forState: .Normal)
+      
    }
    
     
