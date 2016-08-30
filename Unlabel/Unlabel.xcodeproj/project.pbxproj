@@ -1232,7 +1232,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aa618b22-69d1-4169-875e-4694cf2dc165";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1258,7 +1258,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.Unlabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aa618b22-69d1-4169-875e-4694cf2dc165";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 			};
 			name = Release;
@@ -1321,7 +1321,7 @@
 				400BDE321C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		400BDE331C1B890800487C6E /* Build configuration list for PBXNativeTarget "Unlabel" */ = {
 			isa = XCConfigurationList;
@@ -1330,7 +1330,7 @@
 				400BDE351C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		400BDE361C1B890800487C6E /* Build configuration list for PBXNativeTarget "UnlabelTests" */ = {
 			isa = XCConfigurationList;
@@ -1339,7 +1339,7 @@
 				400BDE381C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		400BDE391C1B890800487C6E /* Build configuration list for PBXNativeTarget "UnlabelUITests" */ = {
 			isa = XCConfigurationList;
@@ -1348,7 +1348,7 @@
 				400BDE3B1C1B890800487C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

@@ -526,7 +526,7 @@ extension FeedVC{
                               } else{
                                  self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
                                  UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-                              }                             
+                              }
                            })
                            
                            
@@ -947,7 +947,7 @@ extension FeedVC{
         }else{
             
         }
-        IBcollectionViewFeed.reloadData()
+         IBcollectionViewFeed.reloadData()
     }
     
 }

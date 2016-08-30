@@ -11,6 +11,8 @@ import Branch
 import Firebase
 import SDWebImage
 import SwiftyJSON
+import Alamofire
+
 
 class FollowingVC: UIViewController {
     
@@ -24,22 +26,20 @@ class FollowingVC: UIViewController {
    
    private var didSelectBrand: Brand?
    
-   @IBOutlet weak var bottonActivityIndicator: UIActivityIndicatorView!
    
    
     //
     //MARK:- VC Lifecycle
     //
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupOnLoad()
+   override func viewDidLoad() {
+      super.viewDidLoad()
+      setupOnLoad()
       
       addNotFoundView()
       self.firebaseCallGetFollowingBrands()
-      
-     }
-    
+   }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -67,17 +67,23 @@ class FollowingVC: UIViewController {
                }else{
                   arrFollowingBrandList[_index].isFollowing = true
                }
-               let _indexPath = NSIndexPath(forRow: _index, inSection: 0)
-               
-               IBcollectionViewFollowing.reloadItemsAtIndexPaths([_indexPath])
+                self.IBcollectionViewFollowing.reloadData()
                
 
                FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
                   //Followd/Unfollowd brand
                   if error == nil{
+                     self.arrFollowingBrandList.removeAtIndex(_index)
+
                      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.arrFollowingBrandList.removeAtIndex(_index)
                          self.IBcollectionViewFollowing.reloadData()
+                        
+                        if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                           
+                        } else{
+                           self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                        }
                      })
                      
                   }else{
@@ -89,12 +95,7 @@ class FollowingVC: UIViewController {
                
                
                
-               if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                  
-               } else{
-                  addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                  UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-               }
+              
                
                
                
@@ -161,20 +162,12 @@ extension FollowingVC:UICollectionViewDelegate{
          
          let productViewController = self.storyboard?.instantiateViewControllerWithIdentifier(S_ID_PRODUCT_VC) as! ProductVC
          productViewController.selectedBrand = brandAtIndexPath
-//         performSegueWithIdentifier(S_ID_PRODUCT_VC, sender: self)
             self.navigationController?.pushViewController(productViewController, animated: true)
          
       }
    }
    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//        if let _ = lastEvaluatedKey{
-//            return CGSizeMake(collectionView.frame.width, fFooterHeight)
-//        }else{
-//            return CGSizeZero
-//        }
-//        
-//    }
+
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
@@ -202,12 +195,7 @@ extension FollowingVC:UICollectionViewDataSource{
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-         if arrFollowingBrandList.count > 0 {
-            IBcollectionViewFollowing.backgroundView?.hidden = true
-         }else{
-           
-            IBcollectionViewFollowing.backgroundView?.hidden = false
-         }
+         IBcollectionViewFollowing.backgroundView?.hidden = (arrFollowingBrandList.count > 0) ? true : false
          return arrFollowingBrandList.count
     }
     
@@ -217,11 +205,9 @@ extension FollowingVC:UICollectionViewDataSource{
       feedVCCell.IBlblLocation.text = "\(arrFollowingBrandList[indexPath.row].city), \(arrFollowingBrandList[indexPath.row].location)"
       feedVCCell.IBbtnStar.tag = indexPath.row
       
-      if arrFollowingBrandList[indexPath.row].isFollowing{
-         feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), forState: .Normal)
-      }else{
-         feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), forState: .Normal)
-      }
+      
+      let imgStarNonStar = arrFollowingBrandList[indexPath.row].isFollowing ? "starred" : "notStarred"
+      feedVCCell.IBbtnStar.setImage(UIImage(named: imgStarNonStar), forState: .Normal)
       
       feedVCCell.IBimgBrandImage.image = nil
       
@@ -291,29 +277,23 @@ extension FollowingVC: NotFoundViewDelegate {
    
    private func getBrandsByID(brandID:String) {
       
-     
-         UnlabelLoadingView.sharedInstance.start(view)
-         
          let fetchBrandParams = FetchBrandsRP()
          fetchBrandParams.brandGender = BrandGender.Both
          fetchBrandParams.brandId = brandID
          
-         self.bottonActivityIndicator.startAnimating()
-         UnlabelAPIHelper.sharedInstance.getSingleBrand(fetchBrandParams, success: { (brand:Brand, meta: JSON) in
+          UnlabelAPIHelper.sharedInstance.getSingleBrand(fetchBrandParams, success: { (brand:Brand, meta: JSON) in
             
             brand.isFollowing = true
             self.arrFollowingBrandList.append(brand)
             
             dispatch_async(dispatch_get_main_queue()) {
                UnlabelLoadingView.sharedInstance.stop(self.view)
-               self.bottonActivityIndicator.stopAnimating()
                self.IBcollectionViewFollowing.reloadData()
             }
             
             }, failed: { (error) in
                UnlabelLoadingView.sharedInstance.stop(self.view)
                debugPrint(error)
-               
                UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
          })
 
@@ -322,15 +302,16 @@ extension FollowingVC: NotFoundViewDelegate {
    
    private func firebaseCallGetFollowingBrands() {
       if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
+         UnlabelLoadingView.sharedInstance.start(view)
          FirebaseHelper.getFollowingBrands(userID, withCompletionBlock: {[unowned self] (followingBrandIDs:[String]?) in
-            if let followingBrandIDsObj = followingBrandIDs {
-               
+            if let followingBrandIDsObj = followingBrandIDs where followingBrandIDsObj.count > 0  {
                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                   for brandId in followingBrandIDsObj {
                         self.getBrandsByID(brandId)
                   }
                })
-               
+            } else {
+                UnlabelLoadingView.sharedInstance.stop(self.view)
             }
          })
       }

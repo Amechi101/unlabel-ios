@@ -35,7 +35,7 @@ class UnlabelAPIHelper{
             case .Success(let data):
                let json = JSON(data)
                let meta = json["meta"]
-               debugPrint(json)
+//               debugPrint(json)
                if let brand = self.getBrandModels(fromJSON: json)?.first {
                   success(brand, meta: meta)
                }else{
@@ -75,7 +75,7 @@ class UnlabelAPIHelper{
                 case .Success(let data):
                     let json = JSON(data)
                     let meta = json["meta"]
-                    debugPrint(json)
+//                    debugPrint(json)
                     if let arrBrands = self.getBrandModels(fromJSON: json){
                         success(arrBrands, meta: meta)
                     }else{
