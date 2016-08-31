@@ -21,8 +21,8 @@ class FollowingVC: UIViewController {
     //
    @IBOutlet weak var IBcollectionViewFollowing: UICollectionView!
    
-     private var arrFollowingBrandList:[Brand] = [Brand]()
-       private let FEED_CELL_HEIGHT:CGFloat = 211
+     private var arrFollowingBrandList:[Brand] = []
+      private let FEED_CELL_HEIGHT:CGFloat = 211
    
    private var didSelectBrand: Brand?
    
@@ -43,6 +43,18 @@ class FollowingVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+   
+   override func viewWillAppear(animated: Bool) {
+      super.viewWillAppear(animated)
+      
+      if arrFollowingBrandList.count > 0 {
+         let starBrands = arrFollowingBrandList.filter { return $0.isFollowing == true }
+         self.arrFollowingBrandList = starBrands
+         IBcollectionViewFollowing.reloadData()
+      }
+      
+   }
+  
    
    
    private func openLoginSignupVC(){
@@ -90,14 +102,6 @@ class FollowingVC: UIViewController {
                      UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
                   }
                })
-               
-               
-               
-               
-               
-              
-               
-               
                
             }
          }else{
