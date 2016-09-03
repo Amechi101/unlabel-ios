@@ -104,7 +104,7 @@
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
 		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
-		C2561AAE06FA0796D165A7CC /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */; };
+		88404233146D6689DCFFDDD7 /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DD0E833A528B43C13A3BB5 /* Pods_Unlabel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,7 +238,7 @@
 		15FB1D921CC25E4D007E408F /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		15FB1D931CC25E4D007E408F /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
 		15FF26BD1CA97C1A004A59EC /* AboutUsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
-		302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
+		29DD0E833A528B43C13A3BB5 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unlabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE081C1B890800487C6E /* Unlabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		400BDE0B1C1B890800487C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		400BDE1A1C1B890800487C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 		400BDE301C1B890800487C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40714ED51C1DE5FE0063FF43 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
-		536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unlabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
+		DDB59DD1CEEA3EFD5C92C67D /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
+		E77BD553C220BEA860979E0E /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,8 +270,8 @@
 				15B7E7B51C54A9E600244AC9 /* CoreGraphics.framework in Frameworks */,
 				15B7E7B31C54A9DC00244AC9 /* CFNetwork.framework in Frameworks */,
 				15B7E7B11C54A9D500244AC9 /* AudioToolbox.framework in Frameworks */,
-				C2561AAE06FA0796D165A7CC /* Pods_Unlabel.framework in Frameworks */,
 				15FB1D941CC25E4D007E408F /* AccountKit.framework in Frameworks */,
+				88404233146D6689DCFFDDD7 /* Pods_Unlabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +683,15 @@
 			path = AboutUsVC;
 			sourceTree = "<group>";
 		};
+		3E874CED21D4AF9A9D4E7FA7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DDB59DD1CEEA3EFD5C92C67D /* Pods-Unlabel.debug.xcconfig */,
+				E77BD553C220BEA860979E0E /* Pods-Unlabel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		400BDDFF1C1B890800487C6E = {
 			isa = PBXGroup;
 			children = (
@@ -693,9 +702,9 @@
 				400BDE221C1B890800487C6E /* UnlabelTests */,
 				400BDE2D1C1B890800487C6E /* UnlabelUITests */,
 				400BDE091C1B890800487C6E /* Products */,
-				EC0E8037E44618A7C1AD72C6 /* Pods */,
 				5F23897C3AF1B82FBA932788 /* Frameworks */,
 				40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */,
+				3E874CED21D4AF9A9D4E7FA7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -758,18 +767,9 @@
 				15B7E7B41C54A9E600244AC9 /* CoreGraphics.framework */,
 				15B7E7B21C54A9DC00244AC9 /* CFNetwork.framework */,
 				15B7E7B01C54A9D500244AC9 /* AudioToolbox.framework */,
-				536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */,
+				29DD0E833A528B43C13A3BB5 /* Pods_Unlabel.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EC0E8037E44618A7C1AD72C6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */,
-				302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -787,7 +787,6 @@
 				A342024F2A60AFE1A6D04ED6 /* [CP] Copy Pods Resources */,
 				40AC9E581C8C387800EFA413 /* ShellScript */,
 				1509D6B11CBA73C3004AF26F /* Embed Frameworks */,
-				41FB13D44D40459347E05E7E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -948,21 +947,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#\"${PODS_ROOT}/Fabric/run\" 06069638a30af80dd44e96e3bbacf8bc860316b8 83161b69f5e1dce920858f93d52deeb4ea1b18e2586991d9a7c6de4840b09762";
-		};
-		41FB13D44D40459347E05E7E /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		44E2C765F1294BEDA82C38C5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1214,7 +1198,7 @@
 		};
 		400BDE341C1B890800487C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */;
+			baseConfigurationReference = DDB59DD1CEEA3EFD5C92C67D /* Pods-Unlabel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1240,7 +1224,7 @@
 		};
 		400BDE351C1B890800487C6E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 302B80CA4E73332095E61357 /* Pods-Unlabel.release.xcconfig */;
+			baseConfigurationReference = E77BD553C220BEA860979E0E /* Pods-Unlabel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

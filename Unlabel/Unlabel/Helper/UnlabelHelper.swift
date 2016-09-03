@@ -86,41 +86,41 @@ class UnlabelHelper: NSObject {
      Note:- For Facebook only removing following brands, because there is no way to delete it from Firebase
      For AccountKit deleting acccount.
      */
-    class func deleteAccount(userID:String){
-            if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
-                
-                //Facebook user
-                if provider == S_PROVIDER_FACEBOOK{
-                    dispatch_async(dispatch_get_main_queue()) {
-                        FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
-                            if error == nil{
-                                debugPrint("all following brands removed")
-                            }else{
-                                debugPrint("all following brands not removed : \(error)")
-                            }
-                        })
-                    }
-                    
-                    
-                    //AccountKit
-                }else{
-                    dispatch_async(dispatch_get_main_queue()) {
-                        FIREBASE_USERS_REF.childByAppendingPath(userID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
-                            if error == nil{
-                                debugPrint("account removed")
-                            }else{
-                                debugPrint("account not removed : \(error)")
-                            }
-                        })
-                    }
-                }
-            }else{
-              
-            }
-       
-        
-        UnlabelHelper.logout()
-    }
+//    class func deleteAccount(userID:String){
+//            if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
+//                
+//                //Facebook user
+//                if provider == S_PROVIDER_FACEBOOK{
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+//                            if error == nil{
+//                                debugPrint("all following brands removed")
+//                            }else{
+//                                debugPrint("all following brands not removed : \(error)")
+//                            }
+//                        })
+//                    }
+//                    
+//                    
+//                    //AccountKit
+//                }else{
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        FIREBASE_USERS_REF.childByAppendingPath(userID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+//                            if error == nil{
+//                                debugPrint("account removed")
+//                            }else{
+//                                debugPrint("account not removed : \(error)")
+//                            }
+//                        })
+//                    }
+//                }
+//            }else{
+//              
+//            }
+//       
+//        
+//        UnlabelHelper.logout()
+//    }
 
     class func setAppDelegateDelegates(delegate:AppDelegateDelegates){
         let appDelegate = APP_DELEGATE as AppDelegate

@@ -22,5 +22,21 @@
 	<string>1:814302652455:ios:de555638133722ea</string>
 	<key>PROJECT_ID</key>
 	<string>unlabel-36e12</string>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1034943621402-3jvh92glcqnnlrcdh3mfaut6oj0q671t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1034943621402-3jvh92glcqnnlrcdh3mfaut6oj0q671t</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBOP89h4kq0sEr6ZOpOApM8A2MSLpfBigs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1034943621402</string>
+	<key>STORAGE_BUCKET</key>
+	<string>glowing-torch-9591.appspot.com</string>
+	<key>DATABASE_URL</key>
+	<string>https://glowing-torch-9591.firebaseio.com</string>
 </dict>
 </plist>

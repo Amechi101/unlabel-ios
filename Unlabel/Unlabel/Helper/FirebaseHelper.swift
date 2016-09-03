@@ -8,38 +8,48 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
-var FIREBASE_REF = Firebase(url: sFIREBASE_URL)
-var FIREBASE_USERS_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
+
+//var FIREBASE_REF = Firebase(url: sFIREBASE_URL)
+//var FIREBASE_USERS_REF = Firebase(url: "\(sFIREBASE_URL)\(sEND_USERS)")
+
+let FIREBASE_REF = FIRDatabase.database().reference()
+let FIREBASE_USERS_REF = FIREBASE_REF.child(sEND_USERS)
 
 class FirebaseHelper: NSObject {
     
     /**
+     Info.plist method
+     */
+    class func configure(){
+        FIRApp.configure()
+    }
+    
+    /**
      // Update user's name
      */
-    class func updateUserName(userName:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
-            let displayName:[NSObject:AnyObject] = [PRM_DISPLAY_NAME:userName]
-            dispatch_async(dispatch_get_main_queue()) {
-                FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).updateChildValues(displayName, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
-                    block(error,firebase)
-                    if error == nil{
-                        debugPrint("Name Updated")
-                    }else{
-                        debugPrint("Name Updatation failed : \(error)")
-                    }
-                })
+    class func updateUser(userDict userDict:[String:AnyObject],completion:(NSError?)->()){
+        if let currentUser = FIRAuth.auth()?.currentUser{
+            FIREBASE_REF.child(sEND_USERS).child(currentUser.uid).updateChildValues(userDict) { (error, reference) in
+                completion(error)
+                
             }
+        }else{
+            debugPrint("updateUser failed")
+        }
     }
     
     /**
     // Add new user data after successfull authentication
     */
-    class func addNewUser(userData: [String:AnyObject]!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+    class func addNewUser(userData: [String:AnyObject]!, withCompletionBlock block: ((NSError!, FIRDatabaseReference!) -> Void)!){
         dispatch_async(dispatch_get_main_queue(), {
             if let userID:String = userData[PRM_USER_ID] as? String{
-                FIREBASE_USERS_REF.childByAppendingPath(userID).setValue(userData, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                FIREBASE_USERS_REF.child(userID).setValue(userData, withCompletionBlock: { (error,dbRef) in
                     dispatch_async(dispatch_get_main_queue(), {
-                        block(error,firebase)
+                        block(error,dbRef)
                     })
                 })
             }
@@ -50,22 +60,24 @@ class FirebaseHelper: NSObject {
     /**
      Check if user exist for specific id.
      */
-    class func checkIfUserExists(forID id:String, withBlock block: ((FDataSnapshot!) -> Void)!){
+    class func checkIfUserExists(forID id:String, withBlock block: ((FIRDataSnapshot) -> Void)!){
         dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_USERS_REF.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            FIREBASE_USERS_REF.child(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 dispatch_async(dispatch_get_main_queue(), {
                     block(snapshot)
                 })
             })
         })
     }
+ 
     
-    /**
-     // Get user's following brands
-     */
+//    
+//    /**
+//     // Get user's following brands
+//     */
     class func getFollowingBrands(userID:String, withCompletionBlock block: (([String]?) -> Void)!){
         dispatch_async(dispatch_get_main_queue(), {
-            FIREBASE_USERS_REF.childByAppendingPath(userID).childByAppendingPath(PRM_FOLLOWING_BRANDS).observeSingleEventOfType(.Value, withBlock: { (snapshot:FDataSnapshot!) in
+            FIREBASE_USERS_REF.child(userID).child(PRM_FOLLOWING_BRANDS).observeSingleEventOfType(.Value, withBlock: { (snapshot:FIRDataSnapshot!) in
                  if snapshot.exists(){
                     var followingBrandIDs:[String]? = [String]()
                     
@@ -81,17 +93,17 @@ class FirebaseHelper: NSObject {
             })
         })
     }
-    
-    /**
-     // Add new user data after successfull authentication
-     */
-    class func followUnfollowBrand(follow shouldFollow:Bool,brandID:String,userID:String, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!){
+//
+//    /**
+//     // Add new user data after successfull authentication
+//     */
+    class func followUnfollowBrand(follow shouldFollow:Bool,brandID:String,userID:String, withCompletionBlock block: ((NSError!, FIRDatabaseReference!) -> Void)!){
             if shouldFollow{
                 let followValues:[NSObject:AnyObject] = [brandID:true]
                 dispatch_async(dispatch_get_main_queue()) {
-                  let userRef =  FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID))
+                  let userRef =  FIREBASE_USERS_REF.child(UnlabelHelper.getDefaultValue(PRM_USER_ID)!)
                   
-                   userRef.childByAppendingPath(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                   userRef.child(PRM_FOLLOWING_BRANDS).updateChildValues(followValues, withCompletionBlock: { (error, firebase) in
                         block(error,firebase)
                         if error == nil{
                             debugPrint("brand followed")
@@ -105,7 +117,7 @@ class FirebaseHelper: NSObject {
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue()) {
-                    FIREBASE_USERS_REF.childByAppendingPath(UnlabelHelper.getDefaultValue(PRM_USER_ID)).childByAppendingPath(PRM_FOLLOWING_BRANDS).childByAppendingPath(brandID).removeValueWithCompletionBlock({ (error:NSError!, firebase:Firebase!) in
+                    FIREBASE_USERS_REF.child(UnlabelHelper.getDefaultValue(PRM_USER_ID)!).child(PRM_FOLLOWING_BRANDS).child(brandID).removeValueWithCompletionBlock({ (error, firebase) in
                         block(error,firebase)
                         if error == nil{
                             debugPrint("brand removed")
@@ -118,16 +130,10 @@ class FirebaseHelper: NSObject {
     }
     
     class func logout(){
-        let fireBaseRef = FIREBASE_REF
-        let fireBaseUserRef = FIREBASE_USERS_REF
-        
-        FIREBASE_REF.unauth()
-        FIREBASE_REF = nil
-        
-        FIREBASE_USERS_REF.unauth()
-        FIREBASE_USERS_REF = nil
-        
-        FIREBASE_REF = fireBaseRef
-        FIREBASE_USERS_REF = fireBaseUserRef
+        if let _ = FIRAuth.auth()?.currentUser{
+            try! FIRAuth.auth()!.signOut()
+        }else{
+            debugPrint("User is not signed In")
+        }
     }
 }

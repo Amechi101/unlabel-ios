@@ -167,6 +167,7 @@ extension AppDelegate{
         configureBranch(launchOptions)
         configureGoogleAnalytics()
         configureBatchForPushNotification()
+        FirebaseHelper.configure()
         addInternetStateChangeObserver()
     }
     

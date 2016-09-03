@@ -57,7 +57,7 @@ class ViewFollowingLabelPopup: UIView {
     @IBAction func IBActionDelete(sender: UIButton) {
         delegate?.popupDidClickDelete!()
         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-            UnlabelHelper.deleteAccount(userID)
+//            UnlabelHelper.deleteAccount(userID)
         }
     }
     

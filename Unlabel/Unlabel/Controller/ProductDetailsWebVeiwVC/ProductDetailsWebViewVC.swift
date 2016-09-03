@@ -156,7 +156,7 @@ extension ProductDetailsWebViewVC{
                _selectedBrand.isFollowing = true
             }
              self.updateButtonUI()
-            FirebaseHelper.followUnfollowBrand(follow: _selectedBrand.isFollowing, brandID:_selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+            FirebaseHelper.followUnfollowBrand(follow: _selectedBrand.isFollowing, brandID:_selectedBrand.ID, userID: userID, withCompletionBlock: { (error, firebase) in
                if error != nil{
                   
                }
