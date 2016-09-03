@@ -45,3 +45,20 @@ extension Array where Element : Equatable {
         }
     }
 }
+
+
+extension UITableView {
+   func removeMargines() {
+      self.layoutMargins = UIEdgeInsetsZero
+      self.preservesSuperviewLayoutMargins = false
+      self.separatorInset = UIEdgeInsetsZero
+   }
+}
+
+extension UITableViewCell {
+   func removeMargines() {
+      self.layoutMargins = UIEdgeInsetsZero
+      self.preservesSuperviewLayoutMargins = false
+      self.separatorInset = UIEdgeInsetsZero
+   }
+}
