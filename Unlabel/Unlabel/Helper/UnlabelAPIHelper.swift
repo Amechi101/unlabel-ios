@@ -67,7 +67,7 @@ class UnlabelAPIHelper{
         }
         
         print(requestURL)
-        
+      
         if let requestURLObj = requestURL{
             Alamofire.request(.GET, requestURLObj).responseJSON { response in
                 switch response.result {
@@ -239,10 +239,40 @@ class UnlabelAPIHelper{
     }
     
     
-    //Filter
-    func getFilterCategory(){
-    
-    }
+   //Filter
+   func getFilterCategories(categoryType:CategoryStyleEnum, success:([JSON], meta:JSON)->(),failed:(error:NSError)->()){
+      var requestURL:String?
+      if categoryType == CategoryStyleEnum.Category {
+         requestURL = "\(API.getCategories)".encodedURL()
+      } else if categoryType == CategoryStyleEnum.Style {
+         requestURL = "\(API.getStyles)".encodedURL()
+      }
+      
+      //    print(requestURL)
+      
+      if let requestURLObj = requestURL{
+         Alamofire.request(.GET, requestURLObj).responseJSON { response in
+            switch response.result {
+               
+            case .Success(let data):
+               let json = JSON(data)
+               let meta = json["meta"]
+               //                debugPrint(json)
+               
+               if let arrCategories = json["categories"].array {
+                  success(arrCategories, meta: meta)
+               }else{
+                  failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
+               }
+               
+               
+            case .Failure(let error):
+               failed(error: error)
+            }
+         }
+      }
+      
+   }
     
     func getLocations(completion:[Location]?->()){
         Alamofire.request(.GET, API.getLocations).responseJSON { (response) in

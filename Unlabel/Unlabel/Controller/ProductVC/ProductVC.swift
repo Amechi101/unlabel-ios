@@ -343,16 +343,19 @@ extension ProductVC{
                if error != nil{
                   
                }else{
+                  if !self.selectedBrand.isFollowing {
+                     if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                        
+                     }else{
+                        self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                        UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                     }
+                  }
                   self.IBcollectionViewProduct.reloadData()
                }
             })
             
-            if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-               
-            }else{
-               addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-               UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-            }
+            
          } else {
             self.openLoginSignupVC()
          }

@@ -29,7 +29,6 @@
 		154F193E1CD64D49006DFC42 /* FeedVCFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154F193C1CD64D49006DFC42 /* FeedVCFooterCell.xib */; };
 		155060A81D591CC9005E393C /* FilterTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155060A61D591CC9005E393C /* FilterTitleCell.swift */; };
 		155060A91D591CC9005E393C /* FilterTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 155060A71D591CC9005E393C /* FilterTitleCell.xib */; };
-		155060AE1D59200E005E393C /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15897E8A1C5935C200FD0700 /* FilterVC.swift */; };
 		155060AF1D592827005E393C /* Unlabel.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 150798DD1D0720C800404AFA /* Unlabel.entitlements */; };
 		156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156BB18C1CC1810500E672AF /* LoginSignupVC.swift */; };
 		15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */; };
@@ -105,6 +104,11 @@
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
 		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
 		88404233146D6689DCFFDDD7 /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DD0E833A528B43C13A3BB5 /* Pods_Unlabel.framework */; };
+		CB1C21B61D7B5DA000253342 /* FilterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B31D7B5DA000253342 /* FilterListController.swift */; };
+		CB1C21B71D7B5DA000253342 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B41D7B5DA000253342 /* FilterVC.swift */; };
+		CB1C21B81D7B5DA000253342 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B51D7B5DA000253342 /* GlossaryController.swift */; };
+		CB1C21BB1D7B601C00253342 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B91D7B601C00253342 /* GlossaryCell.swift */; };
+		CB1C21BC1D7B601C00253342 /* GlossaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1C21BA1D7B601C00253342 /* GlossaryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,7 +170,6 @@
 		15770C5B1C8F64F400B55BDD /* UnlabelFBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelFBHelper.swift; sourceTree = "<group>"; };
 		1578949E1CA85AC000E4C1A6 /* ProductDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		157CC6291CBC0CED0010F64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		15897E8A1C5935C200FD0700 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLocationCell.swift; sourceTree = "<group>"; };
 		15897E8E1C593E0F00FD0700 /* CategoryLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryLocationCell.xib; sourceTree = "<group>"; };
 		15897E911C59488800FD0700 /* GenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
@@ -250,6 +253,11 @@
 		400BDE301C1B890800487C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40714ED51C1DE5FE0063FF43 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB1C21B31D7B5DA000253342 /* FilterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListController.swift; sourceTree = "<group>"; };
+		CB1C21B41D7B5DA000253342 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		CB1C21B51D7B5DA000253342 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryController.swift; sourceTree = "<group>"; };
+		CB1C21B91D7B601C00253342 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
+		CB1C21BA1D7B601C00253342 /* GlossaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlossaryCell.xib; sourceTree = "<group>"; };
 		DDB59DD1CEEA3EFD5C92C67D /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
 		E77BD553C220BEA860979E0E /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -351,7 +359,9 @@
 		15897E891C5935A500FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
-				15897E8A1C5935C200FD0700 /* FilterVC.swift */,
+				CB1C21B31D7B5DA000253342 /* FilterListController.swift */,
+				CB1C21B41D7B5DA000253342 /* FilterVC.swift */,
+				CB1C21B51D7B5DA000253342 /* GlossaryController.swift */,
 			);
 			path = FilterVC;
 			sourceTree = "<group>";
@@ -359,6 +369,8 @@
 		15897E8C1C593DC700FD0700 /* FilterVC */ = {
 			isa = PBXGroup;
 			children = (
+				CB1C21B91D7B601C00253342 /* GlossaryCell.swift */,
+				CB1C21BA1D7B601C00253342 /* GlossaryCell.xib */,
 				15C2FAFE1D68CE66000A3024 /* TitleBoxCell.swift */,
 				15C2FAFF1D68CE66000A3024 /* TitleBoxCell.xib */,
 				15897E8D1C593E0F00FD0700 /* CategoryLocationCell.swift */,
@@ -899,6 +911,7 @@
 				159245281C553B6800755814 /* FeedVCCell.xib in Resources */,
 				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
 				154F193E1CD64D49006DFC42 /* FeedVCFooterCell.xib in Resources */,
+				CB1C21BC1D7B601C00253342 /* GlossaryCell.xib in Resources */,
 				15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */,
 				155060A91D591CC9005E393C /* FilterTitleCell.xib in Resources */,
 				154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */,
@@ -1018,6 +1031,7 @@
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				15CCC6EF1D1696DA00FD602F /* UnlabelLoadingView.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
+				CB1C21B71D7B5DA000253342 /* FilterVC.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15770C5C1C8F64F400B55BDD /* UnlabelFBHelper.swift in Sources */,
@@ -1034,13 +1048,13 @@
 				1592BB431D11D21000EEC05D /* FeedVCHeaderCell.swift in Sources */,
 				156BB18D1CC1810500E672AF /* LoginSignupVC.swift in Sources */,
 				400BDE0C1C1B890800487C6E /* AppDelegate.swift in Sources */,
-				155060AE1D59200E005E393C /* FilterVC.swift in Sources */,
 				15452D9F1C5AA950006D17DF /* LocationNameCell.swift in Sources */,
 				15CCC6F81D16A53C00FD602F /* FBShimmeringView.m in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
+				CB1C21BB1D7B601C00253342 /* GlossaryCell.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				153BE1FA1D5F9FB300A64816 /* UnlabelEnums.swift in Sources */,
 				154F193D1CD64D49006DFC42 /* FeedVCFooterCell.swift in Sources */,
@@ -1051,12 +1065,14 @@
 				1532E3ED1D6CEFCC0029D0E9 /* ProductDescCell.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
+				CB1C21B81D7B5DA000253342 /* GlossaryController.swift in Sources */,
 				15F5A3221C8A2B7900FDE610 /* SignupVC.swift in Sources */,
 				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,
 				15C2FB001D68CE66000A3024 /* TitleBoxCell.swift in Sources */,
 				158F3E111C70988D00A3D0D6 /* LaunchLoadingVC.swift in Sources */,
 				1517F3901D6E2553000293B4 /* ProductDetailsWebViewVC.swift in Sources */,
 				15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */,
+				CB1C21B61D7B5DA000253342 /* FilterListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

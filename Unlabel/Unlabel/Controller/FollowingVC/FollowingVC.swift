@@ -90,12 +90,15 @@ class FollowingVC: UIViewController {
                      dispatch_async(dispatch_get_main_queue(), { () -> Void in
                          self.IBcollectionViewFollowing.reloadData()
                         
-                        if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                           
-                        } else{
-                           self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                        if !self.arrFollowingBrandList[sender.tag].isFollowing {
+                           if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                              
+                           } else{
+                              self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                              UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                           }
                         }
+                        
                      })
                      
                   }else{

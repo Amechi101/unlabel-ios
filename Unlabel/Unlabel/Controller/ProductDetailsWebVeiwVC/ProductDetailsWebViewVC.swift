@@ -157,17 +157,20 @@ extension ProductDetailsWebViewVC{
             }
              self.updateButtonUI()
             FirebaseHelper.followUnfollowBrand(follow: _selectedBrand.isFollowing, brandID:_selectedBrand.ID, userID: userID, withCompletionBlock: { (error, firebase) in
-               if error != nil{
+               if error == nil{
                   
+                  if  !_selectedBrand.isFollowing {
+                     if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                        
+                     }else{
+                        self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                        UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                     }
+                  }
                }
             })
             
-            if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-               
-            }else{
-               addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-               UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-            }
+            
          } else{
             self.openLoginSignupVC()
          }

@@ -43,90 +43,100 @@ let PRM_CURRENT_FOLLOWING_COUNT     = "currentFollowingCount"
 
 
 struct API{
-    //Live
-//    static let onlyBaseURL = "https://unlabel.us"
-//    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
-//    static let userName = "unlabel_us_api"
-//    static let APIKey = "f54c309313f3bb0f28322f035cfc169c8631faf9"
-    
-    //Test
-    static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
-    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
-    static let userName = "amechiegbe"
-    static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
-    
-    static let labels       = "labels/"
-    static let products     = "products/"
-    static let locations    = "locations/"
- 
-    static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
-    static let getProducts  = WSConstantFetcher.getFinalURLs(products)
-    static let getLocations = WSConstantFetcher.getFinalURLs(locations)
+   //Live
+   //    static let onlyBaseURL = "https://unlabel.us"
+   //    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
+   //    static let userName = "unlabel_us_api"
+   //    static let APIKey = "f54c309313f3bb0f28322f035cfc169c8631faf9"
+   
+   //Test
+   static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
+   static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
+   static let categoryURL = "\(ONLY_BASE_URL)/unlabel-network/categories-api/v3/"
+   static let styleURL = "\(ONLY_BASE_URL)/unlabel-network/styles-api/v3/"
+   static let userName = "amechiegbe"
+   static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
+   
+   static let labels       = "labels/"
+   static let products     = "products/"
+   static let locations    = "locations/"
+   static let styles       = "styles/"
+   static let categories   = "categories/"
+   
+   static let getStyles        = "\(API.styleURL)\(styles)"
+   static let getCategories    = "\(API.categoryURL)\(categories)"
+   static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
+   static let getProducts  = WSConstantFetcher.getFinalURLs(products)
+   static let getLocations = WSConstantFetcher.getFinalURLs(locations)
 }
 
 
 struct APIParams {
-    static let brandId          = "id"
-    static let labelId          = "label_id"
-    static let brandCity        = "brand_city"
-    static let brandGender      = "brand_gender"
-    static let brandCategory    = "brand_category"
-    
-    static let city             = "city"
-    static let location         = "location"
-    static let locations        = "locations"
-    static let locationChoices  = "location_choices"
-    static let stateOrCountry   = "state_or_country"
-    
-    static let latitude         = "latitude"
-    static let longitude        = "longitude"
-    
-    static let menswear         = "menswear"
-    static let womenswear       = "womenswear"
-    
-    static let locationChoicesCountry  = "Country"
-    static let locationChoicesState    = "State"
+   static let brandId          = "id"
+   static let labelId          = "label_id"
+   static let brandCity        = "brand_city"
+   static let brandGender      = "brand_gender"
+   static let brandCategory     =  "brand_category__name__in" //"brand_category"
+   static let brandStyle        = "brand_style__name__in"
+   
+   static let city             = "city"
+   static let location         = "location"
+   static let locations        = "locations"
+   static let locationChoices  = "location_choices"
+   static let stateOrCountry   = "state_or_country"
+   
+   static let latitude         = "latitude"
+   static let longitude        = "longitude"
+   
+   static let menswear         = "menswear"
+   static let womenswear       = "womenswear"
+   
+   static let locationChoicesCountry  = "Country"
+   static let locationChoicesState    = "State"
 }
 
 class WSConstantFetcher{
-    class func getFinalURLs(subURL:String)->String{
-        return"\(API.baseURL)\(subURL)"
-    }
-    
-    class func getLabelsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
-        var subURL = ""
-        
-        if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None {
-            if fetchBrandsRP.brandGender == BrandGender.Men{
-                subURL = "?\(APIParams.menswear)=True"
-            } else if fetchBrandsRP.brandGender == BrandGender.Women {
-                subURL = "?\(APIParams.womenswear)=True"
-            } else { //FIXME: both
-               subURL = "?\(APIParams.womenswear)=True&\(APIParams.menswear)=True"
-            }
-        }
-        
-        var subSubURL = ""
-        if let brandCategory = fetchBrandsRP.filterCategory{
-            subSubURL = "&\(APIParams.brandCategory)=\(brandCategory)"
-        }
-        
-        if let location = fetchBrandsRP.filterLocation{
-            subSubURL = "\(subSubURL)&\(APIParams.location)=\(location)"
-        }
-        
-        return subURL+subSubURL
-    }
-    
-    class func getProductsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
-        var subURL = ""
-        
-        if let labelId = fetchBrandsRP.brandId where labelId.characters.count > 0{
-            subURL = "?\(APIParams.brandId)=\(labelId)"
-        }
-        
-        return subURL
-    }
+   class func getFinalURLs(subURL:String)->String{
+      return"\(API.baseURL)\(subURL)"
+   }
+   
+   class func getLabelsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
+      var subURL = ""
+      
+      if let brandGender = fetchBrandsRP.brandGender where brandGender != BrandGender.None {
+         if fetchBrandsRP.brandGender == BrandGender.Men{
+            subURL = "?\(APIParams.menswear)=True"
+         } else if fetchBrandsRP.brandGender == BrandGender.Women {
+            subURL = "?\(APIParams.womenswear)=True"
+         } else {
+//            subURL = "?\(APIParams.womenswear)=True&\(APIParams.menswear)=True"
+         }
+      }
+      
+      var subSubURL = ""
+      if let brandCategory = fetchBrandsRP.filterCategory where !brandCategory.isEmpty {
+         subSubURL = "&\(APIParams.brandCategory)=\(brandCategory)"
+         if let brandStyle = fetchBrandsRP.filterStyle where !brandStyle.isEmpty {
+            subSubURL += "&\(APIParams.brandStyle)=\(brandStyle)"
+         }
+      }
+      
+      if let location = fetchBrandsRP.filterLocation{
+         subSubURL = "\(subSubURL)&\(APIParams.location)=\(location)"
+      }
+      
+      return subURL+subSubURL
+   }
+   
+   class func getProductsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
+      var subURL = ""
+      
+      if let labelId = fetchBrandsRP.brandId where labelId.characters.count > 0{
+         subURL = "?\(APIParams.brandId)=\(labelId)"
+      }
+      
+      return subURL
+   }
 }
 
 //Live

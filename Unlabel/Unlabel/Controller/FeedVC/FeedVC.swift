@@ -58,6 +58,8 @@ class FeedVC: UIViewController {
     var filteredNavTitle:String?
     var filteredString:String?
     var sFilterCategory:String?
+      var sFilterStyle:String?
+
     var sFilterLocation:String?
     
 //    var nextPageURL:String?
@@ -298,11 +300,12 @@ extension FeedVC:LeftMenuVCDelegate{
 //MARK:- FilterVCDelegate Methods
 //
 extension FeedVC: FilterVCDelegate{
-    func didClickShowLabels(category: String?, location: String?) {
+    func didClickShowLabels(category: String?, location: String?, style:String?) {
         arrFilteredBrandList = []
         arrMenBrandList = []
         arrWomenBrandList = []
         sFilterCategory = category
+        sFilterStyle = style
         sFilterLocation = location
         
         var shouldShowClear = false
@@ -310,7 +313,10 @@ extension FeedVC: FilterVCDelegate{
         if let _ = category{
             shouldShowClear = true
         }
-        
+      if let _ = style{
+         shouldShowClear = true
+      }
+      
         if let _ = location{
             shouldShowClear = true
         }
@@ -521,11 +527,14 @@ extension FeedVC{
                            
                            
                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                              if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
-                                 
-                              } else{
-                                 self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                                 UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                              
+                              if !self.arrFilteredBrandList[sender.tag].isFollowing {
+                                 if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
+                                    
+                                 } else{
+                                    self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
+                                    UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+                                 }
                               }
                            })
                            
@@ -1101,7 +1110,9 @@ extension FeedVC{
         let fetchBrandsRequestParams = FetchBrandsRP()
         fetchBrandsRequestParams.filterCategory = self.sFilterCategory
         fetchBrandsRequestParams.filterLocation = self.sFilterLocation
-            
+        fetchBrandsRequestParams.filterStyle = self.sFilterStyle
+
+         
         if headerView?.selectedTab == .Men{
             fetchBrandsRequestParams.nextPageURL = nextPageURLMen
         }else if headerView?.selectedTab == .Women{
