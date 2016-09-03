@@ -105,10 +105,6 @@
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
 		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
 		C2561AAE06FA0796D165A7CC /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */; };
-		CBE950231D7AC386004130D4 /* FilterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE950221D7AC386004130D4 /* FilterListController.swift */; };
-		CBE950251D7AEED7004130D4 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE950241D7AEED7004130D4 /* GlossaryController.swift */; };
-		CBE950271D7AF208004130D4 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE950261D7AF208004130D4 /* GlossaryCell.swift */; };
-		CBE950291D7AF26C004130D4 /* GlossaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBE950281D7AF26C004130D4 /* GlossaryCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,10 +252,6 @@
 		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
 		536DADF39A10B2A125ABA038 /* Pods_Unlabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unlabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04A3F897DED804FE664BCB0 /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
-		CBE950221D7AC386004130D4 /* FilterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListController.swift; sourceTree = "<group>"; };
-		CBE950241D7AEED7004130D4 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryController.swift; sourceTree = "<group>"; };
-		CBE950261D7AF208004130D4 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
-		CBE950281D7AF26C004130D4 /* GlossaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlossaryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,8 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				15897E8A1C5935C200FD0700 /* FilterVC.swift */,
-				CBE950221D7AC386004130D4 /* FilterListController.swift */,
-				CBE950241D7AEED7004130D4 /* GlossaryController.swift */,
 			);
 			path = FilterVC;
 			sourceTree = "<group>";
@@ -380,8 +370,6 @@
 				15452D9E1C5AA950006D17DF /* LocationNameCell.swift */,
 				155060A61D591CC9005E393C /* FilterTitleCell.swift */,
 				155060A71D591CC9005E393C /* FilterTitleCell.xib */,
-				CBE950261D7AF208004130D4 /* GlossaryCell.swift */,
-				CBE950281D7AF26C004130D4 /* GlossaryCell.xib */,
 			);
 			path = FilterVC;
 			sourceTree = "<group>";
@@ -912,7 +900,6 @@
 				159245281C553B6800755814 /* FeedVCCell.xib in Resources */,
 				40714ED61C1DE5FE0063FF43 /* Podfile in Resources */,
 				154F193E1CD64D49006DFC42 /* FeedVCFooterCell.xib in Resources */,
-				CBE950291D7AF26C004130D4 /* GlossaryCell.xib in Resources */,
 				15B7E7C81C55201200244AC9 /* Neutraface2Text-Bold.otf in Resources */,
 				155060A91D591CC9005E393C /* FilterTitleCell.xib in Resources */,
 				154241D41CAAFBA800EC59A7 /* NotFoundView.xib in Resources */,
@@ -1070,7 +1057,6 @@
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
-				CBE950271D7AF208004130D4 /* GlossaryCell.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				153BE1FA1D5F9FB300A64816 /* UnlabelEnums.swift in Sources */,
 				154F193D1CD64D49006DFC42 /* FeedVCFooterCell.swift in Sources */,
@@ -1079,9 +1065,7 @@
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,
 				15EF18041CA481810028BA8B /* AccountInfoVC.swift in Sources */,
 				1532E3ED1D6CEFCC0029D0E9 /* ProductDescCell.swift in Sources */,
-				CBE950231D7AC386004130D4 /* FilterListController.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
-				CBE950251D7AEED7004130D4 /* GlossaryController.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
 				15F5A3221C8A2B7900FDE610 /* SignupVC.swift in Sources */,
 				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,

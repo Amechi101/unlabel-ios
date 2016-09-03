@@ -50,24 +50,18 @@ struct API{
 //    static let APIKey = "f54c309313f3bb0f28322f035cfc169c8631faf9"
     
     //Test
-   static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
-   static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
-   static let categoryURL = "\(ONLY_BASE_URL)/unlabel-network/categories-api/v3/"
-   static let styleURL = "\(ONLY_BASE_URL)/unlabel-network/styles-api/v3/"
-   static let userName = "amechiegbe"
-   static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
-   
-   static let labels       = "labels/"
-   static let products     = "products/"
-   static let locations    = "locations/"
-   static let styles       = "styles/"
-   static let categories   = "categories/"
-   
-   static let getStyles        = "\(API.styleURL)\(styles)"
-   static let getCategories    = "\(API.categoryURL)\(categories)"
-   static let getLabels        = WSConstantFetcher.getFinalURLs(labels)
-   static let getProducts      = WSConstantFetcher.getFinalURLs(products)
-   static let getLocations     = WSConstantFetcher.getFinalURLs(locations)
+    static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
+    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
+    static let userName = "amechiegbe"
+    static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
+    
+    static let labels       = "labels/"
+    static let products     = "products/"
+    static let locations    = "locations/"
+ 
+    static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
+    static let getProducts  = WSConstantFetcher.getFinalURLs(products)
+    static let getLocations = WSConstantFetcher.getFinalURLs(locations)
 }
 
 
@@ -76,8 +70,7 @@ struct APIParams {
     static let labelId          = "label_id"
     static let brandCity        = "brand_city"
     static let brandGender      = "brand_gender"
-    static let brandCategory     =  "brand_category__name__in" //"brand_category"
-    static let brandStyle        = "brand_style__name__in"
+    static let brandCategory    = "brand_category"
     
     static let city             = "city"
     static let location         = "location"
@@ -97,7 +90,7 @@ struct APIParams {
 
 class WSConstantFetcher{
     class func getFinalURLs(subURL:String)->String{
-        return "\(API.baseURL)\(subURL)"
+        return"\(API.baseURL)\(subURL)"
     }
     
     class func getLabelsSubURL(fetchBrandsRP:FetchBrandsRP)->String{
@@ -116,13 +109,8 @@ class WSConstantFetcher{
         var subSubURL = ""
         if let brandCategory = fetchBrandsRP.filterCategory{
             subSubURL = "&\(APIParams.brandCategory)=\(brandCategory)"
-            if let brandStyle = fetchBrandsRP.filterStyle {
-               subSubURL += "&\(APIParams.brandStyle)=\(brandStyle)"
-            }
-        } else if let brandStyle = fetchBrandsRP.filterStyle {
-            subSubURL = "&\(APIParams.brandStyle)=\(brandStyle)"
         }
-      
+        
         if let location = fetchBrandsRP.filterLocation{
             subSubURL = "\(subSubURL)&\(APIParams.location)=\(location)"
         }
@@ -144,8 +132,6 @@ class WSConstantFetcher{
 //Live
 let ONLY_BASE_URL = "https://unlabel.us"
 let BASE_URL = "\(ONLY_BASE_URL)/unlabel-network/unlabel-network-api/v1"
-
-
 let USERNAME = "unlabel_us_api"
 let API_KEY =  "f54c309313f3bb0f28322f035cfc169c8631faf9"
 

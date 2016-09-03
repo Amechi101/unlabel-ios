@@ -58,7 +58,6 @@ class FeedVC: UIViewController {
     var filteredNavTitle:String?
     var filteredString:String?
     var sFilterCategory:String?
-    var sFilterStyle:String?
     var sFilterLocation:String?
     
 //    var nextPageURL:String?
@@ -299,22 +298,17 @@ extension FeedVC:LeftMenuVCDelegate{
 //MARK:- FilterVCDelegate Methods
 //
 extension FeedVC: FilterVCDelegate{
-   func didClickShowLabels(category:String?,location:String?, style:String?) {
+    func didClickShowLabels(category: String?, location: String?) {
         arrFilteredBrandList = []
         arrMenBrandList = []
         arrWomenBrandList = []
         sFilterCategory = category
-        sFilterStyle = style
         sFilterLocation = location
         
         var shouldShowClear = false
         
         if let _ = category{
             shouldShowClear = true
-        }
-      
-        if let _ = style {
-           shouldShowClear = true
         }
         
         if let _ = location{
@@ -1107,7 +1101,6 @@ extension FeedVC{
         let fetchBrandsRequestParams = FetchBrandsRP()
         fetchBrandsRequestParams.filterCategory = self.sFilterCategory
         fetchBrandsRequestParams.filterLocation = self.sFilterLocation
-         fetchBrandsRequestParams.filterStyle = self.sFilterStyle
             
         if headerView?.selectedTab == .Men{
             fetchBrandsRequestParams.nextPageURL = nextPageURLMen

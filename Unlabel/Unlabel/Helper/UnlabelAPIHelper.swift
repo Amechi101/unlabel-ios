@@ -13,7 +13,11 @@ import ObjectMapper
 
 class UnlabelAPIHelper{
     static let sharedInstance = UnlabelAPIHelper()
- 
+   
+   /*
+      https://unlabel.us/unlabel-network/labels-api/v3/labels/?id=4ff9ef59-c785-4e14-819d-083aae4e4121&username=unlabel_us_api&api_key=f54c309313f3bb0f28322f035cfc169c8631faf9c
+    
+    */
    
    func getSingleBrand(fetchBrandsRP:FetchBrandsRP, success:(Brand, meta:JSON)->(),failed:(error:NSError)->()) {
       var requestURL:String?
@@ -22,7 +26,7 @@ class UnlabelAPIHelper{
          requestURL = "\(API.getLabels)\(WSConstantFetcher.getProductsSubURL(fetchBrandsRP))\(URL_POSTFIX)".encodedURL()
       }
       
-//      print(requestURL)
+      print(requestURL)
       
       if let requestURLObj = requestURL {
          Alamofire.request(.GET, requestURLObj).responseJSON { response in
@@ -31,6 +35,7 @@ class UnlabelAPIHelper{
             case .Success(let data):
                let json = JSON(data)
                let meta = json["meta"]
+//               debugPrint(json)
                if let brand = self.getBrandModels(fromJSON: json)?.first {
                   success(brand, meta: meta)
                }else{
@@ -62,7 +67,7 @@ class UnlabelAPIHelper{
         }
         
         print(requestURL)
-      
+        
         if let requestURLObj = requestURL{
             Alamofire.request(.GET, requestURLObj).responseJSON { response in
                 switch response.result {
@@ -235,40 +240,10 @@ class UnlabelAPIHelper{
     
     
     //Filter
-   func getFilterCategories(categoryType:CategoryStyleEnum, success:([JSON], meta:JSON)->(),failed:(error:NSError)->()){
-      var requestURL:String?
-      if categoryType == CategoryStyleEnum.Category {
-         requestURL = "\(API.getCategories)".encodedURL()
-      } else if categoryType == CategoryStyleEnum.Style {
-         requestURL = "\(API.getStyles)".encodedURL()
-      }
-      
-      //    print(requestURL)
-      
-      if let requestURLObj = requestURL{
-         Alamofire.request(.GET, requestURLObj).responseJSON { response in
-            switch response.result {
-               
-            case .Success(let data):
-               let json = JSON(data)
-               let meta = json["meta"]
-//                debugPrint(json)
-               
-               if let arrCategories = json["categories"].array {
-                  success(arrCategories, meta: meta)
-               }else{
-                  failed(error: NSError(domain: "No brand found", code: 0, userInfo: nil))
-               }
-               
-               
-            case .Failure(let error):
-               failed(error: error)
-            }
-         }
-      }
-      
-   }
-   
+    func getFilterCategory(){
+    
+    }
+    
     func getLocations(completion:[Location]?->()){
         Alamofire.request(.GET, API.getLocations).responseJSON { (response) in
             switch response.result {
