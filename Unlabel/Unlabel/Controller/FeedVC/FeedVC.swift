@@ -1,4 +1,4 @@
-//
+ //
 //  FeedVC.swift
 //  Unlabel
 //
@@ -514,7 +514,7 @@ extension FeedVC{
                   
                      IBcollectionViewFeed.reloadData()
                     
-                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+                    FirebaseHelper.followUnfollowBrand(follow: arrFilteredBrandList[sender.tag].isFollowing, brandID: selectedBrandID, userID: userID, withCompletionBlock: { (error, firebase) in
                         //Followd/Unfollowd brand
                         if error == nil{
                            self.firebaseCallGetFollowingBrands(nil)

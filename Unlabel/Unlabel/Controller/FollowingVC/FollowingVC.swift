@@ -82,7 +82,7 @@ class FollowingVC: UIViewController {
                 self.IBcollectionViewFollowing.reloadData()
                
 
-               FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+               FirebaseHelper.followUnfollowBrand(follow: arrFollowingBrandList[sender.tag].isFollowing, brandID: selectedBrand.ID, userID: userID, withCompletionBlock: { (error, firebase) in
                   //Followd/Unfollowd brand
                   if error == nil{
                      self.arrFollowingBrandList.removeAtIndex(_index)

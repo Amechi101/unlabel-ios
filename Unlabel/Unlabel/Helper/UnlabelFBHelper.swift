@@ -15,7 +15,7 @@ let FB_ACCESS_TOKEN = FBSDKAccessToken.currentAccessToken().tokenString
 class UnlabelFBHelper: NSObject {
     class func login(fromViewController viewController:UIViewController,successBlock: () -> (), andFailure failureBlock: (NSError?) -> ()){
         
-        if let _ = FIREBASE_REF.authData{
+        if let currentUser = FIRAuth.auth()?.currentUser{
             successBlock()
         }else{
             let facebookReadPermissions = ["public_profile", "email"]
@@ -36,21 +36,23 @@ class UnlabelFBHelper: NSObject {
                 }else{
                     //Firebase call for authentication
                     dispatch_async(dispatch_get_main_queue(), {
-                        FIREBASE_REF.authWithOAuthProvider("facebook", token: FB_ACCESS_TOKEN, withCompletionBlock: { (error:NSError!, authData:FAuthData!) in
-                            dispatch_async(dispatch_get_main_queue(), {
-                                if error != nil {
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        failureBlock(error)
-                                    })
-                                    debugPrint("FB firebase Login failed. \(error)")
-                                } else {
-                                    debugPrint("FB firebase Login success")
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        successBlock()
-                                    })
-                                }
+                        if let credential:FIRAuthCredential = FIRFacebookAuthProvider.credentialWithAccessToken(FB_ACCESS_TOKEN){
+                            FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    if error != nil {
+                                        dispatch_async(dispatch_get_main_queue(), {
+                                            failureBlock(error)
+                                        })
+                                        debugPrint("FB firebase Login failed. \(error)")
+                                    } else {
+                                        debugPrint("FB firebase Login success")
+                                        dispatch_async(dispatch_get_main_queue(), {
+                                            successBlock()
+                                        })
+                                    }
+                                })
                             })
-                        })
+                        }
                     })
                 }
             }

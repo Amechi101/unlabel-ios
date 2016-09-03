@@ -339,7 +339,7 @@ extension ProductVC{
          if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
             selectedBrand.isFollowing = !selectedBrand.isFollowing
             updateFollowButton(sender, isFollowing: selectedBrand.isFollowing)
-            FirebaseHelper.followUnfollowBrand(follow:selectedBrand.isFollowing,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+            FirebaseHelper.followUnfollowBrand(follow:selectedBrand.isFollowing,brandID:selectedBrand.ID, userID: userID, withCompletionBlock: { (error, firebase) in
                if error != nil{
                   
                }else{

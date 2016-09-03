@@ -80,9 +80,9 @@ extension LoginSignupVC {
         UnlabelFBHelper.login(fromViewController: self, successBlock: { () -> () in
             APP_DELEGATE.window?.tintColor = windowTintColor
             
-            if let authData = FIREBASE_REF.authData{
+            if let currentUser = FIRAuth.auth()?.currentUser{
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.isUserAlreadyExist(authData.uid, userLoginSubType: .Facebook) { (snapshot:FDataSnapshot) in
+                    self.isUserAlreadyExist(currentUser.uid, userLoginSubType: .Facebook) { (snapshot:FIRDataSnapshot) in
                         if snapshot.exists() {
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.handleUserExist(snapshot)
@@ -162,7 +162,7 @@ extension LoginSignupVC:AKFViewControllerDelegate {
     func viewController(viewController: UIViewController!, didCompleteLoginWithAccessToken accessToken: AKFAccessToken!, state: String!) {
         startLoading()
         if let accountID:String = accessToken.accountID{
-            self.isUserAlreadyExist(accountID, userLoginSubType: .Email) { (snapshot:FDataSnapshot) in
+            self.isUserAlreadyExist(accountID, userLoginSubType: .Email) { (snapshot:FIRDataSnapshot) in
                 
                 if snapshot.exists() {
                     dispatch_async(dispatch_get_main_queue(), {
@@ -279,11 +279,11 @@ extension LoginSignupVC{
 //
 extension LoginSignupVC{
     
-    private func isUserAlreadyExist(userID:String,userLoginSubType:LoginSignupSubType,block:(FDataSnapshot)->Void){
+    private func isUserAlreadyExist(userID:String,userLoginSubType:LoginSignupSubType,block:(FIRDataSnapshot)->Void){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
             dispatch_async(dispatch_get_main_queue(), {
-                FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FDataSnapshot!) in
+                FirebaseHelper.checkIfUserExists(forID: userID, withBlock: { (snapshot:FIRDataSnapshot!) in
                     block(snapshot)
                 })
             })
@@ -295,35 +295,37 @@ extension LoginSignupVC{
     /**
      handleUserExist on Firebase
      */
-    private func handleUserExist(snapshot:FDataSnapshot){
+    private func handleUserExist(snapshot:FIRDataSnapshot){
         var userInfo:[String:AnyObject] = [:]
         
-        if let phoneNumber = snapshot.value[PRM_PHONE]{
-            userInfo[PRM_PHONE] = phoneNumber
-        }
-        
-        if let emailAddress = snapshot.value[PRM_EMAIL]{
-            userInfo[PRM_EMAIL] = emailAddress
-        }
-        
-        if let accountID = snapshot.value[PRM_USER_ID]{
-            userInfo[PRM_USER_ID] = accountID
-        }
-        
-        if let displayName = snapshot.value[PRM_DISPLAY_NAME]{
-            userInfo[PRM_DISPLAY_NAME] = displayName
-        }
-        
-        if let provider = snapshot.value[PRM_PROVIDER]{
-            userInfo[PRM_PROVIDER] = provider
-        }
-        
-        if let displayName = snapshot.value[PRM_DISPLAY_NAME]{
-            userInfo[PRM_DISPLAY_NAME] = displayName
-        }
-        
-        if let displayName = snapshot.value[PRM_DISPLAY_NAME]{
-            userInfo[PRM_DISPLAY_NAME] = displayName
+        if let value = snapshot.value{
+            if let phoneNumber = value[PRM_PHONE]{
+                userInfo[PRM_PHONE] = phoneNumber
+            }
+            
+            if let emailAddress = value[PRM_EMAIL]{
+                userInfo[PRM_EMAIL] = emailAddress
+            }
+            
+            if let accountID = value[PRM_USER_ID]{
+                userInfo[PRM_USER_ID] = accountID
+            }
+            
+            if let displayName = value[PRM_DISPLAY_NAME]{
+                userInfo[PRM_DISPLAY_NAME] = displayName
+            }
+            
+            if let provider = value[PRM_PROVIDER]{
+                userInfo[PRM_PROVIDER] = provider
+            }
+            
+            if let displayName = value[PRM_DISPLAY_NAME]{
+                userInfo[PRM_DISPLAY_NAME] = displayName
+            }
+            
+            if let displayName = value[PRM_DISPLAY_NAME]{
+                userInfo[PRM_DISPLAY_NAME] = displayName
+            }
         }
         
         dismiss(withUserInfo: userInfo)
@@ -392,16 +394,18 @@ extension LoginSignupVC{
                 self.handleAddNewUser(userInfo)
             })
         }else if subType == .Facebook{
-            if let emailAddress = FIREBASE_REF.authData.providerData[PRM_EMAIL]{
-                userInfo[PRM_EMAIL] = emailAddress
-            }
-            
-            if let displayName = FIREBASE_REF.authData.providerData[PRM_DISPLAY_NAME]{
-                userInfo[PRM_DISPLAY_NAME] = displayName
-            }
-            
-            if let userID = FIREBASE_REF.authData.uid{
-                userInfo[PRM_USER_ID] = "\(userID)"
+            if let currentUser = FIRAuth.auth()?.currentUser{
+                if let emailAddress = currentUser.providerData[0].email{
+                    userInfo[PRM_EMAIL] = emailAddress
+                }
+                
+                if let displayName = currentUser.providerData[0].displayName{
+                    userInfo[PRM_DISPLAY_NAME] = displayName
+                }
+                
+                if let userID:String = currentUser.uid{
+                    userInfo[PRM_USER_ID] = "\(userID)"
+                }
             }
             
             userInfo[PRM_PROVIDER] = S_PROVIDER_FACEBOOK
@@ -417,7 +421,7 @@ extension LoginSignupVC{
     
     private func handleAddNewUser(userInfo:[String:AnyObject]){
         dispatch_async(dispatch_get_main_queue(), {
-            FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:Firebase!) in
+            FirebaseHelper.addNewUser(userInfo, withCompletionBlock: { (error:NSError!, firebase:FIRDatabaseReference!) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if error != nil{
                         self.stopLoading()
