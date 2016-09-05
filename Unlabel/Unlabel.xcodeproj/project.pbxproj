@@ -109,6 +109,10 @@
 		CB1C21B81D7B5DA000253342 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B51D7B5DA000253342 /* GlossaryController.swift */; };
 		CB1C21BB1D7B601C00253342 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B91D7B601C00253342 /* GlossaryCell.swift */; };
 		CB1C21BC1D7B601C00253342 /* GlossaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1C21BA1D7B601C00253342 /* GlossaryCell.xib */; };
+		CBEE783E1D7C89010001752F /* FilterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEE783C1D7C89010001752F /* FilterListCell.swift */; };
+		CBEE783F1D7C89010001752F /* FilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEE783D1D7C89010001752F /* FilterListCell.xib */; };
+		CBEE78411D7C8B600001752F /* FilterHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEE78401D7C8B600001752F /* FilterHeaderCell.swift */; };
+		CBEE78431D7C8B990001752F /* FilterHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEE78421D7C8B990001752F /* FilterHeaderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +262,10 @@
 		CB1C21B51D7B5DA000253342 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryController.swift; sourceTree = "<group>"; };
 		CB1C21B91D7B601C00253342 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
 		CB1C21BA1D7B601C00253342 /* GlossaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlossaryCell.xib; sourceTree = "<group>"; };
+		CBEE783C1D7C89010001752F /* FilterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListCell.swift; sourceTree = "<group>"; };
+		CBEE783D1D7C89010001752F /* FilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterListCell.xib; sourceTree = "<group>"; };
+		CBEE78401D7C8B600001752F /* FilterHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderCell.swift; sourceTree = "<group>"; };
+		CBEE78421D7C8B990001752F /* FilterHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterHeaderCell.xib; sourceTree = "<group>"; };
 		DDB59DD1CEEA3EFD5C92C67D /* Pods-Unlabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.debug.xcconfig"; sourceTree = "<group>"; };
 		E77BD553C220BEA860979E0E /* Pods-Unlabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unlabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unlabel/Pods-Unlabel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -382,6 +390,10 @@
 				15452D9E1C5AA950006D17DF /* LocationNameCell.swift */,
 				155060A61D591CC9005E393C /* FilterTitleCell.swift */,
 				155060A71D591CC9005E393C /* FilterTitleCell.xib */,
+				CBEE783C1D7C89010001752F /* FilterListCell.swift */,
+				CBEE783D1D7C89010001752F /* FilterListCell.xib */,
+				CBEE78401D7C8B600001752F /* FilterHeaderCell.swift */,
+				CBEE78421D7C8B990001752F /* FilterHeaderCell.xib */,
 			);
 			path = FilterVC;
 			sourceTree = "<group>";
@@ -904,6 +916,7 @@
 				15B7E7C91C55201200244AC9 /* Neutraface2Text-Book.otf in Resources */,
 				15C9252B1C73B94500595A7B /* ProductFooterView.xib in Resources */,
 				15E2320C1CB2F19A001220EA /* ViewFollowingLabelPopup.xib in Resources */,
+				CBEE78431D7C8B990001752F /* FilterHeaderCell.xib in Resources */,
 				15897E901C593E0F00FD0700 /* CategoryLocationCell.xib in Resources */,
 				15B7E7AB1C54A2D100244AC9 /* LaunchScreen.storyboard in Resources */,
 				15B7E7CB1C55201200244AC9 /* Neutraface2Text-Light.otf in Resources */,
@@ -926,6 +939,7 @@
 				15F0E26F1C723A8A00A7E389 /* ProductCell.xib in Resources */,
 				157CC62A1CBC0CEE0010F64D /* GoogleService-Info.plist in Resources */,
 				15B7E7CA1C55201200244AC9 /* Neutraface2Text-Demi.otf in Resources */,
+				CBEE783F1D7C89010001752F /* FilterListCell.xib in Resources */,
 				155060AF1D592827005E393C /* Unlabel.entitlements in Resources */,
 				15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */,
 			);
@@ -1031,6 +1045,7 @@
 				15897E8F1C593E0F00FD0700 /* CategoryLocationCell.swift in Sources */,
 				15CCC6EF1D1696DA00FD602F /* UnlabelLoadingView.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
+				CBEE78411D7C8B600001752F /* FilterHeaderCell.swift in Sources */,
 				CB1C21B71D7B5DA000253342 /* FilterVC.swift in Sources */,
 				1592452B1C5557D900755814 /* LeftMenuVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
@@ -1055,6 +1070,7 @@
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				CB1C21BB1D7B601C00253342 /* GlossaryCell.swift in Sources */,
+				CBEE783E1D7C89010001752F /* FilterListCell.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,
 				153BE1FA1D5F9FB300A64816 /* UnlabelEnums.swift in Sources */,
 				154F193D1CD64D49006DFC42 /* FeedVCFooterCell.swift in Sources */,

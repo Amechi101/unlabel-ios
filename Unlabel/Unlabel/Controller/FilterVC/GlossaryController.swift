@@ -22,7 +22,8 @@ class GlossaryController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       setUpTableView()
-      
+      self.automaticallyAdjustsScrollViewInsets = false
+
       var _title:String?
       if categoryStyleType == CategoryStyleEnum.Category {
          _title = categoryStyleType.description + " glossary".uppercaseString

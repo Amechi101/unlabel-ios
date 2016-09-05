@@ -19,12 +19,11 @@ class GlossaryCell: UITableViewCell {
       
       self.selectionStyle = .None
       self.removeMargines()
-//      IBlblGlossaryTitle.font = UIFont(name: "Neutraface2Text-Demi", size: 15)
-//      IBlblGlossaryDesc.font = UIFont(name: "Neutraface2Text-Demi", size: 14)
+
       
-      IBlblGlossaryTitle.font = UIFont.systemFontOfSize(16)
-      IBlblGlossaryDesc.font = UIFont.systemFontOfSize(16)
-      IBlblGlossaryDesc.textColor = UIColor(red: 153/255, green: 156/255, blue: 165/255, alpha: 0.3)
+      IBlblGlossaryTitle.font = UIFont.systemFontOfSize(14)
+      IBlblGlossaryDesc.font = UIFont(name: "Neutraface2Text-Book", size: 14)
+      IBlblGlossaryDesc.textColor = UIColor(red: 69/255.0, green: 73/255.0, blue: 78/255.0, alpha: 1.0)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

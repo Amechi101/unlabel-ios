@@ -83,6 +83,8 @@ class FilterVC: UIViewController {
     @IBOutlet weak var IBbtnShowLabels: UIButton!
     @IBOutlet weak var IBlblFilterFor: UILabel!
     @IBOutlet weak var IBtblFilter: UITableView!
+    @IBOutlet weak var IBbtnClear: UIButton!
+   
 //    @IBOutlet weak var IBpickerView: UIPickerView!
    
 //    @IBOutlet weak var IBconstraintPickerHeight: NSLayoutConstraint!
@@ -92,8 +94,20 @@ class FilterVC: UIViewController {
     private var arrLocationsUSA:[Location] = []
     private var arrLocationsInternational:[Location] = []
    
-    private var selectedCategory:String = CategoryStyleEnum.Category.defaultTitle
-    private var selectedStyle:String = CategoryStyleEnum.Style.defaultTitle
+   private var selectedCategory:String = CategoryStyleEnum.Category.defaultTitle {
+      didSet {
+         if selectedCategory == "" {
+             selectedCategory = CategoryStyleEnum.Category.defaultTitle
+         }
+      }
+   }
+   private var selectedStyle:String = CategoryStyleEnum.Style.defaultTitle {
+      didSet {
+         if selectedStyle == "" {
+            selectedStyle = CategoryStyleEnum.Style.defaultTitle
+         }
+      }
+   }
    
    private var arSelectedCategory:[String] = []
    private var arSelectedStyle:[String] = []
@@ -157,7 +171,7 @@ class FilterVC: UIViewController {
                }
             }
             
-            if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count {
+            if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
                if filterListController.categoryStyleType == CategoryStyleEnum.Category {
                   self.selectedCategory = "All"
                } else {
@@ -165,11 +179,20 @@ class FilterVC: UIViewController {
                }
             }
             
-             print(filteredValues)
             
-            IBtblFilter.reloadData()
             
+            
+         } else {
+             if filterListController.categoryStyleType == CategoryStyleEnum.Category {
+               self.selectedCategory.removeAll()
+               selectedCategory = CategoryStyleEnum.Category.defaultTitle
+             } else {
+               self.selectedStyle.removeAll()
+               selectedStyle = CategoryStyleEnum.Style.defaultTitle
+             }
          }
+         
+         IBtblFilter.reloadData()
          
       }
    }
@@ -448,6 +471,7 @@ extension FilterVC{
      */
     private func setupUIOnLoad(){
 //        hidePicker()
+      IBbtnClear.addTarget(self, action: #selector(FilterVC.btnClearPressed(_:)), forControlEvents: .TouchUpInside)
         registerCell(withID: REUSABLE_ID_GenderCell)
         registerCell(withID: REUSABLE_ID_FilterTitleCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
@@ -514,34 +538,31 @@ extension FilterVC{
         }
     }
     
-    /**
-     Shows picker view with animation
-     */
-//    private func showPicker(){
-//        IBpickerView.reloadAllComponents()
-//        IBconstraintPickerMainBottom.constant = 0
-//        UIView.animateWithDuration(0.3) { () -> Void in
-//            self.view.layoutSubviews()
-//        }
-//        
-//        reloadData()
-//    }
-   
-    /**
-     Hides picker view with animation
-     */
-//    private func hidePicker(){
-//        IBconstraintPickerMainBottom.constant = -IBconstraintPickerHeight.constant
-//        UIView.animateWithDuration(0.3) { () -> Void in
-//            self.view.layoutSubviews()
-//        }
-//        
-//        reloadData()
-//    }
+ 
    
     private func reloadData(){
         UIView.transitionWithView(IBtblFilter, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
             self.IBtblFilter.reloadData()
         }, completion: nil)
+    }
+   
+   func btnClearPressed(sender:AnyObject) {
+      //TODO: clear every filters
+      selectedStyle = ""
+      selectedCategory = ""
+      arSelectedStyle.removeAll()
+      arSelectedCategory.removeAll()
+      arrLocationsUSA.removeAll()
+      arrLocationsInternational.removeAll()
+      selectedLocation = nil
+      locationChoices = LocationChoices.None
+      IBbtnShowLabels.hidden = false
+      setupDataLoad()
+      IBtblFilter.reloadData()
+
+
+      let locationCell = categoryLocationCell(NSIndexPath(forRow: 5, inSection: 0))
+     
+      
     }
 }
