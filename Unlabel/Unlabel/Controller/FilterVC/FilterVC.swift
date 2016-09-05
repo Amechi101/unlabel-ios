@@ -184,10 +184,10 @@ class FilterVC: UIViewController {
             
          } else {
              if filterListController.categoryStyleType == CategoryStyleEnum.Category {
-               self.selectedCategory.removeAll()
+               self.arSelectedCategory.removeAll()
                selectedCategory = CategoryStyleEnum.Category.defaultTitle
              } else {
-               self.selectedStyle.removeAll()
+               self.arSelectedStyle.removeAll()
                selectedStyle = CategoryStyleEnum.Style.defaultTitle
              }
          }
@@ -547,7 +547,6 @@ extension FilterVC{
     }
    
    func btnClearPressed(sender:AnyObject) {
-      //TODO: clear every filters
       selectedStyle = ""
       selectedCategory = ""
       arSelectedStyle.removeAll()
