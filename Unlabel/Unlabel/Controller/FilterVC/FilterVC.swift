@@ -554,15 +554,14 @@ extension FilterVC{
       arSelectedCategory.removeAll()
       arrLocationsUSA.removeAll()
       arrLocationsInternational.removeAll()
-      selectedLocation = nil
-      locationChoices = LocationChoices.None
       IBbtnShowLabels.hidden = false
+      locationChoices = LocationChoices.International
       setupDataLoad()
       IBtblFilter.reloadData()
-
-
-      let locationCell = categoryLocationCell(NSIndexPath(forRow: 5, inSection: 0))
-     
       
-    }
+      
+      let locationCell = categoryLocationCell(NSIndexPath(forRow: 5, inSection: 0))
+      locationCell.selectedLocationIndex = nil
+      locationCell.delegate?.didSelectLocation(nil)
+   }
 }
