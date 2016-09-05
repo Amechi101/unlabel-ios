@@ -51,6 +51,9 @@ class CategoryLocationCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+ 
+   
+   
 }
 
 //MARK:- UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource methods
@@ -67,7 +70,7 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let titleBoxCell = IBcollectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_TitleBoxCell, forIndexPath: indexPath) as? TitleBoxCell
         titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row].stateOrCountry
-        
+      
         if indexPath == selectedLocationIndex{
             titleBoxCell?.IBlblBoxTitle.textColor = MEDIUM_GRAY_TEXT_COLOR
             titleBoxCell?.layer.borderColor = DARK_GRAY_COLOR.colorWithAlphaComponent(0.8).CGColor
@@ -75,7 +78,7 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
             titleBoxCell?.IBlblBoxTitle.textColor = LIGHT_GRAY_TEXT_COLOR
             titleBoxCell?.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
         }
-
+     
         return titleBoxCell!
     }
     

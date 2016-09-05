@@ -34,6 +34,7 @@
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
             <string>Neutraface2Text-Book</string>
+            <string>Neutraface2Text-Book</string>
         </mutableArray>
         <mutableArray key="Neutraface2Text-Demi.otf">
             <string>Neutraface2Text-Demi</string>
@@ -2592,7 +2593,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="163" y="35" width="50" height="30"/>
+                                <rect key="frame" x="162" y="25" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                 </constraints>
@@ -2600,6 +2601,30 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-BD-OPU" userLabel="clear button">
+                                <rect key="frame" x="299" y="23" width="60" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="l3z-BD-OPU" secondAttribute="height" multiplier="23:15" id="cRT-0v-3Go"/>
+                                    <constraint firstAttribute="width" constant="60" id="wf6-zv-WKT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="13"/>
+                                <state key="normal" title="CLEAR">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-35-7tM">
+                                <rect key="frame" x="16" y="10" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2Zd-uF-OlO"/>
+                                    <constraint firstAttribute="width" constant="60" id="ngm-Vf-piR"/>
+                                </constraints>
+                                <state key="normal" image="back">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionClose:" destination="nWD-28-jS0" eventType="touchUpInside" id="gvT-iu-jQ0"/>
+                                </connections>
+                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-b6-ugD">
                                 <rect key="frame" x="30" y="603" width="315" height="44"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2622,29 +2647,18 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <outlet property="delegate" destination="nWD-28-jS0" id="ClT-ff-fXV"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQT-35-7tM">
-                                <rect key="frame" x="16" y="10" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="2Zd-uF-OlO"/>
-                                    <constraint firstAttribute="width" constant="60" id="ngm-Vf-piR"/>
-                                </constraints>
-                                <state key="normal" image="back">
-                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="IBActionClose:" destination="nWD-28-jS0" eventType="touchUpInside" id="gvT-iu-jQ0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Ga-b6-ugD" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leading" constant="30" id="Ack-bl-7KN"/>
                             <constraint firstItem="xQT-35-7tM" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leadingMargin" id="BId-b0-hsc"/>
-                            <constraint firstItem="31d-0R-aD5" firstAttribute="top" secondItem="Igs-Q7-zeg" secondAttribute="top" constant="35" id="DAC-my-gc4"/>
                             <constraint firstAttribute="bottom" secondItem="1Ga-b6-ugD" secondAttribute="bottom" constant="20" id="K37-qs-XMQ"/>
                             <constraint firstItem="VDV-VY-lad" firstAttribute="top" secondItem="xQT-35-7tM" secondAttribute="bottom" constant="10" id="Mlg-Pd-E2J"/>
+                            <constraint firstItem="l3z-BD-OPU" firstAttribute="baseline" secondItem="31d-0R-aD5" secondAttribute="baseline" constant="-5" id="NNy-pB-4Yv"/>
                             <constraint firstItem="VDV-VY-lad" firstAttribute="leading" secondItem="Igs-Q7-zeg" secondAttribute="leading" id="Q8P-yD-5TE"/>
                             <constraint firstItem="xQT-35-7tM" firstAttribute="top" secondItem="Igs-Q7-zeg" secondAttribute="topMargin" constant="10" id="YUV-xT-g0R"/>
+                            <constraint firstItem="31d-0R-aD5" firstAttribute="centerY" secondItem="xQT-35-7tM" secondAttribute="centerY" id="YYy-A8-450"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l3z-BD-OPU" secondAttribute="trailing" id="a3X-i8-VU0"/>
                             <constraint firstAttribute="trailing" secondItem="1Ga-b6-ugD" secondAttribute="trailing" constant="30" id="b3Z-40-KM1"/>
                             <constraint firstItem="31d-0R-aD5" firstAttribute="centerX" secondItem="Igs-Q7-zeg" secondAttribute="centerX" id="pvl-9Q-9Qk"/>
                             <constraint firstAttribute="trailing" secondItem="VDV-VY-lad" secondAttribute="trailing" id="sYk-8I-miH"/>
@@ -2653,6 +2667,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="IBbtnClear" destination="l3z-BD-OPU" id="xOB-gl-BYf"/>
                         <outlet property="IBbtnShowLabels" destination="1Ga-b6-ugD" id="Ahz-Jc-CoC"/>
                         <outlet property="IBlblFilterFor" destination="31d-0R-aD5" id="a44-2d-phr"/>
                         <outlet property="IBtblFilter" destination="VDV-VY-lad" id="oR8-dw-maS"/>
@@ -2754,16 +2769,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nOr-Kq-y0a">
                                 <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filterCell" rowHeight="45" id="ctb-Hi-ZsO">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ctb-Hi-ZsO" id="FdY-GS-GSI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A33-pd-ne2">
                                 <rect key="frame" x="30" y="615" width="315" height="44"/>
