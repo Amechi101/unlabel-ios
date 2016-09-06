@@ -590,12 +590,13 @@ extension FeedVC{
 //    }
     
     @IBAction func IBActionFilter(sender: AnyObject) {
-        if sFilterLocation != nil || sFilterCategory != nil {
+        if sFilterLocation != nil || sFilterCategory != nil || sFilterStyle != nil{
             arrFilteredBrandList = []
             arrMenBrandList = []
             arrWomenBrandList = []
             sFilterCategory = nil
             sFilterLocation = nil
+            sFilterStyle = nil
             wsCallGetLabels()
             updateTabView(shouldShowTabs: true)
             updateFilterButton(shouldShowClear: false)
