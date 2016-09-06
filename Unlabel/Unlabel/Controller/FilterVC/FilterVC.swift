@@ -414,8 +414,8 @@ extension FilterVC{
 //    }
    
     @IBAction func IBActionShowLabels(sender: UIButton) {
-        var selectedCategory:String = ""
-        var selectedStyles:String = ""
+        var selectedCategory:String?
+        var selectedStyles:String?
  
       
          if CategoryStyleEnum.Style.defaultTitle != self.selectedStyle { // Not default
