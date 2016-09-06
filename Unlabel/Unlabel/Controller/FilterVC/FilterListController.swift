@@ -204,7 +204,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
 extension FilterListController: FilterListDelegates {
    func headerCellClicked() {
       let glosryCntrl = storyboard?.instantiateViewControllerWithIdentifier("GlossaryController") as! GlossaryController
-      glosryCntrl.arGlossaryValues = arOriginalJSON ?? []
+      glosryCntrl.arGlossaryValues = arOriginalJSON.sort { $0["name"].stringValue < $1["name"].stringValue } ?? []
       glosryCntrl.categoryStyleType = self.categoryStyleType
       self.navigationController?.pushViewController(glosryCntrl, animated: true)
    }
