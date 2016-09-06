@@ -133,6 +133,10 @@ class UnlabelAPIHelper{
                         brand.Name = name
                     }
                     
+                    if let slug = thisBrand[PRM_SLUG] as? String{
+                        brand.Slug = slug
+                    }
+                    
                     if let stateOrCountry = thisBrand[PRM_BRAND_ORIGIN_STATE_OR_COUNTRY] as? String{
                         brand.StateOrCountry = stateOrCountry
                     }

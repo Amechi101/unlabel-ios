@@ -12,7 +12,7 @@ class ProductHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var IBimgHeaderImage: UIImageView!
     @IBOutlet weak var IBbtnFollow: UIButton!
-    @IBOutlet weak var IBbtnAboutBrand: UIButton!
+    @IBOutlet weak var IBbtnShare: UIButton!
     
     
     override func awakeFromNib() {

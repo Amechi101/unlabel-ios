@@ -29,6 +29,7 @@ class ProductVC: UIViewController {
     var selectedBrand:Brand!
     var lastEvaluatedKey:[NSObject : AnyObject]!
     var delegate:ProductVCDelegate?
+    var headerViewImage:UIImage?
     
     
     //
@@ -142,7 +143,7 @@ extension ProductVC:UICollectionViewDataSource{
    func getProductHeaderCell(forIndexPath indexPath:NSIndexPath)->ProductHeaderCell{
       let productHeaderCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductHeaderCell, forIndexPath: indexPath) as! ProductHeaderCell
       
-      productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT", forState: .Normal)
+//      productHeaderCell.IBbtnAboutBrand.setTitle("ABOUT", forState: .Normal)
       productHeaderCell.IBimgHeaderImage.image = nil
       
       updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
@@ -152,6 +153,7 @@ extension ProductVC:UICollectionViewDataSource{
             if let _ = error{
                //                    handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
             }else{
+                self.headerViewImage = iimage
                if (type == SDImageCacheType.None)  {
                   productHeaderCell.IBimgHeaderImage.alpha = 0;
                   UIView.animateWithDuration(0.35, animations: {
@@ -170,6 +172,13 @@ extension ProductVC:UICollectionViewDataSource{
     func getProductDescCell(forIndexPath indexPath:NSIndexPath)->ProductDescCell{
         let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
         setTextWithLineSpacing(productDescCell.IBlblDesc, text: "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly.", lineSpacing: 3.0)
+        
+        if let city = selectedBrand?.city{
+            if let location = selectedBrand?.location{
+                productDescCell.IBlblLocation.text = "\(city), \(location)"
+            }
+        }
+        
         return productDescCell
     }
     
@@ -367,8 +376,12 @@ extension ProductVC{
       }
    }
    
-    @IBAction func IBActionAboutBrandClicked(sender: AnyObject) {
-        performSegueWithIdentifier(S_ID_ABOUT_LABEL_VC, sender: self)
+//    @IBAction func IBActionAboutBrandClicked(sender: AnyObject) {
+//        performSegueWithIdentifier(S_ID_ABOUT_LABEL_VC, sender: self)
+//    }
+    
+    @IBAction func IBActionShare(sender: UIButton) {
+        self.share(shareText: "Check out \(selectedBrand.Name) on Unlabel. https://unlabel.us/\(selectedBrand.Slug)/", shareImage: headerViewImage)
     }
     
     @IBAction func IBActionViewProducts(sender: AnyObject) {
@@ -502,6 +515,26 @@ extension ProductVC{
         label.attributedText = attrString
     }
     
+    private func share(shareText shareText:String?,shareImage:UIImage?){
+        var objectsToShare = [AnyObject]()
+        
+        if let shareTextObj = shareText{
+            objectsToShare.append(shareTextObj)
+        }
+        
+        if let shareImageObj = shareImage{
+            objectsToShare.append(shareImageObj)
+        }
+        
+        if shareText != nil || shareImage != nil{
+            let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            
+            presentViewController(activityViewController, animated: true, completion: nil)
+        }else{
+            debugPrint("There is nothing to share")
+        }
+    }
 //    func addTestData(){
 //        for _ in 0...39{
 //            arrProductList.append(Product())

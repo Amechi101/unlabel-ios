@@ -12,6 +12,7 @@ import UIKit
 class Brand {
     var ID:String = String()
     var Name:String = String()
+    var Slug:String = String()
     var OriginCity:String = String()
     var StateOrCountry:String = String()
     var Description:String = String()
