@@ -39,7 +39,7 @@ class EntryVC: UIViewController {
             self.IBbtnLogin.alpha = 1
             self.view.layoutIfNeeded()
         }
-//        UnlabelHelper.setBoolValue(true, key: sENTRY_ONCE_SEEN)
+        UnlabelHelper.setBoolValue(true, key: sENTRY_ONCE_SEEN)
     }
    
     override func didReceiveMemoryWarning() {
