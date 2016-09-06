@@ -150,11 +150,6 @@ class FilterVC: UIViewController {
          if filterListController.arSelectedValues.count > 0 {
             let filteredValues = filterListController.arSelectedValues.filter { return $0 != "" }
             
-//            var selectedValues:String!
-           
-//            arSelectedCategory.removeAll()
-//            arSelectedStyle.removeAll()
-            
             if filterListController.categoryStyleType == CategoryStyleEnum.Category {
                self.arSelectedCategory = filteredValues
                if self.arSelectedCategory.count > 3 {
@@ -173,9 +168,9 @@ class FilterVC: UIViewController {
             
             if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
                if filterListController.categoryStyleType == CategoryStyleEnum.Category {
-                  self.selectedCategory = "All"
+                   self.selectedCategory = "All"
                } else {
-                  self.selectedStyle = "All"
+                   self.selectedStyle = "All"
                }
             }
             
@@ -425,15 +420,17 @@ extension FilterVC{
       
          if CategoryStyleEnum.Style.defaultTitle != self.selectedStyle { // Not default
             selectedStyles = self.selectedStyle
-         } else {
-//            selectedStyles = CategoryStyleEnum.Style.defaultTitle
-          }
+            if self.selectedStyle == "All" {
+               selectedStyles = self.arSelectedStyle.joinWithSeparator(",")
+            }
+         }
       
          if CategoryStyleEnum.Category.defaultTitle != self.selectedCategory {
             selectedCategory = self.selectedCategory
-         } else {
-//            selectedCategory = CategoryStyleEnum.Category.defaultTitle
-          }
+            if self.selectedCategory == "All" {
+               selectedCategory = self.arSelectedCategory.joinWithSeparator(",")
+            }
+         }
       
         delegate?.didClickShowLabels(selectedCategory, location: selectedLocation, style:selectedStyles)
         close()

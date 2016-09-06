@@ -119,7 +119,10 @@ class WSConstantFetcher{
          if let brandStyle = fetchBrandsRP.filterStyle where !brandStyle.isEmpty {
             subSubURL += "&\(APIParams.brandStyle)=\(brandStyle)"
          }
+      } else if let brandStyle = fetchBrandsRP.filterStyle where !brandStyle.isEmpty {
+         subSubURL += "&\(APIParams.brandStyle)=\(brandStyle)"
       }
+      
       
       if let location = fetchBrandsRP.filterLocation{
          subSubURL = "\(subSubURL)&\(APIParams.location)=\(location)"

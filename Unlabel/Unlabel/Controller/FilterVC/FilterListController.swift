@@ -74,7 +74,9 @@ class FilterListController: UIViewController {
    private func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
       UnlabelLoadingView.sharedInstance.start(self.view)
       UnlabelAPIHelper.sharedInstance.getFilterCategories(type, success: { (filters, meta) in
-         let categories:[String] = filters.map { return $0["name"].stringValue }
+         let categories:[String] = filters.map { return $0["name"].stringValue }.sort {
+            return $0 < $1
+         }
          self.arFilterMenu += categories
          self.arOriginalJSON = filters
          
