@@ -20,6 +20,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="96k-QG-um7" secondAttribute="bottom" id="F34-j1-C5K"/>
                             <constraint firstItem="96k-QG-um7" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="SmQ-i1-QLO"/>

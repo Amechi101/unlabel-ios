@@ -11,6 +11,8 @@ import UIKit
 class ProductDescCell: UICollectionViewCell {
 
     @IBOutlet weak var IBlblDesc: UILabel!
+    @IBOutlet weak var IBlblLocation: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
