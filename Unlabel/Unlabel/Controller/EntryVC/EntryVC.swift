@@ -18,8 +18,6 @@ class EntryVC: UIViewController {
     
     @IBOutlet weak var IBconstraintLogoY: NSLayoutConstraint!
     @IBOutlet weak var IBlblAbout: UILabel!
-    var shimmeringLabel:FBShimmeringView?
-    
     @IBOutlet weak var IBviewBottom: UIView!
     @IBOutlet weak var IBbtnSkip: UIButton!
     @IBOutlet weak var IBbtnLogin: UIButton!
@@ -41,23 +39,9 @@ class EntryVC: UIViewController {
             self.IBbtnLogin.alpha = 1
             self.view.layoutIfNeeded()
         }
-        UnlabelHelper.setBoolValue(true, key: sENTRY_ONCE_SEEN)
+//        UnlabelHelper.setBoolValue(true, key: sENTRY_ONCE_SEEN)
     }
-    
-    override func viewDidLayoutSubviews() {
-        if shimmeringLabel == nil{
-            shimmeringLabel = FBShimmeringView(frame: IBlblAbout.frame)
-            if let shimmeringLabelObj = shimmeringLabel{
-                shimmeringLabel?.frame = IBlblAbout.frame
-                shimmeringLabelObj.contentView = IBlblAbout
-                shimmeringLabelObj.shimmering = true
-                shimmeringLabelObj.shimmeringAnimationOpacity = 0.1
-                self.view.addSubview(shimmeringLabelObj)
-                self.view.bringSubviewToFront(shimmeringLabelObj)
-            }
-        }
-    }
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
