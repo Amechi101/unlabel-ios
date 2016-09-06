@@ -76,6 +76,11 @@ class FeedVC: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let seen:Bool = UnlabelHelper.getBoolValue(sENTRY_ONCE_SEEN) where seen == true{
+        
+        }else{
+            goToEntryVC()
+        }
         setupOnLoad()
     }
     
@@ -959,6 +964,13 @@ extension FeedVC{
          IBcollectionViewFeed.reloadData()
     }
     
+    private func goToEntryVC(){
+        if let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil){
+            if let entryVC:EntryVC = storyboard.instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC{
+                self.presentViewController(entryVC, animated: false, completion: nil)
+            }
+        }
+    }
 }
 
 

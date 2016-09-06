@@ -126,6 +126,7 @@ let sLegal_Stuff                = "LEGAL STUFF"
 let sPrivacy_Policy             = "PRIVACY POLICY"
 
 let sPOPUP_SEEN_ONCE            = "popup_seen_once"
+let sENTRY_ONCE_SEEN            = "sENTRY_ONCE_SEEN"
 
 let S_NO_INTERNET               = "No Internet Available!"
 let S_PLEASE_CONNECT            = "Please connect to the Internet."
