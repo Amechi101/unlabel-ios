@@ -236,13 +236,7 @@ extension AppDelegate{
             window.rootViewController = rootNavVC
         }
     }
-    
-    private func goToEntryVC(storyboard:UIStoryboard){
-        let rootVC:EntryVC? = storyboard.instantiateViewControllerWithIdentifier(S_ID_ENTRY_VC) as? EntryVC
-        if let window = self.window {
-            window.rootViewController = rootVC
-        }
-    }
+   
     
     /**
      Setup Unlable App.

@@ -171,7 +171,7 @@ extension ProductVC:UICollectionViewDataSource{
    
     func getProductDescCell(forIndexPath indexPath:NSIndexPath)->ProductDescCell{
         let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
-        setTextWithLineSpacing(productDescCell.IBlblDesc, text: "We are working hard to let you purchase products from \(selectedBrand.Name) right here on Unlabel. In the meantime you can follow \(selectedBrand.Name) for updates and purchase products on their website directly.", lineSpacing: 3.0)
+        setTextWithLineSpacing(productDescCell.IBlblDesc, text: selectedBrand.Description, lineSpacing: 3.0)
         
         if let city = selectedBrand?.city{
             if let location = selectedBrand?.location{
@@ -250,7 +250,7 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
         if indexPath.row == 0{
             return CGSizeMake(collectionView.frame.size.width, 291)
         }else{
-            return CGSizeMake((collectionView.frame.size.width)-5.5, 240)
+            return CGSizeMake((collectionView.frame.size.width)-5.5, 400)
         }
     }
 }
@@ -508,7 +508,7 @@ extension ProductVC{
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpacing
         paragraphStyle.alignment = NSTextAlignment.Center
-        
+        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
         let attrString = NSMutableAttributedString(string: text)
         attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         
