@@ -93,7 +93,7 @@ class ViewFollowingLabelPopup: UIView {
     }
     
     func setFollowSubTitle(labelName:String){
-        IBlblSubTitle.text = "You're following \(labelName). To see all of the labels you're following tap on the menu icon and go into 'Following'."
+        IBlblSubTitle.text = "To see all of the labels you're following tap on the menu icon and go into 'Following'."
         IBlblSubTitle.numberOfLines = 3
     }
     
