@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="361" height="322"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H30-dv-3gy">
-                        <rect key="frame" x="42" y="246" width="277" height="44"/>
+                        <rect key="frame" x="42" y="258" width="277" height="44"/>
                         <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="62x-zX-6o7"/>
@@ -35,7 +35,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3e-o8-aCE">
-                        <rect key="frame" x="181" y="111" width="0.0" height="21"/>
+                        <rect key="frame" x="181" y="217" width="0.0" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="ean-xs-n9S"/>
                         </constraints>
@@ -43,8 +43,8 @@
                         <color key="textColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
-                        <rect key="frame" x="10" y="0.0" width="341" height="104"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
+                        <rect key="frame" x="10" y="0.0" width="341" height="210"/>
                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                         <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -56,9 +56,9 @@
                 <constraint firstItem="U3e-o8-aCE" firstAttribute="top" secondItem="Soa-HL-LhF" secondAttribute="bottom" constant="7" id="0qX-at-ESP"/>
                 <constraint firstItem="Soa-HL-LhF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BzI-o7-5j3"/>
                 <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="10" id="HpA-qr-YFB"/>
-                <constraint firstAttribute="bottom" secondItem="H30-dv-3gy" secondAttribute="bottom" constant="32" id="MdP-GW-3cc"/>
+                <constraint firstAttribute="bottom" secondItem="H30-dv-3gy" secondAttribute="bottom" constant="20" id="MdP-GW-3cc"/>
                 <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="NUP-5E-IZ5"/>
-                <constraint firstItem="H30-dv-3gy" firstAttribute="top" secondItem="U3e-o8-aCE" secondAttribute="bottom" constant="114" id="Tyf-T6-OLo"/>
+                <constraint firstItem="H30-dv-3gy" firstAttribute="top" secondItem="U3e-o8-aCE" secondAttribute="bottom" constant="20" id="Tyf-T6-OLo"/>
                 <constraint firstItem="H30-dv-3gy" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="dxT-8T-efD"/>
                 <constraint firstItem="U3e-o8-aCE" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="elV-er-Cot"/>
             </constraints>

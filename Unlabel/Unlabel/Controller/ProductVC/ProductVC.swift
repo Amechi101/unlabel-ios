@@ -248,9 +248,9 @@ extension ProductVC:UICollectionViewDataSource{
 extension ProductVC:UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.row == 0{
-            return CGSizeMake(collectionView.frame.size.width, 291)
+            return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height/2)
         }else{
-            return CGSizeMake((collectionView.frame.size.width)-5.5, 400)
+            return CGSizeMake((collectionView.frame.size.width)-5.5, collectionView.frame.size.height/2)
         }
     }
 }

@@ -357,11 +357,15 @@ extension LoginSignupVC{
             UnlabelHelper.setDefaultValue(provider, key: PRM_PROVIDER)
         }
         
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(delegateWillDismiss), userInfo: nil, repeats: false)
+        
+        dismiss()
+    }
+    
+    @objc private func delegateWillDismiss(){
         if let delegate = delegate{
             delegate.willDidmissViewController()
         }
-        
-        dismiss()
     }
     
     /**
