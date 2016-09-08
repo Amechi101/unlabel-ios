@@ -58,7 +58,9 @@ class FeedVC: UIViewController {
     var filteredNavTitle:String?
     var filteredString:String?
     var sFilterCategory:String?
-      var sFilterStyle:String?
+    var sFilterStyle:String?
+    
+    var searchResults:String = "Search Results"
 
     var sFilterLocation:String?
     
@@ -177,12 +179,12 @@ extension FeedVC:UICollectionViewDelegate{
                 
                 if let sFilterCategory = sFilterCategory{
                     headerView?.IBlblFilterTitle.hidden = false
-                    selectedTabString =  selectedTabString + " - " + sFilterCategory
+                    selectedTabString =  selectedTabString + " - " + searchResults
                 }
                 
                 if let sFilterLocation = sFilterLocation{
                     headerView?.IBlblFilterTitle.hidden = false
-                    selectedTabString = selectedTabString + " - " + sFilterLocation
+                    selectedTabString = selectedTabString + " - " + searchResults
                 }
                 
                 headerView?.IBbtnMen.hidden = !((headerView?.IBlblFilterTitle.hidden)!)

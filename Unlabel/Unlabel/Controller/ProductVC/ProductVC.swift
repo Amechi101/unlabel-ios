@@ -173,11 +173,11 @@ extension ProductVC:UICollectionViewDataSource{
         let productDescCell = IBcollectionViewProduct.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_ProductDescCell, forIndexPath: indexPath) as! ProductDescCell
         setTextWithLineSpacing(productDescCell.IBlblDesc, text: selectedBrand.Description, lineSpacing: 3.0)
         
-        if let city = selectedBrand?.city{
-            if let location = selectedBrand?.location{
-                productDescCell.IBlblLocation.text = "\(city), \(location)"
-            }
-        }
+//        if let city = selectedBrand?.city{
+//            if let location = selectedBrand?.location{
+//                productDescCell.IBlblLocation.text = "\(city), \(location)"
+//            }
+//        }
         
         return productDescCell
     }
