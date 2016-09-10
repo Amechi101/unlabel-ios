@@ -371,9 +371,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
-                                <rect key="frame" x="177" y="579" width="20" height="20"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lg3-C2-4qs">
                                 <rect key="frame" x="0.0" y="12" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -489,6 +486,9 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ukq-qA-lFk"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
+                                <rect key="frame" x="177" y="579" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -2981,7 +2981,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <image name="splash_logo_black" width="95" height="130"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Szm-2m-6Ro"/>
+        <segue reference="jWi-8m-sPs"/>
         <segue reference="3I1-8K-Zkg"/>
         <segue reference="SuH-CV-d5B"/>
     </inferredMetricsTieBreakers>
