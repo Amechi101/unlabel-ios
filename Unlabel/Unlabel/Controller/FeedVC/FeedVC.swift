@@ -177,16 +177,18 @@ extension FeedVC:UICollectionViewDelegate{
                 
                 }
                 
-                if let sFilterCategory = sFilterCategory{
-                    headerView?.IBlblFilterTitle.hidden = false
-                    selectedTabString =  selectedTabString + " - " + searchResults
-                }
                 
                 if let sFilterLocation = sFilterLocation{
                     headerView?.IBlblFilterTitle.hidden = false
                     selectedTabString = selectedTabString + " - " + searchResults
+                } else if let sFilterCategory  = sFilterCategory {
+                    headerView?.IBlblFilterTitle.hidden = false
+                    selectedTabString =  selectedTabString + " - " + searchResults
+                } else if let sFilterStyle = sFilterStyle {
+                    headerView?.IBlblFilterTitle.hidden = false
+                    selectedTabString = selectedTabString + " - " + searchResults
                 }
-                
+            
                 headerView?.IBbtnMen.hidden = !((headerView?.IBlblFilterTitle.hidden)!)
                 headerView?.IBbtnWomen.hidden = !((headerView?.IBlblFilterTitle.hidden)!)
                 
@@ -1154,10 +1156,12 @@ extension FeedVC{
                
                
                 if fetchBrandsRequestParams.selectedTab == .Men{
+                 
+                    print( meta["total_count"],"total count")
                     self.arrMenBrandList.appendContentsOf(arrBrands)
                     self.arrFilteredBrandList = self.arrMenBrandList
                     self.nextPageURLMen = meta["next"].stringValue.stringByRemovingPercentEncoding
-                   print( "next page url" + meta["next"].stringValue )
+                
                 }else if fetchBrandsRequestParams.selectedTab == .Women{
                     self.arrWomenBrandList.appendContentsOf(arrBrands)
                     self.arrFilteredBrandList = self.arrWomenBrandList
