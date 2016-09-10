@@ -51,12 +51,14 @@ struct API{
    
    //Test
    static let onlyBaseURL = "http://unlabel-dev.herokuapp.com"
+    
    static let baseURL = "\(ONLY_BASE_URL)/unlabel-network/labels-api/v3/"
    static let categoryURL = "\(ONLY_BASE_URL)/unlabel-network/categories-api/v3/"
    static let styleURL = "\(ONLY_BASE_URL)/unlabel-network/styles-api/v3/"
+    static let locationURL = "\(ONLY_BASE_URL)/unlabel-network/locations-api/v3/locations/"
+    
    static let userName = "amechiegbe"
    static let APIKey = "79c86ba48fc323d61a0661f0ca5437fb9245a022"
-   
    static let labels       = "labels/"
    static let products     = "products/"
    static let locations    = "locations/"
@@ -67,7 +69,7 @@ struct API{
    static let getCategories    = "\(API.categoryURL)\(categories)"
    static let getLabels    = WSConstantFetcher.getFinalURLs(labels)
    static let getProducts  = WSConstantFetcher.getFinalURLs(products)
-   static let getLocations = WSConstantFetcher.getFinalURLs(locations)
+   static let getLocations = locationURL
 }
 
 
