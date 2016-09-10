@@ -26,7 +26,7 @@ class UnlabelAPIHelper{
          requestURL = "\(API.getLabels)\(WSConstantFetcher.getProductsSubURL(fetchBrandsRP))\(URL_POSTFIX)".encodedURL()
       }
       
-      print(requestURL)
+//      print(requestURL)
       
       if let requestURLObj = requestURL {
          Alamofire.request(.GET, requestURLObj).responseJSON { response in
@@ -247,9 +247,9 @@ class UnlabelAPIHelper{
    func getFilterCategories(categoryType:CategoryStyleEnum, success:([JSON], meta:JSON)->(),failed:(error:NSError)->()){
       var requestURL:String?
       if categoryType == CategoryStyleEnum.Category {
-         requestURL = "\(API.getCategories)".encodedURL()
+         requestURL = API.getCategories.encodedURL()
       } else if categoryType == CategoryStyleEnum.Style {
-         requestURL = "\(API.getStyles)".encodedURL()
+         requestURL = API.getStyles.encodedURL()
       }
       
       //    print(requestURL)

@@ -1156,11 +1156,12 @@ extension FeedVC{
                 if fetchBrandsRequestParams.selectedTab == .Men{
                     self.arrMenBrandList.appendContentsOf(arrBrands)
                     self.arrFilteredBrandList = self.arrMenBrandList
-                    self.nextPageURLMen = meta["next"].stringValue
+                    self.nextPageURLMen = meta["next"].stringValue.stringByRemovingPercentEncoding
+                   print( "next page url" + meta["next"].stringValue )
                 }else if fetchBrandsRequestParams.selectedTab == .Women{
                     self.arrWomenBrandList.appendContentsOf(arrBrands)
                     self.arrFilteredBrandList = self.arrWomenBrandList
-                    self.nextPageURLWomen = meta["next"].stringValue
+                    self.nextPageURLWomen = meta["next"].stringValue.stringByRemovingPercentEncoding
                 }else{
                 
                 }
