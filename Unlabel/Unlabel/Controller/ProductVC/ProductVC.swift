@@ -30,6 +30,9 @@ class ProductVC: UIViewController {
   var arrProducts = [Product]()
   var selectedProduct: Product!
   var isProfileCompleted: Bool = false
+  var sortMode: String = "NEW"
+  
+  
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -376,7 +379,7 @@ extension ProductVC{
   }
   
   @IBAction func IBActionViewProducts(_ sender: AnyObject) {
-    self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+   // self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
 }
@@ -401,7 +404,25 @@ extension ProductVC: SortModePopupViewDelegate{
     
   }
   func popupDidClickDone(_ sortMode: String){
-    
+    print(sortMode)
+
+    switch sortMode {
+    case "A to Z":
+      self.sortMode = "AZ"
+      break
+    case "Z to A":
+      self.sortMode = "ZA"
+      break
+    case "Oldest to Newest":
+      self.sortMode = "OLD"
+      break
+    case "Newest to Oldest":
+      self.sortMode = "NEW"
+      break
+    default:
+      self.sortMode = ""
+      break
+    }
   }
 }
 

@@ -497,16 +497,16 @@
     print(sortMode)
     headerView?.IBSortButton.setTitle("Sort by " + sortMode, for: .normal)
     switch sortMode {
-    case "Name: A to Z":
+    case "A to Z":
       self.sortMode = "AZ"
       break
-    case "Name: Z to A":
+    case "Z to A":
       self.sortMode = "ZA"
       break
-    case "Date: Oldest to Newest":
+    case "Oldest to Newest":
       self.sortMode = "DESC"
       break
-    case "Date: Newest to Oldest":
+    case "Newest to Oldest":
       self.sortMode = "ASC"
       break
     default:

@@ -40,12 +40,12 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     if slideUpViewMode == SlideUpView.sortMode{
       IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
       IBTableList.tableFooterView = UIView()
-      arrSortOption = ["Price: High to Low","Price: Low to High","Date: Oldest to Newest","Date: Newest to Oldest"]
+      arrSortOption = ["High to Low","Low to High","Oldest to Newest","Newest to Oldest"]
     }
     else if slideUpViewMode == SlideUpView.brandSortMode{
       IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
       IBTableList.tableFooterView = UIView()
-      arrSortOption = ["Name: A to Z","Name: Z to A","Date: Oldest to Newest","Date: Newest to Oldest"]
+      arrSortOption = ["A to Z","Z to A","Oldest to Newest","Newest to Oldest"]
     }
     else if slideUpViewMode == SlideUpView.sizeSelection{
       IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
