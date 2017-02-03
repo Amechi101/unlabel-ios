@@ -9,14 +9,14 @@
 import UIKit
 
 @objc protocol PopupviewDelegate {
-    optional func popupDidClickCancel()
-    optional func popupDidClickDelete()
+    @objc optional func popupDidClickCancel()
+    @objc optional func popupDidClickDelete()
     func popupDidClickClose()
 }
 
 enum PopupType{
-    case Delete
-    case Follow
+    case delete
+    case follow
 }
 
 class ViewFollowingLabelPopup: UIView {
@@ -30,7 +30,7 @@ class ViewFollowingLabelPopup: UIView {
     @IBOutlet weak var IBviewDeleteContainer: UIView!
    
     var delegate:PopupviewDelegate?
-    var popupType:PopupType = .Delete
+    var popupType:PopupType = .delete
     
     
     //
@@ -44,17 +44,17 @@ class ViewFollowingLabelPopup: UIView {
     //
     //MARK:- IBAction Methods
     //
-    @IBAction func IBActionClose(sender: UIButton) {
+    @IBAction func IBActionClose(_ sender: UIButton) {
         close()
         delegate?.popupDidClickClose()
     }
     
-    @IBAction func IBActionCancel(sender: UIButton) {
+    @IBAction func IBActionCancel(_ sender: UIButton) {
         close()
         delegate?.popupDidClickCancel!()
     }
     
-    @IBAction func IBActionDelete(sender: UIButton) {
+    @IBAction func IBActionDelete(_ sender: UIButton) {
         delegate?.popupDidClickDelete!()
         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
 //            UnlabelHelper.deleteAccount(userID)
@@ -66,25 +66,25 @@ class ViewFollowingLabelPopup: UIView {
     //MARK:- Custom Methods
     //
     
-    private func close(){
-        UIView.animateWithDuration(0.2, animations: {
+    fileprivate func close(){
+        UIView.animate(withDuration: 0.2, animations: {
             self.frame.origin.y = SCREEN_HEIGHT
-        }) { (value:Bool) in
+        }, completion: { (value:Bool) in
             self.removeFromSuperview()
-        }
+        }) 
     }
     
     func updateView(){
-        if popupType == .Delete{
+        if popupType == .delete{
             IBlblTitle.text = "DELETE ACCOUNT"
             IBlblSubTitle.text = "Are you sure you want to delete your account? This can not be undone."
             IBlblSubTitle.numberOfLines = 2
-            IBviewRoundContainer.hidden = true
-            IBviewDeleteContainer.hidden = false
-        }else if popupType == .Follow{
+            IBviewRoundContainer.isHidden = true
+            IBviewDeleteContainer.isHidden = false
+        }else if popupType == .follow{
             IBlblTitle.text = "VIEW FOLLOWING LABELS"
-            IBviewRoundContainer.hidden = false
-            IBviewDeleteContainer.hidden = true
+            IBviewRoundContainer.isHidden = false
+            IBviewDeleteContainer.isHidden = true
             debugPrint(IBviewRoundContainer.frame.size.height/2)
             IBviewRoundContainer.layer.cornerRadius = IBviewRoundContainer.frame.size.height/2
         }else{
@@ -92,7 +92,7 @@ class ViewFollowingLabelPopup: UIView {
         }
     }
     
-    func setFollowSubTitle(labelName:String){
+    func setFollowSubTitle(_ labelName:String){
         IBlblSubTitle.text = "To see all of the labels you're following tap on the menu icon and go into 'Following'."
         IBlblSubTitle.numberOfLines = 3
     }

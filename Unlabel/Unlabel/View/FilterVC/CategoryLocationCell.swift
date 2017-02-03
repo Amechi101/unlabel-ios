@@ -9,19 +9,19 @@
 import UIKit
 
 protocol CategoryDelegate {
-    func didSelectLocation(location:String?)
+    func didSelectLocation(_ location:String?)
 }
 
 enum CategoryLocationCellType{
-    case Unknown
-    case Category
-    case Location
+    case unknown
+    case category
+    case location
 }
 
 enum TableViewType:Int{
-    case Unknown = 0
-    case Category = 1
-    case Location = 2
+    case unknown = 0
+    case category = 1
+    case location = 2
 }
 
 class CategoryLocationCell: UITableViewCell {
@@ -29,13 +29,13 @@ class CategoryLocationCell: UITableViewCell {
     @IBOutlet weak var IBcollectionView: UICollectionView!
     @IBOutlet weak var IBconstraintCollectionViewHeight: NSLayoutConstraint!
     
-    var cellType = CategoryLocationCellType.Unknown
+    var cellType = CategoryLocationCellType.unknown
     var shouldClearCategories = false
 
-    private let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
+    fileprivate let arrCategories:[String] = ["All categories","Clothing","Accessories","Jewelry","Shoes","Bags"]
     var arrLocations:[Location] = []
     
-    var selectedLocationIndex:NSIndexPath?
+    var selectedLocationIndex:IndexPath?
     var locationChoices:LocationChoices = LocationChoices.International
     
     var delegate:CategoryDelegate?
@@ -43,10 +43,10 @@ class CategoryLocationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        IBcollectionView.registerNib(UINib(nibName: REUSABLE_ID_TitleBoxCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_TitleBoxCell)
+        IBcollectionView.register(UINib(nibName: REUSABLE_ID_TitleBoxCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_TitleBoxCell)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -59,34 +59,34 @@ class CategoryLocationCell: UITableViewCell {
 //MARK:- UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource methods
 extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrLocations.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let titleBoxCell = IBcollectionView.dequeueReusableCellWithReuseIdentifier(REUSABLE_ID_TitleBoxCell, forIndexPath: indexPath) as? TitleBoxCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let titleBoxCell = IBcollectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_TitleBoxCell, for: indexPath) as? TitleBoxCell
         titleBoxCell?.IBlblBoxTitle.text = arrLocations[indexPath.row].stateOrCountry
       
         if indexPath == selectedLocationIndex{
             titleBoxCell?.IBlblBoxTitle.textColor = MEDIUM_GRAY_TEXT_COLOR
-            titleBoxCell?.layer.borderColor = DARK_GRAY_COLOR.colorWithAlphaComponent(0.8).CGColor
+            titleBoxCell?.layer.borderColor = DARK_GRAY_COLOR.withAlphaComponent(0.8).cgColor
         }else{
             titleBoxCell?.IBlblBoxTitle.textColor = LIGHT_GRAY_TEXT_COLOR
-            titleBoxCell?.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
+            titleBoxCell?.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.withAlphaComponent(0.5).cgColor
         }
      
         return titleBoxCell!
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake((IBcollectionView.frame.size.width/2)-4, 32)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (IBcollectionView.frame.size.width/2)-4, height: 32)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath == selectedLocationIndex{
             selectedLocationIndex = nil
             delegate?.didSelectLocation(nil)
@@ -105,7 +105,7 @@ extension CategoryLocationCell:UICollectionViewDelegate,UICollectionViewDelegate
 extension CategoryLocationCell{
     func reloadData(){
         IBcollectionView.performBatchUpdates({
-            self.IBcollectionView.reloadSections(NSIndexSet(index: 0))
+            self.IBcollectionView.reloadSections(IndexSet(integer: 0))
             }, completion: nil)
     }
 }

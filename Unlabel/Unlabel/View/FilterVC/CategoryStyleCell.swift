@@ -9,8 +9,8 @@
 import UIKit
 
 protocol CategoryStyleCellDelegate {
-   func didClickStyleCell(forTag:Int)
-   func didClickStyleCell(type:CategoryStyleEnum)
+   func didClickStyleCell(_ forTag:Int)
+   func didClickStyleCell(_ type:CategoryStyleEnum)
    
 }
 
@@ -25,14 +25,14 @@ class CategoryStyleCell: UITableViewCell {
       super.awakeFromNib()
       // Initialization code
       
-      IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
+      IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.withAlphaComponent(0.5).cgColor
    }
    
-   @IBAction func IBActionClick(sender: AnyObject) {
+   @IBAction func IBActionClick(_ sender: AnyObject) {
       delegate?.didClickStyleCell(categoryType)
    }
    
-   override func setSelected(selected: Bool, animated: Bool) {
+   override func setSelected(_ selected: Bool, animated: Bool) {
       super.setSelected(selected, animated: animated)
       
       // Configure the view for the selected state
@@ -40,18 +40,18 @@ class CategoryStyleCell: UITableViewCell {
    
    //   MARK:- Configure cell
    
-   func configureCell(cellTitle title:String, indexPath: NSIndexPath) {
+   func configureCell(cellTitle title:String, indexPath: IndexPath) {
       self.IBbtnCategoryStyle.tag = indexPath.row
-      self.IBbtnCategoryStyle.setTitle("    \(title)", forState: .Normal)
-      self.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
-      self.IBbtnCategoryStyle.setTitleColor(LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+      self.IBbtnCategoryStyle.setTitle("    \(title)", for: UIControlState())
+      self.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.withAlphaComponent(0.5).cgColor
+      self.IBbtnCategoryStyle.setTitleColor(LIGHT_GRAY_TEXT_COLOR, for: UIControlState())
    }
    
    func configureCell(cellTitle title:String, type:CategoryStyleEnum) {
       self.categoryType = type
-      self.IBbtnCategoryStyle.setTitle("    \(title)", forState: .Normal)
-      self.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
-      self.IBbtnCategoryStyle.setTitleColor(LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+      self.IBbtnCategoryStyle.setTitle("    \(title)", for: UIControlState())
+      self.IBbtnCategoryStyle.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.withAlphaComponent(0.5).cgColor
+      self.IBbtnCategoryStyle.setTitleColor(LIGHT_GRAY_TEXT_COLOR, for: UIControlState())
    }
    
 }

@@ -7,171 +7,145 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AccountInfoVC: UITableViewController {
-    
-    //
-    //MARK:- IBOutlets, constants, vars
-    //
-    
-    @IBOutlet weak var IBlblLoggedInWith: UILabel!
-    @IBOutlet weak var IBlblUserName: UILabel!
-    @IBOutlet weak var IBlblEmailOrPhone: UILabel!
-    @IBOutlet var IBtblAccountInfo: UITableView!
-    
-    private var userDetails:(displayName:String,EmailOrPhone:String,SignedInWith:String) = {
-        if let provider = UnlabelHelper.getDefaultValue(PRM_PROVIDER){
-            
-            //Facebook user
-            if provider == S_PROVIDER_FACEBOOK{
-                if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
-                    if let email = UnlabelHelper.getDefaultValue(PRM_EMAIL){
-                        return (displayName,email,"Facebook")
-                    }else{
-                        return (displayName,"Unlabel User","Facebook")
-                    }
-                }else{
-                    return ("Unlabel User","Unlabel User","Facebook")
-                }
-                
-                
-                //AccountKit
-            }else{
-                if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
-                    if let email = UnlabelHelper.getDefaultValue(PRM_EMAIL){
-                        return (displayName,email,"Email Only")
-                    }else if let phone = UnlabelHelper.getDefaultValue(PRM_PHONE){
-                        return (displayName,phone,"Mobile Number")
-                    }else{
-                        return ("Unlabel User","Unlabel User","Email or Phone")
-                    }
-                }else{
-                    return ("Unlabel User","Unlabel User","Email or Phone")
-                }
-            }
-        }else{
-            return ("Unlabel User","Unlabel User","Facebook or Email or Phone")
-        }
-    }()
-    
-    
-    //
-    //MARK:- VC Lifecycle
-    //
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  
+  //MARK:- IBOutlets, constants, vars
+  
+  @IBOutlet weak var IBlblLoggedInWith: UILabel!
+  @IBOutlet weak var IBlblUserName: UILabel!
+  @IBOutlet weak var IBlblEmailOrPhone: UILabel!
+  @IBOutlet var IBtblAccountInfo: UITableView!
+  @IBOutlet weak var IBProfileImage: UIImageView!
+  
+  //MARK:- VC Lifecycle
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    if let _ = self.navigationController{
+      navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        setupOnWillAppear()
-        if let _ = self.navigationController{
-            navigationController?.interactivePopGestureRecognizer!.delegate = self
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 }
 
 
-//
 //MARK:- UITableViewDelegate Methods
-//
+
 extension AccountInfoVC{
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 1{
-            goToChangeName()
-        }else if indexPath.row == 2{
-            UnlabelHelper.logout()
-        }
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    if indexPath.row == 1{
+      goToChangeName()
     }
+    else if indexPath.row == 5{
+      self.addPopupView(PopupType.delete, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    }else if indexPath.row == 7{
+      wsLogout()
+    }
+  }
+  
+  func goToChangeName(){
     
-    func goToChangeName(){
-        
-    }
+  }
+  
+  func wsLogout(){
+    UnlabelAPIHelper.sharedInstance.logoutFromUnlabel(self, success:
+      { (json: JSON) in
+        UnlabelLoadingView.sharedInstance.stop(self.view)
+        UnlabelHelper.logout()
+    },
+    failed: { (error) in
+     UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
+    })
+    
+  }
+  
+  func wsDeleteAccount(){
+    UnlabelAPIHelper.sharedInstance.deleteAccount(self, success:
+      { (json: JSON) in
+        UnlabelLoadingView.sharedInstance.stop(self.view)
+        UnlabelHelper.logout()
+    },
+    failed: { (error) in
+        UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
+    })
+  }
+  
 }
 
-//
 //MARK:- ViewFollowingLabelPopup Methods
-//
 
 extension AccountInfoVC:PopupviewDelegate{
-    /**
-     If user not following any brand, show this view
-     */
-    func addPopupView(popupType:PopupType,initialFrame:CGRect){
-        if let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as? ViewFollowingLabelPopup{
-            viewFollowingLabelPopup.delegate = self
-            viewFollowingLabelPopup.popupType = popupType
-            viewFollowingLabelPopup.frame = initialFrame
-            viewFollowingLabelPopup.alpha = 0
-            view.addSubview(viewFollowingLabelPopup)
-            UIView.animateWithDuration(0.2) {
-                viewFollowingLabelPopup.frame = self.view.frame
-                viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
-                viewFollowingLabelPopup.alpha = 1
-            }
-            viewFollowingLabelPopup.updateView()
-        }
+  /**
+   If user not following any brand, show this view
+   */
+  func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
+    if let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed(VIEW_FOLLOWING_POPUP, owner: self, options: nil)? [0] as? ViewFollowingLabelPopup{
+      viewFollowingLabelPopup.delegate = self
+      viewFollowingLabelPopup.popupType = popupType
+      viewFollowingLabelPopup.frame = initialFrame
+      viewFollowingLabelPopup.alpha = 0
+      APP_DELEGATE.window?.addSubview(viewFollowingLabelPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        viewFollowingLabelPopup.frame = self.view.frame
+        viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
+        viewFollowingLabelPopup.alpha = 1
+      })
+      viewFollowingLabelPopup.updateView()
     }
+  }
+  
+  func popupDidClickCancel(){
     
-    func popupDidClickCancel(){
-        
-    }
+  }
+  
+  func popupDidClickDelete(){
+    debugPrint("delete account")
+    wsDeleteAccount()
+  }
+  
+  func popupDidClickClose(){
     
-    func popupDidClickDelete(){
-        debugPrint("delete account")
-    }
-    
-    func popupDidClickClose(){
-        
-    }
+  }
 }
 
-//
 //MARK:- UIGestureRecognizerDelegate Methods
-//
+
 extension AccountInfoVC:UIGestureRecognizerDelegate{
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let navVC = navigationController{
-            if navVC.viewControllers.count > 1{
-                return true
-            }else{
-                return false
-            }
-        }else{
-            return false
-        }
+  func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    if let navVC = navigationController{
+      if navVC.viewControllers.count > 1{
+        return true
+      }else{
+        return false
+      }
+    }else{
+      return false
     }
+  }
 }
 
-//
+
 //MARK:- IBAction Methods
-//
+
 extension AccountInfoVC{
-    @IBAction func IBActionBack(sender: UIButton) {
-        navigationController?.popViewControllerAnimated(true)
-    }
+  @IBAction func IBActionBack(_ sender: UIButton) {
+    _ = navigationController?.popViewController(animated: true)
+  }
 }
 
 
-//
-//MARK:- Custom Methods
-//
-extension AccountInfoVC{
-    
-    /**
-     Setup UI on VC Load.
-     */
-    private func setupOnWillAppear(){
-        if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
-            userDetails.displayName = displayName
-        }
-        IBlblUserName.text = userDetails.displayName
-        IBlblEmailOrPhone.text = userDetails.EmailOrPhone
-        IBlblLoggedInWith.text = "Signed In with \(userDetails.SignedInWith):"
-    }
-}
+
+
+
+

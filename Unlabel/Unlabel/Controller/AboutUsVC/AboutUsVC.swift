@@ -16,7 +16,7 @@ class AboutUsVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let _ = self.navigationController{
             navigationController?.interactivePopGestureRecognizer!.delegate = self
         }
@@ -33,8 +33,8 @@ class AboutUsVC: UIViewController {
 //MARK:- MFMailComposeViewControllerDelegate Methods
 //
 extension AboutUsVC: MFMailComposeViewControllerDelegate{
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -42,7 +42,7 @@ extension AboutUsVC: MFMailComposeViewControllerDelegate{
 //MARK:- UIGestureRecognizerDelegate Methods
 //
 extension AboutUsVC:UIGestureRecognizerDelegate{
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let navVC = navigationController{
             if navVC.viewControllers.count > 1{
                 return true
@@ -61,11 +61,11 @@ extension AboutUsVC:UIGestureRecognizerDelegate{
 //
 extension AboutUsVC{
     
-    @IBAction func IBActionBack(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func IBActionBack(_ sender: AnyObject) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func IBActionSendMail(sender: AnyObject) {
+    @IBAction func IBActionSendMail(_ sender: AnyObject) {
         sendEmail()
     }
 }
@@ -83,7 +83,7 @@ extension AboutUsVC{
             mail.setToRecipients([UNLABEL_EMAIL_ID])
             mail.setMessageBody("", isHTML: true)
             
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         } else {
             UnlabelHelper.showAlert(onVC: self, title: "Your Mail is not configured!", message: "Please confugure your mail and try again!", onOk: {
                 

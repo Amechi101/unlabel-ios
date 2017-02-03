@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Neutraface2Text-Book.otf">
+            <string>Neutraface2Text-Book</string>
+        </array>
+        <array key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CartFooterView" id="4ow-16-LjB" customClass="CartFooterView" customModule="Unlabel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$100.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1L-iv-DiP">
+                        <rect key="frame" x="202" y="21" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Cgn-tL-J7w"/>
+                            <constraint firstAttribute="width" constant="96" id="WfZ-87-mOY"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$110.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzJ-yD-OYV">
+                        <rect key="frame" x="202" y="166" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="vZR-0g-VeA"/>
+                            <constraint firstAttribute="width" constant="96" id="xFa-9i-SLa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuM-y9-iSS">
+                        <rect key="frame" x="202" y="89" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="QJo-XN-T5p"/>
+                            <constraint firstAttribute="height" constant="22" id="SjP-9o-Wpr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPk-NU-abe">
+                        <rect key="frame" x="202" y="123" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="HX9-cK-wfG"/>
+                            <constraint firstAttribute="width" constant="96" id="yaH-zI-bth"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbi-kQ-lLP">
+                        <rect key="frame" x="202" y="55" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="Rnz-1b-Fox"/>
+                            <constraint firstAttribute="height" constant="22" id="vuE-6U-KQp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9y-g8-4Sw">
+                        <rect key="frame" x="22" y="123" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="KD4-8c-fSy"/>
+                            <constraint firstAttribute="height" constant="22" id="ggh-x2-cA1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated tax:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81G-ts-zyy">
+                        <rect key="frame" x="22" y="55" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Jgb-I9-5tg"/>
+                            <constraint firstAttribute="width" constant="150" id="RR8-7O-CKk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fd9-Z8-VkE">
+                        <rect key="frame" x="22" y="216" width="276" height="35"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4Z-Eu-DGe">
+                                <rect key="frame" x="1" y="1" width="274" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="Add Promo code">
+                                    <color key="titleColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="e4Z-Eu-DGe" firstAttribute="top" secondItem="Fd9-Z8-VkE" secondAttribute="top" constant="1" id="FFd-M7-Y3P"/>
+                            <constraint firstAttribute="bottom" secondItem="e4Z-Eu-DGe" secondAttribute="bottom" constant="1" id="StI-Fj-8ug"/>
+                            <constraint firstItem="e4Z-Eu-DGe" firstAttribute="leading" secondItem="Fd9-Z8-VkE" secondAttribute="leading" constant="1" id="Ww2-ot-Id1"/>
+                            <constraint firstAttribute="width" secondItem="Fd9-Z8-VkE" secondAttribute="height" multiplier="276:35" id="cEB-hn-d0C"/>
+                            <constraint firstAttribute="trailing" secondItem="e4Z-Eu-DGe" secondAttribute="trailing" constant="1" id="dH8-Xp-YIk"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXq-JO-Ldc">
+                        <rect key="frame" x="22" y="271" width="276" height="44"/>
+                        <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="JXq-JO-Ldc" secondAttribute="height" multiplier="69:11" id="G6p-Be-sSV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                        <state key="normal" title="CHECKOUT"/>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKw-Uj-rql">
+                        <rect key="frame" x="22" y="8" width="276" height="1"/>
+                        <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="zR8-Rc-GeM"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal (1 items):                                       " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-ny-lWo">
+                        <rect key="frame" x="22" y="21" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="SNY-xF-Vyf"/>
+                            <constraint firstAttribute="width" constant="150" id="b0A-ha-CYd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RG-rU-cSV">
+                        <rect key="frame" x="22" y="153" width="276" height="1"/>
+                        <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="kjA-Lc-ksk"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:                                       " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0k-fb-zPg">
+                        <rect key="frame" x="22" y="166" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="E29-8d-rVR"/>
+                            <constraint firstAttribute="height" constant="22" id="IjE-NH-0zd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping &amp; Returns:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-Oq-dFr">
+                        <rect key="frame" x="22" y="89" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="KYP-xE-DLh"/>
+                            <constraint firstAttribute="width" constant="150" id="dZZ-gW-R0e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZuM-y9-iSS" firstAttribute="top" secondItem="mbi-kQ-lLP" secondAttribute="bottom" constant="12" id="0Lg-dq-pdw"/>
+                <constraint firstItem="w0k-fb-zPg" firstAttribute="top" secondItem="5RG-rU-cSV" secondAttribute="bottom" constant="12" id="1tc-LI-Fkc"/>
+                <constraint firstItem="Fd9-Z8-VkE" firstAttribute="top" secondItem="w0k-fb-zPg" secondAttribute="bottom" constant="28" id="2DL-Dx-jHj"/>
+                <constraint firstAttribute="trailing" secondItem="Fd9-Z8-VkE" secondAttribute="trailing" constant="22" id="3iZ-12-CL6"/>
+                <constraint firstAttribute="trailing" secondItem="5RG-rU-cSV" secondAttribute="trailing" constant="22" id="58i-Ad-dmj"/>
+                <constraint firstAttribute="trailing" secondItem="mbi-kQ-lLP" secondAttribute="trailing" constant="22" id="Ghb-zW-uQG"/>
+                <constraint firstItem="JXq-JO-Ldc" firstAttribute="top" secondItem="Fd9-Z8-VkE" secondAttribute="bottom" constant="20" id="NLM-Mg-2ag"/>
+                <constraint firstAttribute="trailing" secondItem="JXq-JO-Ldc" secondAttribute="trailing" constant="22" id="O89-qC-2E1"/>
+                <constraint firstItem="Fd9-Z8-VkE" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="Qan-3q-8SK"/>
+                <constraint firstItem="81G-ts-zyy" firstAttribute="top" secondItem="OLk-ny-lWo" secondAttribute="bottom" constant="12" id="SwJ-vB-Uvz"/>
+                <constraint firstItem="JXq-JO-Ldc" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="Tko-fk-ar7"/>
+                <constraint firstAttribute="trailing" secondItem="ZuM-y9-iSS" secondAttribute="trailing" constant="22" id="Um5-l1-63V"/>
+                <constraint firstAttribute="trailing" secondItem="hzJ-yD-OYV" secondAttribute="trailing" constant="22" id="ZPT-Gj-p86"/>
+                <constraint firstItem="5RG-rU-cSV" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="aGR-oy-olA"/>
+                <constraint firstAttribute="trailing" secondItem="r1L-iv-DiP" secondAttribute="trailing" constant="22" id="afq-6e-13x"/>
+                <constraint firstItem="tKw-Uj-rql" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="c0W-UF-WkU"/>
+                <constraint firstItem="5RG-rU-cSV" firstAttribute="top" secondItem="YPk-NU-abe" secondAttribute="bottom" constant="8" id="cF5-mI-tpp"/>
+                <constraint firstItem="J9y-g8-4Sw" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="df3-sz-I2M"/>
+                <constraint firstItem="r1L-iv-DiP" firstAttribute="top" secondItem="tKw-Uj-rql" secondAttribute="bottom" constant="12" id="dpO-hy-PhZ"/>
+                <constraint firstItem="tKw-Uj-rql" firstAttribute="top" secondItem="4ow-16-LjB" secondAttribute="top" constant="8" id="eiF-TY-F3V"/>
+                <constraint firstItem="81G-ts-zyy" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="eug-HH-onC"/>
+                <constraint firstItem="c6h-Oq-dFr" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="f4b-jZ-Uyu"/>
+                <constraint firstAttribute="trailing" secondItem="tKw-Uj-rql" secondAttribute="trailing" constant="22" id="fdg-eN-YJN"/>
+                <constraint firstItem="hzJ-yD-OYV" firstAttribute="top" secondItem="5RG-rU-cSV" secondAttribute="bottom" constant="12" id="iaE-j0-1cn"/>
+                <constraint firstItem="OLk-ny-lWo" firstAttribute="top" secondItem="tKw-Uj-rql" secondAttribute="bottom" constant="12" id="l0Z-h2-4dd"/>
+                <constraint firstAttribute="trailing" secondItem="YPk-NU-abe" secondAttribute="trailing" constant="22" id="lIa-01-cy0"/>
+                <constraint firstItem="mbi-kQ-lLP" firstAttribute="top" secondItem="r1L-iv-DiP" secondAttribute="bottom" constant="12" id="lbl-d5-yhG"/>
+                <constraint firstItem="w0k-fb-zPg" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="p9G-Cy-4fD"/>
+                <constraint firstItem="YPk-NU-abe" firstAttribute="top" secondItem="ZuM-y9-iSS" secondAttribute="bottom" constant="12" id="rcr-al-eA2"/>
+                <constraint firstItem="c6h-Oq-dFr" firstAttribute="top" secondItem="81G-ts-zyy" secondAttribute="bottom" constant="12" id="tqm-Hd-wk1"/>
+                <constraint firstItem="J9y-g8-4Sw" firstAttribute="top" secondItem="c6h-Oq-dFr" secondAttribute="bottom" constant="12" id="uOA-Jh-P2h"/>
+                <constraint firstItem="OLk-ny-lWo" firstAttribute="leading" secondItem="4ow-16-LjB" secondAttribute="leading" constant="22" id="zmn-sl-SsQ"/>
+            </constraints>
+            <point key="canvasLocation" x="409" y="18"/>
+        </collectionViewCell>
+    </objects>
+</document>

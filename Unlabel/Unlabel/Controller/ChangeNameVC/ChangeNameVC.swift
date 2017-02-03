@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class ChangeNameVC: UIViewController {
     
@@ -26,7 +25,7 @@ class ChangeNameVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         IBtxtFieldEnterNewName.becomeFirstResponder()
     }
     
@@ -40,12 +39,12 @@ class ChangeNameVC: UIViewController {
 //MARK:- IBAction Methods
 //
 extension ChangeNameVC{
-    @IBAction func IBActionApply(sender: UIButton) {
+    @IBAction func IBActionApply(_ sender: UIButton) {
         updateUserName()
     }
     
-    @IBAction func IBActionBack(sender: UIButton) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func IBActionBack(_ sender: UIButton) {
+       _ = navigationController?.popViewController(animated: true)
     }
 }
 
@@ -53,7 +52,7 @@ extension ChangeNameVC{
 //MARK:- UITextFieldDelegate Methods
 //
 extension ChangeNameVC:UITextFieldDelegate{
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         updateUserName()
         return true
     }
@@ -63,15 +62,15 @@ extension ChangeNameVC:UITextFieldDelegate{
 //MARK:- Custom Methods
 //
 extension ChangeNameVC{
-    private func setupOnLoad(){
+    fileprivate func setupOnLoad(){
         let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, IBtxtFieldEnterNewName.frame.size.height - 1, IBtxtFieldEnterNewName.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = MEDIUM_GRAY_BORDER_COLOR.CGColor
+        bottomBorder.frame = CGRect(x: 0.0, y: IBtxtFieldEnterNewName.frame.size.height - 1, width: IBtxtFieldEnterNewName.frame.size.width, height: 1.0);
+        bottomBorder.backgroundColor = MEDIUM_GRAY_BORDER_COLOR.cgColor
         IBtxtFieldEnterNewName.layer.addSublayer(bottomBorder)
         setUserName()
     }
     
-    private func setUserName(){
+    fileprivate func setUserName(){
         if let displayName = UnlabelHelper.getDefaultValue(PRM_DISPLAY_NAME){
             IBlblName.text = displayName
         }else{
@@ -79,22 +78,25 @@ extension ChangeNameVC{
         }
     }
     
-    private func updateUserName(){
+    fileprivate func updateUserName(){
         //Internet available
         if ReachabilitySwift.isConnectedToNetwork(){
-            if let trimmedName = IBtxtFieldEnterNewName.text?.removeWhitespace() where trimmedName.characters.count > 0{ //Checking if user has entered all white space
-                if let updatedUserName = IBtxtFieldEnterNewName.text where updatedUserName.characters.count > 0{
+            if let trimmedName = IBtxtFieldEnterNewName.text?.removeWhitespace(), trimmedName.characters.count > 0{ //Checking if user has entered all white space
+                if let updatedUserName = IBtxtFieldEnterNewName.text, updatedUserName.characters.count > 0{
                     IBtxtFieldEnterNewName.resignFirstResponder()
                     UnlabelHelper.setDefaultValue(updatedUserName, key: PRM_DISPLAY_NAME)
                     setUserName()
-                    let displayName:[String:AnyObject] = [PRM_DISPLAY_NAME:updatedUserName]
-                    FirebaseHelper.updateUser(userDict: displayName, completion: { (error) in
-                        if error == nil{
-                            debugPrint("name updated")
-                        }else{
-                            debugPrint(error)
-                        }
-                    })
+                    let displayName:[String:AnyObject] = [PRM_DISPLAY_NAME:updatedUserName as AnyObject]
+/*********************** changed in v4
+//                    FirebaseHelper.updateUser(userDict: displayName, completion: { (error) in
+//                        if error == nil{
+//                            debugPrint("name updated")
+//                        }else{
+//                            debugPrint(error!)
+//                        }
+//                    })
+ 
+***********************/
                 }else{
                     UnlabelHelper.showAlert(onVC: self, title: "Name Can't be empty", message: "Please provide correct name", onOk: {})
                 }

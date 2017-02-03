@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CartHeaderView" id="dhg-AF-hjZ" customClass="CartHeaderView" customModule="Unlabel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fulfilled by: CHEAP + BROKE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oM-Im-hBC">
+                        <rect key="frame" x="21" y="8" width="278" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="TMF-H7-wLG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-0j-LhX">
+                        <rect key="frame" x="21" y="32" width="67" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgq-xq-p4m">
+                                <rect key="frame" x="0.0" y="0.0" width="67" height="19"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="11"/>
+                                <state key="normal" title="VIEW BRAND">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="8Aq-t6-Dsj"/>
+                            <constraint firstAttribute="bottom" secondItem="lgq-xq-p4m" secondAttribute="bottom" constant="1" id="Nf1-W7-PDJ"/>
+                            <constraint firstAttribute="trailing" secondItem="lgq-xq-p4m" secondAttribute="trailing" id="QpI-bs-dBP"/>
+                            <constraint firstItem="lgq-xq-p4m" firstAttribute="top" secondItem="ASb-0j-LhX" secondAttribute="top" id="dEj-oU-iIQ"/>
+                            <constraint firstAttribute="width" constant="67" id="uNd-Sm-Vbu"/>
+                            <constraint firstItem="lgq-xq-p4m" firstAttribute="leading" secondItem="ASb-0j-LhX" secondAttribute="leading" id="xjf-TY-2t1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7oM-Im-hBC" secondAttribute="trailing" constant="21" id="Gjq-vu-8N1"/>
+                <constraint firstItem="7oM-Im-hBC" firstAttribute="leading" secondItem="dhg-AF-hjZ" secondAttribute="leading" constant="21" id="Ukl-Lk-18p"/>
+                <constraint firstItem="ASb-0j-LhX" firstAttribute="leading" secondItem="dhg-AF-hjZ" secondAttribute="leading" constant="21" id="VSB-4N-7FP"/>
+                <constraint firstItem="7oM-Im-hBC" firstAttribute="top" secondItem="dhg-AF-hjZ" secondAttribute="top" constant="8" id="pj0-lK-LV7"/>
+                <constraint firstItem="ASb-0j-LhX" firstAttribute="top" secondItem="7oM-Im-hBC" secondAttribute="bottom" constant="8" id="zGd-3u-Eum"/>
+            </constraints>
+            <connections>
+                <outlet property="IBLabelBrandName" destination="7oM-Im-hBC" id="CHf-aY-Wzy"/>
+            </connections>
+            <point key="canvasLocation" x="419" y="65"/>
+        </collectionViewCell>
+    </objects>
+</document>

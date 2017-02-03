@@ -7,51 +7,64 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 
 enum CategoryStyleEnum: CustomStringConvertible {
-   case Category , Style, Location
+   case category , style, location
    
    var glossaryTitle:String {
       switch self {
-      case .Category:
+      case .category:
          return "View Category glossary"
-      case .Style:
+      case .style:
          return "View Style glossary"
-         case .Location: return ""
+         case .location: return ""
       }
    }
    
    var defaultTitle:String {
       switch self {
-      case .Category:
+      case .category:
          return "Select Category"
-      case .Style:
+      case .style:
          return "Select Style"
-      case .Location: return ""
+      case .location: return ""
       }
    }
    
    
    var title:String {
       switch self {
-      case .Category:
-         return "Category".uppercaseString
-      case .Style:
-         return "Style".uppercaseString
-      case .Location:
-         return "Location".uppercaseString
+      case .category:
+         return "Category".uppercased()
+      case .style:
+         return "Style".uppercased()
+      case .location:
+         return "Location".uppercased()
       }
    }
    
    var description: String {
       switch self {
-      case .Category:
-         return "Category".uppercaseString
-      case .Style:
-         return "Style".uppercaseString
-      case .Location:
-         return "Location".uppercaseString
+      case .category:
+         return "Category".uppercased()
+      case .style:
+         return "Style".uppercased()
+      case .location:
+         return "Location".uppercased()
       }
    }
 }
@@ -62,9 +75,9 @@ enum CategoryStyleEnum: CustomStringConvertible {
 //MARK:- FilterVC Protocols
 //
 protocol FilterVCDelegate{
-    func willCloseChildVC(childVCName:String)
+    func willCloseChildVC(_ childVCName:String)
 //    func didClickShowLabels(category:String?,location:String?)
-    func didClickShowLabels(category:String?,location:String?, style:String?)
+    func didClickShowLabels(_ category:String?,location:String?, style:String?)
 
 }
 
@@ -91,35 +104,35 @@ class FilterVC: UIViewController {
 //    @IBOutlet weak var IBconstraintPickerMainBottom: NSLayoutConstraint!
    
 //    private let arrCategories:[String] = ["Choose Category", "Select Style",  "All","Clothing","Accessories","Jewelry","Shoes","Bags"]
-    private var arrLocationsUSA:[Location] = []
-    private var arrLocationsInternational:[Location] = []
+    fileprivate var arrLocationsUSA:[Location] = []
+    fileprivate var arrLocationsInternational:[Location] = []
    
-   private var selectedCategory:String = CategoryStyleEnum.Category.defaultTitle {
+   fileprivate var selectedCategory:String = CategoryStyleEnum.category.defaultTitle {
       didSet {
          if selectedCategory == "" {
-             selectedCategory = CategoryStyleEnum.Category.defaultTitle
+             selectedCategory = CategoryStyleEnum.category.defaultTitle
          }
       }
    }
-   private var selectedStyle:String = CategoryStyleEnum.Style.defaultTitle {
+   fileprivate var selectedStyle:String = CategoryStyleEnum.style.defaultTitle {
       didSet {
          if selectedStyle == "" {
-            selectedStyle = CategoryStyleEnum.Style.defaultTitle
+            selectedStyle = CategoryStyleEnum.style.defaultTitle
          }
       }
    }
    
-   private var arSelectedCategory:[String] = []
-   private var arSelectedStyle:[String] = []
+   fileprivate var arSelectedCategory:[String] = []
+   fileprivate var arSelectedStyle:[String] = []
 
 //    private var selectedCategoryIndexRow:Int = 0
-    private var selectedLocation:String?
+    fileprivate var selectedLocation:String?
     
-    private let arrFilterTitles:[String] = ["LABEL CATEGORY", "STYLE", "LOCATION"]
+    fileprivate let arrFilterTitles:[String] = ["LABEL CATEGORY", "STYLE", "LOCATION"]
    var shouldClearCategories = false
     
     var delegate:FilterVCDelegate?
-    var selectedFilterType:FilterType = .Unknown
+    var selectedFilterType:FilterType = .unknown
     
     var locationChoices:LocationChoices = LocationChoices.International
     
@@ -133,7 +146,7 @@ class FilterVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     
@@ -143,31 +156,31 @@ class FilterVC: UIViewController {
     }
    
    
-   @IBAction func unwindBackToFilterViewController(segue: UIStoryboardSegue) {
+   @IBAction func unwindBackToFilterViewController(_ segue: UIStoryboardSegue) {
       if segue.identifier == "backToFilterController" {
-          let filterListController = segue.sourceViewController as! FilterListController
+          let filterListController = segue.source as! FilterListController
          
          if filterListController.arSelectedValues.count > 0 {
             let filteredValues = filterListController.arSelectedValues.filter { return $0 != "" }
             
-            if filterListController.categoryStyleType == CategoryStyleEnum.Category {
+            if filterListController.categoryStyleType == CategoryStyleEnum.category {
                self.arSelectedCategory = filteredValues
                if self.arSelectedCategory.count > 3 {
-                  self.selectedCategory = Array(filteredValues[0..<3]).joinWithSeparator(",") + "..."
+                  self.selectedCategory = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
                } else {
-                  self.selectedCategory = filteredValues.joinWithSeparator(",")
+                  self.selectedCategory = filteredValues.joined(separator: ",")
                }
             } else {
                self.arSelectedStyle = filteredValues
                if self.arSelectedStyle.count > 3 {
-                  self.selectedStyle = Array(filteredValues[0..<3]).joinWithSeparator(",") + "..."
+                  self.selectedStyle = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
                } else {
-                  self.selectedStyle = filteredValues.joinWithSeparator(",")
+                  self.selectedStyle = filteredValues.joined(separator: ",")
                }
             }
             
             if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
-               if filterListController.categoryStyleType == CategoryStyleEnum.Category {
+               if filterListController.categoryStyleType == CategoryStyleEnum.category {
                    self.selectedCategory = "All"
                } else {
                    self.selectedStyle = "All"
@@ -178,12 +191,12 @@ class FilterVC: UIViewController {
             
             
          } else {
-             if filterListController.categoryStyleType == CategoryStyleEnum.Category {
+             if filterListController.categoryStyleType == CategoryStyleEnum.category {
                self.arSelectedCategory.removeAll()
-               selectedCategory = CategoryStyleEnum.Category.defaultTitle
+               selectedCategory = CategoryStyleEnum.category.defaultTitle
              } else {
                self.arSelectedStyle.removeAll()
-               selectedStyle = CategoryStyleEnum.Style.defaultTitle
+               selectedStyle = CategoryStyleEnum.style.defaultTitle
              }
          }
          
@@ -198,7 +211,7 @@ class FilterVC: UIViewController {
 //MARK:- UITableViewDelegate Methods
 //
 extension FilterVC:UITableViewDelegate{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }
 }
@@ -208,7 +221,7 @@ extension FilterVC:UITableViewDelegate{
 //MARK:- FilterTitleCellDelegate Methods
 //
 extension FilterVC:FilterTitleCellDelegate{
-    func didChangeTab(index: Int) {
+    func didChangeTab(_ index: Int) {
         selectedLocation = nil
         reloadData()
     }
@@ -220,7 +233,7 @@ extension FilterVC:FilterTitleCellDelegate{
 //
 extension FilterVC:UITableViewDataSource{
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 {
             return 50
         } else if indexPath.row == 5 {
@@ -229,16 +242,16 @@ extension FilterVC:UITableViewDataSource{
             return UITableViewAutomaticDimension
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
          if indexPath.row == 0 {
-            return cellWithTitle(CategoryStyleEnum.Category)
+            return cellWithTitle(CategoryStyleEnum.category)
          } else if indexPath.row == 1 {
-            return categoryStyleCell(indexPath, type: .Category)
+            return categoryStyleCell(indexPath, type: .category)
          } else if indexPath.row == 2 {
-            return cellWithTitle(CategoryStyleEnum.Style)
+            return cellWithTitle(CategoryStyleEnum.style)
          } else if indexPath.row == 3 {
-            return categoryStyleCell(indexPath, type: .Style)
+            return categoryStyleCell(indexPath, type: .style)
          } else if indexPath.row == 4 {
             return filterTitleCell(indexPath)
          }else if indexPath.row == 5 {
@@ -248,14 +261,14 @@ extension FilterVC:UITableViewDataSource{
          }
     }
    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 6
     }
     
-    func cellWithTitle(type:CategoryStyleEnum)->UITableViewCell{
-        let cellWithTitle = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+    func cellWithTitle(_ type:CategoryStyleEnum)->UITableViewCell{
+        let cellWithTitle = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
         cellWithTitle.textLabel?.text = type.title
-        cellWithTitle.layoutMargins = UIEdgeInsetsZero
+        cellWithTitle.layoutMargins = UIEdgeInsets.zero
         cellWithTitle.separatorInset = UIEdgeInsetsMake(0, 30, 0, 28)
         cellWithTitle.textLabel?.textColor = MEDIUM_GRAY_TEXT_COLOR
         cellWithTitle.textLabel?.font = UnlabelHelper.getNeutraface2Text(style: FONT_STYLE_DEMI, size: 16)
@@ -263,8 +276,8 @@ extension FilterVC:UITableViewDataSource{
         return cellWithTitle
     }
     
-    func filterTitleCell(indexPath:NSIndexPath)->FilterTitleCell{
-        let filterTitleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_FilterTitleCell) as? FilterTitleCell
+    func filterTitleCell(_ indexPath:IndexPath)->FilterTitleCell{
+        let filterTitleCell = IBtblFilter.dequeueReusableCell(withIdentifier: REUSABLE_ID_FilterTitleCell) as? FilterTitleCell
         filterTitleCell?.delegate = self
         
         var USATextColor:UIColor?
@@ -280,17 +293,17 @@ extension FilterVC:UITableViewDataSource{
             InternationalTextColor = MEDIUM_GRAY_TEXT_COLOR
         }
         
-        filterTitleCell?.IBbtnUSA.setTitleColor(USATextColor, forState: .Normal)
-        filterTitleCell?.IBBtnInternational.setTitleColor(InternationalTextColor, forState: .Normal)
+        filterTitleCell?.IBbtnUSA.setTitleColor(USATextColor, for: UIControlState())
+        filterTitleCell?.IBBtnInternational.setTitleColor(InternationalTextColor, for: UIControlState())
         
         return filterTitleCell!
     }
     
-   func categoryStyleCell(indexPath:NSIndexPath, type:CategoryStyleEnum)->CategoryStyleCell{
+   func categoryStyleCell(_ indexPath:IndexPath, type:CategoryStyleEnum)->CategoryStyleCell{
       
-      let categoryStyleCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryStyleCell) as? CategoryStyleCell
+      let categoryStyleCell = IBtblFilter.dequeueReusableCell(withIdentifier: REUSABLE_ID_CategoryStyleCell) as? CategoryStyleCell
       categoryStyleCell?.delegate = self
-      if type == .Category {
+      if type == .category {
          categoryStyleCell?.configureCell(cellTitle: self.selectedCategory, type: type)
       } else {
          categoryStyleCell?.configureCell(cellTitle: self.selectedStyle, type: type)
@@ -312,8 +325,8 @@ extension FilterVC:UITableViewDataSource{
    
    
     //Location boxes
-    func categoryLocationCell(indexPath:NSIndexPath)->CategoryLocationCell{
-        let categoryLocationCell = IBtblFilter.dequeueReusableCellWithIdentifier(REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
+    func categoryLocationCell(_ indexPath:IndexPath)->CategoryLocationCell{
+        let categoryLocationCell = IBtblFilter.dequeueReusableCell(withIdentifier: REUSABLE_ID_CategoryLocationCell) as! CategoryLocationCell
         categoryLocationCell.delegate = self
         
         if categoryLocationCell.locationChoices != locationChoices {
@@ -339,25 +352,25 @@ extension FilterVC:UITableViewDataSource{
 //MARK:- CategoryStyleCellDelegate
 //
 extension FilterVC: CategoryStyleCellDelegate{
-   func didClickStyleCell(forTag: Int) {
+   func didClickStyleCell(_ forTag: Int) {
    }
    
-    func didClickStyleCell(type:CategoryStyleEnum) {
-      let _presentController = storyboard?.instantiateViewControllerWithIdentifier("FilterListController") as! FilterListController
+    func didClickStyleCell(_ type:CategoryStyleEnum) {
+      let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
       
-      if type == .Category {
-         _presentController.categoryStyleType = .Category
+      if type == .category {
+         _presentController.categoryStyleType = .category
          _presentController.arSelectedValues = arSelectedCategory
-      } else if type == .Style {
-         _presentController.categoryStyleType = .Style
+      } else if type == .style {
+         _presentController.categoryStyleType = .style
          _presentController.arSelectedValues = arSelectedStyle
       }
       
       
       let _navFilterList = UINavigationController(rootViewController: _presentController)
-      _navFilterList.navigationBarHidden = true
+      _navFilterList.isNavigationBarHidden = true
       
-      self.presentViewController(_navFilterList, animated: true, completion: nil)
+      self.present(_navFilterList, animated: true, completion: nil)
     }
 }
 
@@ -366,7 +379,7 @@ extension FilterVC: CategoryStyleCellDelegate{
 //MARK:- CategoryDelegate
 //
 extension FilterVC:CategoryDelegate{
-    func didSelectLocation(location: String?) {
+    func didSelectLocation(_ location: String?) {
         selectedLocation = location
         reloadData()
     }
@@ -395,7 +408,7 @@ extension FilterVC:CategoryDelegate{
 //
 extension FilterVC{
     
-    @IBAction func IBActionClose(sender: AnyObject) {
+    @IBAction func IBActionClose(_ sender: AnyObject) {
         close()
     }
     
@@ -413,22 +426,22 @@ extension FilterVC{
 //        hidePicker()
 //    }
    
-    @IBAction func IBActionShowLabels(sender: UIButton) {
+    @IBAction func IBActionShowLabels(_ sender: UIButton) {
         var selectedCategory:String?
         var selectedStyles:String?
  
       
-         if CategoryStyleEnum.Style.defaultTitle != self.selectedStyle { // Not default
+         if CategoryStyleEnum.style.defaultTitle != self.selectedStyle { // Not default
             selectedStyles = self.selectedStyle
             if self.selectedStyle == "All" {
-               selectedStyles = self.arSelectedStyle.joinWithSeparator(",")
+               selectedStyles = self.arSelectedStyle.joined(separator: ",")
             }
          }
       
-         if CategoryStyleEnum.Category.defaultTitle != self.selectedCategory {
+         if CategoryStyleEnum.category.defaultTitle != self.selectedCategory {
             selectedCategory = self.selectedCategory
             if self.selectedCategory == "All" {
-               selectedCategory = self.arSelectedCategory.joinWithSeparator(",")
+               selectedCategory = self.arSelectedCategory.joined(separator: ",")
             }
          }
       
@@ -440,11 +453,11 @@ extension FilterVC{
     //
     //MARK:- CategoryStyleCell IBAction Methods
     //
-    @IBAction func IBActionCategoryStyleClicked(sender: UIButton) {
+    @IBAction func IBActionCategoryStyleClicked(_ sender: UIButton) {
         openPickerForTag(sender.tag)
     }
     
-    func openPickerForTag(tag:Int){
+    func openPickerForTag(_ tag:Int){
         //        //All categories clicked
         //        if tag == PickerType.Categories.rawValue{
         //            selectedPickerType = .Categories
@@ -466,28 +479,28 @@ extension FilterVC{
     /**
      Setup UI on VC Load.
      */
-    private func setupUIOnLoad(){
+    fileprivate func setupUIOnLoad(){
 //        hidePicker()
-      IBbtnClear.addTarget(self, action: #selector(FilterVC.btnClearPressed(_:)), forControlEvents: .TouchUpInside)
+      IBbtnClear.addTarget(self, action: #selector(FilterVC.btnClearPressed(_:)), for: .touchUpInside)
         registerCell(withID: REUSABLE_ID_GenderCell)
         registerCell(withID: REUSABLE_ID_FilterTitleCell)
         registerCell(withID: REUSABLE_ID_CategoryStyleCell)
         registerCell(withID: REUSABLE_ID_CategoryLocationCell)
     }
     
-    private func setupDataLoad(){
+    fileprivate func setupDataLoad(){
         UnlabelLoadingView.sharedInstance.start(view)
         UnlabelAPIHelper.sharedInstance.getLocations { (arrAllLocations) in
             UnlabelLoadingView.sharedInstance.stop(self.view)
             
-            if var allLocations = arrAllLocations where allLocations.count > 0{
-                allLocations = allLocations.sort{$0.stateOrCountry < $1.stateOrCountry}
+            if var allLocations = arrAllLocations, allLocations.count > 0{
+                allLocations = allLocations.sorted{$0.stateOrCountry < $1.stateOrCountry}
                 for location in allLocations{
                     if location.locationChoices == APIParams.locationChoicesCountry{
-                        self.IBbtnShowLabels.hidden = false
+                        self.IBbtnShowLabels.isHidden = false
                         self.arrLocationsInternational.append(location)
                     }else if location.locationChoices == APIParams.locationChoicesState{
-                        self.IBbtnShowLabels.hidden = false
+                        self.IBbtnShowLabels.isHidden = false
                         self.arrLocationsUSA.append(location)
                     }else{
                         
@@ -506,7 +519,7 @@ extension FilterVC{
      Setup UI on before appear.
      */
     func setupBeforeAppear(){
-        if selectedFilterType == .Men{
+        if selectedFilterType == .men{
             IBlblFilterFor.text = "SEARCH MEN"
         }else{
             IBlblFilterFor.text = "SEARCH WOMEN"
@@ -516,47 +529,47 @@ extension FilterVC{
     /**
      Register nib for given ID.
      */
-    private func registerCell(withID reusableID:String){
-        IBtblFilter.registerNib(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
+    fileprivate func registerCell(withID reusableID:String){
+        IBtblFilter.register(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
     }
     
     /**
      Remove self from parentViewController
      */
-    private func close(){
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+    fileprivate func close(){
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.alpha = 0
             self.view.frame.origin.x = SCREEN_WIDTH
-        }) { (value:Bool) -> Void in
-            self.willMoveToParentViewController(nil)
+        }, completion: { (value:Bool) -> Void in
+            self.willMove(toParentViewController: nil)
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
             self.delegate?.willCloseChildVC(S_ID_FILTER_VC)
-        }
+        }) 
     }
     
  
    
-    private func reloadData(){
-        UIView.transitionWithView(IBtblFilter, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+    fileprivate func reloadData(){
+        UIView.transition(with: IBtblFilter, duration: 0.3, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
             self.IBtblFilter.reloadData()
         }, completion: nil)
     }
    
-   func btnClearPressed(sender:AnyObject) {
+   func btnClearPressed(_ sender:AnyObject) {
       selectedStyle = ""
       selectedCategory = ""
       arSelectedStyle.removeAll()
       arSelectedCategory.removeAll()
       arrLocationsUSA.removeAll()
       arrLocationsInternational.removeAll()
-      IBbtnShowLabels.hidden = false
+      IBbtnShowLabels.isHidden = false
       locationChoices = LocationChoices.International
       setupDataLoad()
       IBtblFilter.reloadData()
       
       
-      let locationCell = categoryLocationCell(NSIndexPath(forRow: 5, inSection: 0))
+      let locationCell = categoryLocationCell(IndexPath(row: 5, section: 0))
       locationCell.selectedLocationIndex = nil
       locationCell.delegate?.didSelectLocation(nil)
    }

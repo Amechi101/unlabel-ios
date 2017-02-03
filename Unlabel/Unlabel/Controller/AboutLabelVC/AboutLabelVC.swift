@@ -37,7 +37,7 @@ class AboutLabelVC: UIViewController {
             }
             
             if let brandName = selectedBrand?.Name{
-                IBbtnViewLabelName.setTitle("VIEW \(brandName.uppercaseString)", forState: .Normal)
+                IBbtnViewLabelName.setTitle("VIEW \(brandName.uppercased())", for: UIControlState())
             }
         }
     }
@@ -53,12 +53,12 @@ class AboutLabelVC: UIViewController {
 //MARK:- Custom and SFSafariViewControllerDelegate Methods
 //
 extension AboutLabelVC:SFSafariViewControllerDelegate{
-    func openSafariForURL(urlString:String){
-        if let productURL:NSURL = NSURL(string: urlString){
+    func openSafariForURL(_ urlString:String){
+        if let productURL:URL = URL(string: urlString){
             APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
-            let safariVC = UnlabelSafariVC(URL: productURL)
+            let safariVC = UnlabelSafariVC(url: productURL)
             safariVC.delegate = self
-            self.presentViewController(safariVC, animated: true) { () -> Void in
+            self.present(safariVC, animated: true) { () -> Void in
                 
             }
         }else{ showAlertWebPageNotAvailable() }
@@ -70,15 +70,15 @@ extension AboutLabelVC:SFSafariViewControllerDelegate{
         }
     }
     
-    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity]{
+    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity]{
         return []
     }
     
-    func safariViewControllerDidFinish(controller: SFSafariViewController){
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController){
         APP_DELEGATE.window?.tintColor = WINDOW_TINT_COLOR
     }
     
-    func safariViewController(controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
         
     }
 }
@@ -88,11 +88,11 @@ extension AboutLabelVC:SFSafariViewControllerDelegate{
 //MARK:- IBAction Methods
 //
 extension AboutLabelVC{
-    @IBAction func IBActionClose(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func IBActionClose(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func IBActionViewLabel(sender: UIButton) {
+    @IBAction func IBActionViewLabel(_ sender: UIButton) {
         if let labelURL = selectedBrand?.BrandWebsiteURL{
             openSafariForURL(labelURL)
         }

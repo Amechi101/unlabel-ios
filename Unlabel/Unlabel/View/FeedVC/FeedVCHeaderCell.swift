@@ -10,12 +10,13 @@ import UIKit
 
 class FeedVCHeaderCell: UICollectionReusableView {
     
+  @IBOutlet weak var IBSortButton: UIButton!
     @IBOutlet weak var IBlblFilterTitle: UILabel!
     @IBOutlet weak var IBbtnWomen: UIButton!
     @IBOutlet weak var IBbtnMen: UIButton!
 //    @IBOutlet weak var IBconstraintGenderContainerHeight: NSLayoutConstraint!
     
-    var selectedTab:FilterType = .Men
+    var selectedTab:FilterType = .men
     
     override func awakeFromNib() {
 //        if selectedTab == .Men {
@@ -31,7 +32,7 @@ class FeedVCHeaderCell: UICollectionReusableView {
 //        }
     }
     
-    func getAlternateColor(currentColor:UIColor)->UIColor{
+    func getAlternateColor(_ currentColor:UIColor)->UIColor{
         if currentColor == EXTRA_LIGHT_GRAY_TEXT_COLOR{
             return MEDIUM_GRAY_TEXT_COLOR
         }else{
@@ -42,22 +43,22 @@ class FeedVCHeaderCell: UICollectionReusableView {
     func updateFilterHeader(forFilterType filterType:FilterType){
         selectedTab = filterType
             if let superViewObj = superview {
-                UIView.transitionWithView(superViewObj, duration: 0.5, options: .TransitionCrossDissolve, animations: {() -> Void in
-                    self.IBbtnMen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
-                    self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+                UIView.transition(with: superViewObj, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
+                    self.IBbtnMen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: UIControlState())
+                    self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: UIControlState())
                     
-                    if filterType == .Men{
-                        self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
-                    }else if filterType == .Women{
-                        self.IBbtnWomen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+                    if filterType == .men{
+                        self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
+                    }else if filterType == .women{
+                        self.IBbtnWomen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
                     }else{
-                        self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
+                        self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
                     }
                     
                     }, completion: { _ in })
             }else{
-                self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, forState: .Normal)
-                self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
+                self.IBbtnMen.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
+                self.IBbtnWomen.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: UIControlState())
 //                self.IBbtnMnW.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, forState: .Normal)
             }
     }

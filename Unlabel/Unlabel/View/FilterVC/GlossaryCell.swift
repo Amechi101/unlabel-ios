@@ -17,23 +17,23 @@ class GlossaryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
       
-      self.selectionStyle = .None
+      self.selectionStyle = .none
       self.removeMargines()
 
       
-      IBlblGlossaryTitle.font = UIFont.systemFontOfSize(14)
+      IBlblGlossaryTitle.font = UIFont.systemFont(ofSize: 14)
       IBlblGlossaryDesc.font = UIFont(name: "Neutraface2Text-Book", size: 14)
       IBlblGlossaryDesc.textColor = UIColor(red: 69/255.0, green: 73/255.0, blue: 78/255.0, alpha: 1.0)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
    
-   func configureCell(dict:JSON) {
-      IBlblGlossaryTitle.text = dict["name"].string?.capitalizedString
+   func configureCell(_ dict:JSON) {
+      IBlblGlossaryTitle.text = dict["name"].string?.capitalized
       IBlblGlossaryDesc.text = dict["description"].string
     }
 

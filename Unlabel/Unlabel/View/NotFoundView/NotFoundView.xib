@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Neutraface2Text-Book.otf">
+        <array key="Neutraface2Text-Book.otf">
             <string>Neutraface2Text-Book</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,30 +21,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
-                    <rect key="frame" x="78" y="337" width="219" height="60"/>
-                    <string key="text">Nothing to see here. 
-
-Currently no labels are within this filtering range.</string>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not following any brands." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
+                    <rect key="frame" x="78" y="359.5" width="219" height="15"/>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
-                    <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-D5-wvo" userLabel="Horizontal Line">
-                    <rect key="frame" x="137" y="442" width="101" height="1"/>
-                    <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-D5-wvo" userLabel="Horizontal Line">
+                    <rect key="frame" x="137" y="419.5" width="101" height="1"/>
+                    <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="eIo-LB-xAZ"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-ce-7eO">
-                    <rect key="frame" x="137" y="422" width="101" height="20"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-ce-7eO">
+                    <rect key="frame" x="137" y="399.5" width="101" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="R8J-ac-qYo"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="VIEW LABELS">
-                        <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_gray" translatesAutoresizingMaskIntoConstraints="NO" id="A4w-2M-HIe">
@@ -49,8 +51,16 @@ Currently no labels are within this filtering range.</string>
                         <constraint firstAttribute="width" constant="160" id="aDM-il-vWZ"/>
                     </constraints>
                 </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7Q-HO-SnT">
+                    <rect key="frame" x="12" y="15" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Ii0-m3-Lce"/>
+                        <constraint firstAttribute="width" constant="30" id="W8M-xL-4tS"/>
+                    </constraints>
+                    <state key="normal" image="X"/>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0X7-SL-FcU"/>
                 <constraint firstItem="4g4-D5-wvo" firstAttribute="width" secondItem="8tp-ce-7eO" secondAttribute="width" id="6Yo-md-5X0"/>
@@ -59,11 +69,12 @@ Currently no labels are within this filtering range.</string>
                 <constraint firstAttribute="trailing" secondItem="Bes-q7-bD7" secondAttribute="trailing" constant="78" id="XXc-2k-EE0"/>
                 <constraint firstItem="Bes-q7-bD7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.1" id="bSw-wW-65m"/>
                 <constraint firstItem="8tp-ce-7eO" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="25" id="cEf-a2-ZEX"/>
+                <constraint firstItem="M7Q-HO-SnT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="cdS-Mq-dJx"/>
                 <constraint firstItem="4g4-D5-wvo" firstAttribute="centerX" secondItem="8tp-ce-7eO" secondAttribute="centerX" id="f8c-2q-TuS"/>
                 <constraint firstItem="Bes-q7-bD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="78" id="tgr-g0-BDf"/>
+                <constraint firstItem="M7Q-HO-SnT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="u0w-da-dT4"/>
                 <constraint firstItem="4g4-D5-wvo" firstAttribute="top" secondItem="8tp-ce-7eO" secondAttribute="bottom" id="yWP-vj-2Y1"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
                 <outlet property="IBbtnViewLabels" destination="8tp-ce-7eO" id="7NK-1M-v98"/>
                 <outlet property="IBlblMessage" destination="Bes-q7-bD7" id="gYA-Wl-KM8"/>
@@ -73,6 +84,7 @@ Currently no labels are within this filtering range.</string>
         </view>
     </objects>
     <resources>
+        <image name="X" width="20" height="20"/>
         <image name="logo_gray" width="159" height="160"/>
     </resources>
 </document>

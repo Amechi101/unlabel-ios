@@ -13,7 +13,7 @@ class Location: Mappable {
     var locationChoices: String?
     var stateOrCountry: String?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     

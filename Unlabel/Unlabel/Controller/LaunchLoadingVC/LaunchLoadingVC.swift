@@ -19,7 +19,7 @@ class LaunchLoadingVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true;
     }
 

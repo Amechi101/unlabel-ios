@@ -9,20 +9,20 @@
 import UIKit
 
 enum CommonVCType{
-    case Unknown
-    case FilterLabels
-    case FilterByCategory
-    case FilterByLocationThenCategory
+    case unknown
+    case filterLabels
+    case filterByCategory
+    case filterByLocationThenCategory
 }
 
 enum LabelListCategory:Int{
-    case All = 0
-    case Multi = 1
-    case Clothing = 2
-    case Accessory = 3
-    case Jewelry = 4
-    case Shoe = 5
-    case Bag = 6
+    case all = 0
+    case multi = 1
+    case clothing = 2
+    case accessory = 3
+    case jewelry = 4
+    case shoe = 5
+    case bag = 6
 }
 
 enum Labels:String{
@@ -43,11 +43,11 @@ class CommonTableVC: UITableViewController {
     
     @IBOutlet weak var IBbtnTitle: UIButton!
     
-    var commonVCType:CommonVCType = .Unknown
+    var commonVCType:CommonVCType = .unknown
     
     var arrTitles:[String] = [ ]
     var arrFilteredBrandList:[Brand] = [ ]
-    var filterType:FilterType = .Unknown
+    var filterType:FilterType = .unknown
     var isFollowdByLocation:(value:Bool,location:String?)?
     
     
@@ -56,10 +56,11 @@ class CommonTableVC: UITableViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         setupOnLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let _ = self.navigationController{
             navigationController?.interactivePopGestureRecognizer!.delegate = self
         }
@@ -75,10 +76,10 @@ class CommonTableVC: UITableViewController {
 //MARK:- Navigation Methods
 //
 extension CommonTableVC{
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SEGUE_FILTER_LABELS{
-            if let commonTableVC:CommonTableVC = segue.destinationViewController as? CommonTableVC{
-                commonTableVC.commonVCType = .FilterLabels
+            if let commonTableVC:CommonTableVC = segue.destination as? CommonTableVC{
+                commonTableVC.commonVCType = .filterLabels
             }
         }
     }
@@ -89,21 +90,21 @@ extension CommonTableVC{
 //MARK:- Table view data source Methods
 //
 extension CommonTableVC{
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return arrTitles.count
+        return 5
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let commonTableVCCell:CommonTableVCCell = (tableView.dequeueReusableCellWithIdentifier(REUSABLE_ID_CommonTableVCCell, forIndexPath: indexPath) as? CommonTableVCCell)!
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let commonTableVCCell:CommonTableVCCell = (tableView.dequeueReusableCell(withIdentifier: REUSABLE_ID_CommonTableVCCell, for: indexPath) as? CommonTableVCCell)!
         
-        commonTableVCCell.IBlblTitle.text = arrTitles[indexPath.row]
+        commonTableVCCell.IBlblTitle?.text = "test"
         
         return commonTableVCCell
     }
@@ -114,31 +115,31 @@ extension CommonTableVC{
 //MARK:- Table view data source Methods
 //
 extension CommonTableVC{
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         handleCellClick(forIndexPath: indexPath)
     }
     
-    func handleCellClick(forIndexPath indexPath:NSIndexPath){
-        if commonVCType == .FilterLabels{
-            let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
+    func handleCellClick(forIndexPath indexPath:IndexPath){
+        if commonVCType == .filterLabels{
+            let commonTableVC = storyboard?.instantiateViewController(withIdentifier: S_ID_COMMON_TABLE_VC) as? CommonTableVC
             commonTableVC?.arrFilteredBrandList = self.arrFilteredBrandList
             commonTableVC?.isFollowdByLocation = self.isFollowdByLocation
             commonTableVC?.filterType = self.filterType
             
             if indexPath.row == 0{
-                commonTableVC?.commonVCType = .FilterByLocationThenCategory
+                commonTableVC?.commonVCType = .filterByLocationThenCategory
             }else if indexPath.row == 1{
-                commonTableVC?.commonVCType = .FilterByCategory
+                commonTableVC?.commonVCType = .filterByCategory
             }else{
                 debugPrint("handleCellClick Unknown")
             }
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
-        }else if commonVCType == . FilterByLocationThenCategory{
+        }else if commonVCType == . filterByLocationThenCategory{
         
-            let commonTableVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_COMMON_TABLE_VC) as? CommonTableVC
-            commonTableVC?.commonVCType = .FilterByCategory
+            let commonTableVC = storyboard?.instantiateViewController(withIdentifier: S_ID_COMMON_TABLE_VC) as? CommonTableVC
+            commonTableVC?.commonVCType = .filterByCategory
             commonTableVC?.isFollowdByLocation = (true,arrTitles[indexPath.row])
             
             for brand in arrFilteredBrandList{
@@ -151,9 +152,9 @@ extension CommonTableVC{
             
             navigationController?.pushViewController(commonTableVC!, animated: true)
             
-        }else if commonVCType == . FilterByCategory{
+        }else if commonVCType == . filterByCategory{
             
-            let feedVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_FEED_VC) as? FeedVC
+            let feedVC = storyboard?.instantiateViewController(withIdentifier: S_ID_FEED_VC) as? FeedVC
             
             var sCategoryTitle = String()
             if ( indexPath.row == 0 ) {
@@ -174,7 +175,7 @@ extension CommonTableVC{
                 feedVC?.filteredString = "\(filterType) - \(sCategoryTitle)"
             }
             
-            feedVC?.mainVCType = .Filter
+            feedVC?.mainVCType = .filter
 
             if indexPath.row == 0{  //All categories
                 feedVC?.arrFilteredBrandList = self.arrFilteredBrandList
@@ -205,8 +206,8 @@ extension CommonTableVC{
 //MARK:- IBAction Methods
 //
 extension CommonTableVC{
-    @IBAction func IBActionBack(sender: UIButton) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func IBActionBack(_ sender: UIButton) {
+       _ = navigationController?.popViewController(animated: true)
     }
 }
 
@@ -216,32 +217,33 @@ extension CommonTableVC{
 //
 extension CommonTableVC{
     func setupOnLoad(){
-        func getTitles(commonVCType:CommonVCType)->[String]{
-            if commonVCType == .FilterLabels{
+      self.tableView.register(CommonTableVCCell.self, forCellReuseIdentifier: REUSABLE_ID_CommonTableVCCell)
+        func getTitles(_ commonVCType:CommonVCType)->[String]{
+            if commonVCType == .filterLabels{
                 let filterTitle = "FILTER \(filterType)"
-                IBbtnTitle.setTitle(filterTitle.uppercaseString, forState: .Normal)
+                IBbtnTitle.setTitle(filterTitle.uppercased(), for: UIControlState())
                 return ["By Location","By Label Category"]
                 
-            }else if commonVCType == .FilterByCategory{
+            }else if commonVCType == .filterByCategory{
                 
                 var headerTitle = "LABEL CATEGORY"
                 if let isFollowdByLocationObj = isFollowdByLocation{
                     if isFollowdByLocationObj.value{
-                        headerTitle = (isFollowdByLocationObj.location?.uppercaseString)!
+                        headerTitle = (isFollowdByLocationObj.location?.uppercased())!
                     }
                 }
-                IBbtnTitle.setTitle(headerTitle, forState: .Normal)
+                IBbtnTitle.setTitle(headerTitle, for: UIControlState())
                 return ["All Categories", "Mixed Labels","Clothing Labels","Accessory Labels","Jewelry Labels","Shoe Labels","Bag Labels"]
                 
-            }else if commonVCType == .FilterByLocationThenCategory {
+            }else if commonVCType == .filterByLocationThenCategory {
                 
-                IBbtnTitle.setTitle("LOCATION", forState: .Normal)
+                IBbtnTitle.setTitle("LOCATION", for: UIControlState())
                 var arrTitles:[String] = []
                 
                 for brand in arrFilteredBrandList{
                     arrTitles.append(brand.StateOrCountry)
                     arrTitles = Array(Set(arrTitles))
-                    arrTitles = arrTitles.sort{$0 < $1}
+                    arrTitles = arrTitles.sorted{$0 < $1}
                 }
                 
                 return arrTitles
@@ -263,7 +265,7 @@ extension CommonTableVC{
 //MARK:- UIGestureRecognizerDelegate Methods
 //
 extension CommonTableVC:UIGestureRecognizerDelegate{
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let navVC = navigationController{
             if navVC.viewControllers.count > 1{
                 return true

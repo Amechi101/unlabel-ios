@@ -20,7 +20,7 @@ class Brand {
     var CreatedDateString:String = String()
     var BrandWebsiteURL:String = String()
     var isActive:Bool = Bool()
-    var CreatedDate:NSDate = NSDate()
+    var CreatedDate:Date = Date()
     
     var city:String = String()
     var location:String = String()

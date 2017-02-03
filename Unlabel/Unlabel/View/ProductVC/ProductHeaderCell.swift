@@ -9,15 +9,22 @@
 import UIKit
 
 class ProductHeaderCell: UICollectionViewCell {
+  
+  @IBOutlet weak var IBimgHeaderImage: UIImageView!
+  @IBOutlet weak var IBbtnFollow: UIButton!
+  @IBOutlet weak var IBbtnShare: UIButton!
+  @IBOutlet weak var IBBrandDescription: UILabel!
+  @IBOutlet weak var IBBrandLocation: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.cgColor
+  }
+//  func configureWithIndexPath(_ indexPath: IndexPath)
+//  {
+//    IBBrandDescription.preferredMaxLayoutWidth = 250
+//  }
+  
 
-    @IBOutlet weak var IBimgHeaderImage: UIImageView!
-    @IBOutlet weak var IBbtnFollow: UIButton!
-    @IBOutlet weak var IBbtnShare: UIButton!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.CGColor
-     }
-
+  
 }

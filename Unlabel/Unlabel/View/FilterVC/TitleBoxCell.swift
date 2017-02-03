@@ -16,7 +16,7 @@ class TitleBoxCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
       IBlblBoxTitle.textColor = LIGHT_GRAY_TEXT_COLOR
-      layer.borderColor = LIGHT_GRAY_BORDER_COLOR.colorWithAlphaComponent(0.5).CGColor
+      layer.borderColor = LIGHT_GRAY_BORDER_COLOR.withAlphaComponent(0.5).cgColor
     }
 
 }

@@ -6,7 +6,5 @@
 #import "Cloudinary/Cloudinary.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Reachability.h"
-#import <Bolts/Bolts.h>
 #import <Google/Analytics.h>
-#import <Branch/Branch.h>
 #import "FBShimmeringView.h"

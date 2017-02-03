@@ -26,28 +26,28 @@ class FilterListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
       IBlblFilterListName.text = ""
-      selectionStyle = .None
+      selectionStyle = .none
       removeMargines()
-      IBlblFilterListName.font = UIFont.systemFontOfSize(16)
+      IBlblFilterListName.font = UIFont.systemFont(ofSize: 16)
       IBlblFilterListName.textColor = MEDIUM_GRAY_TEXT_COLOR
       
       IBimgViewCheckMark.image = UIImage(named: "category_checkmark")
-      IBimgViewCheckMark.contentMode = .Center
-      IBimgViewCheckMark.hidden = true
+      IBimgViewCheckMark.contentMode = .center
+      IBimgViewCheckMark.isHidden = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
      }
    
-   func configureCell(index:NSIndexPath, selection:Bool) {
+   func configureCell(_ index:IndexPath, selection:Bool) {
       
      
-         IBimgViewCheckMark.hidden = !selection
+         IBimgViewCheckMark.isHidden = !selection
       
       
       if index.row == 0 {
-            IBlblFilterListName.textColor = selection ? MEDIUM_GRAY_TEXT_COLOR.colorWithAlphaComponent(0.3) : MEDIUM_GRAY_TEXT_COLOR
+            IBlblFilterListName.textColor = selection ? MEDIUM_GRAY_TEXT_COLOR.withAlphaComponent(0.3) : MEDIUM_GRAY_TEXT_COLOR
       } else {
           IBlblFilterListName.textColor = MEDIUM_GRAY_TEXT_COLOR
       }

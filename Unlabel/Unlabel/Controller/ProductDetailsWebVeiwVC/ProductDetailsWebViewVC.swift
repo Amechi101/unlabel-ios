@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class ProductDetailsWebViewVC: UIViewController {
 
@@ -37,10 +36,10 @@ class ProductDetailsWebViewVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
    
-   override func viewWillDisappear(animated: Bool) {
+   override func viewWillDisappear(_ animated: Bool) {
       super.viewWillDisappear(animated)
       
-      if IBwebView.loading {
+      if IBwebView.isLoading {
          IBwebView.stopLoading()
       }
    }
@@ -53,27 +52,27 @@ class ProductDetailsWebViewVC: UIViewController {
       }
       
       let imageNamed = (_selectedBrand.isFollowing == true) ? "blackStarred" : "blackUnstarred"
-      IBbtnStar.setImage(UIImage(named: imageNamed), forState: UIControlState.Normal)
+      IBbtnStar.setImage(UIImage(named: imageNamed), for: UIControlState())
    }
     
 }
 
 extension ProductDetailsWebViewVC: UIWebViewDelegate {
    
-   func goBack(sender: UIBarButtonItem) {
+   func goBack(_ sender: UIBarButtonItem) {
       IBwebView.goBack()
    }
    
-   func goForward(sender: UIBarButtonItem) {
+   func goForward(_ sender: UIBarButtonItem) {
       IBwebView.goForward()
    }
    
-   func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+   func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
      
  
       
-         IBbtnBack.enabled = IBwebView.canGoBack
-         IBbtnForward.enabled = IBwebView.canGoForward
+         IBbtnBack.isEnabled = IBwebView.canGoBack
+         IBbtnForward.isEnabled = IBwebView.canGoForward
   
      
       
@@ -92,19 +91,19 @@ extension ProductDetailsWebViewVC:PopupviewDelegate{
    /**
     If user not following any brand, show this view
     */
-   func addPopupView(popupType:PopupType,initialFrame:CGRect){
-      let viewFollowingLabelPopup:ViewFollowingLabelPopup = NSBundle.mainBundle().loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil) [0] as! ViewFollowingLabelPopup
+   func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
+      let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil)! [0] as! ViewFollowingLabelPopup
       viewFollowingLabelPopup.delegate = self
       viewFollowingLabelPopup.popupType = popupType
       viewFollowingLabelPopup.frame = initialFrame
       viewFollowingLabelPopup.alpha = 0
       view.addSubview(viewFollowingLabelPopup)
-      UIView.animateWithDuration(0.2) {
+      UIView.animate(withDuration: 0.2, animations: {
          viewFollowingLabelPopup.frame = self.view.frame
-         viewFollowingLabelPopup.frame.origin = CGPointMake(0, 0)
+         viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
          viewFollowingLabelPopup.alpha = 1
-      }
-      if popupType == PopupType.Follow{
+      }) 
+      if popupType == PopupType.follow{
          viewFollowingLabelPopup.setFollowSubTitle("Brand")
       }
       viewFollowingLabelPopup.updateView()
@@ -129,15 +128,8 @@ extension ProductDetailsWebViewVC:PopupviewDelegate{
 //MARK:- IBActions Methods
 //
 extension ProductDetailsWebViewVC{
-   
-   private func openLoginSignupVC(){
-      if let loginSignupVC:LoginSignupVC = storyboard?.instantiateViewControllerWithIdentifier(S_ID_LOGIN_SIGNUP_VC) as? LoginSignupVC{
-         //         loginSignupVC.delegate = self
-         self.presentViewController(loginSignupVC, animated: true, completion: nil)
-      }
-   }
-   
-   @IBAction func IBActionFollow(sender: AnyObject) {
+
+   @IBAction func IBActionFollow(_ sender: AnyObject) {
       
       // return;  version 3
       
@@ -156,23 +148,8 @@ extension ProductDetailsWebViewVC{
                _selectedBrand.isFollowing = true
             }
              self.updateButtonUI()
-            FirebaseHelper.followUnfollowBrand(follow: _selectedBrand.isFollowing, brandID:_selectedBrand.ID, userID: userID, withCompletionBlock: { (error, firebase) in
-               if error == nil{
-                  
-                  if  !_selectedBrand.isFollowing {
-                     if UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE){
                         
-                     }else{
-                        self.addPopupView(PopupType.Follow, initialFrame: CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT))
-                        UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-                     }
-                  }
-               }
-            })
-            
-            
          } else{
-            self.openLoginSignupVC()
          }
        
       }else{
@@ -187,7 +164,7 @@ extension ProductDetailsWebViewVC{
    
    
 
-    @IBAction func IBActionClose(sender: AnyObject) {
+    @IBAction func IBActionClose(_ sender: AnyObject) {
       
     }
 }
@@ -197,10 +174,10 @@ extension ProductDetailsWebViewVC{
 //MARK:- Custom Methods
 //
 extension ProductDetailsWebViewVC{
-    private func setupOnLoad(){
+    fileprivate func setupOnLoad(){
        IBwebView.delegate = self
-      IBbtnBack.enabled = false
-      IBbtnForward.enabled = false
+      IBbtnBack.isEnabled = false
+      IBbtnForward.isEnabled = false
       
       IBbtnBack.target = self
       IBbtnBack.action = #selector(ProductDetailsWebViewVC.goBack(_:))
@@ -210,11 +187,11 @@ extension ProductDetailsWebViewVC{
         loadbrandWebsite()
     }
     
-    private func loadbrandWebsite(){
-        IBlblBrandName.text = selectedBrand?.Name.uppercaseString
+    fileprivate func loadbrandWebsite(){
+        IBlblBrandName.text = selectedBrand?.Name.uppercased()
         if let urlString = selectedBrand?.BrandWebsiteURL{
-            if let url = NSURL(string: urlString){
-                IBwebView.loadRequest(NSURLRequest(URL: url))
+            if let url = URL(string: urlString){
+                IBwebView.loadRequest(URLRequest(url: url))
             }else{
                 showErrorAlert()
             }
@@ -223,9 +200,9 @@ extension ProductDetailsWebViewVC{
         }
     }
     
-    private func showErrorAlert(){
+    fileprivate func showErrorAlert(){
         UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

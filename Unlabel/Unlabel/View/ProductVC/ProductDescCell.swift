@@ -12,7 +12,8 @@ class ProductDescCell: UICollectionViewCell {
 
     @IBOutlet weak var IBlblDesc: UILabel!
     @IBOutlet weak var IBlblLocation: UILabel!
-    
+//  @IBOutlet weak var IBSortModeSelection: UIButton!
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

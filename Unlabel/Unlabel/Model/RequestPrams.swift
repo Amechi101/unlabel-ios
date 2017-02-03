@@ -10,11 +10,12 @@ import UIKit
 
 //RequestParams
 class FetchBrandsRP: NSObject {
-    var brandGender:BrandGender?
-    var selectedTab:FilterType = .Men //Not used in request params but in response handling because of async.
-    var filterLocation:String?
-    var filterCategory:String?
-   var filterStyle:String?
-    var nextPageURL:String?
-    var brandId:String?
+  var brandGender:BrandGender?
+  var selectedTab:FilterType = .men //Not used in request params but in response handling because of async.
+  var filterLocation:String?
+  var filterCategory:String?
+  var filterStyle:String?
+  var nextPageURL:String?
+  var brandId:String?
+  var sortMode:String?
 }

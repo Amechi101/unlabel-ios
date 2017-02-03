@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Neutraface2Text-Demi.otf">
+        <array key="Neutraface2Text-Demi.otf">
             <string>Neutraface2Text-Demi</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
@@ -16,11 +20,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkG-Zm-evB">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <color key="backgroundColor" red="0.15686274509803921" green="0.17254901960784313" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <color key="backgroundColor" red="0.15686274509803921" green="0.17254901960784313" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                     <state key="normal" title="VIEW MORE">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="IBActionViewMore:" destination="-1" eventType="touchUpInside" id="a8h-Cd-MMu"/>
@@ -29,9 +33,9 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="tkG-Zm-evB" secondAttribute="trailing" id="MLF-RG-ABp"/>
-                <constraint firstAttribute="bottom" secondItem="tkG-Zm-evB" secondAttribute="bottom" constant="37" id="Y3x-A1-90S"/>
+                <constraint firstAttribute="bottom" secondItem="tkG-Zm-evB" secondAttribute="bottom" constant="17" id="Y3x-A1-90S"/>
                 <constraint firstItem="tkG-Zm-evB" firstAttribute="leading" secondItem="Hoe-z1-htB" secondAttribute="leading" id="jMY-XS-S6J"/>
-                <constraint firstItem="tkG-Zm-evB" firstAttribute="top" secondItem="Hoe-z1-htB" secondAttribute="top" id="kZC-xF-zXS"/>
+                <constraint firstItem="tkG-Zm-evB" firstAttribute="top" secondItem="Hoe-z1-htB" secondAttribute="top" constant="20" id="kZC-xF-zXS"/>
             </constraints>
             <point key="canvasLocation" x="505" y="-65"/>
         </collectionReusableView>

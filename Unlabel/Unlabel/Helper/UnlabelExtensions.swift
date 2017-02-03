@@ -7,59 +7,72 @@
 //
 
 import Foundation
+import Alamofire
 
 extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+  func replace(_ string:String, replacement:String) -> String {
+    return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+  }
+  
+  func removeWhitespace() -> String {
+    return self.replace(" ", replacement: "")
+  }
+  
+  func encodedURL()->String{
+    if let encodedURL = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
+      return encodedURL
+    }else{
+      return ""
     }
-    
-    func removeWhitespace() -> String {
-        return self.replace(" ", replacement: "")
-    }
-    
-    func encodedURL()->String{
-        if let encodedURL = self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()){
-            return encodedURL
-        }else{
-            return ""
-        }
-    }
-
+  }
+  
 }
 
 
+extension String: ParameterEncoding {
+  
+  public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+    var request = try urlRequest.asURLRequest()
+    request.httpBody = data(using: .utf8, allowLossyConversion: false)
+    return request
+  }
+  
+}
+
 extension CALayer {
-    func borderUIColor() -> UIColor? {
-        return borderColor != nil ? UIColor(CGColor: borderColor!) : nil
-    }
-    
-    func setBorderUIColor(color: UIColor) {
-        borderColor = color.CGColor
-    }
+  func borderUIColor() -> UIColor? {
+    return borderColor != nil ? UIColor(cgColor: borderColor!) : nil
+  }
+  
+  func setBorderUIColor(_ color: UIColor) {
+    borderColor = color.cgColor
+  }
 }
 
 extension Array where Element : Equatable {
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
+  mutating func removeObject(_ object : Iterator.Element) {
+    if let index = self.index(of: object) {
+      self.remove(at: index)
     }
+  }
 }
 
 
 extension UITableView {
-   func removeMargines() {
-      self.layoutMargins = UIEdgeInsetsZero
-      self.preservesSuperviewLayoutMargins = false
-      self.separatorInset = UIEdgeInsetsZero
-   }
+  func removeMargines() {
+    self.layoutMargins = UIEdgeInsets.zero
+    self.preservesSuperviewLayoutMargins = false
+    self.separatorInset = UIEdgeInsets.zero
+  }
 }
 
 extension UITableViewCell {
-   func removeMargines() {
-      self.layoutMargins = UIEdgeInsetsZero
-      self.preservesSuperviewLayoutMargins = false
-      self.separatorInset = UIEdgeInsetsZero
-   }
+  func removeMargines() {
+    self.layoutMargins = UIEdgeInsets.zero
+    self.preservesSuperviewLayoutMargins = false
+    self.separatorInset = UIEdgeInsets.zero
+  }
 }
+
+
 

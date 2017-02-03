@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import SDWebImage
 import SwiftyJSON
 import Alamofire
@@ -46,41 +45,41 @@ class FilterListController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
    
-   override func viewWillAppear(animated: Bool) {
+   override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
     
    }
    
   
-   private func setUp() {
+   fileprivate func setUp() {
       self.IBtableFilterList.removeMargines()
-      self.IBtableFilterList.separatorColor =  LIGHT_GRAY_TEXT_COLOR.colorWithAlphaComponent(0.5)
+      self.IBtableFilterList.separatorColor =  LIGHT_GRAY_TEXT_COLOR.withAlphaComponent(0.5)
       IBlblTitleBar.text = categoryStyleType.description
       IBtableFilterList.dataSource = self
       IBtableFilterList.delegate = self
       
-      IBbtnApply.hidden = true
+      IBbtnApply.isHidden = true
       
       IBtableFilterList.allowsMultipleSelection = true
-      IBtableFilterList.registerNib(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
-      IBtableFilterList.registerNib(UINib(nibName: "FilterHeaderCell", bundle: nil), forCellReuseIdentifier: "FilterHeaderCell")
+      IBtableFilterList.register(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
+      IBtableFilterList.register(UINib(nibName: "FilterHeaderCell", bundle: nil), forCellReuseIdentifier: "FilterHeaderCell")
 
    }
    
-   private func registerCell(withID reusableID:String){
-      IBtableFilterList.registerNib(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
+   fileprivate func registerCell(withID reusableID:String){
+      IBtableFilterList.register(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
    }
    
-   private func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
+   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
       UnlabelLoadingView.sharedInstance.start(self.view)
       UnlabelAPIHelper.sharedInstance.getFilterCategories(type, success: { (filters, meta) in
-         let categories:[String] = filters.map { return $0["name"].stringValue }.sort {
+         let categories:[String] = filters.map { return $0["name"].stringValue }.sorted {
             return $0 < $1
          }
          self.arFilterMenu += categories
          self.arOriginalJSON = filters
          
-         for (index, _) in self.arFilterMenu.enumerate() {
+         for (index, _) in self.arFilterMenu.enumerated() {
             self.dictSelection[index] = false
          }
          
@@ -93,7 +92,7 @@ class FilterListController: UIViewController {
                }
             } else {
                 self.IBtableFilterList.reloadData()
-               for (index, menu) in  self.arFilterMenu.enumerate()  {
+               for (index, menu) in  self.arFilterMenu.enumerated()  {
                   for  value in self.arSelectedValues {
                      if value == menu {
                        self.dictSelection[index] = true
@@ -103,9 +102,9 @@ class FilterListController: UIViewController {
             }
          }
      
-         dispatch_async(dispatch_get_main_queue()) {
+         DispatchQueue.main.async {
             UnlabelLoadingView.sharedInstance.stop(self.view)
-            self.IBbtnApply.hidden = false
+            self.IBbtnApply.isHidden = false
             
              self.IBtableFilterList.reloadData()
             
@@ -119,8 +118,8 @@ class FilterListController: UIViewController {
    }
    
 //   MARK:- Action methods 
-   @IBAction func IBActionClose(sender: AnyObject) {
-      self.dismissViewControllerAnimated(true, completion: nil)
+   @IBAction func IBActionClose(_ sender: AnyObject) {
+      self.dismiss(animated: true, completion: nil)
    }
    
    
@@ -132,13 +131,13 @@ class FilterListController: UIViewController {
 
 extension FilterListController: UITableViewDelegate , UITableViewDataSource {
    
-   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
       return arFilterMenu.count
    }
    
-   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-     let cell = tableView.dequeueReusableCellWithIdentifier("FilterListCell") as! FilterListCell
-        let _selection = self.dictSelection[indexPath.row]!.boolValue
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+     let cell = tableView.dequeueReusableCell(withIdentifier: "FilterListCell") as! FilterListCell
+        let _selection = self.dictSelection[indexPath.row]!
       
        cell.configureCell(indexPath, selection: _selection)
        cell.IBlblFilterListName?.text = self.arFilterMenu[indexPath.row]
@@ -147,18 +146,18 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
    }
   
  
-   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
       if indexPath.row == 0 { // All
          self.dictSelection[0] = !self.dictSelection[0]!
-         if self.dictSelection[0]!.boolValue {
+         if self.dictSelection[0]! {
             arSelectedValues.removeAll()
             arSelectedValues = Array(arFilterMenu[1..<arFilterMenu.count])
          } else {
             arSelectedValues.removeAll()
          }
          
-         let totalRows = IBtableFilterList.numberOfRowsInSection(0)
+         let totalRows = IBtableFilterList.numberOfRows(inSection: 0)
          for row in 1..<totalRows {
             self.dictSelection[row] = self.dictSelection[0]!
          }
@@ -186,12 +185,12 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
    
   
    // View section header
-   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
       return 55
    }
    
-   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-      let _headerView = tableView.dequeueReusableCellWithIdentifier("FilterHeaderCell") as! FilterHeaderCell
+   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      let _headerView = tableView.dequeueReusableCell(withIdentifier: "FilterHeaderCell") as! FilterHeaderCell
       _headerView.delegate = self
       _headerView.FilterHeaderTitle.text = categoryStyleType.glossaryTitle
       
@@ -203,8 +202,8 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
 
 extension FilterListController: FilterListDelegates {
    func headerCellClicked() {
-      let glosryCntrl = storyboard?.instantiateViewControllerWithIdentifier("GlossaryController") as! GlossaryController
-      glosryCntrl.arGlossaryValues = arOriginalJSON.sort { $0["name"].stringValue < $1["name"].stringValue } ?? []
+      let glosryCntrl = storyboard?.instantiateViewController(withIdentifier: "GlossaryController") as! GlossaryController
+      glosryCntrl.arGlossaryValues = arOriginalJSON.sorted { $0["name"].stringValue < $1["name"].stringValue } 
       glosryCntrl.categoryStyleType = self.categoryStyleType
       self.navigationController?.pushViewController(glosryCntrl, animated: true)
    }

@@ -24,11 +24,11 @@ class NotFoundView: UIView {
    var showViewLabelBtn:Bool = false {
       didSet {
          if showViewLabelBtn == true {
-            IBviewHorizontal.hidden = false
-             IBbtnViewLabels.hidden = false         
+            IBviewHorizontal.isHidden = true
+             IBbtnViewLabels.isHidden = true
          } else {
-             IBviewHorizontal.hidden = true
-             IBbtnViewLabels.hidden = true
+             IBviewHorizontal.isHidden = true
+             IBbtnViewLabels.isHidden = true
          }
       }
    }
@@ -37,31 +37,17 @@ class NotFoundView: UIView {
    override func awakeFromNib() {
       super.awakeFromNib()
       
-      IBbtnViewLabels.hidden = true
-      IBviewHorizontal.hidden = true
+      IBbtnViewLabels.isHidden = true
+      IBviewHorizontal.isHidden = true
       
-      IBbtnViewLabels.addTarget(self, action: #selector(NotFoundView.IBActionViewLabels(_:)), forControlEvents: .TouchUpInside)
-//      let _textColor =  UIColor(red:151.1/255.0,green:81.0/255.0,blue:86.0/255.0,alpha:255.0/255.0)
-
-      /*let _title = "View Labels".uppercaseString
-      let titleString : NSMutableAttributedString = NSMutableAttributedString(string: _title)
-      
-    
-      titleString.addAttributes([
-         NSFontAttributeName: UIFont(name: "Neutraface2Text-Book", size: 15)!,
-         NSForegroundColorAttributeName: _textColor,
-         NSUnderlineStyleAttributeName:  NSUnderlineStyle.StyleSingle.rawValue
-         ], range: NSMakeRange(0, _title.utf8.count))
-      */
-      
-//      IBbtnViewLabels.setTitleColor(_textColor, forState: .Normal)
+      IBbtnViewLabels.addTarget(self, action: #selector(NotFoundView.IBActionViewLabels(_:)), for: .touchUpInside)
       IBbtnViewLabels.titleLabel?.font = UIFont(name: "Neutraface2Text-Book", size: 15)!
-      IBbtnViewLabels.setTitle("View Labels".uppercaseString, forState: .Normal)
+      IBbtnViewLabels.setTitle("View Labels".uppercased(), for: UIControlState())
       
    }
    
     
-    func IBActionViewLabels(sender: AnyObject) {
+    func IBActionViewLabels(_ sender: AnyObject) {
         delegate?.didSelectViewLabels()
     }
    

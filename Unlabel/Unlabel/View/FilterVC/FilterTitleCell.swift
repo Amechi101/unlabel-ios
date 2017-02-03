@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FilterTitleCellDelegate {
-    func didChangeTab(index:Int)
+    func didChangeTab(_ index:Int)
 }
 class FilterTitleCell: UITableViewCell {
 
@@ -24,12 +24,12 @@ class FilterTitleCell: UITableViewCell {
         // Initialization code
     }
 
-    @IBAction func IBActionTabClicked(sender: UIButton) {
+    @IBAction func IBActionTabClicked(_ sender: UIButton) {
         selectedTab = sender.tag
         delegate?.didChangeTab(sender.tag)
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

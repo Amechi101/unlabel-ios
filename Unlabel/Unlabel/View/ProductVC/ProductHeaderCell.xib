@@ -1,37 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Neutraface2Text-Book.otf">
+        <array key="Neutraface2Text-Book.otf">
             <string>Neutraface2Text-Book</string>
-        </mutableArray>
-        <mutableArray key="Neutraface2Text-Demi.otf">
-            <string>Neutraface2Text-Demi</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductHeaderCell" id="gTV-IL-0wX" customClass="ProductHeaderCell" customModule="Unlabel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="306"/>
+            <rect key="frame" x="0.0" y="0.0" width="312" height="314"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="306"/>
+                <rect key="frame" x="0.0" y="0.0" width="312" height="314"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oK7-AS-j1g" userLabel="View - Container">
-                        <rect key="frame" x="0.0" y="0.0" width="354" height="306"/>
+                        <rect key="frame" x="0.0" y="0.0" width="312" height="314"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7r-Hc-yzN">
-                                <rect key="frame" x="278" y="223" width="76" height="30"/>
+                                <rect key="frame" x="236" y="223" width="76" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="Dhq-Cy-e7P"/>
                                     <constraint firstAttribute="height" constant="30" id="U2d-O0-EBp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                                 <state key="normal" title="Follow">
-                                    <color key="titleColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -42,51 +45,56 @@
                                     <action selector="IBActionFollow:" destination="-1" eventType="touchUpInside" id="h17-Bc-Xkq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C4-V5-R2p">
-                                <rect key="frame" x="0.0" y="223" width="278" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="HPJ-2a-J4e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="12"/>
-                                <state key="normal" title="SHARE">
-                                    <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="IBActionShare:" destination="-1" eventType="touchUpInside" id="aNj-Y8-mCQ"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcY-hu-AgE">
-                                <rect key="frame" x="0.0" y="247" width="24" height="1"/>
-                                <color key="backgroundColor" red="0.59999999999999998" green="0.61176470588235299" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="Fvt-5W-N96"/>
-                                    <constraint firstAttribute="height" constant="1" id="bky-9R-CKl"/>
-                                </constraints>
-                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-c8-M68">
-                                <rect key="frame" x="0.0" y="0.0" width="354" height="211"/>
+                                <rect key="frame" x="0.0" y="0.0" width="312" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="211" id="n4f-A5-XvX"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzb-hZ-6qd">
+                                <rect key="frame" x="8" y="219" width="228" height="58"/>
+                                <string key="text">Description about yourself, who you are and what impact did you do to the environment. did you do to the environment. Description about yourself, who you are and what impact did you do to the environment. did you do to the environment. who you are and what impact did you do to the environment. did you do to the environment. who you are and what impact did you do to the environment. did you do to the environment. </string>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4I-bl-da2">
+                                <rect key="frame" x="8" y="285" width="150" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5Vd-yi-AoZ"/>
+                                    <constraint firstAttribute="height" constant="12" id="Rvo-E0-gRJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
+                                <color key="textColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jz7-vf-L4U">
+                                <rect key="frame" x="8" y="305" width="49" height="1"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="DqD-Om-IMu"/>
+                                    <constraint firstAttribute="width" constant="49" id="VnD-ec-CZb"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bcY-hu-AgE" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="4Y4-D5-C0x"/>
+                            <constraint firstItem="Lzb-hZ-6qd" firstAttribute="top" secondItem="LbP-c8-M68" secondAttribute="bottom" constant="8" id="4xj-QI-P7K"/>
                             <constraint firstItem="B7r-Hc-yzN" firstAttribute="top" secondItem="LbP-c8-M68" secondAttribute="bottom" constant="12" id="5ND-It-Crl"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bcY-hu-AgE" secondAttribute="bottom" constant="25" id="EBK-q1-5uT"/>
+                            <constraint firstItem="jz7-vf-L4U" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" constant="8" id="6hi-qX-KxI"/>
+                            <constraint firstItem="R4I-bl-da2" firstAttribute="top" secondItem="Lzb-hZ-6qd" secondAttribute="bottom" constant="8" id="DZ4-Nq-IsV"/>
+                            <constraint firstItem="R4I-bl-da2" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" constant="8" id="GMa-GB-RMU"/>
+                            <constraint firstAttribute="bottom" secondItem="jz7-vf-L4U" secondAttribute="bottom" constant="8" id="N2o-Iu-Rug"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="Qfj-Gu-zMz"/>
-                            <constraint firstItem="3C4-V5-R2p" firstAttribute="top" secondItem="LbP-c8-M68" secondAttribute="bottom" constant="12" id="RLO-od-OpG"/>
-                            <constraint firstItem="bcY-hu-AgE" firstAttribute="top" secondItem="3C4-V5-R2p" secondAttribute="bottom" constant="3" id="SFD-CK-0Sb"/>
                             <constraint firstAttribute="trailing" secondItem="LbP-c8-M68" secondAttribute="trailing" id="SiH-Wo-arB"/>
+                            <constraint firstItem="Lzb-hZ-6qd" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" constant="8" id="UKI-H7-cSz"/>
+                            <constraint firstItem="jz7-vf-L4U" firstAttribute="top" secondItem="R4I-bl-da2" secondAttribute="bottom" constant="8" id="c1J-X1-zYf"/>
+                            <constraint firstItem="B7r-Hc-yzN" firstAttribute="leading" secondItem="Lzb-hZ-6qd" secondAttribute="trailing" id="d5z-4k-nUw"/>
                             <constraint firstAttribute="trailing" secondItem="B7r-Hc-yzN" secondAttribute="trailing" id="ewc-AA-Zxw"/>
-                            <constraint firstItem="3C4-V5-R2p" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="gen-O7-9en"/>
-                            <constraint firstItem="B7r-Hc-yzN" firstAttribute="leading" secondItem="3C4-V5-R2p" secondAttribute="trailing" id="tNb-wk-PH6"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="top" secondItem="oK7-AS-j1g" secondAttribute="top" id="xBg-iE-oh4"/>
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="oK7-AS-j1g" secondAttribute="bottom" id="6eO-Gf-5dP"/>
@@ -94,13 +102,14 @@
                 <constraint firstItem="oK7-AS-j1g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ll3-XF-7m2"/>
                 <constraint firstItem="oK7-AS-j1g" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rFN-4W-xlz"/>
             </constraints>
-            <size key="customSize" width="354" height="307"/>
+            <size key="customSize" width="285" height="315"/>
             <connections>
+                <outlet property="IBBrandDescription" destination="Lzb-hZ-6qd" id="aWR-DJ-7hf"/>
+                <outlet property="IBBrandLocation" destination="R4I-bl-da2" id="Hok-7K-X7L"/>
                 <outlet property="IBbtnFollow" destination="B7r-Hc-yzN" id="UhI-bX-6tg"/>
-                <outlet property="IBbtnShare" destination="3C4-V5-R2p" id="1V0-xC-1g2"/>
                 <outlet property="IBimgHeaderImage" destination="LbP-c8-M68" id="LZA-Y6-VnD"/>
             </connections>
-            <point key="canvasLocation" x="246" y="180"/>
+            <point key="canvasLocation" x="211" y="184"/>
         </collectionViewCell>
     </objects>
 </document>

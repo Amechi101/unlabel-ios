@@ -25,17 +25,17 @@ class GlossaryController: UIViewController {
       self.automaticallyAdjustsScrollViewInsets = false
 
       var _title:String?
-      if categoryStyleType == CategoryStyleEnum.Category {
-         _title = categoryStyleType.description + " glossary".uppercaseString
+      if categoryStyleType == CategoryStyleEnum.category {
+         _title = categoryStyleType.description + " glossary".uppercased()
       } else {
-         _title = categoryStyleType.description + " glossary".uppercaseString
+         _title = categoryStyleType.description + " glossary".uppercased()
       }
       
       IBlblNavBarTitle.text = _title
-      IBlblNavBarTitle.textAlignment = .Center
+      IBlblNavBarTitle.textAlignment = .center
       IBlblNavBarTitle.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
       
-      IBtableGlossary.registerNib(UINib(nibName: "GlossaryCell", bundle: nil), forCellReuseIdentifier: "GlossaryCell")
+      IBtableGlossary.register(UINib(nibName: "GlossaryCell", bundle: nil), forCellReuseIdentifier: "GlossaryCell")
       
        self.IBtableGlossary.reloadData()
     }
@@ -45,17 +45,17 @@ class GlossaryController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
    
-   private func setUpTableView() {
+   fileprivate func setUpTableView() {
       IBtableGlossary.dataSource = self
       IBtableGlossary.delegate = self
       IBtableGlossary.rowHeight = UITableViewAutomaticDimension
       IBtableGlossary.estimatedRowHeight = 100
-      IBtableGlossary.separatorStyle = .None
+      IBtableGlossary.separatorStyle = .none
    }
    
    
-   @IBAction func IBActionClose(sender: AnyObject) {
-      self.navigationController?.popViewControllerAnimated(true)
+   @IBAction func IBActionClose(_ sender: AnyObject) {
+      _ = self.navigationController?.popViewController(animated: true)
    }
 
 }
@@ -65,19 +65,19 @@ class GlossaryController: UIViewController {
 
 extension GlossaryController: UITableViewDelegate , UITableViewDataSource {
    
-   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       return UITableViewAutomaticDimension
    }
    
-   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-      let cell = tableView.dequeueReusableCellWithIdentifier("GlossaryCell", forIndexPath: indexPath) as! GlossaryCell
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+      let cell = tableView.dequeueReusableCell(withIdentifier: "GlossaryCell", for: indexPath) as! GlossaryCell
 
        cell.configureCell( arGlossaryValues[indexPath.row] )
       
       return cell
    }
    
-   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
       return arGlossaryValues.count
    }
 
