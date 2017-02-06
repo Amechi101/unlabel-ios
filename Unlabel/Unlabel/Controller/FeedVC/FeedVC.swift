@@ -101,6 +101,7 @@
   
   override func viewWillAppear(_ animated: Bool) {
     UnlabelHelper.setAppDelegateDelegates(self)
+    wsCallGetLabels()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -108,6 +109,7 @@
     if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
       wsCallGetLabelsResetOffset(false)
     }
+    IBcollectionViewFeed.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -343,7 +345,7 @@
   func addNotFoundView(){
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
-    notFoundView.IBlblMessage.text = "No Brands available."
+    notFoundView.IBlblMessage.text = "No brands available."
     IBcollectionViewFeed.backgroundView = notFoundView
     IBcollectionViewFeed.backgroundView?.isHidden = true
   }
@@ -495,7 +497,7 @@
   func popupDidClickDone(_ sortMode: String){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     print(sortMode)
-    headerView?.IBSortButton.setTitle("Sort by " + sortMode, for: .normal)
+    headerView?.IBSortButton.setTitle("Sort by: " + sortMode, for: .normal)
     switch sortMode {
     case "A to Z":
       self.sortMode = "AZ"
@@ -553,7 +555,7 @@
     if mainVCType == .feed{
       addNotFoundView()
       addPullToRefresh()
-      wsCallGetLabels()
+    //  wsCallGetLabels()
       IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
     }else if mainVCType == .filter{
       addNotFoundView()

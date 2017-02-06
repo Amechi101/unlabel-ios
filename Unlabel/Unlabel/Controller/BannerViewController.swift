@@ -27,6 +27,8 @@ class BannerViewController: UIViewController {
     super.viewDidLoad()
    // setUpCollectionView()
   //  setUpPageControl()
+    
+    bannerDescription.setTextWithLineSpacing(text: "Rent and tryout products from the best independent brands, create content and earn commission from your created content. ", lineSpace: 6.0)
   }
 
   override func didReceiveMemoryWarning() {

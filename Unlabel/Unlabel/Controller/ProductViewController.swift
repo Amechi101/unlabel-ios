@@ -42,7 +42,7 @@ class ProductViewController: UIViewController {
     productPageControl.currentPage = 0
     productID = selectedProduct?.ProductID
     IBProductTitle.text = selectedProduct?.ProductName
-    
+    IBProductPrice.text = "$ " + (selectedProduct?.ProductPrice)!
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -66,6 +66,9 @@ class ProductViewController: UIViewController {
       if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
         self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
         UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+      }
+      else{
+        _ = self.navigationController?.popViewController(animated: true)
       }
       
     }, failed: { (error) in
@@ -208,6 +211,7 @@ extension ProductViewController:LikeFollowPopupviewDelegate{
   
   func popupDidClickClosePopup(){
     debugPrint("close popup")
+    _ = self.navigationController?.popViewController(animated: true)
   }
 }
 

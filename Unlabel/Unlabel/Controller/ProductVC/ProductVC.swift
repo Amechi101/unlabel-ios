@@ -31,7 +31,8 @@ class ProductVC: UIViewController {
   var selectedProduct: Product!
   var isProfileCompleted: Bool = false
   var sortMode: String = "NEW"
-  
+  var sortModeValue: String = "Newest to Oldest"
+  var nextPageURL:String?
   
   //MARK:- VC Lifecycle
   
@@ -42,6 +43,7 @@ class ProductVC: UIViewController {
     }
     
     setupOnLoad()
+    nextPageURL = nil
     getProductsOfBrand()
   }
   
@@ -50,6 +52,7 @@ class ProductVC: UIViewController {
     if let _ = self.navigationController{
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
+    IBcollectionViewProduct.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -86,7 +89,7 @@ extension ProductVC:UICollectionViewDelegate{
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     //  if let _ = lastEvaluatedKey{
-    if arrProducts.count == 0{
+    if nextPageURL?.characters.count == 0{
       return CGSize.zero
     }
     else{
@@ -144,7 +147,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductHeaderCell(forIndexPath indexPath:IndexPath)->ProductHeaderCell{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
-    productHeaderCell.IBBrandLocation.text = selectedBrand.location
+    productHeaderCell.IBBrandLocation.text = selectedBrand.city + "," + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
       productHeaderCell.IBimgHeaderImage.sd_setImage(with: url, completed:
@@ -170,6 +173,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductSortCell(forIndexPath indexPath:IndexPath)->ProductSortCell{
     let productSortCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductSortCell, for: indexPath) as! ProductSortCell
     productSortCell.IBSortModeSelection.addTarget(self, action: #selector(showSortPopup), for: .touchUpInside)
+    productSortCell.IBSortModeSelection.setTitle("Sort By: "+sortModeValue, for: .normal)
     return productSortCell
   }
   
@@ -180,7 +184,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductDescCell(forIndexPath indexPath:IndexPath)->ProductDescCell{
     let productDescCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductDescCell, for: indexPath) as! ProductDescCell
     if arrProducts.count == 0{
-      productDescCell.IBlblDesc.text = selectedBrand.Name+" has no more products to rent from at this moment"
+      productDescCell.IBlblDesc.text = selectedBrand.Name+" has no more products to rent from at this moment."
       //productDescCell.IBSortModeSelection.isHidden = true
     }
     else{
@@ -193,8 +197,10 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
     productCell.IBlblProductName.text = arrProducts[indexPath.row - 3].ProductName
-    productCell.IBlblProductPrice.text = "$110.0"
+    productCell.IBlblProductPrice.text = "$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
+    
+    
     if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
       
       productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
@@ -350,6 +356,7 @@ extension ProductVC{
   //For ProductFooterView
   @IBAction func IBActionViewMore(_ sender: AnyObject) {
     //        awsCallFetchProducts()
+    getProductsOfBrand()
     debugPrint("IBActionViewMore")
   }
   
@@ -379,7 +386,6 @@ extension ProductVC{
   }
   
   @IBAction func IBActionViewProducts(_ sender: AnyObject) {
-   // self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
 }
@@ -405,13 +411,15 @@ extension ProductVC: SortModePopupViewDelegate{
   }
   func popupDidClickDone(_ sortMode: String){
     print(sortMode)
-
+    sortModeValue = sortMode
+    arrProducts = []
+    IBcollectionViewProduct.reloadData()
     switch sortMode {
-    case "A to Z":
-      self.sortMode = "AZ"
+    case "High to Low":
+      self.sortMode = "HL"
       break
-    case "Z to A":
-      self.sortMode = "ZA"
+    case "Low to High":
+      self.sortMode = "LH"
       break
     case "Oldest to Newest":
       self.sortMode = "OLD"
@@ -423,6 +431,7 @@ extension ProductVC: SortModePopupViewDelegate{
       self.sortMode = ""
       break
     }
+    getProductsOfBrand()
   }
 }
 
@@ -503,16 +512,29 @@ extension ProductVC{
   
   
   func getProductsOfBrand(){
+    var nextPage:String?
+    
+    if let next:String = nextPage, next.characters.count == 0 {
+      self.arrProducts = []
+      return
+    }else{
+      nextPage = nextPageURL
+    }
+    
+    
+    
+    
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.brandId = selectedBrand.ID
-    fetchProductRequestParams.sortMode = "HL"
+    fetchProductRequestParams.sortMode = sortMode
+    fetchProductRequestParams.nextPageURL = nextPage
     UnlabelAPIHelper.sharedInstance.getProductOfBrand(fetchProductRequestParams, success: { (arrBrands:[Product], meta: JSON) in
       
-      self.arrProducts = arrBrands
-      print("Product    =======\(self.arrProducts)")
+      self.arrProducts.append(contentsOf: arrBrands)
+      self.nextPageURL = meta["next"].stringValue
       if self.arrProducts.count > 0{
-        let profileCompletion = meta["profile"]
-        if profileCompletion == "YES"{
+        let profileCompletion = meta["profile"].boolValue
+        if profileCompletion{
           self.isProfileCompleted = true
         }
         else{

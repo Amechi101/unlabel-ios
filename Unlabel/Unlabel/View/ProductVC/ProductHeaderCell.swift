@@ -20,11 +20,4 @@ class ProductHeaderCell: UICollectionViewCell {
     super.awakeFromNib()
     IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.cgColor
   }
-//  func configureWithIndexPath(_ indexPath: IndexPath)
-//  {
-//    IBBrandDescription.preferredMaxLayoutWidth = 250
-//  }
-  
-
-  
 }

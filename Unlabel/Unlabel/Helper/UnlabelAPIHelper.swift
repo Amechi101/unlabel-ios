@@ -107,13 +107,8 @@ class UnlabelAPIHelper{
             brand.ID = "\(id)"
           }
         
-        if let followed = thisBrand["followed"] as? NSNumber {
-          if followed == 1{
-            brand.isFollowing = true
-          }
-          else{
-            brand.isFollowing = false
-          }
+        if let followed = thisBrand["followed"] as? Bool {
+            brand.isFollowing = followed
         }
         
           if let id = thisBrand[PRM_ID] as? NSNumber {
@@ -206,8 +201,17 @@ class UnlabelAPIHelper{
         if let productName:String = thisProduct["title"] as? String{
           product.ProductName = productName
         }
+        if let productSKU:String = thisProduct["sku"] as? String{
+          product.ProductItemSKU = productSKU
+        }
+        if let productPrice:NSNumber = thisProduct["retail_price"] as? NSNumber{
+          product.ProductPrice = "\(productPrice)"
+        }
         if let productDescription:String = thisProduct["description"] as? String{
           product.ProductDescription = productDescription
+        }
+        if let productInformation:String = thisProduct["information"] as? String{
+          product.ProductMaterialCareInfo = productInformation
         }
         if let id = thisProduct[PRM_ID] as? NSNumber {
           product.ProductID = "\(id)"
@@ -455,6 +459,7 @@ class UnlabelAPIHelper{
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post,  parameters: [v4email:loginParams.email], encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
+          debugPrint(response)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
@@ -552,7 +557,6 @@ class UnlabelAPIHelper{
     let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
     print(params)
     if let requestURLObj = requestURL{
-      
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
         debugPrint(response)
         switch response.result {
@@ -622,12 +626,12 @@ class UnlabelAPIHelper{
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-        debugPrint(response)
+      //  debugPrint(response)
         switch response.result {
           
         case .success(let data):
           let json = JSON(data)
-          
+          debugPrint(json)
 
           if let arrProducts = self.getProduct(fromJSON: json){
             success(arrProducts, json)
@@ -663,7 +667,7 @@ class UnlabelAPIHelper{
     print(requestURL!)
     if let requestURLObj = requestURL{
       
-      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+      Alamofire.request(requestURLObj, method: .post, parameters: nil).responseJSON { response in
         switch response.result {
           
         case .success(let data):

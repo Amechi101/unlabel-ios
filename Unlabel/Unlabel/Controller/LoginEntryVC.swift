@@ -253,7 +253,7 @@ extension LoginEntryVC{
         return false
       }
     }else{
-      UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please Provide Your Email To Proceed", onOk: { () -> () in })
+      UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please provide your email to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updateEmailFields()
       return false
@@ -277,7 +277,7 @@ extension LoginEntryVC{
       
     }
     else{
-      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please Provide Password To Proceed", onOk: { () -> () in })
+      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updatePasswordFields()
       return false

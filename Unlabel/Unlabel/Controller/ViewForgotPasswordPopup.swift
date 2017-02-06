@@ -43,9 +43,11 @@ class ViewForgotPasswordPopup: UIView,UITextFieldDelegate{
   //MARK:- View Lifecycle
   
   override func awakeFromNib() {
+    
     if popupAction == .recover || popupAction == .fail{
       emailTextfield.becomeFirstResponder()
     }
+    
     successStatusLabel.isHidden = true
     failStatusLabel.isHidden = true
     failStatusLabel.text = "We couldn’t find your email. Please try again!"
@@ -110,7 +112,7 @@ class ViewForgotPasswordPopup: UIView,UITextFieldDelegate{
   }
   func updateView(){
     if popupAction == .recover{
-      emailContainerView.backgroundColor = DARK_GRAY_COLOR
+      emailContainerView.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
       emailTextfield.textColor = DARK_GRAY_COLOR
       successStatusLabel.isHidden = true
       failStatusLabel.isHidden = true
@@ -138,6 +140,7 @@ class ViewForgotPasswordPopup: UIView,UITextFieldDelegate{
     }
   }
   fileprivate func isValidEmail()->Bool{
+    
     if let email = emailTextfield.text, email.characters.count > 0{
       if UnlabelHelper.isValidEmail(emailTextfield.text!){
         emailContainerView.backgroundColor = DARK_GRAY_COLOR
