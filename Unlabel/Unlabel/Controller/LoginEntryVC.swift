@@ -163,7 +163,7 @@ extension LoginEntryVC{
           self.loginScenario = LoginScenario.wrong
           self.updateEmailFields()
           self.updatePasswordFields()
-          UnlabelHelper.showAlert(onVC: self, title: "Email/Password Error", message: "Wrong email and password combination.", onOk: { () -> () in
+          UnlabelHelper.showAlert(onVC: self, title: "Email/Password Error", message: "Wrong email and password combination", onOk: { () -> () in
             self.loginScenario = LoginScenario.ok
             self.updateEmailFields()
             self.updatePasswordFields()
@@ -236,7 +236,7 @@ extension LoginEntryVC{
     if let email = IBTextfieldEmail.text, email.characters.count > 0{
       if UnlabelHelper.isValidEmail(IBTextfieldEmail.text!){
         if let email = IBTextfieldEmail.text, email.characters.count > 30{
-          UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Email must be less than 30 characters.", onOk: { () -> () in })
+          UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Email must be less than 30 characters", onOk: { () -> () in })
           loginScenario = LoginScenario.wrong
           updateEmailFields()
           return false
@@ -247,13 +247,13 @@ extension LoginEntryVC{
           return true
         }
       }else{
-        UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "This email address doesn’t look quite right.", onOk: { () -> () in })
+        UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "This email address doesn’t look quite right", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updateEmailFields()
         return false
       }
     }else{
-      UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please Provide Your Email To Proceed.", onOk: { () -> () in })
+      UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please Provide Your Email To Proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updateEmailFields()
       return false
@@ -264,7 +264,7 @@ extension LoginEntryVC{
     
     if let iCharacters = IBTextfieldPassword.text?.characters.count, iCharacters > 0{
       if let pwCharacters = IBTextfieldPassword.text?.characters.count, pwCharacters < 8{
-        UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters.", onOk: { () -> () in })
+        UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updatePasswordFields()
         return false
@@ -277,7 +277,7 @@ extension LoginEntryVC{
       
     }
     else{
-      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please Provide Password To Proceed.", onOk: { () -> () in })
+      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please Provide Password To Proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updatePasswordFields()
       return false

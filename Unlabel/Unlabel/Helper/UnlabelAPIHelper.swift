@@ -572,6 +572,41 @@ class UnlabelAPIHelper{
       }
     }
   }
+    
+    func getFollowedBrands(_ fetchBrandsRP:FetchBrandsRP, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+        let requestURL:String?
+        
+        if let nextPage = fetchBrandsRP.nextPageURL, nextPage.characters.count > 0 {
+            requestURL = nextPage
+        }
+        else {
+            requestURL = v4BaseUrl + "api_v2/influencer_followed_partners/"
+        }
+        print(requestURL!)
+        let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
+        print(params)
+        if let requestURLObj = requestURL{
+            
+            Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+                debugPrint(response)
+                switch response.result {
+                    
+                case .success(let data):
+                    let json = JSON(data)
+                    // debugPrint(json)
+                    if let arrBrands = self.getBrandModels(fromJSON: json){
+                        success(arrBrands, json)
+                        //  debugPrint(arrBrands)
+                    }else{
+                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+                    }
+                case .failure(let error):
+                    failed(error as NSError)
+                }
+            }
+        }
+    }
+  
   func getProductOfBrand(_ fetchProductParams:FetchProductParams, success:@escaping ([Product], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     

@@ -122,8 +122,11 @@ class ViewForgotPasswordPopup: UIView,UITextFieldDelegate{
       emailContainerView.isHidden = true
       actionButton.setTitle("OK", for: .normal)
       actionButton.isHidden = false
+      actionButton.backgroundColor = DARK_GRAY_COLOR
       popupTitle.isHidden = true
+      actionButton.isEnabled = true
     }else if popupAction == .fail{
+      actionButton.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
       emailContainerView.backgroundColor = DARK_RED_COLOR
       emailTextfield.textColor = DARK_RED_COLOR
       successStatusLabel.isHidden = true
