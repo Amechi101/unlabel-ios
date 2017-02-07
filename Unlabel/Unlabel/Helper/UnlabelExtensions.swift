@@ -57,6 +57,17 @@ extension Array where Element : Equatable {
   }
 }
 
+extension UILabel {
+  func setTextWithLineSpacing(text: String, lineSpace: CGFloat ) {
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = lineSpace
+    paragraphStyle.alignment = .center
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+    attributedString.addAttribute(NSFontAttributeName, value: UnlabelHelper.getNeutraface2Text(style: "Book",size: 16.0), range: NSMakeRange(0, attributedString.length))
+    self.attributedText = attributedString
+  }
+}
 
 extension UITableView {
   func removeMargines() {

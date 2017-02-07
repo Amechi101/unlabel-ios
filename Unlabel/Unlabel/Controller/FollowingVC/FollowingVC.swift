@@ -36,7 +36,13 @@ class FollowingVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
     setupOnLoad()
+   // IBcollectionViewFollowing.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -48,13 +54,14 @@ class FollowingVC: UIViewController {
     if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
       wsCallGetLabelsResetOffset(false)
     }
+    IBcollectionViewFollowing.reloadData()
   }
   
   fileprivate func addNotFoundView(){
     IBcollectionViewFollowing.backgroundView = nil
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
-    notFoundView.IBlblMessage.text = "Not following any Labels."
+    notFoundView.IBlblMessage.text = "Not following any brands."
     notFoundView.showViewLabelBtn = true
     IBcollectionViewFollowing.backgroundView = notFoundView
     IBcollectionViewFollowing.backgroundView?.isHidden = true
@@ -253,6 +260,7 @@ extension FollowingVC{
     //Internet available
     if ReachabilitySwift.isConnectedToNetwork(){
       if UnlabelHelper.isUserLoggedIn(){
+        UnlabelLoadingView.sharedInstance.start(APP_DELEGATE.window!)
         if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
           
           //If already following
@@ -269,8 +277,10 @@ extension FollowingVC{
             meta: JSON) in
             
             debugPrint(meta)
+            self.wsCallGetLabels()
             
           }, failed: { (error) in
+            UnlabelLoadingView.sharedInstance.stop(self.view)
           })
         }
       }else{
@@ -397,7 +407,7 @@ extension FollowingVC{
 //      }
       
       
-      UnlabelAPIHelper.sharedInstance.getAllBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+      UnlabelAPIHelper.sharedInstance.getFollowedBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.isLoading = false
         
         UnlabelLoadingView.sharedInstance.stop(self.view)

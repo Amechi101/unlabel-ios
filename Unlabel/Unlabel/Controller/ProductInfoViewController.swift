@@ -28,6 +28,7 @@ class ProductInfoViewController: UIViewController {
     IBProductDescription.text = selectedProduct?.ProductDescription
     IBMaterialCareInfo.text = selectedProduct?.ProductMaterialCareInfo
     IBItemSKU.text = selectedProduct?.ProductItemSKU
+    IBMaterialCareInfo.text = selectedProduct?.ProductMaterialCareInfo
   }
   
   override func didReceiveMemoryWarning() {
