@@ -361,10 +361,6 @@ extension ProductVC{
   }
   
   @IBAction func IBActionFollow(_ sender: UIButton) {
-    //  return;
-    
-    
-    debugPrint("Follow clicked")
     //Internet available
     if ReachabilitySwift.isConnectedToNetwork(){
       selectedBrand.isFollowing = !selectedBrand.isFollowing

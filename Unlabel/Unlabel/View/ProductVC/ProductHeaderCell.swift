@@ -20,4 +20,8 @@ class ProductHeaderCell: UICollectionViewCell {
     super.awakeFromNib()
     IBbtnFollow.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.cgColor
   }
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    IBBrandDescription.sizeToFit()
+  }
 }
