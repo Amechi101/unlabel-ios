@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1gV-V9-6LN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1gV-V9-6LN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -435,7 +435,7 @@
                                 </connections>
                             </collectionView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4mG-7B-1qp">
-                                <rect key="frame" x="177.5" y="530" width="20" height="20"/>
+                                <rect key="frame" x="178" y="530" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -504,7 +504,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehE-Zl-YHa">
-                                            <rect key="frame" x="22" y="0.0" width="73.5" height="53"/>
+                                            <rect key="frame" x="22" y="0.0" width="74" height="53"/>
                                             <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                                             <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -599,13 +599,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkl-6N-c4C">
-                                <rect key="frame" x="20" y="433.5" width="335" height="0.0"/>
+                                <rect key="frame" x="20" y="434" width="335" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjK-N4-FLw">
-                                <rect key="frame" x="141.5" y="515.5" width="92" height="27"/>
+                                <rect key="frame" x="142" y="516" width="92" height="27"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                                 <state key="normal" title="VIEW LABELS">
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -615,14 +615,14 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGF-lx-qxE">
-                                <rect key="frame" x="141.5" y="539.5" width="92" height="2"/>
+                                <rect key="frame" x="142" y="540" width="92" height="2"/>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Cav-f1-eC8"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AOo-CM-C5q">
-                                <rect key="frame" x="49" y="389.5" width="277" height="16"/>
+                                <rect key="frame" x="49" y="390" width="277" height="16"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -768,7 +768,7 @@
                         <viewControllerLayoutGuide type="top" id="EJv-Um-4er"/>
                         <viewControllerLayoutGuide type="bottom" id="TXc-fT-su4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="xvf-b3-xD9">
+                    <view key="view" contentMode="scaleToFill" id="xvf-b3-xD9">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -874,7 +874,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-W2-PJU">
-                                                    <rect key="frame" x="22" y="0.0" width="71.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="72" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -970,7 +970,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
-                                                    <rect key="frame" x="22" y="0.0" width="155.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="156" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1070,7 +1070,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
-                                                    <rect key="frame" x="22" y="0.0" width="110.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="111" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1326,7 +1326,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
-                                                    <rect key="frame" x="22" y="0.0" width="116.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="117" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1394,7 +1394,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
-                                                    <rect key="frame" x="22" y="0.0" width="132.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="133" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1960,7 +1960,7 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Policy purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypO-qr-ylh">
-                                                <rect key="frame" x="22" y="0.0" width="99.5" height="16"/>
+                                                <rect key="frame" x="22" y="0.0" width="100" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="xZe-Q6-IvA"/>
                                                 </constraints>
@@ -2369,7 +2369,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                         <viewControllerLayoutGuide type="top" id="L8A-Ka-XJT"/>
                         <viewControllerLayoutGuide type="bottom" id="Ijc-fY-cVA"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="zDk-k2-MLe">
+                    <view key="view" contentMode="scaleToFill" id="zDk-k2-MLe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -3711,7 +3711,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAM-E7-gBC">
-                                <rect key="frame" x="119.5" y="448" width="136" height="24"/>
+                                <rect key="frame" x="120" y="448" width="136" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N6-XUv">
                                         <rect key="frame" x="0.0" y="0.0" width="136" height="24"/>
@@ -3751,7 +3751,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fta-9K-3wG">
-                                <rect key="frame" x="56.5" y="606" width="262" height="41"/>
+                                <rect key="frame" x="57" y="606" width="262" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iN-OH-VxM">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="41"/>
@@ -3857,7 +3857,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68N-gE-dP0">
-                                                <rect key="frame" x="23" y="241" width="329" height="43.5"/>
+                                                <rect key="frame" x="23" y="241" width="329" height="44"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="68N-gE-dP0" secondAttribute="height" multiplier="333:44" id="Sg5-FN-jjd"/>
@@ -3974,10 +3974,10 @@ See more info </string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-ln-vQr">
-                                                <rect key="frame" x="120" y="324.5" width="135" height="15"/>
+                                                <rect key="frame" x="120" y="325" width="135" height="15"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qd-n2q">
-                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Forgot Your Password?">
                                                                 <attributes>
@@ -4031,7 +4031,7 @@ See more info </string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f2-fe-ULR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <state key="normal">
                                                             <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4417,7 +4417,7 @@ See more info </string>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="O2s-F5-Ypr" customClass="NavController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="Fok-lI-GRK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eUH-fJ-iY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eUH-fJ-iY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4450,7 +4450,7 @@ See more info </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="163.5" y="25" width="49.5" height="30"/>
+                                <rect key="frame" x="163" y="25" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                 </constraints>
@@ -4459,7 +4459,7 @@ See more info </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-BD-OPU" userLabel="clear button">
-                                <rect key="frame" x="299" y="23.5" width="60" height="39"/>
+                                <rect key="frame" x="299" y="23" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="l3z-BD-OPU" secondAttribute="height" multiplier="23:15" id="cRT-0v-3Go"/>
                                     <constraint firstAttribute="width" constant="60" id="wf6-zv-WKT"/>
@@ -4644,7 +4644,7 @@ See more info </string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filter title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqf-gS-BYp">
-                                        <rect key="frame" x="156.5" y="32" width="63.5" height="16"/>
+                                        <rect key="frame" x="156" y="32" width="64" height="16"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                         <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4761,7 +4761,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JXj-J6-7AS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Saved Items" image="Saved_items" id="aM7-Lh-gfr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6bF-EJ-6yJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6bF-EJ-6yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4799,7 +4799,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pvh-M2-bLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="8xt-Jh-E7L"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CQ8-2p-vyG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CQ8-2p-vyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4931,7 +4931,7 @@ See more info </string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Wb-KD-qLt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j2u-BI-6Cx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j2u-BI-6Cx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4950,7 +4950,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J2w-lW-kLb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="Search" id="5ln-hX-wwJ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7JU-KP-79f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7JU-KP-79f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4969,7 +4969,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZ7-LJ-ahy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Content" image="Manage" id="uhd-gO-AoR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7iI-us-SQa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7iI-us-SQa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
