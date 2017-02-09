@@ -210,7 +210,7 @@ class UnlabelAPIHelper{
         if let productDescription:String = thisProduct["description"] as? String{
           product.ProductDescription = productDescription
         }
-        if let productInformation:String = thisProduct["information"] as? String{
+        if let productInformation:String = thisProduct["material_info"] as? String{
           product.ProductMaterialCareInfo = productInformation
         }
         if let id = thisProduct[PRM_ID] as? NSNumber {
@@ -218,7 +218,7 @@ class UnlabelAPIHelper{
         }
         
         if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
-         
+        // product.arrProductsImages = []
           for thisImage in productImageArray{
             product.arrProductsImages.append(thisImage["original"]!)
           }
@@ -536,6 +536,7 @@ class UnlabelAPIHelper{
             }
           case .failure(let error):
             debugPrint("hhhh === \(error.localizedDescription)")
+            UnlabelHelper.showAlert(onVC: onVC, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
             break
           }
           

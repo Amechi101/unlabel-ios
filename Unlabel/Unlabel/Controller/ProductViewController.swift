@@ -42,6 +42,8 @@ class ProductViewController: UIViewController {
     productPageControl.currentPage = 0
     productID = selectedProduct?.ProductID
     IBProductTitle.text = selectedProduct?.ProductName
+    
+    print(selectedProduct?.ProductName)
     IBProductPrice.text = "$ " + (selectedProduct?.ProductPrice)!
   }
   override func didReceiveMemoryWarning() {
@@ -114,7 +116,7 @@ class ProductViewController: UIViewController {
   }
   
   @IBAction func backAction(_ sender: Any) {
-    _ = self.navigationController?.popViewController(animated: true)
+    self.dismiss(animated: true, completion: nil)
   }
 }
 

@@ -82,7 +82,6 @@ extension LoginEntryVC{
       IBPasswordLine.backgroundColor = DARK_RED_COLOR
       IBTextfieldPassword.textColor = DARK_RED_COLOR
     }
-
   }
 }
 

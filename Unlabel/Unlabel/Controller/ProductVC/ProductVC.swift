@@ -33,7 +33,7 @@ class ProductVC: UIViewController {
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
   var nextPageURL:String?
-  
+  var labelHeight: CGFloat = 0.0
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -147,6 +147,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductHeaderCell(forIndexPath indexPath:IndexPath)->ProductHeaderCell{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
+    print("height   \(labelHeight)")
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + "," + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
@@ -167,6 +168,7 @@ extension ProductVC:UICollectionViewDataSource{
           }
       })
     }
+    productHeaderCell.contentView.backgroundColor = .red
     return productHeaderCell
   }
   
@@ -200,7 +202,7 @@ extension ProductVC:UICollectionViewDataSource{
     productCell.IBlblProductPrice.text = "$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
     
-    
+    if arrProducts[indexPath.row - 3].arrProductsImages.count > 0{
     if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
       
       productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
@@ -221,6 +223,11 @@ extension ProductVC:UICollectionViewDataSource{
           self.handleProductCellActivityIndicator(productCell, shouldStop: true)
         }
       })
+    }
+    }
+    else{
+      productCell.IBimgProductImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "Group"))
+      self.handleProductCellActivityIndicator(productCell, shouldStop: true)
     }
     return productCell
   }
@@ -285,9 +292,12 @@ extension ProductVC{
       }
     }
     else if segue.identifier == "ProductDetailSegue"{
-      if let productViewController:ProductViewController = segue.destination as? ProductViewController{
+      print(segue.destination)
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
         productViewController.selectedBrand = selectedBrand
         productViewController.selectedProduct = self.selectedProduct
+        }
       }
     }
   }
@@ -550,6 +560,7 @@ extension ProductVC{
       let frame: CGRect = text.boundingRect(with: CGSize(width: widthValue, height: CGFloat(CGFloat.greatestFiniteMagnitude)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
       size = CGSize(width: CGFloat(frame.size.width), height: CGFloat(frame.size.height + 1))
       print(size.height)
+      labelHeight = size.height
     }
     return size.height
   }
