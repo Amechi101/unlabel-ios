@@ -146,6 +146,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

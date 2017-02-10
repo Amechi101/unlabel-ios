@@ -92,7 +92,7 @@ class UnlabelAPIHelper{
     if let brandList = json.dictionaryObject!["results"]{
       
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
-        var brand = Brand()
+        let brand = Brand()
         
         brand.currentIndex = index
         

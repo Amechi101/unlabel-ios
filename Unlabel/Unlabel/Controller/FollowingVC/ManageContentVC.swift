@@ -15,6 +15,7 @@ enum ContentStatus{
   case rent
   case live
   case unknown
+  case unreserved
 }
 class ManageContentVC: UIViewController {
   
@@ -31,9 +32,7 @@ class ManageContentVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    IBCollectionViewContent.register(UINib(nibName: S_ID_Product_Content_Header, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell)
-    IBCollectionViewContent.register(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
+    setUpCollectionView()
   }
   
   override func didReceiveMemoryWarning() {
@@ -42,11 +41,10 @@ class ManageContentVC: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ManageToProductVC"{
-      print(segue.destination)
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
-          productViewController.IBbtnTitle.setTitle("ARMANI", for: .normal)
-        //  productViewController.selectedProduct = self.selectedProduct
+          productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+          productViewController.contentStatus = self.contentStatus
         }
       }
     }
@@ -54,8 +52,8 @@ class ManageContentVC: UIViewController {
       print(segue.destination)
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC{
-           rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI", for: .normal)
-          //  productViewController.selectedProduct = self.selectedProduct
+          rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+          rentOrLiveProductDetailVC.contentStatus = self.contentStatus
         }
       }
     }
@@ -66,8 +64,12 @@ class ManageContentVC: UIViewController {
 //MARK: -  Custom methods
 
 extension ManageContentVC{
+  
+  func setUpCollectionView(){
+    IBCollectionViewContent.register(UINib(nibName: S_ID_Product_Content_Header, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell)
+    IBCollectionViewContent.register(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
+  }
   func updateToggleButton(){
-    
     UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
       if self.contentStatus == ContentStatus.reserve{
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
@@ -183,7 +185,7 @@ extension ManageContentVC: UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    
     
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
@@ -197,7 +199,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     else{
       //performSegue(withIdentifier: "ManageToProductVC", sender: self)
     }
-
+    
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -222,7 +224,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
       headerView.IBBrandNameLabel.text = "ARMANI XCHANGE"
-
+      
       return headerView
     default:
       assert(false, "No such element")
@@ -230,7 +232,9 @@ extension ManageContentVC: UICollectionViewDataSource{
     }
   }
 }
+
 //MARK:- UICollectionViewDelegateFlowLayout Methods
+
 extension ManageContentVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: (collectionView.frame.size.width)/2.2, height: 271.0)

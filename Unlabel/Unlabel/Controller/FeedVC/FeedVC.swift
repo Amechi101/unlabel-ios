@@ -424,7 +424,10 @@
           debugPrint([sender.tag])
           UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
             meta: JSON) in
-            
+            if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
+              self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+              UnlabelHelper.setBoolValue(true, key: sFOLLOW_SEEN_ONCE)
+            }
             debugPrint(meta)
             
           }, failed: { (error) in
@@ -804,3 +807,29 @@
     }
   }
  }
+ 
+ //MARK: - Product status Popup view Delegate
+ 
+ extension FeedVC: LikeFollowPopupviewDelegate{
+  
+  func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect){
+    if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup{
+      likeFollowPopup.delegate = self
+      likeFollowPopup.followType = followType
+      likeFollowPopup.frame = initialFrame
+      likeFollowPopup.alpha = 0
+      view.addSubview(likeFollowPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        likeFollowPopup.frame = self.view.frame
+        likeFollowPopup.frame.origin = CGPoint(x: 0, y: 0)
+        likeFollowPopup.alpha = 1
+        likeFollowPopup.updateView()
+      })
+    }
+  }
+  
+  func popupDidClickClosePopup(){
+    debugPrint("close popup")
+  }
+ }
+

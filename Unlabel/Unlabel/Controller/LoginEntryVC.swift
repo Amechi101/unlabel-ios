@@ -112,7 +112,6 @@ extension LoginEntryVC{
   }
   @IBAction func IBForgotPassword(_ sender: Any) {
     self.addForgotPopupView(PopupAction.recover, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-    UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
   }
   @IBAction func IBActionEditingChanged(_ sender: Any) {
     if (IBTextfieldEmail.text != "" && IBTextfieldPassword.text != "") {
