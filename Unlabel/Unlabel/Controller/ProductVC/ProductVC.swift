@@ -423,6 +423,7 @@ extension ProductVC: SortModePopupViewDelegate{
     print(sortMode)
     sortModeValue = sortMode
     arrProducts = []
+    nextPageURL = nil
     IBcollectionViewProduct.reloadData()
     switch sortMode {
     case "High to Low":

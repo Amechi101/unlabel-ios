@@ -66,6 +66,7 @@
                 <constraint firstItem="pDd-Og-qkQ" firstAttribute="leading" secondItem="JCT-bp-dRx" secondAttribute="leading" id="zP0-mg-8kA"/>
             </constraints>
             <connections>
+                <outlet property="IBButtonRemove" destination="8k8-q4-RwC" id="aHP-UQ-F2v"/>
                 <outlet property="IBProductImage" destination="pDd-Og-qkQ" id="Tv1-Vi-na5"/>
                 <outlet property="IBactivityIndicator" destination="Ycf-LJ-j6v" id="ORy-aZ-o7p"/>
             </connections>

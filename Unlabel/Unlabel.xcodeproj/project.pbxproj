@@ -59,7 +59,6 @@
 		15B7E7B71C54A9EC00244AC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7B61C54A9EC00244AC9 /* CoreLocation.framework */; };
 		15B7E7B91C54A9F300244AC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7B81C54A9F300244AC9 /* QuartzCore.framework */; };
 		15B7E7BB1C54A9FD00244AC9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7BA1C54A9FD00244AC9 /* Security.framework */; };
-		15B7E7BD1C54AA0300244AC9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7BC1C54AA0300244AC9 /* StoreKit.framework */; };
 		15B7E7BF1C54AA0B00244AC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7BE1C54AA0B00244AC9 /* SystemConfiguration.framework */; };
 		15B7E7C11C54AA1A00244AC9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7C01C54AA1A00244AC9 /* libz.tbd */; };
 		15B7E7C31C54AA2600244AC9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */; };
@@ -138,6 +137,9 @@
 		ADEAD9F61E1F92FF0075813E /* AddToCartPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEAD9F41E1F92FF0075813E /* AddToCartPopup.swift */; };
 		ADEAD9F71E1F92FF0075813E /* AddToCartPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEAD9F51E1F92FF0075813E /* AddToCartPopup.xib */; };
 		ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEAD9F81E1F9CFC0075813E /* ProductViewController.swift */; };
+		ADF957311E518B2200F1DC56 /* ProductPhotoFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9572F1E518B2200F1DC56 /* ProductPhotoFooterCell.swift */; };
+		ADF957321E518B2200F1DC56 /* ProductPhotoFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADF957301E518B2200F1DC56 /* ProductPhotoFooterCell.xib */; };
+		ADF957361E51AEEA00F1DC56 /* AddProductNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF957351E51AEEA00F1DC56 /* AddProductNoteVC.swift */; };
 		CB1C21B61D7B5DA000253342 /* FilterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B31D7B5DA000253342 /* FilterListController.swift */; };
 		CB1C21B71D7B5DA000253342 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B41D7B5DA000253342 /* FilterVC.swift */; };
 		CB1C21B81D7B5DA000253342 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1C21B51D7B5DA000253342 /* GlossaryController.swift */; };
@@ -233,7 +235,6 @@
 		15B7E7B61C54A9EC00244AC9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		15B7E7B81C54A9F300244AC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		15B7E7BA1C54A9FD00244AC9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		15B7E7BC1C54AA0300244AC9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		15B7E7BE1C54AA0B00244AC9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15B7E7C01C54AA1A00244AC9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -324,6 +325,9 @@
 		ADEAD9F41E1F92FF0075813E /* AddToCartPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToCartPopup.swift; sourceTree = "<group>"; };
 		ADEAD9F51E1F92FF0075813E /* AddToCartPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddToCartPopup.xib; sourceTree = "<group>"; };
 		ADEAD9F81E1F9CFC0075813E /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		ADF9572F1E518B2200F1DC56 /* ProductPhotoFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPhotoFooterCell.swift; sourceTree = "<group>"; };
+		ADF957301E518B2200F1DC56 /* ProductPhotoFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductPhotoFooterCell.xib; sourceTree = "<group>"; };
+		ADF957351E51AEEA00F1DC56 /* AddProductNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductNoteVC.swift; sourceTree = "<group>"; };
 		CB1C21B31D7B5DA000253342 /* FilterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListController.swift; sourceTree = "<group>"; };
 		CB1C21B41D7B5DA000253342 /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		CB1C21B51D7B5DA000253342 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryController.swift; sourceTree = "<group>"; };
@@ -347,7 +351,6 @@
 				15B7E7C31C54AA2600244AC9 /* libsqlite3.tbd in Frameworks */,
 				15B7E7C11C54AA1A00244AC9 /* libz.tbd in Frameworks */,
 				15B7E7BF1C54AA0B00244AC9 /* SystemConfiguration.framework in Frameworks */,
-				15B7E7BD1C54AA0300244AC9 /* StoreKit.framework in Frameworks */,
 				15B7E7BB1C54A9FD00244AC9 /* Security.framework in Frameworks */,
 				15B7E7B91C54A9F300244AC9 /* QuartzCore.framework in Frameworks */,
 				15B7E7B71C54A9EC00244AC9 /* CoreLocation.framework in Frameworks */,
@@ -701,6 +704,8 @@
 				ADDE54A61E49C7D10041ED2C /* ProductContentHeader.xib */,
 				AD183A1E1E4DEB0E00DFFF10 /* ProductPhotoCell.swift */,
 				AD183A1F1E4DEB0E00DFFF10 /* ProductPhotoCell.xib */,
+				ADF9572F1E518B2200F1DC56 /* ProductPhotoFooterCell.swift */,
+				ADF957301E518B2200F1DC56 /* ProductPhotoFooterCell.xib */,
 			);
 			path = ProductVC;
 			sourceTree = "<group>";
@@ -809,7 +814,6 @@
 				15B7E7C21C54AA2600244AC9 /* libsqlite3.tbd */,
 				15B7E7C01C54AA1A00244AC9 /* libz.tbd */,
 				15B7E7BE1C54AA0B00244AC9 /* SystemConfiguration.framework */,
-				15B7E7BC1C54AA0300244AC9 /* StoreKit.framework */,
 				15B7E7BA1C54A9FD00244AC9 /* Security.framework */,
 				15B7E7B81C54A9F300244AC9 /* QuartzCore.framework */,
 				15B7E7B61C54A9EC00244AC9 /* CoreLocation.framework */,
@@ -978,6 +982,7 @@
 				ADE078D01E4C490100242897 /* View Rental Info VC */,
 				AD183A151E4DE55200DFFF10 /* View Product Stats */,
 				AD183A221E4DF06400DFFF10 /* Add Or View Product Image VC */,
+				ADF957351E51AEEA00F1DC56 /* AddProductNoteVC.swift */,
 			);
 			name = "Manage Content Tab";
 			sourceTree = "<group>";
@@ -1191,6 +1196,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1277,6 +1285,7 @@
 				CBEE783F1D7C89010001752F /* FilterListCell.xib in Resources */,
 				155060AF1D592827005E393C /* Unlabel.entitlements in Resources */,
 				15F0E2711C723A8A00A7E389 /* ProductHeaderCell.xib in Resources */,
+				ADF957321E518B2200F1DC56 /* ProductPhotoFooterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1375,6 +1384,7 @@
 				AD3974F31E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
+				ADF957311E518B2200F1DC56 /* ProductPhotoFooterCell.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
@@ -1436,6 +1446,7 @@
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,
 				15897E971C5948B200FD0700 /* CategoryStyleCell.swift in Sources */,
 				AD42DEF01E28A0E6005CA59E /* CartHeaderView.swift in Sources */,
+				ADF957361E51AEEA00F1DC56 /* AddProductNoteVC.swift in Sources */,
 				AD1192C81E40597C00D921FD /* ProductSortCell.swift in Sources */,
 				CB1C21B81D7B5DA000253342 /* GlossaryController.swift in Sources */,
 				15F0E2701C723A8A00A7E389 /* ProductHeaderCell.swift in Sources */,

@@ -649,7 +649,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J7J-d6-iG2">
-                                                    <rect key="frame" x="130.5" y="138" width="114" height="26"/>
+                                                    <rect key="frame" x="131" y="138" width="114" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="114" id="BPI-zM-s0s"/>
                                                         <constraint firstAttribute="height" constant="26" id="YZI-Uc-XtK"/>
@@ -3813,7 +3813,7 @@ Sunday: 9am-8pm</string>
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="710-Cn-TDW" kind="show" id="gcl-F9-Dee"/>
+                                                            <segue destination="gIE-Kv-mjy" kind="show" id="Xj5-fb-3Jm"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="6Qh-by-3m3">
@@ -3940,6 +3940,9 @@ Sunday: 9am-8pm</string>
                                                         <state key="normal" title="Add Product Note">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="sgn-3A-qzz" kind="show" id="SVc-42-fYS"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="cyU-J2-9aE">
                                                         <rect key="frame" x="315" y="11" width="10" height="18"/>
@@ -4107,10 +4110,263 @@ Sunday: 9am-8pm</string>
             </objects>
             <point key="canvasLocation" x="-2386.4000000000001" y="1974.5127436281862"/>
         </scene>
+        <!--Add Product NoteVC-->
+        <scene sceneID="P2o-qK-Rs4">
+            <objects>
+                <viewController storyboardIdentifier="AddProductNoteVC" automaticallyAdjustsScrollViewInsets="NO" id="sgn-3A-qzz" customClass="AddProductNoteVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l9z-yl-NMf"/>
+                        <viewControllerLayoutGuide type="bottom" id="oj8-Hs-7Z6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="byk-5a-LLU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RDe-F5-aYt">
+                                <rect key="frame" x="21" y="94" width="333" height="302"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sgn-3A-qzz" id="9Pj-wo-5iv"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RDe-F5-aYt" firstAttribute="top" secondItem="l9z-yl-NMf" secondAttribute="bottom" constant="30" id="9x8-ri-Qjr"/>
+                            <constraint firstItem="RDe-F5-aYt" firstAttribute="leading" secondItem="byk-5a-LLU" secondAttribute="leading" constant="21" id="Kej-ys-v26"/>
+                            <constraint firstAttribute="trailing" secondItem="RDe-F5-aYt" secondAttribute="trailing" constant="21" id="mhp-HV-iKC"/>
+                            <constraint firstItem="oj8-Hs-7Z6" firstAttribute="top" secondItem="RDe-F5-aYt" secondAttribute="bottom" constant="271" id="pxV-1L-Ehf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UOV-8f-xuJ">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="5Xn-Kk-dXZ">
+                            <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o4C-JK-VvM">
+                                <rect key="frame" x="16" y="11" width="35" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="titleEdgeInsets" minX="-11" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="sgn-3A-qzz" eventType="touchUpInside" id="6hE-I5-HJz"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="frh-Ta-Iji">
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                            <state key="normal" title="PRODUCT NOTE">
+                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fwD-nv-H44">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HJJ-yR-CGO">
+                                <rect key="frame" x="324" y="7" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="12"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionDone:" destination="sgn-3A-qzz" eventType="touchUpInside" id="bh1-LR-1cJ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="IBButtonDone" destination="HJJ-yR-CGO" id="vDz-db-bnA"/>
+                        <outlet property="IBTextViewNote" destination="RDe-F5-aYt" id="JZz-6V-xRI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVo-93-daE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588" y="2753"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gHn-ib-DQ5">
+            <objects>
+                <viewController id="gIE-Kv-mjy" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KSe-uy-nZD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z2e-eS-8HG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zw3-ye-hkY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQD-k1-2KE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc3-Dd-Rvr">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Material &amp; Care Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHm-H9-BJ8">
+                                                <rect key="frame" x="21" y="333" width="250" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="8kG-Vz-bNm"/>
+                                                    <constraint firstAttribute="width" constant="250" id="om7-f1-iga"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nH-qP-q1j">
+                                                <rect key="frame" x="22" y="359" width="331" height="48"/>
+                                                <string key="text">Cotten: 50%
+Nylon: 50%
+Care: Dry clean only.</string>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#562722992" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-fF-L3i">
+                                                <rect key="frame" x="22" y="441" width="331" height="16"/>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content Created by Jane Ann " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZN-Mj-C70">
+                                                <rect key="frame" x="21" y="171" width="250" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="Ith-2a-oGh"/>
+                                                    <constraint firstAttribute="height" constant="16" id="tty-R4-UQe"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-nQ-qIW">
+                                                <rect key="frame" x="22" y="197" width="331" height="128"/>
+                                                <string key="text">Height: 6 feet’ 2 inches
+Bust: 78” in
+Hips: 88” in
+Waist: 90” in
+Currently wearing size: M 
+Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasjhsabsahbsahbsahshbshsaashsa</string>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5j-Vy-yaK">
+                                                <rect key="frame" x="22" y="51" width="331" height="112"/>
+                                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</string>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item SKU" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uli-io-v60">
+                                                <rect key="frame" x="21" y="415" width="181" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="181" id="2Ek-kx-5WR"/>
+                                                    <constraint firstAttribute="height" constant="16" id="t2a-S7-jA9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="uHm-H9-BJ8" firstAttribute="top" secondItem="tKN-nQ-qIW" secondAttribute="bottom" constant="8" id="3cc-Bc-j6w"/>
+                                            <constraint firstAttribute="trailing" secondItem="1F9-fF-L3i" secondAttribute="trailing" constant="22" id="EVs-5W-Ch4"/>
+                                            <constraint firstItem="Uli-io-v60" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="21" id="Fo3-FA-2F6"/>
+                                            <constraint firstItem="nZN-Mj-C70" firstAttribute="top" secondItem="g5j-Vy-yaK" secondAttribute="bottom" constant="8" id="Jfr-ql-Wpk"/>
+                                            <constraint firstItem="8nH-qP-q1j" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="22" id="Keb-QN-tcS"/>
+                                            <constraint firstItem="Uli-io-v60" firstAttribute="top" secondItem="8nH-qP-q1j" secondAttribute="bottom" constant="8" id="OxY-BF-35d"/>
+                                            <constraint firstItem="1F9-fF-L3i" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="22" id="OzH-J1-hPA"/>
+                                            <constraint firstAttribute="trailing" secondItem="tKN-nQ-qIW" secondAttribute="trailing" constant="22" id="QAg-og-vUQ"/>
+                                            <constraint firstItem="tKN-nQ-qIW" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="22" id="QN5-us-Ejk"/>
+                                            <constraint firstAttribute="trailing" secondItem="g5j-Vy-yaK" secondAttribute="trailing" constant="22" id="TjN-TQ-olO"/>
+                                            <constraint firstItem="tKN-nQ-qIW" firstAttribute="top" secondItem="nZN-Mj-C70" secondAttribute="bottom" constant="10" id="Utm-ts-L1L"/>
+                                            <constraint firstAttribute="trailing" secondItem="8nH-qP-q1j" secondAttribute="trailing" constant="22" id="ddi-cH-T9N"/>
+                                            <constraint firstItem="nZN-Mj-C70" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="21" id="lUU-cO-BxS"/>
+                                            <constraint firstItem="8nH-qP-q1j" firstAttribute="top" secondItem="uHm-H9-BJ8" secondAttribute="bottom" constant="10" id="paI-3g-Jby"/>
+                                            <constraint firstItem="uHm-H9-BJ8" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="21" id="urc-Ft-iH9"/>
+                                            <constraint firstAttribute="bottom" secondItem="1F9-fF-L3i" secondAttribute="bottom" constant="83" id="x7L-K4-EsK"/>
+                                            <constraint firstItem="1F9-fF-L3i" firstAttribute="top" secondItem="Uli-io-v60" secondAttribute="bottom" constant="10" id="zfm-u6-28P"/>
+                                            <constraint firstItem="g5j-Vy-yaK" firstAttribute="leading" secondItem="qc3-Dd-Rvr" secondAttribute="leading" constant="22" id="zkt-T0-8gy"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-bl-88C">
+                                        <rect key="frame" x="21" y="20" width="181" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="181" id="9eC-yp-t2d"/>
+                                            <constraint firstAttribute="height" constant="16" id="bNJ-Jq-jpn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qc3-Dd-Rvr" secondAttribute="trailing" id="06L-iI-Ug5"/>
+                                    <constraint firstItem="qc3-Dd-Rvr" firstAttribute="width" secondItem="xQD-k1-2KE" secondAttribute="width" id="35E-r9-Sor"/>
+                                    <constraint firstAttribute="bottom" secondItem="qc3-Dd-Rvr" secondAttribute="bottom" id="9BQ-WP-1bW"/>
+                                    <constraint firstItem="g5j-Vy-yaK" firstAttribute="top" secondItem="6Zi-bl-88C" secondAttribute="bottom" constant="15" id="9kf-sr-fH2"/>
+                                    <constraint firstItem="qc3-Dd-Rvr" firstAttribute="leading" secondItem="xQD-k1-2KE" secondAttribute="leading" id="Ggw-1u-ZHb"/>
+                                    <constraint firstItem="qc3-Dd-Rvr" firstAttribute="top" secondItem="xQD-k1-2KE" secondAttribute="top" id="SPf-f6-lic"/>
+                                    <constraint firstItem="6Zi-bl-88C" firstAttribute="top" secondItem="xQD-k1-2KE" secondAttribute="top" constant="20" id="YvA-Xq-Wll"/>
+                                    <constraint firstItem="qc3-Dd-Rvr" firstAttribute="height" secondItem="xQD-k1-2KE" secondAttribute="height" priority="250" id="uxu-jC-G8u"/>
+                                    <constraint firstItem="6Zi-bl-88C" firstAttribute="leading" secondItem="xQD-k1-2KE" secondAttribute="leading" constant="21" id="wm4-gs-noj"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xQD-k1-2KE" firstAttribute="leading" secondItem="Zw3-ye-hkY" secondAttribute="leading" id="CmV-b6-aEr"/>
+                            <constraint firstItem="Z2e-eS-8HG" firstAttribute="top" secondItem="xQD-k1-2KE" secondAttribute="bottom" id="dwA-lP-SPJ"/>
+                            <constraint firstAttribute="trailing" secondItem="xQD-k1-2KE" secondAttribute="trailing" id="i7j-1l-mGN"/>
+                            <constraint firstItem="xQD-k1-2KE" firstAttribute="top" secondItem="Zw3-ye-hkY" secondAttribute="top" id="nDS-lK-h9P"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="soF-Z3-ueg">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="75g-0D-ij6">
+                            <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iic-sA-7F7">
+                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="Close_X"/>
+                                <connections>
+                                    <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="gaX-EV-VSj"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T2K-gh-85C">
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                            <state key="normal" title="PRODUCT DETAILS">
+                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="RGA-wU-rmP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6VG-0h-rwH">
+                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="FkH-4j-aXP"/>
+                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="RGA-yZ-Yd1"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="540"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c82-5b-26y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1508" y="2402.2488755622189"/>
+        </scene>
         <!--Add Or View Product ImageVC-->
         <scene sceneID="dQf-YO-jTI">
             <objects>
-                <viewController id="wsE-Az-Hnc" customClass="AddOrViewProductImageVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wsE-Az-Hnc" customClass="AddOrViewProductImageVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U6h-gD-wWU"/>
                         <viewControllerLayoutGuide type="bottom" id="naW-zf-c30"/>
@@ -4120,7 +4376,7 @@ Sunday: 9am-8pm</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="m9H-Ex-dCh">
-                                <rect key="frame" x="21" y="64" width="333" height="603"/>
+                                <rect key="frame" x="21" y="72" width="333" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VjC-3B-Ou9">
                                     <size key="itemSize" width="50" height="50"/>
@@ -4146,7 +4402,7 @@ Sunday: 9am-8pm</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="m9H-Ex-dCh" firstAttribute="top" secondItem="U6h-gD-wWU" secondAttribute="bottom" id="F8f-Vc-7hq"/>
+                            <constraint firstItem="m9H-Ex-dCh" firstAttribute="top" secondItem="U6h-gD-wWU" secondAttribute="bottom" constant="8" id="F8f-Vc-7hq"/>
                             <constraint firstItem="m9H-Ex-dCh" firstAttribute="leading" secondItem="No9-9k-kSC" secondAttribute="leading" constant="21" id="NWM-ta-T1V"/>
                             <constraint firstItem="naW-zf-c30" firstAttribute="top" secondItem="m9H-Ex-dCh" secondAttribute="bottom" id="gLg-ym-0QR"/>
                             <constraint firstAttribute="trailing" secondItem="m9H-Ex-dCh" secondAttribute="trailing" constant="21" id="r52-Ag-gud"/>
@@ -4160,9 +4416,9 @@ Sunday: 9am-8pm</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="Close_X"/>
+                                <state key="normal" image="back"/>
                                 <connections>
-                                    <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="Uri-e8-U2u"/>
+                                    <action selector="IBActionDismiss:" destination="wsE-Az-Hnc" eventType="touchUpInside" id="1Qs-MW-cH0"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4191,7 +4447,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEP-7j-fh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1641" y="2277"/>
+            <point key="canvasLocation" x="-588" y="2069"/>
         </scene>
         <!--Product StatsVC-->
         <scene sceneID="30a-Au-Gba">
@@ -4354,9 +4610,8 @@ Sunday: 9am-8pm</string>
         <image name="search" width="20" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gcl-F9-Dee"/>
-        <segue reference="jWi-8m-sPs"/>
         <segue reference="Ukc-mt-VOD"/>
+        <segue reference="jWi-8m-sPs"/>
         <segue reference="J5P-PC-vHa"/>
     </inferredMetricsTieBreakers>
 </document>

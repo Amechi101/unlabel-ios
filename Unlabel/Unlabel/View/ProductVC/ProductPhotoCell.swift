@@ -11,6 +11,7 @@ import UIKit
 class ProductPhotoCell: UICollectionViewCell {
   @IBOutlet weak var IBProductImage: UIImageView!
   @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var IBButtonRemove: UIButton!
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code

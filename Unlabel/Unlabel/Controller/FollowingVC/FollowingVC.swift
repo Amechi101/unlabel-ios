@@ -62,7 +62,7 @@ class FollowingVC: UIViewController {
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.IBlblMessage.text = "Not following any brands."
-    notFoundView.showViewLabelBtn = true
+    notFoundView.showViewLabelBtn = false
     IBcollectionViewFollowing.backgroundView = notFoundView
     IBcollectionViewFollowing.backgroundView?.isHidden = true
   }

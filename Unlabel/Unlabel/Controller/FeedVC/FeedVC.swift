@@ -345,6 +345,7 @@
   func addNotFoundView(){
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
+    notFoundView.showViewLabelBtn = false
     notFoundView.IBlblMessage.text = "No brands available."
     IBcollectionViewFeed.backgroundView = notFoundView
     IBcollectionViewFeed.backgroundView?.isHidden = true
