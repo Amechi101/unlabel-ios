@@ -29,8 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     print("cs cookie  \(cstorage)")
     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     // UIApplication.shared.statusBarFrame
+    self.window?.backgroundColor = .white
     setupOnLaunch(launchOptions)
     registerForRemoteNotification()
+    var udid = UIDevice.current.identifierForVendor!.uuidString
+    udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
+    print("UDID == \(udid)")
     return true
   }
   

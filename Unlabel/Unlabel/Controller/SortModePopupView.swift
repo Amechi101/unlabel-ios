@@ -19,6 +19,7 @@ enum SlideUpView{
   case sizeSelection
   case location
   case quantity
+  case statSort
   case unknown
 }
 
@@ -37,20 +38,21 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   
   
   func updateView(){
+    
+    IBTableList.tableFooterView = UIView()
+    
+    IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
     if slideUpViewMode == SlideUpView.sortMode{
-      IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
-      IBTableList.tableFooterView = UIView()
       arrSortOption = ["High to Low","Low to High","Oldest to Newest","Newest to Oldest"]
     }
     else if slideUpViewMode == SlideUpView.brandSortMode{
-      IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
-      IBTableList.tableFooterView = UIView()
       arrSortOption = ["A to Z","Z to A","Oldest to Newest","Newest to Oldest"]
     }
     else if slideUpViewMode == SlideUpView.sizeSelection{
-      IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
-      IBTableList.tableFooterView = UIView()
       arrSortOption = ["Small","Medium","Large","X-Large"]
+    }
+    else if slideUpViewMode == SlideUpView.statSort{
+      arrSortOption = ["Today","Last 7 days","Last 30 days","Last 90 days"]
     }
     IBPopupTitle.text = popupTitle
     selectedItem = arrSortOption.first!
@@ -59,7 +61,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection{
+    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection || slideUpViewMode == SlideUpView.statSort{
       return arrSortOption.count
     }
     else{
@@ -74,7 +76,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       return sortModeCell
 
     }
-    else if slideUpViewMode == SlideUpView.sizeSelection{
+    else if slideUpViewMode == SlideUpView.sizeSelection || slideUpViewMode == SlideUpView.statSort{
       let sortModeCell:SortModeCell = tableView.dequeueReusableCell(withIdentifier: "SortModeCell")! as! SortModeCell
       sortModeCell.cellLabel?.text = arrSortOption[indexPath.row]
       sortModeCell.cellLabel.textAlignment = .center
@@ -86,7 +88,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
 }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection{
+    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection || slideUpViewMode == SlideUpView.statSort{
       let selectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as! SortModeCell
       selectedCell.contentView.backgroundColor = UIColor.white
       selectedCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
@@ -96,7 +98,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection{
+    if slideUpViewMode == SlideUpView.sortMode || slideUpViewMode == SlideUpView.brandSortMode || slideUpViewMode == SlideUpView.sizeSelection || slideUpViewMode == SlideUpView.statSort{
       let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as! SortModeCell
       unSelectedCell.contentView.backgroundColor = UIColor.white
       unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR

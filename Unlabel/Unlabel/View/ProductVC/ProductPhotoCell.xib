@@ -29,13 +29,11 @@
                             <constraint firstAttribute="height" constant="200" id="yHq-id-lKN"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyh-SO-z67">
-                        <rect key="frame" x="19" y="202" width="122" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyh-SO-z67">
+                        <rect key="frame" x="53" y="202" width="54" height="27"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-q4-RwC">
-                                <rect key="frame" x="0.0" y="0.0" width="122" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-q4-RwC">
+                                <rect key="frame" x="0.0" y="0.0" width="54" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="11"/>
                                 <state key="normal" title="Remove">
@@ -47,6 +45,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="0hN-eN-uRz"/>
+                            <constraint firstItem="8k8-q4-RwC" firstAttribute="leading" secondItem="fyh-SO-z67" secondAttribute="leading" id="0oX-mr-Tan"/>
+                            <constraint firstAttribute="trailing" secondItem="8k8-q4-RwC" secondAttribute="trailing" id="GyV-25-Sld"/>
+                            <constraint firstItem="8k8-q4-RwC" firstAttribute="top" secondItem="fyh-SO-z67" secondAttribute="top" id="Kjh-j3-xAc"/>
+                            <constraint firstAttribute="width" constant="54" id="RSF-zd-wT9"/>
+                            <constraint firstAttribute="bottom" secondItem="8k8-q4-RwC" secondAttribute="bottom" constant="2" id="UxM-fd-NGm"/>
+                        </constraints>
                     </view>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-LJ-j6v">
                         <rect key="frame" x="70" y="107" width="20" height="20"/>
@@ -59,6 +65,8 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fyh-SO-z67" firstAttribute="top" secondItem="pDd-Og-qkQ" secondAttribute="bottom" constant="2" id="0em-hX-ic2"/>
+                <constraint firstItem="fyh-SO-z67" firstAttribute="centerX" secondItem="JCT-bp-dRx" secondAttribute="centerX" id="cKT-3G-qrl"/>
                 <constraint firstItem="pDd-Og-qkQ" firstAttribute="top" secondItem="JCT-bp-dRx" secondAttribute="top" id="cQo-ly-hHU"/>
                 <constraint firstItem="Ycf-LJ-j6v" firstAttribute="centerX" secondItem="JCT-bp-dRx" secondAttribute="centerX" id="dxK-bk-AUe"/>
                 <constraint firstAttribute="trailing" secondItem="pDd-Og-qkQ" secondAttribute="trailing" id="rCL-uQ-bWS"/>

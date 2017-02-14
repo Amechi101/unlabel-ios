@@ -121,12 +121,17 @@ extension ProductViewController{
     }
   }
   @IBAction func addToCartAction(_ sender: Any) {
-    
-    if UnlabelHelper.isUserLoggedIn(){
-      self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-    }else{
-      UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
-      })
+    if contentStatus == ContentStatus.reserve{
+      self.dismiss(animated: true, completion: nil)
+    }
+    else{
+      if UnlabelHelper.isUserLoggedIn(){
+        self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+      }else{
+        UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
+        })
+      }
+
     }
   }
   

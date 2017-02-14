@@ -54,4 +54,64 @@ class RentOrLiveProductDetailVC: UIViewController {
   @IBAction func IBActionDismissView(_ sender: AnyObject) {
     self.dismiss(animated: true, completion: nil)
   }
+  @IBAction func IBActionGoLive(_ sender: Any) {
+    self.addGoLivePopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+  }
+  @IBAction func IBActionSelectSize(_ sender: Any) {
+    self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+  }
+}
+
+//MARK: -  AddToCart Popup delegate methods
+
+extension RentOrLiveProductDetailVC: GoLivePopupDelegate{
+  
+  func addGoLivePopupView(_ initialFrame:CGRect){
+    if let viewForgotLabelPopup:GoLivePopupView = Bundle.main.loadNibNamed("GoLivePopupView", owner: self, options: nil)? [0] as? GoLivePopupView{
+      viewForgotLabelPopup.delegate = self
+      viewForgotLabelPopup.frame = initialFrame
+      viewForgotLabelPopup.alpha = 0
+      
+      view.addSubview(viewForgotLabelPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        viewForgotLabelPopup.frame = self.view.frame
+        viewForgotLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
+        viewForgotLabelPopup.alpha = 1
+      })
+    }
+  }
+  
+  func popupDidClickCancel(){
+    
+  }
+  func popupDidClickGoLive(){
+    self.dismiss(animated: true, completion: nil)
+  }
+}
+
+//MARK: -  Size selection popup delegate methods
+
+extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+      viewSortPopup.delegate = self
+      viewSortPopup.slideUpViewMode = slideUpView
+      viewSortPopup.popupTitle = "SELECT A SIZE"
+      viewSortPopup.frame = initialFrame
+      viewSortPopup.alpha = 0
+      self.view.addSubview(viewSortPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        viewSortPopup.frame = self.view.frame
+        viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
+        viewSortPopup.alpha = 1
+      })
+      viewSortPopup.updateView()
+    }
+  }
+  func popupDidClickCloseButton(){
+    
+  }
+  func popupDidClickDone(_ sortMode: String){
+    IBSelectSize.setTitle(sortMode, for: .normal)
+  }
 }

@@ -21,12 +21,15 @@ class ManageContentVC: UIViewController {
   
   //MARK: -  IBOutlets,vars,constants
   
+  @IBOutlet weak var IBButtonSortMode: UIButton!
   @IBOutlet weak var IBCollectionViewTopConstraint: NSLayoutConstraint!
   @IBOutlet weak var IBCollectionViewContent: UICollectionView!
   @IBOutlet weak var IBReserveButton: UIButton!
   @IBOutlet weak var IBRentButton: UIButton!
   @IBOutlet weak var IBLiveButton: UIButton!
   var contentStatus: ContentStatus = .reserve
+  var sortMode: String = "NEW"
+  var sortModeValue: String = "Newest to Oldest"
   
   //MARK: -  View lifecycle methods
   
@@ -103,6 +106,7 @@ extension ManageContentVC{
 
 extension ManageContentVC{
   @IBAction func IBActionSortSelection(_ sender: Any) {
+    self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func IBActionToggleStatus(_ sender: Any) {
     let buttonID: Int = (sender as AnyObject).tag
@@ -238,5 +242,50 @@ extension ManageContentVC: UICollectionViewDataSource{
 extension ManageContentVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: (collectionView.frame.size.width)/2.2, height: 271.0)
+  }
+}
+//MARK: Sort Popup methods
+
+extension ManageContentVC: SortModePopupViewDelegate{
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+      viewSortPopup.delegate = self
+      viewSortPopup.slideUpViewMode = slideUpView
+      viewSortPopup.frame = initialFrame
+      viewSortPopup.popupTitle = "SORT BY"
+      viewSortPopup.alpha = 0
+      self.view.addSubview(viewSortPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        viewSortPopup.frame = self.view.frame
+        viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
+        viewSortPopup.alpha = 1
+      })
+      viewSortPopup.updateView()
+    }
+  }
+  func popupDidClickCloseButton(){
+    
+  }
+  func popupDidClickDone(_ sortMode: String){
+    print(sortMode)
+    sortModeValue = sortMode
+    IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
+    switch sortMode {
+    case "High to Low":
+      self.sortMode = "HL"
+      break
+    case "Low to High":
+      self.sortMode = "LH"
+      break
+    case "Oldest to Newest":
+      self.sortMode = "OLD"
+      break
+    case "Newest to Oldest":
+      self.sortMode = "NEW"
+      break
+    default:
+      self.sortMode = ""
+      break
+    }
   }
 }

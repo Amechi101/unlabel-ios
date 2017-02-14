@@ -1065,10 +1065,10 @@
             </objects>
             <point key="canvasLocation" x="-4818" y="4084"/>
         </scene>
-        <!--View Controller-->
+        <!--Influencer StatsVC-->
         <scene sceneID="LVI-9b-KMP">
             <objects>
-                <viewController id="iOR-rD-Jp0" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iOR-rD-Jp0" customClass="InfluencerStatsVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E7T-Io-Z44"/>
                         <viewControllerLayoutGuide type="bottom" id="ONz-Xm-fQM"/>
@@ -1078,28 +1078,109 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MC7-jv-gad">
-                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="23W-rl-NaE"/>
+                                    <constraint firstAttribute="height" constant="32" id="23W-rl-NaE"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="10" minY="2" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Sort by: Newest to Oldest" image="downArrowGray">
-                                    <color key="titleColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sort by: Today" image="arrow">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="IBActionSortSelection:" destination="iOR-rD-Jp0" eventType="touchUpInside" id="CXD-HI-eQN"/>
+                                </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sLk-j2-UOw">
+                                <rect key="frame" x="0.0" y="104" width="375" height="514"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mEW-1J-od6" customClass="ViewStatsCell" customModule="Unlabel" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mEW-1J-od6" id="HT0-ZB-gKb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iOR-rD-Jp0" id="Qyc-RG-NoW"/>
+                                    <outlet property="delegate" destination="iOR-rD-Jp0" id="bik-q4-HkL"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MC7-jv-gad" firstAttribute="top" secondItem="E7T-Io-Z44" secondAttribute="bottom" id="C9f-EK-QES"/>
                             <constraint firstAttribute="trailing" secondItem="MC7-jv-gad" secondAttribute="trailing" id="Ltb-4E-0xA"/>
                             <constraint firstItem="MC7-jv-gad" firstAttribute="leading" secondItem="keg-eZ-61M" secondAttribute="leading" id="ROC-77-cY1"/>
+                            <constraint firstAttribute="trailing" secondItem="sLk-j2-UOw" secondAttribute="trailing" id="aCO-GA-qD6"/>
+                            <constraint firstItem="ONz-Xm-fQM" firstAttribute="top" secondItem="sLk-j2-UOw" secondAttribute="bottom" id="aiW-sG-8dv"/>
+                            <constraint firstItem="sLk-j2-UOw" firstAttribute="leading" secondItem="keg-eZ-61M" secondAttribute="leading" id="gWc-AE-YtM"/>
+                            <constraint firstItem="sLk-j2-UOw" firstAttribute="top" secondItem="MC7-jv-gad" secondAttribute="bottom" constant="8" id="jCC-uv-97K"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ofY-xp-HEA">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Vst-dR-3b5">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hyr-Vk-93Y">
+                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="iOR-rD-Jp0" eventType="touchUpInside" id="X0z-Yz-sH4"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kfm-54-P44">
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
+                            <state key="normal" title="VIEW STATS">
+                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="f6c-hI-sgN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yju-8P-Ewq">
+                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="A7G-Nm-Q4L"/>
+                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="QrX-25-k3L"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="IBButtonSortMode" destination="MC7-jv-gad" id="hlI-iv-w9G"/>
+                        <outlet property="IBTableViewStats" destination="sLk-j2-UOw" id="psh-fU-r5b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KrQ-Fc-lOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3932" y="4084"/>
+            <point key="canvasLocation" x="-3847" y="3823"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="56b-p0-9yq">
+            <objects>
+                <viewController id="q1w-7E-F0g" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DK1-Le-k4s"/>
+                        <viewControllerLayoutGuide type="bottom" id="fWR-cW-Wy0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15r-Yn-Rpf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27W-ua-rHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3847" y="4497"/>
         </scene>
         <!--Change NameVC-->
         <scene sceneID="YvM-qf-ccH">
@@ -3177,7 +3258,7 @@ See more info </string>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                 <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Sort by: A to Z" image="arrow">
+                                <state key="normal" title="Sort by: Newest to Oldest" image="arrow">
                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -3233,6 +3314,7 @@ See more info </string>
                         </button>
                     </navigationItem>
                     <connections>
+                        <outlet property="IBButtonSortMode" destination="S0Z-uV-DbK" id="lUM-bN-oZV"/>
                         <outlet property="IBCollectionViewContent" destination="Lc9-eb-ZGg" id="5MO-2h-hJy"/>
                         <outlet property="IBCollectionViewTopConstraint" destination="UKN-mh-Qwy" id="1w0-J8-PP4"/>
                         <outlet property="IBLiveButton" destination="ytT-Jd-yUu" id="uRt-Aj-00L"/>
@@ -3874,12 +3956,15 @@ Sunday: 9am-8pm</string>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgx-EP-e6r">
                                                 <rect key="frame" x="21" y="667" width="333" height="44"/>
-                                                <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.25490196079999999" green="0.45882352939999999" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="xpa-cz-Jaa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
-                                                <state key="normal" title="RESERVE"/>
+                                                <state key="normal" title="GO LIVE"/>
+                                                <connections>
+                                                    <action selector="IBActionGoLive:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="hrv-7r-dqd"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcY-d3-SEl">
                                                 <rect key="frame" x="21" y="619" width="333" height="36"/>
@@ -3891,6 +3976,9 @@ Sunday: 9am-8pm</string>
                                                         <state key="normal" title="Select Size">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="IBActionSelectSize:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="6aL-6F-j6m"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4186,10 +4274,10 @@ Sunday: 9am-8pm</string>
             </objects>
             <point key="canvasLocation" x="-588" y="2753"/>
         </scene>
-        <!--View Controller-->
+        <!--Rent Live Product Description-->
         <scene sceneID="gHn-ib-DQ5">
             <objects>
-                <viewController id="gIE-Kv-mjy" sceneMemberID="viewController">
+                <viewController id="gIE-Kv-mjy" customClass="RentLiveProductDescription" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KSe-uy-nZD"/>
                         <viewControllerLayoutGuide type="bottom" id="Z2e-eS-8HG"/>
@@ -4331,8 +4419,9 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="Close_X"/>
+                                <state key="normal" image="back"/>
                                 <connections>
+                                    <action selector="IBActionBack:" destination="gIE-Kv-mjy" eventType="touchUpInside" id="bnx-id-62p"/>
                                     <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="gaX-EV-VSj"/>
                                 </connections>
                             </button>
@@ -4524,6 +4613,9 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="8Un-S0-Ud4" eventType="touchUpInside" id="uHb-xJ-Yo9"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cZG-gF-ZcZ">
@@ -4603,7 +4695,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
         <image name="arrow" width="8" height="4"/>
         <image name="arrowGray" width="10" height="18"/>
         <image name="back" width="16" height="16"/>
-        <image name="downArrowGray" width="18" height="10"/>
         <image name="logoWhite" width="375" height="667"/>
         <image name="logo_and_name" width="95" height="130"/>
         <image name="logo_black" width="126" height="127"/>

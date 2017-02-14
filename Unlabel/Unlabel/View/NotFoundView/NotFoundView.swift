@@ -21,25 +21,21 @@ class NotFoundView: UIView {
     var delegate:NotFoundViewDelegate?
    
    
-   var showViewLabelBtn:Bool = false {
-      didSet {
-         if showViewLabelBtn == true {
-            IBviewHorizontal.isHidden = false
-             IBbtnViewLabels.isHidden = false
-         } else {
-             IBviewHorizontal.isHidden = true
-             IBbtnViewLabels.isHidden = true
-         }
+  var showViewLabelBtn:Bool = false {
+    didSet {
+      if showViewLabelBtn == true {
+        IBviewHorizontal.isHidden = false
+        IBbtnViewLabels.isHidden = false
+      } else {
+        IBviewHorizontal.isHidden = true
+        IBbtnViewLabels.isHidden = true
       }
-   }
-   
-   
+    }
+  }
+  
+  
    override func awakeFromNib() {
       super.awakeFromNib()
-      
-    //  IBbtnViewLabels.isHidden = true
-     // IBviewHorizontal.isHidden = true
-      
       IBbtnViewLabels.addTarget(self, action: #selector(NotFoundView.IBActionViewLabels(_:)), for: .touchUpInside)
       IBbtnViewLabels.titleLabel?.font = UIFont(name: "Neutraface2Text-Book", size: 15)!
       IBbtnViewLabels.setTitle("ADD IMAGES".uppercased(), for: UIControlState())
