@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewStatsCell" rowHeight="37" id="Xju-3m-PZm" customClass="ViewStatsCell" customModule="Unlabel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xju-3m-PZm" id="voe-Xh-TNY">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDX-6U-4KM">
+                        <rect key="frame" x="21" y="8" width="333" height="37.5"/>
+                        <string key="text">TOTAL PRODUCT COMMISSIONS: $900 
+</string>
+                        <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                        <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yDX-6U-4KM" secondAttribute="trailing" constant="21" id="FCk-Lr-2uF"/>
+                    <constraint firstAttribute="bottom" secondItem="yDX-6U-4KM" secondAttribute="bottom" constant="8" id="eb8-Bh-e4b"/>
+                    <constraint firstItem="yDX-6U-4KM" firstAttribute="leading" secondItem="voe-Xh-TNY" secondAttribute="leading" constant="21" id="qIo-ev-BPJ"/>
+                    <constraint firstItem="yDX-6U-4KM" firstAttribute="top" secondItem="voe-Xh-TNY" secondAttribute="top" constant="8" id="vMD-Nh-1a7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="IBLabelStats" destination="yDX-6U-4KM" id="c1S-z1-hxQ"/>
+            </connections>
+            <point key="canvasLocation" x="41" y="-161"/>
+        </tableViewCell>
+    </objects>
+</document>

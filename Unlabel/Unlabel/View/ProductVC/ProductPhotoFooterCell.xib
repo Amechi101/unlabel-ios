@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddOrViewProductImageVC" customModule="Unlabel" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductPhotoFooterCell" id="gTV-IL-0wX" customClass="ProductPhotoFooterCell" customModule="Unlabel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFf-3p-unK">
+                        <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uC-nW-vce">
+                                <rect key="frame" x="124" y="15" width="82" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="NKn-l1-oXx"/>
+                                    <constraint firstAttribute="width" constant="82" id="tWd-jD-j5S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="ADD IMAGES">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionAddImage:" destination="-1" eventType="touchUpInside" id="jgV-AY-qiI"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kML-ht-JeF" userLabel="Horizontal Line">
+                                <rect key="frame" x="124" y="35" width="82" height="1"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="d2p-Vs-IfB"/>
+                                    <constraint firstAttribute="height" constant="1" id="yUM-IX-Pse"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kML-ht-JeF" firstAttribute="centerX" secondItem="rFf-3p-unK" secondAttribute="centerX" id="1CZ-o3-lb1"/>
+                            <constraint firstItem="2uC-nW-vce" firstAttribute="centerY" secondItem="rFf-3p-unK" secondAttribute="centerY" id="ItP-BH-m7H"/>
+                            <constraint firstItem="2uC-nW-vce" firstAttribute="centerX" secondItem="rFf-3p-unK" secondAttribute="centerX" id="XlD-OP-aS6"/>
+                            <constraint firstItem="kML-ht-JeF" firstAttribute="top" secondItem="2uC-nW-vce" secondAttribute="bottom" id="oxp-qb-JNM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="rFf-3p-unK" secondAttribute="bottom" id="dju-Qr-Miz"/>
+                <constraint firstItem="rFf-3p-unK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eNl-Vr-OXL"/>
+                <constraint firstItem="rFf-3p-unK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iDk-rV-eyv"/>
+                <constraint firstAttribute="trailing" secondItem="rFf-3p-unK" secondAttribute="trailing" id="rZm-42-mkW"/>
+            </constraints>
+            <size key="customSize" width="271" height="59"/>
+            <point key="canvasLocation" x="142.5" y="75"/>
+        </collectionViewCell>
+    </objects>
+</document>

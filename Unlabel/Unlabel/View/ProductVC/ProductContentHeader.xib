@@ -73,6 +73,7 @@
                 <constraint firstItem="aA8-fx-IHu" firstAttribute="top" secondItem="Zma-pw-8ay" secondAttribute="bottom" constant="2" id="n2A-B7-HfM"/>
             </constraints>
             <connections>
+                <outlet property="IBBrandNameLabel" destination="Zma-pw-8ay" id="q8s-is-CeK"/>
                 <outlet property="IBViewRentalInfo" destination="4PD-Gt-ton" id="Ued-Aw-jJU"/>
             </connections>
             <point key="canvasLocation" x="25" y="51.5"/>

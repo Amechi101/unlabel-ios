@@ -33,7 +33,7 @@ class ProductVC: UIViewController {
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
   var nextPageURL:String?
-  
+  var labelHeight: CGFloat = 0.0
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -147,6 +147,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductHeaderCell(forIndexPath indexPath:IndexPath)->ProductHeaderCell{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
+    print("height   \(labelHeight)")
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + "," + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
@@ -167,6 +168,7 @@ extension ProductVC:UICollectionViewDataSource{
           }
       })
     }
+    productHeaderCell.contentView.backgroundColor = .red
     return productHeaderCell
   }
   
@@ -200,27 +202,32 @@ extension ProductVC:UICollectionViewDataSource{
     productCell.IBlblProductPrice.text = "$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
     
-    
-    if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
-      
-      productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-        if let _ = error{
-          self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-        }else{
-          if (type == SDImageCacheType.none)
-          {
-            productCell.IBimgProductImage.alpha = 0;
-            UIView.animate(withDuration: 0.35, animations: {
+    if arrProducts[indexPath.row - 3].arrProductsImages.count > 0{
+      if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
+        
+        productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
+          if let _ = error{
+            self.handleProductCellActivityIndicator(productCell, shouldStop: false)
+          }else{
+            if (type == SDImageCacheType.none)
+            {
+              productCell.IBimgProductImage.alpha = 0;
+              UIView.animate(withDuration: 0.35, animations: {
+                productCell.IBimgProductImage.alpha = 1;
+              })
+            }
+            else
+            {
               productCell.IBimgProductImage.alpha = 1;
-            })
+            }
+            self.handleProductCellActivityIndicator(productCell, shouldStop: true)
           }
-          else
-          {
-            productCell.IBimgProductImage.alpha = 1;
-          }
-          self.handleProductCellActivityIndicator(productCell, shouldStop: true)
-        }
-      })
+        })
+      }
+    }
+    else{
+      productCell.IBimgProductImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "Group"))
+      self.handleProductCellActivityIndicator(productCell, shouldStop: true)
     }
     return productCell
   }
@@ -275,8 +282,9 @@ extension ProductVC{
     if segue.identifier == S_ID_PRODUCT_DETAIL_WEBVIEW_VC{
       if let productDetailWVVC:ProductDetailsWebViewVC = segue.destination as? ProductDetailsWebViewVC{
         productDetailWVVC.selectedBrand = self.selectedBrand
+        //Google analytics
         
-        //                        GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
+        //GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
         //                    }
       }
     }else if segue.identifier == S_ID_ABOUT_LABEL_VC{
@@ -285,9 +293,12 @@ extension ProductVC{
       }
     }
     else if segue.identifier == "ProductDetailSegue"{
-      if let productViewController:ProductViewController = segue.destination as? ProductViewController{
-        productViewController.selectedBrand = selectedBrand
-        productViewController.selectedProduct = self.selectedProduct
+      print(segue.destination)
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
+          productViewController.selectedBrand = selectedBrand
+          productViewController.selectedProduct = self.selectedProduct
+        }
       }
     }
   }
@@ -297,9 +308,7 @@ extension ProductVC{
 //MARK:- ViewFollowingLabelPopup Methods
 
 extension ProductVC:PopupviewDelegate{
-  /**
-   If user not following any brand, show this view
-   */
+  
   func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
     let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil)! [0] as! ViewFollowingLabelPopup
     viewFollowingLabelPopup.delegate = self
@@ -355,7 +364,6 @@ extension ProductVC{
   
   //For ProductFooterView
   @IBAction func IBActionViewMore(_ sender: AnyObject) {
-    //        awsCallFetchProducts()
     getProductsOfBrand()
     debugPrint("IBActionViewMore")
   }
@@ -367,7 +375,10 @@ extension ProductVC{
       updateFollowButton(sender, isFollowing: selectedBrand.isFollowing)
       UnlabelAPIHelper.sharedInstance.followBrand(selectedBrand.ID, onVC: self, success:{ (
         meta: JSON) in
-        
+        if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
+          self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+          UnlabelHelper.setBoolValue(true, key: sFOLLOW_SEEN_ONCE)
+        }
         debugPrint(meta)
         
       }, failed: { (error) in
@@ -381,10 +392,13 @@ extension ProductVC{
     self.share(shareText: "Check out \(selectedBrand.Name) on Unlabel. https://unlabel.us/\(selectedBrand.Slug)/", shareImage: headerViewImage)
   }
   
-  @IBAction func IBActionViewProducts(_ sender: AnyObject) {
-  }
-  
+  //  @IBAction func IBActionViewProducts(_ sender: AnyObject) {
+  //  }
+  //
 }
+
+//MARK: Sort Popup methods
+
 extension ProductVC: SortModePopupViewDelegate{
   func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
     if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
@@ -409,6 +423,7 @@ extension ProductVC: SortModePopupViewDelegate{
     print(sortMode)
     sortModeValue = sortMode
     arrProducts = []
+    nextPageURL = nil
     IBcollectionViewProduct.reloadData()
     switch sortMode {
     case "High to Low":
@@ -550,6 +565,7 @@ extension ProductVC{
       let frame: CGRect = text.boundingRect(with: CGSize(width: widthValue, height: CGFloat(CGFloat.greatestFiniteMagnitude)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
       size = CGSize(width: CGFloat(frame.size.width), height: CGFloat(frame.size.height + 1))
       print(size.height)
+      labelHeight = size.height
     }
     return size.height
   }

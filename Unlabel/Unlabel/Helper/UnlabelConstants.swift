@@ -43,6 +43,7 @@ let ADD_TO_CART_POPUP       = "AddToCartPopup"
 let LIKE_FOLLOW_POPUP       = "LikeFollowPopup"
 let NOT_FOUND_VIEW          = "NotFoundView"
 let VIEW_FOLLOWING_POPUP    = "ViewFollowingLabelPopup"
+let Rental_Info_VC    = "RentalInfoVC"
 //MARK:- Storyboard IDs
 
 let S_ID_FEED_VC                    = "FeedVC"
@@ -66,7 +67,9 @@ let S_ID_PRODUCT_DETAIL_WEBVIEW_VC  = "ProductDetailsWebVeiwVC"
 let S_ID_ADD_EDIT_SHIPPING_ADDRESS_VC = "AddEditShippingAddressVC"
 let S_ID_ADD_EDIT_PAYMENT_INFO_VC   = "AddEditPaymentInfoVC"
 let S_CART_VIEW_CONTROLLER          = "CartViewController"
+let S_ID_Product_Content_Header     = "ProductContentHeader"
 
+let S_ID_Rental_Info_VC    = "RentalInfoVC"
 //MARK:- Image Name Constants
 
 let IMG_HAMBURGER              = "hamburger"
@@ -99,6 +102,7 @@ let REUSABLE_ID_CategoryStyleCell   = "CategoryStyleCell"
 let REUSABLE_ID_ProductFooterView   = "ProductFooterView"
 
 let REUSABLE_ID_ProductSortCell   = "ProductSortCell"
+let REUSABLE_ID_ProductContentHeaderCell   = "ProductContentHeaderCell"
 
 let REUSABLE_ID_FeedVCFooterCell    = "FeedVCFooterCell"
 let REUSABLE_ID_FeedVCHeaderCell    = "FeedVCHeaderCell"
@@ -109,6 +113,7 @@ let REUSABLE_ID_ADD_NEW_CELL = "AddNewCell"
 let REUSABLE_ID_PRODUCT_IMAGE_CELL = "ProductImageCell"
 let REUSABLE_ID_CART_FOOTER_CELL = "CartFooterView"
 let REUSABLE_ID_CART_HEADER_CELL = "CartHeaderView"
+
 //MARK:- Font Style
 
 let FONT_STYLE_DEMI = "Demi"
@@ -126,6 +131,7 @@ let sLegal_Stuff                = "LEGAL STUFF"
 let sPrivacy_Policy             = "PRIVACY POLICY"
 
 let sPOPUP_SEEN_ONCE            = "popup_seen_once"
+let sFOLLOW_SEEN_ONCE            = "follow_seen_once"
 let sENTRY_ONCE_SEEN            = "sENTRY_ONCE_SEEN"
 
 let S_NO_INTERNET               = "No Internet Available!"

@@ -18,11 +18,14 @@ class ProductViewController: UIViewController {
   @IBOutlet weak var productPageControl: UIPageControl!
   @IBOutlet weak var IBSelectSize: UIButton!
   @IBOutlet weak var IBbtnTitle: UIButton!
+  @IBOutlet weak var IBButtonReserve: UIButton!
   @IBOutlet weak var IBProductTitle: UILabel!
   @IBOutlet weak var IBProductPrice: UILabel!
+  @IBOutlet weak var IBScrollView: UIScrollView!
   var selectedBrand:Brand?
   var selectedProduct:Product?
   var productID: String?
+  var contentStatus: ContentStatus = .unreserved
   
   //MARK: -  View lifecycle methods
   
@@ -35,9 +38,19 @@ class ProductViewController: UIViewController {
     setUpCollectionView()
     if let brandName:String = selectedBrand?.Name{
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
+      
     }
     
-
+    if contentStatus == ContentStatus.reserve{
+      IBButtonReserve.setTitle("UNRESERVE", for: .normal)
+      IBButtonReserve.backgroundColor = DARK_RED_COLOR
+    }
+    else{
+      IBButtonReserve.setTitle("RESERVE", for: .normal)
+      IBButtonReserve.backgroundColor = DARK_GRAY_COLOR
+    }
+    IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
+    IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
     productPageControl.currentPage = 0
     productID = selectedProduct?.ProductID
@@ -55,9 +68,11 @@ class ProductViewController: UIViewController {
       }
     }
   }
-  
-  //MARK: -  Custom methods
-  
+}
+
+//MARK: -  Custom methods
+
+extension ProductViewController{
   func wsReserveProduct(){
     UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
       meta: JSON) in
@@ -88,9 +103,11 @@ class ProductViewController: UIViewController {
     self.automaticallyAdjustsScrollViewInsets = true
     
   }
-  
-  //MARK: -  IBAction methods
-  
+}
+
+//MARK: -  IBAction methods
+
+extension ProductViewController{
   @IBAction func IBActionSelectSize(_ sender: Any) {
     self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
@@ -104,17 +121,22 @@ class ProductViewController: UIViewController {
     }
   }
   @IBAction func addToCartAction(_ sender: Any) {
-    
-    if UnlabelHelper.isUserLoggedIn(){
-      self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-    }else{
-      UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
-      })
+    if contentStatus == ContentStatus.reserve{
+      self.dismiss(animated: true, completion: nil)
+    }
+    else{
+      if UnlabelHelper.isUserLoggedIn(){
+        self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+      }else{
+        UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
+        })
+      }
+
     }
   }
   
   @IBAction func backAction(_ sender: Any) {
-    _ = self.navigationController?.popViewController(animated: true)
+    self.dismiss(animated: true, completion: nil)
   }
 }
 
@@ -129,7 +151,7 @@ extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSou
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
     print("cell\(productCell)")
     productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill;
-   // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
+    // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
     if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
       productCell.productImage.sd_setImage(with: url, completed:
         { (iimage, error, type, url) in
@@ -147,7 +169,7 @@ extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSou
           }
       })
     }
-
+    
     return productCell
   }
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

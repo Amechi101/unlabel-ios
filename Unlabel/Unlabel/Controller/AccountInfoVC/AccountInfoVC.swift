@@ -50,7 +50,12 @@ extension AccountInfoVC{
     else if indexPath.row == 5{
       self.addPopupView(PopupType.delete, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
     }else if indexPath.row == 7{
-      wsLogout()
+      if !ReachabilitySwift.isConnectedToNetwork(){
+        UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+      }
+      else{
+        wsLogout()
+      }
     }
   }
   

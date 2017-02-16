@@ -73,6 +73,7 @@ class UnlabelHelper: NSObject {
     UnlabelHelper.removePrefForKey(PRM_DISPLAY_NAME)
     UnlabelHelper.removePrefForKey(PRM_PROVIDER)
     UnlabelHelper.removePrefForKey(sPOPUP_SEEN_ONCE)
+    UnlabelHelper.removePrefForKey(sFOLLOW_SEEN_ONCE)
     UnlabelHelper.removePrefForKey(sENTRY_ONCE_SEEN)
     
     
