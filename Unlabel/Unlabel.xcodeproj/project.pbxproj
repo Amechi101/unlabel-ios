@@ -118,6 +118,10 @@
 		AD6ED0091E2F294B0002DB26 /* SortModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6ED0071E2F294B0002DB26 /* SortModeCell.swift */; };
 		AD6ED00A1E2F294B0002DB26 /* SortModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD6ED0081E2F294B0002DB26 /* SortModeCell.xib */; };
 		AD6ED00C1E2F6D080002DB26 /* FetchProductParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6ED00B1E2F6D080002DB26 /* FetchProductParams.swift */; };
+		AD7DFE171E555E2C002F0F17 /* CurrentLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7DFE161E555E2C002F0F17 /* CurrentLocationVC.swift */; };
+		AD7DFE1A1E557464002F0F17 /* EditProfileBioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7DFE191E557464002F0F17 /* EditProfileBioVC.swift */; };
+		AD7DFE201E559A0B002F0F17 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7DFE1F1E559A0B002F0F17 /* SettingsViewController.swift */; };
+		AD7DFE221E55AC69002F0F17 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7DFE211E55AC69002F0F17 /* ChangePasswordVC.swift */; };
 		AD908E531E24ECEA00D475DF /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD908E521E24ECEA00D475DF /* ProductInfoViewController.swift */; };
 		AD908E551E24F06900D475DF /* AboutCuratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD908E541E24F06900D475DF /* AboutCuratorViewController.swift */; };
 		AD908E5A1E25032700D475DF /* LikeFollowPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD908E581E25032700D475DF /* LikeFollowPopup.swift */; };
@@ -312,6 +316,10 @@
 		AD6ED0071E2F294B0002DB26 /* SortModeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortModeCell.swift; sourceTree = "<group>"; };
 		AD6ED0081E2F294B0002DB26 /* SortModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortModeCell.xib; sourceTree = "<group>"; };
 		AD6ED00B1E2F6D080002DB26 /* FetchProductParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchProductParams.swift; sourceTree = "<group>"; };
+		AD7DFE161E555E2C002F0F17 /* CurrentLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationVC.swift; sourceTree = "<group>"; };
+		AD7DFE191E557464002F0F17 /* EditProfileBioVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileBioVC.swift; sourceTree = "<group>"; };
+		AD7DFE1F1E559A0B002F0F17 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AD7DFE211E55AC69002F0F17 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AD908E521E24ECEA00D475DF /* ProductInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
 		AD908E541E24F06900D475DF /* AboutCuratorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCuratorViewController.swift; sourceTree = "<group>"; };
 		AD908E581E25032700D475DF /* LikeFollowPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeFollowPopup.swift; sourceTree = "<group>"; };
@@ -903,6 +911,38 @@
 			path = ../Controller;
 			sourceTree = "<group>";
 		};
+		AD7DFE181E555E54002F0F17 /* Current Location VC */ = {
+			isa = PBXGroup;
+			children = (
+				AD7DFE161E555E2C002F0F17 /* CurrentLocationVC.swift */,
+			);
+			name = "Current Location VC";
+			sourceTree = "<group>";
+		};
+		AD7DFE1B1E559913002F0F17 /* Edit Profile Bio VC */ = {
+			isa = PBXGroup;
+			children = (
+				AD7DFE191E557464002F0F17 /* EditProfileBioVC.swift */,
+			);
+			name = "Edit Profile Bio VC";
+			sourceTree = "<group>";
+		};
+		AD7DFE1E1E559959002F0F17 /* Settings VC */ = {
+			isa = PBXGroup;
+			children = (
+				AD7DFE1F1E559A0B002F0F17 /* SettingsViewController.swift */,
+			);
+			name = "Settings VC";
+			sourceTree = "<group>";
+		};
+		AD7DFE231E55B1B9002F0F17 /* Change Password VC */ = {
+			isa = PBXGroup;
+			children = (
+				AD7DFE211E55AC69002F0F17 /* ChangePasswordVC.swift */,
+			);
+			name = "Change Password VC";
+			sourceTree = "<group>";
+		};
 		AD908E511E24EC2700D475DF /* Product Image Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,6 +1103,10 @@
 			children = (
 				15EF18021CA4816F0028BA8B /* AccountInfoVC */,
 				ADD39DBD1E53087E00FC086D /* Influencer Stats VC */,
+				AD7DFE181E555E54002F0F17 /* Current Location VC */,
+				AD7DFE1B1E559913002F0F17 /* Edit Profile Bio VC */,
+				AD7DFE1E1E559959002F0F17 /* Settings VC */,
+				AD7DFE231E55B1B9002F0F17 /* Change Password VC */,
 			);
 			name = "Profile Tab";
 			sourceTree = "<group>";
@@ -1438,6 +1482,7 @@
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,
 				154687761C57B9AF0060565B /* UnlabelHelper.swift in Sources */,
 				ADF957311E518B2200F1DC56 /* ProductPhotoFooterCell.swift in Sources */,
+				AD7DFE201E559A0B002F0F17 /* SettingsViewController.swift in Sources */,
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
@@ -1457,6 +1502,7 @@
 				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,
 				ADB2A3341E41B68000F26C2D /* ManageContentVC.swift in Sources */,
 				153BE1FC1D5FAFEB00A64816 /* RequestPrams.swift in Sources */,
+				AD7DFE221E55AC69002F0F17 /* ChangePasswordVC.swift in Sources */,
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				AD0E43C11E35F06E00B18CC2 /* LoginEntryVC.swift in Sources */,
 				AD3974EC1E0A4F9A0013B3E1 /* BannerViewController.swift in Sources */,
@@ -1476,12 +1522,14 @@
 				15CCC6F81D16A53C00FD602F /* FBShimmeringView.m in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				ADEAD9F61E1F92FF0075813E /* AddToCartPopup.swift in Sources */,
+				AD7DFE171E555E2C002F0F17 /* CurrentLocationVC.swift in Sources */,
 				AD908E5A1E25032700D475DF /* LikeFollowPopup.swift in Sources */,
 				ADE078D81E4C700A00242897 /* RentOrLiveProductDetailVC.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				AD183A171E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
+				AD7DFE1A1E557464002F0F17 /* EditProfileBioVC.swift in Sources */,
 				CB1C21BB1D7B601C00253342 /* GlossaryCell.swift in Sources */,
 				AD5189AE1E14C7930035DE28 /* User.swift in Sources */,
 				ADDE54AA1E49EF330041ED2C /* ViewRentalInfoVC.swift in Sources */,
