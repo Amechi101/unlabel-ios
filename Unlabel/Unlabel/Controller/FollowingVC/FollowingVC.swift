@@ -31,18 +31,16 @@ class FollowingVC: UIViewController {
   fileprivate let fFooterHeight:CGFloat = 28.0
   fileprivate var headerView:FeedVCHeaderCell?
   
-  
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     setupOnLoad()
-   // IBcollectionViewFollowing.reloadData()
+    // IBcollectionViewFollowing.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -66,44 +64,7 @@ class FollowingVC: UIViewController {
     IBcollectionViewFollowing.backgroundView = notFoundView
     IBcollectionViewFollowing.backgroundView?.isHidden = true
   }
-
 }
-
-
-//MARK:- ViewFollowingLabelPopup Methods
-
-extension FollowingVC:PopupviewDelegate{
-  func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
-    let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil)! [0] as! ViewFollowingLabelPopup
-    viewFollowingLabelPopup.delegate = self
-    viewFollowingLabelPopup.popupType = popupType
-    viewFollowingLabelPopup.frame = initialFrame
-    viewFollowingLabelPopup.alpha = 0
-    view.addSubview(viewFollowingLabelPopup)
-    UIView.animate(withDuration: 0.2, animations: {
-      viewFollowingLabelPopup.frame = self.view.frame
-      viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
-      viewFollowingLabelPopup.alpha = 1
-    })
-    if popupType == PopupType.follow{
-      viewFollowingLabelPopup.setFollowSubTitle("Brand")
-    }
-    viewFollowingLabelPopup.updateView()
-  }
-  
-  func popupDidClickCancel(){
-    
-  }
-  
-  func popupDidClickDelete(){
-    debugPrint("delete account")
-  }
-  
-  func popupDidClickClose(){
-    
-  }
-}
-
 
 //MARK:- UICollectionViewDelegate Methods
 
@@ -119,8 +80,6 @@ extension FollowingVC:UICollectionViewDelegate{
       
     }
   }
-  
-  
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     
@@ -196,13 +155,10 @@ extension FollowingVC:UICollectionViewDataSource {
     
     return feedVCCell
   }
-  
-  
-
-  
 }
 
 //MARK:- UICollectionViewDelegateFlowLayout Methods
+
 extension FollowingVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.size.width, height: FEED_CELL_HEIGHT)
@@ -246,10 +202,7 @@ extension FollowingVC: NotFoundViewDelegate {
     })
     
   }
-  
 }
-
-
 
 //MARK:- IBAction Methods
 
@@ -289,12 +242,11 @@ extension FollowingVC{
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
-
+  
   @IBAction func IBActionBack(_ sender: UIButton) {
     _ = self.navigationController?.popToRootViewController(animated: true)
   }
 }
-
 
 //MARK:- Custom Methods
 
@@ -332,7 +284,7 @@ extension FollowingVC{
       feedVCCell.IBactivityIndicator.startAnimating()
     }
   }
-
+  
 }
 extension FollowingVC{
   func wsCallGetLabels(){
@@ -341,72 +293,24 @@ extension FollowingVC{
   
   func wsCallGetLabelsResetOffset(_ reset:Bool) {
     var nextPageURL:String? = String()
-    
-//    if headerView?.selectedTab == .men{
-      nextPageURL = nextPageURLMen
-//    }else if headerView?.selectedTab == .women{
-//      nextPageURL = nextPageURLWomen
-//    }else{
-      
-//    }
-    
+    nextPageURL = nextPageURLMen
     if reset {
-//      if headerView?.selectedTab == .men{
-        nextPageURLMen = nil
-        arrMenBrandList = []
-//      }
-//      else if headerView?.selectedTab == .women{
-//        nextPageURLWomen = nil
-//        arrWomenBrandList = []
-//      }
-//    else{
-        
-//      }
-      //            nextPageURL = nil
-      //            arrBrandList = []
+      nextPageURLMen = nil
+      arrMenBrandList = []
     } else if let next:String = nextPageURL, next.characters.count == 0 {
       return
     }
     //Internet available
     if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
       isLoading = true
-      
-//      if headerView?.selectedTab == .men{
-        if self.nextPageURLMen == nil {
-          UnlabelLoadingView.sharedInstance.start(view)
-        }else{
-          self.bottonActivityIndicator.startAnimating()
-        }
-        
-//      }else if headerView?.selectedTab == .women{
-//        if self.nextPageURLWomen == nil {
-//          UnlabelLoadingView.sharedInstance.start(view)
-//        }else{
-//          self.bottonActivityIndicator.startAnimating()
-//        }
-        
-//      }
-//    else{
-//        UnlabelLoadingView.sharedInstance.start(view)
-//      }
-      
-      
+      if self.nextPageURLMen == nil {
+        UnlabelLoadingView.sharedInstance.start(view)
+      }else{
+        self.bottonActivityIndicator.startAnimating()
+      }
       let fetchBrandsRequestParams = FetchBrandsRP()
       fetchBrandsRequestParams.sortMode = "AZ"
-      
-//      if headerView?.selectedTab == .men{
-        fetchBrandsRequestParams.nextPageURL = nextPageURLMen
-//      }else if headerView?.selectedTab == .women{
-//        fetchBrandsRequestParams.nextPageURL = nextPageURLWomen
-//      }else{
-        
-//      }
-      
-//      if let selectedTab = headerView?.selectedTab{
-//        fetchBrandsRequestParams.selectedTab = selectedTab
-//      }
-      
-      
+      fetchBrandsRequestParams.nextPageURL = nextPageURLMen
       UnlabelAPIHelper.sharedInstance.getFollowedBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.isLoading = false
         

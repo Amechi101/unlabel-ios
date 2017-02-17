@@ -88,7 +88,6 @@ class UnlabelAPIHelper{
   
   func getBrandModels(fromJSON json:JSON)->[Brand]?{
     var arrBrands = [Brand]()
-    
     if let brandList = json.dictionaryObject!["results"]{
       
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
@@ -191,6 +190,118 @@ class UnlabelAPIHelper{
       return nil
     }
   }
+  
+  
+  func getBrandWiseProductModels(fromJSON json:JSON)->[Brand]?{
+    var arrBrands = [Brand]()
+
+  //  let brandList1 = json.dictionaryObject
+    print(json)
+    if let brandList = json.dictionaryObject!["results"]{
+      
+      for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
+        let brand = Brand()
+        
+        brand.currentIndex = index
+        
+        if let isActive = thisBrand["is_active"] as? Bool{
+          brand.isActive = isActive
+        }
+        
+        //Add only active brands
+        //       if brand.isActive{
+        
+        if let id = thisBrand[PRM_ID] as? NSNumber {
+          brand.ID = "\(id)"
+        }
+        
+        if let followed = thisBrand["followed"] as? Bool {
+          brand.isFollowing = followed
+        }
+        
+        if let id = thisBrand[PRM_ID] as? NSNumber {
+          brand.ID = "\(id)"
+        }
+        
+        if let brandCity = thisBrand["location"] as? [AnyHashable: Any] {
+          if let city = brandCity["city"] as? String{
+            brand.city = city
+          }
+          
+          if let location = brandCity["country"]as? String{
+            brand.location = location
+          }
+        }
+        
+        if let featureImage = thisBrand["image"] as? String{
+          brand.FeatureImage = featureImage
+        }
+        
+        if let description = thisBrand["description"] as? String{
+          brand.Description = description
+        }
+        
+        if let name = thisBrand["name"] as? String{
+          brand.Name = name
+        }
+        
+        if let slug = thisBrand[PRM_SLUG] as? String{
+          brand.Slug = slug
+        }
+        
+        if let stateOrCountry = thisBrand["country"] as? String{
+          brand.StateOrCountry = stateOrCountry
+        }
+        
+        //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
+        //                        brand.CreatedDateString = createdDate
+        //
+        //                        let dateFormatter = DateFormatter()
+        //                        dateFormatter.dateFormat = "yyyy-MM-dd"
+        //
+        //                        let newDateString:String = String(brand.CreatedDateString.characters.prefix(10))
+        //                        if let createdDate = dateFormatter.date(from: newDateString){
+        //                            brand.CreatedDate = createdDate
+        //                        }
+        //                    }
+        
+        if let originCity = thisBrand["country"] as? String{
+          brand.OriginCity = originCity
+        }
+        
+        //                    if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
+        //                        brand.BrandWebsiteURL = brandWebsiteURL
+        //                    }
+        
+        //                    if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
+        //                        brand.arrProducts = getProductsArrayFromJSON(arrProducts)
+        //                    }
+        //
+        //                    if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
+        //                        brand.Menswear = menswear
+        //                    }
+        //
+        //                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
+        //                        brand.Womenswear = womenswear
+        //                    }
+        
+        //                    if let brandCategory = thisBrand[PRM_BRAND_CATEGORY] as? String{
+        //                        brand.BrandCategory = brandCategory
+        //                    }
+        
+        arrBrands.append(brand)
+      }
+      //     }
+      
+      debugPrint(arrBrands)
+      return arrBrands
+    }else{
+      return nil
+    }
+  }
+
+  
+  
   func getProduct(fromJSON json:JSON)->[Product]?{
     var arrProducts = [Product]()
     if let productList = json.dictionaryObject!["results"]{
@@ -638,6 +749,37 @@ class UnlabelAPIHelper{
             success(arrProducts, json)
           }
         case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  func getReserveProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    
+    if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
+      requestURL = nextPage
+    }
+    else {
+      requestURL = v4BaseUrl + "api_v2/influencer_reserved_products/"
+    }
+    print(requestURL!)
+    let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+    
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+       //   debugPrint(response)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+            success(arrBrands, json)
+            //  debugPrint(arrBrands)
+          }else{
+            failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+          }        case .failure(let error):
           failed(error as NSError)
         }
       }

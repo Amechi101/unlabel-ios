@@ -82,7 +82,7 @@ extension RentOrLiveProductDetailVC: GoLivePopupDelegate{
   }
   
   func popupDidClickCancel(){
-    
+    //delegate method to be implemented after API integration
   }
   func popupDidClickGoLive(){
     self.dismiss(animated: true, completion: nil)
@@ -109,7 +109,7 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
     }
   }
   func popupDidClickCloseButton(){
-    
+    //delegate method to be implemented after API integration
   }
   func popupDidClickDone(_ sortMode: String){
     IBSelectSize.setTitle(sortMode, for: .normal)
