@@ -147,6 +147,8 @@
 		ADEAD9F61E1F92FF0075813E /* AddToCartPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEAD9F41E1F92FF0075813E /* AddToCartPopup.swift */; };
 		ADEAD9F71E1F92FF0075813E /* AddToCartPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEAD9F51E1F92FF0075813E /* AddToCartPopup.xib */; };
 		ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEAD9F81E1F9CFC0075813E /* ProductViewController.swift */; };
+		ADF10B751E56CEE800235A24 /* LegalAgreementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF10B741E56CEE800235A24 /* LegalAgreementVC.swift */; };
+		ADF10B771E56CF8F00235A24 /* UnlabelLegalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF10B761E56CF8F00235A24 /* UnlabelLegalVC.swift */; };
 		ADF957311E518B2200F1DC56 /* ProductPhotoFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF9572F1E518B2200F1DC56 /* ProductPhotoFooterCell.swift */; };
 		ADF957321E518B2200F1DC56 /* ProductPhotoFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADF957301E518B2200F1DC56 /* ProductPhotoFooterCell.xib */; };
 		ADF957361E51AEEA00F1DC56 /* AddProductNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF957351E51AEEA00F1DC56 /* AddProductNoteVC.swift */; };
@@ -345,6 +347,8 @@
 		ADEAD9F41E1F92FF0075813E /* AddToCartPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToCartPopup.swift; sourceTree = "<group>"; };
 		ADEAD9F51E1F92FF0075813E /* AddToCartPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddToCartPopup.xib; sourceTree = "<group>"; };
 		ADEAD9F81E1F9CFC0075813E /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		ADF10B741E56CEE800235A24 /* LegalAgreementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalAgreementVC.swift; sourceTree = "<group>"; };
+		ADF10B761E56CF8F00235A24 /* UnlabelLegalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelLegalVC.swift; sourceTree = "<group>"; };
 		ADF9572F1E518B2200F1DC56 /* ProductPhotoFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPhotoFooterCell.swift; sourceTree = "<group>"; };
 		ADF957301E518B2200F1DC56 /* ProductPhotoFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductPhotoFooterCell.xib; sourceTree = "<group>"; };
 		ADF957351E51AEEA00F1DC56 /* AddProductNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductNoteVC.swift; sourceTree = "<group>"; };
@@ -1107,6 +1111,8 @@
 				AD7DFE1B1E559913002F0F17 /* Edit Profile Bio VC */,
 				AD7DFE1E1E559959002F0F17 /* Settings VC */,
 				AD7DFE231E55B1B9002F0F17 /* Change Password VC */,
+				ADF10B781E56ED6C00235A24 /* Legal Agreement VC */,
+				ADF10B791E56ED7600235A24 /* Unlabel Legal VC */,
 			);
 			name = "Profile Tab";
 			sourceTree = "<group>";
@@ -1196,6 +1202,22 @@
 				ADEAD9F81E1F9CFC0075813E /* ProductViewController.swift */,
 			);
 			name = "Product View Controller";
+			sourceTree = "<group>";
+		};
+		ADF10B781E56ED6C00235A24 /* Legal Agreement VC */ = {
+			isa = PBXGroup;
+			children = (
+				ADF10B741E56CEE800235A24 /* LegalAgreementVC.swift */,
+			);
+			name = "Legal Agreement VC";
+			sourceTree = "<group>";
+		};
+		ADF10B791E56ED7600235A24 /* Unlabel Legal VC */ = {
+			isa = PBXGroup;
+			children = (
+				ADF10B761E56CF8F00235A24 /* UnlabelLegalVC.swift */,
+			);
+			name = "Unlabel Legal VC";
 			sourceTree = "<group>";
 		};
 		ADFFD3411E31FF0C00BCC8EF /* Sort Mode Popup */ = {
@@ -1534,6 +1556,7 @@
 				AD5189AE1E14C7930035DE28 /* User.swift in Sources */,
 				ADDE54AA1E49EF330041ED2C /* ViewRentalInfoVC.swift in Sources */,
 				ADDE54A71E49C7D10041ED2C /* ProductContentHeader.swift in Sources */,
+				ADF10B751E56CEE800235A24 /* LegalAgreementVC.swift in Sources */,
 				ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */,
 				AD6ED00C1E2F6D080002DB26 /* FetchProductParams.swift in Sources */,
 				CBEE783E1D7C89010001752F /* FilterListCell.swift in Sources */,
@@ -1544,6 +1567,7 @@
 				154F193A1CD60D84006DFC42 /* ChangeNameVC.swift in Sources */,
 				15CBF35D1C84DD23005F59E4 /* Filter.swift in Sources */,
 				158F3E141C71076A00A3D0D6 /* UnlabelSafariVC.swift in Sources */,
+				ADF10B771E56CF8F00235A24 /* UnlabelLegalVC.swift in Sources */,
 				15EF18041CA481810028BA8B /* AccountInfoVC.swift in Sources */,
 				1532E3ED1D6CEFCC0029D0E9 /* ProductDescCell.swift in Sources */,
 				154687791C5814D70060565B /* UnlabelExtensions.swift in Sources */,

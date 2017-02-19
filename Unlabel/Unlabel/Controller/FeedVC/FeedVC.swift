@@ -357,44 +357,6 @@
  }
  
  
- //MARK:- ViewFollowingLabelPopup Methods
- 
- extension FeedVC:PopupviewDelegate{
-  /**
-   If user not following any brand, show this view
-   */
-  func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
-    let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil)! [0] as! ViewFollowingLabelPopup
-    viewFollowingLabelPopup.delegate = self
-    viewFollowingLabelPopup.popupType = popupType
-    viewFollowingLabelPopup.frame = initialFrame
-    viewFollowingLabelPopup.alpha = 0
-    view.addSubview(viewFollowingLabelPopup)
-    UIView.animate(withDuration: 0.2, animations: {
-      viewFollowingLabelPopup.frame = self.view.frame
-      viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
-      viewFollowingLabelPopup.alpha = 1
-    })
-    if popupType == PopupType.follow{
-      viewFollowingLabelPopup.setFollowSubTitle("Brand")
-    }
-    viewFollowingLabelPopup.updateView()
-  }
-  
-  func popupDidClickCancel(){
-    
-  }
-  
-  func popupDidClickDelete(){
-    debugPrint("delete account")
-  }
-  
-  func popupDidClickClose(){
-    
-  }
- }
- 
- 
  //MARK:- IBAction Methods
  
  extension FeedVC{

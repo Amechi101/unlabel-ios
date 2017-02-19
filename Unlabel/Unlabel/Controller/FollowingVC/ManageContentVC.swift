@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 //MARK: -  Enum
 
@@ -36,11 +38,15 @@ class ManageContentVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpCollectionView()
+    getReservedProducts()
   }
-  
+
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
+  //MARK: -  Navigation methods
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ManageToProductVC"{
@@ -100,6 +106,17 @@ extension ManageContentVC{
       }
     }, completion: { _ in })
   }
+  
+  func getReservedProducts(){
+    
+    let fetchProductRequestParams = FetchProductParams()
+    fetchProductRequestParams.sortMode = sortMode
+    UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+      
+    }, failed: { (error) in
+    })
+    
+  }
 }
 
 //MARK: -  IBAction methods
@@ -153,7 +170,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     productCell.IBimgProductImage.image = UIImage(named: "Group")
     self.handleProductCellActivityIndicator(productCell, shouldStop: true)
     
-    //***** To be done at API integration phase
+    //***** To be done at API integration phase ********
     
     //    if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
     //
@@ -194,24 +211,15 @@ extension ManageContentVC: UICollectionViewDataSource{
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
     }
-    else if contentStatus == ContentStatus.rent{
+    else if contentStatus == ContentStatus.rent || contentStatus == ContentStatus.live{
       performSegue(withIdentifier: "ManageToLiveRent", sender: self)
-    }
-    else if contentStatus == ContentStatus.live{
-      performSegue(withIdentifier: "ManageToLiveRent", sender: self)
-    }
-    else{
-      //performSegue(withIdentifier: "ManageToProductVC", sender: self)
     }
     
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
     
-    if contentStatus == ContentStatus.reserve{
-      return CGSize(width: collectionView.frame.width, height: 50.0)
-    }
-    else if contentStatus == ContentStatus.rent{
+    if contentStatus == ContentStatus.reserve || contentStatus == ContentStatus.rent{
       return CGSize(width: collectionView.frame.width, height: 50.0)
     }
     else if contentStatus == ContentStatus.live{
@@ -264,7 +272,7 @@ extension ManageContentVC: SortModePopupViewDelegate{
     }
   }
   func popupDidClickCloseButton(){
-    
+    //delegate method to be implemented after API integration
   }
   func popupDidClickDone(_ sortMode: String){
     print(sortMode)

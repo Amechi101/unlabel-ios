@@ -43,6 +43,12 @@ class ChangePasswordVC: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   @IBAction func IBActionUpdate(_ sender: Any) {
+    if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
+
+    }
+    else{
+      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide matching passwords", onOk: { () -> () in })
+    }
   }
   @IBAction func IBActionEditingChanged(_ sender: Any) {
     if (IBTextfieldCurrentPassword.text != "" && IBTextfieldNewPassword.text != "" && IBTextfieldReEnterPassword.text != "") {
@@ -52,8 +58,11 @@ class ChangePasswordVC: UIViewController {
       IBButtonUpdate.isHidden = true
     }
   }
+  @IBAction func IBActionBack(_ sender: Any) {
+    _ = self.navigationController?.popViewController(animated: true)
+  }
   
-  fileprivate func isValidEmail(_ IBTextFeild: UITextField)->Bool{
+  fileprivate func isValidPassword(_ IBTextFeild: UITextField)->Bool{
     
     if let iCharacters = IBTextFeild.text?.characters.count, iCharacters > 0{
       if let pwCharacters = IBTextFeild.text?.characters.count, pwCharacters < 8{
@@ -115,19 +124,25 @@ class ChangePasswordVC: UIViewController {
 extension ChangePasswordVC: UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     if textField == IBTextfieldCurrentPassword{
-      if isValidEmail(IBTextfieldCurrentPassword){
-        IBTextfieldCurrentPassword.becomeFirstResponder()
+      if isValidPassword(IBTextfieldCurrentPassword){
+        passwordField = PasswordFieldStatus.filled
+        updateCurrentPasswordFields()
+        IBTextfieldNewPassword.becomeFirstResponder()
       }else{
         
       }
     }else if textField == IBTextfieldNewPassword{
-      if isValidEmail(IBTextfieldNewPassword){
-        
+      if isValidPassword(IBTextfieldNewPassword){
+        passwordField = PasswordFieldStatus.filled
+        updateNewPasswordFields()
+        IBTextfieldReEnterPassword.becomeFirstResponder()
       }else{
         
       }
     }else if textField == IBTextfieldReEnterPassword{
-      if isValidEmail(IBTextfieldReEnterPassword){
+      if isValidPassword(IBTextfieldReEnterPassword){
+        passwordField = PasswordFieldStatus.filled
+        updateReEnterPasswordFields()
       }else{
         
       }
@@ -137,15 +152,33 @@ extension ChangePasswordVC: UITextFieldDelegate{
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
     if textField == IBTextfieldCurrentPassword{
+      passwordField = PasswordFieldStatus.filled
+      updateCurrentPasswordFields()
     }else if textField == IBTextfieldNewPassword{
+      passwordField = PasswordFieldStatus.filled
+      updateNewPasswordFields()
     }else if textField == IBTextfieldReEnterPassword{
+      passwordField = PasswordFieldStatus.filled
+      updateReEnterPasswordFields()
     }
     
   }
   func textFieldDidEndEditing(_ textField: UITextField) {
     if textField == IBTextfieldCurrentPassword{
+      if IBTextfieldCurrentPassword.text == "" {
+        passwordField = PasswordFieldStatus.empty
+        updateCurrentPasswordFields()
+      }
     }else if textField == IBTextfieldNewPassword{
+      if IBTextfieldNewPassword.text == ""{
+        passwordField = PasswordFieldStatus.empty
+        updateNewPasswordFields()
+      }
     }else if textField == IBTextfieldReEnterPassword{
+      if IBTextfieldReEnterPassword.text == ""{
+        passwordField = PasswordFieldStatus.empty
+        updateReEnterPasswordFields()
+      }
     }
   }
 }
