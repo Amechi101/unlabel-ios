@@ -201,17 +201,15 @@ class UnlabelAPIHelper{
       
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
         let brand = Brand()
-        
+        let currentBrand = thisBrand["brand"] as! [String:AnyObject]
+        print(currentBrand)
         brand.currentIndex = index
         
-        if let isActive = thisBrand["is_active"] as? Bool{
+        if let isActive = currentBrand["is_active"] as? Bool{
           brand.isActive = isActive
         }
-        
-        //Add only active brands
-        //       if brand.isActive{
-        
-        if let id = thisBrand[PRM_ID] as? NSNumber {
+
+        if let id = currentBrand[PRM_ID] as? NSNumber {
           brand.ID = "\(id)"
         }
         
@@ -219,80 +217,42 @@ class UnlabelAPIHelper{
           brand.isFollowing = followed
         }
         
-        if let id = thisBrand[PRM_ID] as? NSNumber {
-          brand.ID = "\(id)"
-        }
+
         
-        if let brandCity = thisBrand["location"] as? [AnyHashable: Any] {
-          if let city = brandCity["city"] as? String{
-            brand.city = city
-          }
-          
-          if let location = brandCity["country"]as? String{
-            brand.location = location
-          }
-        }
-        
-        if let featureImage = thisBrand["image"] as? String{
-          brand.FeatureImage = featureImage
-        }
-        
-        if let description = thisBrand["description"] as? String{
-          brand.Description = description
-        }
-        
-        if let name = thisBrand["name"] as? String{
+        if let name = currentBrand["name"] as? String{
           brand.Name = name
         }
         
-        if let slug = thisBrand[PRM_SLUG] as? String{
+        if let slug = currentBrand[PRM_SLUG] as? String{
           brand.Slug = slug
         }
-        
-        if let stateOrCountry = thisBrand["country"] as? String{
-          brand.StateOrCountry = stateOrCountry
+
+        if let productList:[[String : AnyObject]] = thisBrand["products"] as! [[String : AnyObject]]?{
+        print(productList)
+        for thisProduct in productList{
+            print(thisProduct)
+            let product = Product()
+            if let name = thisProduct["title"] as? String{
+                product.ProductName = name
+            }
+            if let id = thisProduct["id"] as? String{
+                product.ProductID = id
+            }
+            if let price = thisProduct["price"] as? String{
+                product.ProductPrice = price
+            }
+            
+            if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
+                 product.arrProductsImages = []
+                for thisImage in productImageArray{
+                    product.arrProductsImages.append(thisImage["original"]!)
+                }
+            }
+            brand.arrProducts.append(product)
         }
-        
-        //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
-        //                        brand.CreatedDateString = createdDate
-        //
-        //                        let dateFormatter = DateFormatter()
-        //                        dateFormatter.dateFormat = "yyyy-MM-dd"
-        //
-        //                        let newDateString:String = String(brand.CreatedDateString.characters.prefix(10))
-        //                        if let createdDate = dateFormatter.date(from: newDateString){
-        //                            brand.CreatedDate = createdDate
-        //                        }
-        //                    }
-        
-        if let originCity = thisBrand["country"] as? String{
-          brand.OriginCity = originCity
         }
-        
-        //                    if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
-        //                        brand.BrandWebsiteURL = brandWebsiteURL
-        //                    }
-        
-        //                    if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
-        //                        brand.arrProducts = getProductsArrayFromJSON(arrProducts)
-        //                    }
-        //
-        //                    if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
-        //                        brand.Menswear = menswear
-        //                    }
-        //
-        //                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
-        //                        brand.Womenswear = womenswear
-        //                    }
-        
-        //                    if let brandCategory = thisBrand[PRM_BRAND_CATEGORY] as? String{
-        //                        brand.BrandCategory = brandCategory
-        //                    }
-        
         arrBrands.append(brand)
       }
-      //     }
-      
       debugPrint(arrBrands)
       return arrBrands
     }else{
@@ -329,8 +289,11 @@ class UnlabelAPIHelper{
         }
         
         if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
+          //  print(productImageArray)
         // product.arrProductsImages = []
           for thisImage in productImageArray{
+            
+          //  print(thisImage)
             product.arrProductsImages.append(thisImage["original"]!)
           }
         }
@@ -764,11 +727,11 @@ class UnlabelAPIHelper{
       requestURL = v4BaseUrl + "api_v2/influencer_reserved_products/"
     }
     print(requestURL!)
-    let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+//    let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
     
     if let requestURLObj = requestURL{
       
-      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
        //   debugPrint(response)
         switch response.result {
           
@@ -785,6 +748,70 @@ class UnlabelAPIHelper{
       }
     }
   }
+    func getRentedProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+        let requestURL:String?
+        
+        if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
+            requestURL = nextPage
+        }
+        else {
+            requestURL = v4BaseUrl + "api_v2/influencer_rented_products/"
+        }
+        print(requestURL!)
+//        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+        
+        if let requestURLObj = requestURL{
+            
+            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+                //   debugPrint(response)
+                switch response.result {
+                    
+                case .success(let data):
+                    let json = JSON(data)
+                    if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+                        success(arrBrands, json)
+                        //  debugPrint(arrBrands)
+                    }else{
+                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+                    }        case .failure(let error):
+                        failed(error as NSError)
+                }
+            }
+        }
+    }
+    
+    func getLiveProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+        let requestURL:String?
+        
+        if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
+            requestURL = nextPage
+        }
+        else {
+            requestURL = v4BaseUrl + "api_v2/influencer_live_products/"
+        }
+        print(requestURL!)
+        //        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+        
+        if let requestURLObj = requestURL{
+            
+            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+                //   debugPrint(response)
+                switch response.result {
+                    
+                case .success(let data):
+                    let json = JSON(data)
+                    if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+                        success(arrBrands, json)
+                        //  debugPrint(arrBrands)
+                    }else{
+                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+                    }        case .failure(let error):
+                        failed(error as NSError)
+                }
+            }
+        }
+    }
+
   func followBrand(_ brandId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/partner_follow/"+brandId+"/"

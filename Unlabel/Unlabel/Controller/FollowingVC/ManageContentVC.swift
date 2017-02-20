@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SDWebImage
 
 //MARK: -  Enum
 
@@ -32,7 +33,8 @@ class ManageContentVC: UIViewController {
   var contentStatus: ContentStatus = .reserve
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
-  
+    fileprivate var arrFilteredBrandList:[Brand] = []
+    fileprivate var arrMenBrandList:[Brand] = [Brand]()
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -108,15 +110,48 @@ extension ManageContentVC{
   }
   
   func getReservedProducts(){
-    
+    arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = sortMode
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
-      
+        self.arrFilteredBrandList = []
+        print("*** Meta *** \(meta)")
+        self.arrMenBrandList.append(contentsOf: arrBrands)
+        self.arrFilteredBrandList = self.arrMenBrandList
+        self.IBCollectionViewContent.reloadData()
     }, failed: { (error) in
     })
     
   }
+    func getRentedProducts(){
+        arrMenBrandList = []
+        let fetchProductRequestParams = FetchProductParams()
+        fetchProductRequestParams.sortMode = sortMode
+        UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+            self.arrFilteredBrandList = []
+            print("*** Meta *** \(meta)")
+            self.arrMenBrandList.append(contentsOf: arrBrands)
+            self.arrFilteredBrandList = self.arrMenBrandList
+            self.IBCollectionViewContent.reloadData()
+        }, failed: { (error) in
+        })
+        
+    }
+    
+    func getLiveProducts(){
+        arrMenBrandList = []
+        let fetchProductRequestParams = FetchProductParams()
+        fetchProductRequestParams.sortMode = sortMode
+        UnlabelAPIHelper.sharedInstance.getLiveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+            self.arrFilteredBrandList = []
+            print("*** Meta *** \(meta)")
+            self.arrMenBrandList.append(contentsOf: arrBrands)
+            self.arrFilteredBrandList = self.arrMenBrandList
+            self.IBCollectionViewContent.reloadData()
+        }, failed: { (error) in
+        })
+        
+    }
 }
 
 //MARK: -  IBAction methods
@@ -130,12 +165,15 @@ extension ManageContentVC{
     IBCollectionViewContent.reloadData()
     if buttonID == 1{
       contentStatus = ContentStatus.reserve
+        getReservedProducts()
     }
     else if buttonID == 2{
       contentStatus = ContentStatus.rent
+        getRentedProducts()
     }
     else if buttonID == 3{
       contentStatus = ContentStatus.live
+        getLiveProducts()
     }
     else{
       contentStatus = ContentStatus.unknown
@@ -152,11 +190,11 @@ extension ManageContentVC{
 extension ManageContentVC: UICollectionViewDataSource{
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 2
+    return arrFilteredBrandList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-    return 3
+    return arrFilteredBrandList[section].arrProducts.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -164,35 +202,40 @@ extension ManageContentVC: UICollectionViewDataSource{
   }
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBCollectionViewContent.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
-    productCell.IBlblProductName.text = "Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
-    productCell.IBlblProductPrice.text = "$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
-    productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
-    productCell.IBimgProductImage.image = UIImage(named: "Group")
-    self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+    productCell.IBlblProductName.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName
+    
+    //"Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
+    productCell.IBlblProductPrice.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
+    productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
     
     //***** To be done at API integration phase ********
+    print(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages)
+    if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
+        if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String){
     
-    //    if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
-    //
-    //      productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-    //        if let _ = error{
-    //          self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-    //        }else{
-    //          if (type == SDImageCacheType.none)
-    //          {
-    //            productCell.IBimgProductImage.alpha = 0;
-    //            UIView.animate(withDuration: 0.35, animations: {
-    //              productCell.IBimgProductImage.alpha = 1;
-    //            })
-    //          }
-    //          else
-    //          {
-    //            productCell.IBimgProductImage.alpha = 1;
-    //          }
-    //          self.handleProductCellActivityIndicator(productCell, shouldStop: true)
-    //        }
-    //      })
-    //    }
+          productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
+            if let _ = error{
+              self.handleProductCellActivityIndicator(productCell, shouldStop: false)
+            }else{
+              if (type == SDImageCacheType.none)
+              {
+                productCell.IBimgProductImage.alpha = 0;
+                UIView.animate(withDuration: 0.35, animations: {
+                  productCell.IBimgProductImage.alpha = 1;
+                })
+              }
+              else
+              {
+                productCell.IBimgProductImage.alpha = 1;
+              }
+              self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+            }
+          })
+        }
+    }
+    else{
+        productCell.IBimgProductImage.image = UIImage(named:"Group")
+    }
     return productCell
   }
   
@@ -235,7 +278,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     switch kind {
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
-      headerView.IBBrandNameLabel.text = "ARMANI XCHANGE"
+      headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).capitalized
       
       return headerView
     default:

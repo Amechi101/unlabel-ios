@@ -16,4 +16,5 @@ target 'Unlabel' do
     pod 'SDWebImage', '~>3.7'
     pod 'Google/Analytics'
     pod 'ObjectMapper', '~> 2.2'
+    pod 'TPKeyboardAvoiding'
 end

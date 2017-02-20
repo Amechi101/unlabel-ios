@@ -96,6 +96,7 @@
 		400BDE241C1B890800487C6E /* UnlabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE231C1B890800487C6E /* UnlabelTests.swift */; };
 		400BDE2F1C1B890800487C6E /* UnlabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400BDE2E1C1B890800487C6E /* UnlabelUITests.swift */; };
 		40714ED61C1DE5FE0063FF43 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40714ED51C1DE5FE0063FF43 /* Podfile */; };
+		51A7A6471E59FB7200D6CC33 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7A6461E59FB7200D6CC33 /* EditProfileVC.swift */; };
 		88404233146D6689DCFFDDD7 /* Pods_Unlabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29DD0E833A528B43C13A3BB5 /* Pods_Unlabel.framework */; };
 		AD01A6E51E1E592300F14748 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01A6E41E1E592300F14748 /* TabbarController.swift */; };
 		AD0E43C11E35F06E00B18CC2 /* LoginEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0E43C01E35F06E00B18CC2 /* LoginEntryVC.swift */; };
@@ -297,6 +298,7 @@
 		400BDE301C1B890800487C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40714ED51C1DE5FE0063FF43 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		40714ED71C1DE7E60063FF43 /* Unlabel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unlabel-Bridging-Header.h"; sourceTree = "<group>"; };
+		51A7A6461E59FB7200D6CC33 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		AD01A6E41E1E592300F14748 /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		AD0E43C01E35F06E00B18CC2 /* LoginEntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEntryVC.swift; sourceTree = "<group>"; };
 		AD1192C61E40597C00D921FD /* ProductSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSortCell.swift; sourceTree = "<group>"; };
@@ -829,6 +831,15 @@
 			path = UnlabelUITests;
 			sourceTree = "<group>";
 		};
+		51A7A6451E59EF2D00D6CC33 /* Go Live Popup */ = {
+			isa = PBXGroup;
+			children = (
+				ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */,
+				ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */,
+			);
+			name = "Go Live Popup";
+			sourceTree = "<group>";
+		};
 		5F23897C3AF1B82FBA932788 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,6 +1124,7 @@
 				AD7DFE231E55B1B9002F0F17 /* Change Password VC */,
 				ADF10B781E56ED6C00235A24 /* Legal Agreement VC */,
 				ADF10B791E56ED7600235A24 /* Unlabel Legal VC */,
+				51A7A6461E59FB7200D6CC33 /* EditProfileVC.swift */,
 			);
 			name = "Profile Tab";
 			sourceTree = "<group>";
@@ -1132,8 +1144,7 @@
 				15B7E7A31C54A2D100244AC9 /* Storyboards */,
 				154241D01CAAFB8400EC59A7 /* NotFoundView */,
 				15E232081CB2F180001220EA /* ViewFollowingLabelPopup */,
-				ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */,
-				ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */,
+				51A7A6451E59EF2D00D6CC33 /* Go Live Popup */,
 				ADD39DBA1E53075000FC086D /* View Stats Cell */,
 			);
 			name = "Influencer Views";
@@ -1583,6 +1594,7 @@
 				1517F3901D6E2553000293B4 /* ProductDetailsWebViewVC.swift in Sources */,
 				15C925291C73B93B00595A7B /* ProductFooterView.swift in Sources */,
 				AD90CD021E23BE8A002A9F1A /* AddNewCell.swift in Sources */,
+				51A7A6471E59FB7200D6CC33 /* EditProfileVC.swift in Sources */,
 				CB1C21B61D7B5DA000253342 /* FilterListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
