@@ -102,6 +102,11 @@
 		AD0E43C11E35F06E00B18CC2 /* LoginEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0E43C01E35F06E00B18CC2 /* LoginEntryVC.swift */; };
 		AD1192C81E40597C00D921FD /* ProductSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1192C61E40597C00D921FD /* ProductSortCell.swift */; };
 		AD1192C91E40597C00D921FD /* ProductSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1192C71E40597C00D921FD /* ProductSortCell.xib */; };
+		AD15E4B71E5AB039002C6188 /* PhysicalAttributesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD15E4B61E5AB039002C6188 /* PhysicalAttributesVC.swift */; };
+		AD15E4B91E5AB145002C6188 /* EnterCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD15E4B81E5AB145002C6188 /* EnterCityVC.swift */; };
+		AD15E4BB1E5AB21A002C6188 /* DepositEarningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD15E4BA1E5AB21A002C6188 /* DepositEarningVC.swift */; };
+		AD15E4BD1E5AB2FC002C6188 /* BankInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD15E4BC1E5AB2FC002C6188 /* BankInfoVC.swift */; };
+		AD15E4BF1E5AB39C002C6188 /* BankConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD15E4BE1E5AB39C002C6188 /* BankConfirmVC.swift */; };
 		AD183A141E4DCCE200DFFF10 /* ProductStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183A131E4DCCE200DFFF10 /* ProductStatsVC.swift */; };
 		AD183A171E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183A161E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift */; };
 		AD183A201E4DEB0E00DFFF10 /* ProductPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183A1E1E4DEB0E00DFFF10 /* ProductPhotoCell.swift */; };
@@ -303,6 +308,11 @@
 		AD0E43C01E35F06E00B18CC2 /* LoginEntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEntryVC.swift; sourceTree = "<group>"; };
 		AD1192C61E40597C00D921FD /* ProductSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSortCell.swift; sourceTree = "<group>"; };
 		AD1192C71E40597C00D921FD /* ProductSortCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductSortCell.xib; sourceTree = "<group>"; };
+		AD15E4B61E5AB039002C6188 /* PhysicalAttributesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicalAttributesVC.swift; sourceTree = "<group>"; };
+		AD15E4B81E5AB145002C6188 /* EnterCityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterCityVC.swift; sourceTree = "<group>"; };
+		AD15E4BA1E5AB21A002C6188 /* DepositEarningVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositEarningVC.swift; sourceTree = "<group>"; };
+		AD15E4BC1E5AB2FC002C6188 /* BankInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankInfoVC.swift; sourceTree = "<group>"; };
+		AD15E4BE1E5AB39C002C6188 /* BankConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankConfirmVC.swift; sourceTree = "<group>"; };
 		AD183A131E4DCCE200DFFF10 /* ProductStatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductStatsVC.swift; sourceTree = "<group>"; };
 		AD183A161E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOrViewProductImageVC.swift; sourceTree = "<group>"; };
 		AD183A1E1E4DEB0E00DFFF10 /* ProductPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPhotoCell.swift; sourceTree = "<group>"; };
@@ -930,6 +940,7 @@
 			isa = PBXGroup;
 			children = (
 				AD7DFE161E555E2C002F0F17 /* CurrentLocationVC.swift */,
+				AD15E4B81E5AB145002C6188 /* EnterCityVC.swift */,
 			);
 			name = "Current Location VC";
 			sourceTree = "<group>";
@@ -1125,6 +1136,10 @@
 				ADF10B781E56ED6C00235A24 /* Legal Agreement VC */,
 				ADF10B791E56ED7600235A24 /* Unlabel Legal VC */,
 				51A7A6461E59FB7200D6CC33 /* EditProfileVC.swift */,
+				AD15E4B61E5AB039002C6188 /* PhysicalAttributesVC.swift */,
+				AD15E4BA1E5AB21A002C6188 /* DepositEarningVC.swift */,
+				AD15E4BC1E5AB2FC002C6188 /* BankInfoVC.swift */,
+				AD15E4BE1E5AB39C002C6188 /* BankConfirmVC.swift */,
 			);
 			name = "Profile Tab";
 			sourceTree = "<group>";
@@ -1507,6 +1522,7 @@
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
+				AD15E4BB1E5AB21A002C6188 /* DepositEarningVC.swift in Sources */,
 				15CCC6F71D16A53C00FD602F /* FBShimmeringLayer.m in Sources */,
 				15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */,
 				ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */,
@@ -1519,7 +1535,9 @@
 				15F0E26E1C723A8A00A7E389 /* ProductCell.swift in Sources */,
 				15B7E7AF1C54A59300244AC9 /* UnlabelConstants.swift in Sources */,
 				15E704F91CBAF35100DB9069 /* GAHelper.swift in Sources */,
+				AD15E4BD1E5AB2FC002C6188 /* BankInfoVC.swift in Sources */,
 				15FF26BE1CA97C1A004A59EC /* AboutUsVC.swift in Sources */,
+				AD15E4B91E5AB145002C6188 /* EnterCityVC.swift in Sources */,
 				AD908E551E24F06900D475DF /* AboutCuratorViewController.swift in Sources */,
 				AD01A6E51E1E592300F14748 /* TabbarController.swift in Sources */,
 				15C2FAFD1D68AB54000A3024 /* Location.swift in Sources */,
@@ -1555,11 +1573,13 @@
 				15CCC6F81D16A53C00FD602F /* FBShimmeringView.m in Sources */,
 				15056BDC1CB57EC60058765D /* UnlabelAPIHelper.swift in Sources */,
 				ADEAD9F61E1F92FF0075813E /* AddToCartPopup.swift in Sources */,
+				AD15E4B71E5AB039002C6188 /* PhysicalAttributesVC.swift in Sources */,
 				AD7DFE171E555E2C002F0F17 /* CurrentLocationVC.swift in Sources */,
 				AD908E5A1E25032700D475DF /* LikeFollowPopup.swift in Sources */,
 				ADE078D81E4C700A00242897 /* RentOrLiveProductDetailVC.swift in Sources */,
 				15C9938C1C56A76D000C28E0 /* NavController.swift in Sources */,
 				AD183A171E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift in Sources */,
+				AD15E4BF1E5AB39C002C6188 /* BankConfirmVC.swift in Sources */,
 				15056BE21CB5A3CD0058765D /* ReachabilitySwift.swift in Sources */,
 				1578949F1CA85AC000E4C1A6 /* ProductDetailVC.swift in Sources */,
 				AD7DFE1A1E557464002F0F17 /* EditProfileBioVC.swift in Sources */,

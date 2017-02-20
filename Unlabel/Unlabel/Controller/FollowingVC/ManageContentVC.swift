@@ -30,6 +30,8 @@ class ManageContentVC: UIViewController {
   @IBOutlet weak var IBReserveButton: UIButton!
   @IBOutlet weak var IBRentButton: UIButton!
   @IBOutlet weak var IBLiveButton: UIButton!
+  var selectedProduct: Product!
+  var selectedBrand: Brand!
   var contentStatus: ContentStatus = .reserve
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
@@ -54,7 +56,9 @@ class ManageContentVC: UIViewController {
     if segue.identifier == "ManageToProductVC"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
-          productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+        //  productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+          productViewController.selectedProduct = self.selectedProduct
+          productViewController.selectedBrand = self.selectedBrand
           productViewController.contentStatus = self.contentStatus
         }
       }
@@ -63,8 +67,10 @@ class ManageContentVC: UIViewController {
       print(segue.destination)
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC{
-          rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+       //   rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
+          rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
+          rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
         }
       }
     }
@@ -165,15 +171,15 @@ extension ManageContentVC{
     IBCollectionViewContent.reloadData()
     if buttonID == 1{
       contentStatus = ContentStatus.reserve
-        getReservedProducts()
+      //  getReservedProducts()
     }
     else if buttonID == 2{
       contentStatus = ContentStatus.rent
-        getRentedProducts()
+      //  getRentedProducts()
     }
     else if buttonID == 3{
       contentStatus = ContentStatus.live
-        getLiveProducts()
+      //  getLiveProducts()
     }
     else{
       contentStatus = ContentStatus.unknown
@@ -250,6 +256,8 @@ extension ManageContentVC: UICollectionViewDataSource{
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+    selectedProduct = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row]
+    selectedBrand = arrFilteredBrandList[indexPath.section]
     
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
@@ -278,7 +286,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     switch kind {
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
-      headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).capitalized
+      headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).uppercased()
       
       return headerView
     default:

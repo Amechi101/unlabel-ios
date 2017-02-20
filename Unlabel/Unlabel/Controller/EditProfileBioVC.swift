@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SDWebImage
 
 class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
   
@@ -17,17 +20,74 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   @IBOutlet var views: UIView!
   override func viewDidLoad() {
     super.viewDidLoad()
+    IBImageSelected.clipsToBounds = true
     IBTextViewNote.delegate = self
     IBButtonUpdate.isHidden = true
+    getInfluencerProfileBio()
     // Do any additional setup after loading the view, typically from a nib.
   }
   
+  
+  
+  func getInfluencerProfileBio() {
+    UnlabelAPIHelper.sharedInstance.getInfluencerBio( self, success:{ (
+      meta: JSON) in
+      print(meta)
+      self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
+      self.IBTextViewNote.text = meta["bio"].stringValue
+    }, failed: { (error) in
+    })
+
+  }
   @IBAction func IBActionChangeImage(_ sender: Any) {
     showActionSheet()
   }
   @IBAction func IBActionUpdate(_ sender: Any) {
+    let parameters = [
+      "image": "bio_image_file.jpeg","bio": IBTextViewNote.text!
+    ]
+    let image = IBImageSelected.image
     
+    Alamofire.upload(multipartFormData: {
+      multipartFormData in
+      
+      if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
+        
+        multipartFormData.append(imageData, withName: "imagepath", fileName: "bio_image_file.jpeg", mimeType: "image/jpeg")
+      }
+      
+      for (key, value) in parameters {
+        multipartFormData.append(((value as Any) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+        
+      }
+    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_image_bio/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
+      encodingResult in
+      
+      switch encodingResult {
+      case .success(let upload, _, _):
+        
+        upload.responseJSON {
+          response in
+          if let JSON = response.result.value {
+            print("JSON: \(JSON)")
+          }
+        }
+      case .failure(let encodingError):
+        print(encodingError)
+      }
+    })
   }
+  
+  func getCSRFToken() -> String{
+    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
+      return xcsrf
+    }
+    else{
+      return ""
+    }
+  }
+  
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }

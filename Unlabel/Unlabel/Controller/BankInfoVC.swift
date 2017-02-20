@@ -1,15 +1,14 @@
 //
-//  EditProfileVC.swift
+//  BankInfoVC.swift
 //  Unlabel
 //
-//  Created by Ravisankar V on 19/02/17.
+//  Created by SayOne Technologies on 20/02/17.
 //  Copyright © 2017 Unlabel. All rights reserved.
 //
 
 import UIKit
-import TPKeyboardAvoiding
 
-class EditProfileVC: UIViewController {
+class BankInfoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +20,9 @@ class EditProfileVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-  @IBAction func IBActionBack(_ sender: Any) {
-    _ = self.navigationController?.popViewController(animated: true)
+
+  @IBAction func IBActionDismiss(_ sender: Any) {
+    self.dismiss(animated: true, completion: nil)
   }
-
-
 
 }

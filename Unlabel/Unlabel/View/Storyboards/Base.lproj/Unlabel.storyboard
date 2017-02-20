@@ -223,7 +223,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="292-xr-jmA" id="jV4-4n-tnb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="Onz-qh-8Mf">
@@ -269,7 +269,6 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
                                         <action selector="IBActionBack:" destination="eZH-Io-YD4" eventType="touchUpInside" id="SVv-ol-D9o"/>
-                                        <action selector="IBActionBack:" destination="gQX-3T-UpU" eventType="touchUpInside" id="kdh-xD-MYc"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
@@ -279,7 +278,6 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="back"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="gQX-3T-UpU" eventType="touchUpInside" id="7Vs-K7-p0d"/>
                                         <action selector="IBActionBack:" destination="eZH-Io-YD4" eventType="touchUpInside" id="AF7-UJ-u41"/>
                                     </connections>
                                 </button>
@@ -312,11 +310,11 @@
                         <viewControllerLayoutGuide type="bottom" id="TXc-fT-su4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xvf-b3-xD9">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
-                                <rect key="frame" x="22" y="12" width="331" height="547"/>
+                                <rect key="frame" x="22" y="76" width="331" height="547"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="11" minimumInteritemSpacing="11" id="CIz-DF-a7p">
                                     <size key="itemSize" width="50" height="50"/>
@@ -376,7 +374,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="3pf-vJ-e1x"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="KQ2-05-sez"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -412,7 +409,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ze9-nc-iJB" id="kxT-bv-cpD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-W2-PJU">
@@ -446,7 +443,7 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qO7-fS-iqx" id="Ztn-Pi-t1l">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTACT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S82-HR-vWx">
@@ -477,7 +474,7 @@
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="52X-7w-i0f" id="C9e-EZ-bRq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RATE THIS APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2P-h5-pV2">
@@ -508,7 +505,7 @@
                                         <rect key="frame" x="0.0" y="165" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qOD-0E-x9t" id="LSa-H2-VMh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
@@ -539,7 +536,7 @@
                                         <rect key="frame" x="0.0" y="220" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1un-4T-S4q" id="8V5-P0-api">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVACY POLICY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj5-iA-UpP">
@@ -570,7 +567,7 @@
                                         <rect key="frame" x="0.0" y="275" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fK5-Gp-Egu" id="pKp-Wb-8FS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHIPPING &amp; RETURNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyu-cY-5gW">
@@ -601,7 +598,7 @@
                                         <rect key="frame" x="0.0" y="330" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="idA-dm-grz" id="IDJ-h2-T5F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="jfD-mA-kMa">
@@ -632,7 +629,7 @@
                                         <rect key="frame" x="0.0" y="385" width="375" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dAs-N5-9cN" id="0rz-ja-lvp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to start shopping the latest and greatest independent fashion brands." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-5B-Fz4">
@@ -691,9 +688,6 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h0c-Tp-thk">
                                 <rect key="frame" x="16" y="7" width="10" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="IBActionBack:" destination="gQX-3T-UpU" eventType="touchUpInside" id="mYO-pm-DGi"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EGX-wo-brt">
@@ -735,7 +729,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cvg-oV-hKw" id="4qh-GM-hfF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ICC ID: 668686864641626" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiG-5V-K9f">
@@ -792,7 +786,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GJV-Y6-18L" id="cV9-1y-Th5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Stats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFu-o6-2FD">
@@ -826,7 +820,7 @@
                                         <rect key="frame" x="0.0" y="170" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KpL-l3-5vg" id="QDR-yz-q6h">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile Info " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg6-t0-HqZ">
@@ -860,7 +854,7 @@
                                         <rect key="frame" x="0.0" y="225" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vO1-5r-hCr" id="ZQl-Eq-0ZG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
@@ -894,7 +888,7 @@
                                         <rect key="frame" x="0.0" y="280" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZe-qX-Mrd" id="orl-6O-TsW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zF-7h-6Kq">
@@ -928,7 +922,7 @@
                                         <rect key="frame" x="0.0" y="335" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ql4-OK-2gU" id="CWE-BL-Njn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
@@ -962,7 +956,7 @@
                                         <rect key="frame" x="0.0" y="390" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdI-L5-6p0" id="N4O-Ch-lkZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RO-5Y-dA0">
@@ -996,7 +990,7 @@
                                         <rect key="frame" x="0.0" y="445" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5qw-sD-3cw" id="zWK-ey-Kh6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4t-H0-FkK">
@@ -1050,9 +1044,6 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gyY-NO-NAA">
                                 <rect key="frame" x="16" y="7" width="10" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="vsK-Yo-eri"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0B5-2O-oae">
@@ -1112,7 +1103,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mEW-1J-od6" id="HT0-ZB-gKb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1162,7 +1153,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="A7G-Nm-Q4L"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="QrX-25-k3L"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1191,7 +1181,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pa-MG-JRv" id="l5Z-Z5-458">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commission Earnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBP-9o-dlK">
@@ -1224,7 +1214,7 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fng-eQ-arc" id="RAk-Jx-K6A">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsC-Q7-8sC">
@@ -1257,7 +1247,7 @@
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vyg-rx-oZs" id="NuY-u5-imc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdo-eb-MCB">
@@ -1287,7 +1277,7 @@
                                         <rect key="frame" x="0.0" y="165" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjo-uR-geu" id="fnd-eo-gbD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jp-Il-eXQ">
@@ -1331,10 +1321,13 @@
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="Qat-XQ-WQx" eventType="touchUpInside" id="jzW-Bb-uwC"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pSr-cS-bVI">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1347,7 +1340,6 @@
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="rjK-Nq-47Q"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="yCB-5e-551"/>
                                 </connections>
                             </button>
@@ -1567,7 +1559,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NeQ-sn-hNR">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1581,7 +1573,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="J0R-lE-TYT"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="vv1-x9-UgZ"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1595,10 +1586,10 @@
             </objects>
             <point key="canvasLocation" x="-3910" y="5161"/>
         </scene>
-        <!--View Controller-->
+        <!--Physical AttributesVC-->
         <scene sceneID="S5a-eT-HfJ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Upn-Ct-r7U" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Upn-Ct-r7U" customClass="PhysicalAttributesVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oHH-OZ-al8"/>
                         <viewControllerLayoutGuide type="bottom" id="iah-fK-blJ"/>
@@ -1642,9 +1633,6 @@
                                                         <state key="normal" title="Male">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="cV6-mF-Wox"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="WIn-dj-8Yg">
                                                         <rect key="frame" x="295" y="0.0" width="36" height="36"/>
@@ -1688,9 +1676,6 @@
                                                         <state key="normal" title="Select your height">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="8Zg-U7-7Lb"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="UAz-X2-fP1">
                                                         <rect key="frame" x="295" y="0.0" width="36" height="36"/>
@@ -1736,9 +1721,6 @@
                                                         <state key="normal" title="Select your chest measurement">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="V1K-M8-TQ2"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="l7g-rR-zCd">
                                                         <rect key="frame" x="295" y="0.0" width="36" height="36"/>
@@ -1788,9 +1770,6 @@
                                                         <state key="normal" title="Select your hip measurement">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="ZEf-AH-h6d"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="l1Q-78-0qe">
                                                         <rect key="frame" x="295" y="0.0" width="36" height="36"/>
@@ -1840,9 +1819,6 @@
                                                         <state key="normal" title="Select your waist measurement">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="fVH-bm-A0a"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-Fa-5qh">
                                                         <rect key="frame" x="295" y="0.0" width="36" height="36"/>
@@ -1942,6 +1918,9 @@
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="T8Q-jW-BoC"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtl-AA-ABE">
@@ -1959,7 +1938,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="Bhy-1F-Zwr"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="ZFT-GJ-GM9"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1969,10 +1947,10 @@
             </objects>
             <point key="canvasLocation" x="-3530.4000000000001" y="4510.794602698651"/>
         </scene>
-        <!--View Controller-->
+        <!--Enter CityVC-->
         <scene sceneID="mgO-lY-7w0">
             <objects>
-                <viewController id="PH1-ya-WAJ" sceneMemberID="viewController">
+                <viewController id="PH1-ya-WAJ" customClass="EnterCityVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="20h-v2-Y0y"/>
                         <viewControllerLayoutGuide type="bottom" id="ACg-8X-gm2"/>
@@ -2010,7 +1988,6 @@
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
                                         <connections>
-                                            <action selector="IBActionEditingChanged:" destination="ERB-oh-bju" eventType="editingDidEnd" id="6wO-Ie-0mc"/>
                                             <outlet property="delegate" destination="ERB-oh-bju" id="T4a-Uh-z9N"/>
                                         </connections>
                                     </textField>
@@ -2044,12 +2021,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="q1w-7E-F0g" eventType="touchUpInside" id="o0J-5v-4tU"/>
+                                    <action selector="IBActionBack:" destination="PH1-ya-WAJ" eventType="touchUpInside" id="lIY-mU-nWk"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qFc-21-PGU">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2063,7 +2040,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="9Di-Db-nVZ"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="hhL-Va-UKf"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2153,7 +2129,6 @@
                                     <rect key="frame" x="16" y="7" width="10" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="2Ns-49-f1g"/>
                                         <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="Dn1-1r-fyS"/>
                                     </connections>
                                 </button>
@@ -2213,7 +2188,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW YORK CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TU3-j6-dSb">
-                                                <rect key="frame" x="22" y="211" width="132.5" height="17"/>
+                                                <rect key="frame" x="22" y="211" width="127" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="Wsz-vd-WZS"/>
                                                 </constraints>
@@ -2256,7 +2231,7 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIv-xW-ddF">
-                                                <rect key="frame" x="22" y="745" width="89" height="30"/>
+                                                <rect key="frame" x="22" y="745" width="85" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="6Xj-11-s1b"/>
                                                 </constraints>
@@ -2318,7 +2293,6 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                     <rect key="frame" x="16" y="7" width="10" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="dF6-9b-b2A"/>
                                         <action selector="IBActionBack:" destination="0NG-9N-3Ff" eventType="touchUpInside" id="uBF-B0-KCV"/>
                                     </connections>
                                 </button>
@@ -2329,7 +2303,6 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="back"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="YnL-gd-h6R"/>
                                         <action selector="IBActionBack:" destination="0NG-9N-3Ff" eventType="touchUpInside" id="aQ6-XR-KBi"/>
                                     </connections>
                                 </button>
@@ -2489,7 +2462,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <rect key="frame" x="16" y="7" width="10" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="gQX-3T-UpU" eventType="touchUpInside" id="zmK-YG-FV9"/>
                                         <action selector="IBActionClose:" destination="Odf-II-rFn" eventType="touchUpInside" id="feN-Tp-EA4"/>
                                     </connections>
                                 </button>
@@ -2500,7 +2472,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="back"/>
                                     <connections>
-                                        <action selector="IBActionBack:" destination="gQX-3T-UpU" eventType="touchUpInside" id="8oe-4t-cz2"/>
                                         <action selector="IBActionClose:" destination="Odf-II-rFn" eventType="touchUpInside" id="ns9-Py-5BB"/>
                                     </connections>
                                 </button>
@@ -2754,7 +2725,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="V0S-gl-d0R"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="bSU-C9-NxZ"/>
                                 </connections>
                             </button>
@@ -2794,7 +2764,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <rect key="frame" x="0.0" y="64" width="375" height="267"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jF-W8-O2X">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="291.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVZ-Nh-a4d">
                                                 <rect key="frame" x="22" y="8" width="181" height="16"/>
@@ -2807,14 +2777,14 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IQ-5N-35t">
-                                                <rect key="frame" x="22" y="32" width="331" height="149.5"/>
+                                                <rect key="frame" x="22" y="32" width="331" height="112"/>
                                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Material &amp; Care Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gus-fb-zSb">
-                                                <rect key="frame" x="22" y="189.5" width="250" height="16"/>
+                                                <rect key="frame" x="22" y="152" width="250" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="FvA-Cd-zOU"/>
                                                     <constraint firstAttribute="height" constant="16" id="vhW-aI-NA2"/>
@@ -2824,13 +2794,13 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Black, Blue, Multi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBO-9S-YLc">
-                                                <rect key="frame" x="22" y="213.5" width="331" height="19"/>
+                                                <rect key="frame" x="22" y="176" width="331" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item SKU" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-bw-122">
-                                                <rect key="frame" x="22" y="240.5" width="181" height="16"/>
+                                                <rect key="frame" x="22" y="200" width="181" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="181" id="l3g-xp-e8i"/>
                                                     <constraint firstAttribute="height" constant="16" id="lJz-L5-uw5"/>
@@ -2840,7 +2810,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#676767545" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaC-EQ-5ta">
-                                                <rect key="frame" x="22" y="264.5" width="331" height="19"/>
+                                                <rect key="frame" x="22" y="224" width="331" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2913,7 +2883,6 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="2Q6-8P-M4t"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="mbx-kb-JDM"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -3027,7 +2996,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="-3" maxY="0.0"/>
-                                                        <state key="normal" title="All">
+                                                        <state key="normal" title="All Categories">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -3069,7 +3038,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="All">
+                                                        <state key="normal" title="All Styles">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -3093,7 +3062,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                     <constraint firstAttribute="height" constant="44" id="qfX-73-m1i"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
-                                                <state key="normal" title="SHOW RESULTS"/>
+                                                <state key="normal" title="APPLY FILTER"/>
                                                 <connections>
                                                     <action selector="IBActionShowFilteredResults:" destination="dav-Q9-1Lc" eventType="touchUpInside" id="pbF-oP-hN7"/>
                                                 </connections>
@@ -3123,7 +3092,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="-3" maxY="0.0"/>
-                                                        <state key="normal" title="All">
+                                                        <state key="normal" title="All Locations">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -3148,7 +3117,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Womenswear">
+                                                        <state key="normal" title="Menswear">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -4211,7 +4180,7 @@ See more info </string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filter title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqf-gS-BYp">
-                                        <rect key="frame" x="156" y="32" width="64" height="16"/>
+                                        <rect key="frame" x="156.5" y="32" width="63.5" height="16"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                         <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4517,7 +4486,7 @@ See more info </string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="483"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHh-0E-T90">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="596.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick-up location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-b3-50g">
                                                 <rect key="frame" x="22" y="10" width="121" height="21"/>
@@ -4581,7 +4550,7 @@ See more info </string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="777 Best Company Road" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ni-PT-4ed">
-                                                        <rect key="frame" x="0.0" y="16" width="331" height="19"/>
+                                                        <rect key="frame" x="0.0" y="16" width="331" height="16"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -4821,7 +4790,7 @@ See more info </string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOg-iL-9du">
-                                                <rect key="frame" x="22" y="458" width="331" height="130.5"/>
+                                                <rect key="frame" x="22" y="458" width="331" height="112"/>
                                                 <string key="text">Monday: 9am-8pm
 Tuesday: 9am-8pm
 Wednesday: 9am-8pm
@@ -4996,6 +4965,10 @@ Sunday: 9am-8pm</string>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="ke3-fZ-0Jv" id="WjC-p8-TIU"/>
+                                                            <outlet property="delegate" destination="ke3-fZ-0Jv" id="Usx-hC-3SQ"/>
+                                                        </connections>
                                                     </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5282,7 +5255,7 @@ Sunday: 9am-8pm</string>
                                 <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="Close_X"/>
                                 <connections>
-                                    <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="i14-QE-Jtt"/>
+                                    <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="EVi-lm-tcD"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -5300,7 +5273,6 @@ Sunday: 9am-8pm</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="kJ3-5i-MUS"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="uS6-C6-tTN"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -5555,12 +5527,11 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="gIE-Kv-mjy" eventType="touchUpInside" id="bnx-id-62p"/>
-                                    <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="gaX-EV-VSj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T2K-gh-85C">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="PRODUCT DETAILS">
@@ -5573,7 +5544,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="FkH-4j-aXP"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="RGA-yZ-Yd1"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -5657,7 +5627,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="dYd-N0-nuZ"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="xFa-Uc-8r2"/>
                                 </connections>
                             </button>
@@ -5686,7 +5655,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjT-8a-s8u" id="d6j-7w-fqx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIKES: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-cz-z69">
@@ -5710,7 +5679,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <rect key="frame" x="0.0" y="54" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r49-Ol-3pp" id="S0S-sq-ays">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PURCHASES: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-mi-UJG">
@@ -5765,7 +5734,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="OXC-l8-shW"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="uPZ-Uo-rrK"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -6105,6 +6073,9 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="fio-U1-5s6" eventType="touchUpInside" id="c90-eo-95c"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nWc-06-xyD">
@@ -6121,7 +6092,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="7Lt-se-1NX"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="G2Z-Cs-vQw"/>
                                 </connections>
                             </button>
@@ -6147,7 +6117,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFb-Ok-9AM" id="jWY-Zh-raN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYL-MU-Qw0">
@@ -6180,7 +6150,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="30B-Z2-AHS" id="VZA-G9-x8K">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqm-XP-SuT">
@@ -6213,7 +6183,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B7L-Kc-1Ao" id="sEA-oo-vij">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Operation Agreement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7K-Td-EmL">
@@ -6263,7 +6233,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="988-y1-bzs">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6276,7 +6246,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="fUa-yn-eDC"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="hTD-b9-mp9"/>
                                 </connections>
                             </button>
@@ -6295,7 +6264,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <viewControllerLayoutGuide type="top" id="rH4-S4-YIC"/>
                         <viewControllerLayoutGuide type="bottom" id="pmV-XV-msv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6a3-gR-ipP">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="6a3-gR-ipP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6316,7 +6285,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
                                                         <connections>
-                                                            <action selector="IBActionEditingChanged:" destination="ERB-oh-bju" eventType="editingDidEnd" id="JFo-g6-k13"/>
+                                                            <action selector="IBActionEditingChanged:" destination="ERB-oh-bju" eventType="editingChanged" id="jeL-lS-lGr"/>
                                                             <outlet property="delegate" destination="ERB-oh-bju" id="dLI-bG-VmV"/>
                                                         </connections>
                                                     </textField>
@@ -6431,7 +6400,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Clu-QO-tCn">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6449,7 +6418,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 </state>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="bv0-jI-XZ0"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="i2P-U1-AQC"/>
                                     <action selector="IBActionUpdate:" destination="ERB-oh-bju" eventType="touchUpInside" id="Mi1-6D-Qcr"/>
                                 </connections>
                             </button>
@@ -6504,26 +6472,25 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="DOS-b4-71z" eventType="touchUpInside" id="YWH-ft-PE8"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sAr-eQ-frR">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
                             <state key="normal">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="IBActionBack:" destination="DOS-b4-71z" eventType="touchUpInside" id="Aj6-Ng-mGS"/>
-                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Hwz-dz-avC">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rYz-Pj-k7I">
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="Ak9-6s-xyA"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="LpB-RV-ZsP"/>
                                 </connections>
                             </button>
@@ -6534,10 +6501,10 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
             </objects>
             <point key="canvasLocation" x="-3975" y="6391"/>
         </scene>
-        <!--View Controller-->
+        <!--Deposit EarningVC-->
         <scene sceneID="5fT-5q-PaA">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="jis-H8-LV5" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="jis-H8-LV5" customClass="DepositEarningVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Wi-a2-KgU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZRu-sK-gZL"/>
@@ -6673,19 +6640,19 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="jis-H8-LV5" eventType="touchUpInside" id="zy1-Ef-M0C"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oq0-YC-bIk">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
                             <state key="normal" title="DEPOSIT EARNINGS">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="IBActionBack:" destination="DOS-b4-71z" eventType="touchUpInside" id="KzC-Us-X3O"/>
-                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Aw0-C9-Ylb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zdY-9a-iEN">
@@ -6693,7 +6660,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="d02-Dk-JdG"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="qcI-P1-H9w"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -6719,10 +6685,10 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
             </objects>
             <point key="canvasLocation" x="-5860" y="6333"/>
         </scene>
-        <!--View Controller-->
+        <!--Bank InfoVC-->
         <scene sceneID="XYu-UW-j8r">
             <objects>
-                <viewController id="ewQ-AO-heC" sceneMemberID="viewController">
+                <viewController id="ewQ-AO-heC" customClass="BankInfoVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2ZC-ZG-V0P"/>
                         <viewControllerLayoutGuide type="bottom" id="ra1-UJ-XEV"/>
@@ -6750,9 +6716,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <state key="normal" title="Checking">
                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="IBActionSelectState:" destination="q1w-7E-F0g" eventType="touchUpInside" id="NS1-9s-2MY"/>
-                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="Hqa-Zo-uBQ">
                                         <rect key="frame" x="296" y="1" width="34" height="34"/>
@@ -6796,7 +6759,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" secureTextEntry="YES"/>
                                         <connections>
-                                            <action selector="IBActionEditingChanged:" destination="ERB-oh-bju" eventType="editingDidEnd" id="HPs-9V-h5e"/>
                                             <outlet property="delegate" destination="ERB-oh-bju" id="eem-aR-9ac"/>
                                         </connections>
                                     </textField>
@@ -6843,7 +6805,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" secureTextEntry="YES"/>
                                         <connections>
-                                            <action selector="IBActionEditingChanged:" destination="ERB-oh-bju" eventType="editingDidEnd" id="6nq-sp-cph"/>
                                             <outlet property="delegate" destination="ERB-oh-bju" id="N2c-N3-g4F"/>
                                         </connections>
                                     </textField>
@@ -6878,10 +6839,12 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                     <constraint firstItem="R7Y-6H-npt" firstAttribute="top" secondItem="lTk-FK-3B5" secondAttribute="bottom" id="uQ0-Mj-Idy"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-zK-8ls">
-                                <rect key="frame" x="0.0" y="429" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3D-zK-8ls">
+                                <rect key="frame" x="22" y="598" width="331" height="49"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="p3w-KA-XVi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                 <state key="normal" title="LINK THIS BANK"/>
                                 <connections>
@@ -6894,13 +6857,16 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                             <constraint firstAttribute="trailing" secondItem="3AP-2K-Ve2" secondAttribute="trailing" constant="22" id="3Oz-qg-M40"/>
                             <constraint firstItem="gty-Ty-qkb" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="3q4-4e-BOe"/>
                             <constraint firstAttribute="trailing" secondItem="gty-Ty-qkb" secondAttribute="trailing" constant="22" id="BYg-PJ-Plx"/>
+                            <constraint firstAttribute="trailing" secondItem="Q3D-zK-8ls" secondAttribute="trailing" constant="22" id="JCo-Oe-rk2"/>
                             <constraint firstAttribute="trailing" secondItem="lSk-eP-Tyv" secondAttribute="trailing" constant="22" id="M1A-Jb-ET4"/>
                             <constraint firstItem="gty-Ty-qkb" firstAttribute="top" secondItem="Mmd-jD-HC6" secondAttribute="bottom" constant="20" id="MTR-Xj-EQJ"/>
                             <constraint firstItem="uxf-tZ-C9k" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="QiG-nm-71L"/>
                             <constraint firstItem="lSk-eP-Tyv" firstAttribute="top" secondItem="3AP-2K-Ve2" secondAttribute="bottom" constant="13" id="RJN-at-Rkw"/>
                             <constraint firstItem="Mmd-jD-HC6" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="SkH-Z4-PQ9"/>
+                            <constraint firstItem="ra1-UJ-XEV" firstAttribute="top" secondItem="Q3D-zK-8ls" secondAttribute="bottom" constant="20" id="WzO-a8-4Xc"/>
                             <constraint firstAttribute="trailing" secondItem="Mmd-jD-HC6" secondAttribute="trailing" constant="22" id="XTc-gT-i26"/>
                             <constraint firstItem="uxf-tZ-C9k" firstAttribute="top" secondItem="2ZC-ZG-V0P" secondAttribute="bottom" constant="22" id="fKo-hQ-ZSt"/>
+                            <constraint firstItem="Q3D-zK-8ls" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="fyA-gR-MPP"/>
                             <constraint firstItem="3AP-2K-Ve2" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="h9z-GB-xvi"/>
                             <constraint firstItem="3AP-2K-Ve2" firstAttribute="top" secondItem="uxf-tZ-C9k" secondAttribute="bottom" constant="8" id="osY-S7-fc5"/>
                             <constraint firstItem="lSk-eP-Tyv" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="x8N-yH-5l1"/>
@@ -6914,19 +6880,19 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Close_X"/>
+                                <connections>
+                                    <action selector="IBActionDismiss:" destination="ewQ-AO-heC" eventType="touchUpInside" id="ig4-cq-aNM"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yp3-Ag-yRd">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
                             <state key="normal" title="BANK INFO">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="IBActionBack:" destination="DOS-b4-71z" eventType="touchUpInside" id="TGv-QT-8ku"/>
-                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="mrb-ha-Lcm">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1NO-m8-qj3">
@@ -6934,7 +6900,6 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="9Gl-ni-kQs"/>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="IEz-Ep-XcP"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -6944,10 +6909,10 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
             </objects>
             <point key="canvasLocation" x="-5143.1999999999998" y="6332.3838080959522"/>
         </scene>
-        <!--View Controller-->
+        <!--Bank ConfirmVC-->
         <scene sceneID="DPJ-TT-j5V">
             <objects>
-                <viewController id="FZW-G6-BdB" sceneMemberID="viewController">
+                <viewController id="FZW-G6-BdB" customClass="BankConfirmVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B8T-XK-Sra"/>
                         <viewControllerLayoutGuide type="bottom" id="fmF-l3-y6v"/>
@@ -6991,26 +6956,25 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="16" y="11" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="FZW-G6-BdB" eventType="touchUpInside" id="zbA-aK-PDS"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aCB-G4-CgV">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
                             <state key="normal" title="BANK OF AMERICA">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="IBActionBack:" destination="DOS-b4-71z" eventType="touchUpInside" id="Bsc-NO-8x1"/>
-                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="YoM-U7-dKK">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="21T-vH-PMV">
                                 <rect key="frame" x="333" y="7" width="26" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="DDa-sh-oq4" eventType="touchUpInside" id="YJN-Mo-uxB"/>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="eXt-RG-E02"/>
                                 </connections>
                             </button>
@@ -7042,7 +7006,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="J5P-PC-vHa"/>
-        <segue reference="jWi-8m-sPs"/>
+        <segue reference="Szm-2m-6Ro"/>
         <segue reference="g8u-Rt-Ctr"/>
     </inferredMetricsTieBreakers>
 </document>

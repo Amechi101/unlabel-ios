@@ -79,7 +79,17 @@ extension ProductVC:UICollectionViewDelegate{
       
       if isProfileCompleted{
         self.selectedProduct = self.arrProducts[indexPath.row - 3]
-        performSegue(withIdentifier: "ProductDetailSegue", sender: self)
+        
+        UnlabelAPIHelper.sharedInstance.getSizeProduct(selectedProduct.ProductID, success: { (sizeProduct:[Product], meta: JSON) in
+          
+          print(meta)
+          //self.selectedProduct = self.selectedProduct
+          self.performSegue(withIdentifier: "ProductDetailSegue", sender: self)
+          
+        }, failed: { (error) in
+        })
+        
+        
       }
       else{
         self.addLikeFollowPopupView(FollowType.profileIncomplete,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))

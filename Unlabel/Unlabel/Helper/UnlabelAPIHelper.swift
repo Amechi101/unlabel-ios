@@ -686,6 +686,32 @@ class UnlabelAPIHelper{
         }
     }
   
+  func getSizeProduct(_ prodID:String, success:@escaping ([Product], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_product_variants/"
+    print(requestURL!)
+    let params: [String: String] = [product_id: prodID]
+    
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+        //  debugPrint(response)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          debugPrint(json)
+          
+          if let arrProducts = self.getProduct(fromJSON: json){
+            success(arrProducts, json)
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func getProductOfBrand(_ fetchProductParams:FetchProductParams, success:@escaping ([Product], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     
@@ -815,6 +841,25 @@ class UnlabelAPIHelper{
   func followBrand(_ brandId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/partner_follow/"+brandId+"/"
+    print(requestURL!)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getInfluencerBio(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_image_bio/"
     print(requestURL!)
     if let requestURLObj = requestURL{
       

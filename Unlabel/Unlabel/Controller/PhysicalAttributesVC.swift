@@ -1,15 +1,14 @@
 //
-//  EditProfileVC.swift
+//  PhysicalAttributesVC.swift
 //  Unlabel
 //
-//  Created by Ravisankar V on 19/02/17.
+//  Created by SayOne Technologies on 20/02/17.
 //  Copyright © 2017 Unlabel. All rights reserved.
 //
 
 import UIKit
-import TPKeyboardAvoiding
 
-class EditProfileVC: UIViewController {
+class PhysicalAttributesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,5 @@ class EditProfileVC: UIViewController {
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
-
-
 
 }
