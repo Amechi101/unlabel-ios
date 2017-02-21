@@ -9,92 +9,85 @@
 import UIKit
 
 @objc protocol PopupviewDelegate {
-    @objc optional func popupDidClickCancel()
-    @objc optional func popupDidClickDelete()
-    func popupDidClickClose()
+  @objc optional func popupDidClickGrey()
+  @objc optional func popupDidClickRed()
+  func popupDidClickClose()
 }
 
 enum PopupType{
-    case delete
-    case follow
+  case removeBank
+  case transferFund
 }
 
 class ViewFollowingLabelPopup: UIView {
+  
+
+  //MARK:- IBOutlets, constants, vars
+  
+  @IBOutlet weak var IBlblTitle: UILabel!
+  @IBOutlet weak var IBlblSubTitle: UILabel!
+  
+  @IBOutlet weak var IBButtonRed: UIButton!
+  @IBOutlet weak var IBButtonGrey: UIButton!
+  var delegate:PopupviewDelegate?
+  var popupType:PopupType = .removeBank
+  let fundAmount : String = "0.00"
+
+  //MARK:- View Lifecycle
+  
+  override func awakeFromNib() {
     
-    //
-    //MARK:- IBOutlets, constants, vars
-    //
-    @IBOutlet weak var IBlblTitle: UILabel!
-    @IBOutlet weak var IBlblSubTitle: UILabel!
-    @IBOutlet weak var IBviewRoundContainer: UIView!
-    @IBOutlet weak var IBviewDeleteContainer: UIView!
-   
-    var delegate:PopupviewDelegate?
-    var popupType:PopupType = .delete
+  }
+  
+  
+  //MARK:- IBAction Methods
+  
+  @IBAction func IBActionClose(_ sender: UIButton) {
+    close()
+    delegate?.popupDidClickClose()
+  }
+  
+  @IBAction func IBActionCancel(_ sender: UIButton) {
+    close()
+    delegate?.popupDidClickGrey!()
+  }
+  
+  @IBAction func IBActionDelete(_ sender: UIButton) {
+    close()
+    delegate?.popupDidClickRed!()
     
-    
-    //
-    //MARK:- View Lifecycle
-    //
-    override func awakeFromNib() {
-       
+  }
+  
+  
+  //MARK:- Custom Methods
+  
+  fileprivate func close(){
+    UIView.animate(withDuration: 0.2, animations: {
+      self.frame.origin.y = SCREEN_HEIGHT
+    }, completion: { (value:Bool) in
+      self.removeFromSuperview()
+    })
+  }
+  
+  func updateView(){
+    if popupType == .removeBank{
+      IBlblTitle.text = "REMOVE BANK ACCOUNT"
+      IBlblSubTitle.text = "Are you sure you want to remove your " + " account? "
+      IBButtonGrey.setTitle("NO", for: .normal)
+      IBButtonRed.setTitle("YES", for: .normal)
+    }else if popupType == .transferFund{
+      IBlblTitle.text = "TRANSFER TO BANK"
+      IBlblSubTitle.text = "You are about to deposit " + " into your account, do you wish to proceed?"
+      IBButtonGrey.setTitle("DEPOSIT FUNDS", for: .normal)
+      IBButtonRed.setTitle("CANCEL", for: .normal)
+    }else{
+      debugPrint("Popup type unknown")
     }
-    
-    
-    //
-    //MARK:- IBAction Methods
-    //
-    @IBAction func IBActionClose(_ sender: UIButton) {
-        close()
-        delegate?.popupDidClickClose()
-    }
-    
-    @IBAction func IBActionCancel(_ sender: UIButton) {
-        close()
-        delegate?.popupDidClickCancel!()
-    }
-    
-    @IBAction func IBActionDelete(_ sender: UIButton) {
-        delegate?.popupDidClickDelete!()
-        if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-//            UnlabelHelper.deleteAccount(userID)
-        }
-    }
-    
-    
-    //
-    //MARK:- Custom Methods
-    //
-    
-    fileprivate func close(){
-        UIView.animate(withDuration: 0.2, animations: {
-            self.frame.origin.y = SCREEN_HEIGHT
-        }, completion: { (value:Bool) in
-            self.removeFromSuperview()
-        }) 
-    }
-    
-    func updateView(){
-        if popupType == .delete{
-            IBlblTitle.text = "DELETE ACCOUNT"
-            IBlblSubTitle.text = "Are you sure you want to delete your account? This can not be undone."
-            IBlblSubTitle.numberOfLines = 2
-            IBviewRoundContainer.isHidden = true
-            IBviewDeleteContainer.isHidden = false
-        }else if popupType == .follow{
-            IBlblTitle.text = "VIEW FOLLOWING LABELS"
-            IBviewRoundContainer.isHidden = false
-            IBviewDeleteContainer.isHidden = true
-            debugPrint(IBviewRoundContainer.frame.size.height/2)
-            IBviewRoundContainer.layer.cornerRadius = IBviewRoundContainer.frame.size.height/2
-        }else{
-            debugPrint("Popup type unknown")
-        }
-    }
-    
-    func setFollowSubTitle(_ labelName:String){
-        IBlblSubTitle.text = "To see all of the labels you're following tap on the menu icon and go into 'Following'."
-        IBlblSubTitle.numberOfLines = 3
-    }
-    
+  }
+  
+  func setFollowSubTitle(_ labelName:String){
+    IBlblSubTitle.text = "To see all of the labels you're following tap on the menu icon and go into 'Following'."
+    IBlblSubTitle.numberOfLines = 3
+  }
+  
 }

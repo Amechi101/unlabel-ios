@@ -294,7 +294,7 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
       
-      debugPrint(viewForgotLabelPopup)
+      //debugPrint(viewForgotLabelPopup)
       view.addSubview(viewForgotLabelPopup)
       UIView.animate(withDuration: 0.2, animations: {
         viewForgotLabelPopup.frame = self.view.frame
@@ -310,7 +310,7 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
   }
   
   func popupClickAction(_ email:String){
-    debugPrint(email)
+  //  debugPrint(email)
     user.email = email
     if ReachabilitySwift.isConnectedToNetwork(){
       UnlabelLoadingView.sharedInstance.start(view)

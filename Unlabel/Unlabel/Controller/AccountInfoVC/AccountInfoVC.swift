@@ -115,7 +115,6 @@ extension AccountInfoVC:PopupviewDelegate{
   }
   
   func popupDidClickDelete(){
-    debugPrint("delete account")
     wsDeleteAccount()
   }
   

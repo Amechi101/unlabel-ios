@@ -62,7 +62,7 @@ class UnlabelHelper: NSObject {
         cstorage.deleteCookie(cookie)
       }
     }
-    print("cs cookie  \(cstorage)")
+  //  print("cs cookie  \(cstorage)")
   }
   
   class func logout(){

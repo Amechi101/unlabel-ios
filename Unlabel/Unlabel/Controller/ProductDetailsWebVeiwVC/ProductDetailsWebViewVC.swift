@@ -103,9 +103,9 @@ extension ProductDetailsWebViewVC:PopupviewDelegate{
          viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
          viewFollowingLabelPopup.alpha = 1
       }) 
-      if popupType == PopupType.follow{
-         viewFollowingLabelPopup.setFollowSubTitle("Brand")
-      }
+//      if popupType == PopupType.follow{
+//         viewFollowingLabelPopup.setFollowSubTitle("Brand")
+//      }
       viewFollowingLabelPopup.updateView()
    }
    
@@ -137,7 +137,7 @@ extension ProductDetailsWebViewVC{
          return
       }
       
-      debugPrint("Follow clicked")
+    //  debugPrint("Follow clicked")
       //Internet available
       if ReachabilitySwift.isConnectedToNetwork(){
          

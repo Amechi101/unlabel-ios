@@ -80,7 +80,7 @@ extension InfluencerStatsVC: SortModePopupViewDelegate{
   func popupDidClickDone(_ sortMode: String){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     self.tabBarController?.tabBar.isHidden = false
-    print(sortMode)
+ //   print(sortMode)
     sortModeValue = sortMode
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
     switch sortMode {

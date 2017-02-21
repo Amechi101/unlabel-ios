@@ -157,7 +157,7 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductHeaderCell(forIndexPath indexPath:IndexPath)->ProductHeaderCell{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
-    print("height   \(labelHeight)")
+  //  print("height   \(labelHeight)")
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + "," + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
@@ -303,7 +303,6 @@ extension ProductVC{
       }
     }
     else if segue.identifier == "ProductDetailSegue"{
-      print(segue.destination)
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
           productViewController.selectedBrand = selectedBrand
@@ -331,9 +330,9 @@ extension ProductVC:PopupviewDelegate{
       viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
       viewFollowingLabelPopup.alpha = 1
     })
-    if popupType == PopupType.follow{
-      viewFollowingLabelPopup.setFollowSubTitle("Brand")
-    }
+//    if popupType == PopupType.follow{
+//      viewFollowingLabelPopup.setFollowSubTitle("Brand")
+//    }
     viewFollowingLabelPopup.updateView()
   }
   
@@ -375,7 +374,7 @@ extension ProductVC{
   //For ProductFooterView
   @IBAction func IBActionViewMore(_ sender: AnyObject) {
     getProductsOfBrand()
-    debugPrint("IBActionViewMore")
+   // debugPrint("IBActionViewMore")
   }
   
   @IBAction func IBActionFollow(_ sender: UIButton) {
@@ -430,7 +429,7 @@ extension ProductVC: SortModePopupViewDelegate{
     
   }
   func popupDidClickDone(_ sortMode: String){
-    print(sortMode)
+  //  print(sortMode)
     sortModeValue = sortMode
     arrProducts = []
     nextPageURL = nil
@@ -574,7 +573,7 @@ extension ProductVC{
     if text != "" {
       let frame: CGRect = text.boundingRect(with: CGSize(width: widthValue, height: CGFloat(CGFloat.greatestFiniteMagnitude)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
       size = CGSize(width: CGFloat(frame.size.width), height: CGFloat(frame.size.height + 1))
-      print(size.height)
+    //  print(size.height)
       labelHeight = size.height
     }
     return size.height

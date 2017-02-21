@@ -137,6 +137,7 @@
 		AD90CD021E23BE8A002A9F1A /* AddNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */; };
 		AD90CD031E23BE8A002A9F1A /* AddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */; };
 		ADB2A3341E41B68000F26C2D /* ManageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */; };
+		ADD1FA111E5C1F0F00A28049 /* RentalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */; };
 		ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */; };
 		ADD39DB31E52C4F700FC086D /* GoLivePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */; };
 		ADD39DB61E52DBE000FC086D /* RentLiveProductDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39DB51E52DBE000FC086D /* RentLiveProductDescription.swift */; };
@@ -343,6 +344,7 @@
 		AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCell.swift; sourceTree = "<group>"; };
 		AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewCell.xib; sourceTree = "<group>"; };
 		ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageContentVC.swift; sourceTree = "<group>"; };
+		ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalInfo.swift; sourceTree = "<group>"; };
 		ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoLivePopupView.swift; sourceTree = "<group>"; };
 		ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoLivePopupView.xib; sourceTree = "<group>"; };
 		ADD39DB51E52DBE000FC086D /* RentLiveProductDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentLiveProductDescription.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			children = (
 				159245221C5539C500755814 /* Brand.swift */,
 				15E30D991C6D2D14008B77E1 /* Product.swift */,
+				ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */,
 				15CBF35C1C84DD23005F59E4 /* Filter.swift */,
 				153BE1FB1D5FAFEB00A64816 /* RequestPrams.swift */,
 				AD6ED00B1E2F6D080002DB26 /* FetchProductParams.swift */,
@@ -1590,6 +1593,7 @@
 				ADF10B751E56CEE800235A24 /* LegalAgreementVC.swift in Sources */,
 				ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */,
 				AD6ED00C1E2F6D080002DB26 /* FetchProductParams.swift in Sources */,
+				ADD1FA111E5C1F0F00A28049 /* RentalInfo.swift in Sources */,
 				CBEE783E1D7C89010001752F /* FilterListCell.swift in Sources */,
 				AD90CCFA1E23848F002A9F1A /* ProductImageCell.swift in Sources */,
 				15897E931C59488800FD0700 /* GenderCell.swift in Sources */,

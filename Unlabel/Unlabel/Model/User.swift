@@ -10,9 +10,14 @@ import UIKit
 
 class User: NSObject {
 
-    //MARK: Local Variable
-    
-    var email:String = String()
-    var fullName:String = String()
-    var password:String = String()
+//MARK: Local Variable
+  var fullName:String = String()
+  var password:String = String()
+  
+  var email:String = String()
+  var firstname:String = String()
+  var lastname:String = String()
+  var contactNumber:String = String()
+  var username:String = String()
+  var iccID:String = String()
 }

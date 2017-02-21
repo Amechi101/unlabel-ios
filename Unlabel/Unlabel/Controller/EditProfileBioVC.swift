@@ -32,7 +32,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   func getInfluencerProfileBio() {
     UnlabelAPIHelper.sharedInstance.getInfluencerBio( self, success:{ (
       meta: JSON) in
-      print(meta)
+  //    print(meta)
       self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
       self.IBTextViewNote.text = meta["bio"].stringValue
     }, failed: { (error) in
@@ -44,7 +44,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   }
   @IBAction func IBActionUpdate(_ sender: Any) {
     let parameters = [
-      "image": "bio_image_file.jpeg","bio": IBTextViewNote.text!
+      "image": "bio_image_file21_02_2017.jpeg","bio": IBTextViewNote.text!
     ]
     let image = IBImageSelected.image
     
@@ -53,7 +53,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
       
       if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
         
-        multipartFormData.append(imageData, withName: "imagepath", fileName: "bio_image_file.jpeg", mimeType: "image/jpeg")
+        multipartFormData.append(imageData, withName: "imagepath", fileName: "bio_image_file21_02_2017.jpeg", mimeType: "image/jpeg")
       }
       
       for (key, value) in parameters {

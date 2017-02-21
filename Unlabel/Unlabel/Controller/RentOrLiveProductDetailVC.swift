@@ -59,7 +59,7 @@ class RentOrLiveProductDetailVC: UIViewController {
       IBConstraintSelectSizeHeight.constant = 0.0
     }
     
-    print((selectedProduct?.arrProductsImages.count)!)
+   // print((selectedProduct?.arrProductsImages.count)!)
     setUpCollectionView()
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
     productPageControl.currentPage = 0
@@ -162,7 +162,6 @@ extension RentOrLiveProductDetailVC: UICollectionViewDelegate,UICollectionViewDa
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
-    print("cell\(productCell)")
     productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill;
     // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
     if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
