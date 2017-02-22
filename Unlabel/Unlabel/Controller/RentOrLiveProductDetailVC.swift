@@ -97,6 +97,14 @@ class RentOrLiveProductDetailVC: UIViewController {
   @IBAction func IBActionSelectSize(_ sender: Any) {
     self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddProductNote"{
+      if let addProductNoteVC:AddProductNoteVC = segue.destination as? AddProductNoteVC{
+        addProductNoteVC.selectedProduct = self.selectedProduct!
+      }
+    }
+  }
 }
 
 //MARK: -  AddToCart Popup delegate methods
@@ -193,3 +201,5 @@ extension RentOrLiveProductDetailVC: UICollectionViewDelegateFlowLayout{
     return CGSize(width: collectionView.frame.size.width, height: 392.0)
   }
 }
+
+

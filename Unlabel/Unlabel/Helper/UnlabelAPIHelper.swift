@@ -196,7 +196,7 @@ class UnlabelAPIHelper{
     var arrBrands = [Brand]()
 
   //  let brandList1 = json.dictionaryObject
-   // print(json)
+ //   print(json)
     if let brandList = json.dictionaryObject!["results"]{
       
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
@@ -275,16 +275,16 @@ class UnlabelAPIHelper{
         if let productList = thisBrand["products"] as! [[String : AnyObject]]?{
      //   print(productList)
         for thisProduct in productList{
-            print(thisProduct)
+        //    print(thisProduct)
             let product = Product()
             if let name = thisProduct["title"] as? String{
                 product.ProductName = name
             }
-            if let id = thisProduct["id"] as? String{
-                product.ProductID = id
+            if let id = thisProduct["id"] as? NSNumber{
+                product.ProductID = "\(id)"
             }
-            if let price = thisProduct["price"] as? String{
-                product.ProductPrice = price
+            if let price = thisProduct["price"] as? NSNumber{
+                product.ProductPrice = "\(price)"
             }
             
             if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
@@ -902,6 +902,51 @@ class UnlabelAPIHelper{
     }
   }
   
+  func getProductNote(_ productID: String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+     let params: [String: String] = ["prod_id":productID]
+    
+    print("prod id\(productID)")
+    requestURL = v4BaseUrl + "api_v2/influencer_add_product_note/"
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+        
+        
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          print(json)
+          success(json)
+        case .failure(let error):
+          print(error.localizedDescription)
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func saveProductNote(_ prodID: String, note: String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    let params: [String: String] = ["prod_id":prodID,"note":note]
+    requestURL = v4BaseUrl + "api_v2/influencer_add_product_note/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+        print(response.result)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          print(json)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func getInfluencerBio(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_image_bio/"
@@ -942,7 +987,7 @@ class UnlabelAPIHelper{
   
   func saveProfileInfo(_ user:User,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
-    let params = ["contact_number":user.contactNumber,"email_address":user.email,"first_name":user.firstname,"last_name":user.lastname]
+    let params = ["contact_number":user.contactNumber,"email":user.email,"first_name":user.firstname,"last_name":user.lastname]
     requestURL = v4BaseUrl + "api_v2/influencer_profile_update/"
     print(requestURL!)
     if let requestURLObj = requestURL{
@@ -957,14 +1002,55 @@ class UnlabelAPIHelper{
           let json = JSON(data)
           success(json)
         case .failure(let error):
+          print(error.localizedDescription)
           failed(error as NSError)
         }
       }
     }
   }
+  
   func getProfileInfo(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_profile_update/"
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  func changePassword(_ passDict:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    let params = ["old_password":passDict["current_password"],"new_password":passDict["new_password"] ]
+    requestURL = v4BaseUrl + "api_v2/influencer_change_password/"
+    print(requestURL!)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+        print(response.result)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          print(error.localizedDescription)
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getProfileDetails(_ success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_profile_details/"
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in

@@ -42,6 +42,9 @@ class ManageContentVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+
+    
     setUpCollectionView()
     getReservedProducts()
   }
@@ -121,7 +124,7 @@ extension ManageContentVC{
     fetchProductRequestParams.sortMode = sortMode
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.arrFilteredBrandList = []
-        print("*** Meta *** \(meta)")
+      //  print("*** Meta *** \(meta)")
         self.arrMenBrandList.append(contentsOf: arrBrands)
       
       
@@ -217,7 +220,11 @@ extension ManageContentVC: UICollectionViewDataSource{
     //"Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
     productCell.IBlblProductPrice.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
-
+    
+    
+    print("product id ******  \(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductID)")
+    
+    
     if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
         if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String){
     

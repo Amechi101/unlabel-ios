@@ -25,7 +25,7 @@ enum SlideUpView{
 }
 
 class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
-
+  
   @IBOutlet weak var IBPopupTitle: UILabel!
   @IBOutlet weak var IBTableList: UITableView!
   var delegate:SortModePopupViewDelegate?
@@ -33,6 +33,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   var slideUpViewMode: SlideUpView = SlideUpView.sortMode
   var selectedItem: String = ""
   var popupTitle: String = ""
+  
   override func awakeFromNib() {
     updateView()
   }
@@ -62,7 +63,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       arrSortOption = ["USA","International"]
     }
     else{
-      arrSortOption = []
+      // arrSortOption = []
     }
     IBPopupTitle.text = popupTitle
     selectedItem = arrSortOption.first!
@@ -73,26 +74,35 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     return arrSortOption.count
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let sortModeCell:SortModeCell = tableView.dequeueReusableCell(withIdentifier: "SortModeCell")! as! SortModeCell
-    sortModeCell.cellLabel?.text = arrSortOption[indexPath.row]
-    
-    sortModeCell.cellLabel?.text = arrSortOption[indexPath.row]
-    sortModeCell.cellLabel.textAlignment = .center
-    return sortModeCell
+    if let sortModeCell:SortModeCell = tableView.dequeueReusableCell(withIdentifier: "SortModeCell")! as? SortModeCell{
+      sortModeCell.cellLabel?.text = arrSortOption[indexPath.row]
+      if sortModeCell.isSelected{
+        sortModeCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
+      }else{
+        sortModeCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+      }
+      return sortModeCell
+    }
+    else{
+     return UITableViewCell()
+    }
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      let selectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as! SortModeCell
+    if let selectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
       selectedCell.contentView.backgroundColor = UIColor.white
       selectedCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
       selectedItem = arrSortOption[indexPath.row]
+    }
   }
   
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-      let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as! SortModeCell
+    print(indexPath)
+    if let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
       unSelectedCell.contentView.backgroundColor = UIColor.white
       unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+    }
   }
   
   fileprivate func close(){
@@ -102,7 +112,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       self.removeFromSuperview()
     })
   }
-
+  
   @IBAction func IBActionClickOutside(_ sender: Any) {
     close()
     delegate?.popupDidClickCloseButton()

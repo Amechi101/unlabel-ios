@@ -76,6 +76,11 @@ class UnlabelHelper: NSObject {
     UnlabelHelper.removePrefForKey(sFOLLOW_SEEN_ONCE)
     UnlabelHelper.removePrefForKey(sENTRY_ONCE_SEEN)
     
+    UnlabelHelper.removePrefForKey("influencer_email")
+    UnlabelHelper.removePrefForKey("influencer_last_name")
+    UnlabelHelper.removePrefForKey("influencer_auto_id")
+    UnlabelHelper.removePrefForKey("influencer_image")
+    UnlabelHelper.removePrefForKey("influencer_first_name")
     
     UnlabelHelper.removePrefForKey("ULCookie")
     UnlabelHelper.removePrefForKey("X-CSRFToken")
@@ -193,8 +198,6 @@ class UnlabelHelper: NSObject {
     return cookie!
   }
   
-  
-  
   class func goToBrandVC(_ storyBoard: UIStoryboard){
     let rootTabVC = storyBoard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
     if let window = APP_DELEGATE.window {
@@ -202,7 +205,26 @@ class UnlabelHelper: NSObject {
         window.rootViewController = rootTabVC
       }, completion: nil)
     }
-    
+  }
+  
+  class func getHeightList() -> [String]{
+    var heightList: [String] = []
+    for ft in 4...7 {
+      for i in 0...11{
+        let htText: String = "\(ft)" + " feet " + "\(i)" + " inches"
+        heightList.append(htText)
+      }
+    }
+    return heightList
+  }
+  
+  class func getOtherPhysicalAttributes() -> [String]{
+    var attributeList: [String] = []
+      for i in 20...50{
+        let phyText: String = "\(i)" + " inches"
+        attributeList.append(phyText)
+      }
+    return attributeList
   }
   
 }

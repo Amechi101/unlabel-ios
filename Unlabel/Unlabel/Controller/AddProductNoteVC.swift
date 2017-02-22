@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AddProductNoteVC: UIViewController , UITextViewDelegate {
   
   @IBOutlet var IBTextViewNote : UITextView!
   @IBOutlet weak var IBButtonDone: UIButton!
   var placeholderLabel : UILabel!
-  
+  var selectedProduct: Product = Product()
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    
+    getProductNote()
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty
     IBButtonDone.isHidden = true
     IBTextViewNote.delegate = self
@@ -38,7 +39,28 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
     IBTextViewNote.resignFirstResponder()
     IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
     IBButtonDone.isHidden = true
+    saveProductNote()
   }
+  
+  func getProductNote() {
+    UnlabelAPIHelper.sharedInstance.getProductNote(selectedProduct.ProductID ,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      self.IBTextViewNote.text = meta["note"].stringValue
+    }, failed: { (error) in
+    })
+  }
+  
+  func saveProductNote() {
+    UnlabelAPIHelper.sharedInstance.saveProductNote(selectedProduct.ProductID,note: self.IBTextViewNote.text ,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      // self.IBTextViewNote.text = meta["bio"].stringValue
+    }, failed: { (error) in
+    })
+  }
+  
+  
   func textViewDidBeginEditing(_ textView: UITextView){
     IBTextViewNote.textColor = DARK_GRAY_COLOR
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty

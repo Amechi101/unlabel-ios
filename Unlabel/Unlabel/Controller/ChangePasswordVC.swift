@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum PasswordFieldStatus{
   case filled
@@ -42,9 +43,25 @@ class ChangePasswordVC: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  func saveInfluencerProfileInfo() {
+    var passParams: [String: String] = [:]
+    passParams["current_password"] = IBTextfieldCurrentPassword.text
+    passParams["new_password"] = IBTextfieldNewPassword.text
+    passParams["retype_password"] = IBTextfieldReEnterPassword.text
+    UnlabelAPIHelper.sharedInstance.changePassword( passParams,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      _ = self.navigationController?.popViewController(animated: true)
+    }, failed: { (error) in
+    })
+    
+  }
+
+  
   @IBAction func IBActionUpdate(_ sender: Any) {
     if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
-
+      saveInfluencerProfileInfo()
     }
     else{
       UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide matching passwords", onOk: { () -> () in })
