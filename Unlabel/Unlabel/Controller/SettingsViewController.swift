@@ -29,6 +29,9 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
       contachUsAction()
     }
   }
+  @IBAction func IBActionBack(_ sender: Any) {
+    _ = self.navigationController?.popViewController(animated: true)
+  }
   
   func contachUsAction() {
     let mailComposeViewController = configuredMailComposeViewController()
@@ -41,8 +44,7 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
   
   func configuredMailComposeViewController() -> MFMailComposeViewController {
     let mailComposerVC = MFMailComposeViewController()
-    mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-    
+    mailComposerVC.mailComposeDelegate = self
     mailComposerVC.setToRecipients(["info@unlabel.us"])
     mailComposerVC.setSubject("Unlabel: ICC Support")
     mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
@@ -51,8 +53,7 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
   }
   
   func showSendMailErrorAlert() {
-    let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-    sendMailErrorAlert.show()
+    UnlabelHelper.showAlert(onVC: self, title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", onOk: {})
   }
   
   // MARK: MFMailComposeViewControllerDelegate Method

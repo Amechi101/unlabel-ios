@@ -8,29 +8,63 @@
 
 import UIKit
 import TPKeyboardAvoiding
+import SwiftyJSON
 
 class EditProfileVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  @IBOutlet weak var IBTextfieldFullname: UITextField!
+  @IBOutlet weak var IBLabelFullname: UILabel!
+  @IBOutlet weak var IBViewfullname: UIView!
+  
+  @IBOutlet weak var IBLabelLastname: UILabel!
+  @IBOutlet weak var IBtextfieldLastname: UITextField!
+  @IBOutlet weak var IBViewLastname: UIView!
+  
+  @IBOutlet weak var IBLabelEmail: UILabel!
+  @IBOutlet weak var IBtextfieldEmail: UITextField!
+  @IBOutlet weak var IBViewEmail: UIView!
+  
+  @IBOutlet weak var IBTextfieldContactNumber: UITextField!
+  @IBOutlet weak var IBTextfieldUsername: UITextField!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    getInfluencerProfileInfo()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+  @IBAction func IBActionBack(_ sender: Any) {
+    saveInfluencerProfileInfo()
+  //  _ = self.navigationController?.popViewController(animated: true)
+  }
+  
+  func getInfluencerProfileInfo() {
+    UnlabelAPIHelper.sharedInstance.getProfileInfo( self, success:{ (
+      meta: JSON) in
+      print(meta)
+      self.IBTextfieldFullname.text = meta["first_name"].stringValue
+      self.IBtextfieldLastname.text = meta["last_name"].stringValue
+      self.IBtextfieldEmail.text = meta["email"].stringValue
+      self.IBTextfieldContactNumber.text = meta["contact_number"].stringValue
+    }, failed: { (error) in
+    })
+    
+  }
+  func saveInfluencerProfileInfo() {
+    let userParam = User()
+    userParam.firstname = IBTextfieldFullname.text!
+    userParam.lastname = IBtextfieldLastname.text!
+    userParam.email = IBtextfieldEmail.text!
+    userParam.contactNumber = IBTextfieldContactNumber.text!
+    UnlabelAPIHelper.sharedInstance.saveProfileInfo( userParam,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      _ = self.navigationController?.popViewController(animated: true)
+    }, failed: { (error) in
+    })
+    
+  }
 }

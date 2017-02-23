@@ -383,15 +383,15 @@
           }
           
           IBcollectionViewFeed.reloadData()
-          debugPrint(arrFilteredBrandList)
-          debugPrint([sender.tag])
+        //  debugPrint(arrFilteredBrandList)
+        //  debugPrint([sender.tag])
           UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
             meta: JSON) in
             if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
               self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
               UnlabelHelper.setBoolValue(true, key: sFOLLOW_SEEN_ONCE)
             }
-            debugPrint(meta)
+        //    debugPrint(meta)
             
           }, failed: { (error) in
           })
@@ -443,7 +443,7 @@
     if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
       viewSortPopup.delegate = self
       
-      print(slideUpView)
+    //  print(slideUpView)
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
       viewSortPopup.popupTitle = "SORT BY"
@@ -462,7 +462,7 @@
   }
   func popupDidClickDone(_ sortMode: String){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
-    print(sortMode)
+    //print(sortMode)
     headerView?.IBSortButton.setTitle("Sort by: " + sortMode, for: .normal)
     switch sortMode {
     case "A to Z":

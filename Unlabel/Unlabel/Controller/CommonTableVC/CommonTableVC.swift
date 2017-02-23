@@ -196,6 +196,7 @@ extension CommonTableVC{
             navigationController?.pushViewController(feedVC!, animated: true)
             
         }else{
+
             debugPrint("getTitles commonVCType Unknown")
         }
     }
@@ -249,9 +250,8 @@ extension CommonTableVC{
                 return arrTitles
                 
             }else{
-                
-                debugPrint("getTitles commonVCType Unknown")
-                return []
+
+               return []
                 
             }
         }

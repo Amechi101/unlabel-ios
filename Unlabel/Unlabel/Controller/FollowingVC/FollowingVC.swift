@@ -224,12 +224,12 @@ extension FollowingVC{
           }
           
           IBcollectionViewFollowing.reloadData()
-          debugPrint(arrFilteredBrandList)
-          debugPrint([sender.tag])
+        //  debugPrint(arrFilteredBrandList)
+        //  debugPrint([sender.tag])
           UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
             meta: JSON) in
             
-            debugPrint(meta)
+       //     debugPrint(meta)
             self.wsCallGetLabels()
             
           }, failed: { (error) in

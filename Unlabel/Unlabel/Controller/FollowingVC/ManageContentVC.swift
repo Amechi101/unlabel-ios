@@ -30,15 +30,21 @@ class ManageContentVC: UIViewController {
   @IBOutlet weak var IBReserveButton: UIButton!
   @IBOutlet weak var IBRentButton: UIButton!
   @IBOutlet weak var IBLiveButton: UIButton!
+  var selectedProduct: Product!
+  var selectedBrand: Brand!
   var contentStatus: ContentStatus = .reserve
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
+  var cur_rentalInfo: RentalInfo = RentalInfo()
     fileprivate var arrFilteredBrandList:[Brand] = []
     fileprivate var arrMenBrandList:[Brand] = [Brand]()
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+
+    
     setUpCollectionView()
     getReservedProducts()
   }
@@ -54,17 +60,20 @@ class ManageContentVC: UIViewController {
     if segue.identifier == "ManageToProductVC"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
-          productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+        //  productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+          productViewController.selectedProduct = self.selectedProduct
+          productViewController.selectedBrand = self.selectedBrand
           productViewController.contentStatus = self.contentStatus
         }
       }
     }
     else if segue.identifier == "ManageToLiveRent"{
-      print(segue.destination)
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC{
-          rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
+       //   rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
+          rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
+          rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
         }
       }
     }
@@ -115,8 +124,10 @@ extension ManageContentVC{
     fetchProductRequestParams.sortMode = sortMode
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.arrFilteredBrandList = []
-        print("*** Meta *** \(meta)")
+      //  print("*** Meta *** \(meta)")
         self.arrMenBrandList.append(contentsOf: arrBrands)
+      
+      
         self.arrFilteredBrandList = self.arrMenBrandList
         self.IBCollectionViewContent.reloadData()
     }, failed: { (error) in
@@ -182,8 +193,10 @@ extension ManageContentVC{
   }
   
   @IBAction func IBActionViewRentalInfo(_ sender: AnyObject) {
-    let rentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC)
-    self.present(rentalInfoVC!, animated: true, completion: nil)
+    let rentalInfoVC: ViewRentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC) as! ViewRentalInfoVC
+    cur_rentalInfo = arrFilteredBrandList[sender.tag].rentalInfo
+    rentalInfoVC.rentalInfo = cur_rentalInfo
+    self.present(rentalInfoVC, animated: true, completion: nil)
   }
 }
 //MARK:- UICollectionViewDataSource Methods
@@ -202,14 +215,16 @@ extension ManageContentVC: UICollectionViewDataSource{
   }
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBCollectionViewContent.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
-    productCell.IBlblProductName.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName
+    productCell.IBlblProductName.text = (arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName).capitalized
     
     //"Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
     productCell.IBlblProductPrice.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
     
-    //***** To be done at API integration phase ********
-    print(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages)
+    
+    print("product id ******  \(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductID)")
+    
+    
     if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
         if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String){
     
@@ -250,6 +265,8 @@ extension ManageContentVC: UICollectionViewDataSource{
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+    selectedProduct = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row]
+    selectedBrand = arrFilteredBrandList[indexPath.section]
     
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
@@ -278,8 +295,8 @@ extension ManageContentVC: UICollectionViewDataSource{
     switch kind {
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
-      headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).capitalized
-      
+      headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).uppercased()
+      headerView.IBViewRentalInfo.tag = indexPath.section
       return headerView
     default:
       assert(false, "No such element")
@@ -318,7 +335,7 @@ extension ManageContentVC: SortModePopupViewDelegate{
     //delegate method to be implemented after API integration
   }
   func popupDidClickDone(_ sortMode: String){
-    print(sortMode)
+   // print(sortMode)
     sortModeValue = sortMode
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
     switch sortMode {

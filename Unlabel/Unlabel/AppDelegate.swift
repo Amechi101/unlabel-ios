@@ -11,6 +11,7 @@ import Fabric
 import CoreData
 import Crashlytics
 import UserNotifications
+import SwiftyJSON
 
 @objc protocol AppDelegateDelegates {
   func reachabilityChanged(_ reachable:Bool)
@@ -208,11 +209,27 @@ extension AppDelegate{
   /**
    Init UI on app launch.
    */
+  func getInfluencerDetails(){
+    
+    UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
+      meta: JSON) in
+      print(meta)
+      UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
+      UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
+      UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
+      UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
+      UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+    }, failed: { (error) in
+    })
+  }
+  
   fileprivate func setupRootVC(){
     
     if UnlabelHelper.isUserLoggedIn(){
       
       HTTPCookieStorage.shared.setCookie(getCookie())
+      
+      getInfluencerDetails()
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
       let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
       if let window = self.window {

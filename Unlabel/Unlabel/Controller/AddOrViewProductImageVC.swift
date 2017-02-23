@@ -41,7 +41,7 @@ class AddOrViewProductImageVC: UIViewController {
     IBCollectionViewProductPhotos.register(UINib(nibName: "ProductPhotoFooterCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ProductPhotoFooterCell")
   }
   @IBAction func IBActionRemovePhoto(_ sender: UIButton) {
-    print("button index \(sender.tag)")
+   //print("button index \(sender.tag)")
   }
   @IBAction func IBActionDismiss(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)

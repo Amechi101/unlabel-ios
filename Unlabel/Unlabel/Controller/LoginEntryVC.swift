@@ -147,6 +147,20 @@ extension LoginEntryVC{
     })
   }
   
+
+  func getInfluencerDetails(){
+    UnlabelAPIHelper.sharedInstance.getProfileDetails({ (
+      meta: JSON) in
+      print(meta)
+      UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
+      UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
+      UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
+      UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
+      UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+    }, failed: { (error) in
+    })
+  }
+  
   func wsLoginWithEmail(){
     let loginParams = User()
     loginParams.email = IBTextfieldEmail.text!
@@ -155,6 +169,7 @@ extension LoginEntryVC{
       { (json: JSON,statusCode:Int) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
         if statusCode == s_OK{
+          self.getInfluencerDetails()
           UnlabelHelper.goToBrandVC(self.storyboard!)
         }
         else if statusCode == s_Unauthorised{
@@ -294,7 +309,7 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
       
-      debugPrint(viewForgotLabelPopup)
+      //debugPrint(viewForgotLabelPopup)
       view.addSubview(viewForgotLabelPopup)
       UIView.animate(withDuration: 0.2, animations: {
         viewForgotLabelPopup.frame = self.view.frame
@@ -310,7 +325,7 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
   }
   
   func popupClickAction(_ email:String){
-    debugPrint(email)
+  //  debugPrint(email)
     user.email = email
     if ReachabilitySwift.isConnectedToNetwork(){
       UnlabelLoadingView.sharedInstance.start(view)

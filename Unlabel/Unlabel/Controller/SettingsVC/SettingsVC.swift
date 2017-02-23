@@ -74,7 +74,7 @@ extension SettingsVC{
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
-    print("indexpath = \(indexPath.row)")
+   // print("indexpath = \(indexPath.row)")
     if indexPath.row == 4{
       openSafariForURL(URL_PRIVACY_POLICY)
     }

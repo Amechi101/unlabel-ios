@@ -79,7 +79,6 @@ extension BannerViewController:UICollectionViewDelegate,UICollectionViewDataSour
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
-    print("cell\(productCell)")
     productCell.productImage.image = UIImage(named: "Katie_Lookbook")
     return productCell
   }

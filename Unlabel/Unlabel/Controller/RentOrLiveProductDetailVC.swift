@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RentOrLiveProductDetailVC: UIViewController {
   
@@ -29,11 +30,24 @@ class RentOrLiveProductDetailVC: UIViewController {
   @IBOutlet weak var IBScrollView: UIScrollView!
   @IBOutlet weak var IBViewStats: UIView!
   var contentStatus: ContentStatus = .unreserved
+  var selectedProduct:Product?
+  var productID: String?
+  var selectedBrand:Brand?
+  
   
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if selectedProduct == nil {
+      selectedProduct = Product()
+    }
+    
+    
+    if let brandName:String = selectedBrand?.Name{
+      IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
+      
+    }
     IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     if contentStatus == ContentStatus.live{
@@ -44,10 +58,33 @@ class RentOrLiveProductDetailVC: UIViewController {
       IBViewStats.isHidden = true
       IBConstraintSelectSizeHeight.constant = 0.0
     }
+    
+   // print((selectedProduct?.arrProductsImages.count)!)
+    setUpCollectionView()
+    productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
+    productPageControl.currentPage = 0
+    productID = selectedProduct?.ProductID
+    IBProductTitle.text = selectedProduct?.ProductName
+    IBProductPrice.text = "$ " + (selectedProduct?.ProductPrice)!
+
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
+  func setUpCollectionView(){
+    productImageCollectionView.layoutMargins = UIEdgeInsets.zero
+    productImageCollectionView.preservesSuperviewLayoutMargins = false
+    
+    productImageCollectionView.register(UINib(nibName: PRODUCT_IMAGE_CELL, bundle: nil), forCellWithReuseIdentifier:REUSABLE_ID_PRODUCT_IMAGE_CELL )
+    (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
+    (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
+    (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing = 0.0
+    (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0.0
+    self.automaticallyAdjustsScrollViewInsets = true
+    
+  }
+
   
   //MARK: -  IBAction methods
   
@@ -59,6 +96,14 @@ class RentOrLiveProductDetailVC: UIViewController {
   }
   @IBAction func IBActionSelectSize(_ sender: Any) {
     self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddProductNote"{
+      if let addProductNoteVC:AddProductNoteVC = segue.destination as? AddProductNoteVC{
+        addProductNoteVC.selectedProduct = self.selectedProduct!
+      }
+    }
   }
 }
 
@@ -115,3 +160,46 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
     IBSelectSize.setTitle(sortMode, for: .normal)
   }
 }
+
+//MARK: -  Collection view methods
+
+extension RentOrLiveProductDetailVC: UICollectionViewDelegate,UICollectionViewDataSource{
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    return (selectedProduct?.arrProductsImages.count)!
+  }
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+    let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
+    productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill;
+    // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
+    if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
+      productCell.productImage.sd_setImage(with: url, completed:
+        { (iimage, error, type, url) in
+          
+          if let _ = error{
+          }else{
+            if (type == SDImageCacheType.none)  {
+              productCell.productImage.alpha = 0;
+              UIView.animate(withDuration: 0.35, animations: {
+                productCell.productImage.alpha = 1;
+              })
+            } else  {
+              productCell.productImage.alpha = 1;
+            }
+          }
+      })
+    }
+    
+    return productCell
+  }
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    productPageControl.currentPage = indexPath.row
+  }
+}
+extension RentOrLiveProductDetailVC: UICollectionViewDelegateFlowLayout{
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.size.width, height: 392.0)
+  }
+}
+
+

@@ -11,6 +11,7 @@ import UIKit
 class FetchProductParams: NSObject {
 
   var brandId:String = String()
+  var prodId:String = String()
   var sortMode:String = String()
   var nextPageURL:String?
 }

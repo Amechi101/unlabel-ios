@@ -68,8 +68,8 @@ class LikeFollowPopup: UIView {
     }
     else if followType == .productStatus{
       
-      print("ss \(productStatusTile)")
-      print(productStatusMessage)
+     // print("ss \(productStatusTile)")
+     // print(productStatusMessage)
       productStatusPopup.isHidden = false
       IBStatusTitle.text = "VIEW RESERVED PRODUCT"
       IBStatusMessage.text = "To check out your reserved item(s) go to your ‘Manage Content’ tab."

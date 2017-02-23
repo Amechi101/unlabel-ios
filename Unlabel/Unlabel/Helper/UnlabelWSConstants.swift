@@ -219,4 +219,5 @@ let s_Registered = 201
 
 let sort_Params = "param"
 let product_brand_id = "brand"
+let product_id = "prod_id"
 

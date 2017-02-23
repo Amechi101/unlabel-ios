@@ -27,6 +27,11 @@ class AccountInfoVC: UITableViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    
+    IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
+    IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
+    IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
+    
     if let _ = self.navigationController{
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
@@ -115,7 +120,6 @@ extension AccountInfoVC:PopupviewDelegate{
   }
   
   func popupDidClickDelete(){
-    debugPrint("delete account")
     wsDeleteAccount()
   }
   
