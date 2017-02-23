@@ -62,6 +62,8 @@ class ManageContentVC: UIViewController {
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
         //  productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
           productViewController.selectedProduct = self.selectedProduct
+          
+          
           productViewController.selectedBrand = self.selectedBrand
           productViewController.contentStatus = self.contentStatus
         }
@@ -124,7 +126,7 @@ extension ManageContentVC{
     fetchProductRequestParams.sortMode = sortMode
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.arrFilteredBrandList = []
-      //  print("*** Meta *** \(meta)")
+        print("*** Meta *** \(meta)")
         self.arrMenBrandList.append(contentsOf: arrBrands)
       
       
@@ -169,7 +171,7 @@ extension ManageContentVC{
 
 extension ManageContentVC{
   @IBAction func IBActionSortSelection(_ sender: Any) {
-    self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func IBActionToggleStatus(_ sender: Any) {
     let buttonID: Int = (sender as AnyObject).tag

@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
+
 
 class AddOrViewProductImageVC: UIViewController {
   
   @IBOutlet weak var IBCollectionViewProductPhotos: UICollectionView!
   var iCount: Int = 5
-
+   var selectedProduct: Product = Product()
   
     override func viewDidLoad() {
         super.viewDidLoad()
       setUpCollectionView()
       addNotFoundView()
+      getProductImage()
+      
         // Do any additional setup after loading the view.
     }
 
@@ -25,6 +30,69 @@ class AddOrViewProductImageVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  func getProductImage() {
+    UnlabelAPIHelper.sharedInstance.getProductImage(selectedProduct.ProductID ,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
+  }
+  
+  func saveProfileImage(_ pickedImage: UIImage){
+    let parameters = [
+      "image": "ProductImage1.jpeg","note": selectedProduct.ProductID
+    ]
+    let image = UIImage()//IBImageSelected.image
+    
+    
+    Alamofire.upload(multipartFormData: {
+      multipartFormData in
+      
+      if let imageData = UIImageJPEGRepresentation(image, 0.6) {
+        multipartFormData.append(imageData, withName: "image", fileName: "ProductImage1.jpeg", mimeType: "image/jpeg")
+      }
+      
+      for (key, value) in parameters {
+        multipartFormData.append(((value as Any) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+        
+      }
+    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_image_bio/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
+      encodingResult in
+      
+      switch encodingResult {
+      case .success(let upload, _, _):
+        
+        upload.responseJSON {
+          response in
+          
+          switch response.result {
+          case .success(let data):
+            let json = JSON(data)
+            print("json: \(json)")
+          case .failure(let error):
+            print("error: \(error.localizedDescription)")
+          }
+          //          print("JSON: \(response)")
+          //          if let JSON = response.result.value {
+          //            print("JSON: \(JSON)")
+          //          }
+        }
+      case .failure(let encodingError):
+        print(encodingError)
+      }
+    })
+
+  }
+  
+  func getCSRFToken() -> String{
+    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
+      return xcsrf
+    }
+    else{
+      return ""
+    }
+  }
   
   fileprivate func addNotFoundView(){
     IBCollectionViewProductPhotos.backgroundView = nil
@@ -190,9 +258,11 @@ extension AddOrViewProductImageVC: UIImagePickerControllerDelegate, UINavigation
     
     if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
      print("Some \(image)")
+      saveProfileImage(image)
     }
     else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
       print("wrong \(image)")
+      saveProfileImage(image)
     } else{
       print("Something went wrong")
     }

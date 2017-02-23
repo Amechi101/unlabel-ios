@@ -36,9 +36,12 @@ class EditProfileVC: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  @IBAction func IBActionBack(_ sender: Any) {
+  @IBAction func IBActionUpdate(_ sender: Any) {
     saveInfluencerProfileInfo()
-  //  _ = self.navigationController?.popViewController(animated: true)
+  }
+  @IBAction func IBActionBack(_ sender: Any) {
+    
+    _ = self.navigationController?.popViewController(animated: true)
   }
   
   func getInfluencerProfileInfo() {

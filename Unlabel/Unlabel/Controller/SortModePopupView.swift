@@ -30,9 +30,11 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var IBTableList: UITableView!
   var delegate:SortModePopupViewDelegate?
   var arrSortOption:[String] = []
+  var arrDatasource:[UnlabelStaticList] = []
   var slideUpViewMode: SlideUpView = SlideUpView.sortMode
   var selectedItem: String = ""
   var popupTitle: String = ""
+  
   
   override func awakeFromNib() {
     updateView()
@@ -57,7 +59,9 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       arrSortOption = ["Today","Last 7 days","Last 30 days","Last 90 days"]
     }
     else if slideUpViewMode == SlideUpView.state{
-      arrSortOption = ["Alaska","Alabama","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Michigan","Minnesota","Missouri","Northern Mariana Islands","Mississippi","Montana","National","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
+      arrDatasource = getStateList()
+      
+      //["Alaska","Alabama","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Michigan","Minnesota","Missouri","Northern Mariana Islands","Mississippi","Montana","National","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
     }
     else if slideUpViewMode == SlideUpView.country{
       arrSortOption = ["USA","International"]
@@ -71,28 +75,32 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return arrSortOption.count
+    return arrDatasource.count
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let sortModeCell:SortModeCell = tableView.dequeueReusableCell(withIdentifier: "SortModeCell")! as? SortModeCell{
-      sortModeCell.cellLabel?.text = arrSortOption[indexPath.row]
-      if sortModeCell.isSelected{
-        sortModeCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
-      }else{
-        sortModeCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
-      }
-      return sortModeCell
+    let sortModeCell:SortModeCell = (tableView.dequeueReusableCell(withIdentifier: "SortModeCell")! as? SortModeCell)!
+    let listObect : UnlabelStaticList = arrDatasource[indexPath.row]
+    sortModeCell.cellLabel?.text = listObect.uName
+    if listObect.isSelected{
+      sortModeCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
+    }else{
+      sortModeCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
     }
-    else{
-     return UITableViewCell()
-    }
+    return sortModeCell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let selectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
-      selectedCell.contentView.backgroundColor = UIColor.white
-      selectedCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
-      selectedItem = arrSortOption[indexPath.row]
+      let listObect : UnlabelStaticList = arrDatasource[indexPath.row]
+      if listObect.isSelected{
+        
+      }else{
+        selectedCell.contentView.backgroundColor = UIColor.white
+        selectedCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
+        selectedItem = listObect.uId
+        listObect.isSelected = true
+      }
+     
     }
   }
   
@@ -100,8 +108,15 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
     print(indexPath)
     if let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
-      unSelectedCell.contentView.backgroundColor = UIColor.white
-      unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+      let listObect : UnlabelStaticList = arrDatasource[indexPath.row]
+      if listObect.isSelected{
+        unSelectedCell.contentView.backgroundColor = UIColor.white
+        unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+        listObect.isSelected = false
+      }else{
+      }
+      
+      
     }
   }
   
@@ -126,4 +141,23 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     delegate?.popupDidClickCloseButton()
   }
   
+}
+
+extension SortModePopupView{
+  func getStateList() -> [UnlabelStaticList]{
+    if let data = UserDefaults.standard.object(forKey: "stateList") as? NSData {
+      let state: [UnlabelStaticList] = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [UnlabelStaticList]
+      print(state[0].uId)
+      return state
+    }
+    return []
+  }
+  func getCountryList()-> [UnlabelStaticList]{
+    if let data = UserDefaults.standard.object(forKey: "countryList") as? NSData {
+      let country: [UnlabelStaticList] = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [UnlabelStaticList]
+      print(country[0].uId)
+      return country
+    }
+    return []
+  }
 }

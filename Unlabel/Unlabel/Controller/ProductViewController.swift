@@ -44,11 +44,14 @@ class ProductViewController: UIViewController {
     if contentStatus == ContentStatus.reserve{
       IBButtonReserve.setTitle("UNRESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_RED_COLOR
+      IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
+      IBSelectSize.isEnabled = false
     }
     else{
       IBButtonReserve.setTitle("RESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_GRAY_COLOR
     }
+  //  print(self.selectedProduct?.ProductID)
     IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
@@ -67,6 +70,7 @@ class ProductViewController: UIViewController {
         productInfoViewController.selectedProduct = self.selectedProduct
       }
     }
+    
   }
 }
 

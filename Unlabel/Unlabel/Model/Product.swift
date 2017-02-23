@@ -17,6 +17,7 @@ class Product: NSObject {
   var ProductDescription:String = String()
   var ProductMaterialCareInfo:String = String()
   var ProductItemSKU:String = String()
+  var ProductCreatorInfo:String = String()
   var isActive:Bool = Bool()
   var ProductName:String = String()
   var ProductPrice:String = String()
@@ -24,4 +25,5 @@ class Product: NSObject {
   var isFemale:Bool = Bool()
   var isUnisex:Bool = Bool()
   var arrProductsImages = [AnyObject]()
+  var ProductsSize = String()
 }

@@ -27,6 +27,17 @@ class BannerViewController: UIViewController {
     super.viewDidLoad()
    // setUpCollectionView()
   //  setUpPageControl()
+    UnlabelAPIHelper.sharedInstance.getAllStates({ (arrStates:[UnlabelStaticList], meta: JSON) in
+      let data = NSKeyedArchiver.archivedData(withRootObject: arrStates)
+      UserDefaults.standard.set(data, forKey: "stateList")
+    }, failed: { (error) in
+    })
+    
+    UnlabelAPIHelper.sharedInstance.getAllCountry({ (arrCountry:[UnlabelStaticList], meta: JSON) in
+      let data = NSKeyedArchiver.archivedData(withRootObject: arrCountry)
+      UserDefaults.standard.set(data, forKey: "countryList")
+    }, failed: { (error) in
+    })
     
     bannerDescription.setTextWithLineSpacing(text: "Rent and tryout products from the best independent brands, create content and earn commission from your created content. ", lineSpace: 6.0)
   }

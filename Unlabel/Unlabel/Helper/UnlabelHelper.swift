@@ -24,7 +24,6 @@ class UnlabelHelper: NSObject {
   class func setDefaultValue(_ value:String,key:String){
     UserDefaults.standard.setValue(value, forKey: key)
   }
-  
   class func setBoolValue(_ value:Bool,key:String){
     UserDefaults.standard.set(value, forKey: key)
   }
@@ -35,7 +34,6 @@ class UnlabelHelper: NSObject {
   class func getDefaultValue(_ key:String)->(String?){
     return UserDefaults.standard.value(forKey: key) as? String
   }
-  
   class func getBoolValue(_ key:String)->(Bool){
     return UserDefaults.standard.bool(forKey: key)
   }
@@ -226,6 +224,15 @@ class UnlabelHelper: NSObject {
       }
     return attributeList
   }
+  
+  class func getcurrentDateTime() -> String{
+    let todaysDate: NSDate = NSDate()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "ddMMyyyyHHmmss"
+    let dateInFormat: String = dateFormatter.string(from: todaysDate as Date)
+    return dateInFormat
+  }
+  
   
 }
 

@@ -23,12 +23,14 @@ class RentOrLiveProductDetailVC: UIViewController {
   @IBOutlet weak var IBBtnProductImage: UIButton!
   @IBOutlet weak var IBBtnProductNote: UIButton!
   @IBOutlet weak var IBBtnProductStats: UIButton!
+  @IBOutlet weak var IBBtnProductShare: UIButton!  
   @IBOutlet weak var IBBtnGoLive: UIButton!
   @IBOutlet weak var IBConstraintStatsHeight: NSLayoutConstraint!
   @IBOutlet weak var IBConstraintSelectSizeHeight: NSLayoutConstraint!
   @IBOutlet weak var IBConstraintGoLive: NSLayoutConstraint!
   @IBOutlet weak var IBScrollView: UIScrollView!
   @IBOutlet weak var IBViewStats: UIView!
+  var productImage:UIImage?
   var contentStatus: ContentStatus = .unreserved
   var selectedProduct:Product?
   var productID: String?
@@ -52,8 +54,10 @@ class RentOrLiveProductDetailVC: UIViewController {
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     if contentStatus == ContentStatus.live{
       IBConstraintGoLive.constant = 0.0
+      IBBtnProductShare.isHidden = false
     }
     else if contentStatus == ContentStatus.rent{
+      IBBtnProductShare.isHidden = true
       IBConstraintStatsHeight.constant = 0.0
       IBViewStats.isHidden = true
       IBConstraintSelectSizeHeight.constant = 0.0
@@ -103,6 +107,35 @@ class RentOrLiveProductDetailVC: UIViewController {
       if let addProductNoteVC:AddProductNoteVC = segue.destination as? AddProductNoteVC{
         addProductNoteVC.selectedProduct = self.selectedProduct!
       }
+    }
+    else if segue.identifier == "AddProductImage"{
+      if let addOrViewProductImageVC:AddOrViewProductImageVC = segue.destination as? AddOrViewProductImageVC{
+        addOrViewProductImageVC.selectedProduct = self.selectedProduct!
+      }
+    }
+  }
+  
+  @IBAction func IBActionShare(_ sender: UIButton) {
+    self.share(shareText: "Check out \(selectedProduct?.ProductName) on Unlabel. https://unlabel.us/", shareImage: productImage)
+  }
+  fileprivate func share(shareText:String?,shareImage:UIImage?){
+    var objectsToShare = [AnyObject]()
+    
+    if let shareTextObj = shareText{
+      objectsToShare.append(shareTextObj as AnyObject)
+    }
+    
+    if let shareImageObj = shareImage{
+      objectsToShare.append(shareImageObj)
+    }
+    
+    if shareText != nil || shareImage != nil{
+      let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+      activityViewController.popoverPresentationController?.sourceView = self.view
+      
+      present(activityViewController, animated: true, completion: nil)
+    }else{
+      debugPrint("There is nothing to share")
     }
   }
 }
@@ -178,6 +211,7 @@ extension RentOrLiveProductDetailVC: UICollectionViewDelegate,UICollectionViewDa
           
           if let _ = error{
           }else{
+            self.productImage = iimage
             if (type == SDImageCacheType.none)  {
               productCell.productImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {

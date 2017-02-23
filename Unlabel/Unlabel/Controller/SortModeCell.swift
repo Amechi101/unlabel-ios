@@ -11,6 +11,8 @@ import UIKit
 class SortModeCell: UITableViewCell {
 
   @IBOutlet weak var cellLabel: UILabel!
+  var isCellSelected: Bool = false
+  
     override func awakeFromNib() {
         super.awakeFromNib()
     }

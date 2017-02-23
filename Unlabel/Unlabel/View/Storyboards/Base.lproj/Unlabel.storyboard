@@ -351,9 +351,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="eNb-ne-pTL">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w9y-mR-Bc6">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="45" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="IL4-KD-zA1" eventType="touchUpInside" id="e0K-yh-5u1"/>
@@ -361,7 +361,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aKa-if-cLV">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="CUTE + BROKE">
@@ -369,11 +369,15 @@
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="vY6-rz-dsp">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="orj-nP-JIi">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="orj-nP-JIi">
+                                <rect key="frame" x="314" y="7" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="SHARE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="3pf-vJ-e1x"/>
+                                    <action selector="IBActionShare:" destination="IL4-KD-zA1" eventType="touchUpInside" id="S5w-D8-ffw"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2364,10 +2368,10 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                 <rect key="frame" x="0.0" y="84" width="375" height="916"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-uM-kkE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="881"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Policy purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypO-qr-ylh">
-                                                <rect key="frame" x="22" y="0.0" width="107" height="16"/>
+                                                <rect key="frame" x="22" y="0.0" width="99.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="xZe-Q6-IvA"/>
                                                 </constraints>
@@ -2376,7 +2380,7 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWb-G6-PTt">
-                                                <rect key="frame" x="22" y="33" width="331" height="280"/>
+                                                <rect key="frame" x="22" y="33" width="331" height="240"/>
                                                 <string key="text">Unlabel App (“Unlabel”) provides this Privacy Policy to inform you of our policies and procedures for the collection, use and disclosure of personal information we receive from users of unlabel.us (this “Site”). This Privacy Policy only applies to information you provide to us through the Site.
 This Privacy Policy may change from time to time. We will not reduce your rights under this Privacy Policy without your consent. We will post all privacy policy changes on this page unlabel.us/terms. If changes are significant, we will provide a more prominent notice (including, for certain services, email notification of privacy policy changes).</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
@@ -2384,26 +2388,26 @@ This Privacy Policy may change from time to time. We will not reduce your rights
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="External links" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-bS-MAN">
-                                                <rect key="frame" x="22" y="340" width="95.5" height="19"/>
+                                                <rect key="frame" x="22" y="300" width="91" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-cK-IAl">
-                                                <rect key="frame" x="22" y="376" width="331" height="168"/>
+                                                <rect key="frame" x="22" y="333" width="331" height="144"/>
                                                 <string key="text">Our Site contains links to multiple designers. If you choose to visit a website by "clicking on" a website link on Unlabel you will be directed to that designer's website. We do not take responsibility for cookies or other files that could be placed on your computer by these designers. We encourage you to read each designer's privacy policy if you have concerns with their behavior.</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpZ-yE-bGq">
-                                                <rect key="frame" x="22" y="571" width="90.5" height="19"/>
+                                                <rect key="frame" x="22" y="504" width="85" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="038-6b-wps">
-                                                <rect key="frame" x="22" y="607" width="331" height="224"/>
+                                                <rect key="frame" x="22" y="537" width="331" height="176"/>
                                                 <string key="text">When you subscribe to Unlabel's subscription list, you are agreeing to receive emails, newsletters, recommendations and policy updates. If you would like to opt out of our emails, please contact info@unlabel.us, or follow up unsubscribe link on those emails.
 Unlabel reserves the right to delete your email without notice, for legitimate business reasons. In the unlikely event that this occurs, we will provide an email notification with further details.
 </string>
@@ -2442,7 +2446,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2R-uq-Ihr">
-                                <rect key="frame" x="166" y="27" width="43" height="31"/>
+                                <rect key="frame" x="167" y="27" width="41" height="28"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
                                 <state key="normal" title="Terms">
@@ -4021,7 +4025,7 @@ See more info </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="163" y="25" width="49.5" height="30"/>
+                                <rect key="frame" x="163.5" y="25" width="49.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                 </constraints>
@@ -4215,7 +4219,7 @@ See more info </string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filter title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqf-gS-BYp">
-                                        <rect key="frame" x="157.5" y="30.5" width="61.5" height="19"/>
+                                        <rect key="frame" x="156.5" y="32" width="63.5" height="16"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                         <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -5046,7 +5050,7 @@ Sunday: 9am-8pm</string>
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="gIE-Kv-mjy" kind="show" id="Xj5-fb-3Jm"/>
+                                                            <segue destination="gIE-Kv-mjy" kind="show" identifier="RentLiveProductInfo" id="Xj5-fb-3Jm"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="6Qh-by-3m3">
@@ -5085,7 +5089,7 @@ Sunday: 9am-8pm</string>
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="wsE-Az-Hnc" kind="show" id="gMc-Iv-JjE"/>
+                                                            <segue destination="wsE-Az-Hnc" kind="show" identifier="AddProductImage" id="gMc-Iv-JjE"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="XD4-Oj-YZx">
@@ -5294,10 +5298,9 @@ Sunday: 9am-8pm</string>
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="wdW-We-lW5">
                             <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tkZ-NS-0sA">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="45" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="Close_X"/>
                                 <connections>
                                     <action selector="IBActionDismissView:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="EVi-lm-tcD"/>
@@ -5313,11 +5316,15 @@ Sunday: 9am-8pm</string>
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="t4Q-0z-ZTn">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JSU-pZ-ReJ">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JSU-pZ-ReJ">
+                                <rect key="frame" x="314" y="7" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="SHARE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="kJ3-5i-MUS"/>
+                                    <action selector="IBActionShare:" destination="ke3-fZ-0Jv" eventType="touchUpInside" id="NIO-k4-ah4"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -5330,6 +5337,7 @@ Sunday: 9am-8pm</string>
                         <outlet property="IBBtnProductDetail" destination="PuL-FV-TqR" id="JBy-cm-syz"/>
                         <outlet property="IBBtnProductImage" destination="6Mg-Zn-4PU" id="Nku-SA-zI6"/>
                         <outlet property="IBBtnProductNote" destination="ACN-d0-fk5" id="5hu-c7-zlc"/>
+                        <outlet property="IBBtnProductShare" destination="JSU-pZ-ReJ" id="eNI-uQ-Klj"/>
                         <outlet property="IBBtnProductStats" destination="Ko8-yR-NkI" id="gm9-Y6-as7"/>
                         <outlet property="IBConstraintGoLive" destination="xpa-cz-Jaa" id="yYV-FP-8rG"/>
                         <outlet property="IBConstraintSelectSizeHeight" destination="RgI-Kq-Vx3" id="CKt-va-Pbu"/>
@@ -5595,10 +5603,16 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="540"/>
+                    <connections>
+                        <outlet property="IBCreator" destination="tKN-nQ-qIW" id="8Hc-0g-QZf"/>
+                        <outlet property="IBItemSKU" destination="1F9-fF-L3i" id="JPF-T5-nmb"/>
+                        <outlet property="IBMaterialCareInfo" destination="8nH-qP-q1j" id="FEP-WH-iFo"/>
+                        <outlet property="IBProductDescription" destination="g5j-Vy-yaK" id="JZX-6n-zzF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c82-5b-26y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1508" y="2402.2488755622189"/>
+            <point key="canvasLocation" x="-1567" y="2320"/>
         </scene>
         <!--Add Or View Product ImageVC-->
         <scene sceneID="dQf-YO-jTI">
@@ -6120,8 +6134,9 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="5vD-cR-z0Q">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PU2-sl-cgB">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="51" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="fio-U1-5s6" eventType="touchUpInside" id="c90-eo-95c"/>
@@ -6138,11 +6153,16 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="6ZL-P2-Iw8">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="boB-Ak-WCy">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="boB-Ak-WCy">
+                                <rect key="frame" x="308" y="7" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="G2Z-Cs-vQw"/>
+                                    <action selector="IBActionUpdate:" destination="fio-U1-5s6" eventType="touchUpInside" id="S7r-tA-LEJ"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -7090,8 +7110,8 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J5P-PC-vHa"/>
-        <segue reference="Szm-2m-6Ro"/>
         <segue reference="g8u-Rt-Ctr"/>
+        <segue reference="Szm-2m-6Ro"/>
+        <segue reference="fjS-oP-zkR"/>
     </inferredMetricsTieBreakers>
 </document>

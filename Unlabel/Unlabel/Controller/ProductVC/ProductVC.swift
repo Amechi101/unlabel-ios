@@ -398,7 +398,7 @@ extension ProductVC{
     }
   }
   @IBAction func IBActionShare(_ sender: UIButton) {
-    self.share(shareText: "Check out \(selectedBrand.Name) on Unlabel. https://unlabel.us/\(selectedBrand.Slug)/", shareImage: headerViewImage)
+    self.share(shareText: "Check out \(selectedBrand.Name) on Unlabel. https://unlabel.us/", shareImage: headerViewImage)
   }
   
   //  @IBAction func IBActionViewProducts(_ sender: AnyObject) {

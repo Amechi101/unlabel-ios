@@ -249,9 +249,6 @@ class UnlabelAPIHelper{
 //          }
 
           
-          
-          
-          
           let startTime: String = (rentalInfo["start_time"]as! String) + (rentalInfo["start_time_period"] as! String)
           let endTime: String = (rentalInfo["end_time"] as! String) + (rentalInfo["end_time_period"] as! String)
           if let days: [String] = rentalInfo["day"] as? [String]{
@@ -280,13 +277,24 @@ class UnlabelAPIHelper{
             if let name = thisProduct["title"] as? String{
                 product.ProductName = name
             }
+          if let description = thisProduct["description"] as? String{
+            product.ProductDescription = description
+          }
+          if let material_info = thisProduct["material_info"] as? String{
+            product.ProductMaterialCareInfo = material_info
+          }
             if let id = thisProduct["id"] as? NSNumber{
                 product.ProductID = "\(id)"
             }
             if let price = thisProduct["price"] as? NSNumber{
                 product.ProductPrice = "\(price)"
             }
-            
+          if let productSizeArray:[[String : AnyObject]] = thisProduct["attributes"] as? [[String : AnyObject]]{
+            for thisImage in productSizeArray{
+              product.ProductsSize = (thisImage["value"]!) as! String
+            }
+          }
+          
             if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
                  product.arrProductsImages = []
                 for thisImage in productImageArray{
@@ -407,6 +415,49 @@ class UnlabelAPIHelper{
     return arrProducts
   }
   
+  func getStateModels(fromJSON json:JSON)->[UnlabelStaticList]?{
+    var arrStates = [UnlabelStaticList]()
+    if let stateList = json.dictionaryObject!["results"]{
+      for (_,thisState) in (stateList as! [[String:AnyObject]]).enumerated(){
+        let state = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        if let stateName:String = thisState["name"] as? String{
+          state.uName = stateName
+        }
+        if let stateID:NSNumber = thisState["pk"] as? NSNumber{
+          state.uId = "\(stateID)"
+        }
+        state.isSelected = false
+      //  print(thisState)
+        arrStates.append(state)
+      }
+      //     }
+      
+      //   debugPrint(arrBrands)
+      return arrStates
+    }else{
+      return nil
+    }
+  }
+  
+  func getCountriesModels(fromJSON json:JSON)->[UnlabelStaticList]?{
+    var arrCountries = [UnlabelStaticList]()
+    if let countriesList = json.dictionaryObject!["results"]{
+      for (_,thisCountries) in (countriesList as! [[String:AnyObject]]).enumerated(){
+        let countries = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        if let stateName:String = thisCountries["printable_name"] as? String{
+          countries.uName = stateName
+        }
+        if let stateID:String = thisCountries["pk"] as? String{
+          countries.uId = stateID
+        }
+        countries.isSelected = false
+        arrCountries.append(countries)
+      }
+      return arrCountries
+    }else{
+      return nil
+    }
+  }
   
   //Filter
   func getFilterCategories(_ categoryType:CategoryStyleEnum, success:@escaping ([JSON], _ meta:JSON)->(),failed:@escaping (_ error:NSError)->()){
@@ -965,6 +1016,26 @@ class UnlabelAPIHelper{
       }
     }
   }
+  func getProductImage(_ productId:String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_add_product_images/"
+    let params: [String: String] = ["prod_id":productId]
+      print(productId)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+        print(response.result)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
   //api_v2/influencer_reserve_product/(?P<product_id>[0-9]+)/
   func reserveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
@@ -1066,6 +1137,50 @@ class UnlabelAPIHelper{
     }
   }
   
+  
+  func getAllStates(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/get_states/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrStates = self.getStateModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No State found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getAllCountry(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/get_countries/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrStates = self.getCountriesModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No country found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
   
   //Mark: - API Common helper method
   

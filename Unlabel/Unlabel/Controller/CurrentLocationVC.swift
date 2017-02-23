@@ -69,23 +69,5 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
     else if slideUpMenu == SlideUpView.state{
       IBButtonSelectState.setTitle(sortModeValue, for: .normal)
     }
-//    
-//    switch sortMode {
-//    case "High to Low":
-//      self.sortMode = "HL"
-//      break
-//    case "Low to High":
-//      self.sortMode = "LH"
-//      break
-//    case "Oldest to Newest":
-//      self.sortMode = "OLD"
-//      break
-//    case "Newest to Oldest":
-//      self.sortMode = "NEW"
-//      break
-//    default:
-//      self.sortMode = ""
-//      break
-//    }
   }
 }

@@ -31,7 +31,11 @@ class AccountInfoVC: UITableViewController {
     IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
     IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
     IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
-    
+    IBProfileImage.contentMode = .scaleToFill
+    IBProfileImage.layer.cornerRadius = IBProfileImage.bounds.size.width/2
+    IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
+    IBProfileImage.clipsToBounds = true
+      
     if let _ = self.navigationController{
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
