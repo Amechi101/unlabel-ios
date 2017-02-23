@@ -1148,7 +1148,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kfm-54-P44">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2368,10 +2368,10 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                 <rect key="frame" x="0.0" y="84" width="375" height="916"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-uM-kkE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="881"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Policy purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypO-qr-ylh">
-                                                <rect key="frame" x="22" y="0.0" width="99.5" height="16"/>
+                                                <rect key="frame" x="22" y="0.0" width="107" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="xZe-Q6-IvA"/>
                                                 </constraints>
@@ -2380,7 +2380,7 @@ Stepping away from conventionalism, Unlabel is an app for trend-anticipating, fo
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWb-G6-PTt">
-                                                <rect key="frame" x="22" y="33" width="331" height="240"/>
+                                                <rect key="frame" x="22" y="33" width="331" height="280"/>
                                                 <string key="text">Unlabel App (“Unlabel”) provides this Privacy Policy to inform you of our policies and procedures for the collection, use and disclosure of personal information we receive from users of unlabel.us (this “Site”). This Privacy Policy only applies to information you provide to us through the Site.
 This Privacy Policy may change from time to time. We will not reduce your rights under this Privacy Policy without your consent. We will post all privacy policy changes on this page unlabel.us/terms. If changes are significant, we will provide a more prominent notice (including, for certain services, email notification of privacy policy changes).</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
@@ -2388,26 +2388,26 @@ This Privacy Policy may change from time to time. We will not reduce your rights
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="External links" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-bS-MAN">
-                                                <rect key="frame" x="22" y="300" width="91" height="16"/>
+                                                <rect key="frame" x="22" y="340" width="95.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNX-cK-IAl">
-                                                <rect key="frame" x="22" y="333" width="331" height="144"/>
+                                                <rect key="frame" x="22" y="376" width="331" height="168"/>
                                                 <string key="text">Our Site contains links to multiple designers. If you choose to visit a website by "clicking on" a website link on Unlabel you will be directed to that designer's website. We do not take responsibility for cookies or other files that could be placed on your computer by these designers. We encourage you to read each designer's privacy policy if you have concerns with their behavior.</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpZ-yE-bGq">
-                                                <rect key="frame" x="22" y="504" width="85" height="16"/>
+                                                <rect key="frame" x="22" y="571" width="90.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="038-6b-wps">
-                                                <rect key="frame" x="22" y="537" width="331" height="176"/>
+                                                <rect key="frame" x="22" y="607" width="331" height="224"/>
                                                 <string key="text">When you subscribe to Unlabel's subscription list, you are agreeing to receive emails, newsletters, recommendations and policy updates. If you would like to opt out of our emails, please contact info@unlabel.us, or follow up unsubscribe link on those emails.
 Unlabel reserves the right to delete your email without notice, for legitimate business reasons. In the unlikely event that this occurs, we will provide an email notification with further details.
 </string>
@@ -2446,7 +2446,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2R-uq-Ihr">
-                                <rect key="frame" x="167" y="27" width="41" height="28"/>
+                                <rect key="frame" x="166" y="27" width="43" height="31"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
                                 <state key="normal" title="Terms">
@@ -2794,7 +2794,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <rect key="frame" x="0.0" y="64" width="375" height="267"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jF-W8-O2X">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="291.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVZ-Nh-a4d">
                                                 <rect key="frame" x="22" y="8" width="181" height="16"/>
@@ -2807,14 +2807,14 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IQ-5N-35t">
-                                                <rect key="frame" x="22" y="32" width="331" height="149.5"/>
+                                                <rect key="frame" x="22" y="32" width="331" height="112"/>
                                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</string>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Material &amp; Care Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gus-fb-zSb">
-                                                <rect key="frame" x="22" y="189.5" width="250" height="16"/>
+                                                <rect key="frame" x="22" y="152" width="250" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="FvA-Cd-zOU"/>
                                                     <constraint firstAttribute="height" constant="16" id="vhW-aI-NA2"/>
@@ -2824,13 +2824,13 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Black, Blue, Multi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBO-9S-YLc">
-                                                <rect key="frame" x="22" y="213.5" width="331" height="19"/>
+                                                <rect key="frame" x="22" y="176" width="331" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item SKU" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsT-bw-122">
-                                                <rect key="frame" x="22" y="240.5" width="181" height="16"/>
+                                                <rect key="frame" x="22" y="200" width="181" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="181" id="l3g-xp-e8i"/>
                                                     <constraint firstAttribute="height" constant="16" id="lJz-L5-uw5"/>
@@ -2840,7 +2840,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#676767545" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaC-EQ-5ta">
-                                                <rect key="frame" x="22" y="264.5" width="331" height="19"/>
+                                                <rect key="frame" x="22" y="224" width="331" height="16"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4211,7 +4211,7 @@ See more info </string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="filter title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqf-gS-BYp">
-                                        <rect key="frame" x="156" y="32" width="64" height="16"/>
+                                        <rect key="frame" x="157.5" y="30.5" width="61.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                         <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4517,7 +4517,7 @@ See more info </string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="483"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHh-0E-T90">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="596.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick-up location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-b3-50g">
                                                 <rect key="frame" x="22" y="10" width="121" height="21"/>
@@ -4581,7 +4581,7 @@ See more info </string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="777 Best Company Road" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ni-PT-4ed">
-                                                        <rect key="frame" x="0.0" y="16" width="331" height="19"/>
+                                                        <rect key="frame" x="0.0" y="16" width="331" height="16"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -4821,7 +4821,7 @@ See more info </string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOg-iL-9du">
-                                                <rect key="frame" x="22" y="458" width="331" height="130.5"/>
+                                                <rect key="frame" x="22" y="458" width="331" height="112"/>
                                                 <string key="text">Monday: 9am-8pm
 Tuesday: 9am-8pm
 Wednesday: 9am-8pm
@@ -6295,7 +6295,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <viewControllerLayoutGuide type="top" id="rH4-S4-YIC"/>
                         <viewControllerLayoutGuide type="bottom" id="pmV-XV-msv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6a3-gR-ipP">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="6a3-gR-ipP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
