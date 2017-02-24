@@ -55,6 +55,10 @@ class RentOrLiveProductDetailVC: UIViewController {
     if contentStatus == ContentStatus.live{
       IBConstraintGoLive.constant = 0.0
       IBBtnProductShare.isHidden = false
+      IBBtnProductImage.setTitle("View Images", for: .normal)
+      IBBtnProductNote.setTitle("View Product Note", for: .normal)
+      IBSelectSize.isUserInteractionEnabled = false
+      IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
     }
     else if contentStatus == ContentStatus.rent{
       IBBtnProductShare.isHidden = true
@@ -106,11 +110,13 @@ class RentOrLiveProductDetailVC: UIViewController {
     if segue.identifier == "AddProductNote"{
       if let addProductNoteVC:AddProductNoteVC = segue.destination as? AddProductNoteVC{
         addProductNoteVC.selectedProduct = self.selectedProduct!
+        addProductNoteVC.contentStatus = self.contentStatus
       }
     }
     else if segue.identifier == "AddProductImage"{
       if let addOrViewProductImageVC:AddOrViewProductImageVC = segue.destination as? AddOrViewProductImageVC{
         addOrViewProductImageVC.selectedProduct = self.selectedProduct!
+        addOrViewProductImageVC.contentStatus = self.contentStatus
       }
     }
   }
@@ -189,8 +195,8 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     //delegate method to be implemented after API integration
   }
-  func popupDidClickDone(_ sortMode: String){
-    IBSelectSize.setTitle(sortMode, for: .normal)
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+    IBSelectSize.setTitle(selectedItem.uName, for: .normal)
   }
 }
 

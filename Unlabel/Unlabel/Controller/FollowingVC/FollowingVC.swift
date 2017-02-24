@@ -25,8 +25,8 @@ class FollowingVC: UIViewController {
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
   fileprivate var arrWomenBrandList:[Brand] = [Brand]()
   var nextPageURLMen:String?
-  var nextPageURLWomen:String?
-  var nextPageURLBoth:String?
+//  var nextPageURLWomen:String?
+ // var nextPageURLBoth:String?
   var isLoading = false
   fileprivate let fFooterHeight:CGFloat = 28.0
   fileprivate var headerView:FeedVCHeaderCell?

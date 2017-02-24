@@ -9,6 +9,7 @@
 import UIKit
 
 class ProductPhotoCell: UICollectionViewCell {
+  @IBOutlet weak var IBVireRemoveContainer: UIView!
   @IBOutlet weak var IBProductImage: UIImageView!
   @IBOutlet weak var IBactivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var IBButtonRemove: UIButton!

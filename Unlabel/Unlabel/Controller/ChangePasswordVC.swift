@@ -9,6 +9,9 @@
 import UIKit
 import SwiftyJSON
 
+
+//MARK:- Enums 
+
 enum PasswordFieldStatus{
   case filled
   case empty
@@ -16,124 +19,31 @@ enum PasswordFieldStatus{
 
 class ChangePasswordVC: UIViewController {
   
+  //MARK:- IBOutlets, constants, vars
+  
   @IBOutlet weak var IBLabelCurrentPassword: UILabel!
   @IBOutlet weak var IBTextfieldCurrentPassword: UITextField!
   @IBOutlet weak var IBViewCurrentPassword: UIView!
-  
   @IBOutlet weak var IBTextfieldNewPassword: UITextField!
   @IBOutlet weak var IBLabelNewPassword: UILabel!
   @IBOutlet weak var IBViewNewPassword: UIView!
-  
   @IBOutlet weak var IBTextfieldReEnterPassword: UITextField!
   @IBOutlet weak var IBViewReEnterPassword: UIView!
   @IBOutlet weak var IBLabelReEnterPassword: UILabel!
-  
   @IBOutlet weak var IBButtonUpdate: UIButton!
   var passwordField: PasswordFieldStatus = .empty
   
+  //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     IBButtonUpdate.isHidden = true
-    
-    // Do any additional setup after loading the view.
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
-  func saveInfluencerProfileInfo() {
-    var passParams: [String: String] = [:]
-    passParams["current_password"] = IBTextfieldCurrentPassword.text
-    passParams["new_password"] = IBTextfieldNewPassword.text
-    passParams["retype_password"] = IBTextfieldReEnterPassword.text
-    UnlabelAPIHelper.sharedInstance.changePassword( passParams,onVC: self, success:{ (
-      meta: JSON) in
-      print(meta)
-      _ = self.navigationController?.popViewController(animated: true)
-    }, failed: { (error) in
-    })
-    
-  }
-
-  
-  @IBAction func IBActionUpdate(_ sender: Any) {
-    if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
-      saveInfluencerProfileInfo()
-    }
-    else{
-      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide matching passwords", onOk: { () -> () in })
-    }
-  }
-  @IBAction func IBActionEditingChanged(_ sender: Any) {
-    if (IBTextfieldCurrentPassword.text != "" && IBTextfieldNewPassword.text != "" && IBTextfieldReEnterPassword.text != "") {
-      IBButtonUpdate.isHidden = false
-    }
-    else{
-      IBButtonUpdate.isHidden = true
-    }
-  }
-  @IBAction func IBActionBack(_ sender: Any) {
-    _ = self.navigationController?.popViewController(animated: true)
-  }
-  
-  fileprivate func isValidPassword(_ IBTextFeild: UITextField)->Bool{
-    
-    if let iCharacters = IBTextFeild.text?.characters.count, iCharacters > 0{
-      if let pwCharacters = IBTextFeild.text?.characters.count, pwCharacters < 8{
-        UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
-      
-        return false
-      }
-      else{
-       
-        return true
-      }
-      
-    }
-    else{
-      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
-      return false
-    }
-  }
-  func updateCurrentPasswordFields(){
-    if passwordField == PasswordFieldStatus.filled{
-      IBLabelCurrentPassword.textColor = DARK_GRAY_COLOR
-      IBTextfieldCurrentPassword.textColor = DARK_GRAY_COLOR
-      IBViewCurrentPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
-      IBLabelCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBTextfieldCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBViewCurrentPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
-    }
-  }
-  func updateNewPasswordFields(){
-    if passwordField == PasswordFieldStatus.filled{
-      IBLabelNewPassword.textColor = DARK_GRAY_COLOR
-      IBTextfieldNewPassword.textColor = DARK_GRAY_COLOR
-      IBViewNewPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
-      IBLabelNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBTextfieldNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBViewNewPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
-    }
-  }
-  func updateReEnterPasswordFields(){
-    if passwordField == PasswordFieldStatus.filled{
-      IBLabelReEnterPassword.textColor = DARK_GRAY_COLOR
-      IBTextfieldReEnterPassword.textColor = DARK_GRAY_COLOR
-      IBViewReEnterPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
-      IBLabelReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBTextfieldReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-      IBViewReEnterPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
-    }
-  }
 }
 
 //MARK: -  UITextFieldDelegate Methods
@@ -146,7 +56,6 @@ extension ChangePasswordVC: UITextFieldDelegate{
         updateCurrentPasswordFields()
         IBTextfieldNewPassword.becomeFirstResponder()
       }else{
-        
       }
     }else if textField == IBTextfieldNewPassword{
       if isValidPassword(IBTextfieldNewPassword){
@@ -154,14 +63,12 @@ extension ChangePasswordVC: UITextFieldDelegate{
         updateNewPasswordFields()
         IBTextfieldReEnterPassword.becomeFirstResponder()
       }else{
-        
       }
     }else if textField == IBTextfieldReEnterPassword{
       if isValidPassword(IBTextfieldReEnterPassword){
         passwordField = PasswordFieldStatus.filled
         updateReEnterPasswordFields()
       }else{
-        
       }
     }
        return true
@@ -198,4 +105,108 @@ extension ChangePasswordVC: UITextFieldDelegate{
       }
     }
   }
+}
+
+//MARK:- IBAction Methods
+
+extension ChangePasswordVC
+{
+  @IBAction func IBActionUpdate(_ sender: Any) {
+    if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
+      saveInfluencerProfileInfo()
+    }
+    else{
+      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide matching passwords", onOk: { () -> () in })
+    }
+  }
+  @IBAction func IBActionEditingChanged(_ sender: Any) {
+    if (IBTextfieldCurrentPassword.text != "" && IBTextfieldNewPassword.text != "" && IBTextfieldReEnterPassword.text != "") {
+      IBButtonUpdate.isHidden = false
+    }
+    else{
+      IBButtonUpdate.isHidden = true
+    }
+  }
+  @IBAction func IBActionBack(_ sender: Any) {
+    _ = self.navigationController?.popViewController(animated: true)
+  }
+}
+
+//MARK:- Custom Methods
+
+extension ChangePasswordVC
+{
+  func saveInfluencerProfileInfo() {
+    var passParams: [String: String] = [:]
+    passParams["current_password"] = IBTextfieldCurrentPassword.text
+    passParams["new_password"] = IBTextfieldNewPassword.text
+    passParams["retype_password"] = IBTextfieldReEnterPassword.text
+    UnlabelAPIHelper.sharedInstance.changePassword( passParams,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      _ = self.navigationController?.popViewController(animated: true)
+    }, failed: { (error) in
+    })
+  }
+  
+  func updateCurrentPasswordFields(){
+    if passwordField == PasswordFieldStatus.filled{
+      IBLabelCurrentPassword.textColor = DARK_GRAY_COLOR
+      IBTextfieldCurrentPassword.textColor = DARK_GRAY_COLOR
+      IBViewCurrentPassword.backgroundColor = DARK_GRAY_COLOR
+    }
+    else{
+      IBLabelCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBTextfieldCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBViewCurrentPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
+    }
+  }
+  
+  func updateNewPasswordFields(){
+    if passwordField == PasswordFieldStatus.filled{
+      IBLabelNewPassword.textColor = DARK_GRAY_COLOR
+      IBTextfieldNewPassword.textColor = DARK_GRAY_COLOR
+      IBViewNewPassword.backgroundColor = DARK_GRAY_COLOR
+    }
+    else{
+      IBLabelNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBTextfieldNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBViewNewPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
+    }
+  }
+  
+  func updateReEnterPasswordFields(){
+    if passwordField == PasswordFieldStatus.filled{
+      IBLabelReEnterPassword.textColor = DARK_GRAY_COLOR
+      IBTextfieldReEnterPassword.textColor = DARK_GRAY_COLOR
+      IBViewReEnterPassword.backgroundColor = DARK_GRAY_COLOR
+    }
+    else{
+      IBLabelReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBTextfieldReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
+      IBViewReEnterPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
+    }
+  }
+
+  fileprivate func isValidPassword(_ IBTextFeild: UITextField)->Bool{
+    
+    if let iCharacters = IBTextFeild.text?.characters.count, iCharacters > 0{
+      if let pwCharacters = IBTextFeild.text?.characters.count, pwCharacters < 8{
+        UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
+        
+        return false
+      }
+      else{
+        
+        return true
+      }
+      
+    }
+    else{
+      UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
+      return false
+    }
+  }
+
+
 }

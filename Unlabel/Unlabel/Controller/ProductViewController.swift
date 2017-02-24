@@ -24,7 +24,9 @@ class ProductViewController: UIViewController {
   @IBOutlet weak var IBScrollView: UIScrollView!
   var selectedBrand:Brand?
   var selectedProduct:Product?
+  var selectedSizeProduct = [Product]()
   var productID: String?
+  var childProductID = String()
   var contentStatus: ContentStatus = .unreserved
   
   //MARK: -  View lifecycle methods
@@ -40,7 +42,6 @@ class ProductViewController: UIViewController {
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
       
     }
-    
     if contentStatus == ContentStatus.reserve{
       IBButtonReserve.setTitle("UNRESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_RED_COLOR
@@ -78,7 +79,7 @@ class ProductViewController: UIViewController {
 
 extension ProductViewController{
   func wsReserveProduct(){
-    UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
+    UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
       meta: JSON) in
       UnlabelLoadingView.sharedInstance.stop(self.view)
       debugPrint(meta)
@@ -107,6 +108,20 @@ extension ProductViewController{
     self.automaticallyAdjustsScrollViewInsets = true
     
   }
+  
+  func getSizeList() -> [UnlabelStaticList]{
+    var arrSize = [UnlabelStaticList]()
+    for thisProduct in self.selectedSizeProduct{
+      for thisSize in thisProduct.arrProductsSizes{
+        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        pSize.uId = thisSize as! String
+        pSize.uName = thisSize as! String
+        arrSize.append(pSize)
+      }
+    }
+    print(arrSize)
+    return arrSize
+  }
 }
 
 //MARK: -  IBAction methods
@@ -129,13 +144,12 @@ extension ProductViewController{
       self.dismiss(animated: true, completion: nil)
     }
     else{
-      if UnlabelHelper.isUserLoggedIn(){
+      if self.IBSelectSize.titleLabel?.text != "Select Size"{
         self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-      }else{
-        UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
-        })
       }
-
+      else{
+        UnlabelHelper.showAlert(onVC: self, title: "Enter Size", message: "Please provide size of the product.", onOk: {})
+      }
     }
   }
   
@@ -195,7 +209,6 @@ extension ProductViewController:AddToCartViewDelegate{
       viewForgotLabelPopup.delegate = self
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
-      
       view.addSubview(viewForgotLabelPopup)
       UIView.animate(withDuration: 0.2, animations: {
         viewForgotLabelPopup.frame = self.view.frame
@@ -209,7 +222,6 @@ extension ProductViewController:AddToCartViewDelegate{
     
   }
   func popupClickReserve(){
-    
     UnlabelLoadingView.sharedInstance.start(self.view)
     wsReserveProduct()
   }
@@ -249,6 +261,7 @@ extension ProductViewController: SortModePopupViewDelegate{
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.popupTitle = "SELECT A SIZE"
+      viewSortPopup.arrDatasource = getSizeList()
       viewSortPopup.frame = initialFrame
       viewSortPopup.alpha = 0
       self.view.addSubview(viewSortPopup)
@@ -263,8 +276,18 @@ extension ProductViewController: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     
   }
-  func popupDidClickDone(_ sortMode: String){
-    IBSelectSize.setTitle(sortMode, for: .normal)
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+    IBSelectSize.setTitle(selectedItem.uName, for: .normal)
+    for thisProduct in self.selectedSizeProduct{
+      for thisSize in thisProduct.arrProductsSizes{
+        if thisSize as! String == selectedItem.uId{
+          childProductID = thisProduct.ProductID
+        }
+        
+      }
+    }
+    print(childProductID)
+    
   }
 }
 

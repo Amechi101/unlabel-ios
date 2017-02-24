@@ -9,55 +9,73 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-
+import SDWebImage
 
 class AddOrViewProductImageVC: UIViewController {
   
   @IBOutlet weak var IBCollectionViewProductPhotos: UICollectionView!
-  var iCount: Int = 5
-   var selectedProduct: Product = Product()
+  //var iCount: Int = 5
+  var selectedProduct: Product = Product()
+  var productImageArray: [ProductImages] = [ProductImages]()
+  var contentStatus: ContentStatus = .rent
+  var displayOrder: String = String()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setUpCollectionView()
+    addNotFoundView()
+    
+    getProductImages()
+    
+    // Do any additional setup after loading the view.
+  }
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      setUpCollectionView()
-      addNotFoundView()
-      getProductImage()
-      
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
-  func getProductImage() {
-    UnlabelAPIHelper.sharedInstance.getProductImage(selectedProduct.ProductID ,onVC: self, success:{ (
+  func getProductImages() {
+    self.productImageArray = []
+    UnlabelAPIHelper.sharedInstance.getProductImage(selectedProduct.ProductID ,onVC: self, success:{ (arrImage:[ProductImages],
       meta: JSON) in
-      print(meta)
+      self.productImageArray.append(contentsOf: arrImage)
+      self.IBCollectionViewProductPhotos.reloadData()
+    }, failed: { (error) in
+    })
+  }
+  
+  func removeProductImages() {
+    let productImage : ProductImages = ProductImages()
+    productImage.pProduct = selectedProduct.ProductID
+    productImage.pDisplayOrder = displayOrder
+    UnlabelAPIHelper.sharedInstance.removeProductPhot(productImage ,onVC: self, success:{(meta: JSON) in
+      
+      self.getProductImages()
+      self.IBCollectionViewProductPhotos.reloadData()
     }, failed: { (error) in
     })
   }
   
   func saveProfileImage(_ pickedImage: UIImage){
-    let parameters = [
-      "image": "ProductImage1.jpeg","note": selectedProduct.ProductID
-    ]
-    let image = UIImage()//IBImageSelected.image
     
+    let imageName: String = selectedProduct.ProductName + UnlabelHelper.getcurrentDateTime() + ".jpeg"
+    let parameters = [
+      "image": imageName,"note": selectedProduct.ProductID
+    ]
+    print("selectedProduct.ProductID : \(selectedProduct.ProductID)")
     
     Alamofire.upload(multipartFormData: {
       multipartFormData in
       
-      if let imageData = UIImageJPEGRepresentation(image, 0.6) {
-        multipartFormData.append(imageData, withName: "image", fileName: "ProductImage1.jpeg", mimeType: "image/jpeg")
+      if let imageData = UIImageJPEGRepresentation(pickedImage, 0.6) {
+        multipartFormData.append(imageData, withName: "image", fileName: imageName, mimeType: "image/jpeg")
       }
       
       for (key, value) in parameters {
         multipartFormData.append(((value as Any) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
         
       }
-    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_image_bio/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
+    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_add_product_images/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
       encodingResult in
       
       switch encodingResult {
@@ -70,6 +88,7 @@ class AddOrViewProductImageVC: UIViewController {
           case .success(let data):
             let json = JSON(data)
             print("json: \(json)")
+            self.getProductImages()
           case .failure(let error):
             print("error: \(error.localizedDescription)")
           }
@@ -82,7 +101,7 @@ class AddOrViewProductImageVC: UIViewController {
         print(encodingError)
       }
     })
-
+    
   }
   
   func getCSRFToken() -> String{
@@ -99,7 +118,13 @@ class AddOrViewProductImageVC: UIViewController {
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.IBlblMessage.text = "Currently no photos."
-    notFoundView.showViewLabelBtn = true
+    if contentStatus == ContentStatus.live{
+      notFoundView.showViewLabelBtn = false
+    }
+    else{
+      notFoundView.showViewLabelBtn = true
+    }
+    
     IBCollectionViewProductPhotos.backgroundView = notFoundView
     IBCollectionViewProductPhotos.backgroundView?.isHidden = true
   }
@@ -109,7 +134,11 @@ class AddOrViewProductImageVC: UIViewController {
     IBCollectionViewProductPhotos.register(UINib(nibName: "ProductPhotoFooterCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ProductPhotoFooterCell")
   }
   @IBAction func IBActionRemovePhoto(_ sender: UIButton) {
-   //print("button index \(sender.tag)")
+    print("button index \(sender.tag)")
+    let product: ProductImages = productImageArray[sender.tag]
+    displayOrder = product.pDisplayOrder
+    removeProductImages()
+    //print(displayOrder)
   }
   @IBAction func IBActionDismiss(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
@@ -143,9 +172,9 @@ class AddOrViewProductImageVC: UIViewController {
     actionSheetController.addAction(cameraAction)
     actionSheetController.addAction(cancelAction)
     self.present(actionSheetController, animated: true, completion: nil)
-
+    
   }
-
+  
 }
 extension AddOrViewProductImageVC: UICollectionViewDataSource{
   func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -153,13 +182,13 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-    if iCount > 0{
+    if productImageArray.count > 0{
       IBCollectionViewProductPhotos.backgroundView?.isHidden = true
     }else{
       IBCollectionViewProductPhotos.backgroundView?.isHidden = false
     }
-
-    return iCount
+    
+    return productImageArray.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -168,33 +197,43 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductPhotoCell{
     let productCell = IBCollectionViewProductPhotos.dequeueReusableCell(withReuseIdentifier: "ProductPhotoCell", for: indexPath) as! ProductPhotoCell
     productCell.IBButtonRemove.tag = indexPath.row
+    
+    if contentStatus == ContentStatus.live{
+      productCell.IBVireRemoveContainer.isHidden = true
+    }
+    else{
+      productCell.IBVireRemoveContainer.isHidden = false
+    }
+    let productImage: ProductImages = self.productImageArray[indexPath.row]
     productCell.IBProductImage.contentMode = UIViewContentMode.scaleAspectFill;
-    productCell.IBProductImage.image = UIImage(named: "product_demo")
+    //  productCell.IBProductImage.image = UIImage(named: "product_demo")
+    
+    print(productImage.pDisplayOrder)
     self.handleProductCellActivityIndicator(productCell, shouldStop: true)
     
     //***** To be done at API integration phase
     
-    //    if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
-    //
-    //      productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-    //        if let _ = error{
-    //          self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-    //        }else{
-    //          if (type == SDImageCacheType.none)
-    //          {
-    //            productCell.IBimgProductImage.alpha = 0;
-    //            UIView.animate(withDuration: 0.35, animations: {
-    //              productCell.IBimgProductImage.alpha = 1;
-    //            })
-    //          }
-    //          else
-    //          {
-    //            productCell.IBimgProductImage.alpha = 1;
-    //          }
-    //          self.handleProductCellActivityIndicator(productCell, shouldStop: true)
-    //        }
-    //      })
-    //    }
+    if let url = URL(string: productImage.pImageUrl ){
+      
+      productCell.IBProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
+        if let _ = error{
+          self.handleProductCellActivityIndicator(productCell, shouldStop: false)
+        }else{
+          if (type == SDImageCacheType.none)
+          {
+            productCell.IBProductImage.alpha = 0;
+            UIView.animate(withDuration: 0.35, animations: {
+              productCell.IBProductImage.alpha = 1;
+            })
+          }
+          else
+          {
+            productCell.IBProductImage.alpha = 1;
+          }
+          self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+        }
+      })
+    }
     return productCell
   }
   
@@ -208,11 +247,16 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    if iCount == 0{
+    if productImageArray.count == 0{
       return CGSize.zero
     }
     else{
-      return CGSize(width: collectionView.frame.width, height: 50.0)
+      if contentStatus == ContentStatus.live{
+        return CGSize.zero
+      }
+      else{
+        return CGSize(width: collectionView.frame.width, height: 50.0)
+      }
     }
     
   }
@@ -222,9 +266,18 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
     switch kind {
       
     case UICollectionElementKindSectionFooter:
-      let footerView:ProductPhotoFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductPhotoFooterCell", for: indexPath) as! ProductPhotoFooterCell
       
-      return footerView
+      if contentStatus == ContentStatus.live{
+        
+        return UICollectionReusableView()
+      }
+      else{
+        let footerView:ProductPhotoFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductPhotoFooterCell", for: indexPath) as! ProductPhotoFooterCell
+        
+        return footerView
+
+      }
+    
       
     default:
       assert(false, "No such element")
@@ -238,8 +291,8 @@ extension AddOrViewProductImageVC: NotFoundViewDelegate {
     showActionSheet()
   }
   
-  func didSelectRegisterLogin() {
-  }
+  //  func didSelectRegisterLogin() {
+  //  }
   
   
 }
@@ -257,7 +310,7 @@ extension AddOrViewProductImageVC: UIImagePickerControllerDelegate, UINavigation
   internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     
     if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-     print("Some \(image)")
+      print("Some \(image)")
       saveProfileImage(image)
     }
     else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {

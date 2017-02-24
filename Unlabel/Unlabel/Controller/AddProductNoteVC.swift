@@ -11,36 +11,54 @@ import SwiftyJSON
 
 class AddProductNoteVC: UIViewController , UITextViewDelegate {
   
+  //MARK:- IBOutlets, constants, vars
+  
   @IBOutlet var IBTextViewNote : UITextView!
   @IBOutlet weak var IBButtonDone: UIButton!
   var placeholderLabel : UILabel!
   var selectedProduct: Product = Product()
+  var contentStatus: ContentStatus = .rent
+  
+  
+  //MARK:- VC Lifecycle
+  
   override func viewDidLoad() {
+    
     super.viewDidLoad()
-
     getProductNote()
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty
     IBButtonDone.isHidden = true
     IBTextViewNote.delegate = self
+    
     placeholderLabel = UILabel()
     placeholderLabel.text = "Start writing here…"
     placeholderLabel.font = UnlabelHelper.getNeutraface2Text(style: "Book", size: 16.0)
     placeholderLabel.sizeToFit()
-    IBTextViewNote.addSubview(placeholderLabel)
-    IBTextViewNote.becomeFirstResponder()
     placeholderLabel.frame.origin = CGPoint(x: 5, y: (IBTextViewNote.font?.pointSize)! / 2)
     placeholderLabel.textColor = LIGHT_GRAY_TEXT_COLOR
-    placeholderLabel.isHidden = !IBTextViewNote.text.isEmpty 
+    placeholderLabel.isHidden = !IBTextViewNote.text.isEmpty
+    
+    IBTextViewNote.addSubview(placeholderLabel)
+    IBTextViewNote.becomeFirstResponder()
+    
+    if contentStatus == ContentStatus.live{
+      placeholderLabel.isHidden = true
+      IBTextViewNote.isUserInteractionEnabled = false
+      IBTextViewNote.resignFirstResponder()
+      IBTextViewNote.isEditable = false
+    }
+    else{
+    }
   }
-  @IBAction func IBActionBack(_ sender: Any) {
-    _ = self.navigationController?.popViewController(animated: true)
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
   }
-  @IBAction func IBActionDone(_ sender: Any) {
-    IBTextViewNote.resignFirstResponder()
-    IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
-    IBButtonDone.isHidden = true
-    saveProductNote()
-  }
+}
+
+//MARK:- Custom Methods
+
+extension AddProductNoteVC{
   
   func getProductNote() {
     UnlabelAPIHelper.sharedInstance.getProductNote(selectedProduct.ProductID ,onVC: self, success:{ (
@@ -56,11 +74,32 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
     UnlabelAPIHelper.sharedInstance.saveProductNote(selectedProduct.ProductID,note: self.IBTextViewNote.text ,onVC: self, success:{ (
       meta: JSON) in
       print(meta)
-      // self.IBTextViewNote.text = meta["bio"].stringValue
+      self.IBButtonDone.isHidden = true
     }, failed: { (error) in
     })
   }
   
+}
+
+//MARK:- IBAction Methods
+
+extension AddProductNoteVC{
+
+  @IBAction func IBActionBack(_ sender: Any) {
+    _ = self.navigationController?.popViewController(animated: true)
+  }
+  @IBAction func IBActionDone(_ sender: Any) {
+    IBTextViewNote.resignFirstResponder()
+    IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
+    
+    saveProductNote()
+  }
+
+}
+
+//MARK:- UITextField delegate Methods
+
+extension AddProductNoteVC{
   
   func textViewDidBeginEditing(_ textView: UITextView){
     IBTextViewNote.textColor = DARK_GRAY_COLOR
@@ -70,15 +109,9 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
     IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
   }
   func textViewDidChange(_ textView: UITextView) {
-    
     placeholderLabel.isHidden = !textView.text.isEmpty
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty
   }
+
   
-  override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }

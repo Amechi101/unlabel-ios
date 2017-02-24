@@ -25,5 +25,6 @@ class Product: NSObject {
   var isFemale:Bool = Bool()
   var isUnisex:Bool = Bool()
   var arrProductsImages = [AnyObject]()
+  var arrProductsSizes = [AnyObject]()
   var ProductsSize = String()
 }

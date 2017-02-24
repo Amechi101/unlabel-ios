@@ -28,6 +28,7 @@ class ProductVC: UIViewController {
   var delegate:ProductVCDelegate?
   var headerViewImage:UIImage?
   var arrProducts = [Product]()
+  var selectedSizeProduct = [Product]()
   var selectedProduct: Product!
   var isProfileCompleted: Bool = false
   var sortMode: String = "NEW"
@@ -79,11 +80,12 @@ extension ProductVC:UICollectionViewDelegate{
       
       if isProfileCompleted{
         self.selectedProduct = self.arrProducts[indexPath.row - 3]
-        
+        print(selectedProduct.ProductID)
         UnlabelAPIHelper.sharedInstance.getSizeProduct(selectedProduct.ProductID, success: { (sizeProduct:[Product], meta: JSON) in
           
           print(meta)
-          //self.selectedProduct = self.selectedProduct
+          print(sizeProduct)
+          self.selectedSizeProduct = sizeProduct
           self.performSegue(withIdentifier: "ProductDetailSegue", sender: self)
           
         }, failed: { (error) in
@@ -307,6 +309,7 @@ extension ProductVC{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
           productViewController.selectedBrand = selectedBrand
           productViewController.selectedProduct = self.selectedProduct
+          productViewController.selectedSizeProduct = self.selectedSizeProduct
         }
       }
     }
@@ -428,29 +431,13 @@ extension ProductVC: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
   //  print(sortMode)
-    sortModeValue = sortMode
+    sortModeValue = selectedItem.uName
     arrProducts = []
     nextPageURL = nil
     IBcollectionViewProduct.reloadData()
-    switch sortMode {
-    case "High to Low":
-      self.sortMode = "HL"
-      break
-    case "Low to High":
-      self.sortMode = "LH"
-      break
-    case "Oldest to Newest":
-      self.sortMode = "OLD"
-      break
-    case "Newest to Oldest":
-      self.sortMode = "NEW"
-      break
-    default:
-      self.sortMode = ""
-      break
-    }
+    self.sortMode = selectedItem.uId
     getProductsOfBrand()
   }
 }
@@ -549,7 +536,7 @@ extension ProductVC{
     fetchProductRequestParams.sortMode = sortMode
     fetchProductRequestParams.nextPageURL = nextPage
     UnlabelAPIHelper.sharedInstance.getProductOfBrand(fetchProductRequestParams, success: { (arrBrands:[Product], meta: JSON) in
-      
+      print(meta)
       self.arrProducts.append(contentsOf: arrBrands)
       self.nextPageURL = meta["next"].stringValue
       if self.arrProducts.count > 0{

@@ -84,6 +84,6 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
   }
 }

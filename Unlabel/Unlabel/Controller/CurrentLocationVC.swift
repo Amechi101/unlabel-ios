@@ -60,9 +60,9 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
   //  print(sortMode)
-    sortModeValue = sortMode
+    sortModeValue = selectedItem.uName
     if slideUpMenu == SlideUpView.country{
       IBButtonSelectCountry.setTitle(sortModeValue, for: .normal)
     }

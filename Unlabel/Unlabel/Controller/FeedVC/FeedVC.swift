@@ -460,27 +460,11 @@
   func popupDidClickCloseButton(){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     //print(sortMode)
-    headerView?.IBSortButton.setTitle("Sort by: " + sortMode, for: .normal)
-    switch sortMode {
-    case "A to Z":
-      self.sortMode = "AZ"
-      break
-    case "Z to A":
-      self.sortMode = "ZA"
-      break
-    case "Oldest to Newest":
-      self.sortMode = "DESC"
-      break
-    case "Newest to Oldest":
-      self.sortMode = "ASC"
-      break
-    default:
-      self.sortMode = ""
-      break
-    }
+    headerView?.IBSortButton.setTitle("Sort by: " + selectedItem.uName, for: .normal)
+    self.sortMode = selectedItem.uId
     wsCallGetLabels()
   }
  }

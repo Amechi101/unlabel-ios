@@ -32,11 +32,6 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     UnlabelAPIHelper.sharedInstance.getInfluencerBio( self, success:{ (
       meta: JSON) in
       print(meta)
-//      let url = NSURL(string:meta["image"].stringValue)
-//      let data = NSData(contentsOf:url! as URL)
-// //     if data! == nil {
-//        self.IBImageSelected.image = UIImage(data:data! as Data)
-////      }
       self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
       self.IBTextViewNote.text = meta["bio"].stringValue
     }, failed: { (error) in
@@ -85,10 +80,6 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
           case .failure(let error):
             print("error: \(error.localizedDescription)")
           }
-//          print("JSON: \(response)")
-//          if let JSON = response.result.value {
-//            print("JSON: \(JSON)")
-//          }
         }
       case .failure(let encodingError):
         print(encodingError)

@@ -220,7 +220,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     productCell.IBlblProductName.text = (arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName).capitalized
     
     //"Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
-    productCell.IBlblProductPrice.text = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
+    productCell.IBlblProductPrice.text = "$ " + arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
     
     
@@ -336,26 +336,10 @@ extension ManageContentVC: SortModePopupViewDelegate{
   func popupDidClickCloseButton(){
     //delegate method to be implemented after API integration
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
    // print(sortMode)
-    sortModeValue = sortMode
+    sortModeValue = selectedItem.uName
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
-    switch sortMode {
-    case "High to Low":
-      self.sortMode = "HL"
-      break
-    case "Low to High":
-      self.sortMode = "LH"
-      break
-    case "Oldest to Newest":
-      self.sortMode = "OLD"
-      break
-    case "Newest to Oldest":
-      self.sortMode = "NEW"
-      break
-    default:
-      self.sortMode = ""
-      break
-    }
+    self.sortMode = selectedItem.uId
   }
 }

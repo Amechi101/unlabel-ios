@@ -76,6 +76,7 @@
             <connections>
                 <outlet property="IBButtonRemove" destination="8k8-q4-RwC" id="aHP-UQ-F2v"/>
                 <outlet property="IBProductImage" destination="pDd-Og-qkQ" id="Tv1-Vi-na5"/>
+                <outlet property="IBVireRemoveContainer" destination="fyh-SO-z67" id="N6d-dz-cu5"/>
                 <outlet property="IBactivityIndicator" destination="Ycf-LJ-j6v" id="ORy-aZ-o7p"/>
             </connections>
             <point key="canvasLocation" x="92" y="50.5"/>

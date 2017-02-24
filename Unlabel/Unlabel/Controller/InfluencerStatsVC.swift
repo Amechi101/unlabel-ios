@@ -77,29 +77,30 @@ extension InfluencerStatsVC: SortModePopupViewDelegate{
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     self.tabBarController?.tabBar.isHidden = false
   }
-  func popupDidClickDone(_ sortMode: String){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     self.tabBarController?.tabBar.isHidden = false
  //   print(sortMode)
-    sortModeValue = sortMode
+    sortModeValue = selectedItem.uName
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
-    switch sortMode {
-    case "Today":
-      self.sortMode = "Today"
-      break
-    case "Last 7 days":
-      self.sortMode = "L7"
-      break
-    case "Last 30 days":
-      self.sortMode = "L30"
-      break
-    case "Last 90 days":
-      self.sortMode = "L90"
-      break
-    default:
-      self.sortMode = ""
-      break
-    }
+    self.sortMode = selectedItem.uId
+//    switch sortMode {
+//    case "Today":
+//      self.sortMode = "Today"
+//      break
+//    case "Last 7 days":
+//      self.sortMode = "L7"
+//      break
+//    case "Last 30 days":
+//      self.sortMode = "L30"
+//      break
+//    case "Last 90 days":
+//      self.sortMode = "L90"
+//      break
+//    default:
+//      self.sortMode = ""
+//      break
+//    }
   }
 }
 

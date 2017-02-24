@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol SortModePopupViewDelegate {
   func popupDidClickCloseButton()
-  func popupDidClickDone(_ sortMode: String)
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList)
 }
 
 enum SlideUpView{
@@ -30,11 +30,12 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var IBTableList: UITableView!
   var delegate:SortModePopupViewDelegate?
   var arrSortOption:[String] = []
+  var arrSortOptionKey:[String] = []
   var arrDatasource:[UnlabelStaticList] = []
   var slideUpViewMode: SlideUpView = SlideUpView.sortMode
-  var selectedItem: String = ""
+  var selectedItem = UnlabelStaticList(uId: "", uName: "",isSelected:false)
   var popupTitle: String = ""
-  
+  var arrSortOptionDict: [[String:Any]] = [[:]]
   
   override func awakeFromNib() {
     updateView()
@@ -47,30 +48,32 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
     if slideUpViewMode == SlideUpView.sortMode{
-      arrSortOption = ["High to Low","Low to High","Oldest to Newest","Newest to Oldest"]
+      arrSortOptionDict = [["name":"High to Low","key":"HL"],["name":"Low to High","key":"LH"],["name":"Oldest to Newest","key":"OLD"],["name":"Newest to Oldest","key":"NEW"]]
+       arrDatasource = getModelList(arrSortOptionDict)
     }
     else if slideUpViewMode == SlideUpView.brandSortMode{
-      arrSortOption = ["A to Z","Z to A","Oldest to Newest","Newest to Oldest"]
+      arrSortOptionDict = [["name":"A to Z","key":"AZ"],["name":"Z to A","key":"ZA"],["name":"Oldest to Newest","key":"OLD"],["name":"Newest to Oldest","key":"NEW"]]
+      arrDatasource = getModelList(arrSortOptionDict)
     }
     else if slideUpViewMode == SlideUpView.sizeSelection{
       arrSortOption = ["Small","Medium","Large","X-Large"]
     }
     else if slideUpViewMode == SlideUpView.statSort{
-      arrSortOption = ["Today","Last 7 days","Last 30 days","Last 90 days"]
+      arrSortOptionDict = [["name":"Today","key":"Today"],["name":"Last 7 days","key":"L7"],["name":"Last 30 days","key":"L30"],["name":"Last 90 days","key":"L90"]]
+      arrDatasource = getModelList(arrSortOptionDict)
     }
     else if slideUpViewMode == SlideUpView.state{
       arrDatasource = getStateList()
-      
-      //["Alaska","Alabama","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Michigan","Minnesota","Missouri","Northern Mariana Islands","Mississippi","Montana","National","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
     }
     else if slideUpViewMode == SlideUpView.country{
-      arrSortOption = ["USA","International"]
+      //arrSortOption = ["USA","International"]
+      arrDatasource = getStateList()
     }
     else{
       // arrSortOption = []
     }
     IBPopupTitle.text = popupTitle
-    selectedItem = arrSortOption.first!
+    selectedItem = arrDatasource.first!
   }
   
   
@@ -97,7 +100,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       }else{
         selectedCell.contentView.backgroundColor = UIColor.white
         selectedCell.cellLabel.textColor = MEDIUM_GRAY_TEXT_COLOR
-        selectedItem = listObect.uId
+        selectedItem = listObect
         listObect.isSelected = true
       }
      
@@ -159,5 +162,18 @@ extension SortModePopupView{
       return country
     }
     return []
+  }
+  
+  func getModelList(_ valueList: [[String:Any]]) -> [UnlabelStaticList]{
+    var arrSize = [UnlabelStaticList]()
+    
+    for thisItem in valueList{
+        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        pSize.uId = thisItem["key"] as! String
+        pSize.uName = thisItem["name"] as! String
+        arrSize.append(pSize)
+    }
+    print(arrSize)
+    return arrSize
   }
 }

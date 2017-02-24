@@ -331,6 +331,13 @@ class UnlabelAPIHelper{
         if let productPrice:NSNumber = thisProduct["retail_price"] as? NSNumber{
           product.ProductPrice = "\(productPrice)"
         }
+        
+        if let price = thisProduct["price"] as? [AnyHashable: Any] {
+          if let retailPrice = price["price_retail"] as? NSNumber{
+            product.ProductPrice = "\(retailPrice)"
+          }
+        }
+        
         if let productDescription:String = thisProduct["description"] as? String{
           product.ProductDescription = productDescription
         }
@@ -340,10 +347,16 @@ class UnlabelAPIHelper{
         if let id = thisProduct[PRM_ID] as? NSNumber {
           product.ProductID = "\(id)"
         }
-        
+        if let productSizeArray:[[String : AnyObject]] = thisProduct["attributes"] as? [[String : AnyObject]]{
+          product.arrProductsSizes = []
+          for thisSize in productSizeArray{
+            product.arrProductsSizes.append(thisSize["value"]!)
+            product.ProductsSize = (thisSize["value"]!) as! String
+          }
+        }
         if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
           //  print(productImageArray)
-        // product.arrProductsImages = []
+         product.arrProductsImages = []
           for thisImage in productImageArray{
             
           //  print(thisImage)
@@ -705,7 +718,7 @@ class UnlabelAPIHelper{
               UnlabelHelper.showAlert(onVC: onVC, title: "UNLABEL", message: "Invalid Login", onOk: { () -> () in })
             }
           case .failure(let error):
-         //   debugPrint("hhhh === \(error.localizedDescription)")
+            debugPrint("hhhh === \(error.localizedDescription)")
             UnlabelHelper.showAlert(onVC: onVC, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
             break
           }
@@ -879,9 +892,6 @@ class UnlabelAPIHelper{
         else {
             requestURL = v4BaseUrl + "api_v2/influencer_rented_products/"
         }
-    //    print(requestURL!)
-//        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
-        
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
@@ -936,11 +946,12 @@ class UnlabelAPIHelper{
 
   func followBrand(_ brandId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
-    requestURL = v4BaseUrl + "api_v2/partner_follow/"+brandId+"/"
-  //  print(requestURL!)
+    requestURL = v4BaseUrl + "api_v2/partner_follow/"
+    let params: [String: String] = ["id":brandId]
     if let requestURLObj = requestURL{
       
-      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
+        .responseJSON { response in
         switch response.result {
           
         case .success(let data):
@@ -957,7 +968,6 @@ class UnlabelAPIHelper{
     let requestURL:String?
      let params: [String: String] = ["prod_id":productID]
     
-    print("prod id\(productID)")
     requestURL = v4BaseUrl + "api_v2/influencer_add_product_note/"
     if let requestURLObj = requestURL{
       
@@ -1016,7 +1026,33 @@ class UnlabelAPIHelper{
       }
     }
   }
-  func getProductImage(_ productId:String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  
+  func getProductImageModels(fromJSON json:JSON)->[ProductImages]?{
+    var arrImages = [ProductImages]()
+    if let imageList = json.dictionaryObject!["results"]{
+      for (_,thisImage) in (imageList as! [[String:AnyObject]]).enumerated(){
+        let image = ProductImages()
+        if let imageURL:String = thisImage["original"] as? String{
+          image.pImageUrl = imageURL
+        }
+        if let imageID:NSNumber = thisImage["id"] as? NSNumber{
+          image.pId = "\(imageID)"
+        }
+        if let displayOrder:NSNumber = thisImage["display_order"] as? NSNumber{
+          image.pDisplayOrder = "\(displayOrder)"
+        }
+        if let imageCaption:String = thisImage["caption"] as? String{
+          image.pCaption = imageCaption
+        }
+        arrImages.append(image)
+      }
+      return arrImages
+    }else{
+      return nil
+    }
+  }
+  
+  func getProductImage(_ productId:String, onVC:UIViewController, success:@escaping ([ProductImages],_  json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_add_product_images/"
     let params: [String: String] = ["prod_id":productId]
@@ -1029,7 +1065,13 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-          success(json)
+          
+          print(json)
+          if let arrImages = self.getProductImageModels(fromJSON: json){
+            success(arrImages, json)
+          }else{
+            failed(NSError(domain: "No Image found", code: 0, userInfo: nil))
+          }
         case .failure(let error):
           failed(error as NSError)
         }
@@ -1039,11 +1081,13 @@ class UnlabelAPIHelper{
   //api_v2/influencer_reserve_product/(?P<product_id>[0-9]+)/
   func reserveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
-    requestURL = v4BaseUrl + "api_v2/influencer_reserve_product/"+productId+"/"
-   // print(requestURL!)
+    requestURL = v4BaseUrl + "api_v2/influencer_reserve_product/"
+    let params: [String: String] = ["id":productId]
+    print(productId)
     if let requestURLObj = requestURL{
       
-      Alamofire.request(requestURLObj, method: .post, parameters: nil).responseJSON { response in
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
+        .responseJSON { response in
         switch response.result {
           
         case .success(let data):
@@ -1079,6 +1123,32 @@ class UnlabelAPIHelper{
       }
     }
   }
+  
+  func removeProductPhot(_ product:ProductImages,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    let params = ["prod_id":product.pProduct,"display_order":product.pDisplayOrder]
+    requestURL = v4BaseUrl + "api_v2/influencer_remove_product_image/"
+    print("id \(product.pProduct) and order \(product.pDisplayOrder)")
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: URLEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
+        .responseJSON { response in
+        
+        
+        print(response.request)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          print(error.localizedDescription)
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   
   func getProfileInfo(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
