@@ -47,6 +47,7 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
       meta: JSON) in
       print(meta)
       self.IBTextViewNote.text = meta["note"].stringValue
+      self.placeholderLabel.isHidden = !self.IBTextViewNote.text.isEmpty
     }, failed: { (error) in
     })
   }
