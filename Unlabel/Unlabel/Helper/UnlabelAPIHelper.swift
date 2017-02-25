@@ -1100,6 +1100,27 @@ class UnlabelAPIHelper{
     }
   }
   
+  func goLiveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_product_go_live/"
+    let params: [String: String] = ["prod_id":productId]
+    print(productId)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: URLEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
+        .responseJSON { response in
+          switch response.result {
+            
+          case .success(let data):
+            let json = JSON(data)
+            success(json)
+          case .failure(let error):
+            failed(error as NSError)
+          }
+      }
+    }
+  }
+  
   func saveProfileInfo(_ user:User,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     let params = ["contact_number":user.contactNumber,"email":user.email,"first_name":user.firstname,"last_name":user.lastname]
@@ -1167,6 +1188,25 @@ class UnlabelAPIHelper{
       }
     }
   }
+  
+  func getPhysicalAttributes(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_physical_attributes/"
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func changePassword(_ passDict:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     let params = ["old_password":passDict["current_password"],"new_password":passDict["new_password"] ]

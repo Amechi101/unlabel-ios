@@ -205,22 +205,42 @@ class UnlabelHelper: NSObject {
     }
   }
   
-  class func getHeightList() -> [String]{
-    var heightList: [String] = []
+  class func getHeightList() -> [UnlabelStaticList]{
+    var arrHeight = [UnlabelStaticList]()
     for ft in 4...7 {
       for i in 0...11{
+        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
         let htText: String = "\(ft)" + " feet " + "\(i)" + " inches"
-        heightList.append(htText)
+        pSize.uName = htText
+        let inInches = (ft*12)+i
+        pSize.uId = "\(inInches)"
+        arrHeight.append(pSize)
       }
     }
-    return heightList
+    return arrHeight
   }
   
-  class func getOtherPhysicalAttributes() -> [String]{
-    var attributeList: [String] = []
+  class func getGenderType() -> [UnlabelStaticList]{
+    var attributeList =  [UnlabelStaticList]()
+    let pType1 = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+    pType1.uId = "M"
+    pType1.uName = "Male"
+    attributeList.append(pType1)
+    let pType2 = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+    pType2.uId = "F"
+    pType2.uName = "Female"
+    attributeList.append(pType2)
+    return attributeList
+  }
+
+  class func getOtherPhysicalAttributes() -> [UnlabelStaticList]{
+    var attributeList =  [UnlabelStaticList]()
       for i in 20...50{
+        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
         let phyText: String = "\(i)" + " inches"
-        attributeList.append(phyText)
+        pSize.uId = "\(i)"
+        pSize.uName = phyText
+        attributeList.append(pSize)
       }
     return attributeList
   }

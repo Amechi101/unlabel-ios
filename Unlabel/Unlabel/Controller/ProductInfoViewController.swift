@@ -16,7 +16,7 @@ class ProductInfoViewController: UIViewController {
   @IBOutlet weak var IBMaterialCareInfo: UILabel!
   @IBOutlet weak var IBItemSKU: UILabel!
   var selectedProduct:Product?
-  
+  var childProduct:Product?
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -27,7 +27,7 @@ class ProductInfoViewController: UIViewController {
     
     IBProductDescription.text = selectedProduct?.ProductDescription
     IBMaterialCareInfo.text = selectedProduct?.ProductMaterialCareInfo
-    IBItemSKU.text = selectedProduct?.ProductItemSKU
+    IBItemSKU.text = childProduct?.ProductItemSKU
   }
   
   override func didReceiveMemoryWarning() {

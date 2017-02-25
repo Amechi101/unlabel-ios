@@ -73,7 +73,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       // arrSortOption = []
     }
     IBPopupTitle.text = popupTitle
-    selectedItem = arrDatasource.first!
+   // selectedItem = arrDatasource.first!
   }
   
   
@@ -105,23 +105,25 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       }
      
     }
+    close()
+    delegate?.popupDidClickDone(selectedItem)
   }
   
   
-  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-    print(indexPath)
-    if let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
-      let listObect : UnlabelStaticList = arrDatasource[indexPath.row]
-      if listObect.isSelected{
-        unSelectedCell.contentView.backgroundColor = UIColor.white
-        unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
-        listObect.isSelected = false
-      }else{
-      }
-      
-      
-    }
-  }
+//  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//    print(indexPath)
+//    if let unSelectedCell:SortModeCell = tableView.cellForRow(at: indexPath as IndexPath)! as? SortModeCell{
+//      let listObect : UnlabelStaticList = arrDatasource[indexPath.row]
+//      if listObect.isSelected{
+//        unSelectedCell.contentView.backgroundColor = UIColor.white
+//        unSelectedCell.cellLabel.textColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+//        listObect.isSelected = false
+//      }else{
+//      }
+//      
+//      
+//    }
+//  }
   
   fileprivate func close(){
     UIView.animate(withDuration: 0.2, animations: {

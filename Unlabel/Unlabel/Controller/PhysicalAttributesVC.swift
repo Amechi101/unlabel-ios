@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum PhysicalAttributes{
   case sex
@@ -25,14 +26,25 @@ class PhysicalAttributesVC: UIViewController {
   @IBOutlet weak var IBButtonWaist: UIButton!
   
   var attributeType: PhysicalAttributes = .height
-  var attributeList: [String] = []
+  var attributeList: [UnlabelStaticList] = [UnlabelStaticList]()
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    print(UnlabelHelper.getHeightList())
-    self.addSortPopupView(SlideUpView.unknown,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    getInfluencerPhysicalAttributes()
+    
+  //  self.addSortPopupView(SlideUpView.unknown,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
     // Do any additional setup after loading the view.
   }
+  
+  func getInfluencerPhysicalAttributes() {
+    UnlabelAPIHelper.sharedInstance.getPhysicalAttributes( self, success:{ (
+      meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
+    
+  }
+  
   @IBAction func IBActionSelectOption(_ sender: Any) {
   }
   
@@ -47,7 +59,7 @@ class PhysicalAttributesVC: UIViewController {
   
   func getPhysicalAttributesList(){
     if attributeType == PhysicalAttributes.sex{
-      attributeList = ["Male","Female"]
+      attributeList = UnlabelHelper.getGenderType()
     }
     else if attributeType == PhysicalAttributes.height{
       attributeList = UnlabelHelper.getHeightList()
@@ -70,7 +82,7 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
       viewSortPopup.frame = initialFrame
       viewSortPopup.popupTitle = "STATE"
       getPhysicalAttributesList()
-      viewSortPopup.arrSortOption = attributeList
+      viewSortPopup.arrDatasource = attributeList
       viewSortPopup.alpha = 0
       self.view.addSubview(viewSortPopup)
       UIView.animate(withDuration: 0.2, animations: {

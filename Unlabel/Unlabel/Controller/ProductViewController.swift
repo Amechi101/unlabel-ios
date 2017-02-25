@@ -24,6 +24,7 @@ class ProductViewController: UIViewController {
   @IBOutlet weak var IBScrollView: UIScrollView!
   var selectedBrand:Brand?
   var selectedProduct:Product?
+  var childProduct:Product?
   var selectedSizeProduct = [Product]()
   var productID: String?
   var childProductID = String()
@@ -36,6 +37,9 @@ class ProductViewController: UIViewController {
     
     if selectedProduct == nil {
       selectedProduct = Product()
+    }
+    if selectedSizeProduct.count > 0 {
+      childProduct = selectedSizeProduct.first
     }
     setUpCollectionView()
     if let brandName:String = selectedBrand?.Name{
@@ -68,7 +72,16 @@ class ProductViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == S_ID_PRODUCT_INFO_SEGUE{
       if let productInfoViewController:ProductInfoViewController = segue.destination as? ProductInfoViewController{
-        productInfoViewController.selectedProduct = self.selectedProduct
+        
+        if contentStatus == ContentStatus.reserve{
+          productInfoViewController.selectedProduct = self.selectedProduct
+          productInfoViewController.childProduct = self.selectedProduct
+        }
+        else{
+          productInfoViewController.selectedProduct = self.selectedProduct
+          productInfoViewController.childProduct = childProduct
+        }
+        
       }
     }
     
@@ -282,6 +295,7 @@ extension ProductViewController: SortModePopupViewDelegate{
       for thisSize in thisProduct.arrProductsSizes{
         if thisSize as! String == selectedItem.uId{
           childProductID = thisProduct.ProductID
+          childProduct = thisProduct
         }
         
       }

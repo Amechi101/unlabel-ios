@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import SwiftyJSON
 
 class RentOrLiveProductDetailVC: UIViewController {
   
@@ -50,6 +51,7 @@ class RentOrLiveProductDetailVC: UIViewController {
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
       
     }
+    
     IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     if contentStatus == ContentStatus.live{
@@ -61,10 +63,14 @@ class RentOrLiveProductDetailVC: UIViewController {
       IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
     }
     else if contentStatus == ContentStatus.rent{
+      getProductNote()
+      getProductImages()
       IBBtnProductShare.isHidden = true
       IBConstraintStatsHeight.constant = 0.0
       IBViewStats.isHidden = true
       IBConstraintSelectSizeHeight.constant = 0.0
+      IBSelectSize.isUserInteractionEnabled = false
+      IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
     }
     
    // print((selectedProduct?.arrProductsImages.count)!)
@@ -93,6 +99,52 @@ class RentOrLiveProductDetailVC: UIViewController {
     
   }
 
+  func getSizeList() -> [UnlabelStaticList]{
+    var arrSize = [UnlabelStaticList]()
+      for thisSize in (selectedProduct?.arrProductsSizes)!{
+        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        pSize.uId = thisSize as! String
+        pSize.uName = thisSize as! String
+        arrSize.append(pSize)
+      }
+    print(arrSize)
+    return arrSize
+  }
+
+  func getProductImages() {
+    UnlabelAPIHelper.sharedInstance.getProductImage((selectedProduct?.ProductID)! ,onVC: self, success:{ (arrImage:[ProductImages],
+      meta: JSON) in
+      self.IBBtnProductImage.setTitle("Update Images", for: .normal)
+      
+    }, failed: { (error) in
+    })
+    
+  }
+  
+  func getProductNote() {
+    UnlabelAPIHelper.sharedInstance.getProductNote((selectedProduct?.ProductID)! ,onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      let productNote: String = meta["note"].stringValue
+      if !productNote.isEmpty{
+        self.IBBtnProductNote.setTitle("Update Product Note", for: .normal)
+      }
+      
+    }, failed: { (error) in
+    })
+  }
+  
+  func wsGoLiveProduct(){
+    UnlabelAPIHelper.sharedInstance.goLiveProduct((selectedProduct?.ProductID)!, onVC: self, success:{ (
+      meta: JSON) in
+      UnlabelLoadingView.sharedInstance.stop(self.view)
+      debugPrint(meta)
+      self.dismiss(animated: true, completion: nil)
+    }, failed: { (error) in
+    })
+    
+  }
+  
   
   //MARK: -  IBAction methods
   
@@ -103,7 +155,7 @@ class RentOrLiveProductDetailVC: UIViewController {
     self.addGoLivePopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func IBActionSelectSize(_ sender: Any) {
-    self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+  //  self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,7 +221,8 @@ extension RentOrLiveProductDetailVC: GoLivePopupDelegate{
     //delegate method to be implemented after API integration
   }
   func popupDidClickGoLive(){
-    self.dismiss(animated: true, completion: nil)
+    wsGoLiveProduct()
+    
   }
 }
 
@@ -182,6 +235,7 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.popupTitle = "SELECT A SIZE"
       viewSortPopup.frame = initialFrame
+      viewSortPopup.arrDatasource = getSizeList()
       viewSortPopup.alpha = 0
       self.view.addSubview(viewSortPopup)
       UIView.animate(withDuration: 0.2, animations: {
