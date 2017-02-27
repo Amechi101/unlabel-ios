@@ -47,7 +47,22 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     IBTableList.tableFooterView = UIView()
     
     IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
-    if slideUpViewMode == SlideUpView.state{
+    if slideUpViewMode == SlideUpView.sortMode{
+      arrSortOptionDict = [["name":"High to Low","key":"HL"],["name":"Low to High","key":"LH"],["name":"Oldest to Newest","key":"OLD"],["name":"Newest to Oldest","key":"NEW"]]
+      arrDatasource = getModelList(arrSortOptionDict)
+    }
+    else if slideUpViewMode == SlideUpView.brandSortMode{
+      arrSortOptionDict = [["name":"A to Z","key":"AZ"],["name":"Z to A","key":"ZA"],["name":"Oldest to Newest","key":"OLD"],["name":"Newest to Oldest","key":"NEW"]]
+      arrDatasource = getModelList(arrSortOptionDict)
+    }
+    else if slideUpViewMode == SlideUpView.sizeSelection{
+      arrSortOption = ["Small","Medium","Large","X-Large"]
+    }
+    else if slideUpViewMode == SlideUpView.statSort{
+      arrSortOptionDict = [["name":"Today","key":"Today"],["name":"Last 7 days","key":"L7"],["name":"Last 30 days","key":"L30"],["name":"Last 90 days","key":"L90"]]
+      arrDatasource = getModelList(arrSortOptionDict)
+    }
+    else if slideUpViewMode == SlideUpView.state{
       arrDatasource = getStateList()
     }
     else if slideUpViewMode == SlideUpView.country{

@@ -1206,7 +1206,30 @@ class UnlabelAPIHelper{
             }
         }
     }
-    
+  
+  func saveInfluencerLocation(_ params:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_current_locations/"
+    print(params)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+        
+        
+        print(response.result)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          print(error.localizedDescription)
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func getPhysicalAttributes(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_physical_attributes/"
@@ -1225,6 +1248,30 @@ class UnlabelAPIHelper{
     }
   }
   
+  
+  func savePhysicalAttributes(_ params: [String: String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_physical_attributes/"
+    print(requestURL!)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+        
+        
+        print(response.result)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          print(error.localizedDescription)
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+
   func changePassword(_ passDict:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     let params = ["old_password":passDict["current_password"],"new_password":passDict["new_password"] ]

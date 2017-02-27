@@ -92,20 +92,40 @@ class ProductViewController: UIViewController {
 
 extension ProductViewController{
   func wsReserveProduct(){
-    UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
-      meta: JSON) in
-      UnlabelLoadingView.sharedInstance.stop(self.view)
-      debugPrint(meta)
-      if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
-        self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-        UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-      }
-      else{
-        _ = self.navigationController?.popViewController(animated: true)
-      }
-      
-    }, failed: { (error) in
-    })
+    if contentStatus == ContentStatus.reserve{
+      UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
+        meta: JSON) in
+        UnlabelLoadingView.sharedInstance.stop(self.view)
+        debugPrint(meta)
+        if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
+          self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+          UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+        }
+        else{
+          self.dismiss(animated: true, completion: nil)
+        }
+        
+      }, failed: { (error) in
+      })
+
+    }
+    else{
+      UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
+        meta: JSON) in
+        UnlabelLoadingView.sharedInstance.stop(self.view)
+        debugPrint(meta)
+        if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
+          self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+          UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
+        }
+        else{
+          self.dismiss(animated: true, completion: nil)
+        }
+        
+      }, failed: { (error) in
+      })
+
+    }
     
   }
   
@@ -154,7 +174,8 @@ extension ProductViewController{
   }
   @IBAction func addToCartAction(_ sender: Any) {
     if contentStatus == ContentStatus.reserve{
-      self.dismiss(animated: true, completion: nil)
+      wsReserveProduct()
+     // self.dismiss(animated: true, completion: nil)
     }
     else{
       if self.IBSelectSize.titleLabel?.text != "Select Size"{

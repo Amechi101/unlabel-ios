@@ -1390,7 +1390,7 @@
                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="PH1-ya-WAJ" kind="show" id="lxe-By-3A9"/>
+                                            <segue destination="PH1-ya-WAJ" kind="show" identifier="EnterCurrentCity" id="lxe-By-3A9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1554,8 +1554,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="hWG-F2-A99">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WtS-hj-Qug">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="52" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="q1w-7E-F0g" eventType="touchUpInside" id="HfO-zR-8uV"/>
@@ -1572,11 +1573,15 @@
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ZlO-LC-2Sn">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X8o-ep-OsI">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X8o-ep-OsI">
+                                <rect key="frame" x="307" y="7" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="J0R-lE-TYT"/>
+                                    <action selector="IBActionUpdate:" destination="q1w-7E-F0g" eventType="touchUpInside" id="ceM-YR-tgb"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1585,6 +1590,7 @@
                         <outlet property="IBButtonSelectCity" destination="3Xs-Af-h61" id="kRL-wm-HK7"/>
                         <outlet property="IBButtonSelectCountry" destination="r1a-Vj-2ns" id="mjy-yN-s3i"/>
                         <outlet property="IBButtonSelectState" destination="THu-Ey-bmY" id="k0X-w1-Se9"/>
+                        <outlet property="IBViewStateContainer" destination="GiS-GA-HNq" id="ebb-ce-3gQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27W-ua-rHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1935,8 +1941,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="AEo-Ad-ZCx">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iq5-2m-cYt">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="52" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="T8Q-jW-BoC"/>
@@ -1944,7 +1951,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtl-AA-ABE">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1953,11 +1960,15 @@
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gWM-s0-fMt">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8AD-18-ccD">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8AD-18-ccD">
+                                <rect key="frame" x="307" y="7" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="Bhy-1F-Zwr"/>
+                                    <action selector="IBActionUpdate:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="Nub-hN-PdK"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -2013,10 +2024,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="JLi-re-iMA"/>
                                         </constraints>
+                                        <color key="textColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next"/>
                                         <connections>
-                                            <outlet property="delegate" destination="ERB-oh-bju" id="T4a-Uh-z9N"/>
+                                            <action selector="IBActionEditingChanged:" destination="PH1-ya-WAJ" eventType="editingChanged" id="UOg-kv-DbQ"/>
+                                            <outlet property="delegate" destination="PH1-ya-WAJ" id="olj-jO-ow3"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -2045,8 +2058,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Cft-cN-4O6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ik4-Dn-GY1">
-                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <rect key="frame" x="16" y="11" width="52" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="IBActionBack:" destination="PH1-ya-WAJ" eventType="touchUpInside" id="lIY-mU-nWk"/>
@@ -2063,15 +2077,25 @@
                             </state>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="amt-HD-wZx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pGd-uC-fKH">
-                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pGd-uC-fKH">
+                                <rect key="frame" x="307" y="7" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="9Di-Db-nVZ"/>
+                                    <action selector="IBActionUpdate:" destination="PH1-ya-WAJ" eventType="touchUpInside" id="RkG-8T-Ncj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="IBButtonUpdate" destination="pGd-uC-fKH" id="JVj-Hc-rWK"/>
+                        <outlet property="IBLabelCity" destination="0cF-iY-AJh" id="Gk3-Me-HOM"/>
+                        <outlet property="IBTextfieldCity" destination="Ssf-fP-N1j" id="tqg-gQ-cQy"/>
+                        <outlet property="IBViewCity" destination="DaO-Sh-mll" id="UhB-ar-FB6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4n-Ly-7z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5309,7 +5333,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="by5-2J-oWw">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal">
