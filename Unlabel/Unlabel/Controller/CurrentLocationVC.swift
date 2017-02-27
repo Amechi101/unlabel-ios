@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CurrentLocationVC: UIViewController {
 
-  @IBOutlet weak var IBTextFieldCity: UITextField!
+  @IBOutlet weak var IBButtonSelectCity: UIButton!
   @IBOutlet weak var IBButtonSelectState: UIButton!
   @IBOutlet weak var IBButtonSelectCountry: UIButton!
   var sortMode: String = "NEW"
@@ -19,12 +20,29 @@ class CurrentLocationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getInfluencerLocation()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func getInfluencerLocation() {
+        UnlabelAPIHelper.sharedInstance.getInfluencerLocation( self, success:{ (
+            meta: JSON) in
+            print(meta)
+            print(meta["city"].stringValue)
+            let stateDict = meta["state"].dictionaryObject
+            let state: String = stateDict?["name"] as! String
+            self.IBButtonSelectCity.setTitle(meta["city"].stringValue, for: .normal)
+            self.IBButtonSelectCountry.setTitle(meta["country"].stringValue, for: .normal)
+            self.IBButtonSelectState.setTitle(state, for: .normal)
+        }, failed: { (error) in
+        })
+        
     }
   @IBAction func IBActionSelectCountry(_ sender: Any) {
     slideUpMenu = SlideUpView.country
@@ -46,7 +64,13 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
-      viewSortPopup.popupTitle = "STATE"
+      
+        if slideUpMenu == SlideUpView.country{
+            viewSortPopup.popupTitle = "SELECT YOUR COUNTRY"
+        }
+        else if slideUpMenu == SlideUpView.state{
+            viewSortPopup.popupTitle = "SELECT YOUR STATE"
+        }
       viewSortPopup.alpha = 0
       self.view.addSubview(viewSortPopup)
       UIView.animate(withDuration: 0.2, animations: {

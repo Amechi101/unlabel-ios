@@ -1189,6 +1189,24 @@ class UnlabelAPIHelper{
     }
   }
   
+    func getInfluencerLocation(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+        let requestURL:String?
+        requestURL = v4BaseUrl + "api_v2/influencer_current_locations/"
+        if let requestURLObj = requestURL{
+            
+            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+                switch response.result {
+                    
+                case .success(let data):
+                    let json = JSON(data)
+                    success(json)
+                case .failure(let error):
+                    failed(error as NSError)
+                }
+            }
+        }
+    }
+    
   func getPhysicalAttributes(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_physical_attributes/"
