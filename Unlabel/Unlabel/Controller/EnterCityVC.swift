@@ -21,6 +21,8 @@ class EnterCityVC: UIViewController {
   var currentCity: String = ""
   var passwordField: PasswordFieldStatus = .empty
   var delegate:EnterCityVCDelegate?
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     IBButtonUpdate.isHidden = true

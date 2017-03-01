@@ -86,7 +86,7 @@ extension ChangeNameVC{
                     IBtxtFieldEnterNewName.resignFirstResponder()
                     UnlabelHelper.setDefaultValue(updatedUserName, key: PRM_DISPLAY_NAME)
                     setUserName()
-                    let displayName:[String:AnyObject] = [PRM_DISPLAY_NAME:updatedUserName as AnyObject]
+              //      let displayName:[String:AnyObject] = [PRM_DISPLAY_NAME:updatedUserName as AnyObject]
 /*********************** changed in v4
 //                    FirebaseHelper.updateUser(userDict: displayName, completion: { (error) in
 //                        if error == nil{

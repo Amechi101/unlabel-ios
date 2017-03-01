@@ -26,17 +26,37 @@ class AccountInfoVC: UITableViewController {
     super.viewDidLoad()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
+  func getInfluencerDetails(){
     
-    
-    IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
-    IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
-    IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
-    IBProfileImage.contentMode = .scaleToFill
-    IBProfileImage.layer.cornerRadius = IBProfileImage.bounds.size.width/2
-    IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
-    IBProfileImage.clipsToBounds = true
+    UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
+      meta: JSON) in
+      print(meta)
+      UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
+      UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
+      UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
+      UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
+      UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
       
+      DispatchQueue.main.async(execute: { () -> Void in
+        self.IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
+        self.IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
+        self.IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
+        self.IBProfileImage.contentMode = .scaleToFill
+        self.IBProfileImage.layer.cornerRadius = self.IBProfileImage.bounds.size.width/2
+        self.IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
+        self.IBProfileImage.clipsToBounds = true
+      })
+      
+
+      
+    }, failed: { (error) in
+    })
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    getInfluencerDetails()
+    
+    
     if let _ = self.navigationController{
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }

@@ -404,7 +404,15 @@
   }
   
   @IBAction func IBActionSortFeed(_ sender: Any) {
-    self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    
+    let array = ["1","2","3"]
+    let paramsJSON = JSON(array)
+    let arrString = paramsJSON.rawString(String.Encoding.utf8)
+    
+    print(arrString!)
+    print(array)
+    
+  //  self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   
@@ -428,10 +436,6 @@
     //                updateFilterArray()
     //            }
     //        }
-    
-    
-    
-    
   }
   
  }
@@ -500,7 +504,7 @@
   
   fileprivate func setupNavBar(){
     var titleText = "UNLABEL"
-    var leftBarButtonImage = IMG_HAMBURGER
+   // var leftBarButtonImage = IMG_HAMBURGER
     
     if mainVCType == .feed{
       addNotFoundView()
@@ -516,9 +520,9 @@
       IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
     }
     
-    if self.navigationController?.viewControllers.count > 1{
-      leftBarButtonImage = IMG_BACK
-    }
+//    if self.navigationController?.viewControllers.count > 1{
+//      leftBarButtonImage = IMG_BACK
+//    }
     
     
     IBbtnUnlabel.titleLabel?.textColor = UIColor.black

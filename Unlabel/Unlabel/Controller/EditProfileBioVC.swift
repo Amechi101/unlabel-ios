@@ -32,8 +32,11 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     UnlabelAPIHelper.sharedInstance.getInfluencerBio( self, success:{ (
       meta: JSON) in
       print(meta)
-      self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
-      self.IBTextViewNote.text = meta["bio"].stringValue
+      DispatchQueue.main.async(execute: { () -> Void in
+        self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
+        self.IBTextViewNote.text = meta["bio"].stringValue
+      })
+
     }, failed: { (error) in
     })
   }
@@ -76,6 +79,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
           switch response.result {
           case .success(let data):
             let json = JSON(data)
+            self.IBButtonUpdate.isHidden = true
             print("json: \(json)")
           case .failure(let error):
             print("error: \(error.localizedDescription)")
@@ -195,9 +199,11 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
     
+    if !self.IBTextViewNote.text.isEmpty{
+      IBButtonUpdate.isHidden = false
+    }
     IBImageSelected.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     self.dismiss(animated: true, completion: nil)
-    
   }
   
   

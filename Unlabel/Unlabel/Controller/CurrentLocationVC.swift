@@ -52,16 +52,18 @@ class CurrentLocationVC: UIViewController {
       let countryDict = meta["country"].dictionaryObject
       let country: String = countryDict?["printable_name"] as! String
       self.countryID = countryDict?["pk"] as! String
-      
-      if self.countryID != "US"{
-        self.IBButtonSelectState.isEnabled = false
-        self.IBButtonSelectState.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-        self.IBViewStateContainer.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
-      }
-      
-      self.IBButtonSelectCity.setTitle(meta["city"].stringValue, for: .normal)
-      self.IBButtonSelectCountry.setTitle(country, for: .normal)
-      self.IBButtonSelectState.setTitle(state, for: .normal)
+      DispatchQueue.main.async(execute: { () -> Void in
+        if self.countryID != "US"{
+          self.IBButtonSelectState.isEnabled = false
+          self.IBButtonSelectState.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
+          self.IBViewStateContainer.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
+        }
+        
+        self.IBButtonSelectCity.setTitle(meta["city"].stringValue, for: .normal)
+        self.IBButtonSelectCountry.setTitle(country, for: .normal)
+        self.IBButtonSelectState.setTitle(state, for: .normal)
+      })
+     
     }, failed: { (error) in
     })
   }

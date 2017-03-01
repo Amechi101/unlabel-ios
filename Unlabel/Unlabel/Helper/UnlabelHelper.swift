@@ -79,7 +79,7 @@ class UnlabelHelper: NSObject {
     UnlabelHelper.removePrefForKey("influencer_auto_id")
     UnlabelHelper.removePrefForKey("influencer_image")
     UnlabelHelper.removePrefForKey("influencer_first_name")
-    
+    UnlabelHelper.removePrefForKey("device_token")
     UnlabelHelper.removePrefForKey("ULCookie")
     UnlabelHelper.removePrefForKey("X-CSRFToken")
     

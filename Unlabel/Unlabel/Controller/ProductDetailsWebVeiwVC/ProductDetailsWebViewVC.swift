@@ -133,29 +133,29 @@ extension ProductDetailsWebViewVC{
       
       // return;  version 3
       
-      guard let _selectedBrand = selectedBrand else {
-         return
-      }
-      
-    //  debugPrint("Follow clicked")
-      //Internet available
-      if ReachabilitySwift.isConnectedToNetwork(){
-         
-         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
-            if _selectedBrand.isFollowing {
-               _selectedBrand.isFollowing = false
-            }else{
-               _selectedBrand.isFollowing = true
-            }
-             self.updateButtonUI()
-                        
-         } else{
-         }
-       
-      }else{
-         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-      }
-      
+//      guard let _selectedBrand = selectedBrand else {
+//         return
+//      }
+//      
+//    //  debugPrint("Follow clicked")
+//      //Internet available
+//      if ReachabilitySwift.isConnectedToNetwork(){
+//         
+//         if let userID = UnlabelHelper.getDefaultValue(PRM_USER_ID){
+//            if _selectedBrand.isFollowing {
+//               _selectedBrand.isFollowing = false
+//            }else{
+//               _selectedBrand.isFollowing = true
+//            }
+//             self.updateButtonUI()
+//                        
+//         } else{
+//         }
+//       
+//      }else{
+//         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
+//      }
+    
       
    }
 

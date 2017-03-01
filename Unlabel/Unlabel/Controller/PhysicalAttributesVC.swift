@@ -131,7 +131,12 @@ class PhysicalAttributesVC: UIViewController {
   }
   
   @IBAction func IBActionUpdate(_ sender: Any) {
-    saveInfluencerPhysicalAttributes()
+    if sexID.isEmpty || waistID.isEmpty || hipID.isEmpty || heightID.isEmpty || chestBustID.isEmpty{
+      UnlabelHelper.showAlert(onVC: self, title: "Missing Value", message: "Please provide value for all fields", onOk: {})
+    }
+    else{
+      saveInfluencerPhysicalAttributes()
+    }
   }
   
   func getPhysicalAttributesList(){
@@ -178,11 +183,12 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
       IBButtonSex.setTitle(selectedItem.uName, for: .normal)
       sexID = selectedItem.uId
       if selectedItem.uId == "M"{
-        chestBustID = selectedItem.uId
+        chestBustID = ""
         IBLabelChestBust.text = "CHEST"
         IBButtonChestBust.setTitle("Select your chest measurement", for: .normal)
       }
       else{
+        chestBustID = ""
         IBLabelChestBust.text = "BUST"
         IBButtonChestBust.setTitle("Select your bust measurement", for: .normal)
       }

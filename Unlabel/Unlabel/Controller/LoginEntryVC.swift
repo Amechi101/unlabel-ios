@@ -161,6 +161,19 @@ extension LoginEntryVC{
     })
   }
   
+  func wsRegisterDevice(){
+    var udid = UIDevice.current.identifierForVendor!.uuidString
+    udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
+    print("UDID == \(udid)")
+    let deviceToken = UnlabelHelper.getDefaultValue("device_token")
+    let params = ["udid":udid,"push_token":deviceToken,"device_type":"iOS"]
+    UnlabelAPIHelper.sharedInstance.registerDeviceToUnlabel(params as! [String : String],onVC:self, success:
+      { (json: JSON,statusCode:Int) in
+    },failed: { (error) in
+      UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
+    })
+  }
+  
   func wsLoginWithEmail(){
     let loginParams = User()
     loginParams.email = IBTextfieldEmail.text!
@@ -170,6 +183,7 @@ extension LoginEntryVC{
         UnlabelLoadingView.sharedInstance.stop(self.view)
         if statusCode == s_OK{
           self.getInfluencerDetails()
+          self.wsRegisterDevice()
           UnlabelHelper.goToBrandVC(self.storyboard!)
         }
         else if statusCode == s_Unauthorised{

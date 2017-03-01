@@ -32,7 +32,7 @@ class FilterListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        WSGetAllFilterList(ByCategoryType: categoryStyleType)
+      //  WSGetAllFilterList(ByCategoryType: categoryStyleType)
       
       self.automaticallyAdjustsScrollViewInsets = false 
       self.IBtableFilterList.tableFooterView = UIView()

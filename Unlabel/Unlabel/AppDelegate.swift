@@ -60,6 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
     debugPrint("********\(deviceTokenString)")
     
+    UnlabelHelper.setDefaultValue(deviceTokenString, key: "device_token")
+    
   }
   func clearCookie(){
     let cstorage = HTTPCookieStorage.shared
@@ -96,11 +98,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+     debugPrint("****** \(userInfo)")
     
   }
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    
+     debugPrint("****** \(userInfo)")
   }
   
   

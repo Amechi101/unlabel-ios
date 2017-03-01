@@ -417,7 +417,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-W2-PJU">
-                                                    <rect key="frame" x="22" y="0.0" width="71.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="72" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -513,7 +513,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
-                                                    <rect key="frame" x="22" y="0.0" width="155.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="156" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -613,7 +613,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
-                                                    <rect key="frame" x="22" y="0.0" width="110.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="111" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -862,7 +862,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
-                                                    <rect key="frame" x="22" y="0.0" width="116.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="117" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -930,7 +930,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
-                                                    <rect key="frame" x="22" y="0.0" width="132.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="133" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1143,7 +1143,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kfm-54-P44">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2968,9 +2968,11 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="run-3U-ct6">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableFooterView" contentMode="redraw" showsCancelButton="YES" id="DS5-Rv-h7U">
+                                <searchBar key="tableFooterView" contentMode="redraw" id="DS5-Rv-h7U">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="barTintColor" red="0.8862745098" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <scopeButtonTitles>
                                         <string>Title</string>
@@ -2994,7 +2996,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-HY-Bad">
                                                 <rect key="frame" x="191.5" y="72" width="161.5" height="36"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpe-hx-LW6">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpe-hx-LW6">
                                                         <rect key="frame" x="1" y="1" width="159.5" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
@@ -3268,6 +3270,12 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                     <navigationItem key="navigationItem" id="rPQ-do-Vho"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="IBButtonBrandCategory" destination="kA2-pv-Onc" id="UL2-aC-WkY"/>
+                        <outlet property="IBButtonLocation" destination="3oZ-bW-C3O" id="1sP-R0-d18"/>
+                        <outlet property="IBButtonMenswear" destination="Eiq-cb-PDc" id="0xX-tn-frl"/>
+                        <outlet property="IBButtonStyle" destination="CZK-d1-rPL" id="ScK-2e-5yj"/>
+                        <outlet property="IBButtonWomenswear" destination="Lpe-hx-LW6" id="a4b-OB-lgc"/>
+                        <outlet property="IBTableviewSearchResult" destination="run-3U-ct6" id="miz-vW-MI0"/>
                         <segue destination="eZH-Io-YD4" kind="show" identifier="FilterLabels" id="BE7-2j-2jD"/>
                     </connections>
                 </viewController>
@@ -3310,7 +3318,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAM-E7-gBC">
-                                <rect key="frame" x="119.5" y="448" width="136" height="24"/>
+                                <rect key="frame" x="120" y="448" width="136" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N6-XUv">
                                         <rect key="frame" x="0.0" y="0.0" width="136" height="24"/>
@@ -3350,7 +3358,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fta-9K-3wG">
-                                <rect key="frame" x="56.5" y="606" width="262" height="41"/>
+                                <rect key="frame" x="57" y="606" width="262" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iN-OH-VxM">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="41"/>
@@ -4050,7 +4058,7 @@ See more info </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="163" y="25" width="49.5" height="30"/>
+                                <rect key="frame" x="163.5" y="25" width="49.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                 </constraints>
@@ -6169,7 +6177,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nWc-06-xyD">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6639,13 +6647,13 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                                 <rect key="frame" x="0.0" y="150" width="375" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10000.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYN-qT-uUM">
-                                        <rect key="frame" x="74.5" y="-0.5" width="227" height="50"/>
+                                        <rect key="frame" x="74" y="-1" width="227" height="50"/>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="50"/>
                                         <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0b-r1-92H">
-                                        <rect key="frame" x="305.5" y="8" width="32" height="17"/>
+                                        <rect key="frame" x="305" y="8" width="32" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="Adi-1P-pHn"/>
                                             <constraint firstAttribute="width" constant="32" id="FKi-ig-Ht5"/>

@@ -564,6 +564,33 @@ class UnlabelAPIHelper{
       }
     }
   }
+  
+  func registerDeviceToUnlabel(_ registerParams:[String: String],onVC:UIViewController, success:@escaping ( _ json:JSON,_ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    
+    requestURL = v4BaseUrl + "api_v2/register_device/"
+    // print(requestURL!)
+    
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .post,  parameters: nil, encoding: JSONEncoding.default, headers: nil)
+        .responseJSON { response in
+          
+          //   debugPrint(response)
+          switch response.result {
+          case .success(let data):
+            let json = JSON(data)
+            debugPrint(json)
+            success(json,(response.response?.statusCode)!)
+          case .failure(let error):
+            //   debugPrint("hhhh === \(error.localizedDescription)")
+            failed(error as NSError)
+            break
+          }
+      }
+    }
+  }
+  
+  
   func registerToUnlabel(_ regParams:User,onVC:UIViewController, success:@escaping ( _ json:JSON,_ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/customer_register/"
@@ -623,7 +650,7 @@ class UnlabelAPIHelper{
           case .failure(let error):
             UnlabelLoadingView.sharedInstance.stop(onVC.view)
             UnlabelHelper.showAlert(onVC: onVC, title: "UNLABEL", message: "Something went wrong.", onOk: { () -> () in })
-         //   debugPrint("hhhh === \(error.localizedDescription)")
+            debugPrint("hhhh === \(error.localizedDescription)")
             break
           }
           
@@ -1154,9 +1181,6 @@ class UnlabelAPIHelper{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: URLEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
-        
-        
-        print(response.request)
         switch response.result {
           
         case .success(let data):
@@ -1349,6 +1373,73 @@ class UnlabelAPIHelper{
             success(arrStates, json)
           }else{
             failed(NSError(domain: "No country found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  
+  func getBrandCategory(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_brand_categories/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrStates = self.getStateModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getBrandStyle(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_brand_styles/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrStates = self.getStateModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getBrandLocation(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_brand_locations/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrStates = self.getStateModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
           }
         case .failure(let error):
           failed(error as NSError)

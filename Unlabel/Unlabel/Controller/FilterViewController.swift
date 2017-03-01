@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class FilterViewController: UIViewController {
   
+  
   //MARK: -  IBOutlets,vars,constants
+  @IBOutlet weak var IBButtonMenswear: UIButton!
+  @IBOutlet weak var IBButtonWomenswear: UIButton!
+  @IBOutlet weak var IBButtonBrandCategory: UIButton!
+  @IBOutlet weak var IBButtonStyle: UIButton!
+  @IBOutlet weak var IBButtonLocation: UIButton!
+  @IBOutlet weak var IBTableviewSearchResult: UITableView!
   
   //MARK: -  View lifecycle methods
   
@@ -28,19 +36,54 @@ class FilterViewController: UIViewController {
   //MARK: -  IBAction methods
   
   @IBAction func IBActionStoreType(_ sender: Any) {
-    performSegue(withIdentifier: SEGUE_FILTER_LABELS, sender: sender)
-  }
-  @IBAction func IBActionCategory(_ sender: Any) {
 
   }
-  
-   @IBAction func IBActionStyle(_ sender: Any) {
+  @IBAction func IBActionCategory(_ sender: Any) {
+    UnlabelAPIHelper.sharedInstance.getBrandCategory({ (arrCountry:[UnlabelStaticList], meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
     
+    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+      _presentController.categoryStyleType = .category
+      _presentController.arSelectedValues = []
+      
+
+    let _navFilterList = UINavigationController(rootViewController: _presentController)
+    _navFilterList.isNavigationBarHidden = true
+    
+    self.present(_navFilterList, animated: true, completion: nil)
+  }
+  
+  @IBAction func IBActionStyle(_ sender: Any) {
+    UnlabelAPIHelper.sharedInstance.getBrandStyle({ (arrCountry:[UnlabelStaticList], meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
+    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+    _presentController.categoryStyleType = .style
+    _presentController.arSelectedValues = []
+    
+    
+    let _navFilterList = UINavigationController(rootViewController: _presentController)
+    _navFilterList.isNavigationBarHidden = true
+    
+    self.present(_navFilterList, animated: true, completion: nil)
+
   }
   @IBAction func IBActionLocation(_ sender: Any) {
-    
+    UnlabelAPIHelper.sharedInstance.getBrandLocation({ (arrCountry:[UnlabelStaticList], meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
   }
   @IBAction func IBActionShowFilteredResults(_ sender: Any) {
     
+  }
+}
+extension UIButton{
+  func setBorderColor(_ color: UIColor){
+    self.layer.borderWidth = 1.0
+    self.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.cgColor
   }
 }

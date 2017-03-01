@@ -41,7 +41,7 @@ enum CategoryStyleEnum: CustomStringConvertible {
          return "Select Category"
       case .style:
          return "Select Style"
-      case .location: return ""
+      case .location: return "Select Location"
       }
    }
    

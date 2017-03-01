@@ -48,10 +48,13 @@ class EditProfileVC: UIViewController {
     UnlabelAPIHelper.sharedInstance.getProfileInfo( self, success:{ (
       meta: JSON) in
       print(meta)
-      self.IBTextfieldFullname.text = meta["first_name"].stringValue
-      self.IBtextfieldLastname.text = meta["last_name"].stringValue
-      self.IBtextfieldEmail.text = meta["email"].stringValue
-      self.IBTextfieldContactNumber.text = meta["contact_number"].stringValue
+      DispatchQueue.main.async(execute: { () -> Void in
+        self.IBTextfieldFullname.text = meta["first_name"].stringValue
+        self.IBtextfieldLastname.text = meta["last_name"].stringValue
+        self.IBtextfieldEmail.text = meta["email"].stringValue
+        self.IBTextfieldContactNumber.text = meta["contact_number"].stringValue
+      })
+      
     }, failed: { (error) in
     })
     

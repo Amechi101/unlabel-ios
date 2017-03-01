@@ -79,7 +79,7 @@ extension AboutUsVC{
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            S_NO_INTERNET
+           // S_NO_INTERNET
             mail.setToRecipients([UNLABEL_EMAIL_ID])
             mail.setMessageBody("", isHTML: true)
             
