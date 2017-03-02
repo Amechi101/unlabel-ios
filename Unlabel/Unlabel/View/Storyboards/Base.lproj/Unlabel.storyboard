@@ -1051,7 +1051,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0B5-2O-oae">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
@@ -1605,7 +1605,7 @@
                         <viewControllerLayoutGuide type="top" id="oHH-OZ-al8"/>
                         <viewControllerLayoutGuide type="bottom" id="iah-fK-blJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="eax-3y-BwH">
+                    <view key="view" contentMode="scaleToFill" id="eax-3y-BwH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -4025,7 +4025,7 @@ See more info </string>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="O2s-F5-Ypr" customClass="NavController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="Fok-lI-GRK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eUH-fJ-iY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eUH-fJ-iY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4189,7 +4189,7 @@ See more info </string>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
-                            <state key="normal" title="SAVED ITEMS">
+                            <state key="normal" title="FOLLOWING">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -4363,13 +4363,13 @@ See more info </string>
             </objects>
             <point key="canvasLocation" x="3104.8000000000002" y="512.29385307346331"/>
         </scene>
-        <!--Saved Items-->
+        <!--Following-->
         <scene sceneID="HYe-vj-veR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JXj-J6-7AS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved Items" image="Saved_items" id="aM7-Lh-gfr"/>
+                    <tabBarItem key="tabBarItem" title="Following" image="Saved_items" id="aM7-Lh-gfr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6bF-EJ-6yJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6bF-EJ-6yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4498,7 +4498,7 @@ See more info </string>
                     <navigationItem key="navigationItem" id="VPg-ao-dLz">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIx-Np-Pnx">
-                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="MANAGE CONTENT">
@@ -4952,7 +4952,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pvh-M2-bLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="8xt-Jh-E7L"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CQ8-2p-vyG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CQ8-2p-vyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4994,7 +4994,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZ7-LJ-ahy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Content" image="Manage" id="uhd-gO-AoR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7iI-us-SQa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7iI-us-SQa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5843,7 +5843,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rvr-SJ-qaW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gJP-T9-2OF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gJP-T9-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5861,7 +5861,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X0k-OQ-dEj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fma-s0-TrK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fma-s0-TrK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5996,7 +5996,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <viewControllerLayoutGuide type="top" id="vfZ-rd-EqI"/>
                         <viewControllerLayoutGuide type="bottom" id="CAJ-Re-Jth"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Mn8-0H-mDZ">
+                    <view key="view" contentMode="scaleToFill" id="Mn8-0H-mDZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6380,7 +6380,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <viewControllerLayoutGuide type="top" id="rH4-S4-YIC"/>
                         <viewControllerLayoutGuide type="bottom" id="pmV-XV-msv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="6a3-gR-ipP">
+                    <view key="view" contentMode="scaleToFill" id="6a3-gR-ipP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6625,7 +6625,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
                         <viewControllerLayoutGuide type="top" id="0Wi-a2-KgU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZRu-sK-gZL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Bhm-5a-ooU">
+                    <view key="view" contentMode="scaleToFill" id="Bhm-5a-ooU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6808,7 +6808,7 @@ Product Note: This item is pretty awesomeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhjasj
         <scene sceneID="Lkb-aQ-G05">
             <objects>
                 <navigationController id="TU8-9y-nyU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ctO-om-5OM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ctO-om-5OM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

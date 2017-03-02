@@ -3,7 +3,7 @@
 //
 
 
-#import "Cloudinary/Cloudinary.h"
+//#import "Cloudinary/Cloudinary.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Reachability.h"
 #import <Google/Analytics.h>

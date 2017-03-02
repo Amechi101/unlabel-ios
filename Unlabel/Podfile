@@ -12,7 +12,6 @@ target 'Unlabel' do
     pod 'Crashlytics', '~> 3.8'
     pod 'Alamofire'
     pod 'SwiftyJSON'
-    pod 'Cloudinary', '~> 1.0'
     pod 'SDWebImage', '~>3.7'
     pod 'Google/Analytics'
     pod 'ObjectMapper', '~> 2.2'

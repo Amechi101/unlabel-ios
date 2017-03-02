@@ -95,23 +95,23 @@ extension ProductDetailVC{
     fileprivate func setupOnLoad(){
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         
-        if let url = URL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
-            IBImgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-                
-                if (type == SDImageCacheType.none)
-                {
-                    self.IBImgProductImage.alpha = 0;
-                    UIView.animate(withDuration: 0.35, animations: {
-                        self.IBImgProductImage.alpha = 1;
-                    })
-                }
-                else
-                {
-                    self.IBImgProductImage.alpha = 1;
-                }
-            })
-        }
-        
+//        if let url = URL(string: UnlabelHelper.getCloudnaryObj().url(product.ProductImage)){
+//            IBImgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
+//                
+//                if (type == SDImageCacheType.none)
+//                {
+//                    self.IBImgProductImage.alpha = 0;
+//                    UIView.animate(withDuration: 0.35, animations: {
+//                        self.IBImgProductImage.alpha = 1;
+//                    })
+//                }
+//                else
+//                {
+//                    self.IBImgProductImage.alpha = 1;
+//                }
+//            })
+//        }
+//        
         IBbtnBuyOnBrand.setTitle("BUY ON \(product.ProductBrandName.uppercased())", for: UIControlState())
         IBlblPrice.text = "$\(product.ProductPrice)"
         IBlblProductName.text = "\(product.ProductName)"

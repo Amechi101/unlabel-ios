@@ -37,7 +37,14 @@ class EditProfileVC: UIViewController {
   }
   
   @IBAction func IBActionUpdate(_ sender: Any) {
-    saveInfluencerProfileInfo()
+    if !isValidEmail() {
+      // shows alert in isValidEmail() method
+    }else if !(IBTextfieldFullname.text?.isEmpty)! || !(IBtextfieldLastname.text?.isEmpty)! || !(IBTextfieldContactNumber.text?.isEmpty)!{
+      UnlabelHelper.showAlert(onVC: self, title: "Empty Input", message: "Please provide value for all field.", onOk: {})
+    }
+    else{
+      saveInfluencerProfileInfo()
+    }
   }
   @IBAction func IBActionBack(_ sender: Any) {
     
@@ -66,11 +73,39 @@ class EditProfileVC: UIViewController {
     userParam.email = IBtextfieldEmail.text!
     userParam.contactNumber = IBTextfieldContactNumber.text!
     UnlabelAPIHelper.sharedInstance.saveProfileInfo( userParam,onVC: self, success:{ (
-      meta: JSON) in
+      meta: JSON,statusCode) in
+      print(statusCode)
+      if statusCode == 200{
+        _ = self.navigationController?.popViewController(animated: true)
+      }
+      else if statusCode == 203{
+        UnlabelHelper.showAlert(onVC: self, title: "Error", message: meta["message"].stringValue, onOk: {})
+      }
       print(meta)
-      _ = self.navigationController?.popViewController(animated: true)
+      
     }, failed: { (error) in
     })
     
+  }
+}
+extension EditProfileVC: UITextFieldDelegate{
+  fileprivate func isValidEmail()->Bool{
+    if let email = IBtextfieldEmail.text, email.characters.count > 0{
+      if UnlabelHelper.isValidEmail(IBtextfieldEmail.text!){
+        if let email = IBtextfieldEmail.text, email.characters.count > 30{
+          UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Email must be less than 30 characters", onOk: { () -> () in })
+          return false
+        }
+        else{
+          return true
+        }
+      }else{
+        UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "This email address doesn’t look quite right", onOk: { () -> () in })
+        return false
+      }
+    }else{
+      UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please provide your email to proceed", onOk: { () -> () in })
+      return false
+    }
   }
 }

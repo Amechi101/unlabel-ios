@@ -165,9 +165,10 @@ extension LoginEntryVC{
     var udid = UIDevice.current.identifierForVendor!.uuidString
     udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
     print("UDID == \(udid)")
-    let deviceToken = UnlabelHelper.getDefaultValue("device_token")
-    let params = ["udid":udid,"push_token":deviceToken,"device_type":"iOS"]
-    UnlabelAPIHelper.sharedInstance.registerDeviceToUnlabel(params as! [String : String],onVC:self, success:
+    let deviceToken: String = UnlabelHelper.getDefaultValue("device_token")!
+    print(deviceToken)
+    let params: [String : String] = ["udid":udid,"push_token":deviceToken,"device_type":"iOS"]
+    UnlabelAPIHelper.sharedInstance.registerDeviceToUnlabel(params,onVC:self, success:
       { (json: JSON,statusCode:Int) in
     },failed: { (error) in
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
@@ -197,6 +198,7 @@ extension LoginEntryVC{
           })
         }
     },failed: { (error) in
+      print(error.localizedDescription)
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
     })
   }

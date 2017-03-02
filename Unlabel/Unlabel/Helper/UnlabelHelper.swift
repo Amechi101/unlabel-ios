@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cloudinary
 
 class UnlabelHelper: NSObject {
   
@@ -79,7 +78,7 @@ class UnlabelHelper: NSObject {
     UnlabelHelper.removePrefForKey("influencer_auto_id")
     UnlabelHelper.removePrefForKey("influencer_image")
     UnlabelHelper.removePrefForKey("influencer_first_name")
-    UnlabelHelper.removePrefForKey("device_token")
+   // UnlabelHelper.removePrefForKey("device_token")
     UnlabelHelper.removePrefForKey("ULCookie")
     UnlabelHelper.removePrefForKey("X-CSRFToken")
     
@@ -168,15 +167,15 @@ class UnlabelHelper: NSObject {
     
   }
   
-  //Cloudnary setup
-  class func getCloudnaryObj()->CLCloudinary{
-    let cloudinary: CLCloudinary = CLCloudinary()
-    cloudinary.config()["cloud_name"] = "hqz2myoz0"
-    cloudinary.config()["api_key"] = "849968616415457"
-    cloudinary.config()["api_secret"] = "KEHl083N5M7NsHrVVR4TXnR4Xg4"
-    return cloudinary
-  }
-  
+//  //Cloudnary setup
+//  class func getCloudnaryObj()->CLCloudinary{
+//    let cloudinary: CLCloudinary = CLCloudinary()
+//    cloudinary.config()["cloud_name"] = "hqz2myoz0"
+//    cloudinary.config()["api_key"] = "849968616415457"
+//    cloudinary.config()["api_secret"] = "KEHl083N5M7NsHrVVR4TXnR4Xg4"
+//    return cloudinary
+//  }
+//  
   
   //User Logged In check
   class func isUserLoggedIn() -> Bool{

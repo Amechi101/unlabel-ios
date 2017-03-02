@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     // UIApplication.shared.statusBarFrame
     self.window?.backgroundColor = .white
     setupOnLaunch(launchOptions)
+    UnlabelHelper.setDefaultValue("", key: "device_token")
     registerForRemoteNotification()
     var udid = UIDevice.current.identifierForVendor!.uuidString
     udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
