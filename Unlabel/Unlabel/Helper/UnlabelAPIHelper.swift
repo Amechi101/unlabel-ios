@@ -60,7 +60,7 @@ class UnlabelAPIHelper{
       requestURL = "\(API.getLabels)\(WSConstantFetcher.getLabelsSubURL(fetchBrandsRP))\(URL_POSTFIX)".encodedURL()
     }
     
-  //  print(requestURL!)
+    //  print(requestURL!)
     
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj+"get").responseJSON { (response) in
@@ -100,91 +100,91 @@ class UnlabelAPIHelper{
         }
         
         //Add only active brands
- //       if brand.isActive{
-          
-          if let id = thisBrand[PRM_ID] as? NSNumber {
-            brand.ID = "\(id)"
-          }
+        //       if brand.isActive{
+        
+        if let id = thisBrand[PRM_ID] as? NSNumber {
+          brand.ID = "\(id)"
+        }
         
         if let followed = thisBrand["followed"] as? Bool {
-            brand.isFollowing = followed
+          brand.isFollowing = followed
         }
         
-          if let id = thisBrand[PRM_ID] as? NSNumber {
-            brand.ID = "\(id)"
-          }
-
-          if let brandCity = thisBrand["location"] as? [AnyHashable: Any] {
-            if let city = brandCity["city"] as? String{
-              brand.city = city
-            }
-            
-            if let location = brandCity["country"]as? String{
-              brand.location = location
-            }
-          }
-          
-          if let featureImage = thisBrand["image"] as? String{
-            brand.FeatureImage = featureImage
-          }
-          
-          if let description = thisBrand["description"] as? String{
-            brand.Description = description
-          }
-          
-          if let name = thisBrand["name"] as? String{
-            brand.Name = name
-          }
-          
-          if let slug = thisBrand[PRM_SLUG] as? String{
-            brand.Slug = slug
-          }
-          
-          if let stateOrCountry = thisBrand["country"] as? String{
-            brand.StateOrCountry = stateOrCountry
-          }
-          
-          //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
-          //                        brand.CreatedDateString = createdDate
-          //
-          //                        let dateFormatter = DateFormatter()
-          //                        dateFormatter.dateFormat = "yyyy-MM-dd"
-          //
-          //                        let newDateString:String = String(brand.CreatedDateString.characters.prefix(10))
-          //                        if let createdDate = dateFormatter.date(from: newDateString){
-          //                            brand.CreatedDate = createdDate
-          //                        }
-          //                    }
-          
-          if let originCity = thisBrand["country"] as? String{
-            brand.OriginCity = originCity
-          }
-          
-          //                    if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
-          //                        brand.BrandWebsiteURL = brandWebsiteURL
-          //                    }
-          
-          //                    if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
-          //                        brand.arrProducts = getProductsArrayFromJSON(arrProducts)
-          //                    }
-          //
-          //                    if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
-          //                        brand.Menswear = menswear
-          //                    }
-          //
-          //                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
-          //                        brand.Womenswear = womenswear
-          //                    }
-          
-          //                    if let brandCategory = thisBrand[PRM_BRAND_CATEGORY] as? String{
-          //                        brand.BrandCategory = brandCategory
-          //                    }
-          
-          arrBrands.append(brand)
+        if let id = thisBrand[PRM_ID] as? NSNumber {
+          brand.ID = "\(id)"
         }
- //     }
+        
+        if let brandCity = thisBrand["location"] as? [AnyHashable: Any] {
+          if let city = brandCity["city"] as? String{
+            brand.city = city
+          }
+          
+          if let location = brandCity["country"]as? String{
+            brand.location = location
+          }
+        }
+        
+        if let featureImage = thisBrand["image"] as? String{
+          brand.FeatureImage = featureImage
+        }
+        
+        if let description = thisBrand["description"] as? String{
+          brand.Description = description
+        }
+        
+        if let name = thisBrand["name"] as? String{
+          brand.Name = name
+        }
+        
+        if let slug = thisBrand[PRM_SLUG] as? String{
+          brand.Slug = slug
+        }
+        
+        if let stateOrCountry = thisBrand["country"] as? String{
+          brand.StateOrCountry = stateOrCountry
+        }
+        
+        //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
+        //                        brand.CreatedDateString = createdDate
+        //
+        //                        let dateFormatter = DateFormatter()
+        //                        dateFormatter.dateFormat = "yyyy-MM-dd"
+        //
+        //                        let newDateString:String = String(brand.CreatedDateString.characters.prefix(10))
+        //                        if let createdDate = dateFormatter.date(from: newDateString){
+        //                            brand.CreatedDate = createdDate
+        //                        }
+        //                    }
+        
+        if let originCity = thisBrand["country"] as? String{
+          brand.OriginCity = originCity
+        }
+        
+        //                    if let brandWebsiteURL = thisBrand[PRM_BRAND_WEBSITE_URL] as? String{
+        //                        brand.BrandWebsiteURL = brandWebsiteURL
+        //                    }
+        
+        //                    if let arrProducts:[[String : AnyObject]] = thisBrand[PRM_PRODUCTS] as? [[String : AnyObject]]{
+        //                        brand.arrProducts = getProductsArrayFromJSON(arrProducts)
+        //                    }
+        //
+        //                    if let menswear = thisBrand[PRM_MENSWEAR] as? Bool{
+        //                        brand.Menswear = menswear
+        //                    }
+        //
+        //                    if let womenswear = thisBrand[PRM_WOMENSWEAR] as? Bool{
+        //                        brand.Womenswear = womenswear
+        //                    }
+        
+        //                    if let brandCategory = thisBrand[PRM_BRAND_CATEGORY] as? String{
+        //                        brand.BrandCategory = brandCategory
+        //                    }
+        
+        arrBrands.append(brand)
+      }
+      //     }
       
-   //   debugPrint(arrBrands)
+      //   debugPrint(arrBrands)
       return arrBrands
     }else{
       return nil
@@ -194,21 +194,21 @@ class UnlabelAPIHelper{
   
   func getBrandWiseProductModels(fromJSON json:JSON)->[Brand]?{
     var arrBrands = [Brand]()
-
-  //  let brandList1 = json.dictionaryObject
- //   print(json)
+    
+    //  let brandList1 = json.dictionaryObject
+    //   print(json)
     if let brandList = json.dictionaryObject!["results"]{
       
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
         let brand = Brand()
         let currentBrand = thisBrand["brand"] as! [String:AnyObject]
-      //  print(currentBrand)
+        //  print(currentBrand)
         brand.currentIndex = index
         
         if let isActive = currentBrand["is_active"] as? Bool{
           brand.isActive = isActive
         }
-
+        
         if let id = currentBrand[PRM_ID] as? NSNumber {
           brand.ID = "\(id)"
         }
@@ -217,7 +217,7 @@ class UnlabelAPIHelper{
           brand.isFollowing = followed
         }
         
-    //    print(currentBrand["description"] as! String)
+        //    print(currentBrand["description"] as! String)
         
         if let rentalInfo: [AnyHashable: Any] = currentBrand["rental_info"] as? [AnyHashable: Any] {
           let rental = RentalInfo()
@@ -239,15 +239,15 @@ class UnlabelAPIHelper{
           if let state = rentalInfo["state"] as? String{
             rental.State = state
           }
-//          if let start_time = rentalInfo["start_time"] as? String{
-//          }
-//          if let start_time_period = rentalInfo["start_time_period"] as? String{
-//          }
-//          if let end_time = rentalInfo["end_time"] as? String{
-//          }
-//          if let end_time_period = rentalInfo["end_time_period"] as? String{
-//          }
-
+          //          if let start_time = rentalInfo["start_time"] as? String{
+          //          }
+          //          if let start_time_period = rentalInfo["start_time_period"] as? String{
+          //          }
+          //          if let end_time = rentalInfo["end_time"] as? String{
+          //          }
+          //          if let end_time_period = rentalInfo["end_time_period"] as? String{
+          //          }
+          
           
           let startTime: String = (rentalInfo["start_time"]as! String) + (rentalInfo["start_time_period"] as! String)
           let endTime: String = (rentalInfo["end_time"] as! String) + (rentalInfo["end_time_period"] as! String)
@@ -259,7 +259,7 @@ class UnlabelAPIHelper{
           brand.rentalInfo = rental
         }
         
-
+        
         
         if let name = currentBrand["name"] as? String{
           brand.Name = name
@@ -268,51 +268,51 @@ class UnlabelAPIHelper{
         if let slug = currentBrand[PRM_SLUG] as? String{
           brand.Slug = slug
         }
-
+        
         if let productList = thisBrand["products"] as! [[String : AnyObject]]?{
-     //   print(productList)
-        for thisProduct in productList{
-        //    print(thisProduct)
+          //   print(productList)
+          for thisProduct in productList{
+            //    print(thisProduct)
             let product = Product()
             if let name = thisProduct["title"] as? String{
-                product.ProductName = name
+              product.ProductName = name
             }
-          if let description = thisProduct["description"] as? String{
-            product.ProductDescription = description
-          }
-          if let material_info = thisProduct["material_info"] as? String{
-            product.ProductMaterialCareInfo = material_info
-          }
+            if let description = thisProduct["description"] as? String{
+              product.ProductDescription = description
+            }
+            if let material_info = thisProduct["material_info"] as? String{
+              product.ProductMaterialCareInfo = material_info
+            }
             if let id = thisProduct["id"] as? NSNumber{
-                product.ProductID = "\(id)"
+              product.ProductID = "\(id)"
             }
             if let price = thisProduct["price"] as? NSNumber{
-                product.ProductPrice = "\(price)"
+              product.ProductPrice = "\(price)"
             }
-          if let productSizeArray:[[String : AnyObject]] = thisProduct["attributes"] as? [[String : AnyObject]]{
-            for thisImage in productSizeArray{
-              product.ProductsSize = (thisImage["value"]!) as! String
+            if let productSizeArray:[[String : AnyObject]] = thisProduct["attributes"] as? [[String : AnyObject]]{
+              for thisImage in productSizeArray{
+                product.ProductsSize = (thisImage["value"]!) as! String
+              }
             }
-          }
-          
+            
             if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
-                 product.arrProductsImages = []
-                for thisImage in productImageArray{
-                    product.arrProductsImages.append(thisImage["original"]!)
-                }
+              product.arrProductsImages = []
+              for thisImage in productImageArray{
+                product.arrProductsImages.append(thisImage["original"]!)
+              }
             }
             brand.arrProducts.append(product)
-        }
+          }
         }
         arrBrands.append(brand)
       }
-    //  debugPrint(arrBrands)
+      //  debugPrint(arrBrands)
       return arrBrands
     }else{
       return nil
     }
   }
-
+  
   
   
   func getProduct(fromJSON json:JSON)->[Product]?{
@@ -321,7 +321,7 @@ class UnlabelAPIHelper{
       
       for (_,thisProduct) in (productList as! [[String:AnyObject]]).enumerated(){
         let product = Product()
-
+        
         if let productName:String = thisProduct["title"] as? String{
           product.ProductName = productName
         }
@@ -356,10 +356,10 @@ class UnlabelAPIHelper{
         }
         if let productImageArray:[[String : AnyObject]] = thisProduct["images"] as? [[String : AnyObject]]{
           //  print(productImageArray)
-         product.arrProductsImages = []
+          product.arrProductsImages = []
           for thisImage in productImageArray{
             
-          //  print(thisImage)
+            //  print(thisImage)
             product.arrProductsImages.append(thisImage["original"]!)
           }
         }
@@ -368,12 +368,12 @@ class UnlabelAPIHelper{
       
       //Sorting arrBrands by created date
       //            arrBrands.sortInPlace({ $0.CreatedDate.compare($1.CreatedDate) == NSComparisonResult.OrderedDescending })
-   //   debugPrint(arrProducts)
+      //   debugPrint(arrProducts)
       return arrProducts
     }else{
       return nil
     }
-
+    
   }
   
   func getProductsArrayFromJSON(_ arrProductsJSON:[[String:AnyObject]])->[Product]{
@@ -428,6 +428,29 @@ class UnlabelAPIHelper{
     return arrProducts
   }
   
+  func getFilterModels(fromJSON json:JSON)->[FilterModel]?{
+    var arrStates = [FilterModel]()
+    if let stateList = json.dictionaryObject!["results"]{
+      for (_,thisState) in (stateList as! [[String:AnyObject]]).enumerated(){
+        let state = FilterModel()
+        if let stateName:String = thisState["name"] as? String{
+          state.typeName = stateName
+        }
+        if let stateID:NSNumber = thisState["id"] as? NSNumber{
+          state.typeId = "\(stateID)"
+        }
+        if let stateDesc:String = thisState["description"] as? String{
+          state.typeName = stateDesc
+        }
+        arrStates.append(state)
+      }
+      
+      return arrStates
+    }else{
+      return nil
+    }
+  }
+  
   func getStateModels(fromJSON json:JSON)->[UnlabelStaticList]?{
     var arrStates = [UnlabelStaticList]()
     if let stateList = json.dictionaryObject!["results"]{
@@ -440,7 +463,7 @@ class UnlabelAPIHelper{
           state.uId = "\(stateID)"
         }
         state.isSelected = false
-      //  print(thisState)
+        //  print(thisState)
         arrStates.append(state)
       }
       //     }
@@ -517,7 +540,7 @@ class UnlabelAPIHelper{
         
         let data = json[APIParams.locations].arrayObject
         
-     //   print("\(data) and this \(json) ")
+        //   print("\(data) and this \(json) ")
         if let arrAllLocation:[Location] = Mapper<Location>().mapArray(JSONArray: data as! [[String : Any]]){
           completion(arrAllLocation)
         }else{
@@ -536,7 +559,7 @@ class UnlabelAPIHelper{
     let requestURL:String?
     
     requestURL = v4BaseUrl + "api_v2/login/"
-   // print(requestURL!)
+    // print(requestURL!)
     
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post,  parameters: [v4username:loginParams.email,v4password:loginParams.password], encoding: JSONEncoding.default, headers: nil)
@@ -565,24 +588,24 @@ class UnlabelAPIHelper{
     }
   }
   
-  func registerDeviceToUnlabel(_ registerParams:[String: String],onVC:UIViewController, success:@escaping ( _ json:JSON,_ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
+  func registerDeviceToUnlabel(_ params:[String: String],onVC:UIViewController, success:@escaping ( _ json:JSON,_ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     
     requestURL = v4BaseUrl + "api_v2/register_device/"
-    // print(requestURL!)
+    print(params)
     
     if let requestURLObj = requestURL{
-      Alamofire.request(requestURLObj, method: .post,  parameters: nil, encoding: JSONEncoding.default, headers: nil)
+      Alamofire.request(requestURLObj, method: .post,  parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
           
-          //   debugPrint(response)
+          debugPrint(response)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
             debugPrint(json)
             success(json,(response.response?.statusCode)!)
           case .failure(let error):
-            //   debugPrint("hhhh === \(error.localizedDescription)")
+            debugPrint("hhhh === \(error.localizedDescription)")
             failed(error as NSError)
             break
           }
@@ -594,14 +617,14 @@ class UnlabelAPIHelper{
   func registerToUnlabel(_ regParams:User,onVC:UIViewController, success:@escaping ( _ json:JSON,_ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/customer_register/"
- //   print(requestURL!)
+    //   print(requestURL!)
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post, parameters: [v4email:regParams.email,v4password:regParams.password,v4first_name:regParams.fullName], encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
           switch response.result {
           case .success(let data):
             let json = JSON(data)
-          //  debugPrint(json)
+            //  debugPrint(json)
             UnlabelLoadingView.sharedInstance.stop(onVC.view)
             if response.response?.statusCode == 201{
               self.setCookieFromResponse((response.request?.url)!)
@@ -615,7 +638,7 @@ class UnlabelAPIHelper{
             }
           case .failure(let error):
             failed(error as NSError)
-          //  debugPrint("hhhh === \(error.localizedDescription)")
+            //  debugPrint("hhhh === \(error.localizedDescription)")
             break
           }
       }
@@ -626,9 +649,9 @@ class UnlabelAPIHelper{
     let requestURL:String?
     
     requestURL = v4BaseUrl + "api_v2/rest-auth/facebook/"
-  //  print(requestURL!)
+    //  print(requestURL!)
     
- //   print("***** access token \(FBUser.sharedInstance.accessToken)")
+    //   print("***** access token \(FBUser.sharedInstance.accessToken)")
     
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post,  parameters: [v4accessToken:FBUser.sharedInstance.accessToken], encoding: JSONEncoding.default, headers: nil)
@@ -637,7 +660,7 @@ class UnlabelAPIHelper{
           switch response.result {
           case .success(let data):
             let json = JSON(data)
-          //  debugPrint(json)
+            //  debugPrint(json)
             
             if response.response?.statusCode == 200{
               self.setCookieFromResponse((response.request?.url)!)
@@ -664,16 +687,16 @@ class UnlabelAPIHelper{
     let requestURL:String?
     
     requestURL = v4BaseUrl + "api_v2/influencer_forgot_password/"
-  //  print(loginParams.email)
+    //  print(loginParams.email)
     
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post,  parameters: [v4email:loginParams.email], encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
-        //  debugPrint(response)
+          //  debugPrint(response)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
-          //  debugPrint(json)
+            //  debugPrint(json)
             if response.response?.statusCode == 200{
               self.setCookieFromResponse((response.request?.url)!)
               
@@ -683,7 +706,7 @@ class UnlabelAPIHelper{
             }
             success(json,(response.response?.statusCode)!)
           case .failure(let error):
-         //   debugPrint("hhhh === \(error.localizedDescription)")
+            //   debugPrint("hhhh === \(error.localizedDescription)")
             failed(error as NSError)
             break
           }
@@ -695,12 +718,12 @@ class UnlabelAPIHelper{
   func deleteAccount(_ onVC:UIViewController, success:@escaping ( _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/customer_profile_deactivate/"
- //   print(requestURL!)
- //   debugPrint("xcsrf   \(getCSRFToken())")
+    //   print(requestURL!)
+    //   debugPrint("xcsrf   \(getCSRFToken())")
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
-       //   debugPrint(response)
+          //   debugPrint(response)
           switch response.result {
           case .success(let data):
             
@@ -726,8 +749,8 @@ class UnlabelAPIHelper{
   func logoutFromUnlabel(_ onVC:UIViewController, success:@escaping ( _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/login/"
-  //  print(requestURL!)
-  //  debugPrint("xcsrf   \(getCSRFToken())")
+    //  print(requestURL!)
+    //  debugPrint("xcsrf   \(getCSRFToken())")
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
@@ -736,7 +759,7 @@ class UnlabelAPIHelper{
           case .success(let data):
             
             let json = JSON(data)
-         //   debugPrint(json)
+            //   debugPrint(json)
             success(json)
             if response.response?.statusCode == 200{
               
@@ -764,20 +787,20 @@ class UnlabelAPIHelper{
     else {
       requestURL = v4BaseUrl + "api_v2/Influencer_partnerList/"
     }
-   // print(requestURL!)
+    // print(requestURL!)
     let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
-  //  print(params)
+    //  print(params)
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-      //  debugPrint(response)
+        //  debugPrint(response)
         switch response.result {
           
         case .success(let data):
           let json = JSON(data)
-         // debugPrint(json)
+          // debugPrint(json)
           if let arrBrands = self.getBrandModels(fromJSON: json){
             success(arrBrands, json)
-          //  debugPrint(arrBrands)
+            //  debugPrint(arrBrands)
           }else{
             failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
           }
@@ -787,45 +810,45 @@ class UnlabelAPIHelper{
       }
     }
   }
+  
+  func getFollowedBrands(_ fetchBrandsRP:FetchBrandsRP, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
     
-    func getFollowedBrands(_ fetchBrandsRP:FetchBrandsRP, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-        let requestURL:String?
-        
-        if let nextPage = fetchBrandsRP.nextPageURL, nextPage.characters.count > 0 {
-            requestURL = nextPage
-        }
-        else {
-            requestURL = v4BaseUrl + "api_v2/influencer_followed_partners/"
-        }
-      //  print(requestURL!)
-        let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
-      //  print(params)
-        if let requestURLObj = requestURL{
-            
-            Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-              //  debugPrint(response)
-                switch response.result {
-                    
-                case .success(let data):
-                    let json = JSON(data)
-                    // debugPrint(json)
-                    if let arrBrands = self.getBrandModels(fromJSON: json){
-                        success(arrBrands, json)
-                        //  debugPrint(arrBrands)
-                    }else{
-                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
-                    }
-                case .failure(let error):
-                    failed(error as NSError)
-                }
-            }
-        }
+    if let nextPage = fetchBrandsRP.nextPageURL, nextPage.characters.count > 0 {
+      requestURL = nextPage
     }
+    else {
+      requestURL = v4BaseUrl + "api_v2/influencer_followed_partners/"
+    }
+    //  print(requestURL!)
+    let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
+    //  print(params)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
+        //  debugPrint(response)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          if let arrBrands = self.getBrandModels(fromJSON: json){
+            success(arrBrands, json)
+            //  debugPrint(arrBrands)
+          }else{
+            failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+          }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
   
   func getSizeProduct(_ prodID:String, success:@escaping ([Product], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_product_variants/"
-  //  print(requestURL!)
+    //  print(requestURL!)
     let params: [String: String] = [product_id: prodID]
     
     if let requestURLObj = requestURL{
@@ -836,7 +859,7 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-         // debugPrint(json)
+          // debugPrint(json)
           
           if let arrProducts = self.getProduct(fromJSON: json){
             success(arrProducts, json)
@@ -857,19 +880,19 @@ class UnlabelAPIHelper{
     else {
       requestURL = v4BaseUrl + "api_v2/influencer_product_list/"
     }
-  //  print(requestURL!)
+    //  print(requestURL!)
     let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
     
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-      //  debugPrint(response)
+        //  debugPrint(response)
         switch response.result {
           
         case .success(let data):
           let json = JSON(data)
-       //   debugPrint(json)
-
+          //   debugPrint(json)
+          
           if let arrProducts = self.getProduct(fromJSON: json){
             success(arrProducts, json)
           }
@@ -888,13 +911,13 @@ class UnlabelAPIHelper{
     else {
       requestURL = v4BaseUrl + "api_v2/influencer_reserved_products/"
     }
-  //  print(requestURL!)
-//    let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+    //  print(requestURL!)
+    //    let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
     
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
-       //   debugPrint(response)
+        //   debugPrint(response)
         switch response.result {
           
         case .success(let data):
@@ -905,72 +928,72 @@ class UnlabelAPIHelper{
           }else{
             failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
           }        case .failure(let error):
-          failed(error as NSError)
+            failed(error as NSError)
         }
       }
     }
   }
-    func getRentedProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-        let requestURL:String?
-        
-        if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
-            requestURL = nextPage
-        }
-        else {
-            requestURL = v4BaseUrl + "api_v2/influencer_rented_products/"
-        }
-        if let requestURLObj = requestURL{
-            
-            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
-                //   debugPrint(response)
-                switch response.result {
-                    
-                case .success(let data):
-                    let json = JSON(data)
-                    if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
-                        success(arrBrands, json)
-                        //  debugPrint(arrBrands)
-                    }else{
-                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
-                    }        case .failure(let error):
-                        failed(error as NSError)
-                }
-            }
-        }
-    }
+  func getRentedProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
     
-    func getLiveProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-        let requestURL:String?
-        
-        if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
-            requestURL = nextPage
-        }
-        else {
-            requestURL = v4BaseUrl + "api_v2/influencer_live_products/"
-        }
-     //   print(requestURL!)
-        //        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
-        
-        if let requestURLObj = requestURL{
-            
-            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
-                //   debugPrint(response)
-                switch response.result {
-                    
-                case .success(let data):
-                    let json = JSON(data)
-                    if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
-                        success(arrBrands, json)
-                        //  debugPrint(arrBrands)
-                    }else{
-                        failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
-                    }        case .failure(let error):
-                        failed(error as NSError)
-                }
-            }
-        }
+    if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
+      requestURL = nextPage
     }
-
+    else {
+      requestURL = v4BaseUrl + "api_v2/influencer_rented_products/"
+    }
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        //   debugPrint(response)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+            success(arrBrands, json)
+            //  debugPrint(arrBrands)
+          }else{
+            failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+          }        case .failure(let error):
+            failed(error as NSError)
+        }
+      }
+    }
+  }
+  
+  func getLiveProduct(_ fetchProductParams:FetchProductParams, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    
+    if let nextPage = fetchProductParams.nextPageURL, nextPage.characters.count > 0 {
+      requestURL = nextPage
+    }
+    else {
+      requestURL = v4BaseUrl + "api_v2/influencer_live_products/"
+    }
+    //   print(requestURL!)
+    //        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+    
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        //   debugPrint(response)
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+            success(arrBrands, json)
+            //  debugPrint(arrBrands)
+          }else{
+            failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
+          }        case .failure(let error):
+            failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func followBrand(_ brandId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/partner_follow/"
@@ -979,21 +1002,21 @@ class UnlabelAPIHelper{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
-        switch response.result {
-          
-        case .success(let data):
-          let json = JSON(data)
-          success(json)
-        case .failure(let error):
-          failed(error as NSError)
-        }
+          switch response.result {
+            
+          case .success(let data):
+            let json = JSON(data)
+            success(json)
+          case .failure(let error):
+            failed(error as NSError)
+          }
       }
     }
   }
   
   func getProductNote(_ productID: String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
-     let params: [String: String] = ["prod_id":productID]
+    let params: [String: String] = ["prod_id":productID]
     
     requestURL = v4BaseUrl + "api_v2/influencer_add_product_note/"
     if let requestURLObj = requestURL{
@@ -1038,7 +1061,7 @@ class UnlabelAPIHelper{
   func getInfluencerBio(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_image_bio/"
-  //  print(requestURL!)
+    //  print(requestURL!)
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
@@ -1083,7 +1106,7 @@ class UnlabelAPIHelper{
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_add_product_images/"
     let params: [String: String] = ["prod_id":productId]
-      print(productId)
+    print(productId)
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
@@ -1115,14 +1138,14 @@ class UnlabelAPIHelper{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
-        switch response.result {
-          
-        case .success(let data):
-          let json = JSON(data)
-          success(json)
-        case .failure(let error):
-          failed(error as NSError)
-        }
+          switch response.result {
+            
+          case .success(let data):
+            let json = JSON(data)
+            success(json)
+          case .failure(let error):
+            failed(error as NSError)
+          }
       }
     }
   }
@@ -1181,15 +1204,15 @@ class UnlabelAPIHelper{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: URLEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
-        switch response.result {
-          
-        case .success(let data):
-          let json = JSON(data)
-          success(json)
-        case .failure(let error):
-          print(error.localizedDescription)
-          failed(error as NSError)
-        }
+          switch response.result {
+            
+          case .success(let data):
+            let json = JSON(data)
+            success(json)
+          case .failure(let error):
+            print(error.localizedDescription)
+            failed(error as NSError)
+          }
       }
     }
   }
@@ -1213,23 +1236,23 @@ class UnlabelAPIHelper{
     }
   }
   
-    func getInfluencerLocation(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-        let requestURL:String?
-        requestURL = v4BaseUrl + "api_v2/influencer_current_locations/"
-        if let requestURLObj = requestURL{
-            
-            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
-                switch response.result {
-                    
-                case .success(let data):
-                    let json = JSON(data)
-                    success(json)
-                case .failure(let error):
-                    failed(error as NSError)
-                }
-            }
+  func getInfluencerLocation(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_current_locations/"
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
         }
+      }
     }
+  }
   
   func saveInfluencerLocation(_ params:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
@@ -1295,7 +1318,7 @@ class UnlabelAPIHelper{
       }
     }
   }
-
+  
   func changePassword(_ passDict:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     let params = ["old_password":passDict["current_password"],"new_password":passDict["new_password"] ]
@@ -1381,8 +1404,7 @@ class UnlabelAPIHelper{
     }
   }
   
-  
-  func getBrandCategory(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func getBrandStoreType(_ success:@escaping ([FilterModel], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_brand_categories/"
     if let requestURLObj = requestURL{
@@ -1392,7 +1414,7 @@ class UnlabelAPIHelper{
         case .success(let data):
           let json = JSON(data)
           // debugPrint(json)
-          if let arrStates = self.getStateModels(fromJSON: json){
+          if let arrStates = self.getFilterModels(fromJSON: json){
             success(arrStates, json)
           }else{
             failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
@@ -1404,7 +1426,35 @@ class UnlabelAPIHelper{
     }
   }
   
-  func getBrandStyle(_ success:@escaping ([UnlabelStaticList], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func getBrandCategory(categoryStyle: CategoryStyleEnum, _ success:@escaping ([FilterModel], _ json:JSON,[JSON])->(),failed:@escaping (_ error:NSError)->()){
+    var requestURL:String = String()
+    //influencer_brand_categories
+    if categoryStyle == CategoryStyleEnum.category{
+      requestURL = v4BaseUrl + "api_v2/influencer_brand_specialization/"
+    }
+    else if categoryStyle == CategoryStyleEnum.style{
+      requestURL = v4BaseUrl + "api_v2/influencer_brand_styles/"
+    }
+    
+    Alamofire.request(requestURL, method: .get, parameters: nil).responseJSON { response in
+      switch response.result {
+        
+      case .success(let data):
+        let json = JSON(data)
+        // debugPrint(json)
+        if let arrStates = self.getFilterModels(fromJSON: json){
+          let arrSpecial = json["results"].array
+          success(arrStates, json,arrSpecial!)
+        }else{
+          failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+        }
+      case .failure(let error):
+        failed(error as NSError)
+      }
+    }
+  }
+  
+  func getBrandStyle(_ success:@escaping ([FilterModel], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_brand_styles/"
     if let requestURLObj = requestURL{
@@ -1414,7 +1464,7 @@ class UnlabelAPIHelper{
         case .success(let data):
           let json = JSON(data)
           // debugPrint(json)
-          if let arrStates = self.getStateModels(fromJSON: json){
+          if let arrStates = self.getFilterModels(fromJSON: json){
             success(arrStates, json)
           }else{
             failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
@@ -1457,17 +1507,17 @@ class UnlabelAPIHelper{
         let cookieArray = [cookie]
         HTTPCookieStorage.shared.setCookies(cookieArray, for: url, mainDocumentURL: nil)
         HTTPCookieStorage.shared.cookieAcceptPolicy = HTTPCookie.AcceptPolicy.always
-      //  print("session id :: \(cookie.value)")
+        //  print("session id :: \(cookie.value)")
         //Save Cookie
         self.setCookie(cookie: cookie)
       }
       else if (cookie.name == "csrftoken") {
         // Save CSRF Token
-      //  print("csrftoken :: \(cookie.value)")
+        //  print("csrftoken :: \(cookie.value)")
         UnlabelHelper.setDefaultValue(cookie.value, key: "X-CSRFToken")
       }
     }
-//    print(allCookies)
+    //    print(allCookies)
     
   }
   func getCSRFToken() -> String{

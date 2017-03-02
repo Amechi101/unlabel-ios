@@ -112,7 +112,13 @@ extension ChangePasswordVC: UITextFieldDelegate{
 extension ChangePasswordVC
 {
   @IBAction func IBActionUpdate(_ sender: Any) {
-    if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
+    if !isValidPassword(IBTextfieldCurrentPassword){
+      return
+    }
+    else if !isValidPassword(IBTextfieldNewPassword){
+      return
+    }
+    else if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
       saveInfluencerProfileInfo()
     }
     else{
@@ -136,6 +142,18 @@ extension ChangePasswordVC
 
 extension ChangePasswordVC
 {
+  func wsLogout(){
+    UnlabelAPIHelper.sharedInstance.logoutFromUnlabel(self, success:
+      { (json: JSON) in
+        print(json)
+        UnlabelHelper.logout()
+    },failed: { (error) in
+      UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
+    })
+    
+  }
+
+  
   func saveInfluencerProfileInfo() {
     var passParams: [String: String] = [:]
     passParams["current_password"] = IBTextfieldCurrentPassword.text
@@ -144,7 +162,19 @@ extension ChangePasswordVC
     UnlabelAPIHelper.sharedInstance.changePassword( passParams,onVC: self, success:{ (
       meta: JSON) in
       print(meta)
-      _ = self.navigationController?.popViewController(animated: true)
+      UnlabelHelper.clearCookie()
+      UnlabelHelper.removePrefForKey("ULCookie")
+      UnlabelHelper.removePrefForKey("X-CSRFToken")
+      let rootTabVC = UIStoryboard(name: "Unlabel", bundle: nil).instantiateViewController(withIdentifier: "BannerViewController") as? BannerViewController
+      if let window = APP_DELEGATE.window {
+        window.rootViewController = rootTabVC
+        window.rootViewController!.view.layoutIfNeeded()
+        UIView.transition(with: APP_DELEGATE.window!, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+          window.rootViewController!.view.layoutIfNeeded()
+        }, completion: nil)
+      }
+
+     // _ = self.navigationController?.popViewController(animated: true)
     }, failed: { (error) in
     })
   }

@@ -73,7 +73,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       // arrSortOption = []
     }
     IBPopupTitle.text = popupTitle
-   // selectedItem = arrDatasource.first!
+    selectedItem = arrDatasource.first!
   }
   
   

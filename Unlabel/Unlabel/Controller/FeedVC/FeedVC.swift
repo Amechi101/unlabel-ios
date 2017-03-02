@@ -187,24 +187,7 @@
         }else{
           
         }
-        
-        
-        if let sFilterLocation = sFilterLocation{
-          headerView?.IBlblFilterTitle.isHidden = false
-          selectedTabString = selectedTabString + " - " + searchResults
-        } else if let sFilterCategory  = sFilterCategory {
-          headerView?.IBlblFilterTitle.isHidden = false
-          selectedTabString =  selectedTabString + " - " + searchResults
-        } else if let sFilterStyle = sFilterStyle {
-          headerView?.IBlblFilterTitle.isHidden = false
-          selectedTabString = selectedTabString + " - " + searchResults
-        }
-        
-        headerView?.IBbtnMen.isHidden = !((headerView?.IBlblFilterTitle.isHidden)!)
-        headerView?.IBbtnWomen.isHidden = !((headerView?.IBlblFilterTitle.isHidden)!)
-        
-        headerView?.IBlblFilterTitle.text = selectedTabString
-        
+
       }else if mainVCType == .filter{
         
         
@@ -404,15 +387,7 @@
   }
   
   @IBAction func IBActionSortFeed(_ sender: Any) {
-    
-    let array = ["1","2","3"]
-    let paramsJSON = JSON(array)
-    let arrString = paramsJSON.rawString(String.Encoding.utf8)
-    
-    print(arrString!)
-    print(array)
-    
-  //  self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   

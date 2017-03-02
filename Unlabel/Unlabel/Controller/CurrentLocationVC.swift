@@ -46,9 +46,13 @@ class CurrentLocationVC: UIViewController {
     UnlabelAPIHelper.sharedInstance.getInfluencerLocation( self, success:{ (
       meta: JSON) in
       print(meta)
-      let stateDict = meta["state"].dictionaryObject
-      let state: String = stateDict?["name"] as! String
-      self.stateID = "\(stateDict?["pk"] as! NSNumber)"
+      if let stateDict = meta["state"].dictionaryObject{
+        self.stateID = "\(stateDict["pk"] as! NSNumber)"
+        let state: String = (stateDict["name"] as? String)!
+        self.IBButtonSelectState.setTitle(state, for: .normal)
+      }
+      
+
       let countryDict = meta["country"].dictionaryObject
       let country: String = countryDict?["printable_name"] as! String
       self.countryID = countryDict?["pk"] as! String
@@ -61,14 +65,24 @@ class CurrentLocationVC: UIViewController {
         
         self.IBButtonSelectCity.setTitle(meta["city"].stringValue, for: .normal)
         self.IBButtonSelectCountry.setTitle(country, for: .normal)
-        self.IBButtonSelectState.setTitle(state, for: .normal)
+
       })
      
     }, failed: { (error) in
     })
   }
   @IBAction func IBActionUpdate(_ sender: Any) {
-    saveInfluencerLocation()
+    if self.countryID != "US"{
+      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.countryID != ""{
+        saveInfluencerLocation()
+      }
+    }
+    else{
+      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.stateID != "" || self.countryID != ""{
+        saveInfluencerLocation()
+      }
+    }
+    
   }
   @IBAction func IBActionSelectCountry(_ sender: Any) {
     slideUpMenu = SlideUpView.country
@@ -132,6 +146,7 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
     if slideUpMenu == SlideUpView.country{
       countryID = selectedItem.uId
       if self.countryID != "US"{
+        stateID = ""
         self.IBButtonSelectState.isEnabled = false
         self.IBButtonSelectState.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBViewStateContainer.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR

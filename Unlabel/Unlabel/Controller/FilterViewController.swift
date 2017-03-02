@@ -18,48 +18,47 @@ class FilterViewController: UIViewController {
   @IBOutlet weak var IBButtonBrandCategory: UIButton!
   @IBOutlet weak var IBButtonStyle: UIButton!
   @IBOutlet weak var IBButtonLocation: UIButton!
-  @IBOutlet weak var IBTableviewSearchResult: UITableView!
+  @IBOutlet weak var IBSearchBar: UISearchBar!
   
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    self.navigationController?.isNavigationBarHidden = true
+   // self.navigationController?.isNavigationBarHidden = true
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
-  
+  override func viewWillAppear(_ animated: Bool) {
+     self.navigationController?.isNavigationBarHidden = true
+  }
   //MARK: -  IBAction methods
   
   @IBAction func IBActionStoreType(_ sender: Any) {
+    UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
+      print(meta)
+    }, failed: { (error) in
+    })
 
   }
   @IBAction func IBActionCategory(_ sender: Any) {
-    UnlabelAPIHelper.sharedInstance.getBrandCategory({ (arrCountry:[UnlabelStaticList], meta: JSON) in
-      print(meta)
-    }, failed: { (error) in
-    })
-    
-    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+      let _presentController = self.storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
       _presentController.categoryStyleType = .category
       _presentController.arSelectedValues = []
       
-
-    let _navFilterList = UINavigationController(rootViewController: _presentController)
-    _navFilterList.isNavigationBarHidden = true
+      
+      let _navFilterList = UINavigationController(rootViewController: _presentController)
+      _navFilterList.isNavigationBarHidden = true
+      
+      self.present(_navFilterList, animated: true, completion: nil)
     
-    self.present(_navFilterList, animated: true, completion: nil)
+    
   }
   
   @IBAction func IBActionStyle(_ sender: Any) {
-    UnlabelAPIHelper.sharedInstance.getBrandStyle({ (arrCountry:[UnlabelStaticList], meta: JSON) in
-      print(meta)
-    }, failed: { (error) in
-    })
+
     let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
     _presentController.categoryStyleType = .style
     _presentController.arSelectedValues = []
@@ -76,6 +75,15 @@ class FilterViewController: UIViewController {
       print(meta)
     }, failed: { (error) in
     })
+    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+    _presentController.categoryStyleType = .style
+    _presentController.arSelectedValues = []
+    
+    
+    let _navFilterList = UINavigationController(rootViewController: _presentController)
+    _navFilterList.isNavigationBarHidden = true
+    
+    self.present(_navFilterList, animated: true, completion: nil)
   }
   @IBAction func IBActionShowFilteredResults(_ sender: Any) {
     
