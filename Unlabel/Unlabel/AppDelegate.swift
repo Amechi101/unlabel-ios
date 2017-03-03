@@ -227,6 +227,18 @@ extension AppDelegate{
     })
   }
   
+  func getStaticURLs(){
+    
+    UnlabelAPIHelper.sharedInstance.getStaticURLs( { (
+      meta: JSON) in
+      print(meta)
+      UnlabelHelper.setDefaultValue(meta["operations_agreement_url"].stringValue, key: "operations_agreement_url")
+      UnlabelHelper.setDefaultValue(meta["privacy_policy_url"].stringValue, key: "privacy_policy_url")
+      UnlabelHelper.setDefaultValue(meta["terms_conditions_url"].stringValue, key: "terms_conditions_url")
+    }, failed: { (error) in
+    })
+  }
+  
   fileprivate func setupRootVC(){
     
     if UnlabelHelper.isUserLoggedIn(){
@@ -234,6 +246,7 @@ extension AppDelegate{
       HTTPCookieStorage.shared.setCookie(getCookie())
       
       getInfluencerDetails()
+      
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
       let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
       if let window = self.window {
@@ -242,7 +255,7 @@ extension AppDelegate{
       }
       
     }else{
-      
+      getStaticURLs()
     }
     
     setupUnlabelApp()

@@ -22,52 +22,6 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 
-enum CategoryStyleEnum: CustomStringConvertible {
-   case category , style, location
-   
-   var glossaryTitle:String {
-      switch self {
-      case .category:
-         return "View Category glossary"
-      case .style:
-         return "View Style glossary"
-         case .location: return ""
-      }
-   }
-   
-   var defaultTitle:String {
-      switch self {
-      case .category:
-         return "Select Category"
-      case .style:
-         return "Select Style"
-      case .location: return "Select Location"
-      }
-   }
-   
-   
-   var title:String {
-      switch self {
-      case .category:
-         return "Category".uppercased()
-      case .style:
-         return "Style".uppercased()
-      case .location:
-         return "Location".uppercased()
-      }
-   }
-   
-   var description: String {
-      switch self {
-      case .category:
-         return "Category".uppercased()
-      case .style:
-         return "Style".uppercased()
-      case .location:
-         return "Location".uppercased()
-      }
-   }
-}
 
 
 
@@ -186,10 +140,6 @@ class FilterVC: UIViewController {
                    self.selectedStyle = "All"
                }
             }
-            
-            
-            
-            
          } else {
              if filterListController.categoryStyleType == CategoryStyleEnum.category {
                self.arSelectedCategory.removeAll()

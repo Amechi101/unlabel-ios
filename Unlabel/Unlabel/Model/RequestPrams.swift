@@ -18,4 +18,7 @@ class FetchBrandsRP: NSObject {
   var nextPageURL:String?
   var brandId:String?
   var sortMode:String?
+  var display:String?
+  var searchText:String?
+  var storeType:String?
 }

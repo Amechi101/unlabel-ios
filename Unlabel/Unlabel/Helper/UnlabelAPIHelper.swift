@@ -598,7 +598,7 @@ class UnlabelAPIHelper{
       Alamofire.request(requestURLObj, method: .post,  parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
           
-          debugPrint(response)
+          debugPrint(response.result)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
@@ -780,7 +780,7 @@ class UnlabelAPIHelper{
   
   func getAllBrands(_ fetchBrandsRP:FetchBrandsRP, success:@escaping ([Brand], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
-    
+    var params: [String: String] = [String: String]()
     if let nextPage = fetchBrandsRP.nextPageURL, nextPage.characters.count > 0 {
       requestURL = nextPage
     }
@@ -788,7 +788,13 @@ class UnlabelAPIHelper{
       requestURL = v4BaseUrl + "api_v2/Influencer_partnerList/"
     }
     // print(requestURL!)
-    let params: [String: String] = [sort_Params:fetchBrandsRP.sortMode!]
+    if fetchBrandsRP.display == "FEED"{
+      params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!]
+    }
+    else{
+      params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!]
+    }
+    
     //  print(params)
     if let requestURLObj = requestURL{
       Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
@@ -1397,6 +1403,22 @@ class UnlabelAPIHelper{
           }else{
             failed(NSError(domain: "No country found", code: 0, userInfo: nil))
           }
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  func getStaticURLs(_ success:@escaping ( _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/get_content_links/"
+    if let requestURLObj = requestURL{
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+        case .success(let data):
+          let json = JSON(data)
+          // debugPrint(json)
+          success(json)
         case .failure(let error):
           failed(error as NSError)
         }
