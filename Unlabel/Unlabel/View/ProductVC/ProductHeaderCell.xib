@@ -52,17 +52,17 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzb-hZ-6qd">
-                                <rect key="frame" x="0.0" y="219" width="236" height="58"/>
+                                <rect key="frame" x="0.0" y="219" width="236" height="56"/>
                                 <string key="text">Description about yourself, who you are and what impact did you do to the environment. did you do to the environment. Description about yourself, who you are and what impact did you do to the environment. did you do to the environment. who you are and what impact did you do to the environment. did you do to the environment. who you are and what impact did you do to the environment. did you do to the environment. </string>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                 <color key="textColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4I-bl-da2">
-                                <rect key="frame" x="0.0" y="285" width="150" height="12"/>
+                                <rect key="frame" x="0.0" y="283" width="150" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="5Vd-yi-AoZ"/>
-                                    <constraint firstAttribute="height" constant="12" id="Rvo-E0-gRJ"/>
+                                    <constraint firstAttribute="height" constant="18" id="Rvo-E0-gRJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                 <color key="textColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,7 +88,7 @@
                             <constraint firstItem="LbP-c8-M68" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="Qfj-Gu-zMz"/>
                             <constraint firstAttribute="trailing" secondItem="LbP-c8-M68" secondAttribute="trailing" id="SiH-Wo-arB"/>
                             <constraint firstItem="Lzb-hZ-6qd" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="UKI-H7-cSz"/>
-                            <constraint firstItem="jz7-vf-L4U" firstAttribute="top" secondItem="R4I-bl-da2" secondAttribute="bottom" constant="8" id="c1J-X1-zYf"/>
+                            <constraint firstItem="jz7-vf-L4U" firstAttribute="top" secondItem="R4I-bl-da2" secondAttribute="bottom" constant="4" id="c1J-X1-zYf"/>
                             <constraint firstItem="B7r-Hc-yzN" firstAttribute="leading" secondItem="Lzb-hZ-6qd" secondAttribute="trailing" id="d5z-4k-nUw"/>
                             <constraint firstAttribute="trailing" secondItem="B7r-Hc-yzN" secondAttribute="trailing" id="ewc-AA-Zxw"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="top" secondItem="oK7-AS-j1g" secondAttribute="top" id="xBg-iE-oh4"/>
