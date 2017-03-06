@@ -22,6 +22,7 @@ class FilterListController: UIViewController {
   var arFilterMenu:[String] = ["All"]
   var arOriginalJSON:[JSON]!
   var arSelectedValues:[String] = []
+  var arSelectedID:[String] = []
   
   
   var dictSelection:[Int: Bool] = [0:false]
@@ -152,6 +153,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
       self.dictSelection[0] = !self.dictSelection[0]!
       if self.dictSelection[0]! {
         arSelectedValues.removeAll()
+        arSelectedID.removeAll()
         arSelectedValues = Array(arFilterMenu[1..<arFilterMenu.count])
       } else {
         arSelectedValues.removeAll()

@@ -72,7 +72,7 @@ let S_ID_Product_Content_Header     = "ProductContentHeader"
 let S_ID_Rental_Info_VC    = "RentalInfoVC"
 //MARK:- Image Name Constants
 
-let IMG_HAMBURGER              = "hamburger"
+let IMG_HAMBURGER              = ""
 let IMG_BACK                   = "back"
 let IMG_SEARCH                 = "search"
 

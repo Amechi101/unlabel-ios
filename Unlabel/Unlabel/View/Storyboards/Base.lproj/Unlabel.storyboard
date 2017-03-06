@@ -184,17 +184,32 @@
                     </view>
                     <navigationItem key="navigationItem" id="4pZ-Ro-AaF">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="eV9-n2-5Do">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fyT-PY-eNI">
+                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="IBActionHamburger:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ns-E5-5pG"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sdq-zW-PIY">
-                            <rect key="frame" x="124" y="7" width="127" height="30"/>
+                            <rect key="frame" x="107.5" y="7" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Bold" family="Neutraface 2 Text" pointSize="28"/>
                             <state key="normal" title="UNLABEL">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="d3F-BZ-3yR">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oXG-oO-aEq">
+                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="IBbtnHamburger" destination="fyT-PY-eNI" id="ATJ-i3-2wq"/>
                         <outlet property="IBbtnUnlabel" destination="sdq-zW-PIY" id="6or-SW-hle"/>
                         <outlet property="IBcollectionViewFeed" destination="lg3-C2-4qs" id="TBf-Ed-Zpo"/>
                         <outlet property="bottonActivityIndicator" destination="4mG-7B-1qp" id="4zN-km-G50"/>
@@ -299,7 +314,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VuR-nQ-mM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1968.8" y="3165.9670164917543"/>
+            <point key="canvasLocation" x="-3172" y="3285"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="Ptv-MT-4gb">
@@ -361,7 +376,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aKa-if-cLV">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="CUTE + BROKE">
@@ -3008,7 +3023,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Lpe-hx-LW6" secondAttribute="trailing" constant="1" id="3VL-yF-WRq"/>
                                                     <constraint firstItem="Lpe-hx-LW6" firstAttribute="top" secondItem="e9R-HY-Bad" secondAttribute="top" constant="1" id="OBv-sW-ve5"/>
@@ -3180,7 +3195,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="Eiq-cb-PDc" firstAttribute="leading" secondItem="ypP-ji-Hhw" secondAttribute="leading" constant="1" id="3As-fn-rHw"/>
                                                     <constraint firstAttribute="bottom" secondItem="Eiq-cb-PDc" secondAttribute="bottom" constant="1" id="ALa-QT-dP7"/>
@@ -4285,6 +4300,7 @@ See more info </string>
                         <outlet property="IBbtnApply" destination="A33-pd-ne2" id="VHV-tO-YyB"/>
                         <outlet property="IBlblTitleBar" destination="Lqf-gS-BYp" id="QFg-oH-Bxy"/>
                         <outlet property="IBtableFilterList" destination="nOr-Kq-y0a" id="pSG-Eb-Exe"/>
+                        <segue destination="Whg-Tg-sIg" kind="unwind" unwindAction="unwindBackToFilterViewController:" id="aIe-L1-Z4F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xza-V5-PHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6247,7 +6263,7 @@ Sunday: 9am-8pm</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DOS-b4-71z" kind="show" id="QXw-zj-kTw"/>
+                                            <segue destination="DOS-b4-71z" kind="show" identifier="TermsAndConditions" id="QXw-zj-kTw"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="30B-Z2-AHS">
@@ -6280,7 +6296,7 @@ Sunday: 9am-8pm</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DOS-b4-71z" kind="show" id="g8u-Rt-Ctr"/>
+                                            <segue destination="DOS-b4-71z" kind="show" identifier="PrivatePolicy" id="g8u-Rt-Ctr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="B7L-Kc-1Ao">
@@ -6313,7 +6329,7 @@ Sunday: 9am-8pm</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DOS-b4-71z" kind="show" id="I9u-l7-rZc"/>
+                                            <segue destination="DOS-b4-71z" kind="show" identifier="OperationAgreement" id="I9u-l7-rZc"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -6337,7 +6353,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="988-y1-bzs">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6559,6 +6575,9 @@ Sunday: 9am-8pm</string>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pu5-3a-sGY">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DOS-b4-71z" id="iZs-V4-lyU"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6600,10 +6619,13 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="IBWebviewStaticURL" destination="Pu5-3a-sGY" id="awT-Z1-Y8w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf4-gC-vAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3975" y="6391"/>
+            <point key="canvasLocation" x="-4441" y="6470"/>
         </scene>
         <!--Deposit EarningVC-->
         <scene sceneID="5fT-5q-PaA">
@@ -7150,8 +7172,8 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="I9u-l7-rZc"/>
         <segue reference="jWi-8m-sPs"/>
         <segue reference="fjS-oP-zkR"/>
-        <segue reference="g8u-Rt-Ctr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,9 +20,6 @@ class FilterListCell: UITableViewCell {
    @IBOutlet weak var IBimgViewCheckMark: UIImageView!
    
    weak var delegate:FilterListDelegates?
-   
-   
-
     override func awakeFromNib() {
         super.awakeFromNib()
       IBlblFilterListName.text = ""
@@ -30,7 +27,6 @@ class FilterListCell: UITableViewCell {
       removeMargines()
       IBlblFilterListName.font = UIFont.systemFont(ofSize: 16)
       IBlblFilterListName.textColor = MEDIUM_GRAY_TEXT_COLOR
-      
       IBimgViewCheckMark.image = UIImage(named: "category_checkmark")
       IBimgViewCheckMark.contentMode = .center
       IBimgViewCheckMark.isHidden = true

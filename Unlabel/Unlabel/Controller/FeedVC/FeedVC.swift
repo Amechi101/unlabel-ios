@@ -84,6 +84,8 @@
   var searchResults:String = "Search Results"
   
   var sFilterLocation:String?
+  var display_type:String?
+  var searchText:String?
   
   //    var nextPageURL:String?
   var nextPageURLMen:String?
@@ -98,8 +100,9 @@
     super.viewDidLoad()
     setupOnLoad()
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = false
     UnlabelHelper.setAppDelegateDelegates(self)
     wsCallGetLabels()
   }
@@ -344,7 +347,7 @@
  
  extension FeedVC{
   @IBAction func IBActionHamburger(_ sender: UIButton) {
-    //  handleHamburgerAndBack(sender)
+      handleHamburgerAndBack(sender: sender)
   }
   
   @IBAction func IBActionSwipeRight(_ sender: AnyObject) {
@@ -392,25 +395,11 @@
   
   
   @IBAction func IBActionFilterMen(_ sender: UIButton) {
-    //        if let headerView = headerView{
-    //            headerView.updateFilterHeader(forFilterType: .men)
-    //            if arrMenBrandList.count == 0{
-    //                wsCallGetLabels()
-    //            }else{
-    //                updateFilterArray()
-    //            }
-    //        }
+
   }
   
   @IBAction func IBActionFilterWomen(_ sender: UIButton) {
-    //        if let headerView = headerView{
-    //            headerView.updateFilterHeader(forFilterType: .women)
-    //            if arrWomenBrandList.count == 0{
-    //                wsCallGetLabels()
-    //            }else{
-    //                updateFilterArray()
-    //            }
-    //        }
+
   }
   
  }
@@ -479,76 +468,48 @@
   
   fileprivate func setupNavBar(){
     var titleText = "UNLABEL"
-   // var leftBarButtonImage = IMG_HAMBURGER
+    var leftBarButtonImage = IMG_HAMBURGER
     
     if mainVCType == .feed{
       addNotFoundView()
       addPullToRefresh()
+      display_type = "FEED"
     //  wsCallGetLabels()
       IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
     }else if mainVCType == .filter{
+      display_type = "FILTER"
       addNotFoundView()
       if let filteredNavTitleObj = filteredNavTitle{
         titleText = "\(filteredNavTitleObj)"
       }
-      IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 18)
+      IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
       IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
     }
     
-//    if self.navigationController?.viewControllers.count > 1{
-//      leftBarButtonImage = IMG_BACK
-//    }
+    if self.navigationController?.viewControllers.count > 1{
+      leftBarButtonImage = IMG_BACK
+    }
     
     
     IBbtnUnlabel.titleLabel?.textColor = UIColor.black
     IBbtnUnlabel.setTitle(titleText.uppercased(), for: UIControlState())
-    // IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), for: UIControlState())
+    IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), for: UIControlState())
     
   }
-  
-  
-  /**
-   Adding Loading screen until data is fetched
-   */
-  fileprivate func addLaunchLoadingAsChildVC(viewControllerName VCName:String){
-    let launchLoadingVC = self.storyboard?.instantiateViewController(withIdentifier: VCName) as! LaunchLoadingVC
-    //        launchLoadingVC.delegate = self
-    launchLoadingVC.view.frame.size = self.view.frame.size
-    
-    //Animate leftViewController entry
-    //        leftMenuVC.view.frame.origin.x = -self.view.frame.size.width
-    //        leftMenuVC.view.alpha = 0
-    //        UIView.animateWithDuration(0.3) { () -> Void in
-    //            leftMenuVC.view.alpha = 1
-    //            leftMenuVC.view.frame.origin.x = 0
-    //        }
-    
-    self.navigationController!.addChildViewController(launchLoadingVC)
-    launchLoadingVC.didMove(toParentViewController: self)
-    
-    self.navigationController!.view.addSubview(launchLoadingVC.view)
-  }
-  
-  
-  fileprivate func openDiscover(){
-    
-  }
-  
-  fileprivate func openFollowing(){
-    // performSegue(withIdentifier: S_ID_FOLLOWING_VC, sender: self)
-    
-  }
-  
-  fileprivate func openSettings(){
-    //  performSegue(withIdentifier: S_ID_SETTINGS_VC, sender: self)
-  }
-  
-  fileprivate func addTestData(){
-    for _ in 0...39{
-      arrFilteredBrandList.append(Brand())
-      IBcollectionViewFeed.reloadData()
+
+
+  fileprivate func handleHamburgerAndBack(sender: AnyObject){
+    if mainVCType.rawValue == MainVCType.feed.rawValue{
+      // no action
+    }else if mainVCType.rawValue == MainVCType.following.rawValue{
+      popVC()
+    }else if mainVCType.rawValue == MainVCType.filter.rawValue{
+      popVC()
+    }else{
+      debugPrint("handleHamburgerAndBack uknown")
     }
   }
+  
   
   fileprivate func popVC(){
     _ = navigationController?.popViewController(animated: true)
@@ -672,11 +633,13 @@
       
       
       let fetchBrandsRequestParams = FetchBrandsRP()
-      fetchBrandsRequestParams.filterCategory = self.sFilterCategory
-      fetchBrandsRequestParams.filterLocation = self.sFilterLocation
-      fetchBrandsRequestParams.filterStyle = self.sFilterStyle
+      fetchBrandsRequestParams.filterCategory = ""//self.sFilterCategory
+      fetchBrandsRequestParams.filterLocation = ""//self.sFilterLocation
+      fetchBrandsRequestParams.filterStyle = ""//self.sFilterStyle
+      fetchBrandsRequestParams.searchText = self.searchText
+      fetchBrandsRequestParams.storeType = "6"
       fetchBrandsRequestParams.sortMode = self.sortMode
-      
+      fetchBrandsRequestParams.display = self.display_type
       if headerView?.selectedTab == .men{
         fetchBrandsRequestParams.nextPageURL = nextPageURLMen
       }else if headerView?.selectedTab == .women{

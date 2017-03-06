@@ -8,11 +8,16 @@
 
 import UIKit
 
-class UnlabelLegalVC: UIViewController {
+class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
   
+  @IBOutlet weak var IBWebviewStaticURL: UIWebView!
+  var urlString: String = String()
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let url: URL = URL (string: urlString)!
+    let request: URLRequest = URLRequest(url: url as URL)
+    IBWebviewStaticURL.loadRequest(request as URLRequest)
     // Do any additional setup after loading the view.
   }
   
@@ -25,4 +30,5 @@ class UnlabelLegalVC: UIViewController {
     _ = self.navigationController?.popViewController(animated: true)
   }
   
+
 }
