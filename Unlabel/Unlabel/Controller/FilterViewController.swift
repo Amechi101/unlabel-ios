@@ -63,7 +63,7 @@ protocol FilterViewDelegate{
   
 }
 
-class FilterViewController: UIViewController {
+class FilterViewController: UIViewController,UISearchBarDelegate {
   
   //MARK: -  IBOutlets,vars,constants
   
@@ -78,6 +78,7 @@ class FilterViewController: UIViewController {
   
   fileprivate var arSelectedCategory:[String] = []
   fileprivate var arSelectedStyle:[String] = []
+    fileprivate var arSelectedLocation:[String] = []
   
   //    private var selectedCategoryIndexRow:Int = 0
   fileprivate var selectedLocation:String?
@@ -85,25 +86,16 @@ class FilterViewController: UIViewController {
   fileprivate let arrFilterTitles:[String] = ["LABEL CATEGORY", "STYLE", "LOCATION"]
   var shouldClearCategories = false
 
-  fileprivate var selectedCategory:String = CategoryStyleEnum.category.defaultTitle {
-    didSet {
-      if selectedCategory == "" {
-        selectedCategory = CategoryStyleEnum.category.defaultTitle
-      }
-    }
-  }
-  fileprivate var selectedStyle:String = CategoryStyleEnum.style.defaultTitle {
-    didSet {
-      if selectedStyle == "" {
-        selectedStyle = CategoryStyleEnum.style.defaultTitle
-      }
-    }
-  }
+  fileprivate var selectedCategory:String?
+  fileprivate var selectedStyle:String?
 
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    selectedLocation = ""
+    selectedCategory = ""
+    selectedStyle = ""
     IBButtonMenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
     IBButtonWomenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
   }
@@ -120,11 +112,11 @@ class FilterViewController: UIViewController {
   //MARK: -  IBAction methods
   
   @IBAction func IBActionStoreType(_ sender: UIButton) {
-    //    UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
-    //      print(meta)
-    //    }, failed: { (error) in
-    //    })
-    //
+        UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
+          print(meta)
+        }, failed: { (error) in
+        })
+    
     print(sender.tag)
     sender.isSelected = !sender.isSelected
     print(sender.isSelected)
@@ -136,6 +128,7 @@ class FilterViewController: UIViewController {
     }
   }
   @IBAction func IBActionCategory(_ sender: Any) {
+    self.arSelectedCategory.removeAll()
     let _presentController = self.storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
     _presentController.categoryStyleType = .category
     _presentController.arSelectedValues = []
@@ -148,7 +141,7 @@ class FilterViewController: UIViewController {
   }
   
   @IBAction func IBActionStyle(_ sender: Any) {
-    
+    self.arSelectedStyle.removeAll()
     let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
     _presentController.categoryStyleType = .style
     _presentController.arSelectedValues = []
@@ -159,12 +152,9 @@ class FilterViewController: UIViewController {
     
   }
   @IBAction func IBActionLocation(_ sender: Any) {
-    UnlabelAPIHelper.sharedInstance.getBrandLocation({ (arrCountry:[UnlabelStaticList], meta: JSON) in
-      print(meta)
-    }, failed: { (error) in
-    })
+    self.arSelectedLocation.removeAll()
     let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
-    _presentController.categoryStyleType = .style
+    _presentController.categoryStyleType = .location
     _presentController.arSelectedValues = []
     let _navFilterList = UINavigationController(rootViewController: _presentController)
     _navFilterList.isNavigationBarHidden = true
@@ -176,7 +166,23 @@ class FilterViewController: UIViewController {
     feedVC?.hidesBottomBarWhenPushed = true
     feedVC?.mainVCType = .filter
     feedVC?.filteredNavTitle = "Menswear"
-    feedVC?.searchText = "a cheng"
+    feedVC?.searchText = self.IBSearchBar.text
+    feedVC?.sFilterStyle = self.selectedStyle
+    feedVC?.sFilterCategory = self.selectedCategory
+    feedVC?.sFilterLocation = self.selectedLocation
+    
+    if IBButtonMenswear.isSelected && IBButtonWomenswear.isSelected{
+        feedVC?.sFilterStoreType = "8"
+    }
+    else if IBButtonWomenswear.isSelected{
+        feedVC?.sFilterStoreType = "7"
+    }
+    else if IBButtonMenswear.isSelected{
+        feedVC?.sFilterStoreType = "6"
+    }
+    else{
+        feedVC?.sFilterStoreType = ""
+    }
     navigationController?.pushViewController(feedVC!, animated: true)
   }
   
@@ -186,44 +192,65 @@ class FilterViewController: UIViewController {
       let filterListController = segue.source as! FilterListController
       
       if filterListController.arSelectedValues.count > 0 {
-        let filteredValues = filterListController.arSelectedValues.filter { return $0 != "" }
-        
-        if filterListController.categoryStyleType == CategoryStyleEnum.category {
-          self.arSelectedCategory = filteredValues
-          if self.arSelectedCategory.count > 3 {
-            self.selectedCategory = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
-          } else {
-            self.selectedCategory = filteredValues.joined(separator: ",")
-          }
-        } else {
-          self.arSelectedStyle = filteredValues
-          if self.arSelectedStyle.count > 3 {
-            self.selectedStyle = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
-          } else {
-            self.selectedStyle = filteredValues.joined(separator: ",")
-          }
+        let filteredValues = filterListController.arSelectedValues
+        for filteredObject in filteredValues{
+            print(filteredObject.typeId)
+            if filterListController.categoryStyleType == CategoryStyleEnum.category {
+                self.arSelectedCategory.append(filteredObject.typeId)
+                self.selectedCategory = self.arSelectedCategory.joined(separator: ",")
+                self.IBButtonBrandCategory.setTitle("\(self.arSelectedCategory.count)" + " Categorie(s)", for: .normal)
+            }
+            else if filterListController.categoryStyleType == CategoryStyleEnum.style {
+                self.arSelectedStyle.append(filteredObject.typeId)
+                self.selectedStyle = self.arSelectedStyle.joined(separator: ",")
+                self.IBButtonStyle.setTitle("\(self.arSelectedStyle.count)" + " Style(s)", for: .normal)
+            }
+            else if filterListController.categoryStyleType == CategoryStyleEnum.location {
+                self.arSelectedLocation.append(filteredObject.typeId)
+                self.selectedLocation = self.arSelectedLocation.joined(separator: ",")
+                self.IBButtonLocation.setTitle("\(self.arSelectedLocation.count)" + " Location(s)", for: .normal)
+            }
         }
-        
         if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
           if filterListController.categoryStyleType == CategoryStyleEnum.category {
-            self.selectedCategory = "All"
-          } else {
-            self.selectedStyle = "All"
+            self.selectedCategory = ""
+            self.IBButtonBrandCategory.setTitle("All Categories", for: .normal)
+          } else if filterListController.categoryStyleType == CategoryStyleEnum.style {
+            self.selectedStyle = ""
+            self.IBButtonStyle.setTitle("All Styles", for: .normal)
+            
           }
+          else if filterListController.categoryStyleType == CategoryStyleEnum.location{
+            self.selectedLocation = ""
+            self.IBButtonLocation.setTitle("All Locations", for: .normal)
+            }
         }
       } else {
         if filterListController.categoryStyleType == CategoryStyleEnum.category {
           self.arSelectedCategory.removeAll()
-          selectedCategory = CategoryStyleEnum.category.defaultTitle
-        } else {
+          selectedCategory = ""
+            self.IBButtonBrandCategory.setTitle("All Categories", for: .normal)
+        } else if filterListController.categoryStyleType == CategoryStyleEnum.style  {
           self.arSelectedStyle.removeAll()
-          selectedStyle = CategoryStyleEnum.style.defaultTitle
+          selectedStyle = ""
+            self.IBButtonStyle.setTitle("All Styles", for: .normal)
+        } else if filterListController.categoryStyleType == CategoryStyleEnum.location  {
+            self.arSelectedLocation.removeAll()
+            selectedLocation = ""
+            self.IBButtonLocation.setTitle("All Locations", for: .normal)
         }
       }
+        //    print(filterListController.arSelectedValues)
     }
-    
-    print(arSelectedCategory)
+//    
+
   }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        //searchActive = false;
+        self.IBSearchBar.endEditing(true)
+    }
   
 }
 

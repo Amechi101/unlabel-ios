@@ -110,50 +110,50 @@ class FilterVC: UIViewController {
     }
    
    
-   @IBAction func unwindBackToFilterViewController(_ segue: UIStoryboardSegue) {
-      if segue.identifier == "backToFilterController" {
-          let filterListController = segue.source as! FilterListController
-         
-         if filterListController.arSelectedValues.count > 0 {
-            let filteredValues = filterListController.arSelectedValues.filter { return $0 != "" }
-            
-            if filterListController.categoryStyleType == CategoryStyleEnum.category {
-               self.arSelectedCategory = filteredValues
-               if self.arSelectedCategory.count > 3 {
-                  self.selectedCategory = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
-               } else {
-                  self.selectedCategory = filteredValues.joined(separator: ",")
-               }
-            } else {
-               self.arSelectedStyle = filteredValues
-               if self.arSelectedStyle.count > 3 {
-                  self.selectedStyle = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
-               } else {
-                  self.selectedStyle = filteredValues.joined(separator: ",")
-               }
-            }
-            
-            if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
-               if filterListController.categoryStyleType == CategoryStyleEnum.category {
-                   self.selectedCategory = "All"
-               } else {
-                   self.selectedStyle = "All"
-               }
-            }
-         } else {
-             if filterListController.categoryStyleType == CategoryStyleEnum.category {
-               self.arSelectedCategory.removeAll()
-               selectedCategory = CategoryStyleEnum.category.defaultTitle
-             } else {
-               self.arSelectedStyle.removeAll()
-               selectedStyle = CategoryStyleEnum.style.defaultTitle
-             }
-         }
-         
-         IBtblFilter.reloadData()
-         
-      }
-   }
+//   @IBAction func unwindBackToFilterViewController(_ segue: UIStoryboardSegue) {
+//      if segue.identifier == "backToFilterController" {
+//          let filterListController = segue.source as! FilterListController
+//         
+//         if filterListController.arSelectedValues.count > 0 {
+//            let filteredValues = filterListController.arSelectedValues.filter { return $0 != "" }
+//            
+//            if filterListController.categoryStyleType == CategoryStyleEnum.category {
+//               self.arSelectedCategory = filteredValues
+//               if self.arSelectedCategory.count > 3 {
+//                  self.selectedCategory = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
+//               } else {
+//                  self.selectedCategory = filteredValues.joined(separator: ",")
+//               }
+//            } else {
+//               self.arSelectedStyle = filteredValues
+//               if self.arSelectedStyle.count > 3 {
+//                  self.selectedStyle = Array(filteredValues[0..<3]).joined(separator: ",") + "..."
+//               } else {
+//                  self.selectedStyle = filteredValues.joined(separator: ",")
+//               }
+//            }
+//            
+//            if  filterListController.arSelectedValues.count ==  filterListController.arFilterMenu.count - 1 {
+//               if filterListController.categoryStyleType == CategoryStyleEnum.category {
+//                   self.selectedCategory = "All"
+//               } else {
+//                   self.selectedStyle = "All"
+//               }
+//            }
+//         } else {
+//             if filterListController.categoryStyleType == CategoryStyleEnum.category {
+//               self.arSelectedCategory.removeAll()
+//               selectedCategory = CategoryStyleEnum.category.defaultTitle
+//             } else {
+//               self.arSelectedStyle.removeAll()
+//               selectedStyle = CategoryStyleEnum.style.defaultTitle
+//             }
+//         }
+//         
+//         IBtblFilter.reloadData()
+//         
+//      }
+//   }
 }
 
 
@@ -308,14 +308,14 @@ extension FilterVC: CategoryStyleCellDelegate{
     func didClickStyleCell(_ type:CategoryStyleEnum) {
       let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
       
-      if type == .category {
-         _presentController.categoryStyleType = .category
-         _presentController.arSelectedValues = arSelectedCategory
-      } else if type == .style {
-         _presentController.categoryStyleType = .style
-         _presentController.arSelectedValues = arSelectedStyle
-      }
-      
+//      if type == .category {
+//         _presentController.categoryStyleType = .category
+//         _presentController.arSelectedValues = arSelectedCategory
+//      } else if type == .style {
+//         _presentController.categoryStyleType = .style
+//         _presentController.arSelectedValues = arSelectedStyle
+//      }
+//      
       
       let _navFilterList = UINavigationController(rootViewController: _presentController)
       _navFilterList.isNavigationBarHidden = true

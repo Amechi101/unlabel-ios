@@ -80,6 +80,7 @@
   var filteredString:String?
   var sFilterCategory:String?
   var sFilterStyle:String?
+    var sFilterStoreType:String?
   var sortMode: String = "AZ"
   var searchResults:String = "Search Results"
   
@@ -633,11 +634,11 @@
       
       
       let fetchBrandsRequestParams = FetchBrandsRP()
-      fetchBrandsRequestParams.filterCategory = ""//self.sFilterCategory
-      fetchBrandsRequestParams.filterLocation = ""//self.sFilterLocation
-      fetchBrandsRequestParams.filterStyle = ""//self.sFilterStyle
+      fetchBrandsRequestParams.filterCategory = self.sFilterCategory
+      fetchBrandsRequestParams.filterLocation = self.sFilterLocation
+      fetchBrandsRequestParams.filterStyle = self.sFilterStyle
       fetchBrandsRequestParams.searchText = self.searchText
-      fetchBrandsRequestParams.storeType = "6"
+      fetchBrandsRequestParams.storeType = self.sFilterStoreType
       fetchBrandsRequestParams.sortMode = self.sortMode
       fetchBrandsRequestParams.display = self.display_type
       if headerView?.selectedTab == .men{

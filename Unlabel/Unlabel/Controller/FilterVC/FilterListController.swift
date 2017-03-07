@@ -19,9 +19,9 @@ class FilterListController: UIViewController {
   
   
   var categoryStyleType:CategoryStyleEnum!
-  var arFilterMenu:[String] = ["All"]
+  var arFilterMenu:[FilterModel] = []
   var arOriginalJSON:[JSON]!
-  var arSelectedValues:[String] = []
+  var arSelectedValues:[FilterModel] = []
   var arSelectedID:[String] = []
   
   
@@ -31,6 +31,13 @@ class FilterListController: UIViewController {
   //   MARK:- Life Cycle methods
   
   override func viewDidLoad() {
+    
+    var filterAll = FilterModel()
+    filterAll.typeDescription = ""
+    filterAll.typeId = ""
+    filterAll.typeName = "All"
+    arFilterMenu.append(filterAll)
+    
     super.viewDidLoad()
     setUp()
     WSGetAllFilterList(ByCategoryType: categoryStyleType)
@@ -74,10 +81,7 @@ class FilterListController: UIViewController {
   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
     UnlabelLoadingView.sharedInstance.start(self.view)
     UnlabelAPIHelper.sharedInstance.getBrandCategory(categoryStyle: categoryStyleType,{ (arrCountry:[FilterModel], meta: JSON,arrSpecial) in
-      let categories:[String] = arrSpecial.map { return $0["name"].stringValue }.sorted {
-        return $0 < $1
-      }
-      self.arFilterMenu += categories
+      self.arFilterMenu += arrCountry
       self.arOriginalJSON = arrSpecial
       
       for (index, _) in self.arFilterMenu.enumerated() {
@@ -141,7 +145,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
     let _selection = self.dictSelection[indexPath.row]!
     
     cell.configureCell(indexPath, selection: _selection)
-    cell.IBlblFilterListName?.text = self.arFilterMenu[indexPath.row]
+    cell.IBlblFilterListName?.text = self.arFilterMenu[indexPath.row].typeName
     
     return cell
   }
@@ -163,6 +167,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
       for row in 1..<totalRows {
         self.dictSelection[row] = self.dictSelection[0]!
       }
+        IBlblTitleBar.text = categoryStyleType.description
     } else {
       arSelectedValues.removeAll()
       
@@ -179,7 +184,8 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
           self.dictSelection[0] = false
         }
       }
-    }
+        IBlblTitleBar.text = categoryStyleType.description + " (\(arSelectedValues.count))"
+   }
     
     IBtableFilterList.reloadData()
     
@@ -188,7 +194,12 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
   
   // View section header
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 55
+    if categoryStyleType == CategoryStyleEnum.location{
+        return 0
+    }
+    else{
+        return 55
+    }
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

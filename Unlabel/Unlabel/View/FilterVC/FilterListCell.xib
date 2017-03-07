@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uh0-VX-mFb" userLabel="Check mark">
@@ -32,7 +32,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gH-PI-CCV" userLabel="Filtre List item name">
-                        <rect key="frame" x="8" y="13.5" width="37" height="16"/>
+                        <rect key="frame" x="22" y="13.5" width="37" height="16"/>
                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                     <constraint firstItem="1gH-PI-CCV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6IN-KA-LCy"/>
                     <constraint firstAttribute="trailing" secondItem="uh0-VX-mFb" secondAttribute="trailing" constant="8" id="PbM-df-fri"/>
                     <constraint firstItem="uh0-VX-mFb" firstAttribute="centerY" secondItem="1gH-PI-CCV" secondAttribute="centerY" id="caS-J0-tHT"/>
-                    <constraint firstItem="1gH-PI-CCV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="jEl-Un-TGc"/>
+                    <constraint firstItem="1gH-PI-CCV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="jEl-Un-TGc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
