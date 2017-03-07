@@ -165,7 +165,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     let feedVC = storyboard?.instantiateViewController(withIdentifier: S_ID_FEED_VC) as? FeedVC
     feedVC?.hidesBottomBarWhenPushed = true
     feedVC?.mainVCType = .filter
-    feedVC?.filteredNavTitle = "Menswear"
+   // feedVC?.filteredNavTitle = "Menswear"
     feedVC?.searchText = self.IBSearchBar.text
     feedVC?.sFilterStyle = self.selectedStyle
     feedVC?.sFilterCategory = self.selectedCategory
@@ -173,12 +173,15 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     
     if IBButtonMenswear.isSelected && IBButtonWomenswear.isSelected{
         feedVC?.sFilterStoreType = "8"
+      feedVC?.filteredNavTitle = "UNISEX"
     }
     else if IBButtonWomenswear.isSelected{
         feedVC?.sFilterStoreType = "7"
+      feedVC?.filteredNavTitle = "WOMENSWEAR"
     }
     else if IBButtonMenswear.isSelected{
         feedVC?.sFilterStoreType = "6"
+      feedVC?.filteredNavTitle = "MENSWEAR"
     }
     else{
         feedVC?.sFilterStoreType = ""

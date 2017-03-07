@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class DepositEarningVC: UIViewController {
   @IBOutlet weak var IBlabelEarnedAmount: UILabel!
@@ -25,7 +26,15 @@ class DepositEarningVC: UIViewController {
   @IBAction func IBActionTransferToBank(_ sender: Any) {
    //  UnlabelHelper.showAlert(onVC: self, title: "Transfer error", message: "No funds to deposit", onOk: {})
     
-    self.addPopupView(PopupType.transferFund, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    //self.addPopupView(PopupType.transferFund, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    let param:[String: String] = [:]
+    UnlabelAPIHelper.sharedInstance.connectToStripe(param, onVC: self, success:{ (
+      meta: JSON) in
+      print(meta)
+      
+    }, failed: { (error) in
+    })
+
   }
   @IBAction func IBActionRemoveBank(_ sender: Any) {
    self.addPopupView(PopupType.removeBank, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))

@@ -99,12 +99,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-     debugPrint("****** \(userInfo)")
+     debugPrint("---555--- \(userInfo)")
     
   }
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-     debugPrint("****** \(userInfo)")
+    debugPrint("------ \(userInfo)")
+     debugPrint("****** \(userInfo["aps"])")
   }
   
   
