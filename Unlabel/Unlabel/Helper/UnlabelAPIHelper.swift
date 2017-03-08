@@ -1576,8 +1576,9 @@ class UnlabelAPIHelper{
     let requestURL:String?
     
     requestURL = "https://connect.stripe.com/oauth/token/"
+    print(params)
     if let requestURLObj = requestURL{
-      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers:["X-CSRFToken":getSCSRFToken()])
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers:["X-CSRFToken":"Authenticity "+getSCSRFToken()])
         .responseJSON { response in
           
           debugPrint(response.result)
@@ -1597,6 +1598,9 @@ class UnlabelAPIHelper{
   
   
   func loginToStripe(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    
+    clearStripeCookie()
+    
     let requestURL:String?
     
     requestURL = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!
@@ -1604,18 +1608,20 @@ class UnlabelAPIHelper{
       Alamofire.request(requestURLObj, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
         .responseString { response in
           let allCookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies(for: (response.request?.url)!)!
+            print("cookie count :: \(allCookies.count)")
           for cookie: HTTPCookie in allCookies {
-            if (cookie.name == "stripe.csrf ") {
+            print("cookie :: \(cookie.name)")
+            if (cookie.name == "stripe.csrf") {
               // Save CSRF Token
                 print("csrftoken :: \(cookie.value)")
               UnlabelHelper.setDefaultValue(cookie.value, key: "S-CSRFToken")
             }
           }
-          debugPrint(response.result)
+         // debugPrint(response.result)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
-            debugPrint(json)
+           // debugPrint(json)
             success(json)
           case .failure(let error):
             debugPrint("hhhh === \(error.localizedDescription)")
@@ -1626,6 +1632,20 @@ class UnlabelAPIHelper{
     }
   }
 
+    func clearStripeCookie(){
+        let cstorage = HTTPCookieStorage.shared
+        
+       // UserDefaults.standard.removeObject(forKey: "ULCookie")
+        
+        if let cookies = cstorage.cookies {
+            for cookie in cookies {
+                if (cookie.name != "csrftoken" || cookie.name != "sessionid") {
+                cstorage.deleteCookie(cookie)
+                }
+            }
+        }
+        //  print("cs cookie  \(cstorage)")
+    }
   
     //Mark: - API Common helper method
 

@@ -21,10 +21,10 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
     let url: URL = URL (string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!)!
     let request: URLRequest = URLRequest(url: url as URL)
     IBWebviewStaticURL.loadRequest(request as URLRequest)
-    
+   // openSafariForURL("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!)
     UnlabelAPIHelper.sharedInstance.loginToStripe(self, success:{ (
       meta: JSON) in
-      print(meta)
+     // print(meta)
       
     }, failed: { (error) in
     })
