@@ -1017,11 +1017,11 @@ class UnlabelAPIHelper{
             requestURL = v4BaseUrl + "api_v2/influencer_live_products/"
         }
         //   print(requestURL!)
-        //        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
+                let params: [String: String] = [sort_Params:fetchProductParams.sortMode]
         
         if let requestURLObj = requestURL{
             
-            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+            Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
                 //   debugPrint(response)
                 switch response.result {
                     
@@ -1572,80 +1572,67 @@ class UnlabelAPIHelper{
         }
     }
   
-  func connectToStripe(_ params:[String: String], onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-    let requestURL:String?
-    
-    requestURL = "https://connect.stripe.com/oauth/token/"
-    print(params)
-    if let requestURLObj = requestURL{
-      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers:["X-CSRFToken":"Authenticity "+getSCSRFToken()])
-        .responseJSON { response in
-          
-          debugPrint(response.result)
-          switch response.result {
-          case .success(let data):
-            let json = JSON(data)
-            debugPrint(json)
-            success(json)
-          case .failure(let error):
-            debugPrint("hhhh === \(error.localizedDescription)")
-            failed(error as NSError)
-            break
-          }
-      }
-    }
-  }
+//  func connectToStripe(_ params:[String: String], onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+//    let requestURL:String?
+//    
+//    requestURL = "https://connect.stripe.com/oauth/token/"
+//    print(params)
+//    if let requestURLObj = requestURL{
+//      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers:["X-CSRFToken":getSCSRFToken()])
+//        .responseJSON { response in
+//          
+//          debugPrint(response.result)
+//          switch response.result {
+//          case .success(let data):
+//            let json = JSON(data)
+//            debugPrint(json)
+//            success(json)
+//          case .failure(let error):
+//            debugPrint("hhhh === \(error.localizedDescription)")
+//            failed(error as NSError)
+//            break
+//          }
+//      }
+//    }
+//  }
   
-  
-  func loginToStripe(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
-    
-    clearStripeCookie()
-    
-    let requestURL:String?
-    
-    requestURL = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!
-    if let requestURLObj = requestURL{
-      Alamofire.request(requestURLObj, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
-        .responseString { response in
-          let allCookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies(for: (response.request?.url)!)!
-            print("cookie count :: \(allCookies.count)")
-          for cookie: HTTPCookie in allCookies {
-            print("cookie :: \(cookie.name)")
-            if (cookie.name == "stripe.csrf") {
-              // Save CSRF Token
-                print("csrftoken :: \(cookie.value)")
-              UnlabelHelper.setDefaultValue(cookie.value, key: "S-CSRFToken")
-            }
-          }
-         // debugPrint(response.result)
-          switch response.result {
-          case .success(let data):
-            let json = JSON(data)
-           // debugPrint(json)
-            success(json)
-          case .failure(let error):
-            debugPrint("hhhh === \(error.localizedDescription)")
-            failed(error as NSError)
-            break
-          }
-      }
-    }
-  }
+//  
+//  func loginToStripe(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+//    
+//    clearStripeCookie()
+//    
+//    let requestURL:String?
+//    
+//    requestURL = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!
+//    if let requestURLObj = requestURL{
+//      Alamofire.request(requestURLObj, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:nil)
+//        .responseString { response in
+//          let allCookies:[HTTPCookie] = HTTPCookieStorage.shared.cookies(for: (response.request?.url)!)!
+//            print("cookie count :: \(allCookies.count)")
+//          for cookie: HTTPCookie in allCookies {
+//            print("cookie :: \(cookie.name)")
+//            if (cookie.name == "stripe.csrf") {
+//              // Save CSRF Token
+//                print("csrftoken :: \(cookie.value)")
+//              UnlabelHelper.setDefaultValue(cookie.value, key: "S-CSRFToken")
+//            }
+//          }
+//         // debugPrint(response.result)
+//          switch response.result {
+//          case .success(let data):
+//            let json = JSON(data)
+//           // debugPrint(json)
+//            success(json)
+//          case .failure(let error):
+//            debugPrint("hhhh === \(error.localizedDescription)")
+//            failed(error as NSError)
+//            break
+//          }
+//      }
+//    }
+//  }
 
-    func clearStripeCookie(){
-        let cstorage = HTTPCookieStorage.shared
-        
-       // UserDefaults.standard.removeObject(forKey: "ULCookie")
-        
-        if let cookies = cstorage.cookies {
-            for cookie in cookies {
-                if (cookie.name != "csrftoken" || cookie.name != "sessionid") {
-                cstorage.deleteCookie(cookie)
-                }
-            }
-        }
-        //  print("cs cookie  \(cstorage)")
-    }
+
   
     //Mark: - API Common helper method
 
@@ -1669,14 +1656,7 @@ class UnlabelAPIHelper{
         //    print(allCookies)
         
     }
-  func getSCSRFToken() -> String{
-    if let xcsrf:String =  UnlabelHelper.getDefaultValue("S-CSRFToken")! as String{
-      return xcsrf
-    }
-    else{
-      return ""
-    }
-  }
+
     func getCSRFToken() -> String{
         if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
             return xcsrf

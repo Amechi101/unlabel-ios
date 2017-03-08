@@ -21,14 +21,14 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
     let url: URL = URL (string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!)!
     let request: URLRequest = URLRequest(url: url as URL)
     IBWebviewStaticURL.loadRequest(request as URLRequest)
-   // openSafariForURL("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!)
-    UnlabelAPIHelper.sharedInstance.loginToStripe(self, success:{ (
-      meta: JSON) in
-     // print(meta)
-      
-    }, failed: { (error) in
-    })
-    
+  //  openSafariForURL("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AB3gizjA9Uhs9g2AsaOWzBiII3LxRLl6&scope=read_write&state="+UnlabelHelper.getDefaultValue("influencer_auto_id")!)
+//    UnlabelAPIHelper.sharedInstance.loginToStripe(self, success:{ (
+//      meta: JSON) in
+//     // print(meta)
+//      
+//    }, failed: { (error) in
+//    })
+//    
        // Do any additional setup after loading the view.
   }
   func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool{
@@ -37,7 +37,7 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
     let us = request.description
     let scanner = Scanner(string:us)
     var scanned: NSString?
-    var result: String = String()
+    var result: String = request.description
     
     if scanner.scanUpTo("&code=", into:nil) {
       scanner.scanString("&code=", into:nil)
@@ -47,14 +47,8 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
         print(result)
       }
     }
-    if !(result.isEmpty){
-    let param:[String: String] = ["client_secret":"sk_test_STJxYzsopQx9fd4xIcE4EzT9","grant_type":"authorization_code","code":result,"state":UnlabelHelper.getDefaultValue("influencer_auto_id")!]
-    UnlabelAPIHelper.sharedInstance.connectToStripe(param, onVC:self, success:{ (
-      meta: JSON) in
-      print(meta)
-      
-    }, failed: { (error) in
-    })
+    if result == "http://35.166.138.246/dashboard/"{
+      _ = self.navigationController?.popViewController(animated: true)
     }
     return true
   }
@@ -98,6 +92,5 @@ extension UnlabelLegalVC: SFSafariViewControllerDelegate{
   }
   
   func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool){
-    
-  }
+       }
 }

@@ -139,7 +139,7 @@ extension ManageContentVC{
     func getRentedProducts(){
         arrMenBrandList = []
         let fetchProductRequestParams = FetchProductParams()
-        fetchProductRequestParams.sortMode = sortMode
+        fetchProductRequestParams.sortMode = ""
         UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
             self.arrFilteredBrandList = []
             print("*** Meta *** \(meta)")
@@ -341,5 +341,8 @@ extension ManageContentVC: SortModePopupViewDelegate{
     sortModeValue = selectedItem.uName
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
     self.sortMode = selectedItem.uId
+    
+    arrFilteredBrandList = []
+    getLiveProducts()
   }
 }
