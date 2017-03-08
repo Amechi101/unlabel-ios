@@ -238,7 +238,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="292-xr-jmA" id="jV4-4n-tnb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="Onz-qh-8Mf">
@@ -428,11 +428,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ze9-nc-iJB" id="kxT-bv-cpD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-W2-PJU">
-                                                    <rect key="frame" x="22" y="0.0" width="76" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="71.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -462,11 +462,11 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qO7-fS-iqx" id="Ztn-Pi-t1l">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTACT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S82-HR-vWx">
-                                                    <rect key="frame" x="22" y="0.0" width="94.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="91" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -493,11 +493,11 @@
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="52X-7w-i0f" id="C9e-EZ-bRq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RATE THIS APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2P-h5-pV2">
-                                                    <rect key="frame" x="22" y="0.0" width="107" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="101" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -524,11 +524,11 @@
                                         <rect key="frame" x="0.0" y="165" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qOD-0E-x9t" id="LSa-H2-VMh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
-                                                    <rect key="frame" x="22" y="0.0" width="161" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="155.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -555,11 +555,11 @@
                                         <rect key="frame" x="0.0" y="220" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1un-4T-S4q" id="8V5-P0-api">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVACY POLICY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nj5-iA-UpP">
-                                                    <rect key="frame" x="22" y="0.0" width="121" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="116" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -586,11 +586,11 @@
                                         <rect key="frame" x="0.0" y="275" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fK5-Gp-Egu" id="pKp-Wb-8FS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHIPPING &amp; RETURNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyu-cY-5gW">
-                                                    <rect key="frame" x="22" y="0.0" width="157.5" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="148" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -617,7 +617,7 @@
                                         <rect key="frame" x="0.0" y="330" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="idA-dm-grz" id="IDJ-h2-T5F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="jfD-mA-kMa">
@@ -628,7 +628,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
-                                                    <rect key="frame" x="22" y="0.0" width="112" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="110.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -648,7 +648,7 @@
                                         <rect key="frame" x="0.0" y="385" width="375" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dAs-N5-9cN" id="0rz-ja-lvp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to start shopping the latest and greatest independent fashion brands." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-5B-Fz4">
@@ -748,7 +748,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cvg-oV-hKw" id="4qh-GM-hfF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiG-5V-K9f">
@@ -805,7 +805,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GJV-Y6-18L" id="cV9-1y-Th5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Stats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFu-o6-2FD">
@@ -839,7 +839,7 @@
                                         <rect key="frame" x="0.0" y="170" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KpL-l3-5vg" id="QDR-yz-q6h">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile Info " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg6-t0-HqZ">
@@ -873,7 +873,7 @@
                                         <rect key="frame" x="0.0" y="225" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vO1-5r-hCr" id="ZQl-Eq-0ZG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
@@ -907,7 +907,7 @@
                                         <rect key="frame" x="0.0" y="280" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZe-qX-Mrd" id="orl-6O-TsW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zF-7h-6Kq">
@@ -941,7 +941,7 @@
                                         <rect key="frame" x="0.0" y="335" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ql4-OK-2gU" id="CWE-BL-Njn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
@@ -975,7 +975,7 @@
                                         <rect key="frame" x="0.0" y="390" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdI-L5-6p0" id="N4O-Ch-lkZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RO-5Y-dA0">
@@ -1009,7 +1009,7 @@
                                         <rect key="frame" x="0.0" y="445" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5qw-sD-3cw" id="zWK-ey-Kh6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4t-H0-FkK">
@@ -1090,12 +1090,12 @@
         <!--Influencer StatsVC-->
         <scene sceneID="LVI-9b-KMP">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iOR-rD-Jp0" customClass="InfluencerStatsVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="iOR-rD-Jp0" customClass="InfluencerStatsVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E7T-Io-Z44"/>
                         <viewControllerLayoutGuide type="bottom" id="ONz-Xm-fQM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="keg-eZ-61M">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="keg-eZ-61M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1122,7 +1122,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mEW-1J-od6" id="HT0-ZB-gKb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1188,8 +1188,8 @@
         <!--Settings View Controller-->
         <scene sceneID="XX2-jv-RkF">
             <objects>
-                <tableViewController id="Qat-XQ-WQx" customClass="SettingsViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Qat-XQ-WQx" customClass="SettingsViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1200,7 +1200,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pa-MG-JRv" id="l5Z-Z5-458">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commission Earnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBP-9o-dlK">
@@ -1233,7 +1233,7 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fng-eQ-arc" id="RAk-Jx-K6A">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsC-Q7-8sC">
@@ -1266,7 +1266,7 @@
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vyg-rx-oZs" id="NuY-u5-imc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdo-eb-MCB">
@@ -1296,7 +1296,7 @@
                                         <rect key="frame" x="0.0" y="165" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjo-uR-geu" id="fnd-eo-gbD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jp-Il-eXQ">
@@ -1372,12 +1372,12 @@
         <!--Current LocationVC-->
         <scene sceneID="56b-p0-9yq">
             <objects>
-                <viewController id="q1w-7E-F0g" customClass="CurrentLocationVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="q1w-7E-F0g" customClass="CurrentLocationVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DK1-Le-k4s"/>
                         <viewControllerLayoutGuide type="bottom" id="fWR-cW-Wy0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="15r-Yn-Rpf">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="15r-Yn-Rpf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2935,7 +2935,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vqc-Pu-53S">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -4038,7 +4038,7 @@ See more info </string>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="O2s-F5-Ypr" customClass="NavController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="Fok-lI-GRK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eUH-fJ-iY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eUH-fJ-iY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4967,7 +4967,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pvh-M2-bLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="8xt-Jh-E7L"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CQ8-2p-vyG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CQ8-2p-vyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5712,7 +5712,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2uW-g4-dGT">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="IMAGES">
@@ -5752,7 +5752,7 @@ Sunday: 9am-8pm</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjT-8a-s8u" id="d6j-7w-fqx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIKES: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-cz-z69">
@@ -5776,7 +5776,7 @@ Sunday: 9am-8pm</string>
                                         <rect key="frame" x="0.0" y="54" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r49-Ol-3pp" id="S0S-sq-ays">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PURCHASES: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-mi-UJG">
@@ -5848,7 +5848,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rvr-SJ-qaW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gJP-T9-2OF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gJP-T9-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5882,12 +5882,12 @@ Sunday: 9am-8pm</string>
         <!--Edit Profile BioVC-->
         <scene sceneID="GEY-ON-dL2">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Va9-H3-pkB" customClass="EditProfileBioVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Va9-H3-pkB" customClass="EditProfileBioVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V3g-9o-sgA"/>
                         <viewControllerLayoutGuide type="bottom" id="a1U-xk-Op0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="atH-tE-JEq">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="atH-tE-JEq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6225,8 +6225,8 @@ Sunday: 9am-8pm</string>
         <!--Legal AgreementVC-->
         <scene sceneID="eAD-OV-ne4">
             <objects>
-                <tableViewController id="j5a-D3-eJ1" customClass="LegalAgreementVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="j5a-D3-eJ1" customClass="LegalAgreementVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6237,7 +6237,7 @@ Sunday: 9am-8pm</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFb-Ok-9AM" id="jWY-Zh-raN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYL-MU-Qw0">
@@ -6270,7 +6270,7 @@ Sunday: 9am-8pm</string>
                                         <rect key="frame" x="0.0" y="55" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="30B-Z2-AHS" id="VZA-G9-x8K">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqm-XP-SuT">
@@ -6303,7 +6303,7 @@ Sunday: 9am-8pm</string>
                                         <rect key="frame" x="0.0" y="110" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B7L-Kc-1Ao" id="sEA-oo-vij">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Operation Agreement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7K-Td-EmL">
@@ -6353,7 +6353,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="988-y1-bzs">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6579,11 +6579,18 @@ Sunday: 9am-8pm</string>
                                     <outlet property="delegate" destination="DOS-b4-71z" id="iZs-V4-lyU"/>
                                 </connections>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ilw-Ty-QFT">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Pu5-3a-sGY" firstAttribute="leading" secondItem="7aJ-o7-fBq" secondAttribute="leading" id="IE4-9Y-NIg"/>
+                            <constraint firstItem="ilw-Ty-QFT" firstAttribute="top" secondItem="6D9-4e-1E4" secondAttribute="bottom" id="SsO-qe-Frx"/>
+                            <constraint firstItem="a39-U0-7qm" firstAttribute="top" secondItem="ilw-Ty-QFT" secondAttribute="bottom" id="UiP-8y-1ix"/>
                             <constraint firstAttribute="trailing" secondItem="Pu5-3a-sGY" secondAttribute="trailing" id="exu-UV-Wmk"/>
+                            <constraint firstItem="ilw-Ty-QFT" firstAttribute="leading" secondItem="7aJ-o7-fBq" secondAttribute="leading" id="hQU-SO-Yd9"/>
+                            <constraint firstAttribute="trailing" secondItem="ilw-Ty-QFT" secondAttribute="trailing" id="lKg-1J-hPd"/>
                             <constraint firstItem="Pu5-3a-sGY" firstAttribute="top" secondItem="6D9-4e-1E4" secondAttribute="bottom" id="mWa-Od-cMg"/>
                             <constraint firstItem="a39-U0-7qm" firstAttribute="top" secondItem="Pu5-3a-sGY" secondAttribute="bottom" id="ogr-op-KBA"/>
                         </constraints>
@@ -6620,12 +6627,14 @@ Sunday: 9am-8pm</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="IBActivityIndicator" destination="ilw-Ty-QFT" id="8fx-ls-XaR"/>
+                        <outlet property="IBButtonNavTitle" destination="sAr-eQ-frR" id="cwZ-s1-p0p"/>
                         <outlet property="IBWebviewStaticURL" destination="Pu5-3a-sGY" id="awT-Z1-Y8w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf4-gC-vAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4441" y="6470"/>
+            <point key="canvasLocation" x="-4562" y="6332"/>
         </scene>
         <!--Deposit EarningVC-->
         <scene sceneID="5fT-5q-PaA">
@@ -6726,13 +6735,13 @@ Sunday: 9am-8pm</string>
                                 <rect key="frame" x="0.0" y="289" width="375" height="267"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2I-i3-hI3">
-                                        <rect key="frame" x="131" y="120" width="113" height="27"/>
+                                        <rect key="frame" x="119" y="120" width="137" height="27"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="113" id="ITp-Oa-bF8"/>
+                                            <constraint firstAttribute="width" constant="137" id="ITp-Oa-bF8"/>
                                             <constraint firstAttribute="height" constant="27" id="kYZ-T0-3fp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
-                                        <state key="normal" title="ADD BANK INFO">
+                                        <state key="normal" title="CONNECT TO STRIPE">
                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -6740,11 +6749,11 @@ Sunday: 9am-8pm</string>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfg-KL-Bg0">
-                                        <rect key="frame" x="131" y="151" width="113" height="1"/>
+                                        <rect key="frame" x="119" y="151" width="137" height="1"/>
                                         <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="qmq-sz-XjF"/>
-                                            <constraint firstAttribute="width" constant="113" id="w6r-5k-Na4"/>
+                                            <constraint firstAttribute="width" constant="137" id="w6r-5k-Na4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -6996,15 +7005,28 @@ Sunday: 9am-8pm</string>
                                     <segue destination="FZW-G6-BdB" kind="show" id="2S2-Pg-gsh"/>
                                 </connections>
                             </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXn-kz-8Og">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ewQ-AO-heC" id="kIF-oV-H7u"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PdF-YF-HE2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PdF-YF-HE2" secondAttribute="trailing" id="0d9-VK-0Kx"/>
                             <constraint firstAttribute="trailing" secondItem="3AP-2K-Ve2" secondAttribute="trailing" constant="22" id="3Oz-qg-M40"/>
                             <constraint firstItem="gty-Ty-qkb" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="3q4-4e-BOe"/>
                             <constraint firstAttribute="trailing" secondItem="gty-Ty-qkb" secondAttribute="trailing" constant="22" id="BYg-PJ-Plx"/>
+                            <constraint firstItem="PdF-YF-HE2" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" id="Ej6-lY-OKj"/>
                             <constraint firstAttribute="trailing" secondItem="Q3D-zK-8ls" secondAttribute="trailing" constant="22" id="JCo-Oe-rk2"/>
                             <constraint firstAttribute="trailing" secondItem="lSk-eP-Tyv" secondAttribute="trailing" constant="22" id="M1A-Jb-ET4"/>
                             <constraint firstItem="gty-Ty-qkb" firstAttribute="top" secondItem="Mmd-jD-HC6" secondAttribute="bottom" constant="20" id="MTR-Xj-EQJ"/>
+                            <constraint firstItem="ra1-UJ-XEV" firstAttribute="top" secondItem="PdF-YF-HE2" secondAttribute="bottom" id="Oz9-iW-U25"/>
                             <constraint firstItem="uxf-tZ-C9k" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="QiG-nm-71L"/>
                             <constraint firstItem="lSk-eP-Tyv" firstAttribute="top" secondItem="3AP-2K-Ve2" secondAttribute="bottom" constant="13" id="RJN-at-Rkw"/>
                             <constraint firstItem="Mmd-jD-HC6" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="SkH-Z4-PQ9"/>
@@ -7014,8 +7036,13 @@ Sunday: 9am-8pm</string>
                             <constraint firstItem="Q3D-zK-8ls" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="fyA-gR-MPP"/>
                             <constraint firstItem="3AP-2K-Ve2" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="h9z-GB-xvi"/>
                             <constraint firstItem="3AP-2K-Ve2" firstAttribute="top" secondItem="uxf-tZ-C9k" secondAttribute="bottom" constant="8" id="osY-S7-fc5"/>
+                            <constraint firstAttribute="trailing" secondItem="rXn-kz-8Og" secondAttribute="trailing" id="pAb-rI-Dff"/>
+                            <constraint firstItem="PdF-YF-HE2" firstAttribute="top" secondItem="2ZC-ZG-V0P" secondAttribute="bottom" id="sUm-so-xFf"/>
+                            <constraint firstItem="rXn-kz-8Og" firstAttribute="top" secondItem="2ZC-ZG-V0P" secondAttribute="bottom" id="udB-8q-MZU"/>
+                            <constraint firstItem="rXn-kz-8Og" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" id="wtp-Hn-4gb"/>
                             <constraint firstItem="lSk-eP-Tyv" firstAttribute="leading" secondItem="yPz-8j-C9W" secondAttribute="leading" constant="22" id="x8N-yH-5l1"/>
                             <constraint firstItem="Mmd-jD-HC6" firstAttribute="top" secondItem="lSk-eP-Tyv" secondAttribute="bottom" constant="20" id="xVN-KI-B28"/>
+                            <constraint firstItem="ra1-UJ-XEV" firstAttribute="top" secondItem="rXn-kz-8Og" secondAttribute="bottom" id="zMg-86-GHJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="D8b-aw-eip">
@@ -7035,7 +7062,7 @@ Sunday: 9am-8pm</string>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
-                            <state key="normal" title="BANK INFO">
+                            <state key="normal" title="CONNECT TO STRIPE">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -7049,10 +7076,14 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="IBActivityIndicator" destination="PdF-YF-HE2" id="RBy-Uj-WeZ"/>
+                        <outlet property="IBWebviewStripeConnect" destination="rXn-kz-8Og" id="sgX-LC-pXq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ec-Nv-DIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5143.1999999999998" y="6332.3838080959522"/>
+            <point key="canvasLocation" x="-5202" y="6332"/>
         </scene>
         <!--Bank ConfirmVC-->
         <scene sceneID="DPJ-TT-j5V">
