@@ -135,7 +135,7 @@ let sFOLLOW_SEEN_ONCE            = "follow_seen_once"
 let sENTRY_ONCE_SEEN            = "sENTRY_ONCE_SEEN"
 
 let S_NO_INTERNET               = "No Internet Available!"
-let S_PLEASE_CONNECT            = "Please connect to the Internet."
+let S_PLEASE_CONNECT            = "Please connect to the Internet"
 
 let S_LOGIN_REGISTER            = "LOGIN / REGISTER"
 let S_LOGIN                     = "LOGIN"

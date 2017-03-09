@@ -37,6 +37,7 @@ class CurrentLocationVC: UIViewController {
     UnlabelAPIHelper.sharedInstance.saveInfluencerLocation(params ,onVC: self, success:{ (
       meta: JSON) in
       print(meta)
+      _ = self.navigationController?.popViewController(animated: true)
       }, failed: { (error) in
     })
   }
@@ -56,6 +57,8 @@ class CurrentLocationVC: UIViewController {
       let countryDict = meta["country"].dictionaryObject
       let country: String = countryDict?["printable_name"] as! String
       self.countryID = countryDict?["pk"] as! String
+      
+      print(self.countryID)
       DispatchQueue.main.async(execute: { () -> Void in
         if self.countryID != "US"{
           self.IBButtonSelectState.isEnabled = false
@@ -72,6 +75,7 @@ class CurrentLocationVC: UIViewController {
     })
   }
   @IBAction func IBActionUpdate(_ sender: Any) {
+    print(self.countryID)
     if self.countryID != "US"{
       if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.countryID != ""{
         saveInfluencerLocation()
@@ -141,6 +145,7 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
     
   }
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+    print(self.countryID)
     //  print(sortMode)
     sortModeValue = selectedItem.uName
     if slideUpMenu == SlideUpView.country{
@@ -159,8 +164,8 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
       IBButtonSelectCountry.setTitle(sortModeValue, for: .normal)
     }
     else if slideUpMenu == SlideUpView.state{
-      
-      if self.countryID != "US"{
+      print(self.countryID)
+      if self.countryID == "US"{
         stateID = selectedItem.uId
       }
       else{

@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol NotFoundViewDelegate {
-    func didSelectViewLabels()
+@objc protocol NotFoundViewDelegate {
+    @objc optional func didSelectViewLabels()
 }
 class NotFoundView: UIView {
 
@@ -44,7 +44,7 @@ class NotFoundView: UIView {
    
     
     func IBActionViewLabels(_ sender: AnyObject) {
-        delegate?.didSelectViewLabels()
+        delegate?.didSelectViewLabels!()
     }
    
    

@@ -81,6 +81,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
             let json = JSON(data)
             self.IBButtonUpdate.isHidden = true
             print("json: \(json)")
+            _ = self.navigationController?.popViewController(animated: true)
           case .failure(let error):
             print("error: \(error.localizedDescription)")
           }

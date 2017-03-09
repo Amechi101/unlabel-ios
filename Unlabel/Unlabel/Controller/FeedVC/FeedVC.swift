@@ -100,6 +100,7 @@
   override func viewDidLoad() {
     super.viewDidLoad()
     setupOnLoad()
+    
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -238,7 +239,12 @@
     
     let feedVCCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_FeedVCCell, for: indexPath) as! FeedVCCell
     feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercased()
-    feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location)"
+    if arrFilteredBrandList[indexPath.row].StateOrCountry == "US" {
+      feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
+    }
+    else{
+      feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
+    }
     feedVCCell.IBbtnStar.tag = indexPath.row
     
     if arrFilteredBrandList[indexPath.row].isFollowing{

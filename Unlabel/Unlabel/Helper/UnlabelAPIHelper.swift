@@ -119,9 +119,12 @@ class UnlabelAPIHelper{
                         brand.city = city
                     }
                     
-                    if let location = brandCity["country"]as? String{
+                    if let location = brandCity["state"]as? String{
                         brand.location = location
                     }
+                  if let stateOrCountry = brandCity["country"] as? String{
+                    brand.StateOrCountry = stateOrCountry
+                  }
                 }
                 
                 if let featureImage = thisBrand["image"] as? String{
@@ -140,9 +143,7 @@ class UnlabelAPIHelper{
                     brand.Slug = slug
                 }
                 
-                if let stateOrCountry = thisBrand["country"] as? String{
-                    brand.StateOrCountry = stateOrCountry
-                }
+              
                 
                 //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
                 //                        brand.CreatedDateString = createdDate
@@ -893,18 +894,18 @@ class UnlabelAPIHelper{
     func getSizeProduct(_ prodID:String, success:@escaping ([Product], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
         let requestURL:String?
         requestURL = v4BaseUrl + "api_v2/influencer_product_variants/"
-        //  print(requestURL!)
+      
         let params: [String: String] = [product_id: prodID]
-        
+        print(prodID)
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-                //  debugPrint(response)
+                  debugPrint(response)
                 switch response.result {
                     
                 case .success(let data):
                     let json = JSON(data)
-                    // debugPrint(json)
+                     debugPrint(json)
                     
                     if let arrProducts = self.getProduct(fromJSON: json){
                         success(arrProducts, json)
@@ -925,13 +926,13 @@ class UnlabelAPIHelper{
         else {
             requestURL = v4BaseUrl + "api_v2/influencer_product_list/"
         }
-        //  print(requestURL!)
+          print(fetchProductParams.brandId)
         let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
         
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-                //  debugPrint(response)
+                  debugPrint(response)
                 switch response.result {
                     
                 case .success(let data):
@@ -1121,7 +1122,26 @@ class UnlabelAPIHelper{
             }
         }
     }
-    
+  
+  func getInfluencerEarnings(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_get_balance/"
+    //  print(requestURL!)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
     func getProductImageModels(fromJSON json:JSON)->[ProductImages]?{
         var arrImages = [ProductImages]()
         if let imageList = json.dictionaryObject!["results"]{

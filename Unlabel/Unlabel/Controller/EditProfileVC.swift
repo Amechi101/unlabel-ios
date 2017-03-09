@@ -37,9 +37,14 @@ class EditProfileVC: UIViewController {
   }
   
   @IBAction func IBActionUpdate(_ sender: Any) {
+    
+    print(IBTextfieldFullname.text!)
+    print(IBtextfieldLastname.text!)
+    print(IBTextfieldContactNumber.text!)
     if !isValidEmail() {
       // shows alert in isValidEmail() method
     }else if !(IBTextfieldFullname.text?.isEmpty)! || !(IBtextfieldLastname.text?.isEmpty)! || !(IBTextfieldContactNumber.text?.isEmpty)!{
+      
       UnlabelHelper.showAlert(onVC: self, title: "Empty Input", message: "Please provide value for all field.", onOk: {})
     }
     else{

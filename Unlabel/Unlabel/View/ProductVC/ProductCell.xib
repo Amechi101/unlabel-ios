@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-NP-8An">
                         <rect key="frame" x="0.0" y="0.0" width="216" height="271"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Itb-hf-DVC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Itb-hf-DVC">
                                 <rect key="frame" x="0.0" y="0.0" width="216" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="SKI-Oi-WHc"/>
@@ -92,4 +92,7 @@
             <point key="canvasLocation" x="188" y="354.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="img_placeholder" width="298" height="298"/>
+    </resources>
 </document>

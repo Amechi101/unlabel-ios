@@ -15,6 +15,7 @@ class DepositEarningVC: UIViewController {
   var popupKind : PopupType = .transferFund
     override func viewDidLoad() {
         super.viewDidLoad()
+      getInfluencerEarning()
 
         // Do any additional setup after loading the view.
     }
@@ -23,6 +24,24 @@ class DepositEarningVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  func getInfluencerEarning() {
+    
+    UnlabelAPIHelper.sharedInstance.getInfluencerEarnings( self, success:{ (
+      meta: JSON) in
+      print(meta)
+      let dictResult: String = meta["results"]["balance"].stringValue
+      print(dictResult)
+      
+      self.IBlabelEarnedAmount.text = "$ " + dictResult
+      DispatchQueue.main.async(execute: { () -> Void in
+      })
+      
+    }, failed: { (error) in
+    })
+  }
+
+  
   @IBAction func IBActionTransferToBank(_ sender: Any) {
    //  UnlabelHelper.showAlert(onVC: self, title: "Transfer error", message: "No funds to deposit", onOk: {})
     

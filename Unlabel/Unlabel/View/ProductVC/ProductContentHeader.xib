@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHEAP + BROKE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zma-pw-8ay">
-                    <rect key="frame" x="22" y="4" width="276" height="15"/>
+                    <rect key="frame" x="0.0" y="4" width="298" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="muU-K2-xYy"/>
                     </constraints>
@@ -30,7 +30,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA8-fx-IHu">
-                    <rect key="frame" x="22" y="21" width="100" height="22"/>
+                    <rect key="frame" x="0.0" y="21" width="100" height="22"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItZ-kH-L28">
                             <rect key="frame" x="0.0" y="21" width="100" height="1"/>
@@ -68,8 +68,8 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Zma-pw-8ay" secondAttribute="trailing" constant="22" id="9Wm-3i-Eiv"/>
                 <constraint firstItem="Zma-pw-8ay" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="4" id="MIs-ZO-oGv"/>
-                <constraint firstItem="Zma-pw-8ay" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="22" id="ae5-CN-M7o"/>
-                <constraint firstItem="aA8-fx-IHu" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="22" id="eXL-gm-tSb"/>
+                <constraint firstItem="Zma-pw-8ay" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="ae5-CN-M7o"/>
+                <constraint firstItem="aA8-fx-IHu" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="eXL-gm-tSb"/>
                 <constraint firstItem="aA8-fx-IHu" firstAttribute="top" secondItem="Zma-pw-8ay" secondAttribute="bottom" constant="2" id="n2A-B7-HfM"/>
             </constraints>
             <connections>

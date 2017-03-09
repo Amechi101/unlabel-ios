@@ -206,6 +206,7 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
     }
     let productImage: ProductImages = self.productImageArray[indexPath.row]
     productCell.IBProductImage.contentMode = UIViewContentMode.scaleAspectFill;
+    productCell.IBProductImage.clipsToBounds = true
     //  productCell.IBProductImage.image = UIImage(named: "product_demo")
     
     print(productImage.pDisplayOrder)

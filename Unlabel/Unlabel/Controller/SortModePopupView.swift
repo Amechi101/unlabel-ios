@@ -39,6 +39,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
   
   override func awakeFromNib() {
     updateView()
+    
   }
   
   
@@ -48,7 +49,7 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     IBTableList.register(UINib(nibName: "SortModeCell", bundle: nil), forCellReuseIdentifier: "SortModeCell")
     if slideUpViewMode == SlideUpView.sortMode{
-      arrSortOptionDict = [["name":"High to Low","key":"HL"],["name":"Low to High","key":"LH"],["name":"Oldest to Newest","key":"OLD"],["name":"Newest to Oldest","key":"NEW"]]
+      arrSortOptionDict = [["name":"Price: High to Low","key":"HL"],["name":"Price: Low to High","key":"LH"],["name":"Date: Oldest to Newest","key":"OLD"],["name":"Date: Newest to Oldest","key":"NEW"]]
       arrDatasource = getModelList(arrSortOptionDict)
     }
     else if slideUpViewMode == SlideUpView.brandSortMode{
@@ -73,7 +74,9 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       // arrSortOption = []
     }
     IBPopupTitle.text = popupTitle
-    selectedItem = arrDatasource.first!
+    if arrDatasource.count>0{
+      selectedItem = arrDatasource.first!
+    }
   }
   
   

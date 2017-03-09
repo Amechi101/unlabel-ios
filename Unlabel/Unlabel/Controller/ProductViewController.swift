@@ -61,6 +61,13 @@ class ProductViewController: UIViewController {
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
     productPageControl.currentPage = 0
+    
+    if (selectedProduct?.arrProductsImages.count)! <= 1{
+      productPageControl.isHidden = true
+    }
+    else{
+      productPageControl.isHidden = false
+    }
     productID = selectedProduct?.ProductID
     IBProductTitle.text = selectedProduct?.ProductName
     IBProductPrice.text = "$ " + (selectedProduct?.ProductPrice)!

@@ -20,7 +20,7 @@ enum ContentStatus{
   case unknown
   case unreserved
 }
-class ManageContentVC: UIViewController {
+class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   
   //MARK: -  IBOutlets,vars,constants
   
@@ -43,17 +43,25 @@ class ManageContentVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-
-    
     setUpCollectionView()
+    self.tabBarController?.delegate = self
     getReservedProducts()
   }
-
+  
+  override func viewWillAppear(_ animated: Bool) {
+    
+  }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
+  
+  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    contentStatus = ContentStatus.reserve
+    updateToggleButton()
+    getReservedProducts()
+  }
   //MARK: -  Navigation methods
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,11 +91,27 @@ class ManageContentVC: UIViewController {
   
 }
 
+
+extension ManageContentVC:NotFoundViewDelegate{
+
+  func addNotFoundView(){
+    let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
+    notFoundView.delegate = self
+    notFoundView.showViewLabelBtn = false
+    notFoundView.IBlblMessage.text = "No products to show."
+    IBCollectionViewContent.backgroundView = notFoundView
+    IBCollectionViewContent.backgroundView?.isHidden = true
+  }
+  
+}
+
 //MARK: -  Custom methods
 
 extension ManageContentVC{
   
+
   func setUpCollectionView(){
+    addNotFoundView()
     IBCollectionViewContent.register(UINib(nibName: S_ID_Product_Content_Header, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell)
     IBCollectionViewContent.register(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
   }
@@ -123,13 +147,13 @@ extension ManageContentVC{
   func getReservedProducts(){
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
-    fetchProductRequestParams.sortMode = sortMode
+    fetchProductRequestParams.sortMode = ""
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.arrFilteredBrandList = []
         print("*** Meta *** \(meta)")
         self.arrMenBrandList.append(contentsOf: arrBrands)
       
-      
+      print("*** arrFilteredBrandList *** \(self.arrFilteredBrandList.count)")
         self.arrFilteredBrandList = self.arrMenBrandList
         self.IBCollectionViewContent.reloadData()
     }, failed: { (error) in
@@ -171,7 +195,7 @@ extension ManageContentVC{
 
 extension ManageContentVC{
   @IBAction func IBActionSortSelection(_ sender: Any) {
-    self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func IBActionToggleStatus(_ sender: Any) {
     let buttonID: Int = (sender as AnyObject).tag
@@ -205,10 +229,17 @@ extension ManageContentVC{
 extension ManageContentVC: UICollectionViewDataSource{
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
+    if arrFilteredBrandList.count > 0{
+      IBCollectionViewContent.backgroundView?.isHidden = true
+    }
+    else{
+      IBCollectionViewContent.backgroundView?.isHidden = false
+    }
     return arrFilteredBrandList.count
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+
     return arrFilteredBrandList[section].arrProducts.count
   }
   

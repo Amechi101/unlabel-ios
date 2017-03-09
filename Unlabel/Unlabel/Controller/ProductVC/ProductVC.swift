@@ -32,7 +32,7 @@ class ProductVC: UIViewController {
   var selectedProduct: Product!
   var isProfileCompleted: Bool = false
   var sortMode: String = "NEW"
-  var sortModeValue: String = "Newest to Oldest"
+  var sortModeValue: String = "Date: Newest to Oldest"
   var nextPageURL:String?
   var labelHeight: CGFloat = 0.0
   //MARK:- VC Lifecycle
@@ -160,7 +160,7 @@ extension ProductVC:UICollectionViewDataSource{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
   //  print("height   \(labelHeight)")
-    productHeaderCell.IBBrandLocation.text = selectedBrand.city + "," + selectedBrand.location
+    productHeaderCell.IBBrandLocation.text = selectedBrand.city + ", " + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
       productHeaderCell.IBimgHeaderImage.sd_setImage(with: url, completed:
@@ -211,9 +211,13 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
     productCell.IBlblProductName.text = arrProducts[indexPath.row - 3].ProductName
+    
+    print("product name\(arrProducts[indexPath.row - 3].ProductName)  product price \(arrProducts[indexPath.row - 3].ProductPrice)")
+    
+    
     productCell.IBlblProductPrice.text = "$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
-    
+    productCell.IBimgProductImage.clipsToBounds = true
     if arrProducts[indexPath.row - 3].arrProductsImages.count > 0{
       if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
         

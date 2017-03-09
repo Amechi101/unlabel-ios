@@ -45,7 +45,7 @@
                                     <action selector="IBActionFollow:" destination="-1" eventType="touchUpInside" id="h17-Bc-Xkq"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-c8-M68">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-c8-M68">
                                 <rect key="frame" x="0.0" y="0.0" width="312" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="211" id="n4f-A5-XvX"/>
@@ -112,4 +112,7 @@
             <point key="canvasLocation" x="211" y="184"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="img_placeholder" width="298" height="298"/>
+    </resources>
 </document>
