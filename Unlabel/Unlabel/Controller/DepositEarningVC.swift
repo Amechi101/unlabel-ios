@@ -33,7 +33,7 @@ class DepositEarningVC: UIViewController {
       let dictResult: String = meta["results"]["balance"].stringValue
       print(dictResult)
       
-      self.IBlabelEarnedAmount.text = "$ " + dictResult
+      self.IBlabelEarnedAmount.text = "$" + dictResult
       DispatchQueue.main.async(execute: { () -> Void in
       })
       

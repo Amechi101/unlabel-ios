@@ -32,7 +32,7 @@ class LegalAgreementVC: UITableViewController {
         unlabelLegalVC.urlString = UnlabelHelper.getDefaultValue("operations_agreement_url")!
       }
       else if segue.identifier == "PrivatePolicy"{
-         unlabelLegalVC.navTitle = "Private Policy"
+         unlabelLegalVC.navTitle = "Privacy Policy"
         unlabelLegalVC.urlString = UnlabelHelper.getDefaultValue("privacy_policy_url")!
       }
       else if segue.identifier == "TermsAndConditions"{

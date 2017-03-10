@@ -11,20 +11,22 @@ import TPKeyboardAvoiding
 import SwiftyJSON
 
 class EditProfileVC: UIViewController {
+  
+  //MARK: -  IBOutlets,vars,constants
+  
   @IBOutlet weak var IBTextfieldFullname: UITextField!
   @IBOutlet weak var IBLabelFullname: UILabel!
   @IBOutlet weak var IBViewfullname: UIView!
-  
   @IBOutlet weak var IBLabelLastname: UILabel!
   @IBOutlet weak var IBtextfieldLastname: UITextField!
   @IBOutlet weak var IBViewLastname: UIView!
-  
   @IBOutlet weak var IBLabelEmail: UILabel!
   @IBOutlet weak var IBtextfieldEmail: UITextField!
   @IBOutlet weak var IBViewEmail: UIView!
-  
   @IBOutlet weak var IBTextfieldContactNumber: UITextField!
   @IBOutlet weak var IBTextfieldUsername: UITextField!
+  
+  //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,15 +38,12 @@ class EditProfileVC: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  //MARK: -  IBAction methods
+  
   @IBAction func IBActionUpdate(_ sender: Any) {
-    
-    print(IBTextfieldFullname.text!)
-    print(IBtextfieldLastname.text!)
-    print(IBTextfieldContactNumber.text!)
     if !isValidEmail() {
       // shows alert in isValidEmail() method
-    }else if !(IBTextfieldFullname.text?.isEmpty)! || !(IBtextfieldLastname.text?.isEmpty)! || !(IBTextfieldContactNumber.text?.isEmpty)!{
-      
+    }else if (IBTextfieldFullname.text?.isEmpty)! || (IBtextfieldLastname.text?.isEmpty)! || (IBTextfieldContactNumber.text?.isEmpty)!{
       UnlabelHelper.showAlert(onVC: self, title: "Empty Input", message: "Please provide value for all field.", onOk: {})
     }
     else{
@@ -55,6 +54,9 @@ class EditProfileVC: UIViewController {
     
     _ = self.navigationController?.popViewController(animated: true)
   }
+  
+  
+  //MARK: -  Custom methods
   
   func getInfluencerProfileInfo() {
     UnlabelAPIHelper.sharedInstance.getProfileInfo( self, success:{ (
@@ -90,9 +92,11 @@ class EditProfileVC: UIViewController {
       
     }, failed: { (error) in
     })
-    
   }
 }
+
+//MARK: -  UITextfield delegate methods
+
 extension EditProfileVC: UITextFieldDelegate{
   fileprivate func isValidEmail()->Bool{
     if let email = IBtextfieldEmail.text, email.characters.count > 0{

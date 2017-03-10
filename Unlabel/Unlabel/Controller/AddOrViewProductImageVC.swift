@@ -136,6 +136,7 @@ class AddOrViewProductImageVC: UIViewController {
   @IBAction func IBActionRemovePhoto(_ sender: UIButton) {
     print("button index \(sender.tag)")
     let product: ProductImages = productImageArray[sender.tag]
+    print("product index \(product.pId)")
     displayOrder = product.pDisplayOrder
     removeProductImages()
     //print(displayOrder)

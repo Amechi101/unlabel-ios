@@ -1028,9 +1028,10 @@ class UnlabelAPIHelper{
                     
                 case .success(let data):
                     let json = JSON(data)
+                    debugPrint(json)
                     if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
                         success(arrBrands, json)
-                        //  debugPrint(arrBrands)
+                          debugPrint(arrBrands)
                     }else{
                         failed(NSError(domain: "No brand found", code: 0, userInfo: nil))
                     }        case .failure(let error):
@@ -1269,10 +1270,12 @@ class UnlabelAPIHelper{
             
             Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: URLEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
                 .responseJSON { response in
+                  print(response.result)
                     switch response.result {
                         
                     case .success(let data):
                         let json = JSON(data)
+                        print(json)
                         success(json)
                     case .failure(let error):
                         print(error.localizedDescription)

@@ -13,19 +13,43 @@ import SDWebImage
 
 class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
   
+  //MARK: -  IBOutlets,vars,constants
+  
   @IBOutlet var IBImageSelected: UIImageView!
   @IBOutlet var IBTextViewNote: UITextView!
   @IBOutlet weak var IBButtonUpdate: UIButton!
-  
   @IBOutlet var views: UIView!
-  override func viewDidLoad() {
+  var placeholderLabel : UILabel!
+  
+  //MARK: -  View lifecycle methods
+  
+   override func viewDidLoad() {
     super.viewDidLoad()
     IBImageSelected.clipsToBounds = true
     IBTextViewNote.delegate = self
     IBButtonUpdate.isHidden = true
+    placeholderLabel = UILabel()
+    placeholderLabel.text = "Start writing your Bio here..."
+    placeholderLabel.font = UnlabelHelper.getNeutraface2Text(style: "Book", size: 16.0)
+    placeholderLabel.sizeToFit()
+    placeholderLabel.frame.origin = CGPoint(x: 5, y: (IBTextViewNote.font?.pointSize)! / 2)
+    placeholderLabel.textColor = LIGHT_GRAY_TEXT_COLOR
+    placeholderLabel.isHidden = !IBTextViewNote.text.isEmpty
+    IBTextViewNote.addSubview(placeholderLabel)
     getInfluencerProfileBio()
-    // Do any additional setup after loading the view, typically from a nib.
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+  //MARK: -  Custom methods
   
   func getInfluencerProfileBio() {
     
@@ -35,11 +59,25 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
       DispatchQueue.main.async(execute: { () -> Void in
         self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
         self.IBTextViewNote.text = meta["bio"].stringValue
+        self.placeholderLabel.isHidden = !self.IBTextViewNote.text.isEmpty
       })
 
     }, failed: { (error) in
     })
   }
+  
+  func getCSRFToken() -> String{
+    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
+      return xcsrf
+    }
+    else{
+      return ""
+    }
+  }
+
+  
+  //MARK: -  IBAction methods
+  
   @IBAction func IBActionChangeImage(_ sender: Any) {
     showActionSheet()
   }
@@ -47,15 +85,10 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     
     
     let imageName: String = UnlabelHelper.getDefaultValue("influencer_auto_id")! + UnlabelHelper.getcurrentDateTime() + ".jpeg"
-    
-   // print(imageName)
     let parameters = [
       "image": imageName,"bio": IBTextViewNote.text!
     ]
     let image = IBImageSelected.image
-    
-    
-    print(getCSRFToken())
     Alamofire.upload(multipartFormData: {
       multipartFormData in
       
@@ -92,26 +125,14 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     })
   }
   
-  func getCSRFToken() -> String{
-    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
-      return xcsrf
-    }
-    else{
-      return ""
-    }
-  }
   
   
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
 
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-  }
+  
+  //MARK: -  Keyboard show/hide methods
   
   func keyboardWillShow(notification: NSNotification) {
     
@@ -130,6 +151,9 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
       }
     }
   }
+  
+  //MARK: -  UITextView delegate methods
+  
   func textViewDidBeginEditing(_ textView: UITextView){
     IBTextViewNote.textColor = DARK_GRAY_COLOR
   }
@@ -140,6 +164,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     }
   }
   func textViewDidChange(_ textView: UITextView){
+    self.placeholderLabel.isHidden = !textView.text.isEmpty
     if IBTextViewNote.text != ""{
       IBButtonUpdate.isHidden = false
       IBTextViewNote.textColor = DARK_GRAY_COLOR
@@ -156,12 +181,8 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
     return true
   }
   
+  //MARK: -  Image picker view methods
   
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
   func camera()
   {
     let myPickerController = UIImagePickerController()

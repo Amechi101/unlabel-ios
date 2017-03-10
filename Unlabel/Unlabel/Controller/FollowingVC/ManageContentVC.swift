@@ -42,7 +42,8 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    IBButtonSortMode.isHidden = true
+    self.IBCollectionViewTopConstraint.constant = 8.0
     setUpCollectionView()
     self.tabBarController?.delegate = self
     getReservedProducts()
@@ -133,7 +134,14 @@ extension ManageContentVC{
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
-        self.IBCollectionViewTopConstraint.constant = 44.0
+        if self.arrFilteredBrandList.count>0{
+          self.IBCollectionViewTopConstraint.constant = 44.0
+          self.IBButtonSortMode.isHidden = false
+        }
+        else{
+          self.IBCollectionViewTopConstraint.constant = 8.0
+          self.IBButtonSortMode.isHidden = true
+        }
       }
       else{
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
@@ -184,6 +192,15 @@ extension ManageContentVC{
             print("*** Meta *** \(meta)")
             self.arrMenBrandList.append(contentsOf: arrBrands)
             self.arrFilteredBrandList = self.arrMenBrandList
+          
+            if self.arrFilteredBrandList.count>0{
+              self.IBCollectionViewTopConstraint.constant = 44.0
+              self.IBButtonSortMode.isHidden = false
+            }
+            else{
+              self.IBCollectionViewTopConstraint.constant = 8.0
+              self.IBButtonSortMode.isHidden = true
+            }
             self.IBCollectionViewContent.reloadData()
         }, failed: { (error) in
         })
@@ -313,13 +330,13 @@ extension ManageContentVC: UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
     
     if contentStatus == ContentStatus.reserve || contentStatus == ContentStatus.rent{
-      return CGSize(width: collectionView.frame.width, height: 50.0)
+      return CGSize(width: collectionView.frame.width, height: 55.0)
     }
     else if contentStatus == ContentStatus.live{
       return CGSize(width: collectionView.frame.width, height: 25.0)
     }
     else{
-      return CGSize(width: collectionView.frame.width, height: 50.0)
+      return CGSize(width: collectionView.frame.width, height: 55.0)
     }
     
   }

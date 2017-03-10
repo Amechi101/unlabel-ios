@@ -172,15 +172,15 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     feedVC?.sFilterLocation = self.selectedLocation
     
     if IBButtonMenswear.isSelected && IBButtonWomenswear.isSelected{
-        feedVC?.sFilterStoreType = "8"
+        feedVC?.sFilterStoreType = "1,2"
       feedVC?.filteredNavTitle = "UNISEX"
     }
     else if IBButtonWomenswear.isSelected{
-        feedVC?.sFilterStoreType = "7"
+        feedVC?.sFilterStoreType = "2"
       feedVC?.filteredNavTitle = "WOMENSWEAR"
     }
     else if IBButtonMenswear.isSelected{
-        feedVC?.sFilterStoreType = "6"
+        feedVC?.sFilterStoreType = "1"
       feedVC?.filteredNavTitle = "MENSWEAR"
     }
     else{
@@ -200,7 +200,10 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
             print(filteredObject.typeId)
             if filterListController.categoryStyleType == CategoryStyleEnum.category {
                 self.arSelectedCategory.append(filteredObject.typeId)
-                self.selectedCategory = self.arSelectedCategory.joined(separator: ",")
+              let paramsJSON = JSON(self.arSelectedCategory)
+              self.selectedCategory = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))
+           //   let paramsString = paramsJSON.rawString(encoding: NSUTF8StringEncoding, options: nil)
+            //    self.selectedCategory = self.arSelectedCategory.joined(separator: ",")
                 self.IBButtonBrandCategory.setTitle("\(self.arSelectedCategory.count)" + " Categorie(s)", for: .normal)
             }
             else if filterListController.categoryStyleType == CategoryStyleEnum.style {
