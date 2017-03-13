@@ -223,7 +223,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-4818" y="654"/>
+            <point key="canvasLocation" x="-5025" y="301"/>
         </scene>
         <!--Common TableVC-->
         <scene sceneID="AqM-fK-I1R">
@@ -314,7 +314,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VuR-nQ-mM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3172" y="3285"/>
+            <point key="canvasLocation" x="-3586" y="996"/>
         </scene>
         <!--ProductVC-->
         <scene sceneID="Ptv-MT-4gb">
@@ -406,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGd-SX-WdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4001" y="654"/>
+            <point key="canvasLocation" x="-4326" y="301"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="PLw-F3-4p9">
@@ -726,7 +726,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KkZ-zP-o4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4674" y="7928"/>
+            <point key="canvasLocation" x="-4674" y="7926"/>
         </scene>
         <!--Account InfoVC-->
         <scene sceneID="XAP-it-Q55">
@@ -877,7 +877,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
-                                                    <rect key="frame" x="22" y="0.0" width="117" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="116.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -945,7 +945,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
-                                                    <rect key="frame" x="22" y="0.0" width="133" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="132.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1079,7 +1079,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uu-7z-vQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4818" y="4084"/>
+            <point key="canvasLocation" x="-5026" y="3139"/>
         </scene>
         <!--Influencer StatsVC-->
         <scene sceneID="LVI-9b-KMP">
@@ -1177,7 +1177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KrQ-Fc-lOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1968.8" y="3822.6386806596706"/>
+            <point key="canvasLocation" x="-4327" y="3139"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="XX2-jv-RkF">
@@ -1198,7 +1198,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commission Earnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBP-9o-dlK">
-                                                    <rect key="frame" x="22" y="0.0" width="144" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="143.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1264,7 +1264,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdo-eb-MCB">
-                                                    <rect key="frame" x="22" y="0.0" width="76" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="75.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1361,7 +1361,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfe-zK-NU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4818" y="4806"/>
+            <point key="canvasLocation" x="-5202" y="4196"/>
         </scene>
         <!--Current LocationVC-->
         <scene sceneID="56b-p0-9yq">
@@ -1573,7 +1573,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NeQ-sn-hNR">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1604,7 +1604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27W-ua-rHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3910" y="5161"/>
+            <point key="canvasLocation" x="-4127" y="4196"/>
         </scene>
         <!--Physical AttributesVC-->
         <scene sceneID="S5a-eT-HfJ">
@@ -1993,7 +1993,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21J-OP-u6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3530.4000000000001" y="4510.794602698651"/>
+            <point key="canvasLocation" x="-3423" y="4196"/>
         </scene>
         <!--Enter CityVC-->
         <scene sceneID="mgO-lY-7w0">
@@ -2108,7 +2108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4n-Ly-7z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3218" y="5160"/>
+            <point key="canvasLocation" x="-4127" y="4904"/>
         </scene>
         <!--Change NameVC-->
         <scene sceneID="YvM-qf-ccH">
@@ -2807,7 +2807,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAz-CZ-PaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2384.8000000000002" y="1238.2308845577213"/>
+            <point key="canvasLocation" x="-3534" y="1665"/>
         </scene>
         <!--Product Info View Controller-->
         <scene sceneID="sK7-Yi-L37">
@@ -2959,7 +2959,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfE-ED-Jzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-588" y="1552.1739130434785"/>
+            <point key="canvasLocation" x="-2790" y="1552"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="uGM-YG-3j7">
@@ -3288,7 +3288,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzP-AU-LlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4440.8000000000002" y="3284.707646176912"/>
+            <point key="canvasLocation" x="-5025" y="997"/>
         </scene>
         <!--Banner View Controller-->
         <scene sceneID="r2x-Cg-R4I">
@@ -3734,7 +3734,7 @@ See more info </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixi-zl-1Oe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7124" y="1685"/>
+            <point key="canvasLocation" x="-7372" y="1684"/>
         </scene>
         <!--Sign Up EntryVC-->
         <scene sceneID="DqF-RE-bVF">
@@ -4050,7 +4050,7 @@ See more info </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ofQ-gt-oJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5554" y="654"/>
+            <point key="canvasLocation" x="-5730" y="301"/>
         </scene>
         <!--FilterVC-->
         <scene sceneID="aLY-uj-DIK">
@@ -4065,7 +4065,7 @@ See more info </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31d-0R-aD5">
-                                <rect key="frame" x="162.5" y="25" width="51" height="30"/>
+                                <rect key="frame" x="163.5" y="25" width="49.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Jg7-tO-Kdm"/>
                                 </constraints>
@@ -4074,7 +4074,7 @@ See more info </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-BD-OPU" userLabel="clear button">
-                                <rect key="frame" x="299" y="22" width="60" height="39"/>
+                                <rect key="frame" x="299" y="23.5" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="l3z-BD-OPU" secondAttribute="height" multiplier="23:15" id="cRT-0v-3Go"/>
                                     <constraint firstAttribute="width" constant="60" id="wf6-zv-WKT"/>
@@ -4192,7 +4192,7 @@ See more info </string>
                     <navigationItem key="navigationItem" id="G6l-te-NTi">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Oab-qz-8dM">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
@@ -4210,7 +4210,7 @@ See more info </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-yk-3zN" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4794" y="2399"/>
+            <point key="canvasLocation" x="-5026" y="2399"/>
         </scene>
         <!--Filter List Controller-->
         <scene sceneID="2DY-lZ-rE9">
@@ -4389,7 +4389,7 @@ See more info </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ood-Ek-fMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5514" y="2399"/>
+            <point key="canvasLocation" x="-5730" y="2399"/>
         </scene>
         <!--Manage ContentVC-->
         <scene sceneID="4dr-ht-6ob">
@@ -4412,6 +4412,7 @@ See more info </string>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZl-Mw-5o3">
                                                 <rect key="frame" x="0.0" y="0.0" width="75.5" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Reserved">
                                                     <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -4422,6 +4423,7 @@ See more info </string>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxE-K1-htB">
                                                 <rect key="frame" x="75.5" y="0.0" width="75" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Rented">
                                                     <color key="titleColor" red="0.8862745098" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -4432,6 +4434,7 @@ See more info </string>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytT-Jd-yUu">
                                                 <rect key="frame" x="150.5" y="0.0" width="75.5" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Live">
                                                     <color key="titleColor" red="0.8862745098" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -4468,7 +4471,7 @@ See more info </string>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lc9-eb-ZGg">
-                                <rect key="frame" x="22" y="124" width="331" height="494"/>
+                                <rect key="frame" x="22" y="128" width="331" height="490"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vlK-Ca-x3n">
                                     <size key="itemSize" width="50" height="50"/>
@@ -4495,7 +4498,7 @@ See more info </string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j0h-Hz-pLj" firstAttribute="centerX" secondItem="dPg-LK-mZe" secondAttribute="centerX" id="JPI-vd-aUR"/>
-                            <constraint firstItem="Lc9-eb-ZGg" firstAttribute="top" secondItem="Hz1-Iz-Fd2" secondAttribute="bottom" constant="8" id="UKN-mh-Qwy"/>
+                            <constraint firstItem="Lc9-eb-ZGg" firstAttribute="top" secondItem="Hz1-Iz-Fd2" secondAttribute="bottom" constant="12" id="UKN-mh-Qwy"/>
                             <constraint firstItem="Lek-A6-e1T" firstAttribute="top" secondItem="Lc9-eb-ZGg" secondAttribute="bottom" id="XZP-MB-xQn"/>
                             <constraint firstItem="S0Z-uV-DbK" firstAttribute="centerX" secondItem="dPg-LK-mZe" secondAttribute="centerX" id="gv8-TX-xrF"/>
                             <constraint firstItem="S0Z-uV-DbK" firstAttribute="top" secondItem="j0h-Hz-pLj" secondAttribute="bottom" constant="8" id="pkH-jb-rfc"/>
@@ -4528,7 +4531,7 @@ See more info </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FrP-af-cAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4794" y="1650"/>
+            <point key="canvasLocation" x="-5025" y="1684"/>
         </scene>
         <!--View Rental InfoVC-->
         <scene sceneID="tma-4h-W1y">
@@ -4953,7 +4956,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIi-Z0-0oJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3974" y="2345"/>
+            <point key="canvasLocation" x="-4290" y="942"/>
         </scene>
         <!--Profile-->
         <scene sceneID="2Hm-Jl-7vq">
@@ -4972,7 +4975,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ht8-Zp-Bcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5514" y="4084"/>
+            <point key="canvasLocation" x="-5730" y="3139"/>
         </scene>
         <!--Tabbar Controller-->
         <scene sceneID="JaQ-qt-DgU">
@@ -4995,7 +4998,7 @@ Sunday: 9am-8pm</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvg-KG-Nnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6210" y="1686"/>
+            <point key="canvasLocation" x="-6698" y="1684"/>
         </scene>
         <!--Manage Content-->
         <scene sceneID="uuD-nb-Yru">
@@ -5014,7 +5017,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVx-oK-DgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5514" y="1651"/>
+            <point key="canvasLocation" x="-5730" y="1684"/>
         </scene>
         <!--Rent Or Live Product DetailVC-->
         <scene sceneID="tRZ-1g-Mj3">
@@ -5396,7 +5399,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA1-iu-JlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2386.4000000000001" y="1974.5127436281862"/>
+            <point key="canvasLocation" x="-3585" y="2376"/>
         </scene>
         <!--Add Product NoteVC-->
         <scene sceneID="P2o-qK-Rs4">
@@ -5472,7 +5475,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dVo-93-daE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290.4000000000001" y="2791.7541229385311"/>
+            <point key="canvasLocation" x="-1455" y="2374"/>
         </scene>
         <!--Rent Live Product Description-->
         <scene sceneID="gHn-ib-DQ5">
@@ -5644,7 +5647,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c82-5b-26y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1567" y="2320"/>
+            <point key="canvasLocation" x="-2873" y="2319"/>
         </scene>
         <!--Add Or View Product ImageVC-->
         <scene sceneID="dQf-YO-jTI">
@@ -5729,7 +5732,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEP-7j-fh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-588" y="2069"/>
+            <point key="canvasLocation" x="-1455" y="1684"/>
         </scene>
         <!--Product StatsVC-->
         <scene sceneID="30a-Au-Gba">
@@ -5835,7 +5838,7 @@ Sunday: 9am-8pm</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWv-TA-QAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="3193.8530734632686"/>
+            <point key="canvasLocation" x="-3586" y="3139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="op8-U7-cds">
@@ -5853,7 +5856,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RJ-OJ-lzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3218.4000000000001" y="1975.8620689655174"/>
+            <point key="canvasLocation" x="-4252" y="2377"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FvS-iW-QHe">
@@ -5871,7 +5874,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wu1-0D-CpL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3324" y="1238.2308845577213"/>
+            <point key="canvasLocation" x="-4290" y="1684"/>
         </scene>
         <!--Edit Profile BioVC-->
         <scene sceneID="GEY-ON-dL2">
@@ -5984,7 +5987,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLH-w3-zbt" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1180" y="3822.6386806596706"/>
+            <point key="canvasLocation" x="-1978" y="4196"/>
         </scene>
         <!--Edit ProfileVC-->
         <scene sceneID="6R0-lX-lV3">
@@ -6214,7 +6217,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gN1-US-N2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2265" y="4196"/>
+            <point key="canvasLocation" x="-2708" y="4196"/>
         </scene>
         <!--Legal AgreementVC-->
         <scene sceneID="eAD-OV-ne4">
@@ -6514,7 +6517,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Clu-QO-tCn">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6602,7 +6605,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sAr-eQ-frR">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6628,7 +6631,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf4-gC-vAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4562" y="6332"/>
+            <point key="canvasLocation" x="-3708" y="5575"/>
         </scene>
         <!--Deposit EarningVC-->
         <scene sceneID="5fT-5q-PaA">
@@ -6791,7 +6794,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oq0-YC-bIk">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6831,7 +6834,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pME-gR-YML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5860" y="6333"/>
+            <point key="canvasLocation" x="-5913" y="6331"/>
         </scene>
         <!--Bank InfoVC-->
         <scene sceneID="XYu-UW-j8r">
@@ -7052,7 +7055,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yp3-Ag-yRd">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -7077,7 +7080,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ec-Nv-DIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5202" y="6332"/>
+            <point key="canvasLocation" x="-5238" y="6331"/>
         </scene>
         <!--Bank ConfirmVC-->
         <scene sceneID="DPJ-TT-j5V">
@@ -7156,7 +7159,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6f-Sm-apD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5143.1999999999998" y="6995.3523238380812"/>
+            <point key="canvasLocation" x="-4562" y="6331"/>
         </scene>
         <!--Search-->
         <scene sceneID="ct1-zH-hnr">
@@ -7175,7 +7178,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4TW-8e-p0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5380" y="3284.707646176912"/>
+            <point key="canvasLocation" x="-5730" y="997"/>
         </scene>
     </scenes>
     <resources>
@@ -7198,8 +7201,8 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I9u-l7-rZc"/>
         <segue reference="Szm-2m-6Ro"/>
+        <segue reference="I9u-l7-rZc"/>
         <segue reference="J5P-PC-vHa"/>
     </inferredMetricsTieBreakers>
 </document>

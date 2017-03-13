@@ -285,7 +285,7 @@ extension ProductVC:UICollectionViewDelegateFlowLayout{
       }
     }
     else{
-      return CGSize(width: (collectionView.frame.size.width)/2.2, height: 271.0)
+      return CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0)
     }
   }
 }
@@ -647,8 +647,11 @@ extension ProductVC{
     if let shareImageObj = shareImage{
       objectsToShare.append(shareImageObj)
     }
+    if selectedBrand.shareUrl?.absoluteString != ""{
+      objectsToShare.append(selectedBrand.shareUrl as AnyObject)
+    }
     
-    if shareText != nil || shareImage != nil{
+    if shareText != nil || shareImage != nil || selectedBrand.shareUrl?.absoluteString != ""{
       let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       activityViewController.popoverPresentationController?.sourceView = self.view
       

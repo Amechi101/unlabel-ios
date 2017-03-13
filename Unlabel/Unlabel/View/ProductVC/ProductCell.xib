@@ -17,14 +17,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="gTV-IL-0wX" customClass="ProductCell" customModule="Unlabel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="216" height="271"/>
+            <rect key="frame" x="0.0" y="0.0" width="216" height="260"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="216" height="271"/>
+                <rect key="frame" x="0.0" y="0.0" width="216" height="260"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-NP-8An">
-                        <rect key="frame" x="0.0" y="0.0" width="216" height="271"/>
+                        <rect key="frame" x="0.0" y="0.0" width="216" height="260"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Itb-hf-DVC">
                                 <rect key="frame" x="0.0" y="0.0" width="216" height="200"/>
@@ -33,7 +33,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jocelyn off shoulder..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2p-bU-cui">
-                                <rect key="frame" x="10" y="225" width="196" height="14"/>
+                                <rect key="frame" x="10" y="214" width="196" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Boz-YF-xTL"/>
                                 </constraints>
@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqs-8C-thh">
-                                <rect key="frame" x="10" y="247" width="196" height="14"/>
+                                <rect key="frame" x="10" y="236" width="196" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Qbv-dl-Ehp"/>
                                 </constraints>
@@ -51,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="b3W-ys-RhA">
-                                <rect key="frame" x="0.0" y="0.0" width="216" height="271"/>
+                                <rect key="frame" x="0.0" y="0.0" width="216" height="260"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -71,7 +71,7 @@
                             <constraint firstAttribute="trailing" secondItem="E2p-bU-cui" secondAttribute="trailing" constant="10" id="o8Q-Cb-VA0"/>
                             <constraint firstItem="vqs-8C-thh" firstAttribute="top" secondItem="E2p-bU-cui" secondAttribute="bottom" constant="8" id="rBV-tP-BaI"/>
                             <constraint firstItem="Itb-hf-DVC" firstAttribute="leading" secondItem="Zof-NP-8An" secondAttribute="leading" id="xFI-xw-1rc"/>
-                            <constraint firstItem="E2p-bU-cui" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Itb-hf-DVC" secondAttribute="bottom" constant="15" id="zBG-fu-6pS"/>
+                            <constraint firstItem="E2p-bU-cui" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Itb-hf-DVC" secondAttribute="bottom" constant="10" id="zBG-fu-6pS"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -82,14 +82,14 @@
                 <constraint firstItem="Zof-NP-8An" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eNR-Bb-926"/>
                 <constraint firstAttribute="trailing" secondItem="Zof-NP-8An" secondAttribute="trailing" id="tCT-82-R1u"/>
             </constraints>
-            <size key="customSize" width="216" height="261"/>
+            <size key="customSize" width="216" height="250"/>
             <connections>
                 <outlet property="IBactivityIndicator" destination="b3W-ys-RhA" id="iMd-SQ-O33"/>
                 <outlet property="IBimgProductImage" destination="Itb-hf-DVC" id="iyy-Dt-F3u"/>
                 <outlet property="IBlblProductName" destination="E2p-bU-cui" id="2M2-Pz-oqv"/>
                 <outlet property="IBlblProductPrice" destination="vqs-8C-thh" id="2T8-PB-VuL"/>
             </connections>
-            <point key="canvasLocation" x="188" y="354.5"/>
+            <point key="canvasLocation" x="188" y="349"/>
         </collectionViewCell>
     </objects>
     <resources>

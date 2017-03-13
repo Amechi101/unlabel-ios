@@ -147,11 +147,9 @@ extension LoginEntryVC{
     })
   }
   
-
   func getInfluencerDetails(){
     UnlabelAPIHelper.sharedInstance.getProfileDetails({ (
       meta: JSON) in
-      print(meta)
       UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
       UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
       UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")

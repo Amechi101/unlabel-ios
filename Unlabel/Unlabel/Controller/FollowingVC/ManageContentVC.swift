@@ -253,6 +253,7 @@ extension ManageContentVC: UICollectionViewDataSource{
       IBCollectionViewContent.backgroundView?.isHidden = false
     }
     return arrFilteredBrandList.count
+    
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -266,13 +267,9 @@ extension ManageContentVC: UICollectionViewDataSource{
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBCollectionViewContent.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
     productCell.IBlblProductName.text = (arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName).capitalized
-    
-    //"Armani Jeans"//arrProducts[indexPath.row - 3].ProductName
-    productCell.IBlblProductPrice.text = "$ " + arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice//"$ 120.0" //"$" + arrProducts[indexPath.row - 3].ProductPrice
+    productCell.IBlblProductPrice.text = "$ " + arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
-    
-    
-    print("product id ******  \(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductID)")
+   // print("product id ******  \(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductID)")
     
     
     if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
@@ -359,7 +356,8 @@ extension ManageContentVC: UICollectionViewDataSource{
 
 extension ManageContentVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: (collectionView.frame.size.width)/2.2, height: 271.0)
+    print(CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0))
+    return CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0)
   }
 }
 //MARK: Sort Popup methods

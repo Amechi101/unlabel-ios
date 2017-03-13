@@ -27,6 +27,8 @@ class Brand {
   var latitude:String = String()
   var longitude:String = String()
   
+  var shareUrl:URL?
+  
   //Sex
   var Menswear:Bool = Bool()
   var Womenswear:Bool = Bool()

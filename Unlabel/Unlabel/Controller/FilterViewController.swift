@@ -93,6 +93,11 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
+      //print(meta)
+    }, failed: { (error) in
+    })
+    
     selectedLocation = ""
     selectedCategory = ""
     selectedStyle = ""
@@ -112,19 +117,28 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   //MARK: -  IBAction methods
   
   @IBAction func IBActionStoreType(_ sender: UIButton) {
-        UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
-          print(meta)
-        }, failed: { (error) in
-        })
     
-    print(sender.tag)
-    sender.isSelected = !sender.isSelected
-    print(sender.isSelected)
-    if !sender.isSelected{
-      sender.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
+    if sender.tag == 0{
+      sender.isSelected = !sender.isSelected
+      IBButtonWomenswear.isSelected = false
+      if !sender.isSelected{
+        sender.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
+      }
+      else{
+        sender.setBorderColor(LIGHT_GRAY_BORDER_COLOR,textColor: MEDIUM_GRAY_TEXT_COLOR)
+      }
+      IBButtonWomenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
     }
     else{
-      sender.setBorderColor(LIGHT_GRAY_BORDER_COLOR,textColor: MEDIUM_GRAY_TEXT_COLOR)
+      IBButtonMenswear.isSelected = false
+      sender.isSelected = !sender.isSelected
+      if !sender.isSelected{
+        sender.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
+      }
+      else{
+        sender.setBorderColor(LIGHT_GRAY_BORDER_COLOR,textColor: MEDIUM_GRAY_TEXT_COLOR)
+      }
+      IBButtonMenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
     }
   }
   @IBAction func IBActionCategory(_ sender: Any) {

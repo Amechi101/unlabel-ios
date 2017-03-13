@@ -138,7 +138,11 @@ class UnlabelAPIHelper{
                 if let name = thisBrand["name"] as? String{
                     brand.Name = name
                 }
-                
+                if let share_url = thisBrand["share_url"] as? String{
+                  
+                  brand.shareUrl = URL(string: share_url)!
+                }
+
                 if let slug = thisBrand[PRM_SLUG] as? String{
                     brand.Slug = slug
                 }
