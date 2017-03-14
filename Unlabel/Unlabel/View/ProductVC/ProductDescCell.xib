@@ -17,26 +17,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductDescCell" id="gTV-IL-0wX" customClass="ProductDescCell" customModule="Unlabel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="361" height="62"/>
+            <rect key="frame" x="0.0" y="0.0" width="361" height="210"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="361" height="62"/>
+                <rect key="frame" x="0.0" y="0.0" width="361" height="210"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3e-o8-aCE">
-                        <rect key="frame" x="120" y="57" width="120" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_gray" translatesAutoresizingMaskIntoConstraints="NO" id="61g-XF-sfD">
+                        <rect key="frame" x="120" y="12" width="120" height="120"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="YUj-18-pmS"/>
-                            <constraint firstAttribute="width" constant="120" id="ni2-qU-YBh"/>
+                            <constraint firstAttribute="width" constant="120" id="LjC-sg-dn1"/>
+                            <constraint firstAttribute="height" constant="120" id="taG-cg-jmX"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
-                        <color key="textColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-HL-LhF">
-                        <rect key="frame" x="10" y="0.0" width="341" height="50"/>
+                        <rect key="frame" x="10" y="144" width="341" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="Xdl-r2-gZJ"/>
+                            <constraint firstAttribute="height" constant="50" id="WqX-Fj-5gd"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,18 +42,20 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="10" id="0NN-sJ-WWr"/>
-                <constraint firstItem="Soa-HL-LhF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8ah-ga-CZb"/>
-                <constraint firstItem="U3e-o8-aCE" firstAttribute="top" secondItem="Soa-HL-LhF" secondAttribute="bottom" constant="7" id="U2q-QA-Q3Q"/>
-                <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="fuK-aS-E5S"/>
-                <constraint firstItem="U3e-o8-aCE" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xPJ-Kz-bZp"/>
+                <constraint firstItem="Soa-HL-LhF" firstAttribute="top" secondItem="61g-XF-sfD" secondAttribute="bottom" constant="12" id="5Es-dI-rUA"/>
+                <constraint firstItem="61g-XF-sfD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="BoR-Ax-Are"/>
+                <constraint firstItem="61g-XF-sfD" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FPz-jP-oTr"/>
+                <constraint firstItem="Soa-HL-LhF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="ake-Dn-epA"/>
+                <constraint firstAttribute="trailing" secondItem="Soa-HL-LhF" secondAttribute="trailing" constant="10" id="nbS-t4-B0M"/>
             </constraints>
-            <size key="customSize" width="361" height="62"/>
+            <size key="customSize" width="361" height="204"/>
             <connections>
                 <outlet property="IBlblDesc" destination="Soa-HL-LhF" id="Spn-tL-dzT"/>
-                <outlet property="IBlblLocation" destination="U3e-o8-aCE" id="8M7-Rl-AgD"/>
             </connections>
-            <point key="canvasLocation" x="387.5" y="271"/>
+            <point key="canvasLocation" x="387.5" y="342"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="logo_gray" width="159" height="160"/>
+    </resources>
 </document>

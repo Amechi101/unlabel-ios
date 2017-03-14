@@ -36,6 +36,7 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   var sortMode: String = "NEW"
   var sortModeValue: String = "Newest to Oldest"
   var cur_rentalInfo: RentalInfo = RentalInfo()
+  var notFoundView: NotFoundView = NotFoundView()
     fileprivate var arrFilteredBrandList:[Brand] = []
     fileprivate var arrMenBrandList:[Brand] = [Brand]()
   //MARK: -  View lifecycle methods
@@ -96,10 +97,10 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
 extension ManageContentVC:NotFoundViewDelegate{
 
   func addNotFoundView(){
-    let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
+    notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.showViewLabelBtn = false
-    notFoundView.IBlblMessage.text = "No products to show."
+    notFoundView.IBlblMessage.text = "No reserved products yet."
     IBCollectionViewContent.backgroundView = notFoundView
     IBCollectionViewContent.backgroundView?.isHidden = true
   }
@@ -119,18 +120,21 @@ extension ManageContentVC{
   func updateToggleButton(){
     UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
       if self.contentStatus == ContentStatus.reserve{
+        self.notFoundView.IBlblMessage.text = "No reserved products yet."
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBCollectionViewTopConstraint.constant = 8.0
       }
       else if self.contentStatus == ContentStatus.rent{
+        self.notFoundView.IBlblMessage.text = "No rented products yet."
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBCollectionViewTopConstraint.constant = 8.0
       }
       else if self.contentStatus == ContentStatus.live{
+        self.notFoundView.IBlblMessage.text = "No live products yet."
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)

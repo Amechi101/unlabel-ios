@@ -12,6 +12,9 @@
         <array key="Neutraface2Text-Book.otf">
             <string>Neutraface2Text-Book</string>
         </array>
+        <array key="Neutraface2Text-Demi.otf">
+            <string>Neutraface2Text-Demi</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductVC" customModule="Unlabel" customModuleProvider="target"/>
@@ -76,6 +79,21 @@
                                     <constraint firstAttribute="width" constant="49" id="VnD-ec-CZb"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-dm-Nug">
+                                <rect key="frame" x="163" y="259.5" width="71" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="D3w-9y-dSs"/>
+                                    <constraint firstAttribute="width" constant="71" id="LBB-XG-zTY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                <state key="normal" title="... See More">
+                                    <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionSeeMore:" destination="-1" eventType="touchUpInside" id="i4U-dB-71j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -91,6 +109,8 @@
                             <constraint firstItem="jz7-vf-L4U" firstAttribute="top" secondItem="R4I-bl-da2" secondAttribute="bottom" constant="4" id="c1J-X1-zYf"/>
                             <constraint firstItem="B7r-Hc-yzN" firstAttribute="leading" secondItem="Lzb-hZ-6qd" secondAttribute="trailing" id="d5z-4k-nUw"/>
                             <constraint firstAttribute="trailing" secondItem="B7r-Hc-yzN" secondAttribute="trailing" id="ewc-AA-Zxw"/>
+                            <constraint firstItem="MRw-dm-Nug" firstAttribute="baseline" secondItem="Lzb-hZ-6qd" secondAttribute="baseline" id="gSP-b8-aWm"/>
+                            <constraint firstItem="MRw-dm-Nug" firstAttribute="trailing" secondItem="Lzb-hZ-6qd" secondAttribute="trailing" constant="-2" id="qUj-ED-5RL"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="top" secondItem="oK7-AS-j1g" secondAttribute="top" id="xBg-iE-oh4"/>
                         </constraints>
                     </view>
@@ -107,6 +127,7 @@
                 <outlet property="IBBrandDescription" destination="Lzb-hZ-6qd" id="aWR-DJ-7hf"/>
                 <outlet property="IBBrandLocation" destination="R4I-bl-da2" id="Hok-7K-X7L"/>
                 <outlet property="IBbtnFollow" destination="B7r-Hc-yzN" id="UhI-bX-6tg"/>
+                <outlet property="IBbtnSeeMore" destination="MRw-dm-Nug" id="s5F-my-6ME"/>
                 <outlet property="IBimgHeaderImage" destination="LbP-c8-M68" id="LZA-Y6-VnD"/>
             </connections>
             <point key="canvasLocation" x="211" y="184"/>

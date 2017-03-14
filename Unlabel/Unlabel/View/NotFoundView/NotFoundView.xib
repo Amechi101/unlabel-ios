@@ -40,27 +40,24 @@
                     <state key="normal" image="X"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not following any brands." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bes-q7-bD7">
-                    <rect key="frame" x="22" y="295" width="331" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="A6x-lq-S03"/>
-                    </constraints>
+                    <rect key="frame" x="22" y="288" width="331" height="15"/>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="15"/>
                     <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g4-D5-wvo" userLabel="Horizontal Line">
-                    <rect key="frame" x="146.5" y="355" width="82" height="1"/>
+                    <rect key="frame" x="146" y="331" width="82" height="1"/>
                     <color key="backgroundColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="Woq-yX-ZUN"/>
-                        <constraint firstAttribute="width" constant="82" id="xiT-Md-KJS"/>
+                        <constraint firstAttribute="height" constant="1" id="VUI-GN-K7o"/>
+                        <constraint firstAttribute="width" constant="82" id="rj6-vz-zKi"/>
                     </constraints>
                 </view>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-ce-7eO">
-                    <rect key="frame" x="146.5" y="335" width="82" height="20"/>
+                    <rect key="frame" x="146" y="311" width="82" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="g4R-I7-aBk"/>
-                        <constraint firstAttribute="width" constant="82" id="uuB-Cs-t9K"/>
+                        <constraint firstAttribute="height" constant="20" id="TX4-gg-lgp"/>
+                        <constraint firstAttribute="width" constant="82" id="bRq-KU-jgp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                     <state key="normal" title="ADD IMAGES">
@@ -70,16 +67,17 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="8tp-ce-7eO" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="8" id="0Ox-AT-IDR"/>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0X7-SL-FcU"/>
-                <constraint firstItem="4g4-D5-wvo" firstAttribute="top" secondItem="8tp-ce-7eO" secondAttribute="bottom" id="4MR-rb-swS"/>
                 <constraint firstItem="A4w-2M-HIe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.6" id="6ec-jq-ZJj"/>
-                <constraint firstItem="8tp-ce-7eO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8GS-b1-Fx9"/>
-                <constraint firstItem="8tp-ce-7eO" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="25" id="Gof-Fb-qkJ"/>
-                <constraint firstItem="4g4-D5-wvo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PC6-si-XJH"/>
+                <constraint firstItem="8tp-ce-7eO" firstAttribute="top" secondItem="Bes-q7-bD7" secondAttribute="bottom" constant="8" id="MX5-Y7-w9c"/>
+                <constraint firstItem="8tp-ce-7eO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QH9-nX-lQx"/>
+                <constraint firstItem="Bes-q7-bD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="RuT-h0-KmE"/>
+                <constraint firstItem="4g4-D5-wvo" firstAttribute="top" secondItem="8tp-ce-7eO" secondAttribute="bottom" id="Xzw-sc-aBC"/>
+                <constraint firstItem="Bes-q7-bD7" firstAttribute="top" secondItem="A4w-2M-HIe" secondAttribute="bottom" constant="8" id="bI5-vt-cft"/>
                 <constraint firstItem="M7Q-HO-SnT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="cdS-Mq-dJx"/>
-                <constraint firstItem="Bes-q7-bD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="gUp-QP-OQY"/>
-                <constraint firstItem="Bes-q7-bD7" firstAttribute="top" secondItem="A4w-2M-HIe" secondAttribute="bottom" constant="15" id="iUL-hH-Qwx"/>
-                <constraint firstAttribute="trailing" secondItem="Bes-q7-bD7" secondAttribute="trailing" constant="22" id="tZh-L1-mof"/>
+                <constraint firstAttribute="trailing" secondItem="Bes-q7-bD7" secondAttribute="trailing" constant="22" id="f67-K8-wgN"/>
+                <constraint firstItem="4g4-D5-wvo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nZn-33-oJI"/>
                 <constraint firstItem="M7Q-HO-SnT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="u0w-da-dT4"/>
             </constraints>
             <connections>

@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class CurrentLocationVC: UIViewController {
   
+  @IBOutlet weak var IBButtonSelectLocation: UIButton!
   @IBOutlet weak var IBButtonSelectCity: UIButton!
   @IBOutlet weak var IBButtonSelectState: UIButton!
   @IBOutlet weak var IBViewStateContainer: UIView!
@@ -47,27 +48,8 @@ class CurrentLocationVC: UIViewController {
     UnlabelAPIHelper.sharedInstance.getInfluencerLocation( self, success:{ (
       meta: JSON) in
       print(meta)
-      if let stateDict = meta["state"].dictionaryObject{
-        self.stateID = "\(stateDict["pk"] as! NSNumber)"
-        let state: String = (stateDict["name"] as? String)!
-        self.IBButtonSelectState.setTitle(state, for: .normal)
-      }
-      
-
-      let countryDict = meta["country"].dictionaryObject
-      let country: String = countryDict?["printable_name"] as! String
-      self.countryID = countryDict?["pk"] as! String
-      
-      print(self.countryID)
       DispatchQueue.main.async(execute: { () -> Void in
-        if self.countryID != "US"{
-          self.IBButtonSelectState.isEnabled = false
-          self.IBButtonSelectState.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-          self.IBViewStateContainer.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
-        }
-        
-        self.IBButtonSelectCity.setTitle(meta["city"].stringValue, for: .normal)
-        self.IBButtonSelectCountry.setTitle(country, for: .normal)
+        self.IBButtonSelectLocation.setTitle(meta["display_string"].stringValue, for: .normal)
 
       })
      
@@ -88,6 +70,15 @@ class CurrentLocationVC: UIViewController {
     }
     
   }
+  @IBAction func IBActionSelectCurrentLocation(_ sender: Any) {
+    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+    _presentController.categoryStyleType = .location
+    _presentController.arSelectedValues = []
+    let _navFilterList = UINavigationController(rootViewController: _presentController)
+    _navFilterList.isNavigationBarHidden = true
+    print("clicked here")
+
+  }
   @IBAction func IBActionSelectCountry(_ sender: Any) {
     slideUpMenu = SlideUpView.country
     self.addSortPopupView(SlideUpView.country,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -96,20 +87,29 @@ class CurrentLocationVC: UIViewController {
     slideUpMenu = SlideUpView.state
     self.addSortPopupView(SlideUpView.state,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "EnterCurrentCity"{
-      if let enterCityVC:EnterCityVC = segue.destination as? EnterCityVC{
-        enterCityVC.delegate = self
-        enterCityVC.currentCity = (self.IBButtonSelectCity.titleLabel?.text)!
+    if segue.identifier == "InfluencerCurrentLocation"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+          pickLocationVC.delegate = self
+        }
       }
     }
+    
   }
 }
-extension CurrentLocationVC: EnterCityVCDelegate{
+extension CurrentLocationVC: PickLocationDelegate{
+  func locationDidSelected(_ selectedItem: FilterModel){
+    print(selectedItem)
+    self.IBButtonSelectLocation.setTitle(selectedItem.typeName, for: .normal)
+  }
+}
+extension CurrentLocationVC: EnterCityVCDelegate {
   func popupDidClickUpdate(_ selectedCity: String){
     print(selectedCity)
     self.IBButtonSelectCity.setTitle(selectedCity, for: .normal)

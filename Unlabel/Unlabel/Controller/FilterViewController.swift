@@ -190,11 +190,13 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
       feedVC?.filteredNavTitle = "UNISEX"
     }
     else if IBButtonWomenswear.isSelected{
-        feedVC?.sFilterStoreType = "2"
+      feedVC?.sFilterStoreType = "2"
+      feedVC?.sFilterGender = "F"
       feedVC?.filteredNavTitle = "WOMENSWEAR"
     }
     else if IBButtonMenswear.isSelected{
         feedVC?.sFilterStoreType = "1"
+      feedVC?.sFilterGender = "M"
       feedVC?.filteredNavTitle = "MENSWEAR"
     }
     else{

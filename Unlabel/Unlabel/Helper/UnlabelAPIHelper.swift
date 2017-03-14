@@ -931,8 +931,8 @@ class UnlabelAPIHelper{
             requestURL = v4BaseUrl + "api_v2/influencer_product_list/"
         }
           print(fetchProductParams.brandId)
-        let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId]
-        
+      let params: [String: String] = [sort_Params:fetchProductParams.sortMode,product_brand_id:fetchProductParams.brandId,"display":fetchProductParams.displayMode,"gender":fetchProductParams.gender]
+      
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
@@ -1599,9 +1599,39 @@ class UnlabelAPIHelper{
         }
     }
   
+  func getLocationList(categoryStyle: CategoryStyleEnum, _ success:@escaping ([FilterModel], _ json:JSON,[JSON])->(),failed:@escaping (_ error:NSError)->()){
+    var requestURL:String = String()
+    requestURL = v4BaseUrl + "api_v2/get_locations/"
+    Alamofire.request(requestURL, method: .get, parameters: nil).responseJSON { response in
+      switch response.result {
+        
+      case .success(let data):
+        let json = JSON(data)
+        // debugPrint(json)
+        if categoryStyle == CategoryStyleEnum.location{
+          if let arrStates = self.getLocationModels(fromJSON: json){
+            let arrSpecial = json["results"].array
+            success(arrStates, json,arrSpecial!)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+          }
+        }
+        else{
+          if let arrStates = self.getFilterModels(fromJSON: json){
+            let arrSpecial = json["results"].array
+            success(arrStates, json,arrSpecial!)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+          }
+        }
+      case .failure(let error):
+        failed(error as NSError)
+      }
+    }
+  }
 //  func connectToStripe(_ params:[String: String], onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
 //    let requestURL:String?
-//    
+//
 //    requestURL = "https://connect.stripe.com/oauth/token/"
 //    print(params)
 //    if let requestURLObj = requestURL{

@@ -35,6 +35,8 @@ class ProductVC: UIViewController {
   var sortModeValue: String = "Date: Newest to Oldest"
   var nextPageURL:String?
   var labelHeight: CGFloat = 0.0
+  var displayMode: String = String()
+  var selectedGender: String = String()
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -58,6 +60,10 @@ class ProductVC: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  @IBAction func IBActionSeeMore(_ sender: Any) {
+    print("see more...")
+    self.performSegue(withIdentifier: "SeeMoreDescription", sender: self)
   }
 }
 
@@ -159,6 +165,14 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductHeaderCell(forIndexPath indexPath:IndexPath)->ProductHeaderCell{
     let productHeaderCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductHeaderCell, for: indexPath) as! ProductHeaderCell
     productHeaderCell.IBBrandDescription.text = selectedBrand.Description
+    print(productHeaderCell.IBBrandDescription.intrinsicContentSize.height)
+    print(productHeaderCell.IBBrandDescription.bounds.height)
+    if productHeaderCell.IBBrandDescription.intrinsicContentSize.height > productHeaderCell.IBBrandDescription.bounds.height{
+      productHeaderCell.IBbtnSeeMore.isHidden = false
+    }
+    else{
+      productHeaderCell.IBbtnSeeMore.isHidden = true
+    }
   //  print("height   \(labelHeight)")
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + ", " + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
@@ -265,13 +279,13 @@ extension ProductVC:UICollectionViewDataSource{
 extension ProductVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if indexPath.row == 0{
-      let height = self.findHeight(forText: selectedBrand.Description, havingMaximumWidth: UIScreen.main.bounds.size.width, andFont: UIFont(name: "Neutraface2Text-Book", size: 14.0)!)
-      return CGSize(width: CGFloat(collectionView.frame.size.width), height: CGFloat(290.0 + height))
+     // let height = self.findHeight(forText: selectedBrand.Description, havingMaximumWidth: UIScreen.main.bounds.size.width, andFont: UIFont(name: "Neutraface2Text-Book", size: 14.0)!)
+      return CGSize(width: CGFloat(collectionView.frame.size.width), height: CGFloat(314.0))
       
       //  return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height/2)
     }else if indexPath.row == 1{
       if arrProducts.count == 0{
-        return CGSize(width: (collectionView.frame.size.width)-5.5, height: 50.0)
+        return CGSize(width: (collectionView.frame.size.width)-5.5, height: 210.0)
       }
       else{
         return CGSize.zero
@@ -314,6 +328,13 @@ extension ProductVC{
           productViewController.selectedBrand = selectedBrand
           productViewController.selectedProduct = self.selectedProduct
           productViewController.selectedSizeProduct = self.selectedSizeProduct
+        }
+      }
+    }
+    else if segue.identifier == "SeeMoreDescription"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let seeMoreDescriptionVC:SeeMoreDescriptionVC = navViewController.viewControllers[0] as? SeeMoreDescriptionVC{
+          seeMoreDescriptionVC.selectedBrand = selectedBrand
         }
       }
     }
@@ -539,6 +560,8 @@ extension ProductVC{
     fetchProductRequestParams.brandId = selectedBrand.ID
     fetchProductRequestParams.sortMode = sortMode
     fetchProductRequestParams.nextPageURL = nextPage
+    fetchProductRequestParams.displayMode = self.displayMode
+    fetchProductRequestParams.gender = self.selectedGender
     UnlabelAPIHelper.sharedInstance.getProductOfBrand(fetchProductRequestParams, success: { (arrBrands:[Product], meta: JSON) in
       print(meta)
       self.arrProducts.append(contentsOf: arrBrands)

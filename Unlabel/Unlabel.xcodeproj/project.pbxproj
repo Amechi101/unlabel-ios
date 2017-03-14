@@ -136,6 +136,8 @@
 		AD90CCFB1E23848F002A9F1A /* ProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD90CCF91E23848F002A9F1A /* ProductImageCell.xib */; };
 		AD90CD021E23BE8A002A9F1A /* AddNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */; };
 		AD90CD031E23BE8A002A9F1A /* AddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */; };
+		ADB053DE1E77BAF200BA22A4 /* PickLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */; };
+		ADB053E01E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */; };
 		ADB2A3341E41B68000F26C2D /* ManageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */; };
 		ADD1FA111E5C1F0F00A28049 /* RentalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */; };
 		ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */; };
@@ -346,6 +348,8 @@
 		AD90CCF91E23848F002A9F1A /* ProductImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductImageCell.xib; sourceTree = "<group>"; };
 		AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCell.swift; sourceTree = "<group>"; };
 		AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewCell.xib; sourceTree = "<group>"; };
+		ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationVC.swift; sourceTree = "<group>"; };
+		ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeMoreDescriptionVC.swift; sourceTree = "<group>"; };
 		ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageContentVC.swift; sourceTree = "<group>"; };
 		ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalInfo.swift; sourceTree = "<group>"; };
 		ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoLivePopupView.swift; sourceTree = "<group>"; };
@@ -762,6 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				15F0E2731C723BB100A7E389 /* ProductVC.swift */,
+				ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */,
 			);
 			path = ProductVC;
 			sourceTree = "<group>";
@@ -952,6 +957,7 @@
 			isa = PBXGroup;
 			children = (
 				AD7DFE161E555E2C002F0F17 /* CurrentLocationVC.swift */,
+				ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */,
 				AD15E4B81E5AB145002C6188 /* EnterCityVC.swift */,
 			);
 			name = "Current Location VC";
@@ -1537,6 +1543,7 @@
 				AD15E4BB1E5AB21A002C6188 /* DepositEarningVC.swift in Sources */,
 				15CCC6F71D16A53C00FD602F /* FBShimmeringLayer.m in Sources */,
 				15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */,
+				ADB053DE1E77BAF200BA22A4 /* PickLocationVC.swift in Sources */,
 				ADF3D6521E5EB7BC00ACC68B /* UnlabelStaticList.swift in Sources */,
 				ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */,
 				ADE02D1E1E2CF17B003C80FB /* FilterViewController.swift in Sources */,
@@ -1561,6 +1568,7 @@
 				15CCC6EF1D1696DA00FD602F /* UnlabelLoadingView.swift in Sources */,
 				15056BE51CB5A5C10058765D /* Reachability.m in Sources */,
 				CBEE78411D7C8B600001752F /* FilterHeaderCell.swift in Sources */,
+				ADB053E01E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift in Sources */,
 				CB1C21B71D7B5DA000253342 /* FilterVC.swift in Sources */,
 				15B7E7A81C54A2D100244AC9 /* FeedVC.swift in Sources */,
 				15056BDE1CB584A20058765D /* UnlabelWSConstants.swift in Sources */,

@@ -74,18 +74,19 @@
   fileprivate var didSelectBrand:Brand?
   fileprivate var filterChildVC:FilterVC?
   fileprivate var headerView:FeedVCHeaderCell?
-  
+  var notFoundView:NotFoundView = NotFoundView()
   var mainVCType:MainVCType = .feed
   var filteredNavTitle:String?
   var filteredString:String?
   var sFilterCategory:String?
   var sFilterStyle:String?
-    var sFilterStoreType:String?
+  var sFilterStoreType:String?
+  var sFilterGender:String = String()
   var sortMode: String = "AZ"
   var searchResults:String = "Search Results"
   
   var sFilterLocation:String?
-  var display_type:String?
+  var display_type:String = String()
   var searchText:String?
   
   //    var nextPageURL:String?
@@ -131,6 +132,8 @@
       if let productVC:ProductVC = segue.destination as? ProductVC{
         if let brand:Brand = didSelectBrand{
           productVC.selectedBrand = brand
+          productVC.displayMode = self.display_type
+          productVC.selectedGender = self.sFilterGender
           productVC.delegate = self
           GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
         }
@@ -182,7 +185,7 @@
         headerView?.IBlblFilterTitle.isHidden = true
         headerView?.IBbtnMen.isHidden = false
         headerView?.IBbtnWomen.isHidden = false
-        
+        self.sFilterGender = ""
         var selectedTabString = String()
         
         if headerView?.selectedTab == .men {
@@ -336,10 +339,14 @@
    If user not following any brand, show this view
    */
   func addNotFoundView(){
-    let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
+    notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.showViewLabelBtn = false
-    notFoundView.IBlblMessage.text = "No brands available."
+    if mainVCType == .feed{
+      notFoundView.IBlblMessage.text = "No brands available."
+    }else if mainVCType == .filter{
+      notFoundView.IBlblMessage.text = "Nothing to see here.\n Currently no designers are within this filtering range."
+    }
     IBcollectionViewFeed.backgroundView = notFoundView
     IBcollectionViewFeed.backgroundView?.isHidden = true
   }
