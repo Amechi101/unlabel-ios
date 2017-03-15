@@ -34,16 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     setupOnLaunch(launchOptions)
     UnlabelHelper.setDefaultValue("", key: "device_token")
     registerForRemoteNotification()
-    var udid = UIDevice.current.identifierForVendor!.uuidString
-    udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
-    print("UDID == \(udid)")
-    let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
-    let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
-    rootTabVC?.selectedIndex = 2
-//    let storyboard = UIStoryboard(name: "Unlabel", bundle: nil)
-//    
 
-    
     return true
   }
   

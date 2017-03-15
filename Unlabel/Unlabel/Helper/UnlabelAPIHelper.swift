@@ -285,6 +285,10 @@ class UnlabelAPIHelper{
                         if let description = thisProduct["description"] as? String{
                             product.ProductDescription = description
                         }
+                      if let share_url = thisProduct["share_url"] as? String{
+                        
+                        product.shareUrl = URL(string: share_url)!
+                      }
                         if let material_info = thisProduct["material_info"] as? String{
                             product.ProductMaterialCareInfo = material_info
                         }
@@ -876,7 +880,7 @@ class UnlabelAPIHelper{
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-                //  debugPrint(response)
+                  debugPrint(response)
                 switch response.result {
                     
                 case .success(let data):

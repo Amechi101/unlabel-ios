@@ -25,8 +25,6 @@ class FollowingVC: UIViewController {
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
   fileprivate var arrWomenBrandList:[Brand] = [Brand]()
   var nextPageURLMen:String?
-//  var nextPageURLWomen:String?
- // var nextPageURLBoth:String?
   var isLoading = false
   fileprivate let fFooterHeight:CGFloat = 28.0
   fileprivate var headerView:FeedVCHeaderCell?
@@ -36,17 +34,13 @@ class FollowingVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     setupOnLoad()
-    // IBcollectionViewFollowing.reloadData()
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
@@ -55,36 +49,21 @@ class FollowingVC: UIViewController {
     IBcollectionViewFollowing.reloadData()
   }
   
-  fileprivate func addNotFoundView(){
-    IBcollectionViewFollowing.backgroundView = nil
-    let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
-    notFoundView.delegate = self
-    notFoundView.IBlblMessage.text = "Not following any brands."
-    notFoundView.showViewLabelBtn = false
-    IBcollectionViewFollowing.backgroundView = notFoundView
-    IBcollectionViewFollowing.backgroundView?.isHidden = true
-  }
 }
 
 //MARK:- UICollectionViewDelegate Methods
 
 extension FollowingVC:UICollectionViewDelegate{
-  
-  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if let brandAtIndexPath:Brand = self.arrFilteredBrandList[indexPath.row]{
       
       let productViewController = self.storyboard?.instantiateViewController(withIdentifier: S_ID_PRODUCT_VC) as! ProductVC
       productViewController.selectedBrand = brandAtIndexPath
       self.navigationController?.pushViewController(productViewController, animated: true)
-      
     }
   }
-  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    
     switch kind {
-      
     case UICollectionElementKindSectionFooter:
       let footerView:FeedVCFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell, for: indexPath) as! FeedVCFooterCell
       return footerView
@@ -98,61 +77,49 @@ extension FollowingVC:UICollectionViewDelegate{
 //MARK:- UICollectionViewDataSource Methods
 
 extension FollowingVC:UICollectionViewDataSource {
-  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
     if arrFilteredBrandList.count > 0{
       IBcollectionViewFollowing.backgroundView?.isHidden = true
     }else{
       IBcollectionViewFollowing.backgroundView?.isHidden = false
     }
-    
     return arrFilteredBrandList.count
   }
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     if indexPath.item == arrFilteredBrandList.count - 1 {
       wsCallGetLabelsResetOffset(false)
     }
-    
     let feedVCCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_FeedVCCell, for: indexPath) as! FeedVCCell
     feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercased()
     feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location)"
     feedVCCell.IBbtnStar.tag = indexPath.row
-    
     if arrFilteredBrandList[indexPath.row].isFollowing{
       feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), for: UIControlState())
     }else{
       feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), for: UIControlState())
     }
-    
     feedVCCell.IBimgBrandImage.image = nil
-    
     if let url = URL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
-      
       feedVCCell.IBimgBrandImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
         if let _ = error{
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
         }else{
-          if (type == SDImageCacheType.none)
-          {
+          if (type == SDImageCacheType.none){
             feedVCCell.IBimgBrandImage.alpha = 0;
             UIView.animate(withDuration: 0.35, animations: {
               feedVCCell.IBimgBrandImage.alpha = 1;
             })
           }
-          else
-          {
+          else{
             feedVCCell.IBimgBrandImage.alpha = 1;
           }
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
         }
       })
     }
-    
     return feedVCCell
   }
 }
@@ -171,67 +138,48 @@ extension FollowingVC:UICollectionViewDelegateFlowLayout{
 //MARK:- Not found view delegate Methods
 
 extension FollowingVC: NotFoundViewDelegate {
-  
   func didSelectViewLabels() {
     _ = navigationController?.popToRootViewController(animated: true)
   }
-  
   func didSelectRegisterLogin() {
   }
-  
-  
   fileprivate func getBrandsByID(_ brandID:String) {
-    
     let fetchBrandParams = FetchBrandsRP()
     fetchBrandParams.brandGender = BrandGender.Both
     fetchBrandParams.brandId = brandID
-    
     UnlabelAPIHelper.sharedInstance.getSingleBrand(fetchBrandParams, success: { (brand:Brand, meta: JSON) in
       brand.isFollowing = true
       self.arrFilteredBrandList.append(brand)
-      
       DispatchQueue.main.async {
         UnlabelLoadingView.sharedInstance.stop(self.view)
         self.IBcollectionViewFollowing.reloadData()
       }
-      
     }, failed: { (error) in
       UnlabelLoadingView.sharedInstance.stop(self.view)
       debugPrint(error)
       UnlabelHelper.showAlert(onVC: self, title: sSOMETHING_WENT_WRONG, message: S_TRY_AGAIN, onOk: {})
     })
-    
   }
 }
 
 //MARK:- IBAction Methods
 
 extension FollowingVC{
-  
   @IBAction func IBActionStarClicked(_ sender: UIButton) {
-    
     //Internet available
     if ReachabilitySwift.isConnectedToNetwork(){
       if UnlabelHelper.isUserLoggedIn(){
         UnlabelLoadingView.sharedInstance.start(APP_DELEGATE.window!)
         if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
-          
-          //If already following
           if arrFilteredBrandList[sender.tag].isFollowing{
             arrFilteredBrandList[sender.tag].isFollowing = false
           }else{
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
-          
           IBcollectionViewFollowing.reloadData()
-        //  debugPrint(arrFilteredBrandList)
-        //  debugPrint([sender.tag])
           UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
             meta: JSON) in
-            
-       //     debugPrint(meta)
             self.wsCallGetLabels()
-            
           }, failed: { (error) in
             UnlabelLoadingView.sharedInstance.stop(self.view)
           })
@@ -242,7 +190,6 @@ extension FollowingVC{
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
-  
   @IBAction func IBActionBack(_ sender: UIButton) {
     _ = self.navigationController?.popToRootViewController(animated: true)
   }
@@ -251,7 +198,15 @@ extension FollowingVC{
 //MARK:- Custom Methods
 
 extension FollowingVC{
-  
+  fileprivate func addNotFoundView(){
+    IBcollectionViewFollowing.backgroundView = nil
+    let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
+    notFoundView.delegate = self
+    notFoundView.IBlblMessage.text = "Not following any brands."
+    notFoundView.showViewLabelBtn = false
+    IBcollectionViewFollowing.backgroundView = notFoundView
+    IBcollectionViewFollowing.backgroundView?.isHidden = true
+  }
   fileprivate func setupNavBar(){
     addNotFoundView()
     addPullToRefresh()
@@ -263,15 +218,10 @@ extension FollowingVC{
     (IBcollectionViewFollowing.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
     self.automaticallyAdjustsScrollViewInsets = false
   }
-  
-  /**
-   Add pull to refresh on Collectionview
-   */
   fileprivate func addPullToRefresh(){
     refreshControl.addTarget(self, action: #selector(FeedVC.wsCallGetLabels), for: .valueChanged)
     IBcollectionViewFollowing.addSubview(refreshControl)
   }
-  
   fileprivate func registerCells(){
     IBcollectionViewFollowing.register(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
     IBcollectionViewFollowing.register(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
@@ -290,7 +240,6 @@ extension FollowingVC{
   func wsCallGetLabels(){
     wsCallGetLabelsResetOffset(true)
   }
-  
   func wsCallGetLabelsResetOffset(_ reset:Bool) {
     var nextPageURL:String? = String()
     nextPageURL = nextPageURLMen
@@ -318,8 +267,6 @@ extension FollowingVC{
         self.bottonActivityIndicator.stopAnimating()
         
         self.arrFilteredBrandList = []
-        print("*** Meta *** \(meta)")
-        
         if fetchBrandsRequestParams.selectedTab == .men{
           self.arrMenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrMenBrandList

@@ -10,9 +10,14 @@ import UIKit
 
 class SeeMoreDescriptionVC: UIViewController {
   
+  //MARK: -  IBOutlets,vars,constants
+  
   var selectedBrand:Brand?
   @IBOutlet weak var IBbtnTitle: UIButton!
   @IBOutlet weak var IBLabelDescription: UILabel!
+  
+  //MARK: -  View lifecycle methods
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     if selectedBrand == nil {
@@ -21,12 +26,14 @@ class SeeMoreDescriptionVC: UIViewController {
     IBbtnTitle.setTitle(selectedBrand?.Name.uppercased(), for: UIControlState())
     IBLabelDescription.text = self.selectedBrand?.Description
   }
-  @IBAction func backAction(_ sender: Any) {
-    self.dismiss(animated: true, completion: nil)
-  }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  }
+  
+  //MARK: -  IBAction methods
+  
+  @IBAction func backAction(_ sender: Any) {
+    self.dismiss(animated: true, completion: nil)
   }
   
 }

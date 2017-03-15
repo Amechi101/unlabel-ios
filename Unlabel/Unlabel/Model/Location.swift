@@ -12,11 +12,8 @@ import ObjectMapper
 class Location: Mappable {
     var locationChoices: String?
     var stateOrCountry: String?
-    
     required init?(map: Map) {
-        
     }
-    
     // Mappable
     func mapping(map: Map) {
         locationChoices     <- map[APIParams.locationChoices]

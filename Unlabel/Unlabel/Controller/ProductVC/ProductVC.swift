@@ -19,12 +19,9 @@ class ProductVC: UIViewController {
   //MARK:- IBOutlets, constants, vars
   @IBOutlet weak var IBbtnTitle: UIButton!
   @IBOutlet weak var IBcollectionViewProduct: UICollectionView!
-  
-  let iPaginationCount = 2
   let fFooterHeight:CGFloat = 81.0
   var activityIndicator:UIActivityIndicatorView?
   var selectedBrand: Brand!
-  var lastEvaluatedKey:[AnyHashable: Any]!
   var delegate:ProductVCDelegate?
   var headerViewImage:UIImage?
   var arrProducts = [Product]()
@@ -37,6 +34,7 @@ class ProductVC: UIViewController {
   var labelHeight: CGFloat = 0.0
   var displayMode: String = String()
   var selectedGender: String = String()
+  
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -44,12 +42,10 @@ class ProductVC: UIViewController {
     if selectedBrand == nil {
       selectedBrand = Brand()
     }
-    
     setupOnLoad()
     nextPageURL = nil
     getProductsOfBrand()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     UnlabelHelper.setAppDelegateDelegates(self)
     if let _ = self.navigationController{
@@ -57,12 +53,10 @@ class ProductVC: UIViewController {
     }
     IBcollectionViewProduct.reloadData()
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   @IBAction func IBActionSeeMore(_ sender: Any) {
-    print("see more...")
     self.performSegue(withIdentifier: "SeeMoreDescription", sender: self)
   }
 }
@@ -75,7 +69,6 @@ extension ProductVC:AppDelegateDelegates{
   }
 }
 
-
 //MARK:- UICollectionViewDelegate Methods
 
 extension ProductVC:UICollectionViewDelegate{
@@ -83,51 +76,34 @@ extension ProductVC:UICollectionViewDelegate{
     if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
     }
     else {
-      
       if isProfileCompleted{
         self.selectedProduct = self.arrProducts[indexPath.row - 3]
         print(selectedProduct.ProductID)
         UnlabelAPIHelper.sharedInstance.getSizeProduct(selectedProduct.ProductID, success: { (sizeProduct:[Product], meta: JSON) in
-          
-          print(meta)
-          print(sizeProduct)
           self.selectedSizeProduct = sizeProduct
           self.performSegue(withIdentifier: "ProductDetailSegue", sender: self)
           
         }, failed: { (error) in
         })
-        
-        
       }
       else{
         self.addLikeFollowPopupView(FollowType.profileIncomplete,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
       }
     }
   }
-  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    //  if let _ = lastEvaluatedKey{
     if nextPageURL?.characters.count == 0{
       return CGSize.zero
     }
     else{
       return CGSize(width: collectionView.frame.width, height: fFooterHeight)
     }
-    //   }else{
-    //           return CGSize.zero
-    //  }
-    
   }
-  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    
     switch kind {
-      
     case UICollectionElementKindSectionFooter:
       let footerView:ProductFooterView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductFooterView, for: indexPath) as! ProductFooterView
-      
       return footerView
-      
     default:
       assert(false, "No such element")
       return UICollectionReusableView()
@@ -135,11 +111,8 @@ extension ProductVC:UICollectionViewDelegate{
   }
 }
 
-
 //MARK:- UICollectionViewDataSource Methods
-
 extension ProductVC:UICollectionViewDataSource{
-  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
@@ -173,7 +146,6 @@ extension ProductVC:UICollectionViewDataSource{
     else{
       productHeaderCell.IBbtnSeeMore.isHidden = true
     }
-  //  print("height   \(labelHeight)")
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + ", " + selectedBrand.location
     updateFollowButton(productHeaderCell.IBbtnFollow, isFollowing: selectedBrand.isFollowing)
     if let url = URL(string: selectedBrand.FeatureImage){
@@ -197,27 +169,22 @@ extension ProductVC:UICollectionViewDataSource{
     productHeaderCell.contentView.backgroundColor = .red
     return productHeaderCell
   }
-  
   func getProductSortCell(forIndexPath indexPath:IndexPath)->ProductSortCell{
     let productSortCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductSortCell, for: indexPath) as! ProductSortCell
     productSortCell.IBSortModeSelection.addTarget(self, action: #selector(showSortPopup), for: .touchUpInside)
     productSortCell.IBSortModeSelection.setTitle("Sort By: "+sortModeValue, for: .normal)
     return productSortCell
   }
-  
   func showSortPopup(){
     self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
-  
   func getProductDescCell(forIndexPath indexPath:IndexPath)->ProductDescCell{
     let productDescCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductDescCell, for: indexPath) as! ProductDescCell
     if arrProducts.count == 0{
       productDescCell.IBlblDesc.text = selectedBrand.Name+" has no more products to rent from at this moment."
-      //productDescCell.IBSortModeSelection.isHidden = true
     }
     else{
       productDescCell.IBlblDesc.text = ""
-      //  productDescCell.IBSortModeSelection.isHidden = false
     }
     return productDescCell
   }
@@ -225,29 +192,22 @@ extension ProductVC:UICollectionViewDataSource{
   func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
     let productCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
     productCell.IBlblProductName.text = arrProducts[indexPath.row - 3].ProductName
-    
-    print("product name\(arrProducts[indexPath.row - 3].ProductName)  product price \(arrProducts[indexPath.row - 3].ProductPrice)")
-    
-    
     productCell.IBlblProductPrice.text = "$" + arrProducts[indexPath.row - 3].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill;
     productCell.IBimgProductImage.clipsToBounds = true
     if arrProducts[indexPath.row - 3].arrProductsImages.count > 0{
       if let url = URL(string: arrProducts[indexPath.row - 3].arrProductsImages.first as! String){
-        
         productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
           if let _ = error{
             self.handleProductCellActivityIndicator(productCell, shouldStop: false)
           }else{
-            if (type == SDImageCacheType.none)
-            {
+            if (type == SDImageCacheType.none){
               productCell.IBimgProductImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {
                 productCell.IBimgProductImage.alpha = 1;
               })
             }
-            else
-            {
+            else{
               productCell.IBimgProductImage.alpha = 1;
             }
             self.handleProductCellActivityIndicator(productCell, shouldStop: true)
@@ -279,10 +239,7 @@ extension ProductVC:UICollectionViewDataSource{
 extension ProductVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if indexPath.row == 0{
-     // let height = self.findHeight(forText: selectedBrand.Description, havingMaximumWidth: UIScreen.main.bounds.size.width, andFont: UIFont(name: "Neutraface2Text-Book", size: 14.0)!)
       return CGSize(width: CGFloat(collectionView.frame.size.width), height: CGFloat(314.0))
-      
-      //  return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height/2)
     }else if indexPath.row == 1{
       if arrProducts.count == 0{
         return CGSize(width: (collectionView.frame.size.width)-5.5, height: 210.0)
@@ -580,41 +537,21 @@ extension ProductVC{
     })
     
   }
-  
-  
-  func findHeight(forText text: String, havingMaximumWidth widthValue: CGFloat, andFont font: UIFont) -> CGFloat {
-    var size = CGSize.zero
-    if text != "" {
-      let frame: CGRect = text.boundingRect(with: CGSize(width: widthValue, height: CGFloat(CGFloat.greatestFiniteMagnitude)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
-      size = CGSize(width: CGFloat(frame.size.width), height: CGFloat(frame.size.height + 1))
-    //  print(size.height)
-      labelHeight = size.height
-    }
-    return size.height
-  }
-  
   fileprivate func setupOnLoad(){
-    lastEvaluatedKey = nil
-    
     activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
-    
     if let brandName: String = selectedBrand.Name{
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
     }
-    
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductDescCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductDescCell)
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductHeaderCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductHeaderCell)
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductFooterView, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_ProductFooterView)
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductSortCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductSortCell)
-    
     self.automaticallyAdjustsScrollViewInsets = false
   }
-  
   override func viewWillLayoutSubviews(){
     IBcollectionViewProduct.collectionViewLayout.invalidateLayout()
   }
-  
   fileprivate func updateFollowButton(_ button:UIButton,isFollowing:Bool){
     if isFollowing{
       button.setTitle("Unfollow", for: UIControlState())
@@ -626,7 +563,6 @@ extension ProductVC{
       button.setTitleColor(LIGHT_GRAY_BORDER_COLOR, for: UIControlState())
     }
   }
-  
   fileprivate func showLoading(){
     DispatchQueue.main.async { () -> Void in
       self.activityIndicator!.frame = self.view.frame
@@ -635,20 +571,17 @@ extension ProductVC{
       self.view.addSubview(self.activityIndicator!)
     }
   }
-  
   fileprivate func hideLoading(){
     DispatchQueue.main.async { () -> Void in
       self.activityIndicator!.stopAnimating()
       self.activityIndicator!.removeFromSuperview()
     }
   }
-  
   fileprivate func showAlertWebPageNotAvailable(){
     UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
       
     }
   }
-  
   fileprivate func setTextWithLineSpacing(_ label:UILabel,text:String,lineSpacing:CGFloat){
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = lineSpacing
@@ -659,21 +592,18 @@ extension ProductVC{
     
     label.attributedText = attrString
   }
-  
   fileprivate func share(shareText:String?,shareImage:UIImage?){
     var objectsToShare = [AnyObject]()
     
     if let shareTextObj = shareText{
       objectsToShare.append(shareTextObj as AnyObject)
     }
-    
     if let shareImageObj = shareImage{
       objectsToShare.append(shareImageObj)
     }
     if selectedBrand.shareUrl?.absoluteString != ""{
       objectsToShare.append(selectedBrand.shareUrl as AnyObject)
     }
-    
     if shareText != nil || shareImage != nil || selectedBrand.shareUrl?.absoluteString != ""{
       let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       activityViewController.popoverPresentationController?.sourceView = self.view
@@ -683,5 +613,4 @@ extension ProductVC{
       debugPrint("There is nothing to share")
     }
   }
-  
 }

@@ -27,4 +27,5 @@ class Product: NSObject {
   var arrProductsImages = [AnyObject]()
   var arrProductsSizes = [AnyObject]()
   var ProductsSize = String()
+  var shareUrl:URL?
 }

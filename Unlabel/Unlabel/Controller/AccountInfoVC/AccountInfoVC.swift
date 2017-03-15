@@ -25,48 +25,16 @@ class AccountInfoVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
-  func getInfluencerDetails(){
-    
-    UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
-      meta: JSON) in
-      print(meta)
-      UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
-      UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
-      UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
-      UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
-      UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
-      
-      DispatchQueue.main.async(execute: { () -> Void in
-        self.IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
-        self.IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
-        self.IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
-        self.IBProfileImage.contentMode = .scaleToFill
-        self.IBProfileImage.layer.cornerRadius = self.IBProfileImage.bounds.size.width/2
-        self.IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
-        self.IBProfileImage.clipsToBounds = true
-      })
-      
-
-      
-    }, failed: { (error) in
-    })
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
+   override func viewWillAppear(_ animated: Bool) {
     getInfluencerDetails()
-    
-    
     if let _ = self.navigationController{
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
 }
-
 
 //MARK:- UITableViewDelegate Methods
 
@@ -82,15 +50,31 @@ extension AccountInfoVC{
       }
     }
   }
-  
-
-  
 }
 
 //MARK:- Custom Methods
 
 extension AccountInfoVC{
-
+  func getInfluencerDetails(){
+    UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
+      meta: JSON) in
+      UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
+      UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
+      UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
+      UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
+      UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+      DispatchQueue.main.async(execute: { () -> Void in
+        self.IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
+        self.IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
+        self.IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
+        self.IBProfileImage.contentMode = .scaleToFill
+        self.IBProfileImage.layer.cornerRadius = self.IBProfileImage.bounds.size.width/2
+        self.IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
+        self.IBProfileImage.clipsToBounds = true
+      })
+    }, failed: { (error) in
+    })
+  }
   func wsLogout(){
     UnlabelAPIHelper.sharedInstance.logoutFromUnlabel(self, success:
       { (json: JSON) in
@@ -99,10 +83,8 @@ extension AccountInfoVC{
     },failed: { (error) in
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
     })
-    
   }
 }
-
 
 //MARK:- UIGestureRecognizerDelegate Methods
 
@@ -120,7 +102,6 @@ extension AccountInfoVC:UIGestureRecognizerDelegate{
   }
 }
 
-
 //MARK:- IBAction Methods
 
 extension AccountInfoVC{
@@ -128,9 +109,3 @@ extension AccountInfoVC{
     _ = navigationController?.popViewController(animated: true)
   }
 }
-
-
-
-
-
-

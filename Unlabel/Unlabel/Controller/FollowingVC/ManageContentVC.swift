@@ -37,8 +37,9 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   var sortModeValue: String = "Newest to Oldest"
   var cur_rentalInfo: RentalInfo = RentalInfo()
   var notFoundView: NotFoundView = NotFoundView()
-    fileprivate var arrFilteredBrandList:[Brand] = []
-    fileprivate var arrMenBrandList:[Brand] = [Brand]()
+  fileprivate var arrFilteredBrandList:[Brand] = []
+  fileprivate var arrMenBrandList:[Brand] = [Brand]()
+  
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -49,31 +50,22 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
     self.tabBarController?.delegate = self
     getReservedProducts()
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    
-  }
-
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  
   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
     contentStatus = ContentStatus.reserve
     updateToggleButton()
     getReservedProducts()
   }
+  
   //MARK: -  Navigation methods
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ManageToProductVC"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
-        //  productViewController.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
           productViewController.selectedProduct = self.selectedProduct
-          
-          
           productViewController.selectedBrand = self.selectedBrand
           productViewController.contentStatus = self.contentStatus
         }
@@ -82,7 +74,6 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
     else if segue.identifier == "ManageToLiveRent"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC{
-       //   rentOrLiveProductDetailVC.IBbtnTitle.setTitle("ARMANI EXCHANGE", for: .normal)
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
           rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
           rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
@@ -90,12 +81,9 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
       }
     }
   }
-  
 }
 
-
 extension ManageContentVC:NotFoundViewDelegate{
-
   func addNotFoundView(){
     notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
@@ -104,14 +92,11 @@ extension ManageContentVC:NotFoundViewDelegate{
     IBCollectionViewContent.backgroundView = notFoundView
     IBCollectionViewContent.backgroundView?.isHidden = true
   }
-  
 }
 
 //MARK: -  Custom methods
 
 extension ManageContentVC{
-  
-
   func setUpCollectionView(){
     addNotFoundView()
     IBCollectionViewContent.register(UINib(nibName: S_ID_Product_Content_Header, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell)
@@ -155,17 +140,13 @@ extension ManageContentVC{
       }
     }, completion: { _ in })
   }
-  
   func getReservedProducts(){
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.arrFilteredBrandList = []
-        print("*** Meta *** \(meta)")
         self.arrMenBrandList.append(contentsOf: arrBrands)
-      
-      print("*** arrFilteredBrandList *** \(self.arrFilteredBrandList.count)")
         self.arrFilteredBrandList = self.arrMenBrandList
         self.IBCollectionViewContent.reloadData()
     }, failed: { (error) in
@@ -178,7 +159,6 @@ extension ManageContentVC{
         fetchProductRequestParams.sortMode = ""
         UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
             self.arrFilteredBrandList = []
-            print("*** Meta *** \(meta)")
             self.arrMenBrandList.append(contentsOf: arrBrands)
             self.arrFilteredBrandList = self.arrMenBrandList
             self.IBCollectionViewContent.reloadData()
@@ -192,11 +172,10 @@ extension ManageContentVC{
         let fetchProductRequestParams = FetchProductParams()
         fetchProductRequestParams.sortMode = sortMode
         UnlabelAPIHelper.sharedInstance.getLiveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+          print(meta)
             self.arrFilteredBrandList = []
-            print("*** Meta *** \(meta)")
             self.arrMenBrandList.append(contentsOf: arrBrands)
             self.arrFilteredBrandList = self.arrMenBrandList
-          
             if self.arrFilteredBrandList.count>0{
               self.IBCollectionViewTopConstraint.constant = 44.0
               self.IBButtonSortMode.isHidden = false
@@ -208,7 +187,6 @@ extension ManageContentVC{
             self.IBCollectionViewContent.reloadData()
         }, failed: { (error) in
         })
-        
     }
 }
 
@@ -238,7 +216,6 @@ extension ManageContentVC{
     }
     updateToggleButton()
   }
-  
   @IBAction func IBActionViewRentalInfo(_ sender: AnyObject) {
     let rentalInfoVC: ViewRentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC) as! ViewRentalInfoVC
     cur_rentalInfo = arrFilteredBrandList[sender.tag].rentalInfo
@@ -246,9 +223,10 @@ extension ManageContentVC{
     self.present(rentalInfoVC, animated: true, completion: nil)
   }
 }
+
 //MARK:- UICollectionViewDataSource Methods
+
 extension ManageContentVC: UICollectionViewDataSource{
-  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     if arrFilteredBrandList.count > 0{
       IBCollectionViewContent.backgroundView?.isHidden = true
@@ -257,14 +235,11 @@ extension ManageContentVC: UICollectionViewDataSource{
       IBCollectionViewContent.backgroundView?.isHidden = false
     }
     return arrFilteredBrandList.count
-    
   }
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
 
     return arrFilteredBrandList[section].arrProducts.count
   }
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     return getProductCell(forIndexPath: indexPath)
   }
@@ -273,12 +248,8 @@ extension ManageContentVC: UICollectionViewDataSource{
     productCell.IBlblProductName.text = (arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName).capitalized
     productCell.IBlblProductPrice.text = "$ " + arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
-   // print("product id ******  \(arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductID)")
-    
-    
     if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
         if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String){
-    
           productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
             if let _ = error{
               self.handleProductCellActivityIndicator(productCell, shouldStop: false)
@@ -313,23 +284,17 @@ extension ManageContentVC: UICollectionViewDataSource{
       productCell.IBactivityIndicator.startAnimating()
     }
   }
-  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
     selectedProduct = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row]
     selectedBrand = arrFilteredBrandList[indexPath.section]
-    
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
     }
     else if contentStatus == ContentStatus.rent || contentStatus == ContentStatus.live{
       performSegue(withIdentifier: "ManageToLiveRent", sender: self)
     }
-    
   }
-  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-    
     if contentStatus == ContentStatus.reserve || contentStatus == ContentStatus.rent{
       return CGSize(width: collectionView.frame.width, height: 55.0)
     }
@@ -339,9 +304,7 @@ extension ManageContentVC: UICollectionViewDataSource{
     else{
       return CGSize(width: collectionView.frame.width, height: 55.0)
     }
-    
   }
-  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionElementKindSectionHeader:
@@ -387,11 +350,9 @@ extension ManageContentVC: SortModePopupViewDelegate{
     //delegate method to be implemented after API integration
   }
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
-   // print(sortMode)
     sortModeValue = selectedItem.uName
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
     self.sortMode = selectedItem.uId
-    
     arrFilteredBrandList = []
     getLiveProducts()
   }

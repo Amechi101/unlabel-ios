@@ -78,8 +78,6 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       selectedItem = arrDatasource.first!
     }
   }
-  
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return arrDatasource.count
   }

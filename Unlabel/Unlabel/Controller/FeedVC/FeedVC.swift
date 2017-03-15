@@ -54,23 +54,15 @@
   @IBOutlet weak var IBbtnHamburger: UIButton!
   @IBOutlet weak var IBbtnUnlabel: UIButton!
   @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
-  
   @IBOutlet weak var bottonActivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var IBbtnLeftBarButton: UIButton!
-  
-  
-  
   fileprivate let FEED_CELL_HEIGHT:CGFloat = 211
   fileprivate let fFooterHeight:CGFloat = 28.0
   fileprivate let fHeaderHeight:CGFloat = 54.0
   fileprivate let refreshControl = UIRefreshControl()
-  
-  //    private var arrBrandList:[Brand] = [Brand]()
   var arrFilteredBrandList:[Brand] = [Brand]()
-  
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
   fileprivate var arrWomenBrandList:[Brand] = [Brand]()
-  
   fileprivate var didSelectBrand:Brand?
   fileprivate var filterChildVC:FilterVC?
   fileprivate var headerView:FeedVCHeaderCell?
@@ -84,16 +76,12 @@
   var sFilterGender:String = String()
   var sortMode: String = "AZ"
   var searchResults:String = "Search Results"
-  
   var sFilterLocation:String?
   var display_type:String = String()
   var searchText:String?
-  
-  //    var nextPageURL:String?
   var nextPageURLMen:String?
   var nextPageURLWomen:String?
   var nextPageURLBoth:String?
-  
   var isLoading = false
   
   //MARK:- VC Lifecycle
@@ -122,7 +110,6 @@
     super.didReceiveMemoryWarning()
   }
  }
- 
  
  //MARK:- Navigation Methods
  
@@ -174,8 +161,6 @@
   }
   
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    
-    
     switch kind {
       
     case UICollectionElementKindSectionHeader:
@@ -183,34 +168,13 @@
       
       if mainVCType == .feed{
         headerView?.IBlblFilterTitle.isHidden = true
-        headerView?.IBbtnMen.isHidden = false
-        headerView?.IBbtnWomen.isHidden = false
         self.sFilterGender = ""
-        var selectedTabString = String()
-        
-        if headerView?.selectedTab == .men {
-          selectedTabString = "Men"
-        }else if headerView?.selectedTab == .women{
-          selectedTabString = "Women"
-        }else{
-          
-        }
-
-      }else if mainVCType == .filter{
-        
-        
-      }else{
-        
-      }
-      
-      
+      } 
       return headerView!
       
     case UICollectionElementKindSectionFooter:
       let footerView:FeedVCFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell, for: indexPath) as! FeedVCFooterCell
-      
       return footerView
-      
     default:
       assert(false, "No such element")
       return UICollectionReusableView()
@@ -229,13 +193,10 @@
       headerView?.isHidden = true
       IBcollectionViewFeed.backgroundView?.isHidden = false
     }
-    
     return arrFilteredBrandList.count
-    //  return 6
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-    //        print("\(indexPath)")
     if indexPath.item == arrFilteredBrandList.count - 1 {
       wsCallGetLabelsResetOffset(false)
     }
@@ -264,15 +225,13 @@
         if let _ = error{
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
         }else{
-          if (type == SDImageCacheType.none)
-          {
+          if (type == SDImageCacheType.none){
             feedVCCell.IBimgBrandImage.alpha = 0;
             UIView.animate(withDuration: 0.35, animations: {
               feedVCCell.IBimgBrandImage.alpha = 1;
             })
           }
-          else
-          {
+          else{
             feedVCCell.IBimgBrandImage.alpha = 1;
           }
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
@@ -335,9 +294,6 @@
  //MARK:- NotFoundView Methods
  
  extension FeedVC:NotFoundViewDelegate{
-  /**
-   If user not following any brand, show this view
-   */
   func addNotFoundView(){
     notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
@@ -345,7 +301,7 @@
     if mainVCType == .feed{
       notFoundView.IBlblMessage.text = "No brands available."
     }else if mainVCType == .filter{
-      notFoundView.IBlblMessage.text = "Nothing to see here.\n Currently no designers are within this filtering range."
+      notFoundView.IBlblMessage.text = "Nothing to see here.\n\n Currently no designers are within this filtering range."
     }
     IBcollectionViewFeed.backgroundView = notFoundView
     IBcollectionViewFeed.backgroundView?.isHidden = true
@@ -355,8 +311,6 @@
     popVC()
   }
  }
- 
- 
  //MARK:- IBAction Methods
  
  extension FeedVC{
@@ -381,18 +335,13 @@
           }else{
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
-          
           IBcollectionViewFeed.reloadData()
-        //  debugPrint(arrFilteredBrandList)
-        //  debugPrint([sender.tag])
           UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
             meta: JSON) in
             if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
               self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
               UnlabelHelper.setBoolValue(true, key: sFOLLOW_SEEN_ONCE)
             }
-        //    debugPrint(meta)
-            
           }, failed: { (error) in
           })
         }
@@ -406,16 +355,6 @@
   @IBAction func IBActionSortFeed(_ sender: Any) {
     self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
-  
-  
-  @IBAction func IBActionFilterMen(_ sender: UIButton) {
-
-  }
-  
-  @IBAction func IBActionFilterWomen(_ sender: UIButton) {
-
-  }
-  
  }
  
  //MARK:- Sort Popup delegate Methods
@@ -424,8 +363,6 @@
   func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
     if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
       viewSortPopup.delegate = self
-      
-    //  print(slideUpView)
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
       viewSortPopup.popupTitle = "SORT BY"
@@ -433,7 +370,6 @@
       UIView.animate(withDuration: 0.2, animations: {
         viewSortPopup.frame = self.view.frame
         viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
-        // viewSortPopup.backgroundColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 0.5)
       })
       viewSortPopup.updateView()
       self.tabBarController?.tabBar.isUserInteractionEnabled = false
@@ -444,7 +380,6 @@
   }
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
-    //print(sortMode)
     headerView?.IBSortButton.setTitle("Sort by: " + selectedItem.uName, for: .normal)
     self.sortMode = selectedItem.uId
     wsCallGetLabels()
@@ -488,7 +423,6 @@
       addNotFoundView()
       addPullToRefresh()
       display_type = "FEED"
-    //  wsCallGetLabels()
       IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
     }else if mainVCType == .filter{
       display_type = "FILTER"
@@ -503,8 +437,6 @@
     if self.navigationController?.viewControllers.count > 1{
       leftBarButtonImage = IMG_BACK
     }
-    
-    
     IBbtnUnlabel.titleLabel?.textColor = UIColor.black
     IBbtnUnlabel.setTitle(titleText.uppercased(), for: UIControlState())
     IBbtnHamburger.setImage(UIImage(named: leftBarButtonImage), for: UIControlState())
@@ -523,8 +455,6 @@
       debugPrint("handleHamburgerAndBack uknown")
     }
   }
-  
-  
   fileprivate func popVC(){
     _ = navigationController?.popViewController(animated: true)
   }
@@ -537,7 +467,6 @@
       feedVCCell.IBactivityIndicator.startAnimating()
     }
   }
-  
   fileprivate func getSelectedGender()->BrandGender{
     if headerView?.selectedTab == .men{
       return BrandGender.Men
@@ -585,14 +514,6 @@
  //MARK:- WS Call Methods
  
  extension FeedVC{
-  /**
-   WS call get all brands
-   */
-  //    private func wsCallGetBrands(fetchBrandsRP:FetchBrandsRP){
-  //
-  //    }
-  
-  
   func wsCallGetLabels(){
     wsCallGetLabelsResetOffset(true)
   }
@@ -615,11 +536,7 @@
       }else if headerView?.selectedTab == .women{
         nextPageURLWomen = nil
         arrWomenBrandList = []
-      }else{
-        
       }
-      //            nextPageURL = nil
-      //            arrBrandList = []
     } else if let next:String = nextPageURL, next.characters.count == 0 {
       return
     }
@@ -644,8 +561,6 @@
       }else{
         UnlabelLoadingView.sharedInstance.start(view)
       }
-      
-      
       let fetchBrandsRequestParams = FetchBrandsRP()
       fetchBrandsRequestParams.filterCategory = self.sFilterCategory
       fetchBrandsRequestParams.filterLocation = self.sFilterLocation
@@ -661,14 +576,11 @@
       }else{
         
       }
-      
       fetchBrandsRequestParams.brandGender = getSelectedGender()
       fetchBrandsRequestParams.sortMode = self.sortMode
       if let selectedTab = headerView?.selectedTab{
         fetchBrandsRequestParams.selectedTab = selectedTab
       }
-      
-      
       UnlabelAPIHelper.sharedInstance.getAllBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         self.isLoading = false
         
@@ -676,8 +588,6 @@
         self.bottonActivityIndicator.stopAnimating()
         
         self.arrFilteredBrandList = []
-        print("*** Meta *** \(meta)")
-        
         if fetchBrandsRequestParams.selectedTab == .men{
           self.arrMenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrMenBrandList

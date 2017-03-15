@@ -10,19 +10,23 @@ import UIKit
 
 class ProductStatsVC: UITableViewController {
   
+  //MARK: -  IBOutlets,vars,constants
+  
   @IBOutlet var IBtblAccountInfo: UITableView!
+ 
+  //MARK: -  View lifecycle methods
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     IBtblAccountInfo.tableFooterView = UIView()
-    
   }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+  //MARK: -  IBAction methods
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
 }

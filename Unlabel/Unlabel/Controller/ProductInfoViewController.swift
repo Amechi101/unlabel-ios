@@ -17,6 +17,7 @@ class ProductInfoViewController: UIViewController {
   @IBOutlet weak var IBItemSKU: UILabel!
   var selectedProduct:Product?
   var childProduct:Product?
+  
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {

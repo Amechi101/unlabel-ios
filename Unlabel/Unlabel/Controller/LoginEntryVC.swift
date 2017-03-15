@@ -19,6 +19,7 @@ enum LoginScenario{
 class LoginEntryVC: UIViewController {
   
   //MARK:- IBOutlets, vars and constants
+  
   @IBOutlet weak var IBLblEmail: UILabel!
   @IBOutlet weak var IBLblPassword: UILabel!
   @IBOutlet weak var IBEmailLine: UIView!
@@ -36,8 +37,6 @@ class LoginEntryVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -210,30 +209,22 @@ extension LoginEntryVC: UITextFieldDelegate{
     if textField == IBTextfieldEmail{
       if isValidEmail(){
         IBTextfieldPassword.becomeFirstResponder()
-      }else{
-        
       }
     }else if textField == IBTextfieldPassword{
       if isValidUserPassword(){
-        
-      }else{
-        
+        // action inside isValidUserPassword()
       }
       IBTextfieldPassword.resignFirstResponder()
-    }else{
-      
     }
     return true
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
     if textField == IBTextfieldEmail{
-      //IBTextfieldEmail.text = ""
       loginScenario = LoginScenario.ok
       updateEmailFields()
     }
     else{
-     // IBTextfieldPassword.text = ""
       loginScenario = LoginScenario.ok
       updatePasswordFields()
     }
@@ -334,12 +325,7 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
     }
   }
   
-  func popupDidClickCancel(){
-    
-  }
-  
   func popupClickAction(_ email:String){
-  //  debugPrint(email)
     user.email = email
     if ReachabilitySwift.isConnectedToNetwork(){
       UnlabelLoadingView.sharedInstance.start(view)
@@ -347,11 +333,9 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
     }else{
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
-    
   }
-  
   func popupDidClickClose(){
-    
+    // popup did click cancel
   }
 }
 

@@ -37,7 +37,6 @@ class RentOrLiveProductDetailVC: UIViewController {
   var productID: String?
   var selectedBrand:Brand?
   
-  
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -45,13 +44,9 @@ class RentOrLiveProductDetailVC: UIViewController {
     if selectedProduct == nil {
       selectedProduct = Product()
     }
-    
-    
     if let brandName:String = selectedBrand?.Name{
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
-      
     }
-    
     IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     if contentStatus == ContentStatus.live{
@@ -72,20 +67,16 @@ class RentOrLiveProductDetailVC: UIViewController {
       IBSelectSize.isUserInteractionEnabled = false
       IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
     }
-    
-   // print((selectedProduct?.arrProductsImages.count)!)
     setUpCollectionView()
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
     productPageControl.currentPage = 0
     productID = selectedProduct?.ProductID
     IBProductTitle.text = selectedProduct?.ProductName
     IBProductPrice.text = "$ " + (selectedProduct?.ProductPrice)!
-
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
   func setUpCollectionView(){
     productImageCollectionView.layoutMargins = UIEdgeInsets.zero
     productImageCollectionView.preservesSuperviewLayoutMargins = false
@@ -98,7 +89,6 @@ class RentOrLiveProductDetailVC: UIViewController {
     self.automaticallyAdjustsScrollViewInsets = true
     
   }
-
   func getSizeList() -> [UnlabelStaticList]{
     var arrSize = [UnlabelStaticList]()
       for thisSize in (selectedProduct?.arrProductsSizes)!{
@@ -107,10 +97,8 @@ class RentOrLiveProductDetailVC: UIViewController {
         pSize.uName = thisSize as! String
         arrSize.append(pSize)
       }
-    print(arrSize)
     return arrSize
   }
-
   func getProductImages() {
     UnlabelAPIHelper.sharedInstance.getProductImage((selectedProduct?.ProductID)! ,onVC: self, success:{ (arrImage:[ProductImages],
       meta: JSON) in
@@ -118,9 +106,7 @@ class RentOrLiveProductDetailVC: UIViewController {
       
     }, failed: { (error) in
     })
-    
   }
-  
   func getProductNote() {
     UnlabelAPIHelper.sharedInstance.getProductNote((selectedProduct?.ProductID)! ,onVC: self, success:{ (
       meta: JSON) in
@@ -129,11 +115,9 @@ class RentOrLiveProductDetailVC: UIViewController {
       if !productNote.isEmpty{
         self.IBBtnProductNote.setTitle("Update Product Note", for: .normal)
       }
-      
     }, failed: { (error) in
     })
   }
-  
   func wsGoLiveProduct(){
     UnlabelAPIHelper.sharedInstance.goLiveProduct((selectedProduct?.ProductID)!, onVC: self, success:{ (
       meta: JSON) in
@@ -142,10 +126,7 @@ class RentOrLiveProductDetailVC: UIViewController {
       self.dismiss(animated: true, completion: nil)
     }, failed: { (error) in
     })
-    
   }
-  
-  
   //MARK: -  IBAction methods
   
   @IBAction func IBActionDismissView(_ sender: AnyObject) {
@@ -157,7 +138,6 @@ class RentOrLiveProductDetailVC: UIViewController {
   @IBAction func IBActionSelectSize(_ sender: Any) {
   //  self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "AddProductNote"{
       if let addProductNoteVC:AddProductNoteVC = segue.destination as? AddProductNoteVC{
@@ -178,16 +158,16 @@ class RentOrLiveProductDetailVC: UIViewController {
   }
   fileprivate func share(shareText:String?,shareImage:UIImage?){
     var objectsToShare = [AnyObject]()
-    
     if let shareTextObj = shareText{
       objectsToShare.append(shareTextObj as AnyObject)
     }
-    
     if let shareImageObj = shareImage{
       objectsToShare.append(shareImageObj)
     }
-    
-    if shareText != nil || shareImage != nil{
+    if selectedProduct?.shareUrl?.absoluteString != ""{
+      objectsToShare.append(selectedProduct?.shareUrl as AnyObject)
+    }
+    if shareText != nil || shareImage != nil || selectedProduct?.shareUrl?.absoluteString != ""{
       let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       activityViewController.popoverPresentationController?.sourceView = self.view
       
@@ -201,13 +181,11 @@ class RentOrLiveProductDetailVC: UIViewController {
 //MARK: -  AddToCart Popup delegate methods
 
 extension RentOrLiveProductDetailVC: GoLivePopupDelegate{
-  
   func addGoLivePopupView(_ initialFrame:CGRect){
     if let viewForgotLabelPopup:GoLivePopupView = Bundle.main.loadNibNamed("GoLivePopupView", owner: self, options: nil)? [0] as? GoLivePopupView{
       viewForgotLabelPopup.delegate = self
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
-      
       view.addSubview(viewForgotLabelPopup)
       UIView.animate(withDuration: 0.2, animations: {
         viewForgotLabelPopup.frame = self.view.frame
@@ -222,7 +200,6 @@ extension RentOrLiveProductDetailVC: GoLivePopupDelegate{
   }
   func popupDidClickGoLive(){
     wsGoLiveProduct()
-    
   }
 }
 
@@ -257,33 +234,29 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate{
 //MARK: -  Collection view methods
 
 extension RentOrLiveProductDetailVC: UICollectionViewDelegate,UICollectionViewDataSource{
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
     return (selectedProduct?.arrProductsImages.count)!
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
-    productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill;
-    // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
+    productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill
     if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
       productCell.productImage.sd_setImage(with: url, completed:
         { (iimage, error, type, url) in
-          
           if let _ = error{
           }else{
             self.productImage = iimage
             if (type == SDImageCacheType.none)  {
-              productCell.productImage.alpha = 0;
+              productCell.productImage.alpha = 0
               UIView.animate(withDuration: 0.35, animations: {
-                productCell.productImage.alpha = 1;
+                productCell.productImage.alpha = 1
               })
             } else  {
-              productCell.productImage.alpha = 1;
+              productCell.productImage.alpha = 1
             }
           }
       })
     }
-    
     return productCell
   }
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -295,5 +268,3 @@ extension RentOrLiveProductDetailVC: UICollectionViewDelegateFlowLayout{
     return CGSize(width: collectionView.frame.size.width, height: 392.0)
   }
 }
-
-

@@ -21,18 +21,14 @@ class CurrentLocationVC: UIViewController {
   var slideUpMenu: SlideUpView = .country
   var stateID: String = "1"
   var countryID: String = "US"
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     getInfluencerLocation()
-    // Do any additional setup after loading the view.
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
-  
   func saveInfluencerLocation() {
     let params: [String: String] = ["city":(self.IBButtonSelectCity.titleLabel?.text)!,"state":stateID,"country":countryID]
     UnlabelAPIHelper.sharedInstance.saveInfluencerLocation(params ,onVC: self, success:{ (
@@ -42,8 +38,6 @@ class CurrentLocationVC: UIViewController {
       }, failed: { (error) in
     })
   }
-  
-  
   func getInfluencerLocation() {
     UnlabelAPIHelper.sharedInstance.getInfluencerLocation( self, success:{ (
       meta: JSON) in
@@ -100,7 +94,6 @@ class CurrentLocationVC: UIViewController {
         }
       }
     }
-    
   }
 }
 extension CurrentLocationVC: PickLocationDelegate{

@@ -34,7 +34,6 @@ class ProductViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     if selectedProduct == nil {
       selectedProduct = Product()
     }
@@ -44,7 +43,6 @@ class ProductViewController: UIViewController {
     setUpCollectionView()
     if let brandName:String = selectedBrand?.Name{
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
-      
     }
     if contentStatus == ContentStatus.reserve{
       IBButtonReserve.setTitle("UNRESERVE", for: .normal)
@@ -56,12 +54,10 @@ class ProductViewController: UIViewController {
       IBButtonReserve.setTitle("RESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_GRAY_COLOR
     }
-  //  print(self.selectedProduct?.ProductID)
     IBScrollView.contentInset = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     IBScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-64.0, 0.0, 0.0, 0.0)
     productPageControl.numberOfPages = (selectedProduct?.arrProductsImages.count)!
     productPageControl.currentPage = 0
-    
     if (selectedProduct?.arrProductsImages.count)! <= 1{
       productPageControl.isHidden = true
     }
@@ -79,7 +75,6 @@ class ProductViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == S_ID_PRODUCT_INFO_SEGUE{
       if let productInfoViewController:ProductInfoViewController = segue.destination as? ProductInfoViewController{
-        
         if contentStatus == ContentStatus.reserve{
           productInfoViewController.selectedProduct = self.selectedProduct
           productInfoViewController.childProduct = self.selectedProduct
@@ -88,10 +83,8 @@ class ProductViewController: UIViewController {
           productInfoViewController.selectedProduct = self.selectedProduct
           productInfoViewController.childProduct = childProduct
         }
-        
       }
     }
-    
   }
 }
 
@@ -103,7 +96,6 @@ extension ProductViewController{
       UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
-        debugPrint(meta)
         if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
           self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
@@ -111,7 +103,6 @@ extension ProductViewController{
         else{
           self.dismiss(animated: true, completion: nil)
         }
-        
       }, failed: { (error) in
       })
 
@@ -120,7 +111,6 @@ extension ProductViewController{
       UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
-        debugPrint(meta)
         if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
           self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
@@ -128,27 +118,20 @@ extension ProductViewController{
         else{
           self.dismiss(animated: true, completion: nil)
         }
-        
       }, failed: { (error) in
       })
-
     }
-    
   }
-  
   func setUpCollectionView(){
     productImageCollectionView.layoutMargins = UIEdgeInsets.zero
     productImageCollectionView.preservesSuperviewLayoutMargins = false
-    
     productImageCollectionView.register(UINib(nibName: PRODUCT_IMAGE_CELL, bundle: nil), forCellWithReuseIdentifier:REUSABLE_ID_PRODUCT_IMAGE_CELL )
     (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
     (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
     (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing = 0.0
     (productImageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0.0
     self.automaticallyAdjustsScrollViewInsets = true
-    
   }
-  
   func getSizeList() -> [UnlabelStaticList]{
     var arrSize = [UnlabelStaticList]()
     for thisProduct in self.selectedSizeProduct{
@@ -159,7 +142,6 @@ extension ProductViewController{
         arrSize.append(pSize)
       }
     }
-    print(arrSize)
     return arrSize
   }
 }
@@ -171,7 +153,6 @@ extension ProductViewController{
     self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func likeProductAction(_ sender: Any) {
-    
     if UnlabelHelper.isUserLoggedIn(){
       self.addLikeFollowPopupView(FollowType.product,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
     }else{
@@ -182,7 +163,6 @@ extension ProductViewController{
   @IBAction func addToCartAction(_ sender: Any) {
     if contentStatus == ContentStatus.reserve{
       wsReserveProduct()
-     // self.dismiss(animated: true, completion: nil)
     }
     else{
       if self.IBSelectSize.titleLabel?.text != "Select Size"{
@@ -193,7 +173,6 @@ extension ProductViewController{
       }
     }
   }
-  
   @IBAction func backAction(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
@@ -202,19 +181,15 @@ extension ProductViewController{
 //MARK: -  Collection view methods
 
 extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSource{
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
     return (selectedProduct?.arrProductsImages.count)!
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
-  //  print("cell\(productCell)")
-    productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill;
-    // productCell.productImage.image = UIImage(named:"Katie_Lookbook")
+    productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill
     if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
       productCell.productImage.sd_setImage(with: url, completed:
         { (iimage, error, type, url) in
-          
           if let _ = error{
           }else{
             if (type == SDImageCacheType.none)  {
@@ -228,13 +203,13 @@ extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSou
           }
       })
     }
-    
     return productCell
   }
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     productPageControl.currentPage = indexPath.row
   }
 }
+
 extension ProductViewController:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.size.width, height: 392.0)
@@ -260,7 +235,7 @@ extension ProductViewController:AddToCartViewDelegate{
   }
   
   func popupDidClickCancel(){
-    
+    // popup did click cancel
   }
   func popupClickReserve(){
     UnlabelLoadingView.sharedInstance.start(self.view)
@@ -271,7 +246,6 @@ extension ProductViewController:AddToCartViewDelegate{
 //MARK: -  Like/Follow popup delegate methods
 
 extension ProductViewController:LikeFollowPopupviewDelegate{
-  
   func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect){
     if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup{
       likeFollowPopup.delegate = self
@@ -289,7 +263,6 @@ extension ProductViewController:LikeFollowPopupviewDelegate{
   }
   
   func popupDidClickClosePopup(){
-    debugPrint("close popup")
     _ = self.navigationController?.popViewController(animated: true)
   }
 }
@@ -315,7 +288,7 @@ extension ProductViewController: SortModePopupViewDelegate{
     }
   }
   func popupDidClickCloseButton(){
-    
+    //popup did click close
   }
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     IBSelectSize.setTitle(selectedItem.uName, for: .normal)
@@ -325,11 +298,8 @@ extension ProductViewController: SortModePopupViewDelegate{
           childProductID = thisProduct.ProductID
           childProduct = thisProduct
         }
-        
       }
     }
-    print(childProductID)
-    
   }
 }
 

@@ -31,65 +31,46 @@ class FilterListController: UIViewController {
   //   MARK:- Life Cycle methods
   
   override func viewDidLoad() {
-    
-    var filterAll = FilterModel()
+    let filterAll = FilterModel()
     filterAll.typeDescription = ""
     filterAll.typeId = ""
     filterAll.typeName = "All"
     arFilterMenu.append(filterAll)
-    
     super.viewDidLoad()
     setUp()
     WSGetAllFilterList(ByCategoryType: categoryStyleType)
-    
     self.automaticallyAdjustsScrollViewInsets = false
     self.IBtableFilterList.tableFooterView = UIView()
-    
-    
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
   }
-  
-  
   fileprivate func setUp() {
     self.IBtableFilterList.removeMargines()
     self.IBtableFilterList.separatorColor =  LIGHT_GRAY_TEXT_COLOR.withAlphaComponent(0.5)
     IBlblTitleBar.text = categoryStyleType.description
     IBtableFilterList.dataSource = self
     IBtableFilterList.delegate = self
-    
     IBbtnApply.isHidden = true
-    
     IBtableFilterList.allowsMultipleSelection = true
     IBtableFilterList.register(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
     IBtableFilterList.register(UINib(nibName: "FilterHeaderCell", bundle: nil), forCellReuseIdentifier: "FilterHeaderCell")
-    
   }
-  
   fileprivate func registerCell(withID reusableID:String){
     IBtableFilterList.register(UINib(nibName: reusableID, bundle: nil), forCellReuseIdentifier: reusableID)
   }
-  
   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
     UnlabelLoadingView.sharedInstance.start(self.view)
     UnlabelAPIHelper.sharedInstance.getBrandCategory(categoryStyle: categoryStyleType,{ (arrCountry:[FilterModel], meta: JSON,arrSpecial) in
       self.arFilterMenu += arrCountry
       self.arOriginalJSON = arrSpecial
-      
       for (index, _) in self.arFilterMenu.enumerated() {
         self.dictSelection[index] = false
       }
-      
       if self.arSelectedValues.count > 0  {
-        
         if self.arSelectedValues.count == self.arFilterMenu.count - 1 {
           self.dictSelection[0] = true
           for row in 1..<self.arFilterMenu.count {
@@ -106,13 +87,10 @@ class FilterListController: UIViewController {
           }
         }
       }
-      
       DispatchQueue.main.async {
         UnlabelLoadingView.sharedInstance.stop(self.view)
         self.IBbtnApply.isHidden = false
-        
         self.IBtableFilterList.reloadData()
-        
       }
       
     }, failed: { (error) in
@@ -126,10 +104,6 @@ class FilterListController: UIViewController {
   @IBAction func IBActionClose(_ sender: AnyObject) {
     self.dismiss(animated: true, completion: nil)
   }
-  
-  
-  
-  
 }
 
 // MARK:- TableView Delegates and Datasource
@@ -193,6 +167,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
   
   
   // View section header
+  
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if categoryStyleType == CategoryStyleEnum.location{
         return 0
