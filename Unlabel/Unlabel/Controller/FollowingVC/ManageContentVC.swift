@@ -77,6 +77,7 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
           rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
           rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
+          
         }
       }
     }
@@ -145,6 +146,7 @@ extension ManageContentVC{
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+      print(meta)
         self.arrFilteredBrandList = []
         self.arrMenBrandList.append(contentsOf: arrBrands)
         self.arrFilteredBrandList = self.arrMenBrandList
@@ -158,6 +160,7 @@ extension ManageContentVC{
         let fetchProductRequestParams = FetchProductParams()
         fetchProductRequestParams.sortMode = ""
         UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+          print(meta)
             self.arrFilteredBrandList = []
             self.arrMenBrandList.append(contentsOf: arrBrands)
             self.arrFilteredBrandList = self.arrMenBrandList
@@ -286,6 +289,7 @@ extension ManageContentVC: UICollectionViewDataSource{
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedProduct = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row]
+    print(selectedProduct.ProductDescription)
     selectedBrand = arrFilteredBrandList[indexPath.section]
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)

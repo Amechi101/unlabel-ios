@@ -207,7 +207,7 @@ class UnlabelAPIHelper{
             for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
                 let brand = Brand()
                 let currentBrand = thisBrand["brand"] as! [String:AnyObject]
-                //  print(currentBrand)
+                  print(currentBrand)
                 brand.currentIndex = index
                 
                 if let isActive = currentBrand["is_active"] as? Bool{
@@ -244,28 +244,39 @@ class UnlabelAPIHelper{
                     if let state = rentalInfo["state"] as? String{
                         rental.State = state
                     }
-                    //          if let start_time = rentalInfo["start_time"] as? String{
-                    //          }
-                    //          if let start_time_period = rentalInfo["start_time_period"] as? String{
-                    //          }
-                    //          if let end_time = rentalInfo["end_time"] as? String{
-                    //          }
-                    //          if let end_time_period = rentalInfo["end_time_period"] as? String{
-                    //          }
-                    
-                    
-                    let startTime: String = (rentalInfo["start_time"]as! String) + (rentalInfo["start_time_period"] as! String)
-                    let endTime: String = (rentalInfo["end_time"] as! String) + (rentalInfo["end_time_period"] as! String)
-                    if let days: [String] = rentalInfo["day"] as? [String]{
-                        for thisDay in days{
-                            rental.PickUpTime.append(thisDay+": " + startTime + " - " + endTime)
-                        }
-                    }
-                    brand.rentalInfo = rental
+                  
+                 // var hrmm:String = (rentalInfo["start_time"]as! String)
+                 // var start = hrmm.index(hrmm.startIndex, offsetBy: 5);
+                 // var end = hrmm.index(hrmm.startIndex, offsetBy: 5 + 3);
+                 // hrmm.replaceSubrange(start..<end, with: "")
+                 
+                 // let startTime: String = hrmm + (rentalInfo["start_time_period"] as! String).lowercased()
+                  
+                 // hrmm = (rentalInfo["end_time"] as! String)
+                 // start = hrmm.index(hrmm.startIndex, offsetBy: 5);
+                 // end = hrmm.index(hrmm.startIndex, offsetBy: 5 + 3);
+                 // hrmm.replaceSubrange(start..<end, with: "")
+                 // let endTime: String = hrmm + (rentalInfo["end_time_period"] as! String).lowercased()
+                  
+                  var start:String = (rentalInfo["start_time"]as! String)
+                  if start.characters.first == "0"{
+                    start.remove(at: start.startIndex)
+                  }
+                  let startTime: String = start.replacingOccurrences(of: ":00", with: "") + (rentalInfo["start_time_period"] as! String).lowercased()
+                  
+                  var end:String = (rentalInfo["end_time"] as! String)
+                  if end.characters.first == "0"{
+                    end.remove(at: end.startIndex)
+                  }
+                  let endTime: String = end.replacingOccurrences(of: ":00", with: "") + (rentalInfo["end_time_period"] as! String).lowercased()
+                  
+                  if let days: [String] = rentalInfo["day"] as? [String]{
+                      for thisDay in days{
+                          rental.PickUpTime.append(thisDay+": " + startTime + " - " + endTime)
+                      }
+                  }
+                  brand.rentalInfo = rental
                 }
-                
-                
-                
                 if let name = currentBrand["name"] as? String{
                     brand.Name = name
                 }
@@ -277,7 +288,7 @@ class UnlabelAPIHelper{
                 if let productList = thisBrand["products"] as! [[String : AnyObject]]?{
                     //   print(productList)
                     for thisProduct in productList{
-                        //    print(thisProduct)
+                            print(thisProduct)
                         let product = Product()
                         if let name = thisProduct["title"] as? String{
                             product.ProductName = name
@@ -292,6 +303,9 @@ class UnlabelAPIHelper{
                         if let material_info = thisProduct["material_info"] as? String{
                             product.ProductMaterialCareInfo = material_info
                         }
+                      if let sku = thisProduct["sku"] as? String{
+                        product.ProductItemSKU = sku
+                      }
                         if let id = thisProduct["id"] as? NSNumber{
                             product.ProductID = "\(id)"
                         }
@@ -1739,3 +1753,4 @@ class UnlabelAPIHelper{
     }
     
 }
+

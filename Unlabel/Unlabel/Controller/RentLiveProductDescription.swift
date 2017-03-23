@@ -29,6 +29,7 @@ class RentLiveProductDescription: UIViewController {
     IBMaterialCareInfo.text = selectedProduct?.ProductMaterialCareInfo
     IBItemSKU.text = selectedProduct?.ProductItemSKU
     IBCreator.text = selectedProduct?.ProductCreatorInfo
+   // print(selectedProduct?.ProductDescription)
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

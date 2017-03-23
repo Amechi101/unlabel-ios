@@ -151,6 +151,11 @@ class RentOrLiveProductDetailVC: UIViewController {
         addOrViewProductImageVC.contentStatus = self.contentStatus
       }
     }
+    else if segue.identifier == "RentLiveProductInfo"{
+      if let rentLiveProductDescription:RentLiveProductDescription = segue.destination as? RentLiveProductDescription{
+        rentLiveProductDescription.selectedProduct = self.selectedProduct!
+      }
+    }
   }
   
   @IBAction func IBActionShare(_ sender: UIButton) {
@@ -170,7 +175,6 @@ class RentOrLiveProductDetailVC: UIViewController {
     if shareText != nil || shareImage != nil || selectedProduct?.shareUrl?.absoluteString != ""{
       let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       activityViewController.popoverPresentationController?.sourceView = self.view
-      
       present(activityViewController, animated: true, completion: nil)
     }else{
       debugPrint("There is nothing to share")
