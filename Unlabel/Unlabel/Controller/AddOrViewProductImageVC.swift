@@ -236,6 +236,8 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
       }
       else{
         let footerView:ProductPhotoFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductPhotoFooterCell", for: indexPath) as! ProductPhotoFooterCell
+       // footerView.layer.borderColor = UIColor.red.cgColor
+      //  footerView.layer.borderWidth = 3.0
         return footerView
       }
     default:

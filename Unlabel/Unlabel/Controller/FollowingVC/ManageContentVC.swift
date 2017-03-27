@@ -146,7 +146,7 @@ extension ManageContentVC{
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
-      print(meta)
+      print(meta) 
         self.arrFilteredBrandList = []
         self.arrMenBrandList.append(contentsOf: arrBrands)
         self.arrFilteredBrandList = self.arrMenBrandList
