@@ -231,6 +231,22 @@ class UnlabelHelper: NSObject {
     attributeList.append(pType2)
     return attributeList
   }
+  class func getRadius() -> [FilterModel]{
+    var attributeList =  [FilterModel]()
+    let pType1 = FilterModel()
+    pType1.typeId = "20"
+    pType1.typeName = "20 miles"
+    attributeList.append(pType1)
+    let pType2 = FilterModel()
+    pType2.typeId = "50"
+    pType2.typeName = "50 miles"
+    attributeList.append(pType2)
+    let pType3 = FilterModel()
+    pType3.typeId = "100"
+    pType3.typeName = "100 miles"
+    attributeList.append(pType3)
+    return attributeList
+  }
 
   class func getOtherPhysicalAttributes() -> [UnlabelStaticList]{
     var attributeList =  [UnlabelStaticList]()

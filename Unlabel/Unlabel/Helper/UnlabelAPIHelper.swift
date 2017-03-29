@@ -851,10 +851,10 @@ class UnlabelAPIHelper{
         }
          print(requestURL!)
         if fetchBrandsRP.display == "FEED"{
-            params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!]
+            params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"location_id":fetchBrandsRP.location_id!,"radius":fetchBrandsRP.radius!]
         }
         else{
-            params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!]
+          params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"location_id":fetchBrandsRP.location_id!,"radius":fetchBrandsRP.radius!]
         }
         
           print(params)
@@ -1326,14 +1326,14 @@ class UnlabelAPIHelper{
         }
     }
     
-    func getInfluencerLocation(_ onVC: UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    func getInfluencerLocation(success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
         let requestURL:String?
         requestURL = v4BaseUrl + "api_v2/influencer_current_locations/"
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+              print(response)
                 switch response.result {
-                    
                 case .success(let data):
                     let json = JSON(data)
                     success(json)

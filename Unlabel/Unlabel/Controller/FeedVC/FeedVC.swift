@@ -83,7 +83,7 @@
   var nextPageURLWomen:String?
   var nextPageURLBoth:String?
   var isLoading = false
-  
+  var radius: String = "100"
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -95,15 +95,16 @@
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = false
     UnlabelHelper.setAppDelegateDelegates(self)
-    wsCallGetLabels()
+    getInfluencerLocation()
+   // wsCallGetLabels()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
-      wsCallGetLabelsResetOffset(false)
-    }
-    IBcollectionViewFeed.reloadData()
+//    if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
+//      wsCallGetLabelsResetOffset(false)
+//    }
+//    IBcollectionViewFeed.reloadData()
   }
   
   override func didReceiveMemoryWarning() {
@@ -112,7 +113,7 @@
  }
  
  //MARK:- Navigation Methods
- 
+
  extension FeedVC{
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == S_ID_PRODUCT_VC{
@@ -132,6 +133,14 @@
         commonTableVC.arrFilteredBrandList = arrFilteredBrandList
       }
     }
+    else if segue.identifier == "InfluencerRadiusSegue"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+          pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
+          pickLocationVC.delegate = self
+        }
+      }
+    }
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -149,6 +158,13 @@
   }
  }
  
+ 
+ extension FeedVC: PickLocationDelegate{
+  func locationDidSelected(_ selectedItem: FilterModel){
+    print(selectedItem)
+    radius = selectedItem.typeId
+  }
+ }
  
  //MARK:- UICollectionViewDelegate Methods
  
@@ -390,6 +406,18 @@
  //MARK:- Custom Methods
  
  extension FeedVC{
+
+  func getInfluencerLocation() {
+    UnlabelAPIHelper.sharedInstance.getInfluencerLocation( success:{ (
+      meta: JSON) in
+      print(meta)
+      print(meta["id"].stringValue)
+      UnlabelHelper.setDefaultValue(meta["id"].stringValue, key: "location_id")
+      UnlabelHelper.setDefaultValue(meta["display_string"].stringValue, key: "location_name")
+      self.wsCallGetLabels()
+    }, failed: { (error) in
+    })
+  }
   
   /**
    Setup UI on VC Load.
@@ -561,14 +589,16 @@
       }else{
         UnlabelLoadingView.sharedInstance.start(view)
       }
-      let fetchBrandsRequestParams = FetchBrandsRP()
+      let fetchBrandsRequestParams            = FetchBrandsRP()
       fetchBrandsRequestParams.filterCategory = self.sFilterCategory
       fetchBrandsRequestParams.filterLocation = self.sFilterLocation
-      fetchBrandsRequestParams.filterStyle = self.sFilterStyle
-      fetchBrandsRequestParams.searchText = self.searchText
-      fetchBrandsRequestParams.storeType = self.sFilterStoreType
-      fetchBrandsRequestParams.sortMode = self.sortMode
-      fetchBrandsRequestParams.display = self.display_type
+      fetchBrandsRequestParams.filterStyle    = self.sFilterStyle
+      fetchBrandsRequestParams.searchText     = self.searchText
+      fetchBrandsRequestParams.storeType      = self.sFilterStoreType
+      fetchBrandsRequestParams.sortMode       = self.sortMode
+      fetchBrandsRequestParams.display        = self.display_type
+      
+      
       if headerView?.selectedTab == .men{
         fetchBrandsRequestParams.nextPageURL = nextPageURLMen
       }else if headerView?.selectedTab == .women{
@@ -578,10 +608,15 @@
       }
       fetchBrandsRequestParams.brandGender = getSelectedGender()
       fetchBrandsRequestParams.sortMode = self.sortMode
+      
+      fetchBrandsRequestParams.location_id = UnlabelHelper.getDefaultValue("location_id")
+      fetchBrandsRequestParams.radius = radius
       if let selectedTab = headerView?.selectedTab{
         fetchBrandsRequestParams.selectedTab = selectedTab
       }
       UnlabelAPIHelper.sharedInstance.getAllBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+        
+        print(meta)
         self.isLoading = false
         
         UnlabelLoadingView.sharedInstance.stop(self.view)

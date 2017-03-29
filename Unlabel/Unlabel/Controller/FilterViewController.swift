@@ -11,7 +11,7 @@ import SwiftyJSON
 
 
 enum CategoryStyleEnum: CustomStringConvertible {
-  case category , style, location
+  case category , style, location, radius
   
   var glossaryTitle:String {
     switch self {
@@ -20,6 +20,9 @@ enum CategoryStyleEnum: CustomStringConvertible {
     case .style:
       return "View Style glossary"
     case .location: return ""
+    case .radius:
+      let location_name: String = UnlabelHelper.getDefaultValue("location_name")!
+      return location_name
     }
   }
   var defaultTitle:String {
@@ -29,6 +32,7 @@ enum CategoryStyleEnum: CustomStringConvertible {
     case .style:
       return "Select Style"
     case .location: return "Select Location"
+    case .radius: return ""
     }
   }
   var title:String {
@@ -39,6 +43,8 @@ enum CategoryStyleEnum: CustomStringConvertible {
       return "Style".uppercased()
     case .location:
       return "Location".uppercased()
+    case .radius:
+      return ""
     }
   }
   
@@ -50,6 +56,8 @@ enum CategoryStyleEnum: CustomStringConvertible {
       return "Style".uppercased()
     case .location:
       return "Location".uppercased()
+    case .radius:
+      return ""
     }
   }
 }

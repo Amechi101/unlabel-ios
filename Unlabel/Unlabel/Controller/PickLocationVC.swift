@@ -24,13 +24,18 @@ class PickLocationVC: UIViewController {
   var delegate:PickLocationDelegate?
   var selectedItem = FilterModel()
   var dictSelection:[Int: Bool] = [0:false]
-  
+  var categoryStyleType:CategoryStyleEnum!
   override func viewDidLoad() {
     super.viewDidLoad()
     IBButtonApply.isHidden = true
     IBTableViewLocation.tableFooterView = UIView()
     setUp()
-    WSGetAllFilterList(ByCategoryType: CategoryStyleEnum.location)
+    if categoryStyleType == CategoryStyleEnum.location{
+      WSGetAllFilterList(ByCategoryType: CategoryStyleEnum.location)
+    }
+    else if categoryStyleType == CategoryStyleEnum.radius{
+      getRadiusValues()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -42,6 +47,36 @@ class PickLocationVC: UIViewController {
   @IBAction func IBActionApply(_ sender: Any) {
     saveInfluencerLocation()
   }
+  
+  func getRadiusValues(){
+    arFilterMenu = UnlabelHelper.getRadius()
+    for (index, _) in self.arFilterMenu.enumerated() {
+      self.dictSelection[index] = false
+    }
+    if self.arSelectedValues.count > 0  {
+      if self.arSelectedValues.count == self.arFilterMenu.count - 1 {
+        self.dictSelection[0] = true
+        for row in 1..<self.arFilterMenu.count {
+          self.dictSelection[row] = self.dictSelection[0]!
+        }
+      } else {
+        self.IBTableViewLocation.reloadData()
+        for (index, menu) in  self.arFilterMenu.enumerated()  {
+          for  value in self.arSelectedValues {
+            if value == menu {
+              self.dictSelection[index] = true
+            }
+          }
+        }
+      }
+    }
+    DispatchQueue.main.async {
+      UnlabelLoadingView.sharedInstance.stop(self.view)
+      self.IBTableViewLocation.reloadData()
+    }
+
+  }
+  
   func saveInfluencerLocation() {
     let params: [String: String] = ["location_id":self.selectedItem.typeId]
     UnlabelAPIHelper.sharedInstance.saveInfluencerLocation(params ,onVC: self, success:{ (
@@ -58,6 +93,7 @@ class PickLocationVC: UIViewController {
     IBTableViewLocation.delegate = self
     IBTableViewLocation.allowsMultipleSelection = false
     IBTableViewLocation.register(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
+    IBTableViewLocation.register(UINib(nibName: "FilterHeaderCell", bundle: nil), forCellReuseIdentifier: "FilterHeaderCell")
   }
   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
     UnlabelLoadingView.sharedInstance.start(self.view)
@@ -132,4 +168,22 @@ extension PickLocationVC: UITableViewDelegate , UITableViewDataSource {
     }
     IBTableViewLocation.reloadData()
   }
+  // View section header
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if categoryStyleType == CategoryStyleEnum.location{
+      return 0
+    }
+    else{
+      return 55
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let _headerView = tableView.dequeueReusableCell(withIdentifier: "FilterHeaderCell") as! FilterHeaderCell
+    _headerView.FilterHeaderTitle.text = categoryStyleType.glossaryTitle
+    _headerView.IBimgViewRightSide.isHidden = true
+    return _headerView
+  }
+
 }

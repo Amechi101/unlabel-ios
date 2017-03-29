@@ -145,7 +145,6 @@ extension LoginEntryVC{
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
     })
   }
-  
   func getInfluencerDetails(){
     UnlabelAPIHelper.sharedInstance.getProfileDetails({ (
       meta: JSON) in

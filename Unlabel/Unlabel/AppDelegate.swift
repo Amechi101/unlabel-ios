@@ -237,15 +237,13 @@ extension AppDelegate{
     }, failed: { (error) in
     })
   }
-  
+
   fileprivate func setupRootVC(){
     
     if UnlabelHelper.isUserLoggedIn(){
       
       HTTPCookieStorage.shared.setCookie(getCookie())
-      
       getInfluencerDetails()
-      
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
       let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
       if let window = self.window {

@@ -224,6 +224,8 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
         return CGSize.zero
       }
       else{
+        print(collectionView.frame.width)
+        print(collectionView.frame.size.width)
         return CGSize(width: collectionView.frame.width, height: 50.0)
       }
     }

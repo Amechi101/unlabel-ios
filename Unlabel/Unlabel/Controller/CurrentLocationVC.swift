@@ -39,12 +39,13 @@ class CurrentLocationVC: UIViewController {
     })
   }
   func getInfluencerLocation() {
-    UnlabelAPIHelper.sharedInstance.getInfluencerLocation( self, success:{ (
+    UnlabelAPIHelper.sharedInstance.getInfluencerLocation( success:{ (
       meta: JSON) in
       print(meta)
       DispatchQueue.main.async(execute: { () -> Void in
         self.IBButtonSelectLocation.setTitle(meta["display_string"].stringValue, for: .normal)
-
+        UnlabelHelper.setDefaultValue(meta["display_string"].stringValue, key: "location_name")
+        UnlabelHelper.setDefaultValue(meta["id"].stringValue, key: "location_id")
       })
      
     }, failed: { (error) in
@@ -90,6 +91,7 @@ class CurrentLocationVC: UIViewController {
     if segue.identifier == "InfluencerCurrentLocation"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+          pickLocationVC.categoryStyleType = CategoryStyleEnum.location
           pickLocationVC.delegate = self
         }
       }
