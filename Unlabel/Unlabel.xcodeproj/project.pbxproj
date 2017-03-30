@@ -139,6 +139,7 @@
 		ADB053DE1E77BAF200BA22A4 /* PickLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */; };
 		ADB053E01E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */; };
 		ADB2A3341E41B68000F26C2D /* ManageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */; };
+		ADC7424B1E8CF987000065AF /* LocationFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7424A1E8CF987000065AF /* LocationFilterVC.swift */; };
 		ADD1FA111E5C1F0F00A28049 /* RentalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */; };
 		ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */; };
 		ADD39DB31E52C4F700FC086D /* GoLivePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */; };
@@ -351,6 +352,7 @@
 		ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationVC.swift; sourceTree = "<group>"; };
 		ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeMoreDescriptionVC.swift; sourceTree = "<group>"; };
 		ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageContentVC.swift; sourceTree = "<group>"; };
+		ADC7424A1E8CF987000065AF /* LocationFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterVC.swift; sourceTree = "<group>"; };
 		ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalInfo.swift; sourceTree = "<group>"; };
 		ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoLivePopupView.swift; sourceTree = "<group>"; };
 		ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoLivePopupView.xib; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				15B7E7991C54A2D100244AC9 /* FeedVC.swift */,
+				ADC7424A1E8CF987000065AF /* LocationFilterVC.swift */,
 			);
 			name = "Discover View";
 			path = FeedVC;
@@ -1547,6 +1550,7 @@
 				ADB053DE1E77BAF200BA22A4 /* PickLocationVC.swift in Sources */,
 				ADF3D6521E5EB7BC00ACC68B /* UnlabelStaticList.swift in Sources */,
 				ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */,
+				ADC7424B1E8CF987000065AF /* LocationFilterVC.swift in Sources */,
 				ADE02D1E1E2CF17B003C80FB /* FilterViewController.swift in Sources */,
 				AD3974F31E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,

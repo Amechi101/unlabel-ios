@@ -93,7 +93,6 @@ class PickLocationVC: UIViewController {
     IBTableViewLocation.delegate = self
     IBTableViewLocation.allowsMultipleSelection = false
     IBTableViewLocation.register(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
-    IBTableViewLocation.register(UINib(nibName: "FilterHeaderCell", bundle: nil), forCellReuseIdentifier: "FilterHeaderCell")
   }
   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
     UnlabelLoadingView.sharedInstance.start(self.view)
@@ -168,22 +167,6 @@ extension PickLocationVC: UITableViewDelegate , UITableViewDataSource {
     }
     IBTableViewLocation.reloadData()
   }
-  // View section header
-  
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if categoryStyleType == CategoryStyleEnum.location{
-      return 0
-    }
-    else{
-      return 55
-    }
-  }
-  
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let _headerView = tableView.dequeueReusableCell(withIdentifier: "FilterHeaderCell") as! FilterHeaderCell
-    _headerView.FilterHeaderTitle.text = categoryStyleType.glossaryTitle
-    _headerView.IBimgViewRightSide.isHidden = true
-    return _headerView
-  }
+
 
 }

@@ -851,10 +851,10 @@ class UnlabelAPIHelper{
         }
          print(requestURL!)
         if fetchBrandsRP.display == "FEED"{
-            params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"location_id":fetchBrandsRP.location_id!,"radius":fetchBrandsRP.radius!]
+            params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"lat":fetchBrandsRP.lat!,"lon":fetchBrandsRP.long!,"radius":fetchBrandsRP.radius!]
         }
         else{
-          params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"location_id":fetchBrandsRP.location_id!,"radius":fetchBrandsRP.radius!]
+          params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"lat":fetchBrandsRP.lat!,"lon":fetchBrandsRP.long!,"radius":fetchBrandsRP.radius!]
         }
         
           print(params)

@@ -152,6 +152,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Unlabel want to access yor current location for better app experience</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -95,8 +95,15 @@
   override func viewWillAppear(_ animated: Bool) {
     self.navigationController?.isNavigationBarHidden = false
     UnlabelHelper.setAppDelegateDelegates(self)
-    getInfluencerLocation()
-   // wsCallGetLabels()
+    
+    
+    if (UnlabelHelper.getDefaultValue("latitude") != nil &&
+      UnlabelHelper.getDefaultValue("longitude") != nil){
+      self.wsCallGetLabels()
+    }
+    else{
+      getInfluencerLocation()
+    }
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -412,8 +419,8 @@
       meta: JSON) in
       print(meta)
       print(meta["id"].stringValue)
-      UnlabelHelper.setDefaultValue(meta["id"].stringValue, key: "location_id")
-      UnlabelHelper.setDefaultValue(meta["display_string"].stringValue, key: "location_name")
+      UnlabelHelper.setDefaultValue(meta["latitude"].stringValue, key: "latitude")
+      UnlabelHelper.setDefaultValue(meta["longitude"].stringValue, key: "longitude")
       self.wsCallGetLabels()
     }, failed: { (error) in
     })
@@ -597,6 +604,8 @@
       fetchBrandsRequestParams.storeType      = self.sFilterStoreType
       fetchBrandsRequestParams.sortMode       = self.sortMode
       fetchBrandsRequestParams.display        = self.display_type
+      fetchBrandsRequestParams.lat            = UnlabelHelper.getDefaultValue("latitude")
+      fetchBrandsRequestParams.long           = UnlabelHelper.getDefaultValue("longitude")
       
       
       if headerView?.selectedTab == .men{
@@ -608,8 +617,6 @@
       }
       fetchBrandsRequestParams.brandGender = getSelectedGender()
       fetchBrandsRequestParams.sortMode = self.sortMode
-      
-      fetchBrandsRequestParams.location_id = UnlabelHelper.getDefaultValue("location_id")
       fetchBrandsRequestParams.radius = radius
       if let selectedTab = headerView?.selectedTab{
         fetchBrandsRequestParams.selectedTab = selectedTab

@@ -21,6 +21,7 @@ class FetchBrandsRP: NSObject {
   var display:String?
   var searchText:String?
   var storeType:String?
-  var location_id:String?
+  var lat: String?
+  var long: String?
   var radius:String?
 }

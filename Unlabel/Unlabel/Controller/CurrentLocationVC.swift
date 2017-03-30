@@ -44,8 +44,8 @@ class CurrentLocationVC: UIViewController {
       print(meta)
       DispatchQueue.main.async(execute: { () -> Void in
         self.IBButtonSelectLocation.setTitle(meta["display_string"].stringValue, for: .normal)
-        UnlabelHelper.setDefaultValue(meta["display_string"].stringValue, key: "location_name")
-        UnlabelHelper.setDefaultValue(meta["id"].stringValue, key: "location_id")
+        UnlabelHelper.setDefaultValue(meta["latitude"].stringValue, key: "latitude")
+        UnlabelHelper.setDefaultValue(meta["longitude"].stringValue, key: "longitude")
       })
      
     }, failed: { (error) in
