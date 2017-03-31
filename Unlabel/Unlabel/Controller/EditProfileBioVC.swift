@@ -20,7 +20,7 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   @IBOutlet weak var IBButtonUpdate: UIButton!
   @IBOutlet var views: UIView!
   var placeholderLabel : UILabel!
-  
+  var noteText : String = ""
   //MARK: -  View lifecycle methods
   
    override func viewDidLoad() {

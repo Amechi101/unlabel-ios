@@ -58,7 +58,7 @@
   @IBOutlet weak var IBbtnLeftBarButton: UIButton!
   fileprivate let FEED_CELL_HEIGHT:CGFloat = 211
   fileprivate let fFooterHeight:CGFloat = 28.0
-  fileprivate let fHeaderHeight:CGFloat = 54.0
+  fileprivate let fHeaderHeight:CGFloat = 40.0
   fileprivate let refreshControl = UIRefreshControl()
   var arrFilteredBrandList:[Brand] = [Brand]()
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
@@ -140,14 +140,22 @@
         commonTableVC.arrFilteredBrandList = arrFilteredBrandList
       }
     }
-    else if segue.identifier == "InfluencerRadiusSegue"{
+    else if segue.identifier == "LocationFilterSegue"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
-          pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
-          pickLocationVC.delegate = self
+        if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC{
+        //  pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
+          locationFilterVC.delegate = self
         }
       }
     }
+    else if segue.identifier == "FilterBrandSegue"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let filterViewController:FilterViewController = navViewController.viewControllers[0] as? FilterViewController{
+          filterViewController.delegate = self
+        }
+      }
+    }
+    
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -166,10 +174,10 @@
  }
  
  
- extension FeedVC: PickLocationDelegate{
-  func locationDidSelected(_ selectedItem: FilterModel){
-    print(selectedItem)
-    radius = selectedItem.typeId
+ extension FeedVC: LocationFilterDelegate{
+  func locationFiltersSelected(_ selectedRadius: String) {
+    print(selectedRadius)
+    radius = selectedRadius
   }
  }
  
@@ -322,7 +330,7 @@
     notFoundView.delegate = self
     notFoundView.showViewLabelBtn = false
     if mainVCType == .feed{
-      notFoundView.IBlblMessage.text = "No brands available."
+      notFoundView.IBlblMessage.text = "Nothing to see here.\n\n Currently no designers are within this filtering range."
     }else if mainVCType == .filter{
       notFoundView.IBlblMessage.text = "Nothing to see here.\n\n Currently no designers are within this filtering range."
     }
@@ -462,6 +470,7 @@
     }else if mainVCType == .filter{
       display_type = "FILTER"
       addNotFoundView()
+      addPullToRefresh()
       if let filteredNavTitleObj = filteredNavTitle{
         titleText = "\(filteredNavTitleObj)"
       }
@@ -598,9 +607,9 @@
       }
       let fetchBrandsRequestParams            = FetchBrandsRP()
       fetchBrandsRequestParams.filterCategory = self.sFilterCategory
-      fetchBrandsRequestParams.filterLocation = self.sFilterLocation
+      fetchBrandsRequestParams.filterLocation = ""
       fetchBrandsRequestParams.filterStyle    = self.sFilterStyle
-      fetchBrandsRequestParams.searchText     = self.searchText
+      fetchBrandsRequestParams.searchText     = ""
       fetchBrandsRequestParams.storeType      = self.sFilterStoreType
       fetchBrandsRequestParams.sortMode       = self.sortMode
       fetchBrandsRequestParams.display        = self.display_type
@@ -623,7 +632,7 @@
       }
       UnlabelAPIHelper.sharedInstance.getAllBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
         
-        print(meta)
+      //  print(meta)
         self.isLoading = false
         
         UnlabelLoadingView.sharedInstance.stop(self.view)
@@ -687,4 +696,14 @@
     debugPrint("close popup")
   }
  }
-
+ 
+ extension FeedVC: FilterViewDelegate{
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?){
+    self.sFilterCategory = category
+    self.sFilterStyle = style
+    self.sFilterStoreType = store_type
+    self.sortMode = param!
+    display_type = "FILTER"
+    headerView?.IBSortButton.setTitle("Filter("  + count! + ")", for: .normal)
+  }
+ }

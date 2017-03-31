@@ -62,8 +62,7 @@ enum CategoryStyleEnum: CustomStringConvertible {
   }
 }
 protocol FilterViewDelegate{
-  func willCloseChildVC(_ childVCName:String)
-  func didClickShowLabels(_ category:String?,location:String?, style:String?)
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?)
   
 }
 
@@ -87,7 +86,8 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   var shouldClearCategories = false
   fileprivate var selectedCategory:String?
   fileprivate var selectedStyle:String?
-  
+  var sortParam: String = "AZ"
+  var store_type: String?
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -98,6 +98,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     selectedLocation = ""
     selectedCategory = ""
     selectedStyle = ""
+    IBSearchBar.text = ""
     IBButtonMenswear.isSelected = true
     IBButtonMenswear.setBorderColor(LIGHT_GRAY_BORDER_COLOR,textColor: MEDIUM_GRAY_TEXT_COLOR)
     IBButtonWomenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
@@ -108,7 +109,6 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    self.navigationController?.isNavigationBarHidden = true
   }
   
   //MARK: -  IBAction methods
@@ -156,42 +156,42 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     self.present(_navFilterList, animated: true, completion: nil)
   }
   @IBAction func IBActionLocation(_ sender: Any) {
-    self.arSelectedLocation.removeAll()
-    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
-    _presentController.categoryStyleType = .location
-    _presentController.arSelectedValues = []
-    let _navFilterList = UINavigationController(rootViewController: _presentController)
-    _navFilterList.isNavigationBarHidden = true
+    //    self.arSelectedLocation.removeAll()
+    //    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+    //    _presentController.categoryStyleType = .location
+    //    _presentController.arSelectedValues = []
+    //    let _navFilterList = UINavigationController(rootViewController: _presentController)
+    //    _navFilterList.isNavigationBarHidden = true
+    //
+    //    self.present(_navFilterList, animated: true, completion: nil)
     
-    self.present(_navFilterList, animated: true, completion: nil)
+    self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   @IBAction func IBActionShowFilteredResults(_ sender: Any) {
-    let feedVC = storyboard?.instantiateViewController(withIdentifier: S_ID_FEED_VC) as? FeedVC
-    feedVC?.hidesBottomBarWhenPushed = true
-    feedVC?.mainVCType = .filter
-    feedVC?.searchText = self.IBSearchBar.text
-    feedVC?.sFilterStyle = self.selectedStyle
-    feedVC?.sFilterCategory = self.selectedCategory
-    feedVC?.sFilterLocation = self.selectedLocation
     if IBButtonMenswear.isSelected && IBButtonWomenswear.isSelected{
-      feedVC?.sFilterStoreType = "1,2"
-      feedVC?.filteredNavTitle = "UNISEX"
+      store_type = "1,2"
     }
     else if IBButtonWomenswear.isSelected{
-      feedVC?.sFilterStoreType = "2"
-      feedVC?.sFilterGender = "F"
-      feedVC?.filteredNavTitle = "WOMENSWEAR"
+      store_type = "2"
     }
     else if IBButtonMenswear.isSelected{
-      feedVC?.sFilterStoreType = "1"
-      feedVC?.sFilterGender = "M"
-      feedVC?.filteredNavTitle = "MENSWEAR"
+      store_type = "1"
     }
     else{
-      feedVC?.sFilterStoreType = ""
-       feedVC?.sFilterGender = "M"
+      store_type = "1"
     }
-    navigationController?.pushViewController(feedVC!, animated: true)
+    var countStr: String = "0"
+    let numString: String = selectedStyle! + selectedCategory!
+    if numString == "" {
+      countStr = "0"
+    }
+    else{
+      let numArray : [String] = numString.components(separatedBy: ",")
+      countStr = "\(numArray.count)"
+    }
+    delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, param: sortParam,count: countStr)
+    self.dismiss(animated: true, completion: nil)
+    
   }
   @IBAction func unwindBackToFilterViewController(_ segue: UIStoryboardSegue) {
     if segue.identifier == "backToFilterController" {
@@ -203,11 +203,15 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
             self.arSelectedCategory.append(filteredObject.typeId)
             let paramsJSON = JSON(self.arSelectedCategory)
             self.selectedCategory = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions(rawValue: 0))
+            print(arSelectedCategory)
+            self.selectedCategory = arSelectedCategory.flatMap({$0}).joined(separator: ",")
+            print(selectedCategory!)
             self.IBButtonBrandCategory.setTitle("\(self.arSelectedCategory.count)" + " Categorie(s)", for: .normal)
           }
           else if filterListController.categoryStyleType == CategoryStyleEnum.style {
             self.arSelectedStyle.append(filteredObject.typeId)
-            self.selectedStyle = self.arSelectedStyle.joined(separator: ",")
+            print(arSelectedCategory)
+            self.selectedStyle = arSelectedStyle.flatMap({$0}).joined(separator: ",")
             self.IBButtonStyle.setTitle("\(self.arSelectedStyle.count)" + " Style(s)", for: .normal)
           }
           else if filterListController.categoryStyleType == CategoryStyleEnum.location {
@@ -262,6 +266,30 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     self.IBSearchBar.endEditing(true)
   }
 }
+
+extension FilterViewController: SortModePopupViewDelegate{
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+      viewSortPopup.delegate = self
+      viewSortPopup.slideUpViewMode = slideUpView
+      viewSortPopup.frame = initialFrame
+      viewSortPopup.popupTitle = "SORT BY"
+      self.view.addSubview(viewSortPopup)
+      UIView.animate(withDuration: 0.2, animations: {
+        viewSortPopup.frame = self.view.frame
+        viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
+      })
+      viewSortPopup.updateView()
+    }
+  }
+  func popupDidClickCloseButton(){
+  }
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+    IBButtonLocation.setTitle("Sort by: " + selectedItem.uName, for: .normal)
+    sortParam = selectedItem.uId
+  }
+}
+
 
 //MARK: -  UIButton extension
 

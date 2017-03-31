@@ -854,6 +854,7 @@ class UnlabelAPIHelper{
             params = [sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"lat":fetchBrandsRP.lat!,"lon":fetchBrandsRP.long!,"radius":fetchBrandsRP.radius!]
         }
         else{
+
           params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"lat":fetchBrandsRP.lat!,"lon":fetchBrandsRP.long!,"radius":fetchBrandsRP.radius!]
         }
         

@@ -17,6 +17,7 @@ class PickLocationVC: UIViewController {
   
   @IBOutlet weak var IBTableViewLocation: UITableView!
   @IBOutlet weak var IBButtonApply: UIButton!
+  @IBOutlet weak var IBButtonTitle: UIButton!
   var arFilterMenu:[FilterModel] = []
   var arOriginalJSON:[JSON]!
   var arSelectedValues:[FilterModel] = []
@@ -31,9 +32,11 @@ class PickLocationVC: UIViewController {
     IBTableViewLocation.tableFooterView = UIView()
     setUp()
     if categoryStyleType == CategoryStyleEnum.location{
+      IBButtonTitle.setTitle("CURRENT LOCATION", for: UIControlState())
       WSGetAllFilterList(ByCategoryType: CategoryStyleEnum.location)
     }
     else if categoryStyleType == CategoryStyleEnum.radius{
+      IBButtonTitle.setTitle("LOCATION RADIUS", for: UIControlState())
       getRadiusValues()
     }
   }

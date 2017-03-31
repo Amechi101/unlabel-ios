@@ -42,115 +42,35 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vef-y2-Qen">
-                                                <rect key="frame" x="22" y="186" width="330" height="72"/>
+                                                <rect key="frame" x="22" y="169" width="330" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment>
-                                                        <string key="content">Selecting “Your Current Location” we will show brands around you based on your entered profile’s location.
-</string>
+                                                    <fragment content="Selecting “Your Current Location” we will show brands around you based on your entered profile’s location.">
                                                         <attributes>
                                                             <color key="NSColor" red="0.69411999999999996" green="0.70196000000000003" blue="0.72157000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="Neutraface2Text-Book"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="24" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                <tabStops>
-                                                                    <textTab alignment="left" location="28">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="56">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="84">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="112">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="140">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="168">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="196">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="224">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="252">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="280">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="308">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="336">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                </tabStops>
-                                                            </paragraphStyle>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="24" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMo-6j-heT">
-                                                <rect key="frame" x="22" y="33" width="330" height="72"/>
+                                                <rect key="frame" x="22" y="16" width="330" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Selecting “Your Phone’s GPS location” we will show brands around you based on the location your phone uses. ">
                                                         <attributes>
                                                             <color key="NSColor" red="0.69411999999999996" green="0.70196000000000003" blue="0.72157000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="Neutraface2Text-Book"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="24" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                <tabStops>
-                                                                    <textTab alignment="left" location="28">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="56">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="84">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="112">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="140">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="168">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="196">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="224">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="252">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="280">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="308">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                    <textTab alignment="left" location="336">
-                                                                        <options/>
-                                                                    </textTab>
-                                                                </tabStops>
-                                                            </paragraphStyle>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" maximumLineHeight="24" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laa-gS-Qkv">
-                                                <rect key="frame" x="22" y="123" width="330" height="44"/>
+                                                <rect key="frame" x="22" y="106" width="330" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-rz-t3Z">
@@ -161,8 +81,11 @@
                                                         <state key="normal" title="Your Phone’s GPS Location">
                                                             <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="IBActionLocationToggle:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="O3q-bP-Wbb"/>
+                                                        </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-1r-Nse">
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-1r-Nse">
                                                         <rect key="frame" x="292" y="0.0" width="44" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
@@ -170,10 +93,10 @@
                                                 <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccu-gu-wUP">
-                                                <rect key="frame" x="22" y="279" width="330" height="44"/>
+                                                <rect key="frame" x="22" y="262" width="330" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4J7-YI-J50">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4J7-YI-J50">
                                                         <rect key="frame" x="0.0" y="1" width="330" height="42"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,6 +104,9 @@
                                                         <state key="normal" title="Your Current Location">
                                                             <color key="titleColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="IBActionLocationToggle:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="mVv-4T-77u"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="SWB-qu-Rob">
                                                         <rect key="frame" x="292" y="0.0" width="44" height="44"/>
@@ -189,20 +115,20 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-Bg-6TL">
-                                                <rect key="frame" x="21" y="376" width="331" height="1"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-Bg-6TL">
+                                                <rect key="frame" x="21" y="359" width="331" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOCATION RADIUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIt-wj-VMh">
-                                                <rect key="frame" x="21" y="347" width="121" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOCATION RADIUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIt-wj-VMh">
+                                                <rect key="frame" x="21" y="330" width="121" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-mg-onv">
-                                                <rect key="frame" x="21" y="396" width="331" height="36"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-mg-onv">
+                                                <rect key="frame" x="21" y="379" width="331" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G16-K3-VuN">
@@ -211,11 +137,11 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="-3" maxY="0.0"/>
-                                                        <state key="normal" title="10 Miles">
+                                                        <state key="normal" title="100 Miles">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="IBActionLocation:" destination="dav-Q9-1Lc" eventType="touchUpInside" id="Av2-eU-jDM"/>
+                                                            <segue destination="JGA-x5-ork" kind="presentation" identifier="InfluencerPickRadius" id="35Y-ry-Int"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -227,6 +153,9 @@
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <state key="normal" title="APPLY"/>
+                                                <connections>
+                                                    <action selector="IBActionApply:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="9Xh-zH-3n8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -256,7 +185,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OR1-vz-Bzm">
                                 <rect key="frame" x="16" y="11" width="30" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="X"/>
                                 <connections>
                                     <action selector="IBActionDismiss:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="N5H-DK-CMb"/>
@@ -278,6 +207,15 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="IBButtonGPS" destination="5ag-rz-t3Z" id="xmC-V1-7D6"/>
+                        <outlet property="IBButtonLoc" destination="4J7-YI-J50" id="qk2-R7-sim"/>
+                        <outlet property="IBButtonRadius" destination="G16-K3-VuN" id="PTD-0i-qGk"/>
+                        <outlet property="IBImageViewGPS" destination="ZhG-1r-Nse" id="MTA-Sj-o4t"/>
+                        <outlet property="IBImageViewLoc" destination="SWB-qu-Rob" id="wj0-Ct-hOs"/>
+                        <outlet property="IBViewGPS" destination="laa-gS-Qkv" id="IKV-hB-1Mc"/>
+                        <outlet property="IBViewLoc" destination="ccu-gu-wUP" id="Rgs-h6-0iZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEt-Yq-uSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,17 +238,17 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="SgU-pe-Pz7">
                                     <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="50" height="54"/>
+                                    <size key="headerReferenceSize" width="50" height="40"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedVCHeaderCell" id="4Vm-kn-9gv" customClass="FeedVCHeaderCell" customModule="Unlabel" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOo-yO-1Kc" userLabel="View - Top Container">
-                                            <rect key="frame" x="22" y="0.0" width="331" height="54"/>
+                                            <rect key="frame" x="22" y="0.0" width="331" height="40"/>
                                             <subviews>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP8-ad-XXx">
                                                     <rect key="frame" x="-14" y="8" width="359" height="38"/>
@@ -320,21 +258,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gm1-hs-zBP">
-                                                    <rect key="frame" x="165" y="0.0" width="1" height="54"/>
+                                                    <rect key="frame" x="165" y="0.0" width="1" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="PTC-fq-8wC"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYT-Rd-oWd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="331" height="54"/>
+                                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYT-Rd-oWd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="331" height="40"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
-                                                    <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="12" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="-5" maxY="0.0"/>
-                                                    <state key="normal" title="Sort by: A to Z" image="arrow">
+                                                    <state key="normal" title="Filter(0)">
                                                         <color key="titleColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="IBActionSortFeed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rs7-gX-dhi"/>
+                                                        <segue destination="5Nj-gk-Dcd" kind="presentation" identifier="FilterBrandSegue" id="fhA-li-Lio"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -343,7 +279,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="PYT-Rd-oWd" secondAttribute="bottom" id="NAd-nS-dvY"/>
                                                 <constraint firstItem="PYT-Rd-oWd" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="g1U-Gp-QQN"/>
                                                 <constraint firstAttribute="trailing" secondItem="PYT-Rd-oWd" secondAttribute="trailing" id="hdC-Cz-Nkb"/>
-                                                <constraint firstAttribute="height" constant="54" id="lH1-jU-yYb"/>
+                                                <constraint firstAttribute="height" constant="40" id="lH1-jU-yYb"/>
                                                 <constraint firstItem="gm1-hs-zBP" firstAttribute="top" secondItem="vOo-yO-1Kc" secondAttribute="top" id="pSp-v1-7gO"/>
                                                 <constraint firstAttribute="bottom" secondItem="gm1-hs-zBP" secondAttribute="bottom" id="rrP-6p-5z2"/>
                                                 <constraint firstItem="PYT-Rd-oWd" firstAttribute="leading" secondItem="vOo-yO-1Kc" secondAttribute="leading" id="x9N-ln-ZWi"/>
@@ -409,7 +345,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Shape"/>
                                 <connections>
-                                    <segue destination="QLR-wf-adH" kind="presentation" id="bf6-Cn-qWb"/>
+                                    <segue destination="QLR-wf-adH" kind="presentation" identifier="LocationFilterSegue" id="bf6-Cn-qWb"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1642,7 +1578,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pSr-cS-bVI">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1834,7 +1770,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NeQ-sn-hNR">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2217,7 +2153,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtl-AA-ABE">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2334,7 +2270,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qFc-21-PGU">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -2426,10 +2362,10 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aK6-5A-6Tm">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
-                            <state key="normal" title="CURRENT LOCATION">
+                            <state key="normal">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -2449,12 +2385,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="IBButtonApply" destination="TQr-cv-rZp" id="i5L-Ma-WtK"/>
+                        <outlet property="IBButtonTitle" destination="aK6-5A-6Tm" id="cjQ-0o-fel"/>
                         <outlet property="IBTableViewLocation" destination="f8x-IK-GXx" id="YWD-ds-gFy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cP2-M9-ond" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2567.1999999999998" y="4939.8800599700153"/>
+            <point key="canvasLocation" x="-2610" y="4950"/>
         </scene>
         <!--Change NameVC-->
         <scene sceneID="YvM-qf-ccH">
@@ -3310,7 +3247,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
         <!--Filter View Controller-->
         <scene sceneID="uGM-YG-3j7">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="dav-Q9-1Lc" customClass="FilterViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dav-Q9-1Lc" customClass="FilterViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DXV-1w-Fsg"/>
                         <viewControllerLayoutGuide type="bottom" id="8Ut-2U-sMS"/>
@@ -3336,7 +3273,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                 </connections>
                             </searchBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qC-0V-pfH">
-                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5n2-6j-s2i">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
@@ -3349,10 +3286,10 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-HY-Bad">
-                                                <rect key="frame" x="191.5" y="72" width="161.5" height="36"/>
+                                                <rect key="frame" x="192" y="72" width="161" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpe-hx-LW6">
-                                                        <rect key="frame" x="1" y="1" width="159.5" height="34"/>
+                                                        <rect key="frame" x="1" y="1" width="159" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <state key="normal" title="Womens Apparel">
@@ -3478,14 +3415,14 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                     <action selector="IBActionShowFilteredResults:" destination="dav-Q9-1Lc" eventType="touchUpInside" id="pbF-oP-hN7"/>
                                                 </connections>
                                             </button>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-yw-Abc">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbe-yw-Abc">
                                                 <rect key="frame" x="22" y="364" width="331" height="1"/>
                                                 <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="JjN-jn-7sO"/>
                                                 </constraints>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORT BY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-XW-WXN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORT BY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-XW-WXN">
                                                 <rect key="frame" x="22" y="335" width="121" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="0ib-fO-JyK"/>
@@ -3495,7 +3432,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4E-MQ-Jz8">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S4E-MQ-Jz8">
                                                 <rect key="frame" x="22" y="384" width="331" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oZ-bW-C3O">
@@ -3521,10 +3458,10 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypP-ji-Hhw">
-                                                <rect key="frame" x="22" y="72" width="161.5" height="36"/>
+                                                <rect key="frame" x="22" y="72" width="162" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eiq-cb-PDc">
-                                                        <rect key="frame" x="1" y="1" width="159.5" height="34"/>
+                                                        <rect key="frame" x="1" y="1" width="160" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <state key="normal" title="Mens Apparel">
@@ -3545,7 +3482,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0y-3S-FE1">
-                                                <rect key="frame" x="183.5" y="72" width="8" height="36"/>
+                                                <rect key="frame" x="184" y="72" width="8" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="kQJ-8B-dKc"/>
@@ -3604,7 +3541,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                                     <constraint firstAttribute="trailing" secondItem="5n2-6j-s2i" secondAttribute="trailing" id="Ld5-zM-pNV"/>
                                     <constraint firstItem="5n2-6j-s2i" firstAttribute="height" secondItem="6qC-0V-pfH" secondAttribute="height" priority="250" id="Lr7-QG-hAq"/>
                                     <constraint firstItem="5n2-6j-s2i" firstAttribute="leading" secondItem="6qC-0V-pfH" secondAttribute="leading" id="OIB-H7-SwS"/>
-                                    <constraint firstAttribute="bottom" secondItem="5n2-6j-s2i" secondAttribute="bottom" id="emF-81-e5u"/>
+                                    <constraint firstAttribute="bottom" secondItem="5n2-6j-s2i" secondAttribute="bottom" constant="52" id="emF-81-e5u"/>
                                     <constraint firstItem="5n2-6j-s2i" firstAttribute="width" secondItem="6qC-0V-pfH" secondAttribute="width" id="tJ2-6H-LPc"/>
                                 </constraints>
                             </scrollView>
@@ -3615,12 +3552,40 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                             <constraint firstItem="8Ut-2U-sMS" firstAttribute="top" secondItem="6qC-0V-pfH" secondAttribute="bottom" id="VRz-G5-1Ge"/>
                             <constraint firstItem="DS5-Rv-h7U" firstAttribute="leading" secondItem="0M1-Nm-PRZ" secondAttribute="leading" id="Y4H-Sp-WTE"/>
                             <constraint firstItem="6qC-0V-pfH" firstAttribute="leading" secondItem="0M1-Nm-PRZ" secondAttribute="leading" id="Z8d-1c-ePO"/>
-                            <constraint firstItem="6qC-0V-pfH" firstAttribute="top" secondItem="DXV-1w-Fsg" secondAttribute="bottom" constant="44" id="ktP-jZ-Sfl"/>
+                            <constraint firstItem="6qC-0V-pfH" firstAttribute="top" secondItem="DXV-1w-Fsg" secondAttribute="bottom" id="ktP-jZ-Sfl"/>
                             <constraint firstAttribute="trailing" secondItem="DS5-Rv-h7U" secondAttribute="trailing" id="m3W-GT-E1D"/>
                             <constraint firstItem="DS5-Rv-h7U" firstAttribute="top" secondItem="DXV-1w-Fsg" secondAttribute="bottom" id="whJ-dI-zSe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rPQ-do-Vho"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" id="hl9-R3-Mgd">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Hh7-CA-aqH">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CA7-ov-r0K">
+                                <rect key="frame" x="16" y="11" width="26" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="X"/>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LEb-I8-fUB">
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
+                            <state key="normal" title="FILTER">
+                                <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="kOa-63-rOl">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9GA-sZ-edy">
+                                <rect key="frame" x="333" y="7" width="26" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="IBActionBack:" destination="ClX-Zq-KvV" eventType="touchUpInside" id="rqb-Ot-Twe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="IBButtonBrandCategory" destination="kA2-pv-Onc" id="UL2-aC-WkY"/>
@@ -3634,7 +3599,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzP-AU-LlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5025" y="997"/>
+            <point key="canvasLocation" x="-5026.3999999999996" y="996.25187406296857"/>
         </scene>
         <!--Banner View Controller-->
         <scene sceneID="r2x-Cg-R4I">
@@ -6301,7 +6266,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CEh-1Y-8ZA">
-                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
+                            <rect key="frame" x="76" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6523,7 +6488,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nWc-06-xyD">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6695,7 +6660,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="988-y1-bzs">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6862,7 +6827,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Clu-QO-tCn">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -6950,7 +6915,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sAr-eQ-frR">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -7573,8 +7538,9 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I9u-l7-rZc"/>
-        <segue reference="jWi-8m-sPs"/>
         <segue reference="J5P-PC-vHa"/>
+        <segue reference="jWi-8m-sPs"/>
+        <segue reference="35Y-ry-Int"/>
+        <segue reference="I9u-l7-rZc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,24 +10,27 @@ import UIKit
 import CoreLocation
 import SwiftyJSON
 
+@objc protocol LocationFilterDelegate {
+  func locationFiltersSelected(_ selectedRadius: String)
+}
 class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   
+  @IBOutlet weak var IBViewGPS: UIView!
+  @IBOutlet weak var IBButtonGPS: UIButton!
+  @IBOutlet weak var IBImageViewGPS: UIImageView!
+  @IBOutlet weak var IBViewLoc: UIView!
+  @IBOutlet weak var IBButtonLoc: UIButton!
+  @IBOutlet weak var IBButtonRadius: UIButton!
+  @IBOutlet weak var IBImageViewLoc: UIImageView!
+  var delegate:LocationFilterDelegate?
   let locationManager = CLLocationManager()
+  var radius: String = "100"
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    getInfluencerLocation()
     
-    isAuthorizedtoGetUserLocation()
-    if CLLocationManager.locationServicesEnabled() {
-      locationManager.delegate = self
-      locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-    }
-    
-    if CLLocationManager.locationServicesEnabled() {
-      locationManager.requestLocation()
-    }
+    IBButtonLoc.isSelected = true
   }
   
   override func didReceiveMemoryWarning() {
@@ -36,7 +39,7 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   }
   func isAuthorizedtoGetUserLocation() {
     
-    if CLLocationManager.authorizationStatus() != .authorizedWhenInUse     {
+    if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
       locationManager.requestWhenInUseAuthorization()
     }
   }
@@ -47,10 +50,7 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   }
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     print("Did location updates is called")
-    print(locations.first!)
     let currentLoc: CLLocation = locations.first!
-    print(currentLoc.coordinate.latitude)
-    print(currentLoc.coordinate.longitude)
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.latitude)", key: "latitude")
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.longitude)", key: "longitude")
     //store the user location here to firebase or somewhere
@@ -70,8 +70,86 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     }, failed: { (error) in
     })
   }
+  
+  func getGPSLocation(){
+    isAuthorizedtoGetUserLocation()
+    if CLLocationManager.locationServicesEnabled() {
+      locationManager.delegate = self
+      locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    }
+    
+    if CLLocationManager.locationServicesEnabled() {
+      locationManager.requestLocation()
+    }
+
+  }
+  func getCurrentLocation(){
+    getInfluencerLocation()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "InfluencerPickRadius"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+          pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
+          pickLocationVC.delegate = self
+        }
+      }
+    }
+  }
+  
+  @IBAction func IBActionApply(_ sender: Any) {
+    delegate?.locationFiltersSelected(radius)
+    self.dismiss(animated: true, completion: nil)
+  }
+  
   @IBAction func IBActionDismiss(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
+  @IBAction func IBActionLocationToggle(_ sender: UIButton) {
+    if !sender.isSelected{
+    if sender.tag == 0{
+      sender.isSelected = !sender.isSelected
+      IBButtonLoc.isSelected = false
+      if !sender.isSelected{
+        sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
+        IBImageViewGPS.isHidden = true
+       // IBImageViewLoc.isHidden = false
+      }
+      else{
+        getGPSLocation()
+        sender.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
+        IBImageViewGPS.isHidden = false
+        IBImageViewLoc.isHidden = true
+      }
+      IBButtonLoc.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
+    }
+    else{
+      IBButtonGPS.isSelected = false
+      sender.isSelected = !sender.isSelected
+      if !sender.isSelected{
+        IBImageViewLoc.isHidden = true
+       // IBImageViewGPS.isHidden = false
+        sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
+      }
+      else{
+        getCurrentLocation()
+        IBImageViewLoc.isHidden = false
+        IBImageViewGPS.isHidden = true
+        sender.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
+      }
+      IBButtonGPS.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
+    }
 
+  }
+  }
+
+}
+
+extension LocationFilterVC: PickLocationDelegate{
+  func locationDidSelected(_ selectedItem: FilterModel){
+    print(selectedItem)
+    radius = selectedItem.typeId
+    IBButtonRadius.setTitle(selectedItem.typeName, for: UIControlState())
+  }
 }
