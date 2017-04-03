@@ -114,7 +114,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
       if !sender.isSelected{
         sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         IBImageViewGPS.isHidden = true
-       // IBImageViewLoc.isHidden = false
       }
       else{
         getGPSLocation()
@@ -129,7 +128,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
       sender.isSelected = !sender.isSelected
       if !sender.isSelected{
         IBImageViewLoc.isHidden = true
-       // IBImageViewGPS.isHidden = false
         sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
       }
       else{
@@ -140,10 +138,8 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
       }
       IBButtonGPS.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
     }
-
   }
   }
-
 }
 
 extension LocationFilterVC: PickLocationDelegate{

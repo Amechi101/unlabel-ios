@@ -129,6 +129,8 @@
           productVC.selectedBrand = brand
           productVC.displayMode = self.display_type
           productVC.selectedGender = self.sFilterGender
+          print(self.sFilterGender)
+          print(productVC.selectedGender)
           productVC.delegate = self
           GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
         }
@@ -199,7 +201,7 @@
       
       if mainVCType == .feed{
         headerView?.IBlblFilterTitle.isHidden = true
-        self.sFilterGender = ""
+       // self.sFilterGender = ""
       } 
       return headerView!
       
@@ -615,7 +617,7 @@
       fetchBrandsRequestParams.display        = self.display_type
       fetchBrandsRequestParams.lat            = UnlabelHelper.getDefaultValue("latitude")
       fetchBrandsRequestParams.long           = UnlabelHelper.getDefaultValue("longitude")
-      
+      print("dsd sd dsd   ------ \(self.sFilterGender)")
       
       if headerView?.selectedTab == .men{
         fetchBrandsRequestParams.nextPageURL = nextPageURLMen
@@ -698,12 +700,15 @@
  }
  
  extension FeedVC: FilterViewDelegate{
-  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?){
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?,genderType: String){
     self.sFilterCategory = category
     self.sFilterStyle = style
     self.sFilterStoreType = store_type
+    self.sFilterGender = genderType
+    print(self.sFilterGender)
     self.sortMode = param!
     display_type = "FILTER"
     headerView?.IBSortButton.setTitle("Filter("  + count! + ")", for: .normal)
+    self.dismiss(animated: true, completion: nil)
   }
  }

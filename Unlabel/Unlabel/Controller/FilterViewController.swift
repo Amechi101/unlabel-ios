@@ -62,7 +62,7 @@ enum CategoryStyleEnum: CustomStringConvertible {
   }
 }
 protocol FilterViewDelegate{
-  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?)
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?,genderType: String)
   
 }
 
@@ -88,6 +88,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   fileprivate var selectedStyle:String?
   var sortParam: String = "AZ"
   var store_type: String?
+  var genderType: String = "M"
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -112,6 +113,10 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   }
   
   //MARK: -  IBAction methods
+  
+  @IBAction func IBActionDismiss(_ sender: Any) {
+    self.dismiss(animated: true, completion: nil)
+  }
   
   @IBAction func IBActionStoreType(_ sender: UIButton) {
     if sender.tag == 0{
@@ -170,15 +175,19 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   @IBAction func IBActionShowFilteredResults(_ sender: Any) {
     if IBButtonMenswear.isSelected && IBButtonWomenswear.isSelected{
       store_type = "1,2"
+      genderType = "U"
     }
     else if IBButtonWomenswear.isSelected{
       store_type = "2"
+      genderType = "F"
     }
     else if IBButtonMenswear.isSelected{
       store_type = "1"
+      genderType = "M"
     }
     else{
       store_type = "1"
+      genderType = "M"
     }
     var countStr: String = "0"
     let numString: String = selectedStyle! + selectedCategory!
@@ -189,8 +198,8 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
       let numArray : [String] = numString.components(separatedBy: ",")
       countStr = "\(numArray.count)"
     }
-    delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, param: sortParam,count: countStr)
-    self.dismiss(animated: true, completion: nil)
+    delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, param: sortParam,count: countStr,genderType: genderType)
+    
     
   }
   @IBAction func unwindBackToFilterViewController(_ segue: UIStoryboardSegue) {

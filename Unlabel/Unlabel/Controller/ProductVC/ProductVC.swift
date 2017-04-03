@@ -39,6 +39,7 @@ class ProductVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print(self.selectedGender)
     if selectedBrand == nil {
       selectedBrand = Brand()
     }
@@ -518,6 +519,7 @@ extension ProductVC{
     fetchProductRequestParams.sortMode = sortMode
     fetchProductRequestParams.nextPageURL = nextPage
     fetchProductRequestParams.displayMode = self.displayMode
+    print(self.selectedGender)
     fetchProductRequestParams.gender = self.selectedGender
     UnlabelAPIHelper.sharedInstance.getProductOfBrand(fetchProductRequestParams, success: { (arrBrands:[Product], meta: JSON) in
       print(meta)
