@@ -63,6 +63,7 @@ extension AccountInfoVC{
       UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+      UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
       DispatchQueue.main.async(execute: { () -> Void in
         self.IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
         self.IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!

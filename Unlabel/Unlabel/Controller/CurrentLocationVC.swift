@@ -31,6 +31,7 @@ class CurrentLocationVC: UIViewController {
   }
   func saveInfluencerLocation() {
     let params: [String: String] = ["city":(self.IBButtonSelectCity.titleLabel?.text)!,"state":stateID,"country":countryID]
+    print(params)
     UnlabelAPIHelper.sharedInstance.saveInfluencerLocation(params ,onVC: self, success:{ (
       meta: JSON) in
       print(meta)
@@ -101,7 +102,8 @@ class CurrentLocationVC: UIViewController {
 extension CurrentLocationVC: PickLocationDelegate{
   func locationDidSelected(_ selectedItem: FilterModel){
     print(selectedItem)
-    self.IBButtonSelectLocation.setTitle(selectedItem.typeName, for: .normal)
+   // self.IBButtonSelectLocation.setTitle(selectedItem.typeName, for: .normal)
+    getInfluencerLocation()
   }
 }
 extension CurrentLocationVC: EnterCityVCDelegate {

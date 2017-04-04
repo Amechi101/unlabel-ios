@@ -53,6 +53,7 @@
   @IBOutlet weak var IBbarBtnHamburger: UIBarButtonItem!
   @IBOutlet weak var IBbtnHamburger: UIButton!
   @IBOutlet weak var IBbtnUnlabel: UIButton!
+  @IBOutlet weak var IBbtnFilter: UIButton!
   @IBOutlet weak var IBcollectionViewFeed: UICollectionView!
   @IBOutlet weak var bottonActivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var IBbtnLeftBarButton: UIButton!
@@ -146,7 +147,7 @@
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC{
         //  pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
-          locationFilterVC.delegate = self
+        //  locationFilterVC.delegate = self
         }
       }
     }
@@ -708,7 +709,8 @@
     print(self.sFilterGender)
     self.sortMode = param!
     display_type = "FILTER"
-    headerView?.IBSortButton.setTitle("Filter("  + count! + ")", for: .normal)
+    print(count!)
+    IBbtnFilter.setTitle("Filter("  + count! + ")", for: .normal)
     self.dismiss(animated: true, completion: nil)
   }
  }

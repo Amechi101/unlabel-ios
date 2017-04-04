@@ -24,7 +24,7 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var IBImageViewLoc: UIImageView!
   var delegate:LocationFilterDelegate?
   let locationManager = CLLocationManager()
-  var radius: String = "100"
+  var radius: String = "10"
   
   override func viewDidLoad() {
     super.viewDidLoad()

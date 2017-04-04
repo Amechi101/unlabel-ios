@@ -100,8 +100,17 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
     selectedCategory = ""
     selectedStyle = ""
     IBSearchBar.text = ""
+    genderType = UnlabelHelper.getDefaultValue("gender")!
+    
     IBButtonMenswear.isSelected = true
     IBButtonMenswear.setBorderColor(LIGHT_GRAY_BORDER_COLOR,textColor: MEDIUM_GRAY_TEXT_COLOR)
+    
+     if genderType == "M"{
+      IBButtonMenswear.setTitle("Men's Apparel", for: .normal)
+    }
+     else{
+      IBButtonMenswear.setTitle("Women's Apparel", for: .normal)
+    }
     IBButtonWomenswear.setBorderColor(EXTRA_LIGHT_GRAY_TEXT_COLOR,textColor: EXTRA_LIGHT_GRAY_TEXT_COLOR)
   }
   
@@ -190,7 +199,8 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
       genderType = "M"
     }
     var countStr: String = "0"
-    let numString: String = selectedStyle! + selectedCategory!
+    let numString: String = selectedStyle! + "," + selectedCategory!
+    print(numString)
     if numString == "" {
       countStr = "0"
     }
@@ -198,6 +208,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
       let numArray : [String] = numString.components(separatedBy: ",")
       countStr = "\(numArray.count)"
     }
+    print(countStr)
     delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, param: sortParam,count: countStr,genderType: genderType)
     
     
@@ -219,7 +230,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
           }
           else if filterListController.categoryStyleType == CategoryStyleEnum.style {
             self.arSelectedStyle.append(filteredObject.typeId)
-            print(arSelectedCategory)
+            print(arSelectedStyle)
             self.selectedStyle = arSelectedStyle.flatMap({$0}).joined(separator: ",")
             self.IBButtonStyle.setTitle("\(self.arSelectedStyle.count)" + " Style(s)", for: .normal)
           }
@@ -297,7 +308,23 @@ extension FilterViewController: SortModePopupViewDelegate{
     IBButtonLocation.setTitle("Sort by: " + selectedItem.uName, for: .normal)
     sortParam = selectedItem.uId
   }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "LocationFilterSegue"{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
+        if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC{
+          //  pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
+          locationFilterVC.delegate = self
+        }
+      }
+    }
+  }
 }
+  extension FilterViewController: LocationFilterDelegate{
+    func locationFiltersSelected(_ selectedRadius: String) {
+      print(selectedRadius)
+      IBButtonLocation.setTitle("Your current Location, Radius " + selectedRadius + " miles", for: .normal)
+    }
+  }
 
 
 //MARK: -  UIButton extension

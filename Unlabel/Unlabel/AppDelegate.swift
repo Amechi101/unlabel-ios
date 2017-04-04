@@ -12,6 +12,8 @@ import CoreData
 import Crashlytics
 import UserNotifications
 import SwiftyJSON
+import GooglePlaces
+
 
 @objc protocol AppDelegateDelegates {
   func reachabilityChanged(_ reachable:Bool)
@@ -31,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     // UIApplication.shared.statusBarFrame
     self.window?.backgroundColor = .white
+     GMSPlacesClient.provideAPIKey("AIzaSyBOP89h4kq0sEr6ZOpOApM8A2MSLpfBigs")
     setupOnLaunch(launchOptions)
     UnlabelHelper.setDefaultValue("", key: "device_token")
     registerForRemoteNotification()
@@ -222,6 +225,7 @@ extension AppDelegate{
       UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+      UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
     }, failed: { (error) in
     })
   }
@@ -245,7 +249,7 @@ extension AppDelegate{
       HTTPCookieStorage.shared.setCookie(getCookie())
       getInfluencerDetails()
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
-      let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
+      let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController 
       if let window = self.window {
         window.rootViewController = rootTabVC
         self.window?.makeKeyAndVisible()

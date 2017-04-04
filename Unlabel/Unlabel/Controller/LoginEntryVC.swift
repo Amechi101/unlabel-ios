@@ -153,6 +153,7 @@ extension LoginEntryVC{
       UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
+      UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
     }, failed: { (error) in
     })
   }
