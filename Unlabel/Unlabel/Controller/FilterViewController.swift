@@ -62,7 +62,7 @@ enum CategoryStyleEnum: CustomStringConvertible {
   }
 }
 protocol FilterViewDelegate{
-  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?,genderType: String)
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, radius: String?, count: String?,genderType: String)
   
 }
 
@@ -89,6 +89,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   var sortParam: String = "AZ"
   var store_type: String?
   var genderType: String = "M"
+  var radius : String = "10"
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -209,7 +210,7 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
       countStr = "\(numArray.count)"
     }
     print(countStr)
-    delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, param: sortParam,count: countStr,genderType: genderType)
+    delegate?.didClickShowLabels(self.selectedCategory, style: self.selectedStyle, store_type: store_type, radius: radius,count: countStr,genderType: genderType)
     
     
   }
@@ -322,6 +323,7 @@ extension FilterViewController: SortModePopupViewDelegate{
   extension FilterViewController: LocationFilterDelegate{
     func locationFiltersSelected(_ selectedRadius: String) {
       print(selectedRadius)
+      radius = selectedRadius
       IBButtonLocation.setTitle("Your current Location, Radius " + selectedRadius + " miles", for: .normal)
     }
   }

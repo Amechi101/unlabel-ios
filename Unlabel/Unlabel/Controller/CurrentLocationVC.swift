@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import GooglePlaces
 
 class CurrentLocationVC: UIViewController {
   
@@ -25,6 +26,8 @@ class CurrentLocationVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfluencerLocation()
+    
+    UINavigationBar.appearance().tintColor = UIColor.red
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -67,12 +70,17 @@ class CurrentLocationVC: UIViewController {
     
   }
   @IBAction func IBActionSelectCurrentLocation(_ sender: Any) {
-    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
-    _presentController.categoryStyleType = .location
-    _presentController.arSelectedValues = []
-    let _navFilterList = UINavigationController(rootViewController: _presentController)
-    _navFilterList.isNavigationBarHidden = true
-    print("clicked here")
+//    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
+//    _presentController.categoryStyleType = .location
+//    _presentController.arSelectedValues = []
+//    let _navFilterList = UINavigationController(rootViewController: _presentController)
+//    _navFilterList.isNavigationBarHidden = true
+//    print("clicked here")
+    
+    let autocompleteController = GMSAutocompleteViewController()
+    autocompleteController.delegate = self
+    present(autocompleteController, animated: true, completion: nil)
+
 
   }
   @IBAction func IBActionSelectCountry(_ sender: Any) {
@@ -112,6 +120,44 @@ extension CurrentLocationVC: EnterCityVCDelegate {
     self.IBButtonSelectCity.setTitle(selectedCity, for: .normal)
   }
 }
+
+extension CurrentLocationVC: GMSAutocompleteViewControllerDelegate {
+  
+  // Handle the user's selection.
+  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    print("Place formattedAddress: \(place.formattedAddress!)")
+    print("Place addressComponents: \(place.addressComponents!)")
+    print("Place lat: \(place.coordinate.latitude)")
+    print("Place long: \(place.coordinate.longitude)")
+    let location: String = place.formattedAddress!
+    print("Place formattedAddress: \(location)")
+    self.IBButtonSelectLocation.setTitle(location, for: .normal)
+    UnlabelHelper.setDefaultValue("\(place.coordinate.latitude)", key: "latitude")
+    UnlabelHelper.setDefaultValue("\(place.coordinate.longitude)", key: "longitude")
+    dismiss(animated: true, completion: nil)
+  }
+  
+  func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    // TODO: handle the error.
+    print("Error: ", error.localizedDescription)
+  }
+  
+  // User canceled the operation.
+  func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  // Turn the network activity indicator on and off again.
+  func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+  }
+  
+  func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+  }
+  
+}
+
 
 //MARK: Sort Popup methods
 

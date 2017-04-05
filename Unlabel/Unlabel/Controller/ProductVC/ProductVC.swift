@@ -283,6 +283,7 @@ extension ProductVC{
     else if segue.identifier == "ProductDetailSegue"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
+          productViewController.delegate = self
           productViewController.selectedBrand = selectedBrand
           productViewController.selectedProduct = self.selectedProduct
           productViewController.selectedSizeProduct = self.selectedSizeProduct
@@ -335,17 +336,21 @@ extension ProductVC:PopupviewDelegate{
   }
 }
 
+extension ProductVC:ReserveDelegate{
+  func productDidReserved(){
+    self.getProductsOfBrand()
+  }
+}
 
 
 //MARK:- IBAction Methods
 extension ProductVC{
   
   @IBAction func unwindToProductViewController(_ segue: UIStoryboardSegue) {
-    if segue.identifier == "unwindToProductViewController" {
-      let productDetail = segue.source as! ProductDetailsWebViewVC
-      self.selectedBrand = productDetail.selectedBrand!
-      let headerCellIndexPath = IndexPath(item: 0, section: 0)
-      IBcollectionViewProduct.reloadItems(at: [ headerCellIndexPath ])
+    if segue.identifier == "backToProductViewController" {
+      
+      self.getProductsOfBrand()
+      IBcollectionViewProduct.reloadData()
     }
   }
   
@@ -504,6 +509,7 @@ extension ProductVC{
   func getProductsOfBrand(){
     var nextPage:String?
     
+    UnlabelLoadingView.sharedInstance.start(view)
     if let next:String = nextPage, next.characters.count == 0 {
       self.arrProducts = []
       return
@@ -522,6 +528,7 @@ extension ProductVC{
     print(self.selectedGender)
     fetchProductRequestParams.gender = self.selectedGender
     UnlabelAPIHelper.sharedInstance.getProductOfBrand(fetchProductRequestParams, success: { (arrBrands:[Product], meta: JSON) in
+      UnlabelLoadingView.sharedInstance.stop(self.view)
       print(meta)
       self.arrProducts.append(contentsOf: arrBrands)
       self.nextPageURL = meta["next"].stringValue

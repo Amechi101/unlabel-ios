@@ -858,10 +858,12 @@ class UnlabelAPIHelper{
           params = ["search":fetchBrandsRP.searchText!,"location":fetchBrandsRP.filterLocation!,"store_type":fetchBrandsRP.storeType!,"specialization":fetchBrandsRP.filterCategory!,"style":fetchBrandsRP.filterStyle!,sort_Params:fetchBrandsRP.sortMode!,"display":fetchBrandsRP.display!,"lat":fetchBrandsRP.lat!,"lon":fetchBrandsRP.long!,"radius":fetchBrandsRP.radius!]
         }
         
-          print(params)
-        if let requestURLObj = requestURL{
+        print(" Parameters == \(params)")
+      
+      
+      if let requestURLObj = requestURL{
             Alamofire.request(requestURLObj, method: .get, parameters: params).responseJSON { response in
-                //  debugPrint(response)
+                  debugPrint(response)
                 switch response.result {
                     
                 case .success(let data):

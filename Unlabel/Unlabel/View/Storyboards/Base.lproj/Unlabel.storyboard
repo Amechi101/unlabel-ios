@@ -41,9 +41,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGt-vq-zUu">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vef-y2-Qen">
-                                                <rect key="frame" x="22" y="169" width="330" height="72"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vef-y2-Qen">
+                                                <rect key="frame" x="22" y="168" width="331" height="72"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="72" id="92x-cn-9Bv"/>
+                                                </constraints>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Selecting “Your Current Location” we will show brands around you based on your entered profile’s location.">
                                                         <attributes>
@@ -55,9 +57,11 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMo-6j-heT">
-                                                <rect key="frame" x="22" y="16" width="330" height="72"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMo-6j-heT">
+                                                <rect key="frame" x="22" y="16" width="331" height="72"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="72" id="Lcs-Z2-QWJ"/>
+                                                </constraints>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Selecting “Your Phone’s GPS location” we will show brands around you based on the location your phone uses. ">
                                                         <attributes>
@@ -69,13 +73,11 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laa-gS-Qkv">
-                                                <rect key="frame" x="22" y="106" width="330" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laa-gS-Qkv">
+                                                <rect key="frame" x="22" y="106" width="331" height="44"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-rz-t3Z">
-                                                        <rect key="frame" x="0.0" y="1" width="330" height="42"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-rz-t3Z">
+                                                        <rect key="frame" x="0.0" y="1" width="331" height="42"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                         <state key="normal" title="Your Phone’s GPS Location">
@@ -85,20 +87,30 @@
                                                             <action selector="IBActionLocationToggle:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="O3q-bP-Wbb"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-1r-Nse">
-                                                        <rect key="frame" x="292" y="0.0" width="44" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-1r-Nse">
+                                                        <rect key="frame" x="287" y="0.0" width="44" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="44" id="Yg7-oj-50j"/>
+                                                        </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="18a-F3-LiT"/>
+                                                    <constraint firstItem="5ag-rz-t3Z" firstAttribute="top" secondItem="laa-gS-Qkv" secondAttribute="top" constant="1" id="94m-VO-K2O"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZhG-1r-Nse" secondAttribute="trailing" id="KI6-mh-EMM"/>
+                                                    <constraint firstItem="5ag-rz-t3Z" firstAttribute="leading" secondItem="laa-gS-Qkv" secondAttribute="leading" id="NJk-n8-Zo1"/>
+                                                    <constraint firstItem="ZhG-1r-Nse" firstAttribute="top" secondItem="laa-gS-Qkv" secondAttribute="top" id="iyb-DQ-e5c"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5ag-rz-t3Z" secondAttribute="bottom" constant="1" id="jPw-rD-teM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="5ag-rz-t3Z" secondAttribute="trailing" id="vmx-r6-YSD"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZhG-1r-Nse" secondAttribute="bottom" id="y1r-5W-mlV"/>
+                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccu-gu-wUP">
-                                                <rect key="frame" x="22" y="262" width="330" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccu-gu-wUP">
+                                                <rect key="frame" x="22" y="258" width="331" height="44"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4J7-YI-J50">
-                                                        <rect key="frame" x="0.0" y="1" width="330" height="42"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4J7-YI-J50">
+                                                        <rect key="frame" x="0.0" y="1" width="331" height="42"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                         <state key="normal" title="Your Current Location">
@@ -108,32 +120,47 @@
                                                             <action selector="IBActionLocationToggle:" destination="Nkz-8F-Es2" eventType="touchUpInside" id="mVv-4T-77u"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="SWB-qu-Rob">
-                                                        <rect key="frame" x="292" y="0.0" width="44" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="SWB-qu-Rob">
+                                                        <rect key="frame" x="287" y="0.0" width="44" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="44" id="95s-5V-QLI"/>
+                                                        </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.82745098039999998" green="0.83529411760000005" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="4J7-YI-J50" firstAttribute="leading" secondItem="ccu-gu-wUP" secondAttribute="leading" id="1fD-rY-voL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4J7-YI-J50" secondAttribute="trailing" id="22C-sB-n0X"/>
+                                                    <constraint firstItem="SWB-qu-Rob" firstAttribute="top" secondItem="ccu-gu-wUP" secondAttribute="top" id="28e-5A-k8X"/>
+                                                    <constraint firstItem="4J7-YI-J50" firstAttribute="top" secondItem="ccu-gu-wUP" secondAttribute="top" constant="1" id="Ggv-on-xTt"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4J7-YI-J50" secondAttribute="bottom" constant="1" id="Igi-qQ-yW9"/>
+                                                    <constraint firstAttribute="height" constant="44" id="JTb-v0-wMh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SWB-qu-Rob" secondAttribute="bottom" id="X6v-3n-N9D"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SWB-qu-Rob" secondAttribute="trailing" id="ehB-qT-8Ya"/>
+                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-Bg-6TL">
-                                                <rect key="frame" x="21" y="359" width="331" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-Bg-6TL">
+                                                <rect key="frame" x="22" y="349" width="331" height="1"/>
                                                 <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="PO5-OP-CXu"/>
+                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOCATION RADIUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIt-wj-VMh">
-                                                <rect key="frame" x="21" y="330" width="121" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION RADIUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIt-wj-VMh">
+                                                <rect key="frame" x="22" y="320" width="121" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="3SS-Sx-RXa"/>
+                                                    <constraint firstAttribute="width" constant="121" id="gQ2-6f-BTj"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-mg-onv">
-                                                <rect key="frame" x="21" y="379" width="331" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-mg-onv">
+                                                <rect key="frame" x="22" y="368" width="331" height="36"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G16-K3-VuN">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G16-K3-VuN">
                                                         <rect key="frame" x="1" y="1" width="329" height="34"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="-3" maxY="0.0"/>
@@ -146,11 +173,20 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.73725490199999999" green="0.74117647060000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="G16-K3-VuN" firstAttribute="leading" secondItem="oUF-mg-onv" secondAttribute="leading" constant="1" id="61s-Bc-NOX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="G16-K3-VuN" secondAttribute="trailing" constant="1" id="F1E-53-3Q8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="G16-K3-VuN" secondAttribute="bottom" constant="1" id="LFx-aX-UYL"/>
+                                                    <constraint firstItem="G16-K3-VuN" firstAttribute="top" secondItem="oUF-mg-onv" secondAttribute="top" constant="1" id="d4T-hQ-Rel"/>
+                                                    <constraint firstAttribute="height" constant="36" id="tqK-M7-zBK"/>
+                                                </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97y-Vp-NQQ">
-                                                <rect key="frame" x="26" y="543" width="320" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97y-Vp-NQQ">
+                                                <rect key="frame" x="26" y="543" width="323" height="44"/>
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="97y-Vp-NQQ" secondAttribute="height" multiplier="80:11" id="Xoj-AV-Af5"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                                 <state key="normal" title="APPLY"/>
                                                 <connections>
@@ -159,6 +195,31 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="wIt-wj-VMh" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="1LB-5u-qzB"/>
+                                            <constraint firstAttribute="trailing" secondItem="laa-gS-Qkv" secondAttribute="trailing" constant="22" id="6dY-fo-VH5"/>
+                                            <constraint firstAttribute="trailing" secondItem="97y-Vp-NQQ" secondAttribute="trailing" constant="26" id="7w4-da-1No"/>
+                                            <constraint firstAttribute="trailing" secondItem="TcH-Bg-6TL" secondAttribute="trailing" constant="22" id="87i-9O-kz7"/>
+                                            <constraint firstAttribute="trailing" secondItem="LMo-6j-heT" secondAttribute="trailing" constant="22" id="8gA-Fw-AQN"/>
+                                            <constraint firstItem="laa-gS-Qkv" firstAttribute="top" secondItem="LMo-6j-heT" secondAttribute="bottom" constant="18" id="AVg-NH-Aiq"/>
+                                            <constraint firstAttribute="bottom" secondItem="97y-Vp-NQQ" secondAttribute="bottom" constant="16" id="FPc-o8-C6M"/>
+                                            <constraint firstItem="wIt-wj-VMh" firstAttribute="top" secondItem="ccu-gu-wUP" secondAttribute="bottom" constant="18" id="KFP-11-ica"/>
+                                            <constraint firstItem="oUF-mg-onv" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="Ltj-8w-woB"/>
+                                            <constraint firstItem="TcH-Bg-6TL" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="MLl-pd-Vaz"/>
+                                            <constraint firstAttribute="trailing" secondItem="vef-y2-Qen" secondAttribute="trailing" constant="22" id="MWb-ao-aLc"/>
+                                            <constraint firstItem="LMo-6j-heT" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="MXO-W1-CjL"/>
+                                            <constraint firstAttribute="trailing" secondItem="oUF-mg-onv" secondAttribute="trailing" constant="22" id="PQq-hA-kV6"/>
+                                            <constraint firstItem="laa-gS-Qkv" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="SPD-wq-lHd"/>
+                                            <constraint firstItem="oUF-mg-onv" firstAttribute="top" secondItem="TcH-Bg-6TL" secondAttribute="bottom" constant="18" id="Ugd-Np-5dO"/>
+                                            <constraint firstItem="ccu-gu-wUP" firstAttribute="top" secondItem="vef-y2-Qen" secondAttribute="bottom" constant="18" id="Uje-MF-65e"/>
+                                            <constraint firstItem="LMo-6j-heT" firstAttribute="top" secondItem="dGt-vq-zUu" secondAttribute="top" constant="16" id="jtD-2Y-2rf"/>
+                                            <constraint firstItem="97y-Vp-NQQ" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="26" id="lht-8u-z7i"/>
+                                            <constraint firstItem="vef-y2-Qen" firstAttribute="top" secondItem="laa-gS-Qkv" secondAttribute="bottom" constant="18" id="ms1-ch-aax"/>
+                                            <constraint firstAttribute="trailing" secondItem="ccu-gu-wUP" secondAttribute="trailing" constant="22" id="poe-HK-Vuc"/>
+                                            <constraint firstItem="vef-y2-Qen" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="qGK-T5-dT0"/>
+                                            <constraint firstItem="TcH-Bg-6TL" firstAttribute="top" secondItem="wIt-wj-VMh" secondAttribute="bottom" constant="8" id="vAC-he-5bE"/>
+                                            <constraint firstItem="ccu-gu-wUP" firstAttribute="leading" secondItem="dGt-vq-zUu" secondAttribute="leading" constant="22" id="yL3-Gi-xbC"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -266,7 +327,8 @@
                                                 <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYT-Rd-oWd">
                                                     <rect key="frame" x="0.0" y="0.0" width="331" height="40"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
-                                                    <state key="normal" title="Sort by: A to Z">
+                                                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Sort by: A to Z" image="arrow">
                                                         <color key="titleColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
@@ -1331,7 +1393,7 @@
                         <viewControllerLayoutGuide type="top" id="E7T-Io-Z44"/>
                         <viewControllerLayoutGuide type="bottom" id="ONz-Xm-fQM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="keg-eZ-61M">
+                    <view key="view" contentMode="scaleToFill" id="keg-eZ-61M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1425,7 +1487,7 @@
         <scene sceneID="XX2-jv-RkF">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Qat-XQ-WQx" customClass="SettingsViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1613,7 +1675,7 @@
                         <viewControllerLayoutGuide type="top" id="DK1-Le-k4s"/>
                         <viewControllerLayoutGuide type="bottom" id="fWR-cW-Wy0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="15r-Yn-Rpf">
+                    <view key="view" contentMode="scaleToFill" id="15r-Yn-Rpf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1647,7 +1709,7 @@
                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="JGA-x5-ork" kind="presentation" identifier="InfluencerCurrentLocation" id="hTZ-qz-EaD"/>
+                                            <action selector="IBActionSelectCurrentLocation:" destination="q1w-7E-F0g" eventType="touchUpInside" id="519-gd-UD0"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="nFL-j1-AOe">
@@ -1774,7 +1836,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NeQ-sn-hNR">
-                            <rect key="frame" x="76" y="7" width="224" height="30"/>
+                            <rect key="frame" x="75.5" y="7" width="224" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -1811,7 +1873,7 @@
                         <viewControllerLayoutGuide type="top" id="oHH-OZ-al8"/>
                         <viewControllerLayoutGuide type="bottom" id="iah-fK-blJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="eax-3y-BwH">
+                    <view key="view" contentMode="scaleToFill" id="eax-3y-BwH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2157,7 +2219,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtl-AA-ABE">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
@@ -3603,7 +3665,7 @@ Unlabel reserves the right to delete your email without notice, for legitimate b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzP-AU-LlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5026.3999999999996" y="996.25187406296857"/>
+            <point key="canvasLocation" x="-5028" y="1014"/>
         </scene>
         <!--Banner View Controller-->
         <scene sceneID="r2x-Cg-R4I">
@@ -3787,7 +3849,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68N-gE-dP0">
-                                                <rect key="frame" x="23" y="241" width="329" height="43.5"/>
+                                                <rect key="frame" x="23" y="241" width="329" height="44"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="68N-gE-dP0" secondAttribute="height" multiplier="333:44" id="Sg5-FN-jjd"/>
@@ -3904,10 +3966,10 @@ See more info </string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-ln-vQr">
-                                                <rect key="frame" x="120" y="324.5" width="135" height="15"/>
+                                                <rect key="frame" x="120" y="325" width="135" height="15"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qd-n2q">
-                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Forgot Your Password?">
                                                                 <attributes>
@@ -3961,7 +4023,7 @@ See more info </string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f2-fe-ULR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <state key="normal">
                                                             <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4347,7 +4409,7 @@ See more info </string>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="O2s-F5-Ypr" customClass="NavController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="Fok-lI-GRK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eUH-fJ-iY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eUH-fJ-iY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4389,7 +4451,7 @@ See more info </string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-BD-OPU" userLabel="clear button">
-                                <rect key="frame" x="299" y="24" width="60" height="39"/>
+                                <rect key="frame" x="299" y="23" width="60" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="l3z-BD-OPU" secondAttribute="height" multiplier="23:15" id="cRT-0v-3Go"/>
                                     <constraint firstAttribute="width" constant="60" id="wf6-zv-WKT"/>
@@ -4693,7 +4755,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JXj-J6-7AS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Following" image="Saved_items" id="aM7-Lh-gfr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6bF-EJ-6yJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6bF-EJ-6yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4725,7 +4787,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="226" height="44"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZl-Mw-5o3">
-                                                <rect key="frame" x="0.0" y="0.0" width="75.5" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Reserved">
@@ -4736,7 +4798,7 @@ See more info </string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxE-K1-htB">
-                                                <rect key="frame" x="75.5" y="0.0" width="75" height="44"/>
+                                                <rect key="frame" x="75" y="0.0" width="76" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Rented">
@@ -4747,7 +4809,7 @@ See more info </string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytT-Jd-yUu">
-                                                <rect key="frame" x="150.5" y="0.0" width="75.5" height="44"/>
+                                                <rect key="frame" x="151" y="0.0" width="75" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Live">
@@ -5279,7 +5341,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pvh-M2-bLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="8xt-Jh-E7L"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CQ8-2p-vyG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CQ8-2p-vyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5320,7 +5382,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZ7-LJ-ahy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Content" image="Manage" id="uhd-gO-AoR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7iI-us-SQa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7iI-us-SQa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6159,7 +6221,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rvr-SJ-qaW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gJP-T9-2OF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gJP-T9-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6177,7 +6239,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X0k-OQ-dEj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fma-s0-TrK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fma-s0-TrK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6198,7 +6260,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="V3g-9o-sgA"/>
                         <viewControllerLayoutGuide type="bottom" id="a1U-xk-Op0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="atH-tE-JEq">
+                    <view key="view" contentMode="scaleToFill" id="atH-tE-JEq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6311,7 +6373,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="vfZ-rd-EqI"/>
                         <viewControllerLayoutGuide type="bottom" id="CAJ-Re-Jth"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Mn8-0H-mDZ">
+                    <view key="view" contentMode="scaleToFill" id="Mn8-0H-mDZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6537,7 +6599,7 @@ Sunday: 9am-8pm</string>
         <scene sceneID="eAD-OV-ne4">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="j5a-D3-eJ1" customClass="LegalAgreementVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6695,7 +6757,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="rH4-S4-YIC"/>
                         <viewControllerLayoutGuide type="bottom" id="pmV-XV-msv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="6a3-gR-ipP">
+                    <view key="view" contentMode="scaleToFill" id="6a3-gR-ipP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6955,7 +7017,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="0Wi-a2-KgU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZRu-sK-gZL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Bhm-5a-ooU">
+                    <view key="view" contentMode="scaleToFill" id="Bhm-5a-ooU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -7109,7 +7171,7 @@ Sunday: 9am-8pm</string>
         <scene sceneID="Lkb-aQ-G05">
             <objects>
                 <navigationController id="TU8-9y-nyU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ctO-om-5OM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ctO-om-5OM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7452,7 +7514,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Nj-gk-Dcd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="Search" id="9Wi-yV-vtx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="z5i-ka-kWT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z5i-ka-kWT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7470,7 +7532,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JGA-x5-ork" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2ce-vL-SY4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2ce-vL-SY4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7488,7 +7550,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s0R-SZ-a4d" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7pj-hJ-yjX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7pj-hJ-yjX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7506,7 +7568,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QLR-wf-adH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XLP-Jw-vQM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLP-Jw-vQM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7541,7 +7603,6 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="35Y-ry-Int"/>
         <segue reference="jWi-8m-sPs"/>
         <segue reference="fjS-oP-zkR"/>
         <segue reference="I9u-l7-rZc"/>

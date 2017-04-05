@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     // UIApplication.shared.statusBarFrame
     self.window?.backgroundColor = .white
-     GMSPlacesClient.provideAPIKey("AIzaSyBOP89h4kq0sEr6ZOpOApM8A2MSLpfBigs")
+     GMSPlacesClient.provideAPIKey("AIzaSyBF8Y5iGqilO7GWiJIoC0aOplGn5GDJnzc")
     setupOnLaunch(launchOptions)
     UnlabelHelper.setDefaultValue("", key: "device_token")
     registerForRemoteNotification()

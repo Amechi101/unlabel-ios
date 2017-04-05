@@ -68,23 +68,23 @@
   fileprivate var filterChildVC:FilterVC?
   fileprivate var headerView:FeedVCHeaderCell?
   var notFoundView:NotFoundView = NotFoundView()
-  var mainVCType:MainVCType = .feed
+  var mainVCType:MainVCType = .filter
   var filteredNavTitle:String?
   var filteredString:String?
-  var sFilterCategory:String?
-  var sFilterStyle:String?
-  var sFilterStoreType:String?
-  var sFilterGender:String = String()
+  var sFilterCategory:String = ""
+  var sFilterStyle:String = ""
+  var sFilterStoreType:String = ""
+  var sFilterGender:String  = ""
   var sortMode: String = "AZ"
   var searchResults:String = "Search Results"
-  var sFilterLocation:String?
-  var display_type:String = String()
+  var sFilterLocation:String = ""
+  var display_type:String = "FILTER"
   var searchText:String?
   var nextPageURLMen:String?
   var nextPageURLWomen:String?
   var nextPageURLBoth:String?
   var isLoading = false
-  var radius: String = "100"
+  var radius: String = "10"
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
@@ -200,10 +200,10 @@
     case UICollectionElementKindSectionHeader:
       headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_FeedVCHeaderCell, for: indexPath) as? FeedVCHeaderCell
       
-      if mainVCType == .feed{
-        headerView?.IBlblFilterTitle.isHidden = true
-       // self.sFilterGender = ""
-      } 
+//      if mainVCType == .feed{
+//        headerView?.IBlblFilterTitle.isHidden = true
+//       // self.sFilterGender = ""
+//      } 
       return headerView!
       
     case UICollectionElementKindSectionFooter:
@@ -307,7 +307,9 @@
       }else if mainVCType == .following{
         
       }else if mainVCType == .filter{
-        
+        if arrFilteredBrandList.count == 0{
+          wsCallGetLabels()
+        }
       }else{
         debugPrint("unknown vctype")
       }
@@ -443,6 +445,7 @@
   fileprivate func setupOnLoad(){
     registerCells()
     headerView?.selectedTab = .men
+    sFilterGender = UnlabelHelper.getDefaultValue("gender")!
     setupNavBar()
     (IBcollectionViewFeed.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
     self.automaticallyAdjustsScrollViewInsets = false
@@ -475,10 +478,10 @@
       addNotFoundView()
       addPullToRefresh()
       if let filteredNavTitleObj = filteredNavTitle{
-        titleText = "\(filteredNavTitleObj)"
+        titleText = "UNLABEL"
       }
-      IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
-      IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
+      IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
+     // IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
     }
     
     if self.navigationController?.viewControllers.count > 1{
@@ -701,13 +704,13 @@
  }
  
  extension FeedVC: FilterViewDelegate{
-  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, param: String?, count: String?,genderType: String){
-    self.sFilterCategory = category
-    self.sFilterStyle = style
-    self.sFilterStoreType = store_type
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, radius: String?, count: String?,genderType: String){
+    self.sFilterCategory = category!
+    self.sFilterStyle = style!
+    self.sFilterStoreType = store_type!
     self.sFilterGender = genderType
     print(self.sFilterGender)
-    self.sortMode = param!
+    self.radius = radius!
     display_type = "FILTER"
     print(count!)
     IBbtnFilter.setTitle("Filter("  + count! + ")", for: .normal)

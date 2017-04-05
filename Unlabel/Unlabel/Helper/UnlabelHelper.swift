@@ -234,17 +234,21 @@ class UnlabelHelper: NSObject {
   class func getRadius() -> [FilterModel]{
     var attributeList =  [FilterModel]()
     let pType1 = FilterModel()
-    pType1.typeId = "20"
-    pType1.typeName = "20 miles"
+    pType1.typeId = "10"
+    pType1.typeName = "10 miles"
     attributeList.append(pType1)
     let pType2 = FilterModel()
-    pType2.typeId = "50"
-    pType2.typeName = "50 miles"
+    pType2.typeId = "20"
+    pType2.typeName = "20 miles"
     attributeList.append(pType2)
     let pType3 = FilterModel()
-    pType3.typeId = "100"
-    pType3.typeName = "100 miles"
+    pType3.typeId = "50"
+    pType3.typeName = "50 miles"
     attributeList.append(pType3)
+    let pType4 = FilterModel()
+    pType4.typeId = "100"
+    pType4.typeName = "100 miles"
+    attributeList.append(pType4)
     return attributeList
   }
 

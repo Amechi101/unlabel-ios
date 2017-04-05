@@ -10,6 +10,11 @@ import UIKit
 import SDWebImage
 import SwiftyJSON
 
+
+@objc protocol ReserveDelegate {
+  func productDidReserved()
+}
+
 class ProductViewController: UIViewController {
   
   //MARK: -  IBOutlets,vars,constants
@@ -29,7 +34,7 @@ class ProductViewController: UIViewController {
   var productID: String?
   var childProductID = String()
   var contentStatus: ContentStatus = .unreserved
-  
+  var delegate: ReserveDelegate?
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -116,6 +121,7 @@ extension ProductViewController{
           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
         }
         else{
+          self.delegate?.productDidReserved()
           self.dismiss(animated: true, completion: nil)
         }
       }, failed: { (error) in
@@ -263,7 +269,13 @@ extension ProductViewController:LikeFollowPopupviewDelegate{
   }
   
   func popupDidClickClosePopup(){
-    _ = self.navigationController?.popViewController(animated: true)
+    if contentStatus == ContentStatus.reserve{
+      self.dismiss(animated: true, completion: nil)
+    }
+    else{
+      delegate?.productDidReserved()
+      self.dismiss(animated: true, completion: nil)
+    }
   }
 }
 
