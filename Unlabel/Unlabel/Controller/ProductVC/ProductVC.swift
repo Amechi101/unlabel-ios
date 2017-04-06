@@ -283,10 +283,10 @@ extension ProductVC{
     else if segue.identifier == "ProductDetailSegue"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
-          productViewController.delegate = self
           productViewController.selectedBrand = selectedBrand
           productViewController.selectedProduct = self.selectedProduct
           productViewController.selectedSizeProduct = self.selectedSizeProduct
+          productViewController.delegate = self
         }
       }
     }
@@ -338,6 +338,7 @@ extension ProductVC:PopupviewDelegate{
 
 extension ProductVC:ReserveDelegate{
   func productDidReserved(){
+    self.arrProducts = []
     self.getProductsOfBrand()
   }
 }

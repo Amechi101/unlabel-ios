@@ -237,7 +237,7 @@
     
     let feedVCCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_FeedVCCell, for: indexPath) as! FeedVCCell
     feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercased()
-    if arrFilteredBrandList[indexPath.row].StateOrCountry == "US" {
+    if arrFilteredBrandList[indexPath.row].StateOrCountry == "USA" {
       feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
     }
     else{

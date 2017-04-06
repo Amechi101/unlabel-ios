@@ -628,11 +628,11 @@
                         <viewControllerLayoutGuide type="bottom" id="TXc-fT-su4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xvf-b3-xD9">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
-                                <rect key="frame" x="22" y="12" width="331" height="547"/>
+                                <rect key="frame" x="22" y="76" width="331" height="547"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="11" minimumInteritemSpacing="11" id="CIz-DF-a7p">
                                     <size key="itemSize" width="50" height="50"/>
@@ -3849,7 +3849,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68N-gE-dP0">
-                                                <rect key="frame" x="23" y="241" width="329" height="44"/>
+                                                <rect key="frame" x="23" y="241" width="329" height="43"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="68N-gE-dP0" secondAttribute="height" multiplier="333:44" id="Sg5-FN-jjd"/>
@@ -3966,10 +3966,10 @@ See more info </string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-ln-vQr">
-                                                <rect key="frame" x="120" y="325" width="135" height="15"/>
+                                                <rect key="frame" x="120" y="324" width="135" height="15"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qd-n2q">
-                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Forgot Your Password?">
                                                                 <attributes>
@@ -4023,7 +4023,7 @@ See more info </string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f2-fe-ULR">
-                                                        <rect key="frame" x="0.0" y="1" width="135" height="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <state key="normal">
                                                             <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4569,7 +4569,7 @@ See more info </string>
                     <navigationItem key="navigationItem" id="G6l-te-NTi">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Oab-qz-8dM">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="9"/>
@@ -4787,7 +4787,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="226" height="44"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZl-Mw-5o3">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75.5" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Reserved">
@@ -4798,7 +4798,7 @@ See more info </string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxE-K1-htB">
-                                                <rect key="frame" x="75" y="0.0" width="76" height="44"/>
+                                                <rect key="frame" x="75.5" y="0.0" width="75" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Rented">
@@ -4809,7 +4809,7 @@ See more info </string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytT-Jd-yUu">
-                                                <rect key="frame" x="151" y="0.0" width="75" height="44"/>
+                                                <rect key="frame" x="150.5" y="0.0" width="75.5" height="44"/>
                                                 <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Live">
@@ -5729,7 +5729,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="by5-2J-oWw">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal">
@@ -5995,7 +5995,7 @@ Sunday: 9am-8pm</string>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T2K-gh-85C">
-                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
+                            <rect key="frame" x="75" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="PRODUCT DETAILS">
@@ -7603,8 +7603,8 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jWi-8m-sPs"/>
-        <segue reference="fjS-oP-zkR"/>
+        <segue reference="Szm-2m-6Ro"/>
         <segue reference="I9u-l7-rZc"/>
+        <segue reference="J5P-PC-vHa"/>
     </inferredMetricsTieBreakers>
 </document>

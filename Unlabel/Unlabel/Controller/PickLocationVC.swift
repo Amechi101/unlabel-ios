@@ -48,7 +48,13 @@ class PickLocationVC: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
   @IBAction func IBActionApply(_ sender: Any) {
-    saveInfluencerLocation()
+    if categoryStyleType == CategoryStyleEnum.location{
+      saveInfluencerLocation()
+    }
+    else if categoryStyleType == CategoryStyleEnum.radius{
+      self.delegate?.locationDidSelected(self.selectedItem)
+      self.dismiss(animated: true, completion: nil)
+    }
   }
   
   func getRadiusValues(){

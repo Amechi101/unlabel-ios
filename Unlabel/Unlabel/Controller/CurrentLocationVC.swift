@@ -22,23 +22,28 @@ class CurrentLocationVC: UIViewController {
   var slideUpMenu: SlideUpView = .country
   var stateID: String = "1"
   var countryID: String = "US"
-  
+  var placeName: String = ""
+  var lat: String = ""
+  var lon: String = ""
+  var location_id: String = ""
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfluencerLocation()
     
-    UINavigationBar.appearance().tintColor = UIColor.red
+    UINavigationBar.appearance().tintColor = MEDIUM_GRAY_TEXT_COLOR
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   func saveInfluencerLocation() {
-    let params: [String: String] = ["city":(self.IBButtonSelectCity.titleLabel?.text)!,"state":stateID,"country":countryID]
+    let params: [String: String] = ["location_name":placeName,"id":location_id]
     print(params)
     UnlabelAPIHelper.sharedInstance.saveInfluencerLocation(params ,onVC: self, success:{ (
       meta: JSON) in
       print(meta)
-      _ = self.navigationController?.popViewController(animated: true)
+      self.IBButtonSelectLocation.setTitle(self.placeName, for: .normal)
+      UnlabelHelper.setDefaultValue(self.lat, key: "latitude")
+      UnlabelHelper.setDefaultValue(self.lon, key: "longitude")
       }, failed: { (error) in
     })
   }
@@ -48,6 +53,7 @@ class CurrentLocationVC: UIViewController {
       print(meta)
       DispatchQueue.main.async(execute: { () -> Void in
         self.IBButtonSelectLocation.setTitle(meta["display_string"].stringValue, for: .normal)
+        self.location_id = meta["id"].stringValue
         UnlabelHelper.setDefaultValue(meta["latitude"].stringValue, key: "latitude")
         UnlabelHelper.setDefaultValue(meta["longitude"].stringValue, key: "longitude")
       })
@@ -70,14 +76,12 @@ class CurrentLocationVC: UIViewController {
     
   }
   @IBAction func IBActionSelectCurrentLocation(_ sender: Any) {
-//    let _presentController = storyboard?.instantiateViewController(withIdentifier: "FilterListController") as! FilterListController
-//    _presentController.categoryStyleType = .location
-//    _presentController.arSelectedValues = []
-//    let _navFilterList = UINavigationController(rootViewController: _presentController)
-//    _navFilterList.isNavigationBarHidden = true
-//    print("clicked here")
-    
+    let filter = GMSAutocompleteFilter()
+    filter.type = .establishment
+    filter.country = "US"
+    filter.type = GMSPlacesAutocompleteTypeFilter.city
     let autocompleteController = GMSAutocompleteViewController()
+    autocompleteController.autocompleteFilter = filter
     autocompleteController.delegate = self
     present(autocompleteController, animated: true, completion: nil)
 
@@ -129,12 +133,13 @@ extension CurrentLocationVC: GMSAutocompleteViewControllerDelegate {
     print("Place addressComponents: \(place.addressComponents!)")
     print("Place lat: \(place.coordinate.latitude)")
     print("Place long: \(place.coordinate.longitude)")
-    let location: String = place.formattedAddress!
-    print("Place formattedAddress: \(location)")
-    self.IBButtonSelectLocation.setTitle(location, for: .normal)
-    UnlabelHelper.setDefaultValue("\(place.coordinate.latitude)", key: "latitude")
-    UnlabelHelper.setDefaultValue("\(place.coordinate.longitude)", key: "longitude")
+    placeName = place.formattedAddress!
+    lat = "\(place.coordinate.latitude)"
+    lon = "\(place.coordinate.longitude)"
+    print("Place formattedAddress: \(placeName)")
+   
     dismiss(animated: true, completion: nil)
+    saveInfluencerLocation()
   }
   
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

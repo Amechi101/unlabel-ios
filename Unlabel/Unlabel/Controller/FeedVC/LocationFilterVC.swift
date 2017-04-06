@@ -53,10 +53,12 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     let currentLoc: CLLocation = locations.first!
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.latitude)", key: "latitude")
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.longitude)", key: "longitude")
+    UnlabelLoadingView.sharedInstance.stop(self.view)
     //store the user location here to firebase or somewhere
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    UnlabelLoadingView.sharedInstance.stop(self.view)
     print("Did location updates is called but failed getting location \(error)")
   }
   
@@ -76,11 +78,14 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     if CLLocationManager.locationServicesEnabled() {
       locationManager.delegate = self
       locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-    }
-    
-    if CLLocationManager.locationServicesEnabled() {
       locationManager.requestLocation()
     }
+    else{
+      
+    }
+//    if CLLocationManager.locationServicesEnabled() {
+//      locationManager.requestLocation()
+//    }
 
   }
   func getCurrentLocation(){
@@ -116,6 +121,7 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
         IBImageViewGPS.isHidden = true
       }
       else{
+        UnlabelLoadingView.sharedInstance.start(self.view)
         getGPSLocation()
         sender.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         IBImageViewGPS.isHidden = false
