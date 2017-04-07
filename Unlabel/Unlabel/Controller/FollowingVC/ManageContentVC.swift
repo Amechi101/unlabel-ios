@@ -30,6 +30,7 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   @IBOutlet weak var IBReserveButton: UIButton!
   @IBOutlet weak var IBRentButton: UIButton!
   @IBOutlet weak var IBLiveButton: UIButton!
+  
   var selectedProduct: Product!
   var selectedBrand: Brand!
   var contentStatus: ContentStatus = .reserve

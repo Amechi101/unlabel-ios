@@ -154,6 +154,7 @@ extension LoginEntryVC{
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
       UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
+      UnlabelHelper.goToBrandVC(self.storyboard!)
     }, failed: { (error) in
     })
   }
@@ -182,7 +183,7 @@ extension LoginEntryVC{
         if statusCode == s_OK{
           self.getInfluencerDetails()
           self.wsRegisterDevice()
-          UnlabelHelper.goToBrandVC(self.storyboard!)
+         // UnlabelHelper.goToBrandVC(self.storyboard!)
         }
         else if statusCode == s_Unauthorised{
           self.loginScenario = LoginScenario.wrong

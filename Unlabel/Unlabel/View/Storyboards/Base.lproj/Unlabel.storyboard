@@ -182,7 +182,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97y-Vp-NQQ">
-                                                <rect key="frame" x="26" y="543" width="323" height="44"/>
+                                                <rect key="frame" x="26" y="542.5" width="323" height="44.5"/>
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.17254901959999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="97y-Vp-NQQ" secondAttribute="height" multiplier="80:11" id="Xoj-AV-Af5"/>
@@ -628,11 +628,11 @@
                         <viewControllerLayoutGuide type="bottom" id="TXc-fT-su4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xvf-b3-xD9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rmC-Tv-ZXd">
-                                <rect key="frame" x="22" y="76" width="331" height="547"/>
+                                <rect key="frame" x="22" y="12" width="331" height="547"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="11" minimumInteritemSpacing="11" id="CIz-DF-a7p">
                                     <size key="itemSize" width="50" height="50"/>
@@ -736,7 +736,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABOUT US" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPt-W2-PJU">
-                                                    <rect key="frame" x="22" y="0.0" width="72" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="71.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -832,7 +832,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQe-pX-DGh">
-                                                    <rect key="frame" x="22" y="0.0" width="156" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="155.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -932,7 +932,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-oh-9iP">
-                                                    <rect key="frame" x="22" y="0.0" width="111" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="110.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="15"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1181,7 +1181,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Image/Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a6-hu-DuN">
-                                                    <rect key="frame" x="22" y="0.0" width="117" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="116.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1249,7 +1249,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-zV-xrL">
-                                                    <rect key="frame" x="22" y="0.0" width="133" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="132.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1393,7 +1393,7 @@
                         <viewControllerLayoutGuide type="top" id="E7T-Io-Z44"/>
                         <viewControllerLayoutGuide type="bottom" id="ONz-Xm-fQM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="keg-eZ-61M">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="keg-eZ-61M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1487,7 +1487,7 @@
         <scene sceneID="XX2-jv-RkF">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Qat-XQ-WQx" customClass="SettingsViewController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="naZ-Qg-Tvk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1502,7 +1502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commission Earnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBP-9o-dlK">
-                                                    <rect key="frame" x="22" y="0.0" width="144" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="143.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1568,7 +1568,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdo-eb-MCB">
-                                                    <rect key="frame" x="22" y="0.0" width="76" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="75.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1675,7 +1675,7 @@
                         <viewControllerLayoutGuide type="top" id="DK1-Le-k4s"/>
                         <viewControllerLayoutGuide type="bottom" id="fWR-cW-Wy0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="15r-Yn-Rpf">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="15r-Yn-Rpf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1873,7 +1873,7 @@
                         <viewControllerLayoutGuide type="top" id="oHH-OZ-al8"/>
                         <viewControllerLayoutGuide type="bottom" id="iah-fK-blJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eax-3y-BwH">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="eax-3y-BwH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -3849,7 +3849,7 @@ See more info </string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68N-gE-dP0">
-                                                <rect key="frame" x="23" y="241" width="329" height="43"/>
+                                                <rect key="frame" x="23" y="241" width="329" height="43.5"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89411764709999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="68N-gE-dP0" secondAttribute="height" multiplier="333:44" id="Sg5-FN-jjd"/>
@@ -3966,7 +3966,7 @@ See more info </string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-ln-vQr">
-                                                <rect key="frame" x="120" y="324" width="135" height="15"/>
+                                                <rect key="frame" x="120" y="324.5" width="135" height="15"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qd-n2q">
                                                         <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
@@ -4409,7 +4409,7 @@ See more info </string>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="O2s-F5-Ypr" customClass="NavController" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discover" image="Discover" id="Fok-lI-GRK"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eUH-fJ-iY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="eUH-fJ-iY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4755,7 +4755,7 @@ See more info </string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JXj-J6-7AS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Following" image="Saved_items" id="aM7-Lh-gfr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6bF-EJ-6yJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6bF-EJ-6yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4887,7 +4887,7 @@ See more info </string>
                     <navigationItem key="navigationItem" id="VPg-ao-dLz">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIx-Np-Pnx">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal" title="MANAGE CONTENT">
@@ -5341,7 +5341,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pvh-M2-bLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="8xt-Jh-E7L"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CQ8-2p-vyG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CQ8-2p-vyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -5382,7 +5382,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SZ7-LJ-ahy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manage Content" image="Manage" id="uhd-gO-AoR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7iI-us-SQa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7iI-us-SQa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6221,7 +6221,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rvr-SJ-qaW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gJP-T9-2OF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gJP-T9-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6239,7 +6239,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X0k-OQ-dEj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fma-s0-TrK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fma-s0-TrK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -6260,7 +6260,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="V3g-9o-sgA"/>
                         <viewControllerLayoutGuide type="bottom" id="a1U-xk-Op0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="atH-tE-JEq">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="atH-tE-JEq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6373,7 +6373,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="vfZ-rd-EqI"/>
                         <viewControllerLayoutGuide type="bottom" id="CAJ-Re-Jth"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mn8-0H-mDZ">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Mn8-0H-mDZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -6599,7 +6599,7 @@ Sunday: 9am-8pm</string>
         <scene sceneID="eAD-OV-ne4">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="j5a-D3-eJ1" customClass="LegalAgreementVC" customModule="Unlabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Pq-Jt-iih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6647,7 +6647,7 @@ Sunday: 9am-8pm</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqm-XP-SuT">
-                                                    <rect key="frame" x="22" y="0.0" width="92" height="54"/>
+                                                    <rect key="frame" x="22" y="0.0" width="91.5" height="54"/>
                                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -6757,7 +6757,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="rH4-S4-YIC"/>
                         <viewControllerLayoutGuide type="bottom" id="pmV-XV-msv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6a3-gR-ipP">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="6a3-gR-ipP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -7017,7 +7017,7 @@ Sunday: 9am-8pm</string>
                         <viewControllerLayoutGuide type="top" id="0Wi-a2-KgU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZRu-sK-gZL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Bhm-5a-ooU">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Bhm-5a-ooU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -7171,7 +7171,7 @@ Sunday: 9am-8pm</string>
         <scene sceneID="Lkb-aQ-G05">
             <objects>
                 <navigationController id="TU8-9y-nyU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ctO-om-5OM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ctO-om-5OM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7514,7 +7514,7 @@ Sunday: 9am-8pm</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Nj-gk-Dcd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="Search" id="9Wi-yV-vtx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z5i-ka-kWT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="z5i-ka-kWT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7532,7 +7532,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JGA-x5-ork" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2ce-vL-SY4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2ce-vL-SY4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7550,7 +7550,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s0R-SZ-a4d" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7pj-hJ-yjX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7pj-hJ-yjX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7568,7 +7568,7 @@ Sunday: 9am-8pm</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QLR-wf-adH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XLP-Jw-vQM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="XLP-Jw-vQM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -7603,8 +7603,8 @@ Sunday: 9am-8pm</string>
         <image name="logo_black" width="126" height="127"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Szm-2m-6Ro"/>
         <segue reference="I9u-l7-rZc"/>
         <segue reference="J5P-PC-vHa"/>
+        <segue reference="jWi-8m-sPs"/>
     </inferredMetricsTieBreakers>
 </document>

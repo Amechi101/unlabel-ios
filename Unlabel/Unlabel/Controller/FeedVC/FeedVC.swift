@@ -445,7 +445,13 @@
   fileprivate func setupOnLoad(){
     registerCells()
     headerView?.selectedTab = .men
-    sFilterGender = UnlabelHelper.getDefaultValue("gender")!
+    if let gender: String = UnlabelHelper.getDefaultValue("gender")!{
+      sFilterGender = gender
+    }
+    else{
+      sFilterGender = "M"
+    }
+    
     setupNavBar()
     (IBcollectionViewFeed.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
     self.automaticallyAdjustsScrollViewInsets = false
