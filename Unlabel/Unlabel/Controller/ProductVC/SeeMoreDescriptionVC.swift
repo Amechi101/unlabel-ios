@@ -11,13 +11,11 @@ import UIKit
 class SeeMoreDescriptionVC: UIViewController {
   
   //MARK: -  IBOutlets,vars,constants
-  
   var selectedBrand:Brand?
   @IBOutlet weak var IBbtnTitle: UIButton!
   @IBOutlet weak var IBLabelDescription: UILabel!
   
   //MARK: -  View lifecycle methods
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     if selectedBrand == nil {
@@ -31,7 +29,6 @@ class SeeMoreDescriptionVC: UIViewController {
   }
   
   //MARK: -  IBAction methods
-  
   @IBAction func backAction(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }

@@ -19,30 +19,25 @@ enum LoginScenario{
 class LoginEntryVC: UIViewController {
   
   //MARK:- IBOutlets, vars and constants
-  
   @IBOutlet weak var IBLblEmail: UILabel!
   @IBOutlet weak var IBLblPassword: UILabel!
   @IBOutlet weak var IBEmailLine: UIView!
   @IBOutlet weak var IBPasswordLine: UIView!
   @IBOutlet weak var IBLoginButton: UIButton!
-  
   @IBOutlet weak var IBscrollView: UIScrollView!
   @IBOutlet weak var IBTextfieldEmail: UITextField!
   @IBOutlet weak var IBTextfieldPassword: UITextField!
   var user = User()
   var loginScenario: LoginScenario = LoginScenario.idle
   
-  
   //MARK:- View lifecyle methods
-  
   override func viewDidLoad() {
     super.viewDidLoad()
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-
 }
 
 //MARK:- Custom methods
@@ -63,8 +58,8 @@ extension LoginEntryVC{
       IBEmailLine.backgroundColor = DARK_RED_COLOR
       IBTextfieldEmail.textColor = DARK_RED_COLOR
     }
-    
   }
+  
   func updatePasswordFields(){
     if loginScenario == LoginScenario.idle{
       IBLblPassword.textColor = LIGHT_GRAY_TEXT_COLOR
@@ -85,20 +80,18 @@ extension LoginEntryVC{
 }
 
 //MARK:- IBAction methods
-
 extension LoginEntryVC{
   @IBAction func IBActionClose(_ sender: Any) {
     self.dismiss(animated: true) { () -> Void in
-      
     }
   }
+  
   @IBAction func IBLoginAction(_ sender: Any) {
     IBTextfieldEmail.resignFirstResponder()
     IBTextfieldPassword.resignFirstResponder()
     user.email = IBTextfieldEmail.text!
     user.password = IBTextfieldPassword.text!
     if isValidEmail() && isValidUserPassword(){
-      
       if ReachabilitySwift.isConnectedToNetwork(){
         UnlabelLoadingView.sharedInstance.start(view)
         wsLoginWithEmail()
@@ -107,11 +100,12 @@ extension LoginEntryVC{
       }
     }else{
     }
-    
   }
+  
   @IBAction func IBForgotPassword(_ sender: Any) {
     self.addForgotPopupView(PopupAction.recover, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
   @IBAction func IBActionEditingChanged(_ sender: Any) {
     if (IBTextfieldEmail.text != "" && IBTextfieldPassword.text != "") {
       IBLoginButton.backgroundColor = DARK_GRAY_COLOR
@@ -122,19 +116,15 @@ extension LoginEntryVC{
       IBLoginButton.isEnabled = false
     }
   }
-
 }
 
 //MARK:- API methods
-
 extension LoginEntryVC{
-  
   func wsForgotPassword(){
     UnlabelAPIHelper.sharedInstance.forgotPassword(user, onVC: self, success: {
       (json: JSON,statusCode:Int) in
       UnlabelLoadingView.sharedInstance.stop(self.view)
       if statusCode == s_OK{
-        
         self.addForgotPopupView(PopupAction.ok, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
       }
       else{
@@ -145,6 +135,7 @@ extension LoginEntryVC{
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
     })
   }
+  
   func getInfluencerDetails(){
     UnlabelAPIHelper.sharedInstance.getProfileDetails({ (
       meta: JSON) in
@@ -206,7 +197,6 @@ extension LoginEntryVC{
 
 extension LoginEntryVC: UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    
     if textField == IBTextfieldEmail{
       if isValidEmail(){
         IBTextfieldPassword.becomeFirstResponder()
@@ -217,6 +207,7 @@ extension LoginEntryVC: UITextFieldDelegate{
       }
       IBTextfieldPassword.resignFirstResponder()
     }
+    
     return true
   }
   
@@ -229,8 +220,8 @@ extension LoginEntryVC: UITextFieldDelegate{
       loginScenario = LoginScenario.ok
       updatePasswordFields()
     }
-
   }
+  
   func textFieldDidEndEditing(_ textField: UITextField) {
     if textField == IBTextfieldEmail{
      if IBTextfieldEmail.text == "" && isValidEmail(){
@@ -245,11 +236,9 @@ extension LoginEntryVC: UITextFieldDelegate{
       }
     }
   }
-  
 }
 
 //MARK: -  Text Field Validation Methods
-
 extension LoginEntryVC{
   fileprivate func isValidEmail()->Bool{
     if let email = IBTextfieldEmail.text, email.characters.count > 0{
@@ -258,64 +247,65 @@ extension LoginEntryVC{
           UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Email must be less than 30 characters", onOk: { () -> () in })
           loginScenario = LoginScenario.wrong
           updateEmailFields()
+          
           return false
         }
         else{
           loginScenario = LoginScenario.ok
           updateEmailFields()
+          
           return true
         }
       }else{
         UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "This email address doesn’t look quite right", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updateEmailFields()
+        
         return false
       }
     }else{
       UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please provide your email to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updateEmailFields()
+      
       return false
     }
   }
   
   fileprivate func isValidUserPassword()->Bool{
-    
     if let iCharacters = IBTextfieldPassword.text?.characters.count, iCharacters > 0{
       if let pwCharacters = IBTextfieldPassword.text?.characters.count, pwCharacters < 8{
         UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updatePasswordFields()
+        
         return false
       }
       else{
         loginScenario = LoginScenario.ok
         updatePasswordFields()
+        
         return true
       }
-      
     }
     else{
       UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updatePasswordFields()
+      
       return false
     }
   }
 }
 
 //MARK: -  ForgotPasswordPopup Delegate methods
-
 extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
-  
   func addForgotPopupView(_ popupAction:PopupAction,initialFrame:CGRect){
     if let viewForgotLabelPopup:ViewForgotPasswordPopup = Bundle.main.loadNibNamed(FORGET_PASSWORD_POPUP, owner: self, options: nil)? [0] as? ViewForgotPasswordPopup{
       viewForgotLabelPopup.delegate = self
       viewForgotLabelPopup.popupAction = popupAction
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
-      
-      //debugPrint(viewForgotLabelPopup)
       view.addSubview(viewForgotLabelPopup)
       UIView.animate(withDuration: 0.2, animations: {
         viewForgotLabelPopup.frame = self.view.frame

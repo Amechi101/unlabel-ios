@@ -14,7 +14,6 @@ import UserNotifications
 import SwiftyJSON
 import GooglePlaces
 
-
 @objc protocol AppDelegateDelegates {
   func reachabilityChanged(_ reachable:Bool)
   @objc optional func didLaunchWithBrandId(_ brandId:String)
@@ -22,7 +21,6 @@ import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
-  
   var window: UIWindow?
   var delegate:AppDelegateDelegates?
   fileprivate var reachability:Reachability!;
@@ -31,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     let cstorage = HTTPCookieStorage.shared
     print("cs cookie  \(cstorage)")
     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-    // UIApplication.shared.statusBarFrame
     self.window?.backgroundColor = .white
      GMSPlacesClient.provideAPIKey("AIzaSyBF8Y5iGqilO7GWiJIoC0aOplGn5GDJnzc")
     setupOnLaunch(launchOptions)
@@ -61,13 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
     let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
     debugPrint("********\(deviceTokenString)")
-    
     UnlabelHelper.setDefaultValue(deviceTokenString, key: "device_token")
-    
   }
+  
   func clearCookie(){
     let cstorage = HTTPCookieStorage.shared
-    
     UserDefaults.standard.removeObject(forKey: "ULCookie")
     UserDefaults.standard.synchronize()
     print("cs cookie  \(cstorage)")
@@ -76,42 +71,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         cstorage.deleteCookie(cookie)
       }
     }
-    
   }
   func applicationWillResignActive(_ application: UIApplication) {
-    
   }
   
   func applicationDidEnterBackground(_ application: UIApplication) {
-    
   }
   
   func applicationWillEnterForeground(_ application: UIApplication) {
-    
   }
   
   func applicationDidBecomeActive(_ application: UIApplication) {
-    
   }
   
   func applicationWillTerminate(_ application: UIApplication) {
     self.saveContext()
   }
   
-  
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
      debugPrint("---555--- \(userInfo)")
-    
   }
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     debugPrint("------ \(userInfo)")
-     debugPrint("****** \(userInfo["aps"])")
+    debugPrint("****** \(userInfo["aps"])")
   }
   
-  
   // MARK: - Core Data stack
-  
   lazy var applicationDocumentsDirectory: URL = {
     let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return urls[urls.count-1]
@@ -151,7 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   }()
   
   // MARK: - Core Data Saving support
-  
   func saveContext () {
     if managedObjectContext.hasChanges {
       do {
@@ -165,58 +150,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   }
 }
 
-//
 //MARK:- Custom Methods
-//
 extension AppDelegate{
-  /**
-   Init everything needed on app launch.
-   */
   fileprivate func setupOnLaunch(_ launchOptions: [AnyHashable: Any]?){
     configure(launchOptions)
     setupRootVC()
   }
   
-  /**
-   Configure required things.
-   */
   fileprivate func configure(_ launchOptions: [AnyHashable: Any]?){
     Fabric.with([Crashlytics.self])
     configureGoogleAnalytics()
     addInternetStateChangeObserver()
   }
   
-  
-  /**
-   Configuring GA.
-   */
   fileprivate func configureGoogleAnalytics(){
-    // Configure tracker from GoogleService-Info.plist.
     var configureError:NSError?
     GGLContext.sharedInstance().configureWithError(&configureError)
     assert(configureError == nil, "Error configuring Google services: \(configureError)")
-    
-    // Optional: configure GAI options.
     let gai = GAI.sharedInstance()
-    gai?.trackUncaughtExceptions = true  // report uncaught exceptions
-    //        gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+    gai?.trackUncaughtExceptions = true
   }
-  
-  /**
-   Observe internet state change.
-   */
+
   fileprivate func addInternetStateChangeObserver(){
     NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: NSNotification.Name.reachabilityChanged, object: nil);
-    
     self.reachability = Reachability.forInternetConnection()
     self.reachability.startNotifier();
   }
-  
-  /**
-   Init UI on app launch.
-   */
+
   func getInfluencerDetails(){
-    
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
       meta: JSON) in
       print(meta)
@@ -231,7 +192,6 @@ extension AppDelegate{
   }
   
   func getStaticURLs(){
-    
     UnlabelAPIHelper.sharedInstance.getStaticURLs( { (
       meta: JSON) in
       print(meta)
@@ -243,9 +203,7 @@ extension AppDelegate{
   }
 
   fileprivate func setupRootVC(){
-    
     if UnlabelHelper.isUserLoggedIn(){
-      
       HTTPCookieStorage.shared.setCookie(getCookie())
       getInfluencerDetails()
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
@@ -254,62 +212,39 @@ extension AppDelegate{
         window.rootViewController = rootTabVC
         self.window?.makeKeyAndVisible()
       }
-      
     }else{
       getStaticURLs()
     }
-    
     setupUnlabelApp()
   }
   
-  func getCookie () -> HTTPCookie
-  {
+  func getCookie () -> HTTPCookie{
     let cookie = HTTPCookie(properties: UserDefaults.standard.object(forKey: "ULCookie") as!  [HTTPCookiePropertyKey : Any])
+    
     return cookie!
   }
   
   fileprivate func goToFeedVC(_ storyboard:UIStoryboard){
-    
     let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
     if let window = self.window {
       window.rootViewController = rootTabVC
     }
-    
-    
-    
   }
-  
-  
-  /**
-   Setup Unlable App.
-   */
+
   fileprivate func setupUnlabelApp(){
-    UINavigationBar.appearance().setBackgroundImage(
-      UIImage(),
-      for: .any,
-      barMetrics: .default)
-    
+    UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
     UINavigationBar.appearance().shadowImage = UIImage()
   }
-  
-  
-  /**
-   Check for reachability whenever internet state changes.
-   */
-  func checkForReachability(_ notification:Notification)
-  {
+
+  func checkForReachability(_ notification:Notification){
     if let networkReachability = notification.object as? Reachability{
       let remoteHostStatus = networkReachability.currentReachabilityStatus()
-      
-      if (remoteHostStatus == NotReachable)
-      {
+      if (remoteHostStatus == NotReachable){
         DispatchQueue.main.async(execute: {
           self.delegate?.reachabilityChanged(false)
         })
         debugPrint("Unreachable")
-      }
-      else
-      {
+      } else {
         DispatchQueue.main.async(execute: {
           self.delegate?.reachabilityChanged(true)
         })

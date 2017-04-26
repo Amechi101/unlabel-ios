@@ -13,6 +13,7 @@ import SwiftyJSON
 @objc protocol LocationFilterDelegate {
   func locationFiltersSelected(_ selectedRadius: String)
 }
+
 class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var IBViewGPS: UIView!
@@ -28,8 +29,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
     IBButtonLoc.isSelected = true
   }
   
@@ -37,17 +36,20 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
   func isAuthorizedtoGetUserLocation() {
     
     if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
       locationManager.requestWhenInUseAuthorization()
     }
   }
+  
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     if status == .authorizedWhenInUse {
       
     }
   }
+  
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     print("Did location updates is called")
     let currentLoc: CLLocation = locations.first!
@@ -81,13 +83,9 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
       locationManager.requestLocation()
     }
     else{
-      
     }
-//    if CLLocationManager.locationServicesEnabled() {
-//      locationManager.requestLocation()
-//    }
-
   }
+  
   func getCurrentLocation(){
     getInfluencerLocation()
   }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -61,7 +61,7 @@
                                 <color key="textColor" red="0.69411764705882351" green="0.70196078431372544" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4I-bl-da2">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4I-bl-da2">
                                 <rect key="frame" x="0.0" y="283" width="150" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="5Vd-yi-AoZ"/>
@@ -72,11 +72,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jz7-vf-L4U">
-                                <rect key="frame" x="0.0" y="305" width="49" height="1"/>
+                                <rect key="frame" x="0.0" y="305" width="135" height="1"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.61176470589999998" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="DqD-Om-IMu"/>
-                                    <constraint firstAttribute="width" constant="49" id="VnD-ec-CZb"/>
+                                    <constraint firstAttribute="width" constant="135" id="VnD-ec-CZb"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-dm-Nug">
@@ -94,6 +94,20 @@
                                     <action selector="IBActionSeeMore:" destination="-1" eventType="touchUpInside" id="i4U-dB-71j"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppQ-Z1-dko">
+                                <rect key="frame" x="0.0" y="283" width="135" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="9oh-u4-Xai"/>
+                                    <constraint firstAttribute="width" constant="135" id="W4B-Ai-ghU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="11"/>
+                                <state key="normal" title="VIEW LOCATION &amp; HOURS">
+                                    <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="IBActionViewRentalInfo:" destination="-1" eventType="touchUpInside" id="8Rs-kq-9ae"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -103,6 +117,8 @@
                             <constraint firstItem="R4I-bl-da2" firstAttribute="top" secondItem="Lzb-hZ-6qd" secondAttribute="bottom" constant="8" id="DZ4-Nq-IsV"/>
                             <constraint firstItem="R4I-bl-da2" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="GMa-GB-RMU"/>
                             <constraint firstAttribute="bottom" secondItem="jz7-vf-L4U" secondAttribute="bottom" constant="8" id="N2o-Iu-Rug"/>
+                            <constraint firstItem="jz7-vf-L4U" firstAttribute="top" secondItem="ppQ-Z1-dko" secondAttribute="bottom" constant="4" id="OCf-O1-Dj4"/>
+                            <constraint firstItem="ppQ-Z1-dko" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="OXe-Zi-Q8C"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="Qfj-Gu-zMz"/>
                             <constraint firstAttribute="trailing" secondItem="LbP-c8-M68" secondAttribute="trailing" id="SiH-Wo-arB"/>
                             <constraint firstItem="Lzb-hZ-6qd" firstAttribute="leading" secondItem="oK7-AS-j1g" secondAttribute="leading" id="UKI-H7-cSz"/>
@@ -112,6 +128,7 @@
                             <constraint firstItem="MRw-dm-Nug" firstAttribute="baseline" secondItem="Lzb-hZ-6qd" secondAttribute="baseline" id="gSP-b8-aWm"/>
                             <constraint firstItem="MRw-dm-Nug" firstAttribute="trailing" secondItem="Lzb-hZ-6qd" secondAttribute="trailing" constant="-2" id="qUj-ED-5RL"/>
                             <constraint firstItem="LbP-c8-M68" firstAttribute="top" secondItem="oK7-AS-j1g" secondAttribute="top" id="xBg-iE-oh4"/>
+                            <constraint firstItem="ppQ-Z1-dko" firstAttribute="top" secondItem="Lzb-hZ-6qd" secondAttribute="bottom" constant="8" id="zCZ-wx-9dC"/>
                         </constraints>
                     </view>
                 </subviews>

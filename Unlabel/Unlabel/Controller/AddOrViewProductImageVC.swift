@@ -20,6 +20,7 @@ class AddOrViewProductImageVC: UIViewController {
   var productImageArray: [ProductImages] = [ProductImages]()
   var contentStatus: ContentStatus = .rent
   var displayOrder: String = String()
+  fileprivate let fFooterHeight:CGFloat = 40.0
   
   //MARK: -  View lifecycle methods
   
@@ -217,16 +218,18 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     if productImageArray.count == 0{
+      
       return CGSize.zero
-    }
-    else{
+    }else {
       if contentStatus == ContentStatus.live{
+        
         return CGSize.zero
-      }
-      else{
+      }else {
         print(collectionView.frame.width)
         print(collectionView.frame.size.width)
-        return CGSize(width: collectionView.frame.width, height: 50.0)
+        print(SCREEN_WIDTH)
+        
+        return CGSize(width: SCREEN_WIDTH, height: fFooterHeight)
       }
     }
   }
@@ -234,16 +237,16 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
     switch kind {
     case UICollectionElementKindSectionFooter:
       if contentStatus == ContentStatus.live{
+        
         return UICollectionReusableView()
-      }
-      else{
+      }else {
         let footerView:ProductPhotoFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductPhotoFooterCell", for: indexPath) as! ProductPhotoFooterCell
-       // footerView.layer.borderColor = UIColor.red.cgColor
-      //  footerView.layer.borderWidth = 3.0
+        
         return footerView
       }
     default:
       assert(false, "No such element")
+      
       return UICollectionReusableView()
     }
   }

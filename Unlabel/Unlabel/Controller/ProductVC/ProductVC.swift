@@ -36,7 +36,6 @@ class ProductVC: UIViewController {
   var selectedGender: String = String()
   
   //MARK:- VC Lifecycle
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     print(self.selectedGender)
@@ -47,6 +46,7 @@ class ProductVC: UIViewController {
     nextPageURL = nil
     getProductsOfBrand()
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     UnlabelHelper.setAppDelegateDelegates(self)
     if let _ = self.navigationController{
@@ -54,16 +54,17 @@ class ProductVC: UIViewController {
     }
     IBcollectionViewProduct.reloadData()
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
   @IBAction func IBActionSeeMore(_ sender: Any) {
     self.performSegue(withIdentifier: "SeeMoreDescription", sender: self)
   }
 }
 
 //MARK:- AppDelegateDelegates Methods
-
 extension ProductVC:AppDelegateDelegates{
   func reachabilityChanged(_ reachable: Bool) {
     debugPrint("reachabilityChanged : \(reachable)")
@@ -71,12 +72,10 @@ extension ProductVC:AppDelegateDelegates{
 }
 
 //MARK:- UICollectionViewDelegate Methods
-
 extension ProductVC:UICollectionViewDelegate{
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
-    }
-    else {
+    }else {
       if isProfileCompleted{
         self.selectedProduct = self.arrProducts[indexPath.row - 3]
         print(selectedProduct.ProductID)
@@ -86,20 +85,20 @@ extension ProductVC:UICollectionViewDelegate{
           
         }, failed: { (error) in
         })
-      }
-      else{
+      }else {
         self.addLikeFollowPopupView(FollowType.profileIncomplete,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
       }
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     if nextPageURL?.characters.count == 0{
       return CGSize.zero
-    }
-    else{
+    }else {
       return CGSize(width: collectionView.frame.width, height: fFooterHeight)
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionElementKindSectionFooter:
@@ -115,22 +114,28 @@ extension ProductVC:UICollectionViewDelegate{
 //MARK:- UICollectionViewDataSource Methods
 extension ProductVC:UICollectionViewDataSource{
   func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
     return 1
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    
     return arrProducts.count + 3
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     if indexPath.row == 0{
+      
       return getProductHeaderCell(forIndexPath: indexPath)
     }else if indexPath.row == 1{
+      
       return getProductDescCell(forIndexPath: indexPath)
     }else if indexPath.row == 2{
+      
       return getProductSortCell(forIndexPath: indexPath)
     }
     else{
+      
       return getProductCell(forIndexPath: indexPath)
     }
   }
@@ -143,8 +148,7 @@ extension ProductVC:UICollectionViewDataSource{
     print(productHeaderCell.IBBrandDescription.bounds.height)
     if productHeaderCell.IBBrandDescription.intrinsicContentSize.height > productHeaderCell.IBBrandDescription.bounds.height{
       productHeaderCell.IBbtnSeeMore.isHidden = false
-    }
-    else{
+    }else {
       productHeaderCell.IBbtnSeeMore.isHidden = true
     }
     productHeaderCell.IBBrandLocation.text = selectedBrand.city + ", " + selectedBrand.location
@@ -152,41 +156,45 @@ extension ProductVC:UICollectionViewDataSource{
     if let url = URL(string: selectedBrand.FeatureImage){
       productHeaderCell.IBimgHeaderImage.sd_setImage(with: url, completed:
         { (iimage, error, type, url) in
-          
           if let _ = error{
-          }else{
+          }else {
             self.headerViewImage = iimage
             if (type == SDImageCacheType.none)  {
               productHeaderCell.IBimgHeaderImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {
                 productHeaderCell.IBimgHeaderImage.alpha = 1;
               })
-            } else  {
+            }else  {
               productHeaderCell.IBimgHeaderImage.alpha = 1;
             }
           }
       })
     }
     productHeaderCell.contentView.backgroundColor = .red
+    
     return productHeaderCell
   }
+  
   func getProductSortCell(forIndexPath indexPath:IndexPath)->ProductSortCell{
     let productSortCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductSortCell, for: indexPath) as! ProductSortCell
     productSortCell.IBSortModeSelection.addTarget(self, action: #selector(showSortPopup), for: .touchUpInside)
     productSortCell.IBSortModeSelection.setTitle("Sort By: "+sortModeValue, for: .normal)
+    
     return productSortCell
   }
+  
   func showSortPopup(){
     self.addSortPopupView(SlideUpView.sortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
   func getProductDescCell(forIndexPath indexPath:IndexPath)->ProductDescCell{
     let productDescCell = IBcollectionViewProduct.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductDescCell, for: indexPath) as! ProductDescCell
     if arrProducts.count == 0{
       productDescCell.IBlblDesc.text = selectedBrand.Name+" has no more products to rent from at this moment."
-    }
-    else{
+    }else {
       productDescCell.IBlblDesc.text = ""
     }
+    
     return productDescCell
   }
   
@@ -201,25 +209,24 @@ extension ProductVC:UICollectionViewDataSource{
         productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
           if let _ = error{
             self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-          }else{
+          }else {
             if (type == SDImageCacheType.none){
               productCell.IBimgProductImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {
                 productCell.IBimgProductImage.alpha = 1;
               })
-            }
-            else{
+            }else {
               productCell.IBimgProductImage.alpha = 1;
             }
             self.handleProductCellActivityIndicator(productCell, shouldStop: true)
           }
         })
       }
-    }
-    else{
+    }else {
       productCell.IBimgProductImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "Group"))
       self.handleProductCellActivityIndicator(productCell, shouldStop: true)
     }
+    
     return productCell
   }
   
@@ -227,36 +234,37 @@ extension ProductVC:UICollectionViewDataSource{
     productCell.IBactivityIndicator.isHidden = shouldStop
     if shouldStop {
       productCell.IBactivityIndicator.stopAnimating()
-    }else{
+    }else {
       productCell.IBactivityIndicator.startAnimating()
     }
   }
   
 }
 
-
 //MARK:- UICollectionViewDelegateFlowLayout Methods
-
 extension ProductVC:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if indexPath.row == 0{
+      
       return CGSize(width: CGFloat(collectionView.frame.size.width), height: CGFloat(314.0))
     }else if indexPath.row == 1{
       if arrProducts.count == 0{
+        
         return CGSize(width: (collectionView.frame.size.width)-5.5, height: 210.0)
-      }
-      else{
+      }else {
+        
         return CGSize.zero
       }
-    }else if indexPath.row == 2{
-      if arrProducts.count == 0{
+    }else if indexPath.row == 2 {
+      if arrProducts.count == 0 {
+        
         return CGSize.zero
-      }
-      else{
+      }else {
+        
         return CGSize(width: (collectionView.frame.size.width)-5.5, height: 60.0)
       }
-    }
-    else{
+    }else {
+      
       return CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0)
     }
   }
@@ -270,17 +278,12 @@ extension ProductVC{
     if segue.identifier == S_ID_PRODUCT_DETAIL_WEBVIEW_VC{
       if let productDetailWVVC:ProductDetailsWebViewVC = segue.destination as? ProductDetailsWebViewVC{
         productDetailWVVC.selectedBrand = self.selectedBrand
-        //Google analytics
-        
-        //GAHelper.trackEvent(GAEventType.ProductClicked, labelName: selectedBrand.Name, productName:product.ProductName, buyProductName: nil)
-        //                    }
       }
-    }else if segue.identifier == S_ID_ABOUT_LABEL_VC{
+    }else if segue.identifier == S_ID_ABOUT_LABEL_VC {
       if let aboutLabelVC:AboutLabelVC = segue.destination as? AboutLabelVC{
         aboutLabelVC.selectedBrand = selectedBrand
       }
-    }
-    else if segue.identifier == "ProductDetailSegue"{
+    }else if segue.identifier == "ProductDetailSegue" {
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
           productViewController.selectedBrand = selectedBrand
@@ -289,8 +292,7 @@ extension ProductVC{
           productViewController.delegate = self
         }
       }
-    }
-    else if segue.identifier == "SeeMoreDescription"{
+    }else if segue.identifier == "SeeMoreDescription" {
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
         if let seeMoreDescriptionVC:SeeMoreDescriptionVC = navViewController.viewControllers[0] as? SeeMoreDescriptionVC{
           seeMoreDescriptionVC.selectedBrand = selectedBrand
@@ -300,11 +302,8 @@ extension ProductVC{
   }
 }
 
-
 //MARK:- ViewFollowingLabelPopup Methods
-
 extension ProductVC:PopupviewDelegate{
-  
   func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
     let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed("ViewFollowingLabelPopup", owner: self, options: nil)! [0] as! ViewFollowingLabelPopup
     viewFollowingLabelPopup.delegate = self
@@ -317,14 +316,10 @@ extension ProductVC:PopupviewDelegate{
       viewFollowingLabelPopup.frame.origin = CGPoint(x: 0, y: 0)
       viewFollowingLabelPopup.alpha = 1
     })
-//    if popupType == PopupType.follow{
-//      viewFollowingLabelPopup.setFollowSubTitle("Brand")
-//    }
     viewFollowingLabelPopup.updateView()
   }
   
   func popupDidClickCancel(){
-    
   }
   
   func popupDidClickDelete(){
@@ -332,7 +327,6 @@ extension ProductVC:PopupviewDelegate{
   }
   
   func popupDidClickClose(){
-    
   }
 }
 
@@ -343,13 +337,10 @@ extension ProductVC:ReserveDelegate{
   }
 }
 
-
 //MARK:- IBAction Methods
 extension ProductVC{
-  
   @IBAction func unwindToProductViewController(_ segue: UIStoryboardSegue) {
     if segue.identifier == "backToProductViewController" {
-      
       self.getProductsOfBrand()
       IBcollectionViewProduct.reloadData()
     }
@@ -385,17 +376,22 @@ extension ProductVC{
       }, failed: { (error) in
       })
       
-    }else{
+    }else {
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
+  
   @IBAction func IBActionShare(_ sender: UIButton) {
     self.share(shareText: "Check out \(selectedBrand.Name) on Unlabel. https://unlabel.us/", shareImage: headerViewImage)
   }
   
-  //  @IBAction func IBActionViewProducts(_ sender: AnyObject) {
-  //  }
-  //
+  @IBAction func IBActionViewRentalInfo(_ sender: AnyObject) {
+    let rentalInfoVC: ViewRentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC) as! ViewRentalInfoVC
+   // cur_rentalInfo = arrFilteredBrandList[sender.tag].rentalInfo
+    rentalInfoVC.rentalInfo = RentalInfo()
+    self.present(rentalInfoVC, animated: true, completion: nil)
+  }
+
 }
 
 //MARK: Sort Popup methods
@@ -432,24 +428,24 @@ extension ProductVC: SortModePopupViewDelegate{
 }
 
 //MARK:- UIGestureRecognizerDelegate Methods
-
 extension ProductVC:UIGestureRecognizerDelegate{
   func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
     if let navVC = navigationController{
       if navVC.viewControllers.count > 1{
+        
         return true
-      }else{
+      }else {
+        
         return false
       }
     }else{
+      
       return false
     }
   }
 }
 
-
 //MARK:- Custom and SFSafariViewControllerDelegate Methods
-
 extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioningDelegate{
   func openSafariForURL(_ urlString:String){
     if let productURL:URL = URL(string: urlString){
@@ -458,12 +454,14 @@ extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioning
       safariVC.delegate = self
       safariVC.transitioningDelegate = self
       self.present(safariVC, animated: true) { () -> Void in
-        
       }
-    }else{ showAlertWebPageNotAvailable() }
+    }else {
+      showAlertWebPageNotAvailable()
+    }
   }
   
   func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity]{
+    
     return []
   }
   
@@ -477,7 +475,6 @@ extension ProductVC:SFSafariViewControllerDelegate,UIViewControllerTransitioning
 }
 
 //MARK: - Product status Popup view Delegate
-
 extension ProductVC: LikeFollowPopupviewDelegate{
   
   func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect){
@@ -505,22 +502,15 @@ extension ProductVC: LikeFollowPopupviewDelegate{
 //MARK:- Custom Methods
 
 extension ProductVC{
-  
-  
   func getProductsOfBrand(){
     var nextPage:String?
-    
     UnlabelLoadingView.sharedInstance.start(view)
     if let next:String = nextPage, next.characters.count == 0 {
       self.arrProducts = []
       return
-    }else{
+    }else {
       nextPage = nextPageURL
     }
-    
-    
-    
-    
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.brandId = selectedBrand.ID
     fetchProductRequestParams.sortMode = sortMode
@@ -545,8 +535,8 @@ extension ProductVC{
       self.IBcollectionViewProduct.reloadData()
     }, failed: { (error) in
     })
-    
   }
+  
   fileprivate func setupOnLoad(){
     activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
     if let brandName: String = selectedBrand.Name{
@@ -559,20 +549,23 @@ extension ProductVC{
     IBcollectionViewProduct.register(UINib(nibName: REUSABLE_ID_ProductSortCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductSortCell)
     self.automaticallyAdjustsScrollViewInsets = false
   }
+  
   override func viewWillLayoutSubviews(){
     IBcollectionViewProduct.collectionViewLayout.invalidateLayout()
   }
+  
   fileprivate func updateFollowButton(_ button:UIButton,isFollowing:Bool){
     if isFollowing{
       button.setTitle("Unfollow", for: UIControlState())
       button.layer.borderColor = UIColor.black.cgColor
       button.setTitleColor(UIColor.black, for: UIControlState())
-    }else{
+    }else {
       button.setTitle("Follow", for: UIControlState())
       button.layer.borderColor = LIGHT_GRAY_BORDER_COLOR.cgColor
       button.setTitleColor(LIGHT_GRAY_BORDER_COLOR, for: UIControlState())
     }
   }
+  
   fileprivate func showLoading(){
     DispatchQueue.main.async { () -> Void in
       self.activityIndicator!.frame = self.view.frame
@@ -581,17 +574,19 @@ extension ProductVC{
       self.view.addSubview(self.activityIndicator!)
     }
   }
+  
   fileprivate func hideLoading(){
     DispatchQueue.main.async { () -> Void in
       self.activityIndicator!.stopAnimating()
       self.activityIndicator!.removeFromSuperview()
     }
   }
+  
   fileprivate func showAlertWebPageNotAvailable(){
     UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
-      
     }
   }
+  
   fileprivate func setTextWithLineSpacing(_ label:UILabel,text:String,lineSpacing:CGFloat){
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = lineSpacing
@@ -599,12 +594,11 @@ extension ProductVC{
     paragraphStyle.lineBreakMode = NSLineBreakMode.byTruncatingTail
     let attrString = NSMutableAttributedString(string: text)
     attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-    
     label.attributedText = attrString
   }
+  
   fileprivate func share(shareText:String?,shareImage:UIImage?){
     var objectsToShare = [AnyObject]()
-    
     if let shareTextObj = shareText{
       objectsToShare.append(shareTextObj as AnyObject)
     }
@@ -619,7 +613,7 @@ extension ProductVC{
       activityViewController.popoverPresentationController?.sourceView = self.view
       
       present(activityViewController, animated: true, completion: nil)
-    }else{
+    }else {
       debugPrint("There is nothing to share")
     }
   }
