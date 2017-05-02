@@ -59,6 +59,8 @@ extension FollowingVC:UICollectionViewDelegate{
       
       let productViewController = self.storyboard?.instantiateViewController(withIdentifier: S_ID_PRODUCT_VC) as! ProductVC
       productViewController.selectedBrand = brandAtIndexPath
+      productViewController.displayMode = "FEED"
+    //  productViewController.selectedGender = self.sFilterGender
       self.navigationController?.pushViewController(productViewController, animated: true)
     }
   }

@@ -6570,14 +6570,14 @@ Sunday: 9am-8pm</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Vgp-sT-ViR">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Vgp-sT-ViR">
                                 <rect key="frame" x="22" y="72" width="331" height="211"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vgp-sT-ViR" secondAttribute="height" multiplier="69:44" id="YMN-lt-YBu"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Il-Bc-l6W">
-                                <rect key="frame" x="22" y="354" width="331" height="254"/>
+                                <rect key="frame" x="22" y="84" width="331" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
@@ -6586,7 +6586,7 @@ Sunday: 9am-8pm</string>
                                     <outlet property="delegate" destination="Va9-H3-pkB" id="1qs-zM-urr"/>
                                 </connections>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ka-sd-9sA">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ka-sd-9sA">
                                 <rect key="frame" x="22" y="322" width="71" height="2"/>
                                 <color key="backgroundColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6594,7 +6594,7 @@ Sunday: 9am-8pm</string>
                                     <constraint firstAttribute="width" constant="71" id="eju-9N-Xxy"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiQ-Ah-3cl">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiQ-Ah-3cl">
                                 <rect key="frame" x="22" y="299" width="88" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="eL6-r1-5Bq"/>
@@ -6614,7 +6614,7 @@ Sunday: 9am-8pm</string>
                             <constraint firstItem="a1U-xk-Op0" firstAttribute="top" secondItem="2Il-Bc-l6W" secondAttribute="bottom" constant="10" id="8F6-ym-dsH"/>
                             <constraint firstAttribute="trailing" secondItem="Vgp-sT-ViR" secondAttribute="trailing" constant="22" id="9h5-ks-cdm"/>
                             <constraint firstItem="2Ka-sd-9sA" firstAttribute="top" secondItem="LiQ-Ah-3cl" secondAttribute="bottom" id="9kJ-CT-v2V"/>
-                            <constraint firstItem="2Il-Bc-l6W" firstAttribute="top" secondItem="2Ka-sd-9sA" secondAttribute="bottom" constant="30" id="BQS-xS-Acu"/>
+                            <constraint firstItem="2Il-Bc-l6W" firstAttribute="top" secondItem="V3g-9o-sgA" secondAttribute="bottom" constant="20" id="C3s-cq-mZw"/>
                             <constraint firstItem="LiQ-Ah-3cl" firstAttribute="top" secondItem="Vgp-sT-ViR" secondAttribute="bottom" constant="16" id="Hun-Ro-XyN"/>
                             <constraint firstItem="2Il-Bc-l6W" firstAttribute="leading" secondItem="atH-tE-JEq" secondAttribute="leading" constant="22" id="KoN-hs-FSJ"/>
                             <constraint firstAttribute="trailing" secondItem="2Il-Bc-l6W" secondAttribute="trailing" constant="22" id="TsN-gc-Dia"/>
@@ -6642,7 +6642,7 @@ Sunday: 9am-8pm</string>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="9"/>
-                            <state key="normal" title="PROFILE IMAGE/BIO">
+                            <state key="normal" title="BIO">
                                 <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -6669,7 +6669,7 @@ Sunday: 9am-8pm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLH-w3-zbt" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1978" y="4196"/>
+            <point key="canvasLocation" x="-1978.4000000000001" y="4195.9520239880067"/>
         </scene>
         <!--Edit ProfileVC-->
         <scene sceneID="6R0-lX-lV3">
