@@ -83,7 +83,7 @@ class PickLocationVC: UIViewController {
       UnlabelLoadingView.sharedInstance.stop(self.view)
       self.IBTableViewLocation.reloadData()
     }
-
+    
   }
   
   func saveInfluencerLocation() {
@@ -154,28 +154,24 @@ extension PickLocationVC: UITableViewDelegate , UITableViewDataSource {
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     IBButtonApply.isHidden = false
-      arSelectedValues.removeAll()
-      self.dictSelection[indexPath.row] = !self.dictSelection[indexPath.row]!
-    print(self.dictSelection[indexPath.row]!)
-      let indexes = self.dictSelection.filter {$0.1 == true}.map { return $0.0 }
-      print(indexes)
-      for index in indexes {
-        if index != indexPath.row{
-          dictSelection[index] = false
-        }
-        else{
-          self.selectedItem = arFilterMenu[index]
-          arSelectedValues.append(arFilterMenu[index])
-        }
+    arSelectedValues.removeAll()
+    self.dictSelection[indexPath.row] = !self.dictSelection[indexPath.row]!
+    let indexes = self.dictSelection.filter {$0.1 == true}.map { return $0.0 }
+    for index in indexes {
+      if index != indexPath.row{
+        dictSelection[index] = false
+      }else{
+        self.selectedItem = arFilterMenu[index]
+        arSelectedValues.append(arFilterMenu[index])
       }
+    }
     if arSelectedValues.count > 0{
       IBButtonApply.isHidden = false
-    }
-    else{
+    }else {
       IBButtonApply.isHidden = true
     }
     IBTableViewLocation.reloadData()
   }
-
-
+  
+  
 }

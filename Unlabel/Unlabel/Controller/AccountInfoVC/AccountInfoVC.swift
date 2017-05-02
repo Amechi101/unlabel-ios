@@ -41,7 +41,7 @@ class AccountInfoVC: UITableViewController {
 extension AccountInfoVC{
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    if indexPath.row == 7{
+    if indexPath.row == 8{
       if !ReachabilitySwift.isConnectedToNetwork(){
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
       }

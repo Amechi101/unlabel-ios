@@ -18,13 +18,14 @@ enum PhysicalAttributes{
 }
 
 class PhysicalAttributesVC: UIViewController {
+  
   @IBOutlet weak var IBButtonSex: UIButton!
   @IBOutlet weak var IBButtonHeight: UIButton!
   @IBOutlet weak var IBLabelChestBust: UILabel!
   @IBOutlet weak var IBButtonChestBust: UIButton!
   @IBOutlet weak var IBButtonHips: UIButton!
+  @IBOutlet weak var IBButtonHipsView: UIView!
   @IBOutlet weak var IBButtonWaist: UIButton!
-  
   var attributeType: PhysicalAttributes = .height
   var attributeList: [UnlabelStaticList] = [UnlabelStaticList]()
   var attributeTitle: String = ""
@@ -33,9 +34,9 @@ class PhysicalAttributesVC: UIViewController {
   var hipID: String = ""
   var heightID: String = ""
   var chestBustID: String = ""
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     getInfluencerPhysicalAttributes()
   }
   
@@ -56,10 +57,11 @@ class PhysicalAttributesVC: UIViewController {
       let gender: String = meta["sex"].stringValue
       if gender == "M"{
         self.sexID = "M"
+        self.IBButtonHipsView.isHidden = false
         self.IBButtonSex.setTitle("Male", for: .normal)
-      }
-      else{
+      }else {
         self.sexID = "F"
+        self.IBButtonHipsView.isHidden = true
         self.IBButtonSex.setTitle("Female", for: .normal)
       }
       self.waistID = meta["waist"].stringValue
@@ -72,7 +74,6 @@ class PhysicalAttributesVC: UIViewController {
       self.IBButtonWaist.setTitle(self.stringToInch(inchStr: meta["waist"].stringValue), for: .normal)
     }, failed: { (error) in
     })
-    
   }
   
   @IBAction func IBActionSelectOption(_ sender: UIButton) {
@@ -83,16 +84,13 @@ class PhysicalAttributesVC: UIViewController {
     else if sender.tag == 2{
       attributeType = PhysicalAttributes.height
       attributeTitle = "HEIGHT"
-    }
-    else if sender.tag == 3{
+    }else if sender.tag == 3{
       attributeType = PhysicalAttributes.chestOrBust
       attributeTitle = "CHEST"
-    }
-    else if sender.tag == 4{
+    }else if sender.tag == 4{
       attributeType = PhysicalAttributes.hip
       attributeTitle = "HIP"
-    }
-    else if sender.tag == 5{
+    }else if sender.tag == 5{
       attributeTitle = "WAIST"
       attributeType = PhysicalAttributes.waist
     }
@@ -105,10 +103,10 @@ class PhysicalAttributesVC: UIViewController {
       let iHt: Int = Int(fHt)
       let ft: Int = iHt / 12
       let inch: Int = iHt % 12
-      
       print("\(ft) ft \(inch) inches")
       height = "\(ft) ft \(inch) inches"
     }
+    
     return height
   }
   func stringToInch(inchStr: String) -> String{
@@ -118,6 +116,7 @@ class PhysicalAttributesVC: UIViewController {
       inches = "\(iIn) inches"
       print("\(iIn) inches")
     }
+    
     return inches
   }
   
@@ -133,8 +132,7 @@ class PhysicalAttributesVC: UIViewController {
   @IBAction func IBActionUpdate(_ sender: Any) {
     if sexID.isEmpty || waistID.isEmpty || hipID.isEmpty || heightID.isEmpty || chestBustID.isEmpty{
       UnlabelHelper.showAlert(onVC: self, title: "Missing Value", message: "Please provide value for all fields", onOk: {})
-    }
-    else{
+    }else{
       saveInfluencerPhysicalAttributes()
     }
   }
@@ -142,15 +140,12 @@ class PhysicalAttributesVC: UIViewController {
   func getPhysicalAttributesList(){
     if attributeType == PhysicalAttributes.sex{
       attributeList = UnlabelHelper.getGenderType()
-    }
-    else if attributeType == PhysicalAttributes.height{
+    }else if attributeType == PhysicalAttributes.height{
       attributeList = UnlabelHelper.getHeightList()
-    }
-    else{
+    }else{
       attributeList = UnlabelHelper.getOtherPhysicalAttributes()
     }
   }
-  
 }
 
 
@@ -175,9 +170,10 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
       viewSortPopup.updateView()
     }
   }
+  
   func popupDidClickCloseButton(){
-    
   }
+  
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     if attributeType == PhysicalAttributes.sex{
       IBButtonSex.setTitle(selectedItem.uName, for: .normal)
@@ -186,26 +182,23 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
         chestBustID = ""
         IBLabelChestBust.text = "CHEST"
         IBButtonChestBust.setTitle("Select your chest measurement", for: .normal)
-      }
-      else{
+        IBButtonHipsView.isHidden = false
+      }else{
         chestBustID = ""
         IBLabelChestBust.text = "BUST"
+        IBButtonHipsView.isHidden = true
         IBButtonChestBust.setTitle("Select your bust measurement", for: .normal)
       }
-    }
-    else if attributeType == PhysicalAttributes.height{
+    }else if attributeType == PhysicalAttributes.height{
       heightID = selectedItem.uId
       IBButtonHeight.setTitle(selectedItem.uName, for: .normal)
-    }
-    else if attributeType == PhysicalAttributes.waist{
+    }else if attributeType == PhysicalAttributes.waist{
       waistID = selectedItem.uId
       IBButtonWaist.setTitle(selectedItem.uName, for: .normal)
-    }
-    else if attributeType == PhysicalAttributes.chestOrBust{
+    }else if attributeType == PhysicalAttributes.chestOrBust{
       chestBustID = selectedItem.uId
       IBButtonChestBust.setTitle(selectedItem.uName, for: .normal)
-    }
-    else if attributeType == PhysicalAttributes.hip{
+    }else if attributeType == PhysicalAttributes.hip{
       hipID = selectedItem.uId
       IBButtonHips.setTitle(selectedItem.uName, for: .normal)
     }

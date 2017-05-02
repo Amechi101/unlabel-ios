@@ -1290,7 +1290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="tA1-oX-9dZ">
-                            <rect key="frame" x="0.0" y="641" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="696" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -1539,8 +1539,39 @@
                                             <segue destination="Upn-Ct-r7U" kind="show" id="Bti-p7-Fcq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="vdI-L5-6p0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="684-Xj-Qyn">
                                         <rect key="frame" x="0.0" y="525" width="375" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="684-Xj-Qyn" id="K4W-FJ-ph3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkT-HW-lNo">
+                                                    <rect key="frame" x="22" y="0.0" width="86.5" height="54"/>
+                                                    <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="16"/>
+                                                    <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="R19-UQ-JfS">
+                                                    <rect key="frame" x="341" y="18" width="8" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="bI9-oz-Ezj"/>
+                                                        <constraint firstAttribute="width" constant="8" id="zpd-F2-2dX"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XkT-HW-lNo" firstAttribute="top" secondItem="K4W-FJ-ph3" secondAttribute="top" id="Ecd-66-qhJ"/>
+                                                <constraint firstItem="XkT-HW-lNo" firstAttribute="leading" secondItem="K4W-FJ-ph3" secondAttribute="leading" constant="22" id="XYe-qS-caF"/>
+                                                <constraint firstAttribute="bottom" secondItem="XkT-HW-lNo" secondAttribute="bottom" id="Zmw-84-UNP"/>
+                                                <constraint firstAttribute="trailing" secondItem="R19-UQ-JfS" secondAttribute="trailing" constant="26" id="bez-F9-NeJ"/>
+                                                <constraint firstItem="R19-UQ-JfS" firstAttribute="centerY" secondItem="K4W-FJ-ph3" secondAttribute="centerY" id="cP9-wY-yft"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="vdI-L5-6p0">
+                                        <rect key="frame" x="0.0" y="580" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdI-L5-6p0" id="N4O-Ch-lkZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
@@ -1574,7 +1605,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="61" id="5qw-sD-3cw">
-                                        <rect key="frame" x="0.0" y="580" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="635" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5qw-sD-3cw" id="zWK-ey-Kh6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
@@ -1929,7 +1960,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfe-zK-NU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5202" y="4196"/>
+            <point key="canvasLocation" x="-5185" y="4196"/>
         </scene>
         <!--Current LocationVC-->
         <scene sceneID="56b-p0-9yq">
@@ -2300,7 +2331,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="xf3-JY-EGi"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qp-lO-YsG">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qp-lO-YsG">
                                                 <rect key="frame" x="22" y="327" width="150" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="82J-Jk-PUQ"/>
@@ -2313,17 +2344,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zE-Oq-h42">
                                                 <rect key="frame" x="22" y="370" width="331" height="36"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdV-PM-24C">
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdV-PM-24C">
                                                         <rect key="frame" x="1" y="1" width="329" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="282" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Select your hip measurement">
+                                                        <state key="normal" title="Select your waist measurement">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="IBActionSelectOption:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="VWK-fe-i5Q"/>
+                                                            <action selector="IBActionSelectOption:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="AoQ-Iu-B0i"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="l1Q-78-0qe">
@@ -2352,7 +2383,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="EjI-EF-YWQ"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu4-af-cOb">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu4-af-cOb">
                                                 <rect key="frame" x="22" y="426" width="150" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="4fQ-Xf-UBM"/>
@@ -2365,17 +2396,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXg-YA-dDx">
                                                 <rect key="frame" x="22" y="469" width="331" height="36"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5w-Gc-ss9">
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5w-Gc-ss9">
                                                         <rect key="frame" x="1" y="1" width="329" height="34"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="282" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="Select your waist measurement">
+                                                        <state key="normal" title="Select your hip measurement">
                                                             <color key="titleColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="IBActionSelectOption:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="niz-Fq-pIp"/>
+                                                            <action selector="IBActionSelectOption:" destination="Upn-Ct-r7U" eventType="touchUpInside" id="M9b-mh-Qdj"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrowGray" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-Fa-5qh">
@@ -2404,6 +2435,13 @@
                                                     <constraint firstAttribute="height" constant="1" id="uE7-b8-PG5"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWn-of-v1K">
+                                                <rect key="frame" x="8" y="414" width="359" height="112"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="112" id="YpA-5f-W3U"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -2420,6 +2458,7 @@
                                             <constraint firstItem="hu4-af-cOb" firstAttribute="top" secondItem="4zE-Oq-h42" secondAttribute="bottom" constant="20" id="DYv-aH-P2d"/>
                                             <constraint firstItem="fOs-KL-c3e" firstAttribute="leading" secondItem="RcZ-Wf-WHV" secondAttribute="leading" constant="22" id="Eul-Lr-ykO"/>
                                             <constraint firstItem="Tf2-5h-V9v" firstAttribute="leading" secondItem="RcZ-Wf-WHV" secondAttribute="leading" constant="22" id="FIZ-tv-gkR"/>
+                                            <constraint firstItem="vWn-of-v1K" firstAttribute="leading" secondItem="RcZ-Wf-WHV" secondAttribute="leading" constant="8" id="Gi2-wK-baH"/>
                                             <constraint firstAttribute="trailing" secondItem="ntu-wL-gSw" secondAttribute="trailing" constant="22" id="HKq-1r-lQ9"/>
                                             <constraint firstItem="eXg-YA-dDx" firstAttribute="top" secondItem="933-yy-fyh" secondAttribute="bottom" constant="13" id="If4-st-b29"/>
                                             <constraint firstItem="3qp-lO-YsG" firstAttribute="top" secondItem="6rd-6H-z76" secondAttribute="bottom" constant="20" id="Ilo-CJ-Z6Z"/>
@@ -2433,7 +2472,9 @@
                                             <constraint firstItem="adE-kU-2kn" firstAttribute="leading" secondItem="RcZ-Wf-WHV" secondAttribute="leading" constant="22" id="Ude-Qn-ZEG"/>
                                             <constraint firstAttribute="trailing" secondItem="4zE-Oq-h42" secondAttribute="trailing" constant="22" id="WgJ-Kd-FEl"/>
                                             <constraint firstAttribute="trailing" secondItem="5GF-eb-Ibz" secondAttribute="trailing" constant="22" id="Ynn-dx-x7o"/>
+                                            <constraint firstAttribute="trailing" secondItem="vWn-of-v1K" secondAttribute="trailing" constant="8" id="Z4B-wm-6aC"/>
                                             <constraint firstAttribute="trailing" secondItem="adE-kU-2kn" secondAttribute="trailing" constant="22" id="apG-ac-Mqe"/>
+                                            <constraint firstItem="vWn-of-v1K" firstAttribute="top" secondItem="4zE-Oq-h42" secondAttribute="bottom" constant="8" id="c9H-m7-LXP"/>
                                             <constraint firstItem="hu4-af-cOb" firstAttribute="leading" secondItem="RcZ-Wf-WHV" secondAttribute="leading" constant="22" id="cSd-hb-0UW"/>
                                             <constraint firstAttribute="bottom" secondItem="eXg-YA-dDx" secondAttribute="bottom" constant="49" id="fSM-gR-Lr7"/>
                                             <constraint firstItem="vs0-qk-yfi" firstAttribute="top" secondItem="pIj-sF-g3m" secondAttribute="bottom" constant="8" id="hw2-Nx-D4E"/>
@@ -2508,15 +2549,16 @@
                     <connections>
                         <outlet property="IBButtonChestBust" destination="CZr-v1-J5t" id="RTF-9M-jCG"/>
                         <outlet property="IBButtonHeight" destination="jSk-Zu-gDQ" id="xsJ-w5-2aE"/>
-                        <outlet property="IBButtonHips" destination="IdV-PM-24C" id="mn9-eA-EkH"/>
+                        <outlet property="IBButtonHips" destination="J5w-Gc-ss9" id="jU2-d7-pmB"/>
+                        <outlet property="IBButtonHipsView" destination="vWn-of-v1K" id="XmS-SR-Bpf"/>
                         <outlet property="IBButtonSex" destination="1Vb-0Q-K1z" id="QFv-uK-71X"/>
-                        <outlet property="IBButtonWaist" destination="J5w-Gc-ss9" id="sIR-cF-0SD"/>
+                        <outlet property="IBButtonWaist" destination="IdV-PM-24C" id="eF0-uB-nes"/>
                         <outlet property="IBLabelChestBust" destination="Tf2-5h-V9v" id="IHu-cs-rr7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21J-OP-u6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3423" y="4196"/>
+            <point key="canvasLocation" x="-3423.1999999999998" y="4195.9520239880067"/>
         </scene>
         <!--Enter CityVC-->
         <scene sceneID="mgO-lY-7w0">
@@ -2692,7 +2734,7 @@
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aK6-5A-6Tm">
-                            <rect key="frame" x="75" y="7" width="226" height="30"/>
+                            <rect key="frame" x="74.5" y="7" width="226" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                             <state key="normal">
@@ -7851,7 +7893,7 @@ Sunday: 9am-8pm</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lw-zM-jdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3506.4000000000001" y="4939.8800599700153"/>
+            <point key="canvasLocation" x="-3423" y="4920"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Dg-nm-oxz">
