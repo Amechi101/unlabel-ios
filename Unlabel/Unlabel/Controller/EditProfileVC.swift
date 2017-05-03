@@ -10,7 +10,7 @@ import UIKit
 import TPKeyboardAvoiding
 import SwiftyJSON
 
-class EditProfileVC: UIViewController {
+class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
   
   //MARK: -  IBOutlets,vars,constants
   
@@ -55,6 +55,12 @@ class EditProfileVC: UIViewController {
     _ = self.navigationController?.popViewController(animated: true)
   }
   
+  @IBAction func IBActionChangeImage(_ sender: Any) {
+    showActionSheet()
+  }
+  @IBAction func IBActionSelectSpecialization(_ sender: Any) {
+    
+  }
   
   //MARK: -  Custom methods
   
@@ -93,6 +99,52 @@ class EditProfileVC: UIViewController {
     }, failed: { (error) in
     })
   }
+  
+
+  //MARK: -  Image picker view methods
+  
+  func camera()
+  {
+    let myPickerController = UIImagePickerController()
+    myPickerController.delegate = self;
+    myPickerController.sourceType = UIImagePickerControllerSourceType.camera
+    
+    self.present(myPickerController, animated: true, completion: nil)
+    
+  }
+  
+  func photoLibrary()
+  {
+    
+    let myPickerController = UIImagePickerController()
+    myPickerController.delegate = self;
+    myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    
+    self.present(myPickerController, animated: true, completion: nil)
+    
+  }
+  
+  func showActionSheet() {
+    let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+    
+    actionSheet.addAction(UIAlertAction(title: "Choose Photo", style: UIAlertActionStyle.default, handler: { (alert:UIAlertAction!) -> Void in
+      self.photoLibrary()
+    }))
+    actionSheet.addAction(UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default, handler: { (alert:UIAlertAction!) -> Void in
+      self.camera()
+    }))
+    actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+    
+    self.present(actionSheet, animated: true, completion: nil)
+    
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+
+ //   print(info[UIImagePickerControllerOriginalImage] as? UIImage)
+    self.dismiss(animated: true, completion: nil)
+  }
+
 }
 
 //MARK: -  UITextfield delegate methods

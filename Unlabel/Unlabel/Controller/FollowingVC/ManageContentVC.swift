@@ -40,13 +40,14 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   var notFoundView: NotFoundView = NotFoundView()
   fileprivate var arrFilteredBrandList:[Brand] = []
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
-  
+  fileprivate let topConstraintMax: CGFloat = 44.0
+  fileprivate let topConstraintMin: CGFloat = 8.0
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    IBButtonSortMode.isHidden = true
-    self.IBCollectionViewTopConstraint.constant = 8.0
+    IBButtonSortMode.isHidden = false
+    self.IBCollectionViewTopConstraint.constant = topConstraintMin
     setUpCollectionView()
     self.tabBarController?.delegate = self
     getReservedProducts()
@@ -78,7 +79,6 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
           rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
           rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
-          
         }
       }
     }
@@ -111,14 +111,14 @@ extension ManageContentVC{
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-        self.IBCollectionViewTopConstraint.constant = 8.0
+        self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
       }
       else if self.contentStatus == ContentStatus.rent{
         self.notFoundView.IBlblMessage.text = "No rented products yet."
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-        self.IBCollectionViewTopConstraint.constant = 8.0
+        self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
       }
       else if self.contentStatus == ContentStatus.live{
         self.notFoundView.IBlblMessage.text = "No live products yet."
@@ -126,19 +126,19 @@ extension ManageContentVC{
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         if self.arrFilteredBrandList.count>0{
-          self.IBCollectionViewTopConstraint.constant = 44.0
+          self.IBCollectionViewTopConstraint.constant = self.topConstraintMax
           self.IBButtonSortMode.isHidden = false
         }
         else{
-          self.IBCollectionViewTopConstraint.constant = 8.0
-          self.IBButtonSortMode.isHidden = true
+          self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
+          //self.IBButtonSortMode.isHidden = true
         }
       }
       else{
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-        self.IBCollectionViewTopConstraint.constant = 8.0
+        self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
       }
     }, completion: { _ in })
   }
@@ -181,11 +181,11 @@ extension ManageContentVC{
             self.arrMenBrandList.append(contentsOf: arrBrands)
             self.arrFilteredBrandList = self.arrMenBrandList
             if self.arrFilteredBrandList.count>0{
-              self.IBCollectionViewTopConstraint.constant = 44.0
+              self.IBCollectionViewTopConstraint.constant = self.topConstraintMax
               self.IBButtonSortMode.isHidden = false
             }
             else{
-              self.IBCollectionViewTopConstraint.constant = 8.0
+              self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
               self.IBButtonSortMode.isHidden = true
             }
             self.IBCollectionViewContent.reloadData()

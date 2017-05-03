@@ -94,8 +94,7 @@
     if (UnlabelHelper.getDefaultValue("latitude") != nil &&
       UnlabelHelper.getDefaultValue("longitude") != nil){
       self.wsCallGetLabels()
-    }
-    else{
+    }else{
       getInfluencerLocation()
     }
   }

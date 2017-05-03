@@ -20,6 +20,7 @@ enum FollowType{
   case brand
   case productStatus
   case profileIncomplete
+  case profileUpdate
 }
 class LikeFollowPopup: UIView {
   
@@ -60,26 +61,24 @@ class LikeFollowPopup: UIView {
       self.removeFromSuperview()
     })
   }
+  
   func updateView(){
     if followType == .product{
       productLikeView.isHidden = false
     }else if followType == .brand{
       brandFollowView.isHidden = false
-    }
-    else if followType == .productStatus{
-      
-     // print("ss \(productStatusTile)")
-     // print(productStatusMessage)
+    }else if followType == .productStatus{
       productStatusPopup.isHidden = false
       IBStatusTitle.text = "VIEW RESERVED PRODUCT"
       IBStatusMessage.text = "To check out your reserved item(s) go to your ‘Manage Content’ tab."
-    }
-    else if followType == .profileIncomplete{
+    }else if followType == .profileIncomplete{
       productStatusPopup.isHidden = false
       IBStatusTitle.text = "ENTER REQUIRED INFO"
       IBStatusMessage.text = "Please enter the required within your profile tab: Physical Attributes, Location and Image/Bio. Before you can begin to reserve."
+    }else if followType == .profileUpdate{
+      productStatusPopup.isHidden = false
+      IBStatusTitle.text = "UPDATED!"
+      IBStatusMessage.text = "You have successfully updated your Profile."
     }
   }
-  
-  
 }
