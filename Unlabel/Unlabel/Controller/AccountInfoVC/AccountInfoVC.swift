@@ -25,27 +25,38 @@ class AccountInfoVC: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-   override func viewWillAppear(_ animated: Bool) {
+  
+  override func viewWillAppear(_ animated: Bool) {
     getInfluencerDetails()
-    if let _ = self.navigationController{
+    if let _ = self.navigationController {
       navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "updateStyleSegue" {
+      if let styleListController:FilterListController = segue.destination as? FilterListController {
+        styleListController.categoryStyleType = .style
+        styleListController.arSelectedValues = []
+      }
+    }
   }
 }
 
 //MARK:- UITableViewDelegate Methods
 
-extension AccountInfoVC{
+extension AccountInfoVC {
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    if indexPath.row == 8{
-      if !ReachabilitySwift.isConnectedToNetwork(){
+    if indexPath.row == 8 {
+      if !ReachabilitySwift.isConnectedToNetwork() {
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
-      }
-      else{
+      } else {
         wsLogout()
       }
     }
@@ -54,8 +65,9 @@ extension AccountInfoVC{
 
 //MARK:- Custom Methods
 
-extension AccountInfoVC{
-  func getInfluencerDetails(){
+extension AccountInfoVC {
+  
+  func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
       meta: JSON) in
       UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
@@ -70,13 +82,14 @@ extension AccountInfoVC{
         self.IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
         self.IBProfileImage.contentMode = .scaleToFill
         self.IBProfileImage.layer.cornerRadius = self.IBProfileImage.bounds.size.width/2
-        self.IBProfileImage.sd_setImage(with: URL(string: UnlabelHelper.getDefaultValue("influencer_image")!))
+        self.IBProfileImage.sd_setImage(with: URL(string:  UnlabelHelper.getDefaultValue("influencer_image")!))
         self.IBProfileImage.clipsToBounds = true
       })
     }, failed: { (error) in
     })
   }
-  func wsLogout(){
+  
+  func wsLogout() {
     UnlabelAPIHelper.sharedInstance.logoutFromUnlabel(self, success:
       { (json: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
@@ -89,15 +102,15 @@ extension AccountInfoVC{
 
 //MARK:- UIGestureRecognizerDelegate Methods
 
-extension AccountInfoVC:UIGestureRecognizerDelegate{
+extension AccountInfoVC:UIGestureRecognizerDelegate {
   func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-    if let navVC = navigationController{
-      if navVC.viewControllers.count > 1{
+    if let navVC = navigationController {
+      if navVC.viewControllers.count > 1 {
         return true
-      }else{
+      } else {
         return false
       }
-    }else{
+    } else {
       return false
     }
   }
@@ -105,7 +118,7 @@ extension AccountInfoVC:UIGestureRecognizerDelegate{
 
 //MARK:- IBAction Methods
 
-extension AccountInfoVC{
+extension AccountInfoVC {
   @IBAction func IBActionBack(_ sender: UIButton) {
     _ = navigationController?.popViewController(animated: true)
   }

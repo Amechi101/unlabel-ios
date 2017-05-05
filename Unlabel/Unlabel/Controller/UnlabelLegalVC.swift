@@ -17,6 +17,7 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
   @IBOutlet weak var IBButtonNavTitle: UIButton!
   var urlString: String = String()
   var navTitle: String = String()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     IBButtonNavTitle.setTitle(navTitle.uppercased(), for: UIControlState())
@@ -25,10 +26,12 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
     IBWebviewStaticURL.loadRequest(request as URLRequest)
        // Do any additional setup after loading the view.
   }
+  
    override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
   func webViewDidStartLoad(_ webView: UIWebView){
     IBActivityIndicator.startAnimating()
   }
@@ -36,6 +39,7 @@ class UnlabelLegalVC: UIViewController,UIWebViewDelegate {
   func webViewDidFinishLoad(_ webView: UIWebView){
     IBActivityIndicator.stopAnimating()
   }
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }

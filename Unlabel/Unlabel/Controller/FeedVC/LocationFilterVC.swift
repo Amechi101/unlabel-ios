@@ -38,7 +38,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   }
   
   func isAuthorizedtoGetUserLocation() {
-    
     if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
       locationManager.requestWhenInUseAuthorization()
     }
@@ -46,7 +45,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     if status == .authorizedWhenInUse {
-      
     }
   }
   
@@ -56,7 +54,6 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.latitude)", key: "latitude")
     UnlabelHelper.setDefaultValue("\(currentLoc.coordinate.longitude)", key: "longitude")
     UnlabelLoadingView.sharedInstance.stop(self.view)
-    //store the user location here to firebase or somewhere
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -75,25 +72,24 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     })
   }
   
-  func getGPSLocation(){
+  func getGPSLocation() {
     isAuthorizedtoGetUserLocation()
     if CLLocationManager.locationServicesEnabled() {
       locationManager.delegate = self
       locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
       locationManager.requestLocation()
-    }
-    else{
+    } else {
     }
   }
   
-  func getCurrentLocation(){
+  func getCurrentLocation() {
     getInfluencerLocation()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "InfluencerPickRadius"{
-      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController {
+        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC {
           pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
           pickLocationVC.delegate = self
         }
@@ -110,15 +106,14 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
     self.dismiss(animated: true, completion: nil)
   }
   @IBAction func IBActionLocationToggle(_ sender: UIButton) {
-    if !sender.isSelected{
-    if sender.tag == 0{
+    if !sender.isSelected {
+    if sender.tag == 0 {
       sender.isSelected = !sender.isSelected
       IBButtonLoc.isSelected = false
-      if !sender.isSelected{
+      if !sender.isSelected {
         sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         IBImageViewGPS.isHidden = true
-      }
-      else{
+      } else {
         UnlabelLoadingView.sharedInstance.start(self.view)
         getGPSLocation()
         sender.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
@@ -126,15 +121,13 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
         IBImageViewLoc.isHidden = true
       }
       IBButtonLoc.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-    }
-    else{
+    } else {
       IBButtonGPS.isSelected = false
       sender.isSelected = !sender.isSelected
-      if !sender.isSelected{
+      if !sender.isSelected {
         IBImageViewLoc.isHidden = true
         sender.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
-      }
-      else{
+      } else {
         getCurrentLocation()
         IBImageViewLoc.isHidden = false
         IBImageViewGPS.isHidden = true
@@ -146,8 +139,8 @@ class LocationFilterVC: UIViewController, CLLocationManagerDelegate {
   }
 }
 
-extension LocationFilterVC: PickLocationDelegate{
-  func locationDidSelected(_ selectedItem: FilterModel){
+extension LocationFilterVC: PickLocationDelegate {
+  func locationDidSelected(_ selectedItem: FilterModel) {
     print(selectedItem)
     radius = selectedItem.typeId
     IBButtonRadius.setTitle(selectedItem.typeName, for: UIControlState())

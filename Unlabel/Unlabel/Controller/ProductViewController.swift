@@ -45,15 +45,15 @@ class ProductViewController: UIViewController {
       childProduct = selectedSizeProduct.first
     }
     setUpCollectionView()
-    if let brandName:String = selectedBrand?.Name{
+    if let brandName:String = selectedBrand?.Name {
       IBbtnTitle.setTitle(brandName.uppercased(), for: UIControlState())
     }
-    if contentStatus == ContentStatus.reserve{
+    if contentStatus == ContentStatus.reserve {
       IBButtonReserve.setTitle("UNRESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_RED_COLOR
       IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
       IBSelectSize.isEnabled = false
-    }else {
+    } else {
       IBButtonReserve.setTitle("RESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_GRAY_COLOR
     }
@@ -63,7 +63,7 @@ class ProductViewController: UIViewController {
     productPageControl.currentPage = 0
     if (selectedProduct?.arrProductsImages.count)! <= 1{
       productPageControl.isHidden = true
-    }else {
+    } else {
       productPageControl.isHidden = false
     }
     productID = selectedProduct?.ProductID
@@ -77,11 +77,11 @@ class ProductViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == S_ID_PRODUCT_INFO_SEGUE{
-      if let productInfoViewController:ProductInfoViewController = segue.destination as? ProductInfoViewController{
-        if contentStatus == ContentStatus.reserve{
+      if let productInfoViewController:ProductInfoViewController = segue.destination as? ProductInfoViewController {
+        if contentStatus == ContentStatus.reserve {
           productInfoViewController.selectedProduct = self.selectedProduct
           productInfoViewController.childProduct = self.selectedProduct
-        }else {
+        } else {
           productInfoViewController.selectedProduct = self.selectedProduct
           productInfoViewController.childProduct = childProduct
         }
@@ -93,27 +93,27 @@ class ProductViewController: UIViewController {
 //MARK: -  Custom methods
 extension ProductViewController{
   func wsReserveProduct(){
-    if contentStatus == ContentStatus.reserve{
+    if contentStatus == ContentStatus.reserve {
       UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
         if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
           self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-        }else {
+        } else {
           self.dismiss(animated: true, completion: nil)
         }
       }, failed: { (error) in
       })
 
-    }else {
+    } else {
       UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
-        if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
+        if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)) {
           self.addLikeFollowPopupView(FollowType.productStatus, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
           UnlabelHelper.setBoolValue(true, key: sPOPUP_SEEN_ONCE)
-        }else {
+        } else {
           self.delegate?.productDidReserved()
           self.dismiss(animated: true, completion: nil)
         }
@@ -133,42 +133,43 @@ extension ProductViewController{
     self.automaticallyAdjustsScrollViewInsets = true
   }
   
-  func getSizeList() -> [UnlabelStaticList]{
+  func getSizeList() -> [UnlabelStaticList] {
     var arrSize = [UnlabelStaticList]()
-    for thisProduct in self.selectedSizeProduct{
-      for thisSize in thisProduct.arrProductsSizes{
+    for thisProduct in self.selectedSizeProduct {
+      for thisSize in thisProduct.arrProductsSizes {
         let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
         pSize.uId = thisSize as! String
         pSize.uName = thisSize as! String
         arrSize.append(pSize)
       }
     }
+    
     return arrSize
   }
 }
 
 //MARK: -  IBAction methods
-extension ProductViewController{
+extension ProductViewController {
   @IBAction func IBActionSelectSize(_ sender: Any) {
     self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   @IBAction func likeProductAction(_ sender: Any) {
-    if UnlabelHelper.isUserLoggedIn(){
+    if UnlabelHelper.isUserLoggedIn() {
       self.addLikeFollowPopupView(FollowType.product,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-    }else {
+    } else {
       UnlabelHelper.showLoginAlert(self, title: S_LOGIN, message: S_MUST_LOGGED_IN, onCancel: {}, onSignIn: {
       })
     }
   }
   
   @IBAction func addToCartAction(_ sender: Any) {
-    if contentStatus == ContentStatus.reserve{
+    if contentStatus == ContentStatus.reserve {
       wsReserveProduct()
-    }else {
-      if self.IBSelectSize.titleLabel?.text != "Select Size"{
+    } else {
+      if self.IBSelectSize.titleLabel?.text != "Select Size" {
         self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-      }else {
+      } else {
         UnlabelHelper.showAlert(onVC: self, title: "Enter Size", message: "Please provide size of the product.", onOk: {})
       }
     }
@@ -181,25 +182,25 @@ extension ProductViewController{
 
 //MARK: -  Collection view methods
 extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSource{
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     return (selectedProduct?.arrProductsImages.count)!
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_PRODUCT_IMAGE_CELL, for: indexPath) as! ProductImageCell
     productCell.productImage.contentMode = UIViewContentMode.scaleAspectFill
-    if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String){
+    if let url = URL(string: selectedProduct?.arrProductsImages[indexPath.row] as! String) {
       productCell.productImage.sd_setImage(with: url, completed:
         { (iimage, error, type, url) in
           if let _ = error{
-          }else {
-            if (type == SDImageCacheType.none)  {
+          } else {
+            if (type == SDImageCacheType.none) {
               productCell.productImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {
                 productCell.productImage.alpha = 1;
               })
-            }else {
+            } else {
               productCell.productImage.alpha = 1;
             }
           }
@@ -214,7 +215,7 @@ extension ProductViewController:UICollectionViewDelegate,UICollectionViewDataSou
   }
 }
 
-extension ProductViewController:UICollectionViewDelegateFlowLayout{
+extension ProductViewController:UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     return CGSize(width: collectionView.frame.size.width, height: 392.0)
@@ -222,9 +223,9 @@ extension ProductViewController:UICollectionViewDelegateFlowLayout{
 }
 
 //MARK: -  AddToCart Popup delegate methods
-extension ProductViewController:AddToCartViewDelegate{
-  func addForgotPopupView(_ initialFrame:CGRect){
-    if let viewForgotLabelPopup:AddToCartPopup = Bundle.main.loadNibNamed(ADD_TO_CART_POPUP, owner: self, options: nil)? [0] as? AddToCartPopup{
+extension ProductViewController:AddToCartViewDelegate {
+  func addForgotPopupView(_ initialFrame:CGRect) {
+    if let viewForgotLabelPopup:AddToCartPopup = Bundle.main.loadNibNamed(ADD_TO_CART_POPUP, owner: self, options: nil)? [0] as? AddToCartPopup {
       viewForgotLabelPopup.delegate = self
       viewForgotLabelPopup.frame = initialFrame
       viewForgotLabelPopup.alpha = 0
@@ -237,10 +238,10 @@ extension ProductViewController:AddToCartViewDelegate{
     }
   }
   
-  func popupDidClickCancel(){
+  func popupDidClickCancel() {
     // popup did click cancel
   }
-  func popupClickReserve(){
+  func popupClickReserve() {
     UnlabelLoadingView.sharedInstance.start(self.view)
     wsReserveProduct()
   }
@@ -248,9 +249,9 @@ extension ProductViewController:AddToCartViewDelegate{
 
 //MARK: -  Like/Follow popup delegate methods
 
-extension ProductViewController:LikeFollowPopupviewDelegate{
-  func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect){
-    if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup{
+extension ProductViewController:LikeFollowPopupviewDelegate {
+  func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect) {
+    if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup {
       likeFollowPopup.delegate = self
       likeFollowPopup.followType = followType
       likeFollowPopup.frame = initialFrame
@@ -265,10 +266,10 @@ extension ProductViewController:LikeFollowPopupviewDelegate{
     }
   }
   
-  func popupDidClickClosePopup(){
-    if contentStatus == ContentStatus.reserve{
+  func popupDidClickClosePopup() {
+    if contentStatus == ContentStatus.reserve {
       self.dismiss(animated: true, completion: nil)
-    }else {
+    } else {
       delegate?.productDidReserved()
       self.dismiss(animated: true, completion: nil)
     }
@@ -276,9 +277,9 @@ extension ProductViewController:LikeFollowPopupviewDelegate{
 }
 
 //MARK: -  Size selection popup delegate methods
-extension ProductViewController: SortModePopupViewDelegate{
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+extension ProductViewController: SortModePopupViewDelegate {
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.popupTitle = "SELECT A SIZE"
@@ -295,15 +296,15 @@ extension ProductViewController: SortModePopupViewDelegate{
     }
   }
   
-  func popupDidClickCloseButton(){
+  func popupDidClickCloseButton() {
     //popup did click close
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
     IBSelectSize.setTitle(selectedItem.uName, for: .normal)
-    for thisProduct in self.selectedSizeProduct{
-      for thisSize in thisProduct.arrProductsSizes{
-        if thisSize as! String == selectedItem.uId{
+    for thisProduct in self.selectedSizeProduct {
+      for thisSize in thisProduct.arrProductsSizes {
+        if thisSize as! String == selectedItem.uId {
           childProductID = thisProduct.ProductID
           childProduct = thisProduct
         }

@@ -34,13 +34,16 @@ class FollowingVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     setupOnLoad()
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if let _ = UnlabelHelper.getDefaultValue(PRM_USER_ID) {
@@ -53,17 +56,18 @@ class FollowingVC: UIViewController {
 
 //MARK:- UICollectionViewDelegate Methods
 
-extension FollowingVC:UICollectionViewDelegate{
+extension FollowingVC:UICollectionViewDelegate {
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    if let brandAtIndexPath:Brand = self.arrFilteredBrandList[indexPath.row]{
-      
+    if let brandAtIndexPath:Brand = self.arrFilteredBrandList[indexPath.row] {
       let productViewController = self.storyboard?.instantiateViewController(withIdentifier: S_ID_PRODUCT_VC) as! ProductVC
       productViewController.selectedBrand = brandAtIndexPath
       productViewController.displayMode = "FEED"
-    //  productViewController.selectedGender = self.sFilterGender
+      //  productViewController.selectedGender = self.sFilterGender
       self.navigationController?.pushViewController(productViewController, animated: true)
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionElementKindSectionFooter:
@@ -79,18 +83,22 @@ extension FollowingVC:UICollectionViewDelegate{
 //MARK:- UICollectionViewDataSource Methods
 
 extension FollowingVC:UICollectionViewDataSource {
+  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-    if arrFilteredBrandList.count > 0{
+    if arrFilteredBrandList.count > 0 {
       IBcollectionViewFollowing.backgroundView?.isHidden = true
-    }else{
+    } else {
       IBcollectionViewFollowing.backgroundView?.isHidden = false
     }
+    
     return arrFilteredBrandList.count
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.item == arrFilteredBrandList.count - 1 {
       wsCallGetLabelsResetOffset(false)
     }
@@ -98,41 +106,45 @@ extension FollowingVC:UICollectionViewDataSource {
     feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercased()
     feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location)"
     feedVCCell.IBbtnStar.tag = indexPath.row
-    if arrFilteredBrandList[indexPath.row].isFollowing{
+    if arrFilteredBrandList[indexPath.row].isFollowing {
       feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), for: UIControlState())
-    }else{
+    } else {
       feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), for: UIControlState())
     }
     feedVCCell.IBimgBrandImage.image = nil
-    if let url = URL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
+    if let url = URL(string: arrFilteredBrandList[indexPath.row].FeatureImage) {
       feedVCCell.IBimgBrandImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-        if let _ = error{
+        if let _ = error {
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
-        }else{
-          if (type == SDImageCacheType.none){
+        } else {
+          if (type == SDImageCacheType.none) {
             feedVCCell.IBimgBrandImage.alpha = 0;
             UIView.animate(withDuration: 0.35, animations: {
               feedVCCell.IBimgBrandImage.alpha = 1;
             })
-          }
-          else{
+          } else {
             feedVCCell.IBimgBrandImage.alpha = 1;
           }
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
         }
       })
     }
+    
     return feedVCCell
   }
 }
 
 //MARK:- UICollectionViewDelegateFlowLayout Methods
 
-extension FollowingVC:UICollectionViewDelegateFlowLayout{
+extension FollowingVC:UICollectionViewDelegateFlowLayout {
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
     return CGSize(width: collectionView.frame.size.width, height: FEED_CELL_HEIGHT)
   }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    
     return CGSize(width: collectionView.frame.width, height: fFooterHeight)
   }
 }
@@ -140,11 +152,14 @@ extension FollowingVC:UICollectionViewDelegateFlowLayout{
 //MARK:- Not found view delegate Methods
 
 extension FollowingVC: NotFoundViewDelegate {
+  
   func didSelectViewLabels() {
     _ = navigationController?.popToRootViewController(animated: true)
   }
+  
   func didSelectRegisterLogin() {
   }
+  
   fileprivate func getBrandsByID(_ brandID:String) {
     let fetchBrandParams = FetchBrandsRP()
     fetchBrandParams.brandGender = BrandGender.Both
@@ -166,16 +181,17 @@ extension FollowingVC: NotFoundViewDelegate {
 
 //MARK:- IBAction Methods
 
-extension FollowingVC{
+extension FollowingVC {
+  
   @IBAction func IBActionStarClicked(_ sender: UIButton) {
     //Internet available
-    if ReachabilitySwift.isConnectedToNetwork(){
-      if UnlabelHelper.isUserLoggedIn(){
+    if ReachabilitySwift.isConnectedToNetwork() {
+      if UnlabelHelper.isUserLoggedIn() {
         UnlabelLoadingView.sharedInstance.start(APP_DELEGATE.window!)
-        if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
-          if arrFilteredBrandList[sender.tag].isFollowing{
+        if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID {
+          if arrFilteredBrandList[sender.tag].isFollowing {
             arrFilteredBrandList[sender.tag].isFollowing = false
-          }else{
+          } else {
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
           IBcollectionViewFollowing.reloadData()
@@ -186,12 +202,12 @@ extension FollowingVC{
             UnlabelLoadingView.sharedInstance.stop(self.view)
           })
         }
-      }else{
       }
-    }else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
+  
   @IBAction func IBActionBack(_ sender: UIButton) {
     _ = self.navigationController?.popToRootViewController(animated: true)
   }
@@ -199,8 +215,9 @@ extension FollowingVC{
 
 //MARK:- Custom Methods
 
-extension FollowingVC{
-  fileprivate func addNotFoundView(){
+extension FollowingVC {
+  
+  fileprivate func addNotFoundView() {
     IBcollectionViewFollowing.backgroundView = nil
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
@@ -209,39 +226,45 @@ extension FollowingVC{
     IBcollectionViewFollowing.backgroundView = notFoundView
     IBcollectionViewFollowing.backgroundView?.isHidden = true
   }
-  fileprivate func setupNavBar(){
+  
+  fileprivate func setupNavBar() {
     addNotFoundView()
     addPullToRefresh()
     wsCallGetLabels()
   }
-  fileprivate func setupOnLoad(){
+  
+  fileprivate func setupOnLoad() {
     registerCells()
     setupNavBar()
     (IBcollectionViewFollowing.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionHeadersPinToVisibleBounds = true
     self.automaticallyAdjustsScrollViewInsets = false
   }
-  fileprivate func addPullToRefresh(){
+  
+  fileprivate func addPullToRefresh() {
     refreshControl.addTarget(self, action: #selector(FeedVC.wsCallGetLabels), for: .valueChanged)
     IBcollectionViewFollowing.addSubview(refreshControl)
   }
-  fileprivate func registerCells(){
+  
+  fileprivate func registerCells() {
     IBcollectionViewFollowing.register(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
     IBcollectionViewFollowing.register(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
   }
-  fileprivate func handleFeedVCCellActivityIndicator(_ feedVCCell:FeedVCCell,shouldStop:Bool){
+  
+  fileprivate func handleFeedVCCellActivityIndicator(_ feedVCCell:FeedVCCell,shouldStop:Bool) {
     feedVCCell.IBactivityIndicator.isHidden = shouldStop
     if shouldStop {
       feedVCCell.IBactivityIndicator.stopAnimating()
-    }else{
+    } else {
       feedVCCell.IBactivityIndicator.startAnimating()
     }
   }
-  
 }
-extension FollowingVC{
-  func wsCallGetLabels(){
+
+extension FollowingVC {
+  func wsCallGetLabels() {
     wsCallGetLabelsResetOffset(true)
   }
+  
   func wsCallGetLabelsResetOffset(_ reset:Bool) {
     var nextPageURL:String? = String()
     nextPageURL = nextPageURLMen
@@ -252,11 +275,11 @@ extension FollowingVC{
       return
     }
     //Internet available
-    if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
+    if ReachabilitySwift.isConnectedToNetwork() && !isLoading {
       isLoading = true
       if self.nextPageURLMen == nil {
         UnlabelLoadingView.sharedInstance.start(view)
-      }else{
+      } else {
         self.bottonActivityIndicator.startAnimating()
       }
       let fetchBrandsRequestParams = FetchBrandsRP()
@@ -269,19 +292,16 @@ extension FollowingVC{
         self.bottonActivityIndicator.stopAnimating()
         
         self.arrFilteredBrandList = []
-        if fetchBrandsRequestParams.selectedTab == .men{
+        if fetchBrandsRequestParams.selectedTab == .men {
           self.arrMenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrMenBrandList
           self.nextPageURLMen = meta["next"].stringValue
           
-        }else if fetchBrandsRequestParams.selectedTab == .women{
+        } else if fetchBrandsRequestParams.selectedTab == .women {
           self.arrWomenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrWomenBrandList
-        }else{
-          
         }
         self.refreshControl.endRefreshing()
-        
         DispatchQueue.main.async(execute: { () -> Void in
           self.IBcollectionViewFollowing.reloadData()
         })
@@ -293,9 +313,9 @@ extension FollowingVC{
         debugPrint(error)
         self.refreshControl.endRefreshing()
       })
-    }else{
+    } else {
       self.refreshControl.endRefreshing()
-      if !ReachabilitySwift.isConnectedToNetwork(){
+      if !ReachabilitySwift.isConnectedToNetwork() {
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
       }
     }

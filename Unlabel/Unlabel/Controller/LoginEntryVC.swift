@@ -42,36 +42,32 @@ class LoginEntryVC: UIViewController {
 
 //MARK:- Custom methods
 extension LoginEntryVC{
-  func updateEmailFields(){
-    if loginScenario == LoginScenario.idle{
+  func updateEmailFields() {
+    if loginScenario == LoginScenario.idle {
       IBLblEmail.textColor = LIGHT_GRAY_TEXT_COLOR
       IBEmailLine.backgroundColor = LIGHT_GRAY_TEXT_COLOR
       IBTextfieldEmail.textColor = LIGHT_GRAY_TEXT_COLOR
-    }
-    else if loginScenario == LoginScenario.ok{
+    } else if loginScenario == LoginScenario.ok {
       IBLblEmail.textColor = MEDIUM_GRAY_TEXT_COLOR
       IBEmailLine.backgroundColor = MEDIUM_GRAY_TEXT_COLOR
       IBTextfieldEmail.textColor = MEDIUM_GRAY_TEXT_COLOR
-    }
-    else if loginScenario == LoginScenario.wrong{
+    } else if loginScenario == LoginScenario.wrong {
       IBLblEmail.textColor = DARK_RED_COLOR
       IBEmailLine.backgroundColor = DARK_RED_COLOR
       IBTextfieldEmail.textColor = DARK_RED_COLOR
     }
   }
   
-  func updatePasswordFields(){
-    if loginScenario == LoginScenario.idle{
+  func updatePasswordFields() {
+    if loginScenario == LoginScenario.idle {
       IBLblPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBPasswordLine.backgroundColor = LIGHT_GRAY_TEXT_COLOR
       IBTextfieldPassword.textColor = LIGHT_GRAY_TEXT_COLOR
-    }
-    else if loginScenario == LoginScenario.ok{
+    } else if loginScenario == LoginScenario.ok {
       IBLblPassword.textColor = MEDIUM_GRAY_TEXT_COLOR
       IBPasswordLine.backgroundColor = MEDIUM_GRAY_TEXT_COLOR
       IBTextfieldPassword.textColor = MEDIUM_GRAY_TEXT_COLOR
-    }
-    else if loginScenario == LoginScenario.wrong{
+    } else if loginScenario == LoginScenario.wrong {
       IBLblPassword.textColor = DARK_RED_COLOR
       IBPasswordLine.backgroundColor = DARK_RED_COLOR
       IBTextfieldPassword.textColor = DARK_RED_COLOR
@@ -91,14 +87,14 @@ extension LoginEntryVC{
     IBTextfieldPassword.resignFirstResponder()
     user.email = IBTextfieldEmail.text!
     user.password = IBTextfieldPassword.text!
-    if isValidEmail() && isValidUserPassword(){
-      if ReachabilitySwift.isConnectedToNetwork(){
+    if isValidEmail() && isValidUserPassword() {
+      if ReachabilitySwift.isConnectedToNetwork() {
         UnlabelLoadingView.sharedInstance.start(view)
         wsLoginWithEmail()
-      }else{
+      } else {
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
       }
-    }else{
+    } else {
     }
   }
   
@@ -110,8 +106,7 @@ extension LoginEntryVC{
     if (IBTextfieldEmail.text != "" && IBTextfieldPassword.text != "") {
       IBLoginButton.backgroundColor = DARK_GRAY_COLOR
       IBLoginButton.isEnabled = true
-    }
-    else{
+    } else {
       IBLoginButton.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
       IBLoginButton.isEnabled = false
     }
@@ -119,15 +114,14 @@ extension LoginEntryVC{
 }
 
 //MARK:- API methods
-extension LoginEntryVC{
-  func wsForgotPassword(){
+extension LoginEntryVC {
+  func wsForgotPassword() {
     UnlabelAPIHelper.sharedInstance.forgotPassword(user, onVC: self, success: {
       (json: JSON,statusCode:Int) in
       UnlabelLoadingView.sharedInstance.stop(self.view)
-      if statusCode == s_OK{
+      if statusCode == s_OK {
         self.addForgotPopupView(PopupAction.ok, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-      }
-      else{
+      } else {
         self.addForgotPopupView(PopupAction.fail, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
       }
     }, failed: { (error) in
@@ -136,7 +130,7 @@ extension LoginEntryVC{
     })
   }
   
-  func getInfluencerDetails(){
+  func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails({ (
       meta: JSON) in
       UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
@@ -150,7 +144,7 @@ extension LoginEntryVC{
     })
   }
   
-  func wsRegisterDevice(){
+  func wsRegisterDevice() {
     var udid = UIDevice.current.identifierForVendor!.uuidString
     udid = udid.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
     print("UDID == \(udid)")
@@ -164,19 +158,18 @@ extension LoginEntryVC{
     })
   }
   
-  func wsLoginWithEmail(){
+  func wsLoginWithEmail() {
     let loginParams = User()
     loginParams.email = IBTextfieldEmail.text!
     loginParams.password = IBTextfieldPassword.text!
     UnlabelAPIHelper.sharedInstance.loginToUnlabel(loginParams,onVC:self, success:
       { (json: JSON,statusCode:Int) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
-        if statusCode == s_OK{
+        if statusCode == s_OK {
           self.getInfluencerDetails()
           self.wsRegisterDevice()
          // UnlabelHelper.goToBrandVC(self.storyboard!)
-        }
-        else if statusCode == s_Unauthorised{
+        } else if statusCode == s_Unauthorised {
           self.loginScenario = LoginScenario.wrong
           self.updateEmailFields()
           self.updatePasswordFields()
@@ -197,12 +190,12 @@ extension LoginEntryVC{
 
 extension LoginEntryVC: UITextFieldDelegate{
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if textField == IBTextfieldEmail{
-      if isValidEmail(){
+    if textField == IBTextfieldEmail {
+      if isValidEmail() {
         IBTextfieldPassword.becomeFirstResponder()
       }
-    }else if textField == IBTextfieldPassword{
-      if isValidUserPassword(){
+    } else if textField == IBTextfieldPassword {
+      if isValidUserPassword() {
         // action inside isValidUserPassword()
       }
       IBTextfieldPassword.resignFirstResponder()
@@ -212,11 +205,10 @@ extension LoginEntryVC: UITextFieldDelegate{
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    if textField == IBTextfieldEmail{
+    if textField == IBTextfieldEmail {
       loginScenario = LoginScenario.ok
       updateEmailFields()
-    }
-    else{
+    } else {
       loginScenario = LoginScenario.ok
       updatePasswordFields()
     }
@@ -224,13 +216,12 @@ extension LoginEntryVC: UITextFieldDelegate{
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     if textField == IBTextfieldEmail{
-     if IBTextfieldEmail.text == "" && isValidEmail(){
+     if IBTextfieldEmail.text == "" && isValidEmail() {
       loginScenario = LoginScenario.idle
       updateEmailFields()
       }
-    }
-    else if textField == IBTextfieldPassword{
-      if IBTextfieldPassword.text == "" && isValidUserPassword(){
+    } else if textField == IBTextfieldPassword {
+      if IBTextfieldPassword.text == "" && isValidUserPassword() {
         loginScenario = LoginScenario.idle
         updatePasswordFields()
       }
@@ -240,30 +231,29 @@ extension LoginEntryVC: UITextFieldDelegate{
 
 //MARK: -  Text Field Validation Methods
 extension LoginEntryVC{
-  fileprivate func isValidEmail()->Bool{
-    if let email = IBTextfieldEmail.text, email.characters.count > 0{
-      if UnlabelHelper.isValidEmail(IBTextfieldEmail.text!){
-        if let email = IBTextfieldEmail.text, email.characters.count > 30{
+  fileprivate func isValidEmail()->Bool {
+    if let email = IBTextfieldEmail.text, email.characters.count > 0 {
+      if UnlabelHelper.isValidEmail(IBTextfieldEmail.text!) {
+        if let email = IBTextfieldEmail.text, email.characters.count > 30 {
           UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Email must be less than 30 characters", onOk: { () -> () in })
           loginScenario = LoginScenario.wrong
           updateEmailFields()
           
           return false
-        }
-        else{
+        } else {
           loginScenario = LoginScenario.ok
           updateEmailFields()
           
           return true
         }
-      }else{
+      } else {
         UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "This email address doesn’t look quite right", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updateEmailFields()
         
         return false
       }
-    }else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please provide your email to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updateEmailFields()
@@ -272,23 +262,21 @@ extension LoginEntryVC{
     }
   }
   
-  fileprivate func isValidUserPassword()->Bool{
-    if let iCharacters = IBTextfieldPassword.text?.characters.count, iCharacters > 0{
-      if let pwCharacters = IBTextfieldPassword.text?.characters.count, pwCharacters < 8{
+  fileprivate func isValidUserPassword()->Bool {
+    if let iCharacters = IBTextfieldPassword.text?.characters.count, iCharacters > 0 {
+      if let pwCharacters = IBTextfieldPassword.text?.characters.count, pwCharacters < 8 {
         UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
         loginScenario = LoginScenario.wrong
         updatePasswordFields()
         
         return false
-      }
-      else{
+      } else {
         loginScenario = LoginScenario.ok
         updatePasswordFields()
         
         return true
       }
-    }
-    else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
       loginScenario = LoginScenario.wrong
       updatePasswordFields()
@@ -299,8 +287,8 @@ extension LoginEntryVC{
 }
 
 //MARK: -  ForgotPasswordPopup Delegate methods
-extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
-  func addForgotPopupView(_ popupAction:PopupAction,initialFrame:CGRect){
+extension LoginEntryVC: ForgotPasswordPopupviewDelegate {
+  func addForgotPopupView(_ popupAction:PopupAction,initialFrame:CGRect) {
     if let viewForgotLabelPopup:ViewForgotPasswordPopup = Bundle.main.loadNibNamed(FORGET_PASSWORD_POPUP, owner: self, options: nil)? [0] as? ViewForgotPasswordPopup{
       viewForgotLabelPopup.delegate = self
       viewForgotLabelPopup.popupAction = popupAction
@@ -316,16 +304,16 @@ extension LoginEntryVC: ForgotPasswordPopupviewDelegate{
     }
   }
   
-  func popupClickAction(_ email:String){
+  func popupClickAction(_ email:String) {
     user.email = email
-    if ReachabilitySwift.isConnectedToNetwork(){
+    if ReachabilitySwift.isConnectedToNetwork() {
       UnlabelLoadingView.sharedInstance.start(view)
       wsForgotPassword()
-    }else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
-  func popupDidClickClose(){
+  func popupDidClickClose() {
     // popup did click cancel
   }
 }

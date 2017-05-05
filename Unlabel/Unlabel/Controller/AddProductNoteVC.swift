@@ -36,13 +36,14 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
     placeholderLabel.isHidden = !IBTextViewNote.text.isEmpty
     IBTextViewNote.addSubview(placeholderLabel)
     IBTextViewNote.becomeFirstResponder()
-    if contentStatus == ContentStatus.live{
+    if contentStatus == ContentStatus.live {
       placeholderLabel.isHidden = true
       IBTextViewNote.isUserInteractionEnabled = false
       IBTextViewNote.resignFirstResponder()
       IBTextViewNote.isEditable = false
     }
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -50,7 +51,8 @@ class AddProductNoteVC: UIViewController , UITextViewDelegate {
 
 //MARK:- Custom Methods
 
-extension AddProductNoteVC{
+extension AddProductNoteVC {
+  
   func getProductNote() {
     UnlabelAPIHelper.sharedInstance.getProductNote(selectedProduct.ProductID ,onVC: self, success:{ (
       meta: JSON) in
@@ -59,6 +61,7 @@ extension AddProductNoteVC{
     }, failed: { (error) in
     })
   }
+  
   func saveProductNote() {
     UnlabelAPIHelper.sharedInstance.saveProductNote(selectedProduct.ProductID,note: self.IBTextViewNote.text ,onVC: self, success:{ (
       meta: JSON) in
@@ -70,10 +73,12 @@ extension AddProductNoteVC{
 
 //MARK:- IBAction Methods
 
-extension AddProductNoteVC{
+extension AddProductNoteVC {
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
+  
   @IBAction func IBActionDone(_ sender: Any) {
     IBTextViewNote.resignFirstResponder()
     IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
@@ -83,14 +88,17 @@ extension AddProductNoteVC{
 
 //MARK:- UITextField delegate Methods
 
-extension AddProductNoteVC{
+extension AddProductNoteVC {
+  
   func textViewDidBeginEditing(_ textView: UITextView){
     IBTextViewNote.textColor = DARK_GRAY_COLOR
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty
   }
+  
   func textViewDidEndEditing(_ textView: UITextView){
     IBTextViewNote.textColor = LIGHT_GRAY_TEXT_COLOR
   }
+  
   func textViewDidChange(_ textView: UITextView) {
     placeholderLabel.isHidden = !textView.text.isEmpty
     IBButtonDone.isHidden = IBTextViewNote.text.isEmpty

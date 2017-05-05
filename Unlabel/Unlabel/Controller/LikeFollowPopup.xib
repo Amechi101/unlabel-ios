@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -110,16 +110,16 @@
                             <rect key="frame" x="8" y="18" width="260" height="239"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REACHED MONTHLY LIMIT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgG-2Q-1hA">
-                                    <rect key="frame" x="2" y="66" width="256" height="21"/>
+                                    <rect key="frame" x="2" y="87" width="256" height="21"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="21" id="XfI-PV-UxM"/>
+                                        <constraint firstAttribute="height" constant="21" id="Nzl-OI-H8x"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To see all of the brands you’re following go into ‘Your Feed’ tab and click the brands section." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-eO-QMt">
-                                    <rect key="frame" x="2" y="95" width="256" height="24"/>
+                                    <rect key="frame" x="43" y="116" width="174" height="36"/>
                                     <fontDescription key="fontDescription" name="Neutraface2Text-Book" family="Neutraface 2 Text" pointSize="12"/>
                                     <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -127,12 +127,12 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="vgG-2Q-1hA" secondAttribute="trailing" constant="2" id="1cU-zR-fWL"/>
-                                <constraint firstItem="WTC-eO-QMt" firstAttribute="top" secondItem="vgG-2Q-1hA" secondAttribute="bottom" constant="8" id="2kF-TX-unz"/>
-                                <constraint firstItem="vgG-2Q-1hA" firstAttribute="top" secondItem="d3w-YQ-4Ce" secondAttribute="top" constant="66" id="Nj9-cP-es1"/>
-                                <constraint firstItem="vgG-2Q-1hA" firstAttribute="leading" secondItem="d3w-YQ-4Ce" secondAttribute="leading" constant="2" id="X40-X3-UjC"/>
-                                <constraint firstItem="WTC-eO-QMt" firstAttribute="leading" secondItem="d3w-YQ-4Ce" secondAttribute="leading" constant="2" id="fmt-eV-bbk"/>
-                                <constraint firstAttribute="trailing" secondItem="WTC-eO-QMt" secondAttribute="trailing" constant="2" id="kK4-gl-L3r"/>
+                                <constraint firstAttribute="trailing" secondItem="vgG-2Q-1hA" secondAttribute="trailing" constant="2" id="7g6-WP-Upb"/>
+                                <constraint firstItem="vgG-2Q-1hA" firstAttribute="top" secondItem="d3w-YQ-4Ce" secondAttribute="top" constant="87" id="RNc-rM-ror"/>
+                                <constraint firstAttribute="trailing" secondItem="WTC-eO-QMt" secondAttribute="trailing" constant="43" id="Rwj-NR-6oR"/>
+                                <constraint firstItem="vgG-2Q-1hA" firstAttribute="leading" secondItem="d3w-YQ-4Ce" secondAttribute="leading" constant="2" id="e5t-a7-Ig6"/>
+                                <constraint firstItem="WTC-eO-QMt" firstAttribute="top" secondItem="vgG-2Q-1hA" secondAttribute="bottom" constant="8" id="h6S-LW-atJ"/>
+                                <constraint firstItem="WTC-eO-QMt" firstAttribute="leading" secondItem="d3w-YQ-4Ce" secondAttribute="leading" constant="43" id="wH1-kI-OOr"/>
                             </constraints>
                         </view>
                     </subviews>

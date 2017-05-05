@@ -55,11 +55,11 @@ class PhysicalAttributesVC: UIViewController {
       meta: JSON) in
       print(meta)
       let gender: String = meta["sex"].stringValue
-      if gender == "M"{
+      if gender == "M" {
         self.sexID = "M"
         self.IBButtonHipsView.isHidden = false
         self.IBButtonSex.setTitle("Male", for: .normal)
-      }else {
+      } else {
         self.sexID = "F"
         self.IBButtonHipsView.isHidden = true
         self.IBButtonSex.setTitle("Female", for: .normal)
@@ -77,27 +77,26 @@ class PhysicalAttributesVC: UIViewController {
   }
   
   @IBAction func IBActionSelectOption(_ sender: UIButton) {
-    if sender.tag == 1{
+    if sender.tag == 1 {
       attributeType = PhysicalAttributes.sex
       attributeTitle = "GENDER"
-    }
-    else if sender.tag == 2{
+    } else if sender.tag == 2 {
       attributeType = PhysicalAttributes.height
       attributeTitle = "HEIGHT"
-    }else if sender.tag == 3{
+    } else if sender.tag == 3 {
       attributeType = PhysicalAttributes.chestOrBust
       attributeTitle = "CHEST"
-    }else if sender.tag == 4{
+    } else if sender.tag == 4 {
       attributeType = PhysicalAttributes.hip
       attributeTitle = "HIP"
-    }else if sender.tag == 5{
+    } else if sender.tag == 5 {
       attributeTitle = "WAIST"
       attributeType = PhysicalAttributes.waist
     }
     self.addSortPopupView(SlideUpView.unknown,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
-  func heightIntoFts(heightStr: String) -> String{
+  func heightIntoFts(heightStr: String) -> String {
     var height: String = ""
     if let fHt: Float = Float(heightStr) {
       let iHt: Int = Int(fHt)
@@ -109,7 +108,7 @@ class PhysicalAttributesVC: UIViewController {
     
     return height
   }
-  func stringToInch(inchStr: String) -> String{
+  func stringToInch(inchStr: String) -> String {
     var inches: String = ""
     if let fIn: Float = Float(inchStr) {
       let iIn: Int = Int(fIn)
@@ -130,19 +129,19 @@ class PhysicalAttributesVC: UIViewController {
   }
   
   @IBAction func IBActionUpdate(_ sender: Any) {
-    if sexID.isEmpty || waistID.isEmpty || hipID.isEmpty || heightID.isEmpty || chestBustID.isEmpty{
+    if sexID.isEmpty || waistID.isEmpty || hipID.isEmpty || heightID.isEmpty || chestBustID.isEmpty {
       UnlabelHelper.showAlert(onVC: self, title: "Missing Value", message: "Please provide value for all fields", onOk: {})
-    }else{
+    } else {
       saveInfluencerPhysicalAttributes()
     }
   }
   
-  func getPhysicalAttributesList(){
-    if attributeType == PhysicalAttributes.sex{
+  func getPhysicalAttributesList() {
+    if attributeType == PhysicalAttributes.sex {
       attributeList = UnlabelHelper.getGenderType()
-    }else if attributeType == PhysicalAttributes.height{
+    } else if attributeType == PhysicalAttributes.height {
       attributeList = UnlabelHelper.getHeightList()
-    }else{
+    } else {
       attributeList = UnlabelHelper.getOtherPhysicalAttributes()
     }
   }
@@ -151,9 +150,9 @@ class PhysicalAttributesVC: UIViewController {
 
 //MARK: Sort Popup methods
 
-extension PhysicalAttributesVC: SortModePopupViewDelegate{
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+extension PhysicalAttributesVC: SortModePopupViewDelegate {
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
@@ -171,34 +170,34 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate{
     }
   }
   
-  func popupDidClickCloseButton(){
+  func popupDidClickCloseButton() {
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
-    if attributeType == PhysicalAttributes.sex{
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    if attributeType == PhysicalAttributes.sex {
       IBButtonSex.setTitle(selectedItem.uName, for: .normal)
       sexID = selectedItem.uId
-      if selectedItem.uId == "M"{
+      if selectedItem.uId == "M" {
         chestBustID = ""
         IBLabelChestBust.text = "CHEST"
         IBButtonChestBust.setTitle("Select your chest measurement", for: .normal)
         IBButtonHipsView.isHidden = false
-      }else{
+      } else {
         chestBustID = ""
         IBLabelChestBust.text = "BUST"
         IBButtonHipsView.isHidden = true
         IBButtonChestBust.setTitle("Select your bust measurement", for: .normal)
       }
-    }else if attributeType == PhysicalAttributes.height{
+    } else if attributeType == PhysicalAttributes.height {
       heightID = selectedItem.uId
       IBButtonHeight.setTitle(selectedItem.uName, for: .normal)
-    }else if attributeType == PhysicalAttributes.waist{
+    } else if attributeType == PhysicalAttributes.waist {
       waistID = selectedItem.uId
       IBButtonWaist.setTitle(selectedItem.uName, for: .normal)
-    }else if attributeType == PhysicalAttributes.chestOrBust{
+    } else if attributeType == PhysicalAttributes.chestOrBust {
       chestBustID = selectedItem.uId
       IBButtonChestBust.setTitle(selectedItem.uName, for: .normal)
-    }else if attributeType == PhysicalAttributes.hip{
+    } else if attributeType == PhysicalAttributes.hip {
       hipID = selectedItem.uId
       IBButtonHips.setTitle(selectedItem.uName, for: .normal)
     }

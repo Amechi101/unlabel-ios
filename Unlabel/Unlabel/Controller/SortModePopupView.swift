@@ -21,6 +21,7 @@ enum SlideUpView{
   case state
   case quantity
   case statSort
+  case influencerKind
   case unknown
 }
 
@@ -69,6 +70,10 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
     else if slideUpViewMode == SlideUpView.country{
       //arrSortOption = ["USA","International"]
       arrDatasource = getCountryList()
+    }
+    else if slideUpViewMode == SlideUpView.influencerKind{
+      arrSortOptionDict = [["name":"Fashion","key":"fashion"],["name":"Photography","key":"photography"],["name":"Business","key":"business"],["name":"Technology","key":"technology"]]
+      arrDatasource = getModelList(arrSortOptionDict)
     }
     else{
       // arrSortOption = []

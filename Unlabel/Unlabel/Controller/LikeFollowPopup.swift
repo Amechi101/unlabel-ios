@@ -78,7 +78,7 @@ class LikeFollowPopup: UIView {
     }else if followType == .profileUpdate{
       productStatusPopup.isHidden = false
       IBStatusTitle.text = "UPDATED!"
-      IBStatusMessage.text = "You have successfully updated your Profile."
+      IBStatusMessage.text = productStatusMessage
     }
   }
 }

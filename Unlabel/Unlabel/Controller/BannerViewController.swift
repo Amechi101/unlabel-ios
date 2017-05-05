@@ -46,16 +46,18 @@ extension BannerViewController{
 //MARK: - Safari ViewController Delegate Methods
 extension BannerViewController: SFSafariViewControllerDelegate{
   func openSafariForURL(_ urlString:String){
-    if let productURL:URL = URL(string: urlString){
+    if let productURL:URL = URL(string: urlString) {
       APP_DELEGATE.window?.tintColor = MEDIUM_GRAY_TEXT_COLOR
       let safariVC = SFSafariViewController(url: productURL)
       safariVC.delegate = self
       self.present(safariVC, animated: true) { () -> Void in
       }
-    }else{ showAlertWebPageNotAvailable() }
+    } else {
+      showAlertWebPageNotAvailable()
+    }
   }
   
-  func showAlertWebPageNotAvailable(){
+  func showAlertWebPageNotAvailable() {
     UnlabelHelper.showAlert(onVC: self, title: "WebPage Not Available", message: "Please try again later.") { () -> () in
     }
   }

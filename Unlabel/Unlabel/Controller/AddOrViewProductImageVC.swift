@@ -46,18 +46,19 @@ class AddOrViewProductImageVC: UIViewController {
     }, failed: { (error) in
     })
   }
+  
   func removeProductImages() {
     let productImage : ProductImages = ProductImages()
     productImage.pProduct = selectedProduct.ProductID
     productImage.pDisplayOrder = displayOrder
     UnlabelAPIHelper.sharedInstance.removeProductPhot(productImage ,onVC: self, success:{(meta: JSON) in
-      
       self.getProductImages()
       self.IBCollectionViewProductPhotos.reloadData()
     }, failed: { (error) in
     })
   }
-  func saveProfileImage(_ pickedImage: UIImage){
+  
+  func saveProfileImage(_ pickedImage: UIImage) {
     let imageName: String = selectedProduct.ProductName + UnlabelHelper.getcurrentDateTime() + ".jpeg"
     let parameters = [
       "image": imageName,"note": selectedProduct.ProductID
@@ -78,7 +79,7 @@ class AddOrViewProductImageVC: UIViewController {
           response in
           switch response.result {
           case .success(let data):
-            let json = JSON(data)
+          //  let json = JSON(data)
             self.getProductImages()
           case .failure(let error):
             print("error: \(error.localizedDescription)")
@@ -89,33 +90,37 @@ class AddOrViewProductImageVC: UIViewController {
       }
     })
   }
-  func getCSRFToken() -> String{
-    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
+  
+  func getCSRFToken() -> String {
+    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String {
+      
       return xcsrf
-    }
-    else{
+    } else {
+      
       return ""
     }
   }
-  fileprivate func addNotFoundView(){
+  
+  fileprivate func addNotFoundView() {
     IBCollectionViewProductPhotos.backgroundView = nil
     let notFoundView:NotFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.IBlblMessage.text = "Currently no photos."
-    if contentStatus == ContentStatus.live{
+    if contentStatus == ContentStatus.live {
       notFoundView.showViewLabelBtn = false
-    }
-    else{
+    } else {
       notFoundView.showViewLabelBtn = true
     }
     IBCollectionViewProductPhotos.backgroundView = notFoundView
     IBCollectionViewProductPhotos.backgroundView?.isHidden = true
   }
-  func setUpCollectionView(){
+  
+  func setUpCollectionView() {
     IBCollectionViewProductPhotos.register(UINib(nibName: "ProductPhotoCell", bundle: nil), forCellWithReuseIdentifier: "ProductPhotoCell")
     IBCollectionViewProductPhotos.register(UINib(nibName: "ProductPhotoFooterCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "ProductPhotoFooterCell")
   }
-  func showActionSheet(){
+  
+  func showActionSheet() {
     let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     let libraryAction: UIAlertAction = UIAlertAction(title: "Choose Photo", style: .default) { action -> Void in
       let imagePickerController = UIImagePickerController()
@@ -147,9 +152,11 @@ class AddOrViewProductImageVC: UIViewController {
     displayOrder = product.pDisplayOrder
     removeProductImages()
   }
+  
   @IBAction func IBActionDismiss(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
+  
   @IBAction func IBActionAddImage(_ sender: Any) {
     showActionSheet()
   }
@@ -157,74 +164,79 @@ class AddOrViewProductImageVC: UIViewController {
 
 //MARK: -  Collection delegate methods
 
-extension AddOrViewProductImageVC: UICollectionViewDataSource{
+extension AddOrViewProductImageVC: UICollectionViewDataSource {
+  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
     return 1
   }
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-    if productImageArray.count > 0{
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    if productImageArray.count > 0 {
       IBCollectionViewProductPhotos.backgroundView?.isHidden = true
-    }else{
+    } else {
       IBCollectionViewProductPhotos.backgroundView?.isHidden = false
     }
     
     return productImageArray.count
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     return getProductCell(forIndexPath: indexPath)
   }
-  func getProductCell(forIndexPath indexPath:IndexPath)->ProductPhotoCell{
+  
+  func getProductCell(forIndexPath indexPath:IndexPath)->ProductPhotoCell {
     let productCell = IBCollectionViewProductPhotos.dequeueReusableCell(withReuseIdentifier: "ProductPhotoCell", for: indexPath) as! ProductPhotoCell
     productCell.IBButtonRemove.tag = indexPath.row
     
-    if contentStatus == ContentStatus.live{
+    if contentStatus == ContentStatus.live {
       productCell.IBVireRemoveContainer.isHidden = true
-    }
-    else{
+    } else {
       productCell.IBVireRemoveContainer.isHidden = false
     }
     let productImage: ProductImages = self.productImageArray[indexPath.row]
     productCell.IBProductImage.contentMode = UIViewContentMode.scaleAspectFill;
     productCell.IBProductImage.clipsToBounds = true
     self.handleProductCellActivityIndicator(productCell, shouldStop: true)
-    if let url = URL(string: productImage.pImageUrl ){
+    if let url = URL(string: productImage.pImageUrl ) {
       productCell.IBProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-        if let _ = error{
+        if let _ = error {
           self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-        }else{
-          if (type == SDImageCacheType.none){
+        } else {
+          if (type == SDImageCacheType.none) {
             productCell.IBProductImage.alpha = 0;
             UIView.animate(withDuration: 0.35, animations: {
               productCell.IBProductImage.alpha = 1;
             })
-          }
-          else{
+          } else {
             productCell.IBProductImage.alpha = 1;
           }
           self.handleProductCellActivityIndicator(productCell, shouldStop: true)
         }
       })
     }
+    
     return productCell
   }
-  func handleProductCellActivityIndicator(_ productCell:ProductPhotoCell,shouldStop:Bool){
+  
+  func handleProductCellActivityIndicator(_ productCell:ProductPhotoCell,shouldStop:Bool) {
     productCell.IBactivityIndicator.isHidden = shouldStop
     if shouldStop {
       productCell.IBactivityIndicator.stopAnimating()
-    }else{
+    } else {
       productCell.IBactivityIndicator.startAnimating()
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    if productImageArray.count == 0{
+    if productImageArray.count == 0 {
       
       return CGSize.zero
-    }else {
-      if contentStatus == ContentStatus.live{
+    } else {
+      if contentStatus == ContentStatus.live {
         
         return CGSize.zero
-      }else {
+      } else {
         print(collectionView.frame.width)
         print(collectionView.frame.size.width)
         print(SCREEN_WIDTH)
@@ -233,13 +245,14 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
       }
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionElementKindSectionFooter:
-      if contentStatus == ContentStatus.live{
+      if contentStatus == ContentStatus.live {
         
         return UICollectionReusableView()
-      }else {
+      } else {
         let footerView:ProductPhotoFooterCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProductPhotoFooterCell", for: indexPath) as! ProductPhotoFooterCell
         
         return footerView
@@ -252,7 +265,8 @@ extension AddOrViewProductImageVC: UICollectionViewDataSource{
   }
 }
 
-extension AddOrViewProductImageVC: UICollectionViewDelegateFlowLayout{
+extension AddOrViewProductImageVC: UICollectionViewDelegateFlowLayout {
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: (collectionView.frame.size.width)/2.2, height: 271.0)
   }
@@ -270,7 +284,8 @@ extension AddOrViewProductImageVC: NotFoundViewDelegate {
 
 //MARK: -  Image picker delegate methods
 
-extension AddOrViewProductImageVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension AddOrViewProductImageVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     // Dismiss the picker if the user canceled.
     dismiss(animated: true, completion: nil)
@@ -279,8 +294,7 @@ extension AddOrViewProductImageVC: UIImagePickerControllerDelegate, UINavigation
   internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
       saveProfileImage(image)
-    }
-    else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
       saveProfileImage(image)
     }
     self.dismiss(animated: true, completion: nil)

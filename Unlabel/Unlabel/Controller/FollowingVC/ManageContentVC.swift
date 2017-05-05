@@ -66,16 +66,15 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ManageToProductVC"{
       if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController{
+        if let productViewController:ProductViewController = navViewController.viewControllers[0] as? ProductViewController {
           productViewController.selectedProduct = self.selectedProduct
           productViewController.selectedBrand = self.selectedBrand
           productViewController.contentStatus = self.contentStatus
         }
       }
-    }
-    else if segue.identifier == "ManageToLiveRent"{
-      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC{
+    } else if segue.identifier == "ManageToLiveRent" {
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController {
+        if let rentOrLiveProductDetailVC:RentOrLiveProductDetailVC = navViewController.viewControllers[0] as? RentOrLiveProductDetailVC {
           rentOrLiveProductDetailVC.contentStatus = self.contentStatus
           rentOrLiveProductDetailVC.selectedBrand = self.selectedBrand
           rentOrLiveProductDetailVC.selectedProduct = self.selectedProduct
@@ -85,8 +84,8 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   }
 }
 
-extension ManageContentVC:NotFoundViewDelegate{
-  func addNotFoundView(){
+extension ManageContentVC:NotFoundViewDelegate {
+  func addNotFoundView() {
     notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.showViewLabelBtn = false
@@ -99,12 +98,13 @@ extension ManageContentVC:NotFoundViewDelegate{
 //MARK: -  Custom methods
 
 extension ManageContentVC{
-  func setUpCollectionView(){
+  func setUpCollectionView() {
     addNotFoundView()
     IBCollectionViewContent.register(UINib(nibName: S_ID_Product_Content_Header, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell)
     IBCollectionViewContent.register(UINib(nibName: REUSABLE_ID_ProductCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_ProductCell)
   }
-  func updateToggleButton(){
+  
+  func updateToggleButton() {
     UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
       if self.contentStatus == ContentStatus.reserve{
         self.notFoundView.IBlblMessage.text = "No reserved products yet."
@@ -112,29 +112,25 @@ extension ManageContentVC{
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
-      }
-      else if self.contentStatus == ContentStatus.rent{
+      } else if self.contentStatus == ContentStatus.rent {
         self.notFoundView.IBlblMessage.text = "No rented products yet."
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
-      }
-      else if self.contentStatus == ContentStatus.live{
+      } else if self.contentStatus == ContentStatus.live {
         self.notFoundView.IBlblMessage.text = "No live products yet."
         self.IBReserveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
-        if self.arrFilteredBrandList.count>0{
+        if self.arrFilteredBrandList.count>0 {
           self.IBCollectionViewTopConstraint.constant = self.topConstraintMax
           self.IBButtonSortMode.isHidden = false
-        }
-        else{
+        } else {
           self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
           //self.IBButtonSortMode.isHidden = true
         }
-      }
-      else{
+      } else {
         self.IBReserveButton.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
         self.IBRentButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBLiveButton.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
@@ -142,84 +138,83 @@ extension ManageContentVC{
       }
     }, completion: { _ in })
   }
-  func getReservedProducts(){
+  
+  func getReservedProducts() {
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
-      print(meta) 
-        self.arrFilteredBrandList = []
-        self.arrMenBrandList.append(contentsOf: arrBrands)
-        self.arrFilteredBrandList = self.arrMenBrandList
-        self.IBCollectionViewContent.reloadData()
+      print(meta)
+      self.arrFilteredBrandList = []
+      self.arrMenBrandList.append(contentsOf: arrBrands)
+      self.arrFilteredBrandList = self.arrMenBrandList
+      self.IBCollectionViewContent.reloadData()
     }, failed: { (error) in
     })
     
   }
-    func getRentedProducts(){
-        arrMenBrandList = []
-        let fetchProductRequestParams = FetchProductParams()
-        fetchProductRequestParams.sortMode = ""
-        UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
-          print(meta)
-            self.arrFilteredBrandList = []
-            self.arrMenBrandList.append(contentsOf: arrBrands)
-            self.arrFilteredBrandList = self.arrMenBrandList
-            self.IBCollectionViewContent.reloadData()
-        }, failed: { (error) in
-        })
-        
-    }
-    
-    func getLiveProducts(){
-        arrMenBrandList = []
-        let fetchProductRequestParams = FetchProductParams()
-        fetchProductRequestParams.sortMode = sortMode
-        UnlabelAPIHelper.sharedInstance.getLiveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
-          print(meta)
-            self.arrFilteredBrandList = []
-            self.arrMenBrandList.append(contentsOf: arrBrands)
-            self.arrFilteredBrandList = self.arrMenBrandList
-            if self.arrFilteredBrandList.count>0{
-              self.IBCollectionViewTopConstraint.constant = self.topConstraintMax
-              self.IBButtonSortMode.isHidden = false
-            }
-            else{
-              self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
-              self.IBButtonSortMode.isHidden = true
-            }
-            self.IBCollectionViewContent.reloadData()
-        }, failed: { (error) in
-        })
-    }
+  
+  func getRentedProducts() {
+    arrMenBrandList = []
+    let fetchProductRequestParams = FetchProductParams()
+    fetchProductRequestParams.sortMode = ""
+    UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+      print(meta)
+      self.arrFilteredBrandList = []
+      self.arrMenBrandList.append(contentsOf: arrBrands)
+      self.arrFilteredBrandList = self.arrMenBrandList
+      self.IBCollectionViewContent.reloadData()
+    }, failed: { (error) in
+    })
+  }
+  
+  func getLiveProducts(){
+    arrMenBrandList = []
+    let fetchProductRequestParams = FetchProductParams()
+    fetchProductRequestParams.sortMode = sortMode
+    UnlabelAPIHelper.sharedInstance.getLiveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
+      print(meta)
+      self.arrFilteredBrandList = []
+      self.arrMenBrandList.append(contentsOf: arrBrands)
+      self.arrFilteredBrandList = self.arrMenBrandList
+      if self.arrFilteredBrandList.count>0 {
+        self.IBCollectionViewTopConstraint.constant = self.topConstraintMax
+        self.IBButtonSortMode.isHidden = false
+      } else {
+        self.IBCollectionViewTopConstraint.constant = self.topConstraintMin
+        self.IBButtonSortMode.isHidden = true
+      }
+      self.IBCollectionViewContent.reloadData()
+    }, failed: { (error) in
+    })
+  }
 }
 
 //MARK: -  IBAction methods
 
-extension ManageContentVC{
+extension ManageContentVC {
   @IBAction func IBActionSortSelection(_ sender: Any) {
     self.addSortPopupView(SlideUpView.brandSortMode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
   @IBAction func IBActionToggleStatus(_ sender: Any) {
     let buttonID: Int = (sender as AnyObject).tag
     IBCollectionViewContent.reloadData()
     if buttonID == 1{
       contentStatus = ContentStatus.reserve
-        getReservedProducts()
-    }
-    else if buttonID == 2{
+      getReservedProducts()
+    } else if buttonID == 2 {
       contentStatus = ContentStatus.rent
-        getRentedProducts()
-    }
-    else if buttonID == 3{
+      getRentedProducts()
+    } else if buttonID == 3 {
       contentStatus = ContentStatus.live
-        getLiveProducts()
-    }
-    else{
+      getLiveProducts()
+    } else {
       contentStatus = ContentStatus.unknown
     }
     updateToggleButton()
   }
+  
   @IBAction func IBActionViewRentalInfo(_ sender: AnyObject) {
     let rentalInfoVC: ViewRentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC) as! ViewRentalInfoVC
     cur_rentalInfo = arrFilteredBrandList[sender.tag].rentalInfo
@@ -230,95 +225,101 @@ extension ManageContentVC{
 
 //MARK:- UICollectionViewDataSource Methods
 
-extension ManageContentVC: UICollectionViewDataSource{
+extension ManageContentVC: UICollectionViewDataSource {
+  
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    if arrFilteredBrandList.count > 0{
+    if arrFilteredBrandList.count > 0 {
       IBCollectionViewContent.backgroundView?.isHidden = true
-    }
-    else{
+    } else {
       IBCollectionViewContent.backgroundView?.isHidden = false
     }
+    
     return arrFilteredBrandList.count
   }
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
     return arrFilteredBrandList[section].arrProducts.count
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     return getProductCell(forIndexPath: indexPath)
   }
-  func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell{
+  
+  func getProductCell(forIndexPath indexPath:IndexPath)->ProductCell {
     let productCell = IBCollectionViewContent.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_ProductCell, for: indexPath) as! ProductCell
     productCell.IBlblProductName.text = (arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductName).capitalized
     productCell.IBlblProductPrice.text = "$ " + arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].ProductPrice
     productCell.IBimgProductImage.contentMode = UIViewContentMode.scaleAspectFill
-    if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil{
-        if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String){
-          productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-            if let _ = error{
-              self.handleProductCellActivityIndicator(productCell, shouldStop: false)
-            }else{
-              if (type == SDImageCacheType.none)
-              {
-                productCell.IBimgProductImage.alpha = 0;
-                UIView.animate(withDuration: 0.35, animations: {
-                  productCell.IBimgProductImage.alpha = 1;
-                })
-              }
-              else
-              {
+    if arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first != nil {
+      if let url = URL(string:arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row].arrProductsImages.first as! String) {
+        productCell.IBimgProductImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
+          if let _ = error {
+            self.handleProductCellActivityIndicator(productCell, shouldStop: false)
+          } else {
+            if (type == SDImageCacheType.none) {
+              productCell.IBimgProductImage.alpha = 0;
+              UIView.animate(withDuration: 0.35, animations: {
                 productCell.IBimgProductImage.alpha = 1;
-              }
-              self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+              })
+            } else {
+              productCell.IBimgProductImage.alpha = 1;
             }
-          })
-        }
+            self.handleProductCellActivityIndicator(productCell, shouldStop: true)
+          }
+        })
+      }
+    } else {
+      productCell.IBimgProductImage.image = UIImage(named:"Group")
     }
-    else{
-        productCell.IBimgProductImage.image = UIImage(named:"Group")
-    }
+    
     return productCell
   }
   
-  func handleProductCellActivityIndicator(_ productCell:ProductCell,shouldStop:Bool){
+  func handleProductCellActivityIndicator(_ productCell:ProductCell,shouldStop:Bool) {
     productCell.IBactivityIndicator.isHidden = shouldStop
     if shouldStop {
       productCell.IBactivityIndicator.stopAnimating()
-    }else{
+    } else {
       productCell.IBactivityIndicator.startAnimating()
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     selectedProduct = arrFilteredBrandList[indexPath.section].arrProducts[indexPath.row]
     print(selectedProduct.ProductDescription)
     selectedBrand = arrFilteredBrandList[indexPath.section]
     if contentStatus == ContentStatus.reserve{
       performSegue(withIdentifier: "ManageToProductVC", sender: self)
-    }
-    else if contentStatus == ContentStatus.rent || contentStatus == ContentStatus.live{
+    } else if contentStatus == ContentStatus.rent || contentStatus == ContentStatus.live {
       performSegue(withIdentifier: "ManageToLiveRent", sender: self)
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
     if contentStatus == ContentStatus.reserve || contentStatus == ContentStatus.rent{
+      
       return CGSize(width: collectionView.frame.width, height: 55.0)
-    }
-    else if contentStatus == ContentStatus.live{
+    } else if contentStatus == ContentStatus.live {
+      
       return CGSize(width: collectionView.frame.width, height: 25.0)
-    }
-    else{
+    } else {
+      
       return CGSize(width: collectionView.frame.width, height: 55.0)
     }
   }
+  
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
       headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).uppercased()
       headerView.IBViewRentalInfo.tag = indexPath.section
+      
       return headerView
     default:
       assert(false, "No such element")
+      
       return UICollectionReusableView()
     }
   }
@@ -326,17 +327,20 @@ extension ManageContentVC: UICollectionViewDataSource{
 
 //MARK:- UICollectionViewDelegateFlowLayout Methods
 
-extension ManageContentVC:UICollectionViewDelegateFlowLayout{
+extension ManageContentVC:UICollectionViewDelegateFlowLayout {
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     print(CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0))
+    
     return CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0)
   }
 }
 //MARK: Sort Popup methods
 
-extension ManageContentVC: SortModePopupViewDelegate{
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+extension ManageContentVC: SortModePopupViewDelegate {
+  
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
@@ -351,10 +355,12 @@ extension ManageContentVC: SortModePopupViewDelegate{
       viewSortPopup.updateView()
     }
   }
-  func popupDidClickCloseButton(){
+  
+  func popupDidClickCloseButton() {
     //delegate method to be implemented after API integration
   }
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+  
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
     sortModeValue = selectedItem.uName
     IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
     self.sortMode = selectedItem.uId

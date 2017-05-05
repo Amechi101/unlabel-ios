@@ -92,9 +92,9 @@
     self.navigationController?.isNavigationBarHidden = false
     UnlabelHelper.setAppDelegateDelegates(self)
     if (UnlabelHelper.getDefaultValue("latitude") != nil &&
-      UnlabelHelper.getDefaultValue("longitude") != nil){
+      UnlabelHelper.getDefaultValue("longitude") != nil) {
       self.wsCallGetLabels()
-    }else{
+    } else {
       getInfluencerLocation()
     }
   }
@@ -109,11 +109,11 @@
  }
  
  //MARK:- Navigation Methods
- extension FeedVC{
+ extension FeedVC {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == S_ID_PRODUCT_VC{
-      if let productVC:ProductVC = segue.destination as? ProductVC{
-        if let brand:Brand = didSelectBrand{
+    if segue.identifier == S_ID_PRODUCT_VC {
+      if let productVC:ProductVC = segue.destination as? ProductVC {
+        if let brand:Brand = didSelectBrand {
           productVC.selectedBrand = brand
           productVC.displayMode = self.display_type
           productVC.selectedGender = self.sFilterGender
@@ -123,22 +123,22 @@
           GAHelper.trackEvent(GAEventType.LabelClicked, labelName: brand.Name, productName: nil, buyProductName: nil)
         }
       }
-    } else if segue.identifier == SEGUE_FILTER_LABELS{
-      if let commonTableVC:CommonTableVC = segue.destination as? CommonTableVC{
+    } else if segue.identifier == SEGUE_FILTER_LABELS {
+      if let commonTableVC:CommonTableVC = segue.destination as? CommonTableVC {
         commonTableVC.commonVCType = .filterLabels
         commonTableVC.filterType = (headerView?.selectedTab)!
         commonTableVC.arrFilteredBrandList = arrFilteredBrandList
       }
-    } else if segue.identifier == "LocationFilterSegue"{
-      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC{
+    } else if segue.identifier == "LocationFilterSegue" {
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController {
+        if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC {
         //  pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
         //  locationFilterVC.delegate = self
         }
       }
-    } else if segue.identifier == "FilterBrandSegue"{
-      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let filterViewController:FilterViewController = navViewController.viewControllers[0] as? FilterViewController{
+    } else if segue.identifier == "FilterBrandSegue" {
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController {
+        if let filterViewController:FilterViewController = navViewController.viewControllers[0] as? FilterViewController {
           filterViewController.delegate = self
         }
       }
@@ -146,21 +146,21 @@
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-    if identifier == SEGUE_FILTER_LABELS{
-      if headerView?.selectedTab == .men{
+    if identifier == SEGUE_FILTER_LABELS {
+      if headerView?.selectedTab == .men {
         return arrMenBrandList.count > 0
-      } else if headerView?.selectedTab == .women{
+      } else if headerView?.selectedTab == .women {
         return arrWomenBrandList.count > 0
-      } else{
+      } else {
         return false
       }
-    } else{
+    } else {
       return true
     }
   }
  }
  
- extension FeedVC: LocationFilterDelegate{
+ extension FeedVC: LocationFilterDelegate {
   func locationFiltersSelected(_ selectedRadius: String) {
     print(selectedRadius)
     radius = selectedRadius
@@ -168,7 +168,7 @@
  }
  
  //MARK:- UICollectionViewDelegate Methods
- extension FeedVC:UICollectionViewDelegate{
+ extension FeedVC:UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if let brandAtIndexPath:Brand? = self.arrFilteredBrandList[indexPath.row]{
       didSelectBrand = brandAtIndexPath
@@ -196,49 +196,49 @@
  }
  
  //MARK:- UICollectionViewDataSource Methods
- extension FeedVC:UICollectionViewDataSource{
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+ extension FeedVC:UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if arrFilteredBrandList.count > 0{
       headerView?.isHidden = false
       IBcollectionViewFeed.backgroundView?.isHidden = true
-    } else{
+    } else {
       headerView?.isHidden = true
       IBcollectionViewFeed.backgroundView?.isHidden = false
     }
+    
     return arrFilteredBrandList.count
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.item == arrFilteredBrandList.count - 1 {
       wsCallGetLabelsResetOffset(false)
     }
-    
     let feedVCCell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSABLE_ID_FeedVCCell, for: indexPath) as! FeedVCCell
     feedVCCell.IBlblBrandName.text = arrFilteredBrandList[indexPath.row].Name.uppercased()
     if arrFilteredBrandList[indexPath.row].StateOrCountry == "USA" {
       feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].location), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
-    } else{
+    } else {
       feedVCCell.IBlblLocation.text = "\(arrFilteredBrandList[indexPath.row].city), \(arrFilteredBrandList[indexPath.row].StateOrCountry)"
     }
     feedVCCell.IBbtnStar.tag = indexPath.row
     
-    if arrFilteredBrandList[indexPath.row].isFollowing{
+    if arrFilteredBrandList[indexPath.row].isFollowing {
       feedVCCell.IBbtnStar.setImage(UIImage(named: "starred"), for: UIControlState())
-    } else{
+    } else {
       feedVCCell.IBbtnStar.setImage(UIImage(named: "notStarred"), for: UIControlState())
     }
     feedVCCell.IBimgBrandImage.image = nil
-    if let url = URL(string: arrFilteredBrandList[indexPath.row].FeatureImage){
+    if let url = URL(string: arrFilteredBrandList[indexPath.row].FeatureImage) {
       feedVCCell.IBimgBrandImage.sd_setImage(with: url, completed: { (iimage, error, type, url) in
-        if let _ = error{
+        if let _ = error {
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: false)
-        }else{
-          if (type == SDImageCacheType.none){
+        } else {
+          if (type == SDImageCacheType.none) {
             feedVCCell.IBimgBrandImage.alpha = 0;
             UIView.animate(withDuration: 0.35, animations: {
               feedVCCell.IBimgBrandImage.alpha = 1;
             })
-          } else{
+          } else {
             feedVCCell.IBimgBrandImage.alpha = 1;
           }
           self.handleFeedVCCellActivityIndicator(feedVCCell, shouldStop: true)
@@ -251,7 +251,7 @@
  }
  
  //MARK:- UICollectionViewDelegateFlowLayout Methods
- extension FeedVC:UICollectionViewDelegateFlowLayout{
+ extension FeedVC:UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
     
     return CGSize(width: SCREEN_WIDTH, height: fHeaderHeight)
@@ -271,18 +271,18 @@
  //MARK:- AppDelegateDelegates Methods
  extension FeedVC:AppDelegateDelegates{
   func reachabilityChanged(_ reachable: Bool) {
-    if reachable{
-      if mainVCType == .feed{
-        if arrFilteredBrandList.count == 0{
+    if reachable {
+      if mainVCType == .feed {
+        if arrFilteredBrandList.count == 0 {
           wsCallGetLabels()
         }
-      } else if mainVCType == .following{
+      } else if mainVCType == .following {
         
-      } else if mainVCType == .filter{
-        if arrFilteredBrandList.count == 0{
+      } else if mainVCType == .filter {
+        if arrFilteredBrandList.count == 0 {
           wsCallGetLabels()
         }
-      } else{
+      } else {
         debugPrint("unknown vctype")
       }
     }
@@ -291,20 +291,20 @@
  }
  
  //MARK:- ProductVCDelegate Call Methods
- extension FeedVC:ProductVCDelegate{
+ extension FeedVC:ProductVCDelegate {
   func didClickFollow(forBrand brand: Brand) {
   }
  }
  
  //MARK:- NotFoundView Methods
- extension FeedVC:NotFoundViewDelegate{
+ extension FeedVC:NotFoundViewDelegate {
   func addNotFoundView(){
     notFoundView = Bundle.main.loadNibNamed("NotFoundView", owner: self, options: nil)! [0] as! NotFoundView
     notFoundView.delegate = self
     notFoundView.showViewLabelBtn = false
-    if mainVCType == .feed{
+    if mainVCType == .feed {
       notFoundView.IBlblMessage.text = "Nothing to see here.\n\n Currently no designers are within this filtering range."
-    } else if mainVCType == .filter{
+    } else if mainVCType == .filter {
       notFoundView.IBlblMessage.text = "Nothing to see here.\n\n Currently no designers are within this filtering range."
     }
     IBcollectionViewFeed.backgroundView = notFoundView
@@ -329,16 +329,16 @@
   @IBAction func IBActionStarClicked(_ sender: UIButton) {
     //Internet available
     if ReachabilitySwift.isConnectedToNetwork(){
-      if UnlabelHelper.isUserLoggedIn(){
-        if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID{
+      if UnlabelHelper.isUserLoggedIn() {
+        if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID {
           //If already following
-          if arrFilteredBrandList[sender.tag].isFollowing{
+          if arrFilteredBrandList[sender.tag].isFollowing {
             arrFilteredBrandList[sender.tag].isFollowing = false
-          }else{
+          } else {
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
           IBcollectionViewFeed.reloadData()
-          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
+          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success: { (
             meta: JSON) in
             if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
               self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -347,9 +347,8 @@
           }, failed: { (error) in
           })
         }
-      }else{
       }
-    }else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
     }
   }
@@ -360,9 +359,9 @@
  }
  
  //MARK:- Sort Popup delegate Methods
- extension FeedVC: SortModePopupViewDelegate{
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+ extension FeedVC: SortModePopupViewDelegate {
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
@@ -377,11 +376,11 @@
     }
   }
   
-  func popupDidClickCloseButton(){
+  func popupDidClickCloseButton() {
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
     headerView?.IBSortButton.setTitle("Sort by: " + selectedItem.uName, for: .normal)
     self.sortMode = selectedItem.uId
@@ -403,12 +402,12 @@
     })
   }
 
-  fileprivate func setupOnLoad(){
+  fileprivate func setupOnLoad() {
     registerCells()
     headerView?.selectedTab = .men
-    if let gender: String = UnlabelHelper.getDefaultValue("gender")!{
+    if let gender: String = UnlabelHelper.getDefaultValue("gender")! {
       sFilterGender = gender
-    } else{
+    } else {
       sFilterGender = "M"
     }
     setupNavBar()
@@ -416,35 +415,35 @@
     self.automaticallyAdjustsScrollViewInsets = false
   }
   
-  fileprivate func addPullToRefresh(){
+  fileprivate func addPullToRefresh() {
     refreshControl.addTarget(self, action: #selector(FeedVC.wsCallGetLabels), for: .valueChanged)
     IBcollectionViewFeed.addSubview(refreshControl)
   }
   
-  fileprivate func registerCells(){
+  fileprivate func registerCells() {
     IBcollectionViewFeed.register(UINib(nibName: REUSABLE_ID_FeedVCCell, bundle: nil), forCellWithReuseIdentifier: REUSABLE_ID_FeedVCCell)
     IBcollectionViewFeed.register(UINib(nibName: REUSABLE_ID_FeedVCFooterCell, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: REUSABLE_ID_FeedVCFooterCell)
   }
   
-  fileprivate func setupNavBar(){
+  fileprivate func setupNavBar() {
     var titleText = "UNLABEL"
     var leftBarButtonImage = IMG_HAMBURGER
-    if mainVCType == .feed{
+    if mainVCType == .feed {
       addNotFoundView()
       addPullToRefresh()
       display_type = "FEED"
       IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
-    }else if mainVCType == .filter{
+    } else if mainVCType == .filter {
       display_type = "FILTER"
       addNotFoundView()
       addPullToRefresh()
-      if let filteredNavTitleObj = filteredNavTitle{
+      if let filteredNavTitleObj = filteredNavTitle {
         titleText = "UNLABEL"
       }
       IBbtnUnlabel.titleLabel?.font = UIFont(name: "Neutraface2Text-Bold", size: 28)
      // IBbtnUnlabel.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: UIControlState())
     }
-    if self.navigationController?.viewControllers.count > 1{
+    if self.navigationController?.viewControllers.count > 1 {
       leftBarButtonImage = IMG_BACK
     }
     IBbtnUnlabel.titleLabel?.textColor = UIColor.black
@@ -453,63 +452,64 @@
     
   }
 
-  fileprivate func handleHamburgerAndBack(sender: AnyObject){
+  fileprivate func handleHamburgerAndBack(sender: AnyObject) {
     if mainVCType.rawValue == MainVCType.feed.rawValue{
       // no action
-    }else if mainVCType.rawValue == MainVCType.following.rawValue{
+    } else if mainVCType.rawValue == MainVCType.following.rawValue {
       popVC()
-    }else if mainVCType.rawValue == MainVCType.filter.rawValue{
+    } else if mainVCType.rawValue == MainVCType.filter.rawValue {
       popVC()
-    }else{
+    } else {
       debugPrint("handleHamburgerAndBack uknown")
     }
   }
   
-  fileprivate func popVC(){
+  fileprivate func popVC() {
     _ = navigationController?.popViewController(animated: true)
   }
   
-  fileprivate func handleFeedVCCellActivityIndicator(_ feedVCCell:FeedVCCell,shouldStop:Bool){
+  fileprivate func handleFeedVCCellActivityIndicator(_ feedVCCell:FeedVCCell,shouldStop:Bool) {
     feedVCCell.IBactivityIndicator.isHidden = shouldStop
     if shouldStop {
       feedVCCell.IBactivityIndicator.stopAnimating()
-    }else{
+    } else {
       feedVCCell.IBactivityIndicator.startAnimating()
     }
   }
   
-  fileprivate func getSelectedGender()->BrandGender{
-    if headerView?.selectedTab == .men{
+  fileprivate func getSelectedGender()->BrandGender {
+    if headerView?.selectedTab == .men {
+      
       return BrandGender.Men
-    }else if headerView?.selectedTab == .women{
+    } else if headerView?.selectedTab == .women {
+      
       return BrandGender.Women
-    }else{
+    } else {
+      
       return BrandGender.Men
     }
   }
 
-  fileprivate func updateFilterArray(){
-    if headerView?.selectedTab == .men{
+  fileprivate func updateFilterArray() {
+    if headerView?.selectedTab == .men {
       arrFilteredBrandList = arrMenBrandList
-    }else if headerView?.selectedTab == .women{
+    } else if headerView?.selectedTab == .women {
       arrFilteredBrandList = arrWomenBrandList
-    }else{
-      
     }
     IBcollectionViewFeed.reloadData()
   }
   
-  func getFilteredProducts(forFilterType filterType:FilterType,arrProducts:[Product])->[Product]{
+  func getFilteredProducts(forFilterType filterType:FilterType,arrProducts:[Product])->[Product] {
     var filteredProducts = [Product]()
-    if filterType == .men{
-      for product in arrProducts{
-        if product.isMale || product.isUnisex{
+    if filterType == .men {
+      for product in arrProducts {
+        if product.isMale || product.isUnisex {
           filteredProducts.append(product)
         }
       }
-    }else{
-      for product in arrProducts{
-        if product.isFemale || product.isUnisex{
+    } else {
+      for product in arrProducts {
+        if product.isFemale || product.isUnisex {
           filteredProducts.append(product)
         }
       }
@@ -521,8 +521,8 @@
  }
  
  //MARK:- WS Call Methods
- extension FeedVC{
-  func wsCallGetLabels(){
+ extension FeedVC {
+  func wsCallGetLabels() {
     wsCallGetLabelsResetOffset(true)
   }
   
@@ -531,15 +531,14 @@
     
     if headerView?.selectedTab == .men{
       nextPageURL = nextPageURLMen
-    }else if headerView?.selectedTab == .women{
+    } else if headerView?.selectedTab == .women {
       nextPageURL = nextPageURLWomen
-    }else{
     }
     if reset {
-      if headerView?.selectedTab == .men{
+      if headerView?.selectedTab == .men {
         nextPageURLMen = nil
         arrMenBrandList = []
-      }else if headerView?.selectedTab == .women{
+      } else if headerView?.selectedTab == .women {
         nextPageURLWomen = nil
         arrWomenBrandList = []
       }
@@ -547,21 +546,21 @@
       return
     }
     //Internet available
-    if ReachabilitySwift.isConnectedToNetwork() && !isLoading{
+    if ReachabilitySwift.isConnectedToNetwork() && !isLoading {
       isLoading = true
-      if headerView?.selectedTab == .men{
+      if headerView?.selectedTab == .men {
         if self.nextPageURLMen == nil {
           UnlabelLoadingView.sharedInstance.start(view)
-        }else{
+        } else {
           self.bottonActivityIndicator.startAnimating()
         }
-      }else if headerView?.selectedTab == .women{
+      } else if headerView?.selectedTab == .women {
         if self.nextPageURLWomen == nil {
           UnlabelLoadingView.sharedInstance.start(view)
-        }else{
+        } else {
           self.bottonActivityIndicator.startAnimating()
         }
-      }else{
+      } else {
         UnlabelLoadingView.sharedInstance.start(view)
       }
       let fetchBrandsRequestParams            = FetchBrandsRP()
@@ -575,16 +574,15 @@
       fetchBrandsRequestParams.lat            = UnlabelHelper.getDefaultValue("latitude")
       fetchBrandsRequestParams.long           = UnlabelHelper.getDefaultValue("longitude")
       print("dsd sd dsd   ------ \(self.sFilterGender)")
-      if headerView?.selectedTab == .men{
+      if headerView?.selectedTab == .men {
         fetchBrandsRequestParams.nextPageURL = nextPageURLMen
-      }else if headerView?.selectedTab == .women{
+      } else if headerView?.selectedTab == .women {
         fetchBrandsRequestParams.nextPageURL = nextPageURLWomen
-      }else{
       }
       fetchBrandsRequestParams.brandGender = getSelectedGender()
       fetchBrandsRequestParams.sortMode = self.sortMode
       fetchBrandsRequestParams.radius = radius
-      if let selectedTab = headerView?.selectedTab{
+      if let selectedTab = headerView?.selectedTab {
         fetchBrandsRequestParams.selectedTab = selectedTab
       }
       UnlabelAPIHelper.sharedInstance.getAllBrands(fetchBrandsRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
@@ -592,14 +590,13 @@
         UnlabelLoadingView.sharedInstance.stop(self.view)
         self.bottonActivityIndicator.stopAnimating()
         self.arrFilteredBrandList = []
-        if fetchBrandsRequestParams.selectedTab == .men{
+        if fetchBrandsRequestParams.selectedTab == .men {
           self.arrMenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrMenBrandList
           self.nextPageURLMen = meta["next"].stringValue
-        }else if fetchBrandsRequestParams.selectedTab == .women{
+        } else if fetchBrandsRequestParams.selectedTab == .women {
           self.arrWomenBrandList.append(contentsOf: arrBrands)
           self.arrFilteredBrandList = self.arrWomenBrandList
-        }else{
         }
         self.refreshControl.endRefreshing()
         DispatchQueue.main.async(execute: { () -> Void in
@@ -612,9 +609,9 @@
         debugPrint(error)
         self.refreshControl.endRefreshing()
       })
-    }else{
+    } else {
       self.refreshControl.endRefreshing()
-      if !ReachabilitySwift.isConnectedToNetwork(){
+      if !ReachabilitySwift.isConnectedToNetwork() {
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
       }
     }
@@ -622,9 +619,9 @@
  }
  
  //MARK: - Product status Popup view Delegate
- extension FeedVC: LikeFollowPopupviewDelegate{
-  func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect){
-    if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup{
+ extension FeedVC: LikeFollowPopupviewDelegate {
+  func addLikeFollowPopupView(_ followType:FollowType,initialFrame:CGRect) {
+    if let likeFollowPopup:LikeFollowPopup = Bundle.main.loadNibNamed(LIKE_FOLLOW_POPUP, owner: self, options: nil)? [0] as? LikeFollowPopup {
       likeFollowPopup.delegate = self
       likeFollowPopup.followType = followType
       likeFollowPopup.frame = initialFrame
@@ -639,13 +636,13 @@
     }
   }
   
-  func popupDidClickClosePopup(){
+  func popupDidClickClosePopup() {
     debugPrint("close popup")
   }
  }
  
- extension FeedVC: FilterViewDelegate{
-  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, radius: String?, count: String?,genderType: String){
+ extension FeedVC: FilterViewDelegate {
+  func didClickShowLabels(_ category: String?, style: String?, store_type: String?, radius: String?, count: String?,genderType: String) {
     self.sFilterCategory = category!
     self.sFilterStyle = style!
     self.sFilterStoreType = store_type!

@@ -26,16 +26,16 @@ class PickLocationVC: UIViewController {
   var selectedItem = FilterModel()
   var dictSelection:[Int: Bool] = [0:false]
   var categoryStyleType:CategoryStyleEnum!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     IBButtonApply.isHidden = true
     IBTableViewLocation.tableFooterView = UIView()
     setUp()
-    if categoryStyleType == CategoryStyleEnum.location{
+    if categoryStyleType == CategoryStyleEnum.location {
       IBButtonTitle.setTitle("CURRENT LOCATION", for: UIControlState())
       WSGetAllFilterList(ByCategoryType: CategoryStyleEnum.location)
-    }
-    else if categoryStyleType == CategoryStyleEnum.radius{
+    } else if categoryStyleType == CategoryStyleEnum.radius {
       IBButtonTitle.setTitle("LOCATION RADIUS", for: UIControlState())
       getRadiusValues()
     }
@@ -44,25 +44,26 @@ class PickLocationVC: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
   @IBAction func IBActionDismissView(_ sender: AnyObject) {
     self.dismiss(animated: true, completion: nil)
   }
+  
   @IBAction func IBActionApply(_ sender: Any) {
-    if categoryStyleType == CategoryStyleEnum.location{
+    if categoryStyleType == CategoryStyleEnum.location {
       saveInfluencerLocation()
-    }
-    else if categoryStyleType == CategoryStyleEnum.radius{
+    } else if categoryStyleType == CategoryStyleEnum.radius {
       self.delegate?.locationDidSelected(self.selectedItem)
       self.dismiss(animated: true, completion: nil)
     }
   }
   
-  func getRadiusValues(){
+  func getRadiusValues() {
     arFilterMenu = UnlabelHelper.getRadius()
     for (index, _) in self.arFilterMenu.enumerated() {
       self.dictSelection[index] = false
     }
-    if self.arSelectedValues.count > 0  {
+    if self.arSelectedValues.count > 0 {
       if self.arSelectedValues.count == self.arFilterMenu.count - 1 {
         self.dictSelection[0] = true
         for row in 1..<self.arFilterMenu.count {
@@ -83,7 +84,6 @@ class PickLocationVC: UIViewController {
       UnlabelLoadingView.sharedInstance.stop(self.view)
       self.IBTableViewLocation.reloadData()
     }
-    
   }
   
   func saveInfluencerLocation() {
@@ -95,6 +95,7 @@ class PickLocationVC: UIViewController {
     }, failed: { (error) in
     })
   }
+  
   fileprivate func setUp() {
     self.IBTableViewLocation.removeMargines()
     self.IBTableViewLocation.separatorColor =  LIGHT_GRAY_TEXT_COLOR.withAlphaComponent(0.5)
@@ -103,6 +104,7 @@ class PickLocationVC: UIViewController {
     IBTableViewLocation.allowsMultipleSelection = false
     IBTableViewLocation.register(UINib(nibName: "FilterListCell", bundle: nil), forCellReuseIdentifier: "FilterListCell")
   }
+  
   fileprivate func WSGetAllFilterList(ByCategoryType type:CategoryStyleEnum) {
     UnlabelLoadingView.sharedInstance.start(self.view)
     UnlabelAPIHelper.sharedInstance.getLocationList(categoryStyle: CategoryStyleEnum.location,{ (arrCountry:[FilterModel], meta: JSON,arrSpecial) in
@@ -139,10 +141,14 @@ class PickLocationVC: UIViewController {
     })
   }
 }
+
 extension PickLocationVC: UITableViewDelegate , UITableViewDataSource {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    
     return arFilterMenu.count
   }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: "FilterListCell") as! FilterListCell
     let _selection = self.dictSelection[indexPath.row]!
@@ -150,28 +156,28 @@ extension PickLocationVC: UITableViewDelegate , UITableViewDataSource {
     cell.IBimgViewCheckMark.isHidden = !_selection
     cell.IBlblFilterListName.textColor = MEDIUM_GRAY_TEXT_COLOR
     cell.IBlblFilterListName?.text = self.arFilterMenu[indexPath.row].typeName
+    
     return cell
   }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     IBButtonApply.isHidden = false
     arSelectedValues.removeAll()
     self.dictSelection[indexPath.row] = !self.dictSelection[indexPath.row]!
     let indexes = self.dictSelection.filter {$0.1 == true}.map { return $0.0 }
     for index in indexes {
-      if index != indexPath.row{
+      if index != indexPath.row {
         dictSelection[index] = false
-      }else{
+      } else {
         self.selectedItem = arFilterMenu[index]
         arSelectedValues.append(arFilterMenu[index])
       }
     }
-    if arSelectedValues.count > 0{
+    if arSelectedValues.count > 0 {
       IBButtonApply.isHidden = false
-    }else {
+    } else {
       IBButtonApply.isHidden = true
     }
     IBTableViewLocation.reloadData()
   }
-  
-  
 }

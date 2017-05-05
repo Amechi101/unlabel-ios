@@ -10,49 +10,41 @@ import UIKit
 import SwiftyJSON
 
 class DepositEarningVC: UIViewController {
+  
   @IBOutlet weak var IBlabelEarnedAmount: UILabel!
-
+  
   var popupKind : PopupType = .transferFund
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      getInfluencerEarning()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    getInfluencerEarning()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
   func getInfluencerEarning() {
-    
     UnlabelAPIHelper.sharedInstance.getInfluencerEarnings( self, success:{ (
       meta: JSON) in
       print(meta)
       let dictResult: String = meta["results"]["balance"].stringValue
       print(dictResult)
-      
       self.IBlabelEarnedAmount.text = "$" + dictResult
       DispatchQueue.main.async(execute: { () -> Void in
       })
-      
     }, failed: { (error) in
     })
   }
-
   
   @IBAction func IBActionTransferToBank(_ sender: Any) {
-   //  UnlabelHelper.showAlert(onVC: self, title: "Transfer error", message: "No funds to deposit", onOk: {})
-    
-  self.addPopupView(PopupType.transferFund, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
-
-
+    self.addPopupView(PopupType.transferFund, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
   @IBAction func IBActionRemoveBank(_ sender: Any) {
-   self.addPopupView(PopupType.removeBank, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    self.addPopupView(PopupType.removeBank, initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
-    
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
@@ -60,12 +52,10 @@ class DepositEarningVC: UIViewController {
 
 //MARK:- ViewFollowingLabelPopup Methods
 
-extension DepositEarningVC: PopupviewDelegate{
-  /**
-   If user not following any brand, show this view
-   */
-  func addPopupView(_ popupType:PopupType,initialFrame:CGRect){
-    if let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed(VIEW_FOLLOWING_POPUP, owner: self, options: nil)? [0] as? ViewFollowingLabelPopup{
+extension DepositEarningVC: PopupviewDelegate {
+  
+  func addPopupView(_ popupType:PopupType,initialFrame:CGRect) {
+    if let viewFollowingLabelPopup:ViewFollowingLabelPopup = Bundle.main.loadNibNamed(VIEW_FOLLOWING_POPUP, owner: self, options: nil)? [0] as? ViewFollowingLabelPopup {
       viewFollowingLabelPopup.delegate = self
       viewFollowingLabelPopup.popupType = popupType
       popupKind = popupType
@@ -82,7 +72,6 @@ extension DepositEarningVC: PopupviewDelegate{
   }
   
   func popupDidClickClose(){
-    
   }
   
   func popupDidClickGrey(){
@@ -90,9 +79,6 @@ extension DepositEarningVC: PopupviewDelegate{
       let bankConfirmVC = storyboard?.instantiateViewController(withIdentifier: "bankConfirmVC") as? BankConfirmVC
       bankConfirmVC?.isTransfer = true
       navigationController?.pushViewController(bankConfirmVC!, animated: true)
-    }
-    else{
-      
     }
   }
   

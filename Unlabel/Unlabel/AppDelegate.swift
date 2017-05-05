@@ -43,12 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
       let center  = UNUserNotificationCenter.current()
       center.delegate = self
       center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
-        if error == nil{
+        if error == nil {
           UIApplication.shared.registerForRemoteNotifications()
         }
       }
-    }
-    else {
+    } else {
       UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
       UIApplication.shared.registerForRemoteNotifications()
     }
@@ -152,18 +151,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 
 //MARK:- Custom Methods
 extension AppDelegate{
-  fileprivate func setupOnLaunch(_ launchOptions: [AnyHashable: Any]?){
+  fileprivate func setupOnLaunch(_ launchOptions: [AnyHashable: Any]?) {
     configure(launchOptions)
     setupRootVC()
   }
   
-  fileprivate func configure(_ launchOptions: [AnyHashable: Any]?){
+  fileprivate func configure(_ launchOptions: [AnyHashable: Any]?) {
     Fabric.with([Crashlytics.self])
     configureGoogleAnalytics()
     addInternetStateChangeObserver()
   }
   
-  fileprivate func configureGoogleAnalytics(){
+  fileprivate func configureGoogleAnalytics() {
     var configureError:NSError?
     GGLContext.sharedInstance().configureWithError(&configureError)
     assert(configureError == nil, "Error configuring Google services: \(configureError)")
@@ -171,13 +170,13 @@ extension AppDelegate{
     gai?.trackUncaughtExceptions = true
   }
 
-  fileprivate func addInternetStateChangeObserver(){
+  fileprivate func addInternetStateChangeObserver() {
     NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.checkForReachability(_:)), name: NSNotification.Name.reachabilityChanged, object: nil);
     self.reachability = Reachability.forInternetConnection()
     self.reachability.startNotifier();
   }
 
-  func getInfluencerDetails(){
+  func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
       meta: JSON) in
       print(meta)
@@ -191,7 +190,7 @@ extension AppDelegate{
     })
   }
   
-  func getStaticURLs(){
+  func getStaticURLs() {
     UnlabelAPIHelper.sharedInstance.getStaticURLs( { (
       meta: JSON) in
       print(meta)
@@ -202,8 +201,8 @@ extension AppDelegate{
     })
   }
 
-  fileprivate func setupRootVC(){
-    if UnlabelHelper.isUserLoggedIn(){
+  fileprivate func setupRootVC() {
+    if UnlabelHelper.isUserLoggedIn() {
       HTTPCookieStorage.shared.setCookie(getCookie())
       getInfluencerDetails()
       let storyboard:UIStoryboard = UIStoryboard(name: S_NAME_UNLABEL, bundle: nil)
@@ -212,34 +211,34 @@ extension AppDelegate{
         window.rootViewController = rootTabVC
         self.window?.makeKeyAndVisible()
       }
-    }else{
+    } else {
       getStaticURLs()
     }
     setupUnlabelApp()
   }
   
-  func getCookie () -> HTTPCookie{
+  func getCookie () -> HTTPCookie {
     let cookie = HTTPCookie(properties: UserDefaults.standard.object(forKey: "ULCookie") as!  [HTTPCookiePropertyKey : Any])
     
     return cookie!
   }
   
-  fileprivate func goToFeedVC(_ storyboard:UIStoryboard){
+  fileprivate func goToFeedVC(_ storyboard:UIStoryboard) {
     let rootTabVC = storyboard.instantiateViewController(withIdentifier: S_ID_TAB_CONTROLLER) as? UITabBarController
     if let window = self.window {
       window.rootViewController = rootTabVC
     }
   }
 
-  fileprivate func setupUnlabelApp(){
+  fileprivate func setupUnlabelApp() {
     UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
     UINavigationBar.appearance().shadowImage = UIImage()
   }
 
-  func checkForReachability(_ notification:Notification){
-    if let networkReachability = notification.object as? Reachability{
+  func checkForReachability(_ notification:Notification) {
+    if let networkReachability = notification.object as? Reachability {
       let remoteHostStatus = networkReachability.currentReachabilityStatus()
-      if (remoteHostStatus == NotReachable){
+      if (remoteHostStatus == NotReachable) {
         DispatchQueue.main.async(execute: {
           self.delegate?.reachabilityChanged(false)
         })

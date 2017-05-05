@@ -48,58 +48,57 @@ class ChangePasswordVC: UIViewController {
 
 //MARK: -  UITextFieldDelegate Methods
 
-extension ChangePasswordVC: UITextFieldDelegate{
+extension ChangePasswordVC: UITextFieldDelegate {
+  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if textField == IBTextfieldCurrentPassword{
-      if isValidPassword(IBTextfieldCurrentPassword){
+    if textField == IBTextfieldCurrentPassword {
+      if isValidPassword(IBTextfieldCurrentPassword) {
         passwordField = PasswordFieldStatus.filled
         updateCurrentPasswordFields()
         IBTextfieldNewPassword.becomeFirstResponder()
-      }else{
       }
-    }else if textField == IBTextfieldNewPassword{
-      if isValidPassword(IBTextfieldNewPassword){
+    } else if textField == IBTextfieldNewPassword {
+      if isValidPassword(IBTextfieldNewPassword) {
         passwordField = PasswordFieldStatus.filled
         updateNewPasswordFields()
         IBTextfieldReEnterPassword.becomeFirstResponder()
-      }else{
       }
-    }else if textField == IBTextfieldReEnterPassword{
-      if isValidPassword(IBTextfieldReEnterPassword){
+    } else if textField == IBTextfieldReEnterPassword {
+      if isValidPassword(IBTextfieldReEnterPassword) {
         passwordField = PasswordFieldStatus.filled
         updateReEnterPasswordFields()
-      }else{
       }
     }
-       return true
+    
+    return true
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    if textField == IBTextfieldCurrentPassword{
+    if textField == IBTextfieldCurrentPassword {
       passwordField = PasswordFieldStatus.filled
       updateCurrentPasswordFields()
-    }else if textField == IBTextfieldNewPassword{
+    } else if textField == IBTextfieldNewPassword {
       passwordField = PasswordFieldStatus.filled
       updateNewPasswordFields()
-    }else if textField == IBTextfieldReEnterPassword{
+    } else if textField == IBTextfieldReEnterPassword {
       passwordField = PasswordFieldStatus.filled
       updateReEnterPasswordFields()
     }
-    
   }
+  
   func textFieldDidEndEditing(_ textField: UITextField) {
-    if textField == IBTextfieldCurrentPassword{
+    if textField == IBTextfieldCurrentPassword {
       if IBTextfieldCurrentPassword.text == "" {
         passwordField = PasswordFieldStatus.empty
         updateCurrentPasswordFields()
       }
-    }else if textField == IBTextfieldNewPassword{
-      if IBTextfieldNewPassword.text == ""{
+    } else if textField == IBTextfieldNewPassword {
+      if IBTextfieldNewPassword.text == "" {
         passwordField = PasswordFieldStatus.empty
         updateNewPasswordFields()
       }
-    }else if textField == IBTextfieldReEnterPassword{
-      if IBTextfieldReEnterPassword.text == ""{
+    } else if textField == IBTextfieldReEnterPassword {
+      if IBTextfieldReEnterPassword.text == "" {
         passwordField = PasswordFieldStatus.empty
         updateReEnterPasswordFields()
       }
@@ -112,27 +111,27 @@ extension ChangePasswordVC: UITextFieldDelegate{
 extension ChangePasswordVC
 {
   @IBAction func IBActionUpdate(_ sender: Any) {
-    if !isValidPassword(IBTextfieldCurrentPassword){
+    if !isValidPassword(IBTextfieldCurrentPassword) {
+      
       return
-    }
-    else if !isValidPassword(IBTextfieldNewPassword){
+    } else if !isValidPassword(IBTextfieldNewPassword) {
+      
       return
-    }
-    else if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text{
+    } else if IBTextfieldNewPassword.text == IBTextfieldReEnterPassword.text {
       saveInfluencerProfileInfo()
-    }
-    else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide matching passwords", onOk: { () -> () in })
     }
   }
+  
   @IBAction func IBActionEditingChanged(_ sender: Any) {
     if (IBTextfieldCurrentPassword.text != "" && IBTextfieldNewPassword.text != "" && IBTextfieldReEnterPassword.text != "") {
       IBButtonUpdate.isHidden = false
-    }
-    else{
+    } else {
       IBButtonUpdate.isHidden = true
     }
   }
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
@@ -140,9 +139,9 @@ extension ChangePasswordVC
 
 //MARK:- Custom Methods
 
-extension ChangePasswordVC
-{
-  func wsLogout(){
+extension ChangePasswordVC {
+  
+  func wsLogout() {
     UnlabelAPIHelper.sharedInstance.logoutFromUnlabel(self, success:
       { (json: JSON) in
         print(json)
@@ -150,10 +149,8 @@ extension ChangePasswordVC
     },failed: { (error) in
       UnlabelHelper.showAlert(onVC: self, title: S_NAME_UNLABEL, message: sSOMETHING_WENT_WRONG, onOk: { () -> () in })
     })
-    
   }
 
-  
   func saveInfluencerProfileInfo() {
     var passParams: [String: String] = [:]
     passParams["current_password"] = IBTextfieldCurrentPassword.text
@@ -173,19 +170,16 @@ extension ChangePasswordVC
           window.rootViewController!.view.layoutIfNeeded()
         }, completion: nil)
       }
-
-     // _ = self.navigationController?.popViewController(animated: true)
     }, failed: { (error) in
     })
   }
   
   func updateCurrentPasswordFields(){
-    if passwordField == PasswordFieldStatus.filled{
+    if passwordField == PasswordFieldStatus.filled {
       IBLabelCurrentPassword.textColor = DARK_GRAY_COLOR
       IBTextfieldCurrentPassword.textColor = DARK_GRAY_COLOR
       IBViewCurrentPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
+    } else {
       IBLabelCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBTextfieldCurrentPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBViewCurrentPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
@@ -193,12 +187,11 @@ extension ChangePasswordVC
   }
   
   func updateNewPasswordFields(){
-    if passwordField == PasswordFieldStatus.filled{
+    if passwordField == PasswordFieldStatus.filled {
       IBLabelNewPassword.textColor = DARK_GRAY_COLOR
       IBTextfieldNewPassword.textColor = DARK_GRAY_COLOR
       IBViewNewPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
+    } else {
       IBLabelNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBTextfieldNewPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBViewNewPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
@@ -210,33 +203,27 @@ extension ChangePasswordVC
       IBLabelReEnterPassword.textColor = DARK_GRAY_COLOR
       IBTextfieldReEnterPassword.textColor = DARK_GRAY_COLOR
       IBViewReEnterPassword.backgroundColor = DARK_GRAY_COLOR
-    }
-    else{
+    } else {
       IBLabelReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBTextfieldReEnterPassword.textColor = LIGHT_GRAY_TEXT_COLOR
       IBViewReEnterPassword.backgroundColor = LIGHT_GRAY_TEXT_COLOR
     }
   }
 
-  fileprivate func isValidPassword(_ IBTextFeild: UITextField)->Bool{
-    
-    if let iCharacters = IBTextFeild.text?.characters.count, iCharacters > 0{
-      if let pwCharacters = IBTextFeild.text?.characters.count, pwCharacters < 8{
+  fileprivate func isValidPassword(_ IBTextFeild: UITextField)->Bool {
+    if let iCharacters = IBTextFeild.text?.characters.count, iCharacters > 0 {
+      if let pwCharacters = IBTextFeild.text?.characters.count, pwCharacters < 8 {
         UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Password too short at least 8 characters", onOk: { () -> () in })
         
         return false
-      }
-      else{
+      } else {
         
         return true
       }
-      
-    }
-    else{
+    } else {
       UnlabelHelper.showAlert(onVC: self, title: "Password Error", message: "Please provide password to proceed", onOk: { () -> () in })
+      
       return false
     }
   }
-
-
 }

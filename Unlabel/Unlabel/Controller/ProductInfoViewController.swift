@@ -22,7 +22,7 @@ class ProductInfoViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if selectedProduct == nil{
+    if selectedProduct == nil {
       selectedProduct = Product()
     }
     

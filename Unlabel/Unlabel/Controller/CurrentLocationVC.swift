@@ -26,15 +26,17 @@ class CurrentLocationVC: UIViewController {
   var lat: String = ""
   var lon: String = ""
   var location_id: String = ""
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfluencerLocation()
-    
     UINavigationBar.appearance().tintColor = MEDIUM_GRAY_TEXT_COLOR
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
   func saveInfluencerLocation() {
     let params: [String: String] = ["location_name":placeName,"id":location_id]
     print(params)
@@ -47,6 +49,7 @@ class CurrentLocationVC: UIViewController {
       }, failed: { (error) in
     })
   }
+  
   func getInfluencerLocation() {
     UnlabelAPIHelper.sharedInstance.getInfluencerLocation( success:{ (
       meta: JSON) in
@@ -61,20 +64,20 @@ class CurrentLocationVC: UIViewController {
     }, failed: { (error) in
     })
   }
+  
   @IBAction func IBActionUpdate(_ sender: Any) {
     print(self.countryID)
-    if self.countryID != "US"{
-      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.countryID != ""{
+    if self.countryID != "US" {
+      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.countryID != "" {
+        saveInfluencerLocation()
+      }
+    } else {
+      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.stateID != "" || self.countryID != "" {
         saveInfluencerLocation()
       }
     }
-    else{
-      if !(self.IBButtonSelectCity.titleLabel?.text?.isEmpty)! || self.stateID != "" || self.countryID != ""{
-        saveInfluencerLocation()
-      }
-    }
-    
   }
+  
   @IBAction func IBActionSelectCurrentLocation(_ sender: Any) {
     let filter = GMSAutocompleteFilter()
     filter.type = .establishment
@@ -84,13 +87,13 @@ class CurrentLocationVC: UIViewController {
     autocompleteController.autocompleteFilter = filter
     autocompleteController.delegate = self
     present(autocompleteController, animated: true, completion: nil)
-
-
   }
+  
   @IBAction func IBActionSelectCountry(_ sender: Any) {
     slideUpMenu = SlideUpView.country
     self.addSortPopupView(SlideUpView.country,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+  
   @IBAction func IBActionSelectState(_ sender: Any) {
     slideUpMenu = SlideUpView.state
     self.addSortPopupView(SlideUpView.state,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -101,9 +104,9 @@ class CurrentLocationVC: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "InfluencerCurrentLocation"{
-      if let navViewController:UINavigationController = segue.destination as? UINavigationController{
-        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC{
+    if segue.identifier == "InfluencerCurrentLocation" {
+      if let navViewController:UINavigationController = segue.destination as? UINavigationController {
+        if let pickLocationVC:PickLocationVC = navViewController.viewControllers[0] as? PickLocationVC {
           pickLocationVC.categoryStyleType = CategoryStyleEnum.location
           pickLocationVC.delegate = self
         }
@@ -111,22 +114,23 @@ class CurrentLocationVC: UIViewController {
     }
   }
 }
-extension CurrentLocationVC: PickLocationDelegate{
-  func locationDidSelected(_ selectedItem: FilterModel){
+
+extension CurrentLocationVC: PickLocationDelegate {
+  func locationDidSelected(_ selectedItem: FilterModel) {
     print(selectedItem)
    // self.IBButtonSelectLocation.setTitle(selectedItem.typeName, for: .normal)
     getInfluencerLocation()
   }
 }
+
 extension CurrentLocationVC: EnterCityVCDelegate {
-  func popupDidClickUpdate(_ selectedCity: String){
+  func popupDidClickUpdate(_ selectedCity: String) {
     print(selectedCity)
     self.IBButtonSelectCity.setTitle(selectedCity, for: .normal)
   }
 }
 
 extension CurrentLocationVC: GMSAutocompleteViewControllerDelegate {
-  
   // Handle the user's selection.
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
     print("Place formattedAddress: \(place.formattedAddress!)")
@@ -137,7 +141,6 @@ extension CurrentLocationVC: GMSAutocompleteViewControllerDelegate {
     lat = "\(place.coordinate.latitude)"
     lon = "\(place.coordinate.longitude)"
     print("Place formattedAddress: \(placeName)")
-   
     dismiss(animated: true, completion: nil)
     saveInfluencerLocation()
   }
@@ -163,20 +166,18 @@ extension CurrentLocationVC: GMSAutocompleteViewControllerDelegate {
   
 }
 
-
 //MARK: Sort Popup methods
 
-extension CurrentLocationVC: SortModePopupViewDelegate{
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect){
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView{
+extension CurrentLocationVC: SortModePopupViewDelegate {
+  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
       viewSortPopup.delegate = self
       viewSortPopup.slideUpViewMode = slideUpView
       viewSortPopup.frame = initialFrame
       
-      if slideUpMenu == SlideUpView.country{
+      if slideUpMenu == SlideUpView.country {
         viewSortPopup.popupTitle = "SELECT YOUR COUNTRY"
-      }
-      else if slideUpMenu == SlideUpView.state{
+      } else if slideUpMenu == SlideUpView.state {
         viewSortPopup.popupTitle = "SELECT YOUR STATE"
       }
       viewSortPopup.alpha = 0
@@ -189,34 +190,32 @@ extension CurrentLocationVC: SortModePopupViewDelegate{
       viewSortPopup.updateView()
     }
   }
+  
   func popupDidClickCloseButton(){
-    
   }
+  
   func popupDidClickDone(_ selectedItem: UnlabelStaticList){
     print(self.countryID)
     //  print(sortMode)
     sortModeValue = selectedItem.uName
-    if slideUpMenu == SlideUpView.country{
+    if slideUpMenu == SlideUpView.country {
       countryID = selectedItem.uId
-      if self.countryID != "US"{
+      if self.countryID != "US" {
         stateID = ""
         self.IBButtonSelectState.isEnabled = false
         self.IBButtonSelectState.setTitleColor(EXTRA_LIGHT_GRAY_TEXT_COLOR, for: .normal)
         self.IBViewStateContainer.backgroundColor = EXTRA_LIGHT_GRAY_TEXT_COLOR
-      }
-      else{
+      } else {
         self.IBButtonSelectState.isEnabled = true
         self.IBViewStateContainer.backgroundColor = LIGHT_GRAY_BORDER_COLOR
         self.IBButtonSelectState.setTitleColor(MEDIUM_GRAY_TEXT_COLOR, for: .normal)
       }
       IBButtonSelectCountry.setTitle(sortModeValue, for: .normal)
-    }
-    else if slideUpMenu == SlideUpView.state{
+    } else if slideUpMenu == SlideUpView.state {
       print(self.countryID)
-      if self.countryID == "US"{
+      if self.countryID == "US" {
         stateID = selectedItem.uId
-      }
-      else{
+      } else {
         stateID = ""
       }
       IBButtonSelectState.setTitle(sortModeValue, for: .normal)

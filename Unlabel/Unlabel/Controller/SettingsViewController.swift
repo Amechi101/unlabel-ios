@@ -10,25 +10,26 @@ import UIKit
 import MessageUI
 
 class SettingsViewController: UITableViewController,MFMailComposeViewControllerDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      self.tableView.tableFooterView = UIView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.tableView.tableFooterView = UIView()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - Table view data source
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    if indexPath.row == 2{
+    if indexPath.row == 2 {
       contachUsAction()
     }
   }
+  
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
   }
@@ -60,6 +61,6 @@ class SettingsViewController: UITableViewController,MFMailComposeViewControllerD
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true, completion: nil)
   }
-
-
+  
+  
 }

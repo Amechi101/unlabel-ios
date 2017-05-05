@@ -22,7 +22,7 @@ class RentLiveProductDescription: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if selectedProduct == nil{
+    if selectedProduct == nil {
       selectedProduct = Product()
     }
     IBProductDescription.text = selectedProduct?.ProductDescription
