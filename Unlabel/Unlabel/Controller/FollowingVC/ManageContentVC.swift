@@ -260,7 +260,7 @@ extension ManageContentVC: UICollectionViewDataSource {
             if (type == SDImageCacheType.none) {
               productCell.IBimgProductImage.alpha = 0;
               UIView.animate(withDuration: 0.35, animations: {
-                productCell.IBimgProductImage.alpha = 1;
+                productCell.IBimgProductImage.alpha = 1; 
               })
             } else {
               productCell.IBimgProductImage.alpha = 1;

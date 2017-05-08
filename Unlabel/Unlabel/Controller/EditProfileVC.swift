@@ -52,7 +52,7 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     } else {
       saveInfluencerProfileInfo()
     }
-//    self.addLikeFollowPopupView(FollowType.profileUpdate, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+//     self.addLikeFollowPopupView(FollowType.profileUpdate, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   @IBAction func IBActionBack(_ sender: Any) {

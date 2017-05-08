@@ -164,7 +164,7 @@ class RentOrLiveProductDetailVC: UIViewController {
   }
   
   @IBAction func IBActionShare(_ sender: UIButton) {
-    self.share(shareText: "Check out \(selectedProduct?.ProductName) on Unlabel. https://unlabel.us/", shareImage: productImage)
+    self.share(shareText: "Check out \(selectedProduct?.ProductName ?? "this") on Unlabel. https://unlabel.us/", shareImage: productImage)
   }
   
   fileprivate func share(shareText:String?,shareImage:UIImage?) {

@@ -21,11 +21,13 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   //MARK: -  IBOutlets,vars,constants
   
   @IBOutlet weak var IBButtonMenswear: UIButton!
+  @IBOutlet weak var IBButtonLocation: UIButton!
+  
   @IBOutlet weak var IBButtonWomenswear: UIButton!
   @IBOutlet weak var IBButtonBrandCategory: UIButton!
   @IBOutlet weak var IBButtonStyle: UIButton!
-  @IBOutlet weak var IBButtonLocation: UIButton!
   @IBOutlet weak var IBSearchBar: UISearchBar!
+  
   var delegate:FilterViewDelegate?
   var selectedFilterType:FilterType = .unknown
   fileprivate var arSelectedCategory:[String] = []
