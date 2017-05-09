@@ -93,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
   
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     debugPrint("------ \(userInfo)")
-    debugPrint("****** \(userInfo["aps"])")
   }
   
   // MARK: - Core Data stack

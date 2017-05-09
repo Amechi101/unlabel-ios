@@ -146,9 +146,50 @@ class UnlabelAPIHelper{
                 if let slug = thisBrand[PRM_SLUG] as? String{
                     brand.Slug = slug
                 }
-                
               
+              if let rentalInfo: [AnyHashable: Any] = thisBrand["rental_info"] as? [AnyHashable: Any] {
+                let rental = RentalInfo()
+                if let country = rentalInfo["country"] as? String{
+                  rental.Country = country
+                }
+                if let city = rentalInfo["city"] as? String{
+                  rental.City = city
+                }
+                if let contact_number = rentalInfo["contact_number"] as? String{
+                  rental.ContactNumber = contact_number
+                }
+                if let post_box = rentalInfo["post_box"] as? String{
+                  rental.AptUnit = post_box
+                }
+                if let zipcode = rentalInfo["zipcode"] as? String{
+                  rental.ZipCode = zipcode
+                }
+                if let state = rentalInfo["state"] as? String{
+                  rental.State = state
+                }
+                var start:String = (rentalInfo["start_time"]as! String)
+                if start.characters.first == "0"{
+                  start.remove(at: start.startIndex)
+                }
+                let startTime: String = start.replacingOccurrences(of: ":00", with: "") + (rentalInfo["start_time_period"] as! String).lowercased()
                 
+                var end:String = (rentalInfo["end_time"] as! String)
+                if end.characters.first == "0"{
+                  end.remove(at: end.startIndex)
+                }
+                let endTime: String = end.replacingOccurrences(of: ":00", with: "") + (rentalInfo["end_time_period"] as! String).lowercased()
+                
+                if let days: [String] = rentalInfo["day"] as? [String]{
+                  for thisDay in days{
+                    rental.PickUpTime.append(thisDay+": " + startTime + " - " + endTime)
+                  }
+                }
+                brand.rentalInfo = rental
+              }
+
+
+              
+              
                 //                    if let createdDate = thisBrand[PRM_CREATED] as? String{
                 //                        brand.CreatedDateString = createdDate
                 //

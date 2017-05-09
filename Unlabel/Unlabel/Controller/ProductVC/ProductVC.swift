@@ -95,7 +95,6 @@ extension ProductVC:UICollectionViewDelegate {
     if nextPageURL?.characters.count == 0 {
       return CGSize.zero
     } else {
-      
       return CGSize(width: collectionView.frame.width, height: fFooterHeight)
     }
   }
@@ -117,27 +116,21 @@ extension ProductVC:UICollectionViewDelegate {
 //MARK:- UICollectionViewDataSource Methods
 extension ProductVC:UICollectionViewDataSource{
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    
     return 1
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-    
     return arrProducts.count + 3
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
     if indexPath.row == 0 {
-      
       return getProductHeaderCell(forIndexPath: indexPath)
     } else if indexPath.row == 1 {
-      
       return getProductDescCell(forIndexPath: indexPath)
     } else if indexPath.row == 2 {
-      
       return getProductSortCell(forIndexPath: indexPath)
     } else {
-      
       return getProductCell(forIndexPath: indexPath)
     }
   }
@@ -390,7 +383,7 @@ extension ProductVC {
   @IBAction func IBActionViewRentalInfo(_ sender: AnyObject) {
     let rentalInfoVC: ViewRentalInfoVC = self.storyboard?.instantiateViewController(withIdentifier: S_ID_Rental_Info_VC) as! ViewRentalInfoVC
    // cur_rentalInfo = arrFilteredBrandList[sender.tag].rentalInfo
-    rentalInfoVC.rentalInfo = RentalInfo()
+    rentalInfoVC.rentalInfo = selectedBrand.rentalInfo
     self.present(rentalInfoVC, animated: true, completion: nil)
   }
 

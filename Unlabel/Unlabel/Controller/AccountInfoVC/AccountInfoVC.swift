@@ -28,9 +28,9 @@ class AccountInfoVC: UITableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     getInfluencerDetails()
-    if let _ = self.navigationController {
-      navigationController?.interactivePopGestureRecognizer!.delegate = self
-    }
+//    if let _ = self.navigationController {
+//      navigationController?.interactivePopGestureRecognizer!.delegate = self
+//    }
   }
   
   override func didReceiveMemoryWarning() {
