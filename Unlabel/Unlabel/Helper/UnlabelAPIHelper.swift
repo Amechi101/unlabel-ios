@@ -1190,6 +1190,26 @@ class UnlabelAPIHelper{
         }
     }
   
+  func saveInfluencerBio(_ bio: String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+    let params: [String: String] = ["bio":bio]
+    let requestURL:String?
+    requestURL = v4BaseUrl + "api_v2/influencer_image_bio/"
+    //  print(requestURL!)
+    if let requestURLObj = requestURL{
+      
+      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+        switch response.result {
+          
+        case .success(let data):
+          let json = JSON(data)
+          success(json)
+        case .failure(let error):
+          failed(error as NSError)
+        }
+      }
+    }
+  }
+  
   func getInfluencerEarnings(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_get_balance/"
@@ -1305,17 +1325,13 @@ class UnlabelAPIHelper{
     
     func saveProfileInfo(_ user:User,onVC:UIViewController, success:@escaping (_ json:JSON,_ statusCode: Int)->(),failed:@escaping (_ error:NSError)->()){
         let requestURL:String?
-        let params = ["contact_number":user.contactNumber,"email":user.email,"first_name":user.firstname,"last_name":user.lastname]
+        let params = ["contact_number": user.contactNumber,"email": user.email,"first_name": user.firstname,"last_name": user.lastname,"influencer_industry": user.iccIndustry]
         requestURL = v4BaseUrl + "api_v2/influencer_profile_update/"
         print(requestURL!)
         if let requestURLObj = requestURL{
-            
             Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
-                
-                
                 print(response.result)
                 switch response.result {
-                    
                 case .success(let data):
                     let json = JSON(data)
                     success(json,(response.response?.statusCode)!)
@@ -1481,6 +1497,7 @@ class UnlabelAPIHelper{
         if let requestURLObj = requestURL{
             
             Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+            
                 switch response.result {
                     
                 case .success(let data):

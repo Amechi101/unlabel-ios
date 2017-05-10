@@ -42,8 +42,6 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
   
   override func didReceiveMemoryWarning() {
@@ -81,61 +79,18 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   }
   
   @IBAction func IBActionUpdate(_ sender: Any) {
-    let imageName: String = UnlabelHelper.getDefaultValue("influencer_auto_id")! + UnlabelHelper.getcurrentDateTime() + ".jpeg"
-    let parameters = [
-      "image": imageName,"bio": IBTextViewNote.text!
-    ]
-    let image = IBImageSelected.image
-    Alamofire.upload(multipartFormData: {
-      multipartFormData in
-      if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
-        multipartFormData.append(imageData, withName: "image", fileName: imageName, mimeType: "image/jpeg")
-      }
-      for (key, value) in parameters {
-        multipartFormData.append(((value as Any) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-      }
-    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_image_bio/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
-      encodingResult in
-      switch encodingResult {
-      case .success(let upload, _, _):
-        upload.responseJSON {
-          response in
-          switch response.result {
-          case .success(let data):
-            let json = JSON(data)
-            self.IBButtonUpdate.isHidden = true
-            print("json: \(json)")
-            _ = self.navigationController?.popViewController(animated: true)
-          case .failure(let error):
-            print("error: \(error.localizedDescription)")
-          }
-        }
-      case .failure(let encodingError):
-        print(encodingError)
-      }
+    
+    UnlabelAPIHelper.sharedInstance.saveInfluencerBio(self.IBTextViewNote.text ,onVC: self, success:{ (
+      meta: JSON) in
+      self.IBButtonUpdate.isHidden = true
+      self.IBTextViewNote.resignFirstResponder()
+    }, failed: { (error) in
     })
+
   }
   
   @IBAction func IBActionBack(_ sender: Any) {
     _ = self.navigationController?.popViewController(animated: true)
-  }
-  
-  //MARK: -  Keyboard show/hide methods
-  
-  func keyboardWillShow(notification: NSNotification) {
-    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-      if self.views.frame.origin.y == 0 {
-        self.views.frame.origin.y -= keyboardSize.height
-      }
-    }
-  }
-  
-  func keyboardWillHide(notification: NSNotification) {
-    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-      if self.views.frame.origin.y != 0 {
-        self.views.frame.origin.y += keyboardSize.height
-      }
-    }
   }
   
   //MARK: -  UITextView delegate methods

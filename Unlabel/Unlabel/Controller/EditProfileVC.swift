@@ -9,6 +9,7 @@
 import UIKit
 import TPKeyboardAvoiding
 import SwiftyJSON
+import Alamofire
 
 class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
   
@@ -78,9 +79,29 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         self.IBtextfieldLastname.text = meta["last_name"].stringValue
         self.IBtextfieldEmail.text = meta["email"].stringValue
         self.IBTextfieldContactNumber.text = meta["contact_number"].stringValue
+        
+        if meta["influencer_industry"].null != NSNull(){
+          self.IBInfluencerKind.setTitle(meta["influencer_industry"].stringValue, for: .normal)
+        }
+        if meta["image"].null != NSNull(){
+          self.IBProfileImage.sd_setImage(with: URL(string: meta["image"].stringValue))
+        }
+        if meta["ucc_handle"].null != NSNull(){
+          self.IBTextfieldUsername.text = meta["ucc_handle"].stringValue
+        }
       })
     }, failed: { (error) in
     })
+  }
+
+  func getCSRFToken() -> String {
+    if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
+      
+      return xcsrf
+    } else {
+      
+      return ""
+    }
   }
   
   func saveInfluencerProfileInfo() {
@@ -88,18 +109,56 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     userParam.firstname = IBTextfieldFullname.text!
     userParam.lastname = IBtextfieldLastname.text!
     userParam.email = IBtextfieldEmail.text!
+    userParam.username = IBTextfieldUsername.text!
     userParam.contactNumber = IBTextfieldContactNumber.text!
-    UnlabelAPIHelper.sharedInstance.saveProfileInfo( userParam,onVC: self, success:{ (
-      meta: JSON,statusCode) in
-      print(statusCode)
-      if statusCode == 200 {
-        _ = self.navigationController?.popViewController(animated: true)
-      } else if statusCode == 203 {
-        UnlabelHelper.showAlert(onVC: self, title: "Error", message: meta["message"].stringValue, onOk: {})
+    userParam.iccIndustry = IBInfluencerKind.title(for: .normal)!
+//    UnlabelAPIHelper.sharedInstance.saveProfileInfo( userParam,onVC: self, success:{ (
+//      meta: JSON,statusCode) in
+//      print(statusCode)
+//      if statusCode == 200 {
+//        _ = self.navigationController?.popViewController(animated: true)
+//      } else if statusCode == 203 {
+//        UnlabelHelper.showAlert(onVC: self, title: "Error", message: meta["message"].stringValue, onOk: {})
+//      }
+//      print(meta)
+//    }, failed: { (error) in
+//    })
+    let imageName: String =  UnlabelHelper.getcurrentDateTime() + ".jpeg"
+
+    let parameters = ["image": imageName,"contact_number": userParam.contactNumber,"email": userParam.email,"first_name": userParam.firstname,"last_name": userParam.lastname,"influencer_industry": userParam.iccIndustry,"ucc_handle":userParam.username]
+    let image = IBProfileImage.image
+    
+    print(parameters)
+    print(image)
+    Alamofire.upload(multipartFormData: {
+      multipartFormData in
+      if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
+        multipartFormData.append(imageData, withName: "image", fileName: imageName, mimeType: "image/jpeg")
       }
-      print(meta)
-    }, failed: { (error) in
+      for (key, value) in parameters {
+        multipartFormData.append(((value as Any) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+      }
+    }, usingThreshold: UInt64.init() , to: v4BaseUrl + "api_v2/influencer_profile_update/", method: .post, headers: ["X-CSRFToken":getCSRFToken()], encodingCompletion: {
+      encodingResult in
+      switch encodingResult {
+      case .success(let upload, _, _):
+        upload.responseJSON {
+          response in
+          switch response.result {
+          case .success(let data):
+            let json = JSON(data)
+          //  self.IBButtonUpdate.isHidden = true
+            print("json: \(json)")
+            _ = self.navigationController?.popViewController(animated: true)
+          case .failure(let error):
+            print("error: \(error.localizedDescription)")
+          }
+        }
+      case .failure(let encodingError):
+        print(encodingError)
+      }
     })
+
   }
 
   //MARK: -  Image picker view methods

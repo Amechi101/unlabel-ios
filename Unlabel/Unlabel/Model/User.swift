@@ -20,4 +20,5 @@ class User: NSObject {
   var contactNumber:String = String()
   var username:String = String()
   var iccID:String = String()
+  var iccIndustry:String = String()
 }

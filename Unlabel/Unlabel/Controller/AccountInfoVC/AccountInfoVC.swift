@@ -19,6 +19,7 @@ class AccountInfoVC: UITableViewController {
   @IBOutlet weak var IBlblEmailOrPhone: UILabel!
   @IBOutlet var IBtblAccountInfo: UITableView!
   @IBOutlet weak var IBProfileImage: UIImageView!
+  @IBOutlet weak var IBButtonSelectLocation: UIButton!
   
   //MARK:- VC Lifecycle
   
@@ -70,13 +71,22 @@ extension AccountInfoVC {
   func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
       meta: JSON) in
+      
+      print(meta)
       UnlabelHelper.setDefaultValue(meta["email"].stringValue, key: "influencer_email")
       UnlabelHelper.setDefaultValue(meta["last_name"].stringValue, key: "influencer_last_name")
       UnlabelHelper.setDefaultValue(meta["auto_id"].stringValue, key: "influencer_auto_id")
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
       UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
+ //     UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "influencer_location")
       DispatchQueue.main.async(execute: { () -> Void in
+        
+        if let location = meta["location"] as? [AnyHashable: Any] {
+          if let display_string = location["display_string"] as? String{
+            self.IBButtonSelectLocation.setTitle(display_string, for: .normal)
+          }
+        }
         self.IBlblLoggedInWith.text = "ICC ID: " + UnlabelHelper.getDefaultValue("influencer_auto_id")!
         self.IBlblUserName.text =  UnlabelHelper.getDefaultValue("influencer_first_name")! + " " + UnlabelHelper.getDefaultValue("influencer_last_name")!
         self.IBlblEmailOrPhone.text = UnlabelHelper.getDefaultValue("influencer_email")!
