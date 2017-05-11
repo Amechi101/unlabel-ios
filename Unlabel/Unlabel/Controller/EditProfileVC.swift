@@ -160,6 +160,17 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     })
 
   }
+  
+  func getUccAvailability() {
+    UnlabelAPIHelper.sharedInstance.getUccAvailability( self.IBTextfieldUsername.text!, success:{ (
+      meta: JSON,statusCode:Int) in
+      print(meta,statusCode)
+      if statusCode == 409 {
+        UnlabelHelper.showAlert(onVC: self, title: "Already in Use", message: "Please select another UCC handle ", onOk: {})
+      }
+    }, failed: { (error) in
+    })
+  }
 
   //MARK: -  Image picker view methods
   
@@ -219,6 +230,11 @@ extension EditProfileVC: UITextFieldDelegate {
       UnlabelHelper.showAlert(onVC: self, title: "Email Error", message: "Please provide your email to proceed", onOk: { () -> () in })
      
       return false
+    }
+  }
+  func textFieldDidEndEditing(_ textField: UITextField){
+    if textField == IBTextfieldUsername {
+      getUccAvailability()
     }
   }
 }

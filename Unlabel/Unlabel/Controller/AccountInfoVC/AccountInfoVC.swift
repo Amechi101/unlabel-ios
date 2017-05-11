@@ -25,6 +25,7 @@ class AccountInfoVC: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    getInfluencerLocation()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +69,16 @@ extension AccountInfoVC {
 
 extension AccountInfoVC {
   
+  func getInfluencerLocation() {
+    UnlabelAPIHelper.sharedInstance.getInfluencerStyle( self, success:{ (
+      meta: JSON) in
+      print(meta)
+   //   var arrStates = [FilterModel]()
+   //   let state = FilterModel()
+    }, failed: { (error) in
+    })
+  }
+
   func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
       meta: JSON) in

@@ -18,4 +18,5 @@ class RentalInfo: NSObject {
   var State:String = String()
   var ZipCode:String = String()
   var PickUpTime:[String] = []
+  var weekIndices:[Int] = []
 }
