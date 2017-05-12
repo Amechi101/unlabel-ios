@@ -14,8 +14,6 @@ import SDWebImage
 class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
   
   //MARK: -  IBOutlets,vars,constants
-  
-  @IBOutlet var IBImageSelected: UIImageView!
   @IBOutlet var IBTextViewNote: UITextView!
   @IBOutlet weak var IBButtonUpdate: UIButton!
   @IBOutlet var views: UIView!
@@ -23,10 +21,8 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   var noteText : String = ""
   
   //MARK: -  View lifecycle methods
-  
    override func viewDidLoad() {
     super.viewDidLoad()
-    IBImageSelected.clipsToBounds = true
     IBTextViewNote.delegate = self
     IBButtonUpdate.isHidden = true
     placeholderLabel = UILabel()
@@ -49,13 +45,11 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   }
   
   //MARK: -  Custom methods
-  
   func getInfluencerProfileBio() {
     UnlabelAPIHelper.sharedInstance.getInfluencerBio( self, success:{ (
       meta: JSON) in
       print(meta)
       DispatchQueue.main.async(execute: { () -> Void in
-        self.IBImageSelected.sd_setImage(with: URL(string: meta["image"].stringValue))
         self.IBTextViewNote.text = meta["bio"].stringValue
         self.placeholderLabel.isHidden = !self.IBTextViewNote.text.isEmpty
       })
@@ -65,16 +59,13 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   
   func getCSRFToken() -> String {
     if let xcsrf:String =  UnlabelHelper.getDefaultValue("X-CSRFToken")! as String{
-      
       return xcsrf
     } else {
-      
       return ""
     }
   }
   
   //MARK: -  IBAction methods
-  
   @IBAction func IBActionChangeImage(_ sender: Any) {
   }
   
@@ -86,7 +77,6 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
       self.IBTextViewNote.resignFirstResponder()
     }, failed: { (error) in
     })
-
   }
   
   @IBAction func IBActionBack(_ sender: Any) {
@@ -94,7 +84,6 @@ class EditProfileBioVC: UIViewController,UIImagePickerControllerDelegate,UINavig
   }
   
   //MARK: -  UITextView delegate methods
-  
   func textViewDidBeginEditing(_ textView: UITextView) {
     IBTextViewNote.textColor = DARK_GRAY_COLOR
   }

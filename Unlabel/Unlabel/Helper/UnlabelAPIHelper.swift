@@ -1393,7 +1393,7 @@ class UnlabelAPIHelper{
     }
   }
   
-  func getInfluencerStyle(_ onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func getInfluencerStyle(_ onVC:UIViewController, success:@escaping ([FilterModel],_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_profile_styles/"
     //  print(requestURL!)
@@ -1404,7 +1404,11 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-          success(json)
+          if let arrStates = self.getStyleModels(fromJSON: json){
+            success(arrStates, json)
+          }else{
+            failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+          }
         case .failure(let error):
           failed(error as NSError)
         }
@@ -1412,16 +1416,15 @@ class UnlabelAPIHelper{
     }
   }
   
-  func saveInfluencerStyle(_ params:[String:String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func saveInfluencerStyle(_ ids:[String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_profile_styles/"
-    print(params)
     if let requestURLObj = requestURL{
       
-      Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
+      Alamofire.request(requestURLObj, method: .post, parameters: ["styles":ids], encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
         
         
-        print(response.result)
+        print(response)
         switch response.result {
           
         case .success(let data):
@@ -1716,6 +1719,30 @@ class UnlabelAPIHelper{
     }
   }
   
+  func getStyleModels(fromJSON json:JSON)->[FilterModel]?{
+    var arrStates = [FilterModel]()
+    if let stateList = json.dictionaryObject!["style_data"]{
+      for (_,thisState) in (stateList as! [[String:AnyObject]]).enumerated(){
+        let state = FilterModel()
+        if let stateName:String = thisState["name"] as? String{
+          state.typeName = stateName
+        }
+        if let stateID:NSNumber = thisState["pk"] as? NSNumber{
+          state.typeId = "\(stateID)"
+        }
+        if let stateDesc:String = thisState["name"] as? String{
+          state.typeDescription = stateDesc
+        }
+        arrStates.append(state)
+      }
+      
+      return arrStates
+    }else{
+      return nil
+    }
+  }
+
+  
   func getBrandStyle(_ success:@escaping ([FilterModel], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_brand_styles/"
@@ -1725,8 +1752,10 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-          // debugPrint(json)
+
+          
           if let arrStates = self.getFilterModels(fromJSON: json){
+            let arrSpecial = json["results"].array
             success(arrStates, json)
           }else{
             failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))

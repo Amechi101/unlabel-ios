@@ -12,7 +12,7 @@ import Alamofire
 
 class GlossaryController: UIViewController {
   
-  @IBOutlet weak var IBlblNavBarTitle: UILabel!
+  @IBOutlet weak var IBlblNavBarTitle: UIButton!
   @IBOutlet weak var IBtableGlossary: UITableView!
   var arGlossaryValues:[JSON] = []
   var categoryStyleType:CategoryStyleEnum!
@@ -28,9 +28,7 @@ class GlossaryController: UIViewController {
     } else {
       _title = categoryStyleType.description + " glossary".uppercased()
     }
-    IBlblNavBarTitle.text = _title
-    IBlblNavBarTitle.textAlignment = .center
-    IBlblNavBarTitle.font = UIFont(name: "Neutraface2Text-Demi", size: 16)
+    IBlblNavBarTitle.setTitle(_title, for: .normal)
     IBtableGlossary.register(UINib(nibName: "GlossaryCell", bundle: nil), forCellReuseIdentifier: "GlossaryCell")
     self.IBtableGlossary.reloadData()
   }

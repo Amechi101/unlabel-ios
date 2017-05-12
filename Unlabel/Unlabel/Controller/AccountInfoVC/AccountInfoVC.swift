@@ -20,16 +20,17 @@ class AccountInfoVC: UITableViewController {
   @IBOutlet var IBtblAccountInfo: UITableView!
   @IBOutlet weak var IBProfileImage: UIImageView!
   @IBOutlet weak var IBButtonSelectLocation: UIButton!
-  
+  var selectedStyles:[FilterModel] = []
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getInfluencerLocation()
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     getInfluencerDetails()
+    getInfluencerStyle()
 //    if let _ = self.navigationController {
 //      navigationController?.interactivePopGestureRecognizer!.delegate = self
 //    }
@@ -43,7 +44,7 @@ class AccountInfoVC: UITableViewController {
     if segue.identifier == "updateStyleSegue" {
       if let styleListController:FilterListController = segue.destination as? FilterListController {
         styleListController.categoryStyleType = .style
-        styleListController.arSelectedValues = []
+        styleListController.arSelectedValues = selectedStyles
       }
     }
   }
@@ -69,12 +70,11 @@ extension AccountInfoVC {
 
 extension AccountInfoVC {
   
-  func getInfluencerLocation() {
-    UnlabelAPIHelper.sharedInstance.getInfluencerStyle( self, success:{ (
+  func getInfluencerStyle() {
+    UnlabelAPIHelper.sharedInstance.getInfluencerStyle( self, success:{ (arrCountry:[FilterModel],
       meta: JSON) in
       print(meta)
-   //   var arrStates = [FilterModel]()
-   //   let state = FilterModel()
+      self.selectedStyles = arrCountry
     }, failed: { (error) in
     })
   }

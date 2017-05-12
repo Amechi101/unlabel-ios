@@ -135,8 +135,10 @@ class FilterListController: UIViewController {
         } else {
           self.IBtableFilterList.reloadData()
           for (index, menu) in  self.arFilterMenu.enumerated()  {
+            print(menu)
             for  value in self.arSelectedValues {
-              if value == menu {
+              print(value)
+              if value.typeId == menu.typeId {
                 self.dictSelection[index] = true
               }
             }
@@ -156,6 +158,16 @@ class FilterListController: UIViewController {
     })
   }
   
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "viewStyleGlossary" {
+      if let glosryCntrl:GlossaryController = segue.destination as? GlossaryController {
+        glosryCntrl.arGlossaryValues = arOriginalJSON.sorted { $0["name"].stringValue < $1["name"].stringValue }
+        glosryCntrl.categoryStyleType = self.categoryStyleType
+      }
+    }
+  }
+  
   //   MARK:- Action methods
   @IBAction func IBActionBack(_ sender: AnyObject) {
    // self.dismiss(animated: true, completion: nil)
@@ -163,6 +175,14 @@ class FilterListController: UIViewController {
   }
   @IBAction func IBActionUpdate(_ sender: AnyObject) {
     self.addLikeFollowPopupView(FollowType.profileUpdate, initialFrame:  CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    
+    let selectedIds = arSelectedValues.map { $0.typeId}
+    print(selectedIds)
+//    let ids = ["1","2"]
+    UnlabelAPIHelper.sharedInstance.saveInfluencerStyle(selectedIds,onVC: self, success:{ (
+      meta: JSON) in
+    }, failed: { (error) in
+    })
   }
 }
 
@@ -205,8 +225,11 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
       self.dictSelection[indexPath.row] = !self.dictSelection[indexPath.row]!
       let indexes = self.dictSelection.filter { $0.0 > 0 && $0.1 == true }.map { return $0.0 }
       for index in indexes {
+        print(index)
+        
         arSelectedValues.append(arFilterMenu[index])
       }
+      
       if arSelectedValues.count == arFilterMenu.count - 1 {
         self.dictSelection[0] = true
         arSelectedValues = Array(arFilterMenu[1..<arFilterMenu.count])
@@ -248,10 +271,7 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
 extension FilterListController: FilterListDelegates {
   
   func headerCellClicked() {
-    let glosryCntrl = storyboard?.instantiateViewController(withIdentifier: "GlossaryController") as! GlossaryController
-    glosryCntrl.arGlossaryValues = arOriginalJSON.sorted { $0["name"].stringValue < $1["name"].stringValue }
-    glosryCntrl.categoryStyleType = self.categoryStyleType
-    self.navigationController?.pushViewController(glosryCntrl, animated: true)
+    performSegue(withIdentifier: "viewStyleGlossary", sender: self)
   }
 }
 //MARK: -  Like/Follow popup delegate methods
