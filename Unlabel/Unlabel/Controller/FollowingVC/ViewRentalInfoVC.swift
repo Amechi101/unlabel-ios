@@ -35,36 +35,15 @@ class ViewRentalInfoVC: UIViewController {
     IBLabelApt.text = rentalInfo.AptUnit
     IBLabelPickUpTimes.text = rentalInfo.PickUpTime.joined(separator: "\n")
     
-    let days = findDays(indices: rentalInfo.weekIndices)
+    let days: [UnlabelStaticList] = UnlabelHelper.getPickUpDays(indices: rentalInfo.weekIndices)
     print(days)
+    print(rentalInfo.startTime)
+    print(rentalInfo.endTime)
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
-  func findDays(indices: [Int]) -> [String]{
-    var finalDays : [String] = [String]()
-    var dates : [Date] = []
-    var matchingComponents = DateComponents()
-    var calendar = Calendar.current
-    calendar.timeZone = TimeZone.current
-    let formatter = DateFormatter()
-    formatter.dateFormat = "EEEE,MMM dd, yyyy"
-    let nextDayToFind: Date = Date()
-    for index in indices{
-      matchingComponents.weekday = index
-      let nextDay = calendar.nextDate(after: nextDayToFind, matching: matchingComponents, matchingPolicy:.nextTime)!
-      dates.append(nextDay)
-      dates.append(Calendar.current.date(byAdding: .day, value: 7, to: nextDay)!)
-      dates.sort(by: {$0.compare($1) == .orderedAscending})
-    }
-    for date in dates {
-      let dateString = formatter.string(from: date)
-      finalDays.append(dateString)
-    }
-    
-    return finalDays
-  }
 
   
   //MARK: -  IBAction methods

@@ -111,6 +111,7 @@
 		AD183A171E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183A161E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift */; };
 		AD183A201E4DEB0E00DFFF10 /* ProductPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD183A1E1E4DEB0E00DFFF10 /* ProductPhotoCell.swift */; };
 		AD183A211E4DEB0E00DFFF10 /* ProductPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD183A1F1E4DEB0E00DFFF10 /* ProductPhotoCell.xib */; };
+		AD1F11A31EC978CF00B4FAEA /* PickUpAndReturnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1F11A21EC978CF00B4FAEA /* PickUpAndReturnViewController.swift */; };
 		AD3974EC1E0A4F9A0013B3E1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3974EB1E0A4F9A0013B3E1 /* BannerViewController.swift */; };
 		AD3974F31E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3974F11E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift */; };
 		AD3974F41E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3974F21E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib */; };
@@ -326,6 +327,7 @@
 		AD183A161E4DE5B500DFFF10 /* AddOrViewProductImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOrViewProductImageVC.swift; sourceTree = "<group>"; };
 		AD183A1E1E4DEB0E00DFFF10 /* ProductPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPhotoCell.swift; sourceTree = "<group>"; };
 		AD183A1F1E4DEB0E00DFFF10 /* ProductPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductPhotoCell.xib; sourceTree = "<group>"; };
+		AD1F11A21EC978CF00B4FAEA /* PickUpAndReturnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickUpAndReturnViewController.swift; sourceTree = "<group>"; };
 		AD3974EB1E0A4F9A0013B3E1 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		AD3974F11E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForgotPasswordPopup.swift; sourceTree = "<group>"; };
 		AD3974F21E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewForgotPasswordPopup.xib; sourceTree = "<group>"; };
@@ -919,6 +921,14 @@
 			name = "Add Or View Product Image VC";
 			sourceTree = "<group>";
 		};
+		AD1F11A41EC978E700B4FAEA /* PickUp And Return View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD1F11A21EC978CF00B4FAEA /* PickUpAndReturnViewController.swift */,
+			);
+			name = "PickUp And Return View Controller";
+			sourceTree = "<group>";
+		};
 		AD3974ED1E0A4FB00013B3E1 /* Banner View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1109,6 +1119,7 @@
 				15F0E2721C723BB100A7E389 /* ProductVC */,
 				ADEAD9FA1E1F9D030075813E /* Product View Controller */,
 				AD908E561E25025500D475DF /* Product Info View Controller */,
+				AD1F11A41EC978E700B4FAEA /* PickUp And Return View Controller */,
 			);
 			name = "Discover Tab";
 			sourceTree = "<group>";
@@ -1558,6 +1569,7 @@
 				ADF3D6521E5EB7BC00ACC68B /* UnlabelStaticList.swift in Sources */,
 				ADEAD9F91E1F9CFC0075813E /* ProductViewController.swift in Sources */,
 				ADC7424B1E8CF987000065AF /* LocationFilterVC.swift in Sources */,
+				AD1F11A31EC978CF00B4FAEA /* PickUpAndReturnViewController.swift in Sources */,
 				ADE02D1E1E2CF17B003C80FB /* FilterViewController.swift in Sources */,
 				AD3974F31E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift in Sources */,
 				15B7E7A91C54A2D100244AC9 /* Unlabel.xcdatamodeld in Sources */,

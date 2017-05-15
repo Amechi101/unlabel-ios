@@ -111,25 +111,10 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     userParam.email = IBtextfieldEmail.text!
     userParam.username = IBTextfieldUsername.text!
     userParam.contactNumber = IBTextfieldContactNumber.text!
-    userParam.iccIndustry = IBInfluencerKind.title(for: .normal)!
-//    UnlabelAPIHelper.sharedInstance.saveProfileInfo( userParam,onVC: self, success:{ (
-//      meta: JSON,statusCode) in
-//      print(statusCode)
-//      if statusCode == 200 {
-//        _ = self.navigationController?.popViewController(animated: true)
-//      } else if statusCode == 203 {
-//        UnlabelHelper.showAlert(onVC: self, title: "Error", message: meta["message"].stringValue, onOk: {})
-//      }
-//      print(meta)
-//    }, failed: { (error) in
-//    })
+    userParam.iccIndustry = (IBInfluencerKind.titleLabel?.text)!
     let imageName: String =  UnlabelHelper.getcurrentDateTime() + ".jpeg"
-
     let parameters = ["image": imageName,"contact_number": userParam.contactNumber,"email": userParam.email,"first_name": userParam.firstname,"last_name": userParam.lastname,"influencer_industry": userParam.iccIndustry,"ucc_handle":userParam.username]
     let image = IBProfileImage.image
-    
-    print(parameters)
-    print(image)
     Alamofire.upload(multipartFormData: {
       multipartFormData in
       if let imageData = UIImageJPEGRepresentation(image!, 0.6) {
@@ -147,7 +132,6 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
           switch response.result {
           case .success(let data):
             let json = JSON(data)
-          //  self.IBButtonUpdate.isHidden = true
             print("json: \(json)")
             _ = self.navigationController?.popViewController(animated: true)
           case .failure(let error):

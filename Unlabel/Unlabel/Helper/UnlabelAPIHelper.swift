@@ -178,7 +178,12 @@ class UnlabelAPIHelper{
             end.remove(at: end.startIndex)
           }
           let endTime: String = end.replacingOccurrences(of: ":00", with: "") + (rentalInfo["end_time_period"] as! String).lowercased()
-          
+          var endIndex = start.index(start.endIndex, offsetBy: -3)
+          var truncated = start.substring(to: endIndex)
+          rental.startTime = truncated + " " + (rentalInfo["start_time_period"] as! String)
+          endIndex = end.index(end.endIndex, offsetBy: -3)
+          truncated = end.substring(to: endIndex)
+          rental.endTime = truncated + " " + (rentalInfo["end_time_period"] as! String)
           if let days: [String] = rentalInfo["day"] as? [String]{
             for thisDay in days{
               

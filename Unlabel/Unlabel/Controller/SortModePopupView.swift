@@ -75,6 +75,9 @@ class SortModePopupView: UIView, UITableViewDelegate, UITableViewDataSource {
       arrSortOptionDict = [["name":"Fashion","key":"fashion"],["name":"Photography","key":"photography"],["name":"Business","key":"business"],["name":"Technology","key":"technology"]]
       arrDatasource = getModelList(arrSortOptionDict)
     }
+    else if slideUpViewMode == SlideUpView.state{
+      arrDatasource = getStateList()
+    }
     else{
       // arrSortOption = []
     }

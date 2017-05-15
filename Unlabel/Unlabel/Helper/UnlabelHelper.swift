@@ -272,6 +272,89 @@ class UnlabelHelper: NSObject {
     return dateInFormat
   }
   
+  class func daySuffix(from date: Date) -> String {
+    let calendar = Calendar.current
+    let dayOfMonth = calendar.component(.day, from: date)
+    switch dayOfMonth {
+    case 1, 21, 31: return "st"
+    case 2, 22: return "nd"
+    case 3, 23: return "rd"
+    default: return "th"
+    }
+  }
+  class func getFormattedTodaysDate() -> String {
+    let suffix: String = daySuffix(from: Date())
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = NSTimeZone.system
+    dateFormatter.dateFormat = "EEEE, MMM dd"
+    var dateConverted: Date? = Date()
+    let partialDate = dateFormatter.string(from: dateConverted!) + suffix
+    dateFormatter.dateFormat = "YYYY"
+    dateConverted = Date()
+    let finalDate = partialDate + ", " + dateFormatter.string(from: dateConverted!)
+    return finalDate
+  }
+  
+  class func getPickUpDays(indices: [Int]) -> [UnlabelStaticList]{
+    var finalDays : [String] = [String]()
+    var dates : [Date] = []
+    var matchingComponents = DateComponents()
+    var calendar = Calendar.current
+    calendar.timeZone = TimeZone.current
+    let formatter = DateFormatter()
+    formatter.dateFormat = "EEEE,MMM dd, yyyy"
+    let nextDayToFind: Date = Date()
+    for index in indices {
+      matchingComponents.weekday = index
+      let nextDay = calendar.nextDate(after: nextDayToFind, matching: matchingComponents, matchingPolicy:.nextTime)!
+      dates.append(nextDay)
+      dates.append(Calendar.current.date(byAdding: .day, value: 7, to: nextDay)!)
+      dates.sort(by: {$0.compare($1) == .orderedAscending})
+    }
+    for date in dates {
+      let dateString = formatter.string(from: date)
+      finalDays.append(dateString)
+    }
+    var attributeList =  [UnlabelStaticList]()
+    for day in finalDays{
+      let pDay = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+      pDay.uId = day
+      pDay.uName = day
+      attributeList.append(pDay)
+    }
+    return attributeList
+  }
+  
+  class func getReturnDays(indices: [Int]) -> [UnlabelStaticList]{
+    var finalDays : [String] = [String]()
+    var dates : [Date] = []
+    var matchingComponents = DateComponents()
+    var calendar = Calendar.current
+    calendar.timeZone = TimeZone.current
+    let formatter = DateFormatter()
+    formatter.dateFormat = "EEEE,MMM dd, yyyy"
+    let nextDayToFind: Date = Date()
+    for index in indices {
+      matchingComponents.weekday = index
+      let nextDay = calendar.nextDate(after: nextDayToFind, matching: matchingComponents, matchingPolicy:.nextTime)!
+      dates.append(nextDay)
+      dates.sort(by: {$0.compare($1) == .orderedAscending})
+    }
+    for date in dates {
+      let dateString = formatter.string(from: date)
+      finalDays.append(dateString)
+    }
+    var attributeList =  [UnlabelStaticList]()
+    for day in finalDays{
+      let pDay = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+      pDay.uId = day
+      pDay.uName = day
+      attributeList.append(pDay)
+    }
+    return attributeList
+  }
+
+  
   
 }
 
