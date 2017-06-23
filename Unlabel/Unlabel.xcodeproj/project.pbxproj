@@ -115,6 +115,7 @@
 		AD3974EC1E0A4F9A0013B3E1 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3974EB1E0A4F9A0013B3E1 /* BannerViewController.swift */; };
 		AD3974F31E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3974F11E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift */; };
 		AD3974F41E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3974F21E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib */; };
+		AD3A4BE11EFA49550049E0E7 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3A4BE01EFA49540049E0E7 /* CountryCodes.swift */; };
 		AD42DEF01E28A0E6005CA59E /* CartHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42DEEE1E28A0E6005CA59E /* CartHeaderView.swift */; };
 		AD42DEF11E28A0E6005CA59E /* CartHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD42DEEF1E28A0E6005CA59E /* CartHeaderView.xib */; };
 		AD42DEF41E28A101005CA59E /* CartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42DEF21E28A101005CA59E /* CartFooterView.swift */; };
@@ -137,10 +138,12 @@
 		AD90CCFB1E23848F002A9F1A /* ProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD90CCF91E23848F002A9F1A /* ProductImageCell.xib */; };
 		AD90CD021E23BE8A002A9F1A /* AddNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */; };
 		AD90CD031E23BE8A002A9F1A /* AddNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */; };
+		ADA3AA911ED40542008DBEEC /* RentTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA3AA901ED40542008DBEEC /* RentTime.swift */; };
 		ADB053DE1E77BAF200BA22A4 /* PickLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */; };
 		ADB053E01E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */; };
 		ADB2A3341E41B68000F26C2D /* ManageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */; };
 		ADC7424B1E8CF987000065AF /* LocationFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7424A1E8CF987000065AF /* LocationFilterVC.swift */; };
+		ADC9E6B81EF3A76100A0C089 /* UnlabelSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC9E6B71EF3A76100A0C089 /* UnlabelSingleton.swift */; };
 		ADD1FA111E5C1F0F00A28049 /* RentalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */; };
 		ADD39DB21E52C4F700FC086D /* GoLivePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */; };
 		ADD39DB31E52C4F700FC086D /* GoLivePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */; };
@@ -331,6 +334,7 @@
 		AD3974EB1E0A4F9A0013B3E1 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		AD3974F11E0AB3220013B3E1 /* ViewForgotPasswordPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForgotPasswordPopup.swift; sourceTree = "<group>"; };
 		AD3974F21E0AB3220013B3E1 /* ViewForgotPasswordPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewForgotPasswordPopup.xib; sourceTree = "<group>"; };
+		AD3A4BE01EFA49540049E0E7 /* CountryCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		AD42DEEE1E28A0E6005CA59E /* CartHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartHeaderView.swift; sourceTree = "<group>"; };
 		AD42DEEF1E28A0E6005CA59E /* CartHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartHeaderView.xib; sourceTree = "<group>"; };
 		AD42DEF21E28A101005CA59E /* CartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartFooterView.swift; sourceTree = "<group>"; };
@@ -353,10 +357,12 @@
 		AD90CCF91E23848F002A9F1A /* ProductImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductImageCell.xib; sourceTree = "<group>"; };
 		AD90CD001E23BE8A002A9F1A /* AddNewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCell.swift; sourceTree = "<group>"; };
 		AD90CD011E23BE8A002A9F1A /* AddNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewCell.xib; sourceTree = "<group>"; };
+		ADA3AA901ED40542008DBEEC /* RentTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentTime.swift; sourceTree = "<group>"; };
 		ADB053DD1E77BAF200BA22A4 /* PickLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationVC.swift; sourceTree = "<group>"; };
 		ADB053DF1E77F8BB00BA22A4 /* SeeMoreDescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeMoreDescriptionVC.swift; sourceTree = "<group>"; };
 		ADB2A3331E41B68000F26C2D /* ManageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageContentVC.swift; sourceTree = "<group>"; };
 		ADC7424A1E8CF987000065AF /* LocationFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterVC.swift; sourceTree = "<group>"; };
+		ADC9E6B71EF3A76100A0C089 /* UnlabelSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlabelSingleton.swift; sourceTree = "<group>"; };
 		ADD1FA101E5C1F0F00A28049 /* RentalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalInfo.swift; sourceTree = "<group>"; };
 		ADD39DB01E52C4F700FC086D /* GoLivePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoLivePopupView.swift; sourceTree = "<group>"; };
 		ADD39DB11E52C4F700FC086D /* GoLivePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoLivePopupView.xib; sourceTree = "<group>"; };
@@ -606,6 +612,9 @@
 				ADF3D6511E5EB7BC00ACC68B /* UnlabelStaticList.swift */,
 				ADE64FDB1E602665003899A6 /* ProductImages.swift */,
 				ADDAABEF1E682A4E0069FF26 /* FilterModel.swift */,
+				ADA3AA901ED40542008DBEEC /* RentTime.swift */,
+				ADC9E6B71EF3A76100A0C089 /* UnlabelSingleton.swift */,
+				AD3A4BE01EFA49540049E0E7 /* CountryCodes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1370,7 +1379,6 @@
 				TargetAttributes = {
 					400BDE071C1B890800487C6E = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 8YT5VLJRKH;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1562,6 +1570,8 @@
 				15F0E2741C723BB100A7E389 /* ProductVC.swift in Sources */,
 				154241D21CAAFB9D00EC59A7 /* NotFoundView.swift in Sources */,
 				15AC8D781CA87058000B2BF3 /* FollowingVC.swift in Sources */,
+				AD3A4BE11EFA49550049E0E7 /* CountryCodes.swift in Sources */,
+				ADC9E6B81EF3A76100A0C089 /* UnlabelSingleton.swift in Sources */,
 				AD15E4BB1E5AB21A002C6188 /* DepositEarningVC.swift in Sources */,
 				15CCC6F71D16A53C00FD602F /* FBShimmeringLayer.m in Sources */,
 				15B6C6961D1597420031D1D0 /* CommonTableVC.swift in Sources */,
@@ -1603,6 +1613,7 @@
 				15E472791C9B2DB500D56608 /* LegalStuffPrivacyPolicyVC.swift in Sources */,
 				AD0E43C11E35F06E00B18CC2 /* LoginEntryVC.swift in Sources */,
 				AD3974EC1E0A4F9A0013B3E1 /* BannerViewController.swift in Sources */,
+				ADA3AA911ED40542008DBEEC /* RentTime.swift in Sources */,
 				15C4275C1CD9131900106722 /* AboutLabelVC.swift in Sources */,
 				AD183A141E4DCCE200DFFF10 /* ProductStatsVC.swift in Sources */,
 				150AE9431CA1CF7D00131A0A /* SettingsVC.swift in Sources */,
@@ -1821,7 +1832,7 @@
 				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8YT5VLJRKH;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1833,8 +1844,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.influencerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3971379-ca42-47c0-b830-bb57a364e81f";
-				PROVISIONING_PROFILE_SPECIFIER = UnlabelInfluencerDevProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1851,8 +1862,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Unlabel/Unlabel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Unlabel, LLC (8YT5VLJRKH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 8YT5VLJRKH;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1864,8 +1875,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unlabel.influencerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f5f60a7-7820-4f79-af34-209d2796e490";
-				PROVISIONING_PROFILE_SPECIFIER = UnlabelInfluencerProduction;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Unlabel-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

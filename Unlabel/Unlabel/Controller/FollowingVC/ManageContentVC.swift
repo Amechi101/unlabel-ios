@@ -40,7 +40,7 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
   var notFoundView: NotFoundView = NotFoundView()
   fileprivate var arrFilteredBrandList:[Brand] = []
   fileprivate var arrMenBrandList:[Brand] = [Brand]()
-  fileprivate let topConstraintMax: CGFloat = 44.0
+  fileprivate let topConstraintMax: CGFloat = 8.0
   fileprivate let topConstraintMin: CGFloat = 8.0
   //MARK: -  View lifecycle methods
   
@@ -50,15 +50,29 @@ class ManageContentVC: UIViewController, UITabBarControllerDelegate {
     self.IBCollectionViewTopConstraint.constant = topConstraintMin
     setUpCollectionView()
     self.tabBarController?.delegate = self
-    getReservedProducts()
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    IBCollectionViewContent.reloadData()
+    if contentStatus == ContentStatus.reserve{
+        getReservedProducts()
+    } else if contentStatus == ContentStatus.rent{
+        getRentedProducts()
+    } else if contentStatus == ContentStatus.live {
+        getLiveProducts()
+    } else {
+      contentStatus = ContentStatus.unknown
+    }
+    updateToggleButton()
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
     contentStatus = ContentStatus.reserve
     updateToggleButton()
-    getReservedProducts()
+   // getReservedProducts()
   }
   
   //MARK: -  Navigation methods
@@ -143,6 +157,7 @@ extension ManageContentVC{
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
+    fetchProductRequestParams.type = .reserve
     UnlabelAPIHelper.sharedInstance.getReserveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
       print(meta)
       self.arrFilteredBrandList = []
@@ -158,6 +173,7 @@ extension ManageContentVC{
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = ""
+    fetchProductRequestParams.type = .rent
     UnlabelAPIHelper.sharedInstance.getRentedProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
       print(meta)
       self.arrFilteredBrandList = []
@@ -172,6 +188,7 @@ extension ManageContentVC{
     arrMenBrandList = []
     let fetchProductRequestParams = FetchProductParams()
     fetchProductRequestParams.sortMode = sortMode
+    fetchProductRequestParams.type = .live
     UnlabelAPIHelper.sharedInstance.getLiveProduct(fetchProductRequestParams, success: { (arrBrands:[Brand], meta: JSON) in
       print(meta)
       self.arrFilteredBrandList = []
@@ -299,13 +316,13 @@ extension ManageContentVC: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
     if contentStatus == ContentStatus.reserve || contentStatus == ContentStatus.rent{
       
-      return CGSize(width: collectionView.frame.width, height: 55.0)
+      return CGSize(width: collectionView.frame.width, height: 80.0)
     } else if contentStatus == ContentStatus.live {
       
-      return CGSize(width: collectionView.frame.width, height: 25.0)
+      return CGSize(width: collectionView.frame.width, height: 80.0)
     } else {
       
-      return CGSize(width: collectionView.frame.width, height: 55.0)
+      return CGSize(width: collectionView.frame.width, height: 80.0)
     }
   }
   
@@ -314,6 +331,7 @@ extension ManageContentVC: UICollectionViewDataSource {
     case UICollectionElementKindSectionHeader:
       let headerView:ProductContentHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: REUSABLE_ID_ProductContentHeaderCell, for: indexPath) as! ProductContentHeader
       headerView.IBBrandNameLabel.text = (arrFilteredBrandList[indexPath.section].Name).uppercased()
+      headerView.IBBrandDateLabel.text = (arrFilteredBrandList[indexPath.section].PickDate)
       headerView.IBViewRentalInfo.tag = indexPath.section
       
       return headerView
@@ -360,11 +378,11 @@ extension ManageContentVC: SortModePopupViewDelegate {
     //delegate method to be implemented after API integration
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
-    sortModeValue = selectedItem.uName
-    IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
-    self.sortMode = selectedItem.uId
-    arrFilteredBrandList = []
-    getLiveProducts()
-  }
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
+        sortModeValue = selectedItem.uName
+        IBButtonSortMode.setTitle("Sort By: "+sortModeValue, for: .normal)
+        self.sortMode = selectedItem.uId
+        arrFilteredBrandList = []
+        getLiveProducts()
+    }
 }

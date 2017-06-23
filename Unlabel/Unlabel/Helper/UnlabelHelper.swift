@@ -208,7 +208,7 @@ class UnlabelHelper: NSObject {
     var arrHeight = [UnlabelStaticList]()
     for ft in 4...7 {
       for i in 0...11{
-        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let pSize = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         let htText: String = "\(ft)" + " feet " + "\(i)" + " inches"
         pSize.uName = htText
         let inInches = (ft*12)+i
@@ -221,11 +221,11 @@ class UnlabelHelper: NSObject {
   
   class func getGenderType() -> [UnlabelStaticList]{
     var attributeList =  [UnlabelStaticList]()
-    let pType1 = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+    let pType1 = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
     pType1.uId = "M"
     pType1.uName = "Male"
     attributeList.append(pType1)
-    let pType2 = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+    let pType2 = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
     pType2.uId = "F"
     pType2.uName = "Female"
     attributeList.append(pType2)
@@ -255,7 +255,7 @@ class UnlabelHelper: NSObject {
   class func getOtherPhysicalAttributes() -> [UnlabelStaticList]{
     var attributeList =  [UnlabelStaticList]()
       for i in 20...50{
-        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let pSize = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         let phyText: String = "\(i)" + " inches"
         pSize.uId = "\(i)"
         pSize.uName = phyText
@@ -317,7 +317,7 @@ class UnlabelHelper: NSObject {
     }
     var attributeList =  [UnlabelStaticList]()
     for day in finalDays{
-      let pDay = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+      let pDay = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
       pDay.uId = day
       pDay.uName = day
       attributeList.append(pDay)
@@ -325,7 +325,7 @@ class UnlabelHelper: NSObject {
     return attributeList
   }
   
-  class func getReturnDays(indices: [Int]) -> [UnlabelStaticList]{
+  class func getReturnDays(indices: [Int], starDate: String) -> [UnlabelStaticList]{
     var finalDays : [String] = [String]()
     var dates : [Date] = []
     var matchingComponents = DateComponents()
@@ -333,7 +333,8 @@ class UnlabelHelper: NSObject {
     calendar.timeZone = TimeZone.current
     let formatter = DateFormatter()
     formatter.dateFormat = "EEEE,MMM dd, yyyy"
-    let nextDayToFind: Date = Date()
+    let nextDayToFind: Date = formatter.date(from: starDate)!
+    print(nextDayToFind)
     for index in indices {
       matchingComponents.weekday = index
       let nextDay = calendar.nextDate(after: nextDayToFind, matching: matchingComponents, matchingPolicy:.nextTime)!
@@ -346,7 +347,7 @@ class UnlabelHelper: NSObject {
     }
     var attributeList =  [UnlabelStaticList]()
     for day in finalDays{
-      let pDay = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+      let pDay = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
       pDay.uId = day
       pDay.uName = day
       attributeList.append(pDay)

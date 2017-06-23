@@ -109,7 +109,7 @@ class UnlabelAPIHelper{
         if let followed = thisBrand["followed"] as? Bool {
           brand.isFollowing = followed
         }
-        
+    
         if let id = thisBrand[PRM_ID] as? NSNumber {
           brand.ID = "\(id)"
         }
@@ -167,54 +167,88 @@ class UnlabelAPIHelper{
           if let state = rentalInfo["state"] as? String{
             rental.State = state
           }
-          var start:String = (rentalInfo["start_time"]as! String)
-          if start.characters.first == "0"{
-            start.remove(at: start.startIndex)
-          }
-          let startTime: String = start.replacingOccurrences(of: ":00", with: "") + (rentalInfo["start_time_period"] as! String).lowercased()
           
-          var end:String = (rentalInfo["end_time"] as! String)
-          if end.characters.first == "0"{
-            end.remove(at: end.startIndex)
-          }
-          let endTime: String = end.replacingOccurrences(of: ":00", with: "") + (rentalInfo["end_time_period"] as! String).lowercased()
-          var endIndex = start.index(start.endIndex, offsetBy: -3)
-          var truncated = start.substring(to: endIndex)
-          rental.startTime = truncated + " " + (rentalInfo["start_time_period"] as! String)
-          endIndex = end.index(end.endIndex, offsetBy: -3)
-          truncated = end.substring(to: endIndex)
-          rental.endTime = truncated + " " + (rentalInfo["end_time_period"] as! String)
-          if let days: [String] = rentalInfo["day"] as? [String]{
-            for thisDay in days{
+          if  let rentList = rentalInfo["rent_time"] {
+            
+            for rentDict in (rentList as! [[String:AnyObject]]) {
+        
+              let rentTime = RentTime()
+              rental.weekIndices.append(getWeekIndex(day: rentDict["day"] as! String))
+              rentTime.day = rentDict["day"] as! String
               
-              switch thisDay {
-              case "Sunday":
-                rental.weekIndices.append(1)
-                break
-              case "Monday":
-                rental.weekIndices.append(2)
-                break
-              case "Tuesday":
-                rental.weekIndices.append(3)
-                break
-              case "Wednesday":
-                rental.weekIndices.append(4)
-                break
-              case "Thursday":
-                rental.weekIndices.append(5)
-                break
-              case "Friday":
-                rental.weekIndices.append(6)
-                break
-              case "Saturday":
-                rental.weekIndices.append(7)
-                break
-              default:
-                break
+              var start:String = (rentDict["start_time"]as! String)
+              if start.characters.first == "0"{
+                start.remove(at: start.startIndex)
               }
-              rental.PickUpTime.append(thisDay+": " + startTime + " - " + endTime)
+              var endIndex = start.index(start.endIndex, offsetBy: -3)
+              var truncated = start.substring(to: endIndex)
+              let startTime: String = truncated + " " + (rentDict["start_time_period"] as! String)
+              rentTime.startTime = startTime
+              
+              var end:String = (rentalInfo["end_time"] as! String)
+              if end.characters.first == "0"{
+                end.remove(at: end.startIndex)
+              }
+              endIndex = end.index(end.endIndex, offsetBy: -3)
+              truncated = end.substring(to: endIndex)
+              let endTime: String = truncated + " " + (rentDict["end_time_period"] as! String)
+              rentTime.endTime = endTime
+              
+              let day:String = (rentDict["day"]as! String)
+              rental.PickUpTime.append(day+": " + startTime + " - " + endTime)
+              rental.rentTime.append(rentTime)
+              
             }
           }
+
+//          var start:String = (rentalInfo["start_time"]as! String)
+//          if start.characters.first == "0"{
+//            start.remove(at: start.startIndex)
+//          }
+//          let startTime: String = start.replacingOccurrences(of: ":00", with: "") + (rentalInfo["start_time_period"] as! String).lowercased()
+//          
+//          var end:String = (rentalInfo["end_time"] as! String)
+//          if end.characters.first == "0"{
+//            end.remove(at: end.startIndex)
+//          }
+//          let endTime: String = end.replacingOccurrences(of: ":00", with: "") + (rentalInfo["end_time_period"] as! String).lowercased()
+//          var endIndex = start.index(start.endIndex, offsetBy: -3)
+//          var truncated = start.substring(to: endIndex)
+//          rental.startTime = truncated + " " + (rentalInfo["start_time_period"] as! String)
+//          endIndex = end.index(end.endIndex, offsetBy: -3)
+//          truncated = end.substring(to: endIndex)
+//          rental.endTime = truncated + " " + (rentalInfo["end_time_period"] as! String)
+//          if let days: [String] = rentalInfo["day"] as? [String]{
+//            for thisDay in days{
+//              
+//              switch thisDay {
+//              case "Sunday":
+//                rental.weekIndices.append(1)
+//                break
+//              case "Monday":
+//                rental.weekIndices.append(2)
+//                break
+//              case "Tuesday":
+//                rental.weekIndices.append(3)
+//                break
+//              case "Wednesday":
+//                rental.weekIndices.append(4)
+//                break
+//              case "Thursday":
+//                rental.weekIndices.append(5)
+//                break
+//              case "Friday":
+//                rental.weekIndices.append(6)
+//                break
+//              case "Saturday":
+//                rental.weekIndices.append(7)
+//                break
+//              default:
+//                break
+//              }
+//              rental.PickUpTime.append(thisDay+": " + startTime + " - " + endTime)
+//            }
+//          }
           brand.rentalInfo = rental
         }
         
@@ -267,15 +301,37 @@ class UnlabelAPIHelper{
       return nil
     }
   }
+  func getWeekIndex(day:String) -> Int {
+    
+    switch day {
+    case "Sunday":
+      return 1
+    case "Monday":
+      return 2
+    case "Tuesday":
+      return 3
+    case "Wednesday":
+      return 4
+    case "Thursday":
+      return 5
+    case "Friday":
+      return 6
+    case "Saturday":
+      return 7
+    default:
+      break
+    }
+    
+    return 0
+  }
   
-  
-  func getBrandWiseProductModels(fromJSON json:JSON)->[Brand]?{
+  func getBrandWiseProductModels(fromJSON json:JSON,type: ContentStatus)->[Brand]?{
     var arrBrands = [Brand]()
     
     //  let brandList1 = json.dictionaryObject
     //   print(json)
     if let brandList = json.dictionaryObject!["results"]{
-      
+      print(brandList)
       for (index,thisBrand) in (brandList as! [[String:AnyObject]]).enumerated(){
         let brand = Brand()
         let currentBrand = thisBrand["brand"] as! [String:AnyObject]
@@ -293,7 +349,40 @@ class UnlabelAPIHelper{
         if let followed = thisBrand["followed"] as? Bool {
           brand.isFollowing = followed
         }
+        //Vineeth
+        if type == ContentStatus.reserve{
+          //print(thisBrand["soonest_pickup_date"]!)
+          if let pickDate = currentBrand["soonest_pickup_date"] as? String {
+            let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                        let date = dateFormatter.date(from: pickDate)
+                        dateFormatter.dateFormat = "EEEE,MMM dd, yyyy"
+                        let dateString = dateFormatter.string(from: date!)
+                        brand.PickDate = "Pick-up Date: "+dateString
+           }
+          
+        }
+        else if type == ContentStatus.rent{
+          if let pickDate = currentBrand["soonest_return_date"] as? String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let date = dateFormatter.date(from: pickDate)
+            dateFormatter.dateFormat = "EEEE,MMM dd, yyyy"
+            let dateString = dateFormatter.string(from: date!)
+            brand.PickDate = "Return Date: "+dateString
+          }
+        }
         
+        else if type == ContentStatus.live{
+          if let pickDate = currentBrand["soonest_live_date"] as? String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let date = dateFormatter.date(from: pickDate)
+            dateFormatter.dateFormat = "EEEE,MMM dd, yyyy"
+            let dateString = dateFormatter.string(from: date!)
+            brand.PickDate = "Date: "+dateString
+          }
+        }
         //    print(currentBrand["description"] as! String)
         
         if let rentalInfo: [AnyHashable: Any] = currentBrand["rental_info"] as? [AnyHashable: Any] {
@@ -352,13 +441,29 @@ class UnlabelAPIHelper{
         if let name = currentBrand["name"] as? String{
           brand.Name = name
         }
-        
+
         if let slug = currentBrand[PRM_SLUG] as? String{
           brand.Slug = slug
         }
         
         if let productList = thisBrand["products"] as! [[String : AnyObject]]?{
           //   print(productList)
+          
+         // Vineeth
+          
+//       let productDict = productList.first
+//          print(productDict!)
+//          if let pickDate = productDict?["pick_date"] as? String{
+//            
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//            let date = dateFormatter.date(from: pickDate)
+//            dateFormatter.dateFormat = "EEEE,MMM dd, yyyy"
+//            let dateString = dateFormatter.string(from: date!)
+//
+//            brand.PickDate = dateString
+//          }
+//          
           for thisProduct in productList{
             print(thisProduct)
             let product = Product()
@@ -588,7 +693,7 @@ class UnlabelAPIHelper{
     var arrStates = [UnlabelStaticList]()
     if let stateList = json.dictionaryObject!["results"]{
       for (_,thisState) in (stateList as! [[String:AnyObject]]).enumerated(){
-        let state = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let state = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         if let stateName:String = thisState["name"] as? String{
           state.uName = stateName
         }
@@ -613,7 +718,7 @@ class UnlabelAPIHelper{
     var arrCountries = [UnlabelStaticList]()
     if let countriesList = json.dictionaryObject!["results"]{
       for (_,thisCountries) in (countriesList as! [[String:AnyObject]]).enumerated(){
-        let countries = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let countries = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         if let stateName:String = thisCountries["printable_name"] as? String{
           countries.uName = stateName
         }
@@ -732,7 +837,7 @@ class UnlabelAPIHelper{
       Alamofire.request(requestURLObj, method: .post,  parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
           
-          debugPrint(response.result)
+          debugPrint(response)
           switch response.result {
           case .success(let data):
             let json = JSON(data)
@@ -1065,7 +1170,7 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json,type: fetchProductParams.type!){
             success(arrBrands, json)
             //  debugPrint(arrBrands)
           }else{
@@ -1093,7 +1198,7 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json,type: fetchProductParams.type!){
             success(arrBrands, json)
             //  debugPrint(arrBrands)
           }else{
@@ -1126,7 +1231,7 @@ class UnlabelAPIHelper{
         case .success(let data):
           let json = JSON(data)
           debugPrint(json)
-          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json){
+          if let arrBrands = self.getBrandWiseProductModels(fromJSON: json,type: fetchProductParams.type!){
             success(arrBrands, json)
             debugPrint(arrBrands)
           }else{
@@ -1138,14 +1243,15 @@ class UnlabelAPIHelper{
     }
   }
   
-  func followBrand(_ brandId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func followBrand(_ brandId:String,datePicked:String,dateReturn:String, onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/partner_follow/"
-    let params: [String: String] = ["id":brandId]
+    let params: [String: String] = ["id":brandId,"date_picked":datePicked,"date_return":dateReturn]
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()])
         .responseJSON { response in
+       //   print(response.response?.statusCode)
           switch response.result {
             
           case .success(let data):
@@ -1312,10 +1418,10 @@ class UnlabelAPIHelper{
     }
   }
   //api_v2/influencer_reserve_product/(?P<product_id>[0-9]+)/
-  func reserveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func reserveProduct(_ productId:String,datePicked:String,returnPicked:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_reserve_product/"
-    let params: [String: String] = ["id":productId]
+    let params: [String: String] = ["id":productId,"date_picked":datePicked,"date_return":returnPicked]
     print(productId)
     if let requestURLObj = requestURL{
       
@@ -1333,7 +1439,7 @@ class UnlabelAPIHelper{
     }
   }
   
-  func goLiveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+  func goLiveProduct(_ productId:String,onVC:UIViewController, success:@escaping (_ json:JSON, _ statusCode:Int)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_product_go_live/"
     let params: [String: String] = ["prod_id":productId]
@@ -1346,7 +1452,7 @@ class UnlabelAPIHelper{
             
           case .success(let data):
             let json = JSON(data)
-            success(json)
+            success(json,(response.response?.statusCode)!)
           case .failure(let error):
             failed(error as NSError)
           }
@@ -1397,6 +1503,30 @@ class UnlabelAPIHelper{
       }
     }
   }
+    func getTelephoneCodes(_ onVC:UIViewController, success:@escaping ([UnlabelStaticList],_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
+        let requestURL:String?
+        requestURL = v4BaseUrl + "api_v2/influencer_country_codes"
+        //  print(requestURL!)
+        if let requestURLObj = requestURL{
+            
+            Alamofire.request(requestURLObj, method: .get, parameters: nil).responseJSON { response in
+                switch response.result {
+                    
+                case .success(let data):
+                   // print(response)
+                    let json = JSON(data)
+                    if let arrStates = self.getCountryTeleCodes(fromJSON: json){
+                        success(arrStates, json)
+                    }else{
+                        failed(NSError(domain: "No Categories found", code: 0, userInfo: nil))
+                    }
+                case .failure(let error):
+                    failed(error as NSError)
+                }
+            }
+        }
+    }
+    
   
   func getInfluencerStyle(_ onVC:UIViewController, success:@escaping ([FilterModel],_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
@@ -1524,13 +1654,13 @@ class UnlabelAPIHelper{
   func savePhysicalAttributes(_ params: [String: String],onVC:UIViewController, success:@escaping (_ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
     requestURL = v4BaseUrl + "api_v2/influencer_physical_attributes/"
-    print(requestURL!)
+    print(params)
     if let requestURLObj = requestURL{
       
       Alamofire.request(requestURLObj, method: .post, parameters: params, encoding: JSONEncoding.default, headers: ["X-CSRFToken":getCSRFToken()]).responseJSON { response in
         
         
-        print(response.result)
+        print(response)
         switch response.result {
           
         case .success(let data):
@@ -1701,7 +1831,7 @@ class UnlabelAPIHelper{
         
       case .success(let data):
         let json = JSON(data)
-         debugPrint(json)
+        debugPrint(json)
         if categoryStyle == CategoryStyleEnum.location{
           if let arrStates = self.getLocationModels(fromJSON: json){
             let arrSpecial = json["results"].array
@@ -1746,7 +1876,31 @@ class UnlabelAPIHelper{
       return nil
     }
   }
-
+    func getCountryTeleCodes(fromJSON json:JSON)->[UnlabelStaticList]?{
+        var arrStates = [UnlabelStaticList]()
+        if let stateList = json.dictionaryObject!["results"]{
+            for (_,thisState) in (stateList as! [[String:AnyObject]]).enumerated(){
+                let state = UnlabelStaticList.init(uId: "", uName: "", uCode: "", isSelected: false)
+                if let stateId:NSNumber = thisState["id"] as? NSNumber{
+                    state.uId = "\(stateId)"
+                }
+                if let stateName:String = thisState["country"] as? String{
+                    state.uName = stateName
+                }
+                if let stateCode:String  = thisState["code"] as? String{
+                    state.uCode = stateCode
+                }
+                arrStates.append(state)
+                print("state\(state.uCode)")
+            }
+            
+            return arrStates
+        }else{
+            return nil
+        }
+    }
+    
+  
   
   func getBrandStyle(_ success:@escaping ([FilterModel], _ json:JSON)->(),failed:@escaping (_ error:NSError)->()){
     let requestURL:String?
@@ -1757,7 +1911,7 @@ class UnlabelAPIHelper{
           
         case .success(let data):
           let json = JSON(data)
-
+          
           
           if let arrStates = self.getFilterModels(fromJSON: json){
             let arrSpecial = json["results"].array

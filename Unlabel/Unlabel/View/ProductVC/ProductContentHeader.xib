@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,32 +17,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManageContentVC" customModule="Unlabel" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductContentHeaderCell" id="U6b-Vx-4bR" customClass="ProductContentHeader" customModule="Unlabel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHEAP + BROKE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zma-pw-8ay">
-                    <rect key="frame" x="0.0" y="4" width="298" height="15"/>
+                    <rect key="frame" x="0.0" y="32" width="298" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="muU-K2-xYy"/>
+                        <constraint firstAttribute="height" constant="15" id="3nz-XT-HxJ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
                     <color key="textColor" red="0.27058823529999998" green="0.28627450980000002" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA8-fx-IHu">
-                    <rect key="frame" x="0.0" y="21" width="100" height="22"/>
+                    <rect key="frame" x="0.0" y="51" width="140" height="22"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItZ-kH-L28">
-                            <rect key="frame" x="0.0" y="21" width="100" height="1"/>
+                            <rect key="frame" x="0.0" y="19" width="140" height="1"/>
                             <color key="backgroundColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="v9E-aW-v3U"/>
+                                <constraint firstAttribute="height" constant="1" id="q0T-iK-MBW"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PD-Gt-ton">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="22"/>
+                            <rect key="frame" x="0.0" y="0.0" width="140" height="22"/>
                             <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="11"/>
-                            <state key="normal" title="VIEW RENTAL INFO">
+                            <state key="normal" title="VIEW LOCATION &amp; HOURS">
                                 <color key="titleColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -52,31 +52,44 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="ItZ-kH-L28" firstAttribute="leading" secondItem="aA8-fx-IHu" secondAttribute="leading" id="HNB-8Z-TnU"/>
-                        <constraint firstAttribute="bottom" secondItem="ItZ-kH-L28" secondAttribute="bottom" id="KOe-SK-FFc"/>
-                        <constraint firstAttribute="trailing" secondItem="ItZ-kH-L28" secondAttribute="trailing" id="MMe-3z-rjE"/>
-                        <constraint firstAttribute="height" constant="22" id="a23-5q-pv8"/>
-                        <constraint firstItem="4PD-Gt-ton" firstAttribute="leading" secondItem="aA8-fx-IHu" secondAttribute="leading" id="a46-jc-JY8"/>
-                        <constraint firstAttribute="trailing" secondItem="4PD-Gt-ton" secondAttribute="trailing" id="eRn-8N-NEU"/>
-                        <constraint firstAttribute="bottom" secondItem="4PD-Gt-ton" secondAttribute="bottom" id="hi4-em-ccg"/>
-                        <constraint firstItem="4PD-Gt-ton" firstAttribute="top" secondItem="aA8-fx-IHu" secondAttribute="top" id="rF2-SX-Pe8"/>
-                        <constraint firstAttribute="width" constant="100" id="v9X-ti-jbT"/>
+                        <constraint firstAttribute="trailing" secondItem="4PD-Gt-ton" secondAttribute="trailing" id="1et-sS-rqW"/>
+                        <constraint firstItem="4PD-Gt-ton" firstAttribute="top" secondItem="aA8-fx-IHu" secondAttribute="top" id="ECH-21-1wU"/>
+                        <constraint firstAttribute="trailing" secondItem="ItZ-kH-L28" secondAttribute="trailing" id="HCB-TY-fxf"/>
+                        <constraint firstItem="ItZ-kH-L28" firstAttribute="leading" secondItem="aA8-fx-IHu" secondAttribute="leading" id="Kem-sg-QqL"/>
+                        <constraint firstAttribute="width" constant="140" id="NKi-Ey-t6b"/>
+                        <constraint firstAttribute="bottom" secondItem="ItZ-kH-L28" secondAttribute="bottom" constant="2" id="SKD-jm-y8Q"/>
+                        <constraint firstAttribute="height" constant="22" id="Zw5-9h-bQR"/>
+                        <constraint firstAttribute="bottom" secondItem="4PD-Gt-ton" secondAttribute="bottom" id="bDo-sr-Hsz"/>
+                        <constraint firstItem="4PD-Gt-ton" firstAttribute="leading" secondItem="aA8-fx-IHu" secondAttribute="leading" id="ht2-ZU-eb5"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bjafkasjbfdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnA-Bs-kTi">
+                    <rect key="frame" x="0.0" y="2" width="320" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="V4q-6p-jqb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Neutraface2Text-Demi" family="Neutraface 2 Text" pointSize="16"/>
+                    <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Zma-pw-8ay" secondAttribute="trailing" constant="22" id="9Wm-3i-Eiv"/>
-                <constraint firstItem="Zma-pw-8ay" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="4" id="MIs-ZO-oGv"/>
-                <constraint firstItem="Zma-pw-8ay" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="ae5-CN-M7o"/>
-                <constraint firstItem="aA8-fx-IHu" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="eXL-gm-tSb"/>
-                <constraint firstItem="aA8-fx-IHu" firstAttribute="top" secondItem="Zma-pw-8ay" secondAttribute="bottom" constant="2" id="n2A-B7-HfM"/>
+                <constraint firstItem="aA8-fx-IHu" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7Of-LQ-qEP"/>
+                <constraint firstItem="aA8-fx-IHu" firstAttribute="top" secondItem="Zma-pw-8ay" secondAttribute="bottom" constant="4" id="8K2-NG-eQ0"/>
+                <constraint firstAttribute="trailing" secondItem="JnA-Bs-kTi" secondAttribute="trailing" id="RZd-JY-FOV"/>
+                <constraint firstItem="Zma-pw-8ay" firstAttribute="top" secondItem="JnA-Bs-kTi" secondAttribute="bottom" constant="10" id="Zch-43-nph"/>
+                <constraint firstItem="Zma-pw-8ay" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="aZK-mz-3da"/>
+                <constraint firstItem="JnA-Bs-kTi" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="dN6-d0-aOb"/>
+                <constraint firstAttribute="trailing" secondItem="Zma-pw-8ay" secondAttribute="trailing" constant="22" id="j4p-tI-Wpw"/>
+                <constraint firstItem="JnA-Bs-kTi" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="2" id="rj2-WU-BqS"/>
             </constraints>
             <connections>
+                <outlet property="IBBrandDateLabel" destination="JnA-Bs-kTi" id="vMO-oI-PZd"/>
                 <outlet property="IBBrandNameLabel" destination="Zma-pw-8ay" id="q8s-is-CeK"/>
                 <outlet property="IBViewRentalInfo" destination="4PD-Gt-ton" id="Ued-Aw-jJU"/>
             </connections>
-            <point key="canvasLocation" x="25" y="51.5"/>
+            <point key="canvasLocation" x="-35" y="-34"/>
         </collectionReusableView>
     </objects>
 </document>

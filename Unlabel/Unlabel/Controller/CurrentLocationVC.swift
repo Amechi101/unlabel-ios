@@ -194,7 +194,7 @@ extension CurrentLocationVC: SortModePopupViewDelegate {
   func popupDidClickCloseButton(){
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList){
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
     print(self.countryID)
     //  print(sortMode)
     sortModeValue = selectedItem.uName

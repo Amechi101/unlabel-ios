@@ -16,4 +16,5 @@ class FetchProductParams: NSObject {
   var displayMode:String = String()
   var gender:String = String()
   var nextPageURL:String?
+  var type: ContentStatus?
 }

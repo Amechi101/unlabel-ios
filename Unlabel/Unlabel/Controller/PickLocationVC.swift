@@ -54,6 +54,9 @@ class PickLocationVC: UIViewController {
       saveInfluencerLocation()
     } else if categoryStyleType == CategoryStyleEnum.radius {
       self.delegate?.locationDidSelected(self.selectedItem)
+        UnlabelSingleton.sharedInstance.radiusFilter = selectedItem.typeId
+        UnlabelHelper.setDefaultValue(selectedItem.typeId, key: "appliedRadius")
+        print("set radius filter \(UnlabelSingleton.sharedInstance.radiusFilter)")
       self.dismiss(animated: true, completion: nil)
     }
   }

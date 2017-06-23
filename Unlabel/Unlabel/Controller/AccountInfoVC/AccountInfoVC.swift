@@ -21,16 +21,19 @@ class AccountInfoVC: UITableViewController {
   @IBOutlet weak var IBProfileImage: UIImageView!
   @IBOutlet weak var IBButtonSelectLocation: UIButton!
   var selectedStyles:[FilterModel] = []
+  var teleCodes:[UnlabelStaticList] = []
+    
   //MARK:- VC Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    getInfluencerDetails()
+    getInfluencerStyle()
+    getTelephoneCodes()
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    getInfluencerDetails()
-    getInfluencerStyle()
+    
 //    if let _ = self.navigationController {
 //      navigationController?.interactivePopGestureRecognizer!.delegate = self
 //    }
@@ -56,7 +59,7 @@ extension AccountInfoVC {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    if indexPath.row == 8 {
+    if indexPath.row == 7 {
       if !ReachabilitySwift.isConnectedToNetwork() {
         UnlabelHelper.showAlert(onVC: self, title: S_NO_INTERNET, message: S_PLEASE_CONNECT, onOk: {})
       } else {
@@ -70,14 +73,22 @@ extension AccountInfoVC {
 
 extension AccountInfoVC {
   
-  func getInfluencerStyle() {
-    UnlabelAPIHelper.sharedInstance.getInfluencerStyle( self, success:{ (arrCountry:[FilterModel],
-      meta: JSON) in
-      print(meta)
-      self.selectedStyles = arrCountry
-    }, failed: { (error) in
-    })
-  }
+    func getInfluencerStyle() {
+        UnlabelAPIHelper.sharedInstance.getInfluencerStyle( self, success:{ (arrCountry:[FilterModel],
+            meta: JSON) in
+            print("********** \(meta)")
+            self.selectedStyles = arrCountry
+        }, failed: { (error) in print("error getting styles")
+        })
+    }
+    func getTelephoneCodes() {
+        UnlabelAPIHelper.sharedInstance.getTelephoneCodes( self, success:{ (arrTeleCodes:[UnlabelStaticList],
+            meta: JSON) in
+            print("********** \(meta)")
+            UnlabelSingleton.sharedInstance.telePhoneCodes = arrTeleCodes
+        }, failed: { (error) in print("error getting country codes")
+        })
+    }
 
   func getInfluencerDetails() {
     UnlabelAPIHelper.sharedInstance.getProfileDetails( { (
@@ -92,9 +103,10 @@ extension AccountInfoVC {
       UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
  //     UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "influencer_location")
       DispatchQueue.main.async(execute: { () -> Void in
-        
-        if let location = meta["location"] as? [AnyHashable: Any] {
+
+        if let location = meta.dictionaryObject!["location"] as? [String: Any] {
           if let display_string = location["display_string"] as? String{
+            self.IBButtonSelectLocation.isHidden = false
             self.IBButtonSelectLocation.setTitle(display_string, for: .normal)
           }
         }

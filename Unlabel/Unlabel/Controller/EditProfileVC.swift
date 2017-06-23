@@ -25,10 +25,13 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
   @IBOutlet weak var IBtextfieldEmail: UITextField!
   @IBOutlet weak var IBViewEmail: UIView!
   @IBOutlet weak var IBTextfieldContactNumber: UITextField!
-  @IBOutlet weak var IBTextfieldUsername: UITextField!
+ // @IBOutlet weak var IBTextfieldUsername: UITextField!
   @IBOutlet weak var IBProfileImage: UIImageView!
   @IBOutlet weak var IBInfluencerKind: UIButton!
-  
+    @IBOutlet weak var IBCountryCode: UIButton!
+    var telephoneCodes:[CountryCodes] = []
+    var teleCodeId:String = ""
+    
   //MARK: -  View lifecycle methods
   
   override func viewDidLoad() {
@@ -45,6 +48,14 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
   
   //MARK: -  IBAction methods
   
+    @IBAction func IBGetCountryCode(_ sender: Any) {
+        self.addSortPopupView(SlideUpView.countryCode,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+    }
+    
+    func setCountryCode(_ code:String)  {
+        IBCountryCode.titleLabel?.text = code
+    }
+    
   @IBAction func IBActionUpdate(_ sender: Any) {
     if !isValidEmail() {
       // shows alert in isValidEmail() method
@@ -67,6 +78,10 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
   @IBAction func IBActionSelectSpecialization(_ sender: Any) {
     self.addSortPopupView(SlideUpView.influencerKind,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
+    func setSpecialisation(_ code:String)  {
+        IBInfluencerKind.titleLabel?.text = code
+    }
+    
   
   //MARK: -  Custom methods
   
@@ -79,16 +94,18 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
         self.IBtextfieldLastname.text = meta["last_name"].stringValue
         self.IBtextfieldEmail.text = meta["email"].stringValue
         self.IBTextfieldContactNumber.text = meta["contact_number"].stringValue
-        
+        if meta["telephone_code"].null != NSNull(){
+            self.IBCountryCode.setTitle(meta["telephone_code"].stringValue, for: .normal)
+        }
         if meta["influencer_industry"].null != NSNull(){
           self.IBInfluencerKind.setTitle(meta["influencer_industry"].stringValue, for: .normal)
         }
         if meta["image"].null != NSNull(){
           self.IBProfileImage.sd_setImage(with: URL(string: meta["image"].stringValue))
         }
-        if meta["ucc_handle"].null != NSNull(){
-          self.IBTextfieldUsername.text = meta["ucc_handle"].stringValue
-        }
+//        if meta["ucc_handle"].null != NSNull(){
+//          self.IBTextfieldUsername.text = meta["ucc_handle"].stringValue
+//        }
       })
     }, failed: { (error) in
     })
@@ -109,11 +126,16 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     userParam.firstname = IBTextfieldFullname.text!
     userParam.lastname = IBtextfieldLastname.text!
     userParam.email = IBtextfieldEmail.text!
-    userParam.username = IBTextfieldUsername.text!
+    userParam.username = IBTextfieldFullname.text!
     userParam.contactNumber = IBTextfieldContactNumber.text!
+    userParam.countryCode = (IBCountryCode.titleLabel?.text)!
+    if teleCodeId.characters.count>0 {
+        userParam.countryCode = teleCodeId
+        print("telecodeid\(teleCodeId)")
+    }
     userParam.iccIndustry = (IBInfluencerKind.titleLabel?.text)!
     let imageName: String =  UnlabelHelper.getcurrentDateTime() + ".jpeg"
-    let parameters = ["image": imageName,"contact_number": userParam.contactNumber,"email": userParam.email,"first_name": userParam.firstname,"last_name": userParam.lastname,"influencer_industry": userParam.iccIndustry,"ucc_handle":userParam.username]
+    let parameters = ["image": imageName,"contact_number": userParam.contactNumber,"email": userParam.email,"first_name": userParam.firstname,"last_name": userParam.lastname,"influencer_industry": userParam.iccIndustry,"ucc_handle":userParam.username,"telephone_code":userParam.countryCode]
     let image = IBProfileImage.image
     Alamofire.upload(multipartFormData: {
       multipartFormData in
@@ -145,16 +167,16 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
 
   }
   
-  func getUccAvailability() {
-    UnlabelAPIHelper.sharedInstance.getUccAvailability( self.IBTextfieldUsername.text!, success:{ (
-      meta: JSON,statusCode:Int) in
-      print(meta,statusCode)
-      if statusCode == 409 {
-        UnlabelHelper.showAlert(onVC: self, title: "Already in Use", message: "Please select another UCC handle ", onOk: {})
-      }
-    }, failed: { (error) in
-    })
-  }
+//  func getUccAvailability() {
+//    UnlabelAPIHelper.sharedInstance.getUccAvailability( self.IBTextfieldUsername.text!, success:{ (
+//      meta: JSON,statusCode:Int) in
+//      print(meta,statusCode)
+//      if statusCode == 409 {
+//        UnlabelHelper.showAlert(onVC: self, title: "Already in Use", message: "Please select another UCC handle ", onOk: {})
+//      }
+//    }, failed: { (error) in
+//    })
+//  }
 
   //MARK: -  Image picker view methods
   
@@ -216,40 +238,49 @@ extension EditProfileVC: UITextFieldDelegate {
       return false
     }
   }
-  func textFieldDidEndEditing(_ textField: UITextField){
-    if textField == IBTextfieldUsername {
-      getUccAvailability()
-    }
-  }
+//  func textFieldDidEndEditing(_ textField: UITextField){
+//    if textField == IBTextfieldUsername {
+//      getUccAvailability()
+//    }
+//  }
 }
 
 //MARK: Sort Popup methods
 
 extension EditProfileVC: SortModePopupViewDelegate {
-  
-  func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
-    if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
-      viewSortPopup.delegate = self
-      viewSortPopup.slideUpViewMode = slideUpView
-      viewSortPopup.frame = initialFrame
-      viewSortPopup.popupTitle = "SELECT INDUSTRY"
-      viewSortPopup.alpha = 0
-      APP_DELEGATE.window?.addSubview(viewSortPopup)
-      UIView.animate(withDuration: 0.2, animations: {
-        viewSortPopup.frame = self.view.frame
-        viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
-        viewSortPopup.alpha = 1
-      })
-      viewSortPopup.updateView()
+    
+    func addSortPopupView(_ slideUpView: SlideUpView, initialFrame:CGRect) {
+        if let viewSortPopup:SortModePopupView = Bundle.main.loadNibNamed("SortModePopupView", owner: self, options: nil)? [0] as? SortModePopupView {
+            viewSortPopup.delegate = self
+            viewSortPopup.slideUpViewMode = slideUpView
+            viewSortPopup.frame = initialFrame
+            viewSortPopup.popupTitle = "SELECT INDUSTRY"
+            if slideUpView == SlideUpView.countryCode {
+                viewSortPopup.popupTitle = "SELECT COUNTRY CODE"
+            }
+            viewSortPopup.alpha = 0
+            APP_DELEGATE.window?.addSubview(viewSortPopup)
+            UIView.animate(withDuration: 0.2, animations: {
+                viewSortPopup.frame = self.view.frame
+                viewSortPopup.frame.origin = CGPoint(x: 0, y: 0)
+                viewSortPopup.alpha = 1
+            })
+            viewSortPopup.updateView()
+        }
     }
-  }
-  
-  func popupDidClickCloseButton() {
-  }
-  
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
-    IBInfluencerKind.setTitle(selectedItem.uName, for: .normal)
-  }
+    
+    func popupDidClickCloseButton() {
+    }
+    
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
+        if countryCode {
+            IBCountryCode.setTitle(selectedItem.uCode, for: .normal)
+            teleCodeId = selectedItem.uId
+        } else {
+            IBInfluencerKind.setTitle(selectedItem.uName, for: .normal)
+        }
+    }
+    
 }
 //MARK: -  Like/Follow popup delegate methods
 

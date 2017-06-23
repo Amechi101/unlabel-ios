@@ -91,6 +91,7 @@ class FilterListController: UIViewController {
     WSGetAllFilterList(ByCategoryType: categoryStyleType)
     self.automaticallyAdjustsScrollViewInsets = false
     self.IBtableFilterList.tableFooterView = UIView()
+    IBlblTitleBar.setTitle(categoryStyleType.description + " (\(arSelectedValues.count))", for: .normal)
   }
   
   override func didReceiveMemoryWarning() {
@@ -212,14 +213,15 @@ extension FilterListController: UITableViewDelegate , UITableViewDataSource {
         arSelectedValues.removeAll()
         arSelectedID.removeAll()
         arSelectedValues = Array(arFilterMenu[1..<arFilterMenu.count])
+        IBlblTitleBar.setTitle(categoryStyleType.description + " (\(arSelectedValues.count))", for: .normal)
       } else {
         arSelectedValues.removeAll()
+        IBlblTitleBar.setTitle(categoryStyleType.description, for: .normal)
       }
       let totalRows = IBtableFilterList.numberOfRows(inSection: 0)
       for row in 1..<totalRows {
         self.dictSelection[row] = self.dictSelection[0]!
       }
-      IBlblTitleBar.setTitle(categoryStyleType.description, for: .normal)
     } else {
       arSelectedValues.removeAll()
       self.dictSelection[indexPath.row] = !self.dictSelection[indexPath.row]!

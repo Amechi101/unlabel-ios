@@ -260,7 +260,7 @@ extension ProductVC:UICollectionViewDelegateFlowLayout {
       }
     } else {
       
-      return CGSize(width: (collectionView.frame.size.width)/2.08, height: 260.0)
+      return CGSize(width: ((collectionView.frame.size.width)/2.08)-10, height: 260.0)
     }
   }
 }
@@ -360,7 +360,7 @@ extension ProductVC {
     if ReachabilitySwift.isConnectedToNetwork() {
       selectedBrand.isFollowing = !selectedBrand.isFollowing
       updateFollowButton(sender, isFollowing: selectedBrand.isFollowing)
-      UnlabelAPIHelper.sharedInstance.followBrand(selectedBrand.ID, onVC: self, success:{ (
+      UnlabelAPIHelper.sharedInstance.followBrand(selectedBrand.ID,datePicked:"2017-02-03 1:00:00",dateReturn:"2017-02-03 1:00:00", onVC: self, success:{ (
         meta: JSON) in
         if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)) {
           self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -411,7 +411,7 @@ extension ProductVC: SortModePopupViewDelegate {
   func popupDidClickCloseButton() {
     
   }
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
   //  print(sortMode)
     sortModeValue = selectedItem.uName
     arrProducts = []

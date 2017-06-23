@@ -18,6 +18,8 @@ class User: NSObject {
   var firstname:String = String()
   var lastname:String = String()
   var contactNumber:String = String()
+  var countryCode:String = String()
+    
   var username:String = String()
   var iccID:String = String()
   var iccIndustry:String = String()

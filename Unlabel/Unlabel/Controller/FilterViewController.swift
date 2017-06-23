@@ -46,6 +46,11 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    IBButtonLocation.setTitle("Your current Location, Radius " + UnlabelSingleton.sharedInstance.radiusFilter! + " miles", for: .normal)
+    if UnlabelHelper.getDefaultValue("appliedRadius") != nil {
+        IBButtonLocation.setTitle("Your current Location, Radius " + UnlabelHelper.getDefaultValue("appliedRadius")! + " miles", for: .normal)
+    }
+    print("default radius \(UnlabelSingleton.sharedInstance.radiusFilter!)")
     UnlabelAPIHelper.sharedInstance.getBrandStoreType({ (arrCountry:[FilterModel], meta: JSON) in
     }, failed: { (error) in
     })
@@ -71,6 +76,14 @@ class FilterViewController: UIViewController,UISearchBarDelegate {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    if UnlabelHelper.getDefaultValue("useGPSLocation") != nil {
+        if UnlabelHelper.getDefaultValue("useGPSLocation")! == "true" {
+            IBButtonLocation.setTitle("Your phone's GPS  Location, Radius " + UnlabelSingleton.sharedInstance.radiusFilter! + " miles", for: .normal)
+            if UnlabelHelper.getDefaultValue("appliedRadius") != nil {
+                IBButtonLocation.setTitle("Your phone's GPS Location, Radius " + UnlabelHelper.getDefaultValue("appliedRadius")! + " miles", for: .normal)
+            }
+        }
+    }
   }
   
   //MARK: -  IBAction methods
@@ -239,7 +252,7 @@ extension FilterViewController: SortModePopupViewDelegate {
   func popupDidClickCloseButton() {
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
     IBButtonLocation.setTitle("Sort by: " + selectedItem.uName, for: .normal)
     sortParam = selectedItem.uId
   }
@@ -259,7 +272,7 @@ extension FilterViewController: SortModePopupViewDelegate {
     func locationFiltersSelected(_ selectedRadius: String) {
       print(selectedRadius)
       radius = selectedRadius
-      IBButtonLocation.setTitle("Your current Location, Radius " + selectedRadius + " miles", for: .normal)
+      IBButtonLocation.setTitle("Your current Location, Radius " + UnlabelSingleton.sharedInstance.radiusFilter! + " miles", for: .normal)
     }
   }
 

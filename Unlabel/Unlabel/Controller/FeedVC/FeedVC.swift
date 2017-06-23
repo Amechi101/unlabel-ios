@@ -131,7 +131,7 @@
       }
     } else if segue.identifier == "LocationFilterSegue" {
       if let navViewController:UINavigationController = segue.destination as? UINavigationController {
-        if let locationFilterVC:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC {
+        if let _:LocationFilterVC = navViewController.viewControllers[0] as? LocationFilterVC {
         //  pickLocationVC.categoryStyleType = CategoryStyleEnum.radius
         //  locationFilterVC.delegate = self
         }
@@ -331,6 +331,7 @@
     if ReachabilitySwift.isConnectedToNetwork(){
       if UnlabelHelper.isUserLoggedIn() {
         if let selectedBrandID:String = arrFilteredBrandList[sender.tag].ID {
+   
           //If already following
           if arrFilteredBrandList[sender.tag].isFollowing {
             arrFilteredBrandList[sender.tag].isFollowing = false
@@ -338,7 +339,8 @@
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
           IBcollectionViewFeed.reloadData()
-          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success: { (
+          print(selectedBrandID)
+          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID,datePicked:"2017-02-03 1:00:00",dateReturn:"2017-02-03 1:00:00", onVC: self, success: { (
             meta: JSON) in
             if !(UnlabelHelper.getBoolValue(sFOLLOW_SEEN_ONCE)){
               self.addLikeFollowPopupView(FollowType.brand,initialFrame: CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
@@ -380,14 +382,13 @@
     self.tabBarController?.tabBar.isUserInteractionEnabled = true
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
-    self.tabBarController?.tabBar.isUserInteractionEnabled = true
-    headerView?.IBSortButton.setTitle("Sort by: " + selectedItem.uName, for: .normal)
-    self.sortMode = selectedItem.uId
-    wsCallGetLabels()
-  }
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
+        self.tabBarController?.tabBar.isUserInteractionEnabled = true
+        headerView?.IBSortButton.setTitle("Sort by: " + selectedItem.uName, for: .normal)
+        self.sortMode = selectedItem.uId
+        wsCallGetLabels()
+    }
  }
- 
  //MARK:- Custom Methods
  extension FeedVC{
   func getInfluencerLocation() {
@@ -581,7 +582,13 @@
       }
       fetchBrandsRequestParams.brandGender = getSelectedGender()
       fetchBrandsRequestParams.sortMode = self.sortMode
-      fetchBrandsRequestParams.radius = radius
+      fetchBrandsRequestParams.radius = UnlabelSingleton.sharedInstance.radiusFilter!
+        if fetchBrandsRequestParams.radius == "10" {
+            if UnlabelHelper.getDefaultValue("appliedRadius") != nil {
+            fetchBrandsRequestParams.radius = UnlabelHelper.getDefaultValue("appliedRadius")!
+                print("radius value: \(UnlabelHelper.getDefaultValue("appliedRadius")!) ")
+            }
+        }
       if let selectedTab = headerView?.selectedTab {
         fetchBrandsRequestParams.selectedTab = selectedTab
       }
@@ -651,7 +658,7 @@
     self.radius = radius!
     display_type = "FILTER"
     print(count!)
-    IBbtnFilter.setTitle("Filter("  + count! + ")", for: .normal)
+ //   IBbtnFilter.setTitle("Filter("  + count! + ")", for: .normal)
     self.dismiss(animated: true, completion: nil)
   }
  }

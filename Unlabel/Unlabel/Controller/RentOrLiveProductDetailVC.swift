@@ -92,7 +92,7 @@ class RentOrLiveProductDetailVC: UIViewController {
   func getSizeList() -> [UnlabelStaticList] {
     var arrSize = [UnlabelStaticList]()
       for thisSize in (selectedProduct?.arrProductsSizes)! {
-        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let pSize = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         pSize.uId = thisSize as! String
         pSize.uName = thisSize as! String
         arrSize.append(pSize)
@@ -123,10 +123,14 @@ class RentOrLiveProductDetailVC: UIViewController {
   
   func wsGoLiveProduct() {
     UnlabelAPIHelper.sharedInstance.goLiveProduct((selectedProduct?.ProductID)!, onVC: self, success:{ (
-      meta: JSON) in
+      meta: JSON,statusCode :Int) in
       UnlabelLoadingView.sharedInstance.stop(self.view)
+      if statusCode == 403 || statusCode == 205 {
+        UnlabelHelper.showAlert(onVC: self, title: "Alert", message: "Missing images or note", onOk: {})
+      } else {
+        self.dismiss(animated: true, completion: nil)
+      }
       debugPrint(meta)
-      self.dismiss(animated: true, completion: nil)
     }, failed: { (error) in
     })
   }
@@ -240,7 +244,7 @@ extension RentOrLiveProductDetailVC: SortModePopupViewDelegate {
     //delegate method to be implemented after API integration
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
     IBSelectSize.setTitle(selectedItem.uName, for: .normal)
   }
 }

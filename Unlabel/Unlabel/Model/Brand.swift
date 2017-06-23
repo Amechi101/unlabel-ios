@@ -21,6 +21,7 @@ class Brand {
   var BrandWebsiteURL:String = String()
   var isActive:Bool = Bool()
   var CreatedDate:Date = Date()
+  var PickDate:String = String()
   
   var city:String = String()
   var location:String = String()

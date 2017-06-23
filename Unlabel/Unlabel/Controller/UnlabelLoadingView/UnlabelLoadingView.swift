@@ -14,7 +14,7 @@ class UnlabelLoadingView: UIView {
     
     var shimmeringLabel:FBShimmeringView?
     var shimmeringImage:FBShimmeringView?
-    
+    var radiusFilter : String = String()
     override func draw(_ rect: CGRect) {
         addVisualEffect(rect)
         addShimmeringImageAndLabel()

@@ -139,6 +139,7 @@ extension LoginEntryVC {
       UnlabelHelper.setDefaultValue(meta["image"].stringValue, key: "influencer_image")
       UnlabelHelper.setDefaultValue(meta["first_name"].stringValue, key: "influencer_first_name")
       UnlabelHelper.setDefaultValue(meta["gender"].stringValue, key: "gender")
+      UnlabelSingleton.sharedInstance.radiusFilter = "10"
       UnlabelHelper.goToBrandVC(self.storyboard!)
     }, failed: { (error) in
     })

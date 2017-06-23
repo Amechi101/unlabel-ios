@@ -173,7 +173,7 @@ extension PhysicalAttributesVC: SortModePopupViewDelegate {
   func popupDidClickCloseButton() {
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
     if attributeType == PhysicalAttributes.sex {
       IBButtonSex.setTitle(selectedItem.uName, for: .normal)
       sexID = selectedItem.uId

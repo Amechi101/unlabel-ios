@@ -26,12 +26,15 @@ class ProductViewController: UIViewController {
   @IBOutlet weak var IBProductTitle: UILabel!
   @IBOutlet weak var IBProductPrice: UILabel!
   @IBOutlet weak var IBScrollView: UIScrollView!
+  @IBOutlet weak var IBBUttonView: UIView!
   var selectedBrand:Brand?
   var selectedProduct:Product?
   var childProduct:Product?
   var selectedSizeProduct = [Product]()
   var productID: String?
   var childProductID = String()
+  var pickUpDateAndTime = String()
+  var returnDateAndTime = String()
   var contentStatus: ContentStatus = .unreserved
   var delegate: ReserveDelegate?
   
@@ -51,9 +54,11 @@ class ProductViewController: UIViewController {
     if contentStatus == ContentStatus.reserve {
       IBButtonReserve.setTitle("UNRESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_RED_COLOR
+      IBBUttonView.isHidden = true
       IBSelectSize.setTitle(selectedProduct?.ProductsSize, for: .normal)
       IBSelectSize.isEnabled = false
     } else {
+      IBBUttonView.isHidden = false
       IBButtonReserve.setTitle("RESERVE", for: .normal)
       IBButtonReserve.backgroundColor = DARK_GRAY_COLOR
     }
@@ -76,7 +81,7 @@ class ProductViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == S_ID_PRODUCT_INFO_SEGUE{
+    if segue.identifier == S_ID_PRODUCT_INFO_SEGUE {
       if let productInfoViewController:ProductInfoViewController = segue.destination as? ProductInfoViewController {
         if contentStatus == ContentStatus.reserve {
           productInfoViewController.selectedProduct = self.selectedProduct
@@ -86,6 +91,11 @@ class ProductViewController: UIViewController {
           productInfoViewController.childProduct = childProduct
         }
       }
+    } else if segue.identifier == SEGUE_SELECT_DATE_TIME {
+      if let pickUpAndReturnViewController: PickUpAndReturnViewController = segue.destination as? PickUpAndReturnViewController {
+        pickUpAndReturnViewController.delegate = self
+        pickUpAndReturnViewController.rentalInfo = (self.selectedBrand?.rentalInfo)!
+      }
     }
   }
 }
@@ -94,7 +104,7 @@ class ProductViewController: UIViewController {
 extension ProductViewController{
   func wsReserveProduct(){
     if contentStatus == ContentStatus.reserve {
-      UnlabelAPIHelper.sharedInstance.reserveProduct(productID!, onVC: self, success:{ (
+      UnlabelAPIHelper.sharedInstance.reserveProduct(productID!,datePicked:"2017-02-03 1:00:00",returnPicked:"2017-02-03 1:00:00", onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
         if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)){
@@ -107,7 +117,7 @@ extension ProductViewController{
       })
 
     } else {
-      UnlabelAPIHelper.sharedInstance.reserveProduct(childProductID, onVC: self, success:{ (
+      UnlabelAPIHelper.sharedInstance.reserveProduct(productID!,datePicked: pickUpDateAndTime,returnPicked: returnDateAndTime, onVC: self, success:{ (
         meta: JSON) in
         UnlabelLoadingView.sharedInstance.stop(self.view)
         if !(UnlabelHelper.getBoolValue(sPOPUP_SEEN_ONCE)) {
@@ -137,7 +147,7 @@ extension ProductViewController{
     var arrSize = [UnlabelStaticList]()
     for thisProduct in self.selectedSizeProduct {
       for thisSize in thisProduct.arrProductsSizes {
-        let pSize = UnlabelStaticList(uId: "", uName: "",isSelected:false)
+        let pSize = UnlabelStaticList(uId: "", uName: "",uCode:"",isSelected:false)
         pSize.uId = thisSize as! String
         pSize.uName = thisSize as! String
         arrSize.append(pSize)
@@ -151,7 +161,7 @@ extension ProductViewController{
 //MARK: -  IBAction methods
 extension ProductViewController {
   @IBAction func IBActionSelectSize(_ sender: Any) {
-    self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+   // self.addSortPopupView(SlideUpView.sizeSelection,initialFrame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
   }
   
   @IBAction func likeProductAction(_ sender: Any) {
@@ -167,10 +177,10 @@ extension ProductViewController {
     if contentStatus == ContentStatus.reserve {
       wsReserveProduct()
     } else {
-      if self.IBSelectSize.titleLabel?.text != "Select Size" {
+      if self.IBSelectSize.titleLabel?.text != "Select Pick-Up Date & Time" {
         self.addForgotPopupView(CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
       } else {
-        UnlabelHelper.showAlert(onVC: self, title: "Enter Size", message: "Please provide size of the product.", onOk: {})
+        UnlabelHelper.showAlert(onVC: self, title: "Unlabel", message: "Please select pick up and return date", onOk: {})
       }
     }
   }
@@ -300,7 +310,7 @@ extension ProductViewController: SortModePopupViewDelegate {
     //popup did click close
   }
   
-  func popupDidClickDone(_ selectedItem: UnlabelStaticList) {
+    func popupDidClickDone(_ selectedItem: UnlabelStaticList, countryCode: Bool) {
     IBSelectSize.setTitle(selectedItem.uName, for: .normal)
     for thisProduct in self.selectedSizeProduct {
       for thisSize in thisProduct.arrProductsSizes {
@@ -313,3 +323,25 @@ extension ProductViewController: SortModePopupViewDelegate {
   }
 }
 
+extension ProductViewController: PickAndReturnViewDelegate {
+  
+  func pickUpAndreturn(_ pickDate: String, _ returnDate: String,_ pickTime: String, _ returnTime: String) {
+    let dateTitle = "From: " + pickDate + " at " + pickTime.lowercased() + " - To: " + returnDate + " at " + returnTime.lowercased()
+    IBSelectSize.setTitle(dateTitle, for: .normal)
+    var endIndex = pickTime.index(pickTime.endIndex, offsetBy: -2)
+    var truncated = pickTime.substring(to: endIndex)
+    let startTime: String = truncated
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM/dd/yy"
+    let pickUpDate = dateFormatter.date(from: pickDate)
+    let returnDate = dateFormatter.date(from: returnDate)
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let pickUpString = dateFormatter.string(from: pickUpDate!)
+    let returnString = dateFormatter.string(from: returnDate!)
+    endIndex = returnTime.index(returnTime.endIndex, offsetBy: -2)
+    truncated = returnTime.substring(to: endIndex)
+    let endTime: String = truncated
+    pickUpDateAndTime = pickUpString + " " + startTime
+    returnDateAndTime = returnString + " " + endTime
+  }
+}

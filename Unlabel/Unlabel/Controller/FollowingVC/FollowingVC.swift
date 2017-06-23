@@ -195,7 +195,7 @@ extension FollowingVC {
             arrFilteredBrandList[sender.tag].isFollowing = true
           }
           IBcollectionViewFollowing.reloadData()
-          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID, onVC: self, success:{ (
+          UnlabelAPIHelper.sharedInstance.followBrand(selectedBrandID,datePicked:"2017-02-03 1:00:00",dateReturn:"2017-02-03 1:00:00", onVC: self, success:{ (
             meta: JSON) in
             self.wsCallGetLabels()
           }, failed: { (error) in

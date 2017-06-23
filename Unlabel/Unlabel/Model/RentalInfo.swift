@@ -21,4 +21,5 @@ class RentalInfo: NSObject {
   var weekIndices:[Int] = []
   var startTime: String = String()
   var endTime: String = String()
+  var rentTime:[RentTime] = []
 }
